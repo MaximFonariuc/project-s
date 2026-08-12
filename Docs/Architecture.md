@@ -20,4 +20,6 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 
 Input выделен в независимый module boundary. Его class trees и зависимости описаны в `Assets/_Modules/Input/Documentation~`, а Project S adapter — в `Docs/Architecture/Input.Player.md`.
 
+Общее синхронное ядро конечных машин состояний выделено в `Assets/_Modules/StateMachine`. Core не зависит от Unity или DI container; VContainer используется отдельной integration assembly только в composition root. Диаграммы, lifecycle и package boundary описаны в `Assets/_Modules/StateMachine/Documentation~`.
+
 `Assets/Scenes/Demo Scene.unity` сохраняется как reference-сцена без переноса её содержимого. Рабочая сцена находится в `Assets/_Game/Scenes/PrototypeArena.unity` и является стартовой сценой разработки.

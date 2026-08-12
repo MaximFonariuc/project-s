@@ -1,0 +1,17 @@
+{
+    "name": "ModularStateMachine.VContainer",
+    "rootNamespace": "ModularStateMachine.VContainerIntegration",
+    "references": [
+        "ModularStateMachine.Core",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
