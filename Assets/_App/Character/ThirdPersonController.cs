@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using ModularInput;
 using Unity.Cinemachine;
 using UnityEngine;
 using VContainer;
@@ -50,7 +51,7 @@ namespace _App
         private float _followDistanceSmoothVelocity;
 
         private Character _character;
-        private IInputHandler _inputHandler;
+        private IPlayerInput _input;
         private AbilityController _abilityController;
         private CombatControllerBase _combatControllerBase;
         private AnimationController _animationController;
@@ -60,27 +61,27 @@ namespace _App
         private bool _activeCursor;
 
         [Inject]
-        public void Construct(IInputHandler inputHandler)
+        public void Construct(IPlayerInput input)
         {
-            _inputHandler = inputHandler;
+            _input = input;
         }
 
         private void SetCallbacks()
         {
             _character.PhysicsVolumeChanged += _animationController.OnPhysicsVolumeChanged;
 
-            _inputHandler.OnAttackPerformed += Attack;
-            _inputHandler.OnInteractPerformed += Interact;
-            _inputHandler.OnWalkingChanged += Walk;
-            _inputHandler.OnJumpChanged += Jump;
-            _inputHandler.OnSprintChanged += Sprint;
-            _inputHandler.OnPausePerformed += Pause;
-            _inputHandler.OnInverseGravityPerformed += InverseGravity;
-            _inputHandler.OnCursorPerformed += CursorChanged;
-            _inputHandler.OnSkillPerformed += Skill;
-            _inputHandler.OnLockOnPerformed += LockOn;
-            _inputHandler.OnDodgePerformed += Dodge;
-            _inputHandler.OnSwitchCombatStatePerformed += SwitchCombatState;
+            _input.AttackRequested += Attack;
+            _input.InteractRequested += Interact;
+            _input.WalkChanged += Walk;
+            _input.JumpChanged += Jump;
+            _input.SprintChanged += Sprint;
+            _input.PauseRequested += Pause;
+            _input.InverseGravityRequested += InverseGravity;
+            _input.CursorRequested += CursorChanged;
+            _input.SkillRequested += Skill;
+            _input.LockOnRequested += LockOn;
+            _input.DodgeRequested += Dodge;
+            _input.SwitchCombatStateRequested += SwitchCombatState;
 
             if (_equippedWeapon != null)
             {
@@ -91,20 +92,25 @@ namespace _App
 
         private void RemoveCallbacks()
         {
+            if (_input == null || _character == null || _animationController == null)
+            {
+                return;
+            }
+
             _character.PhysicsVolumeChanged -= _animationController.OnPhysicsVolumeChanged;
 
-            _inputHandler.OnAttackPerformed -= Attack;
-            _inputHandler.OnInteractPerformed -= Interact;
-            _inputHandler.OnWalkingChanged -= Walk;
-            _inputHandler.OnJumpChanged -= Jump;
-            _inputHandler.OnSprintChanged -= Sprint;
-            _inputHandler.OnPausePerformed -= Pause;
-            _inputHandler.OnInverseGravityPerformed -= InverseGravity;
-            _inputHandler.OnCursorPerformed -= CursorChanged;
-            _inputHandler.OnSkillPerformed -= Skill;
-            _inputHandler.OnLockOnPerformed -= LockOn;
-            _inputHandler.OnDodgePerformed -= Dodge;
-            _inputHandler.OnSwitchCombatStatePerformed -= SwitchCombatState;
+            _input.AttackRequested -= Attack;
+            _input.InteractRequested -= Interact;
+            _input.WalkChanged -= Walk;
+            _input.JumpChanged -= Jump;
+            _input.SprintChanged -= Sprint;
+            _input.PauseRequested -= Pause;
+            _input.InverseGravityRequested -= InverseGravity;
+            _input.CursorRequested -= CursorChanged;
+            _input.SkillRequested -= Skill;
+            _input.LockOnRequested -= LockOn;
+            _input.DodgeRequested -= Dodge;
+            _input.SwitchCombatStateRequested -= SwitchCombatState;
 
             if (_equippedWeapon != null)
             {
@@ -118,6 +124,13 @@ namespace _App
 
         protected virtual void Awake()
         {
+            if (_input == null)
+            {
+                Debug.LogError($"{nameof(ThirdPersonController)} requires {nameof(IPlayerInput)} from the composition root.", this);
+                enabled = false;
+                return;
+            }
+
             _character = GetComponent<Character>();
             _followCamera = Instantiate(_followCamera);
 
@@ -141,7 +154,6 @@ namespace _App
         {
             _animationController = new AnimationController(_character, _animator);
             _combatControllerBase = new PlayerCombatController(_characterType, _animationController, _skillsData);
-            _inputHandler ??= new InputHandler();
             _abilityController = new AbilityController(_abilitiesData, _character, _animationController);
             _targetLockSystem = new PlayerTargetLockSystem(_character, _followCamera.GetComponent<CinemachineCamera>());
             _equippedWeapon = _weapon != null ? _weapon.GetComponent<Weapon>() : null;
@@ -155,13 +167,13 @@ namespace _App
         private void OnEnable()
         {
             _abilityController?.EnableAllAbilities();
-            _inputHandler?.OnEnable();
+            _input?.Enable();
         }
 
         private void OnDisable()
         {
             _abilityController?.DisableAllAbilities();
-            _inputHandler?.OnDisable();
+            _input?.Disable();
         }
 
         protected virtual void Update()
@@ -182,11 +194,11 @@ namespace _App
 
         protected virtual void HandleInput()
         {
-            if (_character.IsClimbing() && _inputHandler.MoveInput.sqrMagnitude > 0.01f)
+            if (_character.IsClimbing() && _input.Move.sqrMagnitude > 0.01f)
             {
                 var ladder = _abilityController.GetAbility<LadderClimbAbility>();
                 
-                ladder.OnClimbInput(_inputHandler.MoveInput);
+                ladder.OnClimbInput(_input.Move);
             }
             
             var movementDirection = GetMovementDirection();
@@ -216,18 +228,18 @@ namespace _App
 
             if (_character.RotationMode != ERotationMode.None)
             {
-                Vector2 lookInput = _inputHandler.LookInput * _mouseSensitivity;
+                Vector2 lookInput = _input.Look * _mouseSensitivity;
                 AddControlYawInput(_invertLook ? lookInput.x : -lookInput.x);
                 AddControlPitchInput(_invertLook ? -lookInput.y : lookInput.y, _minPitch, _maxPitch);
 
-                Vector2 zoomInput = _inputHandler.ZoomInput * _mouseSensitivity;
+                Vector2 zoomInput = _input.Zoom * _mouseSensitivity;
                 AddControlZoomInput(zoomInput.y);
             }
             else
             {
-                if (_inputHandler.MoveInput.x != 0)
+                if (_input.Move.x != 0)
                 {
-                    _character.SetYaw(_inputHandler.MoveInput.x > 0 ? 90.0f : -90.0f);
+                    _character.SetYaw(_input.Move.x > 0 ? 90.0f : -90.0f);
                 }
 
                 if (_character.CameraTransform)
@@ -243,11 +255,11 @@ namespace _App
         {
             Vector3 movementDirection = Vector3.zero;
 
-            movementDirection += Vector3.right * _inputHandler.MoveInput.x;
+            movementDirection += Vector3.right * _input.Move.x;
 
             if (_character.RotationMode != ERotationMode.None)
             {
-                movementDirection += Vector3.forward * _inputHandler.MoveInput.y;
+                movementDirection += Vector3.forward * _input.Move.y;
 
                 if (_character.CameraTransform)
                 {
@@ -416,7 +428,7 @@ namespace _App
             }
         }
 
-        private void Walk(EContextStates contextStates)
+        private void Walk(InputSignalPhase phase)
         {
             if (_character.IsCrouched())
             {
@@ -425,21 +437,21 @@ namespace _App
 
             var walkAbility = _abilityController.GetAbility<WalkAbility>();
 
-            switch (contextStates)
+            switch (phase)
             {
-                case EContextStates.Started:
+                case InputSignalPhase.Started:
                     walkAbility?.Walk();
                     _animationController.IsWalking = true;
                     break;
 
-                case EContextStates.Canceled:
+                case InputSignalPhase.Canceled:
                     _animationController.IsWalking = false;
                     walkAbility?.StopWalking();
                     break;
             }
         }
 
-        private void Jump(EContextStates contextStates)
+        private void Jump(InputSignalPhase phase)
         {
             if (_combatControllerBase.IsComboAttack || _combatControllerBase.IsSkillAttack || _combatControllerBase.IsSwitching ||
                 _character.IsDodging())
@@ -449,24 +461,24 @@ namespace _App
 
             var glideAbility = _abilityController.GetAbility<GlideAbility>();
 
-            switch (contextStates)
+            switch (phase)
             {
-                case EContextStates.Started:
+                case InputSignalPhase.Started:
                     _character?.Jump();
                     break;
 
-                case EContextStates.Performed when !_character.IsSwimming():
+                case InputSignalPhase.Performed when !_character.IsSwimming():
                     glideAbility?.Glide();
                     break;
 
-                case EContextStates.Canceled:
+                case InputSignalPhase.Canceled:
                     glideAbility?.StopGliding();
                     _character?.StopJumping();
                     break;
             }
         }
 
-        private void Sprint(EContextStates contextStates)
+        private void Sprint(InputSignalPhase phase)
         {
             if (_character.IsCrouched())
             {
@@ -475,14 +487,14 @@ namespace _App
 
             var sprintAbility = _abilityController.GetAbility<SprintAbility>();
 
-            switch (contextStates)
+            switch (phase)
             {
-                case EContextStates.Started:
+                case InputSignalPhase.Started:
                     sprintAbility?.Sprint();
                     _animationController.IsSprinting = true;
                     break;
 
-                case EContextStates.Canceled:
+                case InputSignalPhase.Canceled:
                     _animationController.IsSprinting = false;
                     sprintAbility?.StopSprinting();
                     break;
@@ -543,7 +555,7 @@ namespace _App
 
                 var movementDirection = GetMovementDirection();
 
-                bool isDodgingBack = _inputHandler.MoveInput.y < -0.5f &&
+                bool isDodgingBack = _input.Move.y < -0.5f &&
                                      _character.RotationMode == ERotationMode.OrientToViewAndMovement;
 
                 if (movementDirection.sqrMagnitude > 0.01f && !isDodgingBack)

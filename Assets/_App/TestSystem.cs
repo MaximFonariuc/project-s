@@ -1,14 +1,10 @@
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace _App
 {
     public class TestSystem : MonoSingleton<TestSystem>
     {
-        [Header("CombatController")] 
-        [SerializeField] private EWeaponType _weaponType;
-        
         private readonly List<ITestable> _testables = new List<ITestable>();
         
         public void SetTestableItem(ITestable testables)
@@ -36,23 +32,6 @@ namespace _App
             }
 
             return default;
-        }
-        
-        private void Update()
-        {
-#if UNITY_EDITOR
-            if (Input.GetKey(KeyCode.Q) && Input.GetKeyUp(KeyCode.Alpha1))
-            {
-                Get<CombatControllerBase>().SwitchAnimations(ECharacterType.Player, _weaponType).Forget();
-            }
-            if (Input.GetKey(KeyCode.Q) && Input.GetKeyUp(KeyCode.Alpha2))
-            {
-                var player = Get<ThirdPersonController>().gameObject;
-                var ragdollBodies = player.GetComponentsInChildren<Rigidbody>();
-
-                SetRagdollState(true, ragdollBodies);
-            }
-#endif
         }
         
         public void SetRagdollState(bool enabled, Rigidbody[] ragdollBodies)

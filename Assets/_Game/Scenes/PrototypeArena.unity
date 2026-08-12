@@ -32370,6 +32370,7 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   _player: {fileID: 5700940806182977519}
+  _inputActions: {fileID: -944628639613478452, guid: 2d5deefb9a5fdcc478b3271d479a6bd1, type: 3}
 --- !u!4 &2101400901
 Transform:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 {
-    "name": "InputSystem_Actions",
+    "version": 1,
+    "name": "ProjectSInput",
     "maps": [
         {
             "name": "Player",
@@ -105,10 +106,19 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Skill",
+                    "name": "SkillBoneCrash",
                     "type": "Button",
-                    "id": "9ff3b645-f7a0-467b-8150-eb6ef96d105e",
-                    "expectedControlType": "",
+                    "id": "365d05f1-d204-4f76-895c-1cd8937404b9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SkillFlashStance",
+                    "type": "Button",
+                    "id": "b05e1097-622a-4a6b-b1de-035285359b05",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -461,6 +471,17 @@
                 },
                 {
                     "name": "",
+                    "id": "9cf8c5ee-1d7d-44bd-8301-ed2061a5e7c1",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "13e7338f-4b65-4fe1-be3e-9e343214372a",
                     "path": "<Mouse>/scroll",
                     "interactions": "",
@@ -484,10 +505,10 @@
                 {
                     "name": "",
                     "id": "f8ee1137-1518-47fa-b915-f46b0e7156fa",
-                    "path": "<Keyboard>/pause",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "Gamepad",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -516,111 +537,45 @@
                 },
                 {
                     "name": "",
-                    "id": "bb1568d0-fcd9-4aa9-9a00-896e253dbf53",
+                    "id": "ef6cedff-fe59-4e0f-8400-f08777d87340",
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Skill",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SkillBoneCrash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "463dac17-fdcc-460c-b426-e49bd75915b8",
+                    "id": "0d3154f5-31cb-42c3-a8d1-df9826bb49a5",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SkillBoneCrash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7c422749-e800-470b-a756-4c77a07ae190",
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Skill",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SkillFlashStance",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "bf60617d-d875-4298-9db0-c33ef07eaa4f",
-                    "path": "<Keyboard>/3",
+                    "id": "f4a09572-9005-4fa1-9a4f-fe87cc1c20a8",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Skill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "412589b1-8404-4db3-aec2-3bc0baffc6d0",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Skill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9d56f6fb-487f-4d2b-9ea8-01adfa3aa7c3",
-                    "path": "<Keyboard>/5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Skill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8485a7fd-75b4-48a5-b68c-4fe17fbd81a8",
-                    "path": "<Keyboard>/6",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Skill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9639c40e-d838-413e-8fbb-02a4c3001043",
-                    "path": "<Keyboard>/7",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Skill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8a5bed53-7975-421c-9061-2e8a40a963f2",
-                    "path": "<Keyboard>/8",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Skill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3d770a60-9d73-4deb-ae7b-242e990471cd",
-                    "path": "<Keyboard>/9",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Skill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a0597e7c-81b8-447f-a9ff-8654e9de7fab",
-                    "path": "<Keyboard>/0",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Skill",
+                    "groups": "Gamepad",
+                    "action": "SkillFlashStance",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -631,6 +586,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "LockOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39f534e8-3e81-4463-be01-4d42cc3283ed",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "LockOn",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -648,6 +614,17 @@
                 },
                 {
                     "name": "",
+                    "id": "92ea54bd-fbe0-4f73-aee3-ea859e3edad1",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7d961da9-a280-44ec-a527-02c2c118cd35",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
@@ -659,11 +636,33 @@
                 },
                 {
                     "name": "",
+                    "id": "830172e5-e57d-4138-8d81-7e35b455d520",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SwitchCombatState",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "1cf59f28-b932-4bed-9373-264638f56b08",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "SpecialAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "971c7ce4-8f4d-4913-9530-d463fad7238a",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "SpecialAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
