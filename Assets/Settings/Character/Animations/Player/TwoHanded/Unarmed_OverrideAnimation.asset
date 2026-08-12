@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3a62f0af75447bbfd8e23debb3eb25, type: 3}
+  m_Name: Unarmed_OverrideAnimation
+  m_EditorClassIdentifier: 
+  <WeaponType>k__BackingField: 1
+  <DefaultsAnimationClips>k__BackingField: []
+  <DefaultCombos>k__BackingField:
+  - <SkillType>k__BackingField: 0
+    <ComboClips>k__BackingField:
+    - {fileID: 7400000, guid: 426b0d86537cfd8438a1c4e0112f5afe, type: 2}
+    - {fileID: 7400000, guid: 58e0c78ec2b3f6f47b00885f9c0ee251, type: 2}
+    - {fileID: 7400000, guid: 9f4d00cb339399546930e2a98e99a5df, type: 2}
+    - {fileID: 7400000, guid: c56537f288556094fb593f18768164ac, type: 2}
+  <Skills>k__BackingField:
+  - <SkillType>k__BackingField: -1
+    <AnimationClip>k__BackingField: {fileID: 7400000, guid: 2db42cdecbd8b15468f5fdde54ca9b7e, type: 2}

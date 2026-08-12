@@ -1,0 +1,802 @@
+fileFormatVersion: 2
+guid: f609a86a7f9e31b46ba187e09c480455
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bip01 Head_zhanshi
+  - first:
+      1: 100002
+    second: Bip01 L Calf_zhanshi
+  - first:
+      1: 100004
+    second: Bip01 L Clavicle_zhanshi
+  - first:
+      1: 100006
+    second: Bip01 L Finger01_zhanshi
+  - first:
+      1: 100008
+    second: Bip01 L Finger0_zhanshi
+  - first:
+      1: 100010
+    second: Bip01 L Finger11_zhanshi
+  - first:
+      1: 100012
+    second: Bip01 L Finger1_zhanshi
+  - first:
+      1: 100014
+    second: Bip01 L Foot_zhanshi
+  - first:
+      1: 100016
+    second: Bip01 L Forearm_zhanshi
+  - first:
+      1: 100018
+    second: Bip01 L Hand_zhanshi
+  - first:
+      1: 100020
+    second: Bip01 L Thigh_zhanshi
+  - first:
+      1: 100022
+    second: Bip01 L UpperArm_zhanshi
+  - first:
+      1: 100024
+    second: Bip01 Neck_zhanshi
+  - first:
+      1: 100026
+    second: Bip01 Pelvis_zhanshi
+  - first:
+      1: 100028
+    second: Bip01 R Calf_zhanshi
+  - first:
+      1: 100030
+    second: Bip01 R Clavicle_zhanshi
+  - first:
+      1: 100032
+    second: Bip01 R Finger01_zhanshi
+  - first:
+      1: 100034
+    second: Bip01 R Finger0_zhanshi
+  - first:
+      1: 100036
+    second: Bip01 R Finger11_zhanshi
+  - first:
+      1: 100038
+    second: Bip01 R Finger1_zhanshi
+  - first:
+      1: 100040
+    second: Bip01 R Foot_zhanshi
+  - first:
+      1: 100042
+    second: Bip01 R Forearm_zhanshi
+  - first:
+      1: 100044
+    second: Bip01 R Hand_zhanshi
+  - first:
+      1: 100046
+    second: Bip01 R Thigh_zhanshi
+  - first:
+      1: 100048
+    second: Bip01 R UpperArm_zhanshi
+  - first:
+      1: 100050
+    second: Bip01 Spine1_zhanshi
+  - first:
+      1: 100052
+    second: Bip01 Spine_zhanshi
+  - first:
+      1: 100054
+    second: Bip01_zhanshi
+  - first:
+      1: 100056
+    second: //RootNode
+  - first:
+      1: 100058
+    second: Player_warrior_dark_body
+  - first:
+      1: 100060
+    second: Player_warrior_dark_boots
+  - first:
+      1: 100062
+    second: Player_warrior_dark_gauntlet
+  - first:
+      1: 100064
+    second: Player_warrior_dark_glove
+  - first:
+      1: 100066
+    second: Player_warrior_dark_hair
+  - first:
+      1: 100068
+    second: Player_warrior_dark_leg
+  - first:
+      1: 100070
+    second: eye_left_zhanshi
+  - first:
+      1: 100072
+    second: eye_right_zhanshi
+  - first:
+      1: 100074
+    second: Player_warrior_dark_face
+  - first:
+      4: 400000
+    second: Bip01 Head_zhanshi
+  - first:
+      4: 400002
+    second: Bip01 L Calf_zhanshi
+  - first:
+      4: 400004
+    second: Bip01 L Clavicle_zhanshi
+  - first:
+      4: 400006
+    second: Bip01 L Finger01_zhanshi
+  - first:
+      4: 400008
+    second: Bip01 L Finger0_zhanshi
+  - first:
+      4: 400010
+    second: Bip01 L Finger11_zhanshi
+  - first:
+      4: 400012
+    second: Bip01 L Finger1_zhanshi
+  - first:
+      4: 400014
+    second: Bip01 L Foot_zhanshi
+  - first:
+      4: 400016
+    second: Bip01 L Forearm_zhanshi
+  - first:
+      4: 400018
+    second: Bip01 L Hand_zhanshi
+  - first:
+      4: 400020
+    second: Bip01 L Thigh_zhanshi
+  - first:
+      4: 400022
+    second: Bip01 L UpperArm_zhanshi
+  - first:
+      4: 400024
+    second: Bip01 Neck_zhanshi
+  - first:
+      4: 400026
+    second: Bip01 Pelvis_zhanshi
+  - first:
+      4: 400028
+    second: Bip01 R Calf_zhanshi
+  - first:
+      4: 400030
+    second: Bip01 R Clavicle_zhanshi
+  - first:
+      4: 400032
+    second: Bip01 R Finger01_zhanshi
+  - first:
+      4: 400034
+    second: Bip01 R Finger0_zhanshi
+  - first:
+      4: 400036
+    second: Bip01 R Finger11_zhanshi
+  - first:
+      4: 400038
+    second: Bip01 R Finger1_zhanshi
+  - first:
+      4: 400040
+    second: Bip01 R Foot_zhanshi
+  - first:
+      4: 400042
+    second: Bip01 R Forearm_zhanshi
+  - first:
+      4: 400044
+    second: Bip01 R Hand_zhanshi
+  - first:
+      4: 400046
+    second: Bip01 R Thigh_zhanshi
+  - first:
+      4: 400048
+    second: Bip01 R UpperArm_zhanshi
+  - first:
+      4: 400050
+    second: Bip01 Spine1_zhanshi
+  - first:
+      4: 400052
+    second: Bip01 Spine_zhanshi
+  - first:
+      4: 400054
+    second: Bip01_zhanshi
+  - first:
+      4: 400056
+    second: //RootNode
+  - first:
+      4: 400058
+    second: Player_warrior_dark_body
+  - first:
+      4: 400060
+    second: Player_warrior_dark_boots
+  - first:
+      4: 400062
+    second: Player_warrior_dark_gauntlet
+  - first:
+      4: 400064
+    second: Player_warrior_dark_glove
+  - first:
+      4: 400066
+    second: Player_warrior_dark_hair
+  - first:
+      4: 400068
+    second: Player_warrior_dark_leg
+  - first:
+      4: 400070
+    second: eye_left_zhanshi
+  - first:
+      4: 400072
+    second: eye_right_zhanshi
+  - first:
+      4: 400074
+    second: Player_warrior_dark_face
+  - first:
+      43: 4300000
+    second: Player_warrior_dark_hair
+  - first:
+      43: 4300002
+    second: Player_warrior_dark_body
+  - first:
+      43: 4300004
+    second: Player_warrior_dark_boots
+  - first:
+      43: 4300006
+    second: Player_warrior_dark_leg
+  - first:
+      43: 4300008
+    second: Player_warrior_dark_glove
+  - first:
+      43: 4300010
+    second: Player_warrior_dark_gauntlet
+  - first:
+      43: 4300012
+    second: Player_warrior_dark_face
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Player_warrior_dark_body
+  - first:
+      137: 13700002
+    second: Player_warrior_dark_boots
+  - first:
+      137: 13700004
+    second: Player_warrior_dark_gauntlet
+  - first:
+      137: 13700006
+    second: Player_warrior_dark_glove
+  - first:
+      137: 13700008
+    second: Player_warrior_dark_hair
+  - first:
+      137: 13700010
+    second: Player_warrior_dark_leg
+  - first:
+      137: 13700012
+    second: Player_warrior_dark_face
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 2
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 2
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Bip01 Pelvis_zhanshi
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 L Thigh_zhanshi
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 R Thigh_zhanshi
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 L Calf_zhanshi
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 R Calf_zhanshi
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 L Foot_zhanshi
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 R Foot_zhanshi
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 Spine_zhanshi
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 Head_zhanshi
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 L Clavicle_zhanshi
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 R Clavicle_zhanshi
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 L UpperArm_zhanshi
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 R UpperArm_zhanshi
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 L Forearm_zhanshi
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 R Forearm_zhanshi
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 L Hand_zhanshi
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 R Hand_zhanshi
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: eye_left_zhanshi
+      humanName: LeftEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: eye_right_zhanshi
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 L Finger0_zhanshi
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 L Finger01_zhanshi
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 L Finger1_zhanshi
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 L Finger11_zhanshi
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 R Finger0_zhanshi
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 R Finger01_zhanshi
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 R Finger1_zhanshi
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 R Finger11_zhanshi
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 Spine1_zhanshi
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip01 Neck_zhanshi
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: DN_Humanoid(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip01_zhanshi
+      parentName: DN_Humanoid(Clone)
+      position: {x: -0, y: 0.53108823, z: 0.02844}
+      rotation: {x: -0.5000004, y: 0.49999964, z: 0.49999964, w: 0.5000004}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: Bip01 Pelvis_zhanshi
+      parentName: Bip01_zhanshi
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.5, y: -0.5000007, z: -0.49999943, w: -0.49999997}
+      scale: {x: 1, y: 0.9999998, z: 0.9999998}
+    - name: Bip01 Spine_zhanshi
+      parentName: Bip01 Pelvis_zhanshi
+      position: {x: -0.046783216, y: -0.006895871, z: 0.000000082435506}
+      rotation: {x: 0.0000020116565, y: 0.00000058114523, z: 0.066183366, w: -0.99780744}
+      scale: {x: 1.0000005, y: 1.0000006, z: 1.0000006}
+    - name: Bip01 Spine1_zhanshi
+      parentName: Bip01 Spine_zhanshi
+      position: {x: -0.047646407, y: -0.00012258529, z: -3.293644e-10}
+      rotation: {x: -0.000000029802322, y: 0.00000037252903, z: -0.09432489, w: -0.9955415}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000001}
+    - name: Bip01 Neck_zhanshi
+      parentName: Bip01 Spine1_zhanshi
+      position: {x: -0.14673133, y: -0.0005914593, z: -0.00000000244896}
+      rotation: {x: 0.000000042226883, y: -0.000000631683, z: 0.16125663, w: -0.98691255}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: Bip01 R Clavicle_zhanshi
+      parentName: Bip01 Neck_zhanshi
+      position: {x: 0.026951216, y: 0.015837288, z: -0.020591717}
+      rotation: {x: -0.6978067, y: -0.11430253, z: -0.69780743, w: 0.11430448}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000004}
+    - name: Bip01 R UpperArm_zhanshi
+      parentName: Bip01 R Clavicle_zhanshi
+      position: {x: -0.062180452, y: -0.0000000047683715, z: 0}
+      rotation: {x: 0.034362275, y: -0.0040228325, z: 0.02125348, w: -0.9991754}
+      scale: {x: 1.0000021, y: 1.0000013, z: 1.0000011}
+    - name: Bip01 R Forearm_zhanshi
+      parentName: Bip01 R UpperArm_zhanshi
+      position: {x: -0.13204746, y: 0, z: 0}
+      rotation: {x: -0.000000023690518, y: 0.0000000023283064, z: 0.03780012, w: 0.99928534}
+      scale: {x: 1, y: 1, z: 0.9999998}
+    - name: Bip01 R Hand_zhanshi
+      parentName: Bip01 R Forearm_zhanshi
+      position: {x: -0.11600941, y: 0.000000004172325, z: 0}
+      rotation: {x: -0.70620483, y: 0.029602258, z: 0.02962597, w: -0.7067678}
+      scale: {x: 1.0000005, y: 1.0000006, z: 1}
+    - name: Bip01 R Finger1_zhanshi
+      parentName: Bip01 R Hand_zhanshi
+      position: {x: -0.04824581, y: 0.000000076293944, z: 0}
+      rotation: {x: 0.005108174, y: 0.018164402, z: -0.069005385, w: 0.9974379}
+      scale: {x: 1, y: 0.99999994, z: 0.9999998}
+    - name: Bip01 R Finger11_zhanshi
+      parentName: Bip01 R Finger1_zhanshi
+      position: {x: -0.024498023, y: 0, z: 0}
+      rotation: {x: 0.00000007037303, y: 0.000000023726887, z: -0.57104194, w: 0.8209208}
+      scale: {x: 1.0000001, y: 0.9999998, z: 1}
+    - name: Bip01 R Finger0_zhanshi
+      parentName: Bip01 R Hand_zhanshi
+      position: {x: -0.013192177, y: 0.011598434, z: 0.022778044}
+      rotation: {x: 0.8432448, y: -0.06553334, z: -0.0373808, w: -0.53220886}
+      scale: {x: 1.0000001, y: 0.99999934, z: 0.9999998}
+    - name: Bip01 R Finger01_zhanshi
+      parentName: Bip01 R Finger0_zhanshi
+      position: {x: -0.029003028, y: 0.000000019073486, z: 0}
+      rotation: {x: 0.000000029802312, y: -0.00000010430809, z: -0.38996616, w: 0.9208292}
+      scale: {x: 1.0000002, y: 1.0000002, z: 0.99999994}
+    - name: Bip01 L Clavicle_zhanshi
+      parentName: Bip01 Neck_zhanshi
+      position: {x: 0.026951216, y: 0.015837153, z: 0.02059183}
+      rotation: {x: 0.6978074, y: 0.114304475, z: -0.6978068, w: 0.11430257}
+      scale: {x: 0.9999999, y: 1.0000002, z: 1.0000001}
+    - name: Bip01 L UpperArm_zhanshi
+      parentName: Bip01 L Clavicle_zhanshi
+      position: {x: -0.062180467, y: 0, z: 0}
+      rotation: {x: 0.034362283, y: -0.0040231836, z: -0.021252386, w: 0.99917537}
+      scale: {x: 1.0000001, y: 1.000001, z: 1.0000005}
+    - name: Bip01 L Forearm_zhanshi
+      parentName: Bip01 L UpperArm_zhanshi
+      position: {x: -0.13204749, y: 0, z: 0}
+      rotation: {x: -0.000000018626448, y: -0.000000033527606, z: 0.037797257, w: 0.9992854}
+      scale: {x: 0.99999976, y: 1.0000002, z: 1.0000008}
+    - name: Bip01 L Hand_zhanshi
+      parentName: Bip01 L Forearm_zhanshi
+      position: {x: -0.11600942, y: 0.0000000017881393, z: -0.000000076293944}
+      rotation: {x: 0.7062052, y: -0.029601282, z: 0.029624809, w: -0.7067676}
+      scale: {x: 1, y: 1.0000002, z: 1.0000002}
+    - name: Bip01 L Finger1_zhanshi
+      parentName: Bip01 L Hand_zhanshi
+      position: {x: -0.04824581, y: -0.000000076293944, z: 0.0000000023841857}
+      rotation: {x: -0.0051079374, y: -0.018164953, z: -0.069003224, w: 0.997438}
+      scale: {x: 0.99999946, y: 1.0000012, z: 1.0000005}
+    - name: Bip01 L Finger11_zhanshi
+      parentName: Bip01 L Finger1_zhanshi
+      position: {x: -0.0244981, y: 0, z: -0.0000000023841857}
+      rotation: {x: -0.0000000018626451, y: -4.656613e-10, z: -0.57104224, w: 0.8209207}
+      scale: {x: 0.9999997, y: 1, z: 0.99999994}
+    - name: Bip01 L Finger0_zhanshi
+      parentName: Bip01 L Hand_zhanshi
+      position: {x: -0.013192177, y: 0.011598358, z: -0.022778051}
+      rotation: {x: -0.8432442, y: 0.06553186, z: -0.037378035, w: -0.5322102}
+      scale: {x: 0.9999983, y: 1.0000021, z: 1.0000007}
+    - name: Bip01 L Finger01_zhanshi
+      parentName: Bip01 L Finger0_zhanshi
+      position: {x: -0.02900301, y: -0.000000019073486, z: 0.000000076293944}
+      rotation: {x: 0.000000119209275, y: -0.0000000745058, z: -0.38996625, w: 0.9208292}
+      scale: {x: 1.0000006, y: 0.99999946, z: 1}
+    - name: Bip01 Head_zhanshi
+      parentName: Bip01 Neck_zhanshi
+      position: {x: -0.032316055, y: 0, z: 0}
+      rotation: {x: 0.000000044432486, y: -0.0000003299424, z: 0.1047344, w: 0.9945003}
+      scale: {x: 1.000001, y: 1.0000007, z: 1.0000012}
+    - name: eye_left_zhanshi
+      parentName: Bip01 Head_zhanshi
+      position: {x: -0.065731965, y: 0.055510916, z: 0.030060729}
+      rotation: {x: -0.12609755, y: -0.0431757, z: 0.5402991, w: -0.83085024}
+      scale: {x: 1.0000006, y: 1.0000002, z: 0.99999994}
+    - name: eye_right_zhanshi
+      parentName: Bip01 Head_zhanshi
+      position: {x: -0.065731965, y: 0.055510983, z: -0.030059885}
+      rotation: {x: 0.83085066, y: -0.54029876, z: 0.043175183, w: 0.12609646}
+      scale: {x: 1.0000005, y: 1, z: 1.0000001}
+    - name: Bip01 L Thigh_zhanshi
+      parentName: Bip01 Spine_zhanshi
+      position: {x: 0.045462567, y: 0.013014302, z: 0.051136553}
+      rotation: {x: 0.06410169, y: -0.9958672, z: -0.0041431063, w: -0.06420561}
+      scale: {x: 1.0000002, y: 1.0000005, z: 1.0000008}
+    - name: Bip01 L Calf_zhanshi
+      parentName: Bip01 L Thigh_zhanshi
+      position: {x: -0.2785605, y: -0.0000000023841857, z: 0}
+      rotation: {x: -0.00000009452923, y: -0, z: 0.10454622, w: 0.99452007}
+      scale: {x: 1, y: 0.9999996, z: 0.9999997}
+    - name: Bip01 L Foot_zhanshi
+      parentName: Bip01 L Calf_zhanshi
+      position: {x: -0.18957229, y: -0.0000000023841857, z: -0.000000009536743}
+      rotation: {x: 0.006610364, y: 0.06399845, z: -0.10626734, w: 0.9922539}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Bip01 R Thigh_zhanshi
+      parentName: Bip01 Spine_zhanshi
+      position: {x: 0.045462567, y: 0.013014583, z: -0.051136486}
+      rotation: {x: 0.06410196, y: -0.99586725, z: 0.004140319, w: 0.064205445}
+      scale: {x: 1.0000008, y: 1.0000008, z: 1.0000004}
+    - name: Bip01 R Calf_zhanshi
+      parentName: Bip01 R Thigh_zhanshi
+      position: {x: -0.2785605, y: -0.0000000023841857, z: 0}
+      rotation: {x: 0.000000020023434, y: -0.0000000074505797, z: 0.10454631, w: 0.99452}
+      scale: {x: 1.0000002, y: 1, z: 1.0000005}
+    - name: Bip01 R Foot_zhanshi
+      parentName: Bip01 R Calf_zhanshi
+      position: {x: -0.18957229, y: 0.0000000047683715, z: 0.000000009536743}
+      rotation: {x: -0.006610371, y: -0.063998505, z: -0.106267415, w: 0.9922539}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000001}
+    - name: Player_warrior_dark_body
+      parentName: DN_Humanoid(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Player_warrior_dark_boots
+      parentName: DN_Humanoid(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Player_warrior_dark_face
+      parentName: DN_Humanoid(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Player_warrior_dark_gauntlet
+      parentName: DN_Humanoid(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Player_warrior_dark_glove
+      parentName: DN_Humanoid(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Player_warrior_dark_hair
+      parentName: DN_Humanoid(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Player_warrior_dark_leg
+      parentName: DN_Humanoid(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

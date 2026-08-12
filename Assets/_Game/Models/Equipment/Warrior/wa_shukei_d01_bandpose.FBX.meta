@@ -1,0 +1,578 @@
+fileFormatVersion: 2
+guid: fac8311a2e736bc40a0225a283b027af
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bip01 Head_zhanshi
+  - first:
+      1: 100002
+    second: Bip01 L Calf_zhanshi
+  - first:
+      1: 100004
+    second: Bip01 L Clavicle_zhanshi
+  - first:
+      1: 100006
+    second: Bip01 L Finger01_zhanshi
+  - first:
+      1: 100008
+    second: Bip01 L Finger0_zhanshi
+  - first:
+      1: 100010
+    second: Bip01 L Finger11_zhanshi
+  - first:
+      1: 100012
+    second: Bip01 L Finger1_zhanshi
+  - first:
+      1: 100014
+    second: Bip01 L Foot_zhanshi
+  - first:
+      1: 100016
+    second: Bip01 L Forearm_zhanshi
+  - first:
+      1: 100018
+    second: Bip01 L Hand_zhanshi
+  - first:
+      1: 100020
+    second: Bip01 L Thigh_zhanshi
+  - first:
+      1: 100022
+    second: Bip01 L UpperArm_zhanshi
+  - first:
+      1: 100024
+    second: Bip01 Neck_zhanshi
+  - first:
+      1: 100026
+    second: Bip01 Pelvis_zhanshi
+  - first:
+      1: 100028
+    second: Bip01 R Calf_zhanshi
+  - first:
+      1: 100030
+    second: Bip01 R Clavicle_zhanshi
+  - first:
+      1: 100032
+    second: Bip01 R Finger01_zhanshi
+  - first:
+      1: 100034
+    second: Bip01 R Finger0_zhanshi
+  - first:
+      1: 100036
+    second: Bip01 R Finger11_zhanshi
+  - first:
+      1: 100038
+    second: Bip01 R Finger1_zhanshi
+  - first:
+      1: 100040
+    second: Bip01 R Foot_zhanshi
+  - first:
+      1: 100042
+    second: Bip01 R Forearm_zhanshi
+  - first:
+      1: 100044
+    second: Bip01 R Hand_zhanshi
+  - first:
+      1: 100046
+    second: Bip01 R Thigh_zhanshi
+  - first:
+      1: 100048
+    second: Bip01 R UpperArm_zhanshi
+  - first:
+      1: 100050
+    second: Bip01 Spine1_zhanshi
+  - first:
+      1: 100052
+    second: Bip01 Spine_zhanshi
+  - first:
+      1: 100054
+    second: Bip01_zhanshi
+  - first:
+      1: 100056
+    second: Point001_zhanshi
+  - first:
+      1: 100058
+    second: Point_fishing_zhanshi
+  - first:
+      1: 100060
+    second: Point_tail_zhanshi
+  - first:
+      1: 100062
+    second: Point_wing_zhanshi
+  - first:
+      1: 100064
+    second: //RootNode
+  - first:
+      1: 100066
+    second: wa_shukei_d01_body
+  - first:
+      1: 100068
+    second: wa_shukei_d01_boots
+  - first:
+      1: 100070
+    second: wa_shukei_d01_gauntlet
+  - first:
+      1: 100072
+    second: wa_shukei_d01_glove
+  - first:
+      1: 100074
+    second: wa_shukei_d01_leg
+  - first:
+      1: 100076
+    second: wa_shukei_d01_sword_weapon
+  - first:
+      4: 400000
+    second: Bip01 Head_zhanshi
+  - first:
+      4: 400002
+    second: Bip01 L Calf_zhanshi
+  - first:
+      4: 400004
+    second: Bip01 L Clavicle_zhanshi
+  - first:
+      4: 400006
+    second: Bip01 L Finger01_zhanshi
+  - first:
+      4: 400008
+    second: Bip01 L Finger0_zhanshi
+  - first:
+      4: 400010
+    second: Bip01 L Finger11_zhanshi
+  - first:
+      4: 400012
+    second: Bip01 L Finger1_zhanshi
+  - first:
+      4: 400014
+    second: Bip01 L Foot_zhanshi
+  - first:
+      4: 400016
+    second: Bip01 L Forearm_zhanshi
+  - first:
+      4: 400018
+    second: Bip01 L Hand_zhanshi
+  - first:
+      4: 400020
+    second: Bip01 L Thigh_zhanshi
+  - first:
+      4: 400022
+    second: Bip01 L UpperArm_zhanshi
+  - first:
+      4: 400024
+    second: Bip01 Neck_zhanshi
+  - first:
+      4: 400026
+    second: Bip01 Pelvis_zhanshi
+  - first:
+      4: 400028
+    second: Bip01 R Calf_zhanshi
+  - first:
+      4: 400030
+    second: Bip01 R Clavicle_zhanshi
+  - first:
+      4: 400032
+    second: Bip01 R Finger01_zhanshi
+  - first:
+      4: 400034
+    second: Bip01 R Finger0_zhanshi
+  - first:
+      4: 400036
+    second: Bip01 R Finger11_zhanshi
+  - first:
+      4: 400038
+    second: Bip01 R Finger1_zhanshi
+  - first:
+      4: 400040
+    second: Bip01 R Foot_zhanshi
+  - first:
+      4: 400042
+    second: Bip01 R Forearm_zhanshi
+  - first:
+      4: 400044
+    second: Bip01 R Hand_zhanshi
+  - first:
+      4: 400046
+    second: Bip01 R Thigh_zhanshi
+  - first:
+      4: 400048
+    second: Bip01 R UpperArm_zhanshi
+  - first:
+      4: 400050
+    second: Bip01 Spine1_zhanshi
+  - first:
+      4: 400052
+    second: Bip01 Spine_zhanshi
+  - first:
+      4: 400054
+    second: Bip01_zhanshi
+  - first:
+      4: 400056
+    second: Point001_zhanshi
+  - first:
+      4: 400058
+    second: Point_fishing_zhanshi
+  - first:
+      4: 400060
+    second: Point_tail_zhanshi
+  - first:
+      4: 400062
+    second: Point_wing_zhanshi
+  - first:
+      4: 400064
+    second: //RootNode
+  - first:
+      4: 400066
+    second: wa_shukei_d01_body
+  - first:
+      4: 400068
+    second: wa_shukei_d01_boots
+  - first:
+      4: 400070
+    second: wa_shukei_d01_gauntlet
+  - first:
+      4: 400072
+    second: wa_shukei_d01_glove
+  - first:
+      4: 400074
+    second: wa_shukei_d01_leg
+  - first:
+      4: 400076
+    second: wa_shukei_d01_sword_weapon
+  - first:
+      23: 2300000
+    second: wa_shukei_d01_sword_weapon
+  - first:
+      33: 3300000
+    second: wa_shukei_d01_sword_weapon
+  - first:
+      43: 4300000
+    second: wa_shukei_d01_body
+  - first:
+      43: 4300002
+    second: wa_shukei_d01_boots
+  - first:
+      43: 4300004
+    second: wa_shukei_d01_glove
+  - first:
+      43: 4300006
+    second: wa_shukei_d01_leg
+  - first:
+      43: 4300008
+    second: wa_shukei_d01_sword_weapon
+  - first:
+      43: 4300010
+    second: wa_shukei_d01_gauntlet
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: wa_shukei_d01_body
+  - first:
+      137: 13700002
+    second: wa_shukei_d01_boots
+  - first:
+      137: 13700004
+    second: wa_shukei_d01_gauntlet
+  - first:
+      137: 13700006
+    second: wa_shukei_d01_glove
+  - first:
+      137: 13700008
+    second: wa_shukei_d01_leg
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 3
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 2
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: wa_shukei_d01_bandpose(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip01_zhanshi
+      parentName: wa_shukei_d01_bandpose(Clone)
+      position: {x: -0, y: 0.53108823, z: 0.02843783}
+      rotation: {x: -0.5000004, y: 0.49999964, z: 0.49999964, w: 0.5000004}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: Bip01 Pelvis_zhanshi
+      parentName: Bip01_zhanshi
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.49999964, y: 0.50000036, z: 0.49999964, w: 0.50000036}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Point_tail_zhanshi
+      parentName: Bip01 Pelvis_zhanshi
+      position: {x: 0.020337371, y: -0.0638165, z: 0.0000002670288}
+      rotation: {x: 0.7071068, y: -0.000000030908627, z: -0.7071068, w: -0.000000030908627}
+      scale: {x: 0.9999998, y: 0.9999997, z: 0.9999999}
+    - name: Bip01 Spine_zhanshi
+      parentName: Bip01 Pelvis_zhanshi
+      position: {x: -0.046783216, y: -0.006895871, z: 0.000000082435434}
+      rotation: {x: -0.0000021214923, y: 0.000000827173, z: -0.06618332, w: 0.9978075}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Bip01 L Thigh_zhanshi
+      parentName: Bip01 Spine_zhanshi
+      position: {x: 0.045462567, y: 0.013014302, z: 0.051136553}
+      rotation: {x: -0.0641017, y: 0.9958672, z: 0.004143088, w: 0.06420566}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Bip01 L Calf_zhanshi
+      parentName: Bip01 L Thigh_zhanshi
+      position: {x: -0.2785605, y: -0.0000000023841857, z: 0}
+      rotation: {x: 5.36754e-10, y: 0.000000003802242, z: 0.10454623, w: 0.99452}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: Bip01 L Foot_zhanshi
+      parentName: Bip01 L Calf_zhanshi
+      position: {x: -0.18957233, y: 0.0000000023841857, z: -0.000000009536743}
+      rotation: {x: 0.00661028, y: 0.06399846, z: -0.10626727, w: 0.9922539}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Bip01 R Thigh_zhanshi
+      parentName: Bip01 Spine_zhanshi
+      position: {x: 0.04546261, y: 0.0130145885, z: -0.051136486}
+      rotation: {x: -0.06410187, y: 0.9958672, z: -0.0041403235, w: -0.06420538}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Bip01 R Calf_zhanshi
+      parentName: Bip01 R Thigh_zhanshi
+      position: {x: -0.27856052, y: -0.0000000023841857, z: 0.000000019073486}
+      rotation: {x: 0, y: 0, z: 0.10454622, w: 0.99452}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: Bip01 R Foot_zhanshi
+      parentName: Bip01 R Calf_zhanshi
+      position: {x: -0.1895723, y: 0, z: 0}
+      rotation: {x: -0.006610299, y: -0.0639985, z: -0.10626727, w: 0.9922539}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip01 Spine1_zhanshi
+      parentName: Bip01 Spine_zhanshi
+      position: {x: -0.04764637, y: -0.00012259006, z: -3.2934622e-10}
+      rotation: {x: -0.000000015152407, y: -0.0000004403086, z: 0.056145187, w: 0.9984227}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip01 Neck_zhanshi
+      parentName: Bip01 Spine1_zhanshi
+      position: {x: -0.14673138, y: -0.0005914593, z: -0.00000000244896}
+      rotation: {x: -0.000000025527935, y: 0.00000067695345, z: -0.1612567, w: 0.9869125}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: Bip01 L Clavicle_zhanshi
+      parentName: Bip01 Neck_zhanshi
+      position: {x: 0.026951142, y: 0.015837174, z: 0.02059183}
+      rotation: {x: 0.6978071, y: 0.114303544, z: -0.6978071, w: 0.114303544}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip01 L UpperArm_zhanshi
+      parentName: Bip01 L Clavicle_zhanshi
+      position: {x: -0.062180467, y: 0, z: 0}
+      rotation: {x: 0.03436231, y: -0.0040231105, z: -0.021252362, w: 0.99917537}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Bip01 L Forearm_zhanshi
+      parentName: Bip01 L UpperArm_zhanshi
+      position: {x: -0.1320475, y: -0.0000000023841857, z: 0}
+      rotation: {x: 0.0000000013959857, y: 5.2802165e-11, z: 0.03779727, w: 0.99928546}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Bip01 L Hand_zhanshi
+      parentName: Bip01 L Forearm_zhanshi
+      position: {x: -0.11600942, y: -5.9604643e-10, z: -0.000000076293944}
+      rotation: {x: -0.7062051, y: 0.029601214, z: -0.029624809, w: 0.7067676}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Point_fishing_zhanshi
+      parentName: Bip01 L Hand_zhanshi
+      position: {x: -0.0025643157, y: 0.0050077057, z: 0.0046221134}
+      rotation: {x: 0.00000004377215, y: 0.0000000067630013, z: -0.00000004237518, w: 1}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1.0000001}
+    - name: Bip01 L Finger0_zhanshi
+      parentName: Bip01 L Hand_zhanshi
+      position: {x: -0.013192253, y: 0.011598358, z: -0.022778042}
+      rotation: {x: 0.8432445, y: -0.065531835, z: 0.037379112, w: 0.53220975}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
+    - name: Bip01 L Finger01_zhanshi
+      parentName: Bip01 L Finger0_zhanshi
+      position: {x: -0.02900299, y: -0.000000038146972, z: 0}
+      rotation: {x: 0, y: 0, z: -0.3899662, w: 0.9208292}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    - name: Bip01 L Finger1_zhanshi
+      parentName: Bip01 L Hand_zhanshi
+      position: {x: -0.048245847, y: 0, z: 0.0000000023841857}
+      rotation: {x: -0.00510764, y: -0.01816439, z: -0.06900016, w: 0.99743825}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: Bip01 L Finger11_zhanshi
+      parentName: Bip01 L Finger1_zhanshi
+      position: {x: -0.0244981, y: 0, z: 0.0000000023841857}
+      rotation: {x: -9.556775e-10, y: 6.647806e-10, z: -0.5710422, w: 0.8209207}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: Bip01 R Clavicle_zhanshi
+      parentName: Bip01 Neck_zhanshi
+      position: {x: 0.026951142, y: 0.015837288, z: -0.020591717}
+      rotation: {x: 0.6978071, y: 0.11430356, z: 0.6978071, w: -0.11430356}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip01 R UpperArm_zhanshi
+      parentName: Bip01 R Clavicle_zhanshi
+      position: {x: -0.062180452, y: 0, z: 0}
+      rotation: {x: -0.03436232, y: 0.0040230043, z: -0.021253526, w: 0.99917537}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000002}
+    - name: Bip01 R Forearm_zhanshi
+      parentName: Bip01 R UpperArm_zhanshi
+      position: {x: -0.13204744, y: 0.000000007152557, z: 0}
+      rotation: {x: -0.0000000014311896, y: 8.7785085e-10, z: 0.037800126, w: 0.99928534}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
+    - name: Bip01 R Hand_zhanshi
+      parentName: Bip01 R Forearm_zhanshi
+      position: {x: -0.116009384, y: -0.000000002980232, z: 0}
+      rotation: {x: 0.70620507, y: -0.029602394, z: -0.029625975, w: 0.7067676}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: Bip01 R Finger1_zhanshi
+      parentName: Bip01 R Hand_zhanshi
+      position: {x: -0.04824581, y: -0.000000076293944, z: 0}
+      rotation: {x: 0.0051082056, y: 0.018165274, z: -0.06900511, w: 0.99743783}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: Bip01 R Finger11_zhanshi
+      parentName: Bip01 R Finger1_zhanshi
+      position: {x: -0.024497947, y: 0, z: -0.0000000047683715}
+      rotation: {x: -3.2828534e-10, y: 0.0000000013628445, z: -0.5710422, w: 0.82092077}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip01 R Finger0_zhanshi
+      parentName: Bip01 R Hand_zhanshi
+      position: {x: -0.013192177, y: 0.011598358, z: 0.022778047}
+      rotation: {x: 0.8432446, y: -0.065533675, z: -0.037379608, w: -0.5322092}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: Bip01 R Finger01_zhanshi
+      parentName: Bip01 R Finger0_zhanshi
+      position: {x: -0.02900301, y: -0.000000019073486, z: 0}
+      rotation: {x: 0.000000007910474, y: -0.000000019532372, z: -0.3899662, w: 0.9208292}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip01 Head_zhanshi
+      parentName: Bip01 Neck_zhanshi
+      position: {x: -0.03231613, y: 0, z: 7.2759575e-14}
+      rotation: {x: 0.000000055842857, y: -0.00000043494563, z: 0.10473443, w: 0.9945003}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Point_wing_zhanshi
+      parentName: Bip01 Spine1_zhanshi
+      position: {x: -0.09084751, y: -0.051506534, z: 0}
+      rotation: {x: 0.7028204, y: -0.077740006, z: -0.7028204, w: -0.077740006}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: Point001_zhanshi
+      parentName: wa_shukei_d01_bandpose(Clone)
+      position: {x: 0.36091658, y: 0.7264828, z: -0.008202924}
+      rotation: {x: 0.0019797727, y: 0.010386933, z: 0.64668065, w: 0.76268756}
+      scale: {x: 0.99999994, y: 0.9999996, z: 0.99999994}
+    - name: wa_shukei_d01_body
+      parentName: wa_shukei_d01_bandpose(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: wa_shukei_d01_boots
+      parentName: wa_shukei_d01_bandpose(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: wa_shukei_d01_glove
+      parentName: wa_shukei_d01_bandpose(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: wa_shukei_d01_leg
+      parentName: wa_shukei_d01_bandpose(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: wa_shukei_d01_sword_weapon
+      parentName: wa_shukei_d01_bandpose(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: wa_shukei_d01_gauntlet
+      parentName: wa_shukei_d01_bandpose(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.01
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

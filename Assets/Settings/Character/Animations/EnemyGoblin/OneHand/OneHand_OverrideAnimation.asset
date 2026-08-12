@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3a62f0af75447bbfd8e23debb3eb25, type: 3}
+  m_Name: OneHand_OverrideAnimation
+  m_EditorClassIdentifier: 
+  <WeaponType>k__BackingField: 3
+  <DefaultsAnimationClips>k__BackingField:
+  - {fileID: 7400000, guid: 0e3dbe3926e6228479984b3a598e8e98, type: 2}
+  - {fileID: 7400000, guid: ff0ba61701b3f9347bf61bf73549977a, type: 2}
+  - {fileID: 7400000, guid: 57ad7638538729047b6facd75162f2e2, type: 2}
+  <DefaultCombos>k__BackingField:
+  - <SkillType>k__BackingField: 0
+    <ComboClips>k__BackingField:
+    - {fileID: 7400000, guid: 0c1ceada788b8be40b5bdba0afa22c27, type: 2}
+    - {fileID: 7400000, guid: fb16046eae32ca34aa2b9e81fef57f0d, type: 2}
+    - {fileID: 7400000, guid: 223199598415f4141a3c912793c325e4, type: 2}
+  <Skills>k__BackingField:
+  - <SkillType>k__BackingField: -1
+    <AnimationClip>k__BackingField: {fileID: 7400000, guid: b3d27a01cd7877446890e7e65729f601, type: 2}
