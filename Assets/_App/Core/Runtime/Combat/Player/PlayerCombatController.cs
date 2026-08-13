@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using ModularAnimation;
 using UnityEngine;
 
 namespace _App
@@ -15,7 +16,6 @@ namespace _App
         private const float AttackWindowEnd = 0.75f;
         private const float HitWindowStart = 0.2f;
         private const float HitWindowEnd = 0.55f;
-        private const float AnimationStateTimeout = 2.0f;
 
         private readonly IPlayerInput _input;
         private readonly IPlayerCombatActor _actor;
@@ -276,17 +276,17 @@ namespace _App
 
             while (ComboIndex < _animation.ComboCount)
             {
-                if (!_animation.TryPlayComboStep(ComboIndex, out string stateName) ||
-                    !await WaitForStateAsync(stateName, AnimationController.BASE_LAYER_INDEX, token))
+                if (!_animation.TryPlayComboStep(ComboIndex, out AnimationPlayback playback))
                 {
                     return null;
                 }
 
                 bool advanceCombo = false;
-                while (_animation.IsInState(stateName, AnimationController.BASE_LAYER_INDEX))
+                float elapsed = 0.0f;
+                while (elapsed < playback.Duration * AttackWindowEnd)
                 {
                     token.ThrowIfCancellationRequested();
-                    float normalizedTime = _animation.GetNormalizedTime(AnimationController.BASE_LAYER_INDEX);
+                    float normalizedTime = Mathf.Clamp01(elapsed / playback.Duration);
                     SetHitWindow(normalizedTime is >= HitWindowStart and < HitWindowEnd);
 
                     if (normalizedTime is >= AttackWindowStart and <= AttackWindowEnd &&
@@ -306,12 +306,8 @@ namespace _App
                         }
                     }
 
-                    if (normalizedTime >= AttackWindowEnd)
-                    {
-                        break;
-                    }
-
                     await UniTask.Yield(token);
+                    elapsed += _clock.DeltaTime;
                 }
 
                 SetHitWindow(false);
@@ -333,7 +329,7 @@ namespace _App
                     _characterType,
                     CurrentWeapon,
                     skillType,
-                    out string stateName))
+                    out AnimationPlayback playback))
             {
                 return null;
             }
@@ -342,25 +338,17 @@ namespace _App
             SetComboIndex(0);
             SetHitWindow(false);
 
-            if (!await WaitForStateAsync(stateName, AnimationController.BASE_LAYER_INDEX, token))
-            {
-                return null;
-            }
-
-            while (_animation.IsInState(stateName, AnimationController.BASE_LAYER_INDEX))
+            float elapsed = 0.0f;
+            while (elapsed < playback.Duration * AttackWindowEnd)
             {
                 token.ThrowIfCancellationRequested();
-                float normalizedTime = _animation.GetNormalizedTime(AnimationController.BASE_LAYER_INDEX);
+                float normalizedTime = Mathf.Clamp01(elapsed / playback.Duration);
                 SetHitWindow(normalizedTime is >= HitWindowStart and < HitWindowEnd);
-                if (normalizedTime >= AttackWindowEnd)
-                {
-                    _lastSkillUseTime[skillType] = _clock.ScaledTime;
-                    break;
-                }
-
                 await UniTask.Yield(token);
+                elapsed += _clock.DeltaTime;
             }
 
+            _lastSkillUseTime[skillType] = _clock.ScaledTime;
             SetHitWindow(false);
             return null;
         }
@@ -371,47 +359,21 @@ namespace _App
             EWeaponType resultingWeapon,
             CancellationToken token)
         {
-            if (!_animation.TryPlayWeaponTransition(animationWeapon, draw, out string stateName) ||
-                !await WaitForStateAsync(stateName, AnimationController.SWITCH_LAYER_INDEX, token))
+            if (!_animation.TryPlayWeaponTransition(animationWeapon, draw, out AnimationPlayback playback))
             {
                 return false;
             }
 
-            while (_animation.IsInState(stateName, AnimationController.SWITCH_LAYER_INDEX))
+            float elapsed = 0.0f;
+            float applyAt = playback.Duration * 0.5f;
+            while (elapsed < applyAt)
             {
                 token.ThrowIfCancellationRequested();
-                if (_animation.GetNormalizedTime(AnimationController.SWITCH_LAYER_INDEX) >= 0.5f)
-                {
-                    ApplyWeapon(resultingWeapon);
-                    return true;
-                }
-
                 await UniTask.Yield(token);
+                elapsed += _clock.DeltaTime;
             }
 
-            return false;
-        }
-
-        private async UniTask<bool> WaitForStateAsync(
-            string stateName,
-            int layerIndex,
-            CancellationToken token)
-        {
-            float timeoutAt = _clock.UnscaledTime + AnimationStateTimeout;
-            while (!_animation.IsInState(stateName, layerIndex))
-            {
-                token.ThrowIfCancellationRequested();
-                if (_clock.UnscaledTime >= timeoutAt)
-                {
-                    Debug.LogError(
-                        $"Combat animation state '{stateName}' was not entered within {AnimationStateTimeout:0.0}s.",
-                        _actor.Root);
-                    return false;
-                }
-
-                await UniTask.Yield(token);
-            }
-
+            ApplyWeapon(resultingWeapon);
             return true;
         }
 

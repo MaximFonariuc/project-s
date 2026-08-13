@@ -6,16 +6,13 @@ namespace _App
     internal sealed class SwimmingMovementPolicy
     {
         private readonly Character _character;
-        private readonly AnimationController _animation;
         private readonly bool _isEnabled;
 
         public SwimmingMovementPolicy(
             Character character,
-            AnimationController animation,
             SwimmingSettings settings)
         {
             _character = character ?? throw new ArgumentNullException(nameof(character));
-            _animation = animation ?? throw new ArgumentNullException(nameof(animation));
 
             if (settings == null)
             {
@@ -44,22 +41,21 @@ namespace _App
 
             if (_character.JumpInputPressed)
             {
-                MoveVertically(1.0f, SwimDirection.Up);
+                MoveVertically(1.0f);
             }
             else if (_character.CrouchInputPressed)
             {
-                MoveVertically(-1.0f, SwimDirection.Down);
+                MoveVertically(-1.0f);
             }
         }
 
-        private void MoveVertically(float direction, SwimDirection animationDirection)
+        private void MoveVertically(float direction)
         {
             float depth = _character.CalcImmersionDepth();
             if (depth > 0.65f)
             {
                 Vector3 movement = _character.GetMovementDirection();
                 movement += _character.GetUpVector() * direction;
-                _animation.OnSwimDirectionChanged(animationDirection);
                 _character.SetMovementDirection(movement);
                 return;
             }
@@ -72,10 +68,4 @@ namespace _App
         }
     }
 
-    public enum SwimDirection
-    {
-        Down = -1,
-        Default = 0,
-        Up = 1
-    }
 }

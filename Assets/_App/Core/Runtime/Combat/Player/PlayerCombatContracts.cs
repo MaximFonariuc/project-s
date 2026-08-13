@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using ModularAnimation;
 
 namespace _App
 {
@@ -38,15 +39,13 @@ namespace _App
 
         void ApplyLoadout(ECharacterType characterType, EWeaponType weaponType);
         bool HasSkill(ECharacterType characterType, EWeaponType weaponType, ESkillType skillType);
-        bool TryPlayComboStep(int comboIndex, out string stateName);
+        bool TryPlayComboStep(int comboIndex, out AnimationPlayback playback);
         bool TryPlaySkill(
             ECharacterType characterType,
             EWeaponType weaponType,
             ESkillType skillType,
-            out string stateName);
-        bool TryPlayWeaponTransition(EWeaponType weaponType, bool draw, out string stateName);
-        bool IsInState(string stateName, int layerIndex);
-        float GetNormalizedTime(int layerIndex);
+            out AnimationPlayback playback);
+        bool TryPlayWeaponTransition(EWeaponType weaponType, bool draw, out AnimationPlayback playback);
     }
 
     internal interface IPlayerWeaponRig
@@ -58,6 +57,7 @@ namespace _App
 
     internal interface ICombatClock
     {
+        float DeltaTime { get; }
         float ScaledTime { get; }
         float UnscaledTime { get; }
     }

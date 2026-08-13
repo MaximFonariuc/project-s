@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using ModularAnimation;
 using UnityEngine;
 
 namespace _App
@@ -8,7 +9,8 @@ namespace _App
 	internal sealed class LadderTraversalAction
 	{
 		private readonly Character _character;
-		private readonly AnimationController _animationController;
+		private readonly ICharacterAnimationDriver _animationDriver;
+		private readonly IPlayerLocomotionState _locomotionState;
 		private readonly LayerMask _ladderMask;
 
 		private Ladder _activeLadder;
@@ -26,15 +28,18 @@ namespace _App
 		private const float EXIT_MOVE_FRAMES = 15f;
 		private const float EXIT_TOTAL_FRAMES = 55f;
 		
-		private float SpeedFactor => _animationController.IsSprinting ? 1.5f : 1f;
+		private float SpeedFactor =>
+			_locomotionState.SpeedMode == PlayerSpeedMode.Sprint ? 1.5f : 1.0f;
 
 		public LadderTraversalAction(
 			Character character,
-			AnimationController animationController,
+			ICharacterAnimationDriver animationDriver,
+			IPlayerLocomotionState locomotionState,
 			LadderTraversalSettings settings)
 		{
 			_character = character ?? throw new ArgumentNullException(nameof(character));
-			_animationController = animationController ?? throw new ArgumentNullException(nameof(animationController));
+			_animationDriver = animationDriver ?? throw new ArgumentNullException(nameof(animationDriver));
+			_locomotionState = locomotionState ?? throw new ArgumentNullException(nameof(locomotionState));
 			if (settings == null)
 			{
 				throw new ArgumentNullException(nameof(settings));
@@ -105,20 +110,19 @@ namespace _App
 					if (angle <= 90f)
 					{
 						await SmoothAlignToLadder(snapPos, 0.25f, false, token);
-						await PerformEnterTop(AnimationHashes.LadderEnterTopFront, 40f, 18f, true, token);
+						await PerformEnterTop(PlayerAnimationStates.LadderEnterTopFront, 40f, 18f, true, token);
 					}
 					else
 					{
 						await SmoothAlignToLadder(snapPos, 0.25f, true, token);
-						await PerformEnterTop(AnimationHashes.LadderEnterTopBack, 15f, 35f, false, token);
+						await PerformEnterTop(PlayerAnimationStates.LadderEnterTopBack, 15f, 35f, false, token);
 					}
 				}
 				else
 				{
 					await SmoothAlignToLadder(snapPos, 0.25f, false, token);
-					_animationController.CrossFade(AnimationHashes.LadderEnterBottom, BLEND_TIME, AnimationController.BASE_LAYER_INDEX);
-					float clipLen = _animationController.GetAnimationClipLength(AnimationHashes.LadderEnterBottom);
-					await WaitForClimbEnter(clipLen, token);
+					AnimationPlayback playback = Play(PlayerAnimationStates.LadderEnterBottom, BLEND_TIME);
+					await WaitForClimbEnter(playback.Duration, token);
 				}
 			}
 			catch (OperationCanceledException)
@@ -126,10 +130,9 @@ namespace _App
 			}
 		}
 
-		private async UniTask PerformEnterTop(int animHash, float moveFrames, float climbFrames, bool invertRot = false, CancellationToken token = default)
+		private async UniTask PerformEnterTop(AnimationStateId state, float moveFrames, float climbFrames, bool invertRot = false, CancellationToken token = default)
 		{
-			_animationController.CrossFade(animHash, BLEND_TIME, AnimationController.BASE_LAYER_INDEX);
-			float clipLen = _animationController.GetAnimationClipLength(animHash);
+			float clipLen = Play(state, BLEND_TIME).Duration;
 
 			float totalFrames = moveFrames + climbFrames;
 			float moveDur = clipLen * (moveFrames / totalFrames);
@@ -206,7 +209,7 @@ namespace _App
 			await UniTask.WaitForSeconds(duration * 0.9f, cancellationToken: token);
 			_character.SetRotation(_activeLadder.transform.rotation);
 			_climbingState = EClimbingState.Grabbed;
-			_animationController.CrossFade(AnimationHashes.LadderIdle, BLEND_TIME, AnimationController.BASE_LAYER_INDEX);
+			Play(PlayerAnimationStates.LadderIdle, BLEND_TIME);
 		}
 
 		public void OnClimbInput(Vector2 input)
@@ -249,8 +252,8 @@ namespace _App
 			}
 			else
 			{
-				_animationController.CrossFade(AnimationHashes.LadderIdle, BLEND_TIME, AnimationController.BASE_LAYER_INDEX);
-				_animationController.SetSpeed();
+				Play(PlayerAnimationStates.LadderIdle, BLEND_TIME);
+				_animationDriver.SetPlaybackSpeed(1.0f);
 			}
 		}
 
@@ -285,12 +288,12 @@ namespace _App
 			
 			try
 			{
-				int animHash = direction > 0 ? AnimationHashes.LadderAscend : AnimationHashes.LadderDescend;
-				var speedFactor = _animationController.IsSprinting ? 1.5f : 1f;
-				_animationController.SetSpeed(speedFactor);
-				float clipLen = _animationController.GetAnimationClipLength(animHash) / speedFactor;
-
-				_animationController.CrossFade(animHash, 0f, AnimationController.BASE_LAYER_INDEX);
+				AnimationStateId state = direction > 0
+					? PlayerAnimationStates.LadderAscend
+					: PlayerAnimationStates.LadderDescend;
+				float speedFactor = SpeedFactor;
+				_animationDriver.SetPlaybackSpeed(speedFactor);
+				float clipLen = Play(state, 0.0f).Duration / speedFactor;
 
 				Vector3 start = _character.GetPosition();
 				Vector3 target = start + _activeLadder.transform.up * (STEP_HEIGHT * direction);
@@ -323,10 +326,10 @@ namespace _App
 		{
 			_climbingState = EClimbingState.Releasing;
 
-			int animHash = exitTop ? AnimationHashes.LadderExitTop : AnimationHashes.LadderExitBottom;
-			_animationController.CrossFade(animHash, BLEND_TIME, AnimationController.BASE_LAYER_INDEX);
-
-			float clipLen = _animationController.GetAnimationClipLength(animHash);
+			AnimationStateId state = exitTop
+				? PlayerAnimationStates.LadderExitTop
+				: PlayerAnimationStates.LadderExitBottom;
+			float clipLen = Play(state, BLEND_TIME).Duration;
 			Vector3 start = _character.GetPosition();
 
 			if (exitTop)
@@ -385,7 +388,7 @@ namespace _App
 				_character.RootMotionController.RootMovementUpdate(out var _, out var _);
 				_character.EnableGroundConstraint(true);
 				_character.SetRotationMode(_previousRotationMode);
-				_animationController.SetSpeed();
+				_animationDriver.SetPlaybackSpeed(1.0f);
 			}
 		}
 
@@ -399,6 +402,21 @@ namespace _App
 			_lifecycleCts = new CancellationTokenSource();
 			_character.MovementModeChanged += OnMovementModeChanged;
 			_enabled = true;
+		}
+
+		private AnimationPlayback Play(AnimationStateId state, float transitionDuration)
+		{
+			AnimationPlayback playback = _animationDriver.CrossFade(
+				state,
+				PlayerAnimationStates.BaseLayer,
+				transitionDuration);
+			if (!playback.IsValid || playback.Duration <= 0.0f)
+			{
+				throw new InvalidOperationException(
+					$"Ladder animation state '{state.Hash}' or its clip duration is not configured.");
+			}
+
+			return playback;
 		}
 
 		public void Disable()

@@ -8,6 +8,7 @@ namespace _App
     public sealed class PlayerLocomotionController :
         IPlayerLocomotionCommands,
         IPlayerLocomotionEvents,
+        IPlayerLocomotionState,
         IDisposable
     {
         private const float MoveThresholdSqr = 0.0001f;
@@ -29,6 +30,7 @@ namespace _App
         public event Action DodgeAccepted;
 
         public PlayerLocomotionStateId? CurrentState => _stateMachine.CurrentStateId;
+        public PlayerSpeedMode SpeedMode => _runtime.SpeedMode;
 
         public PlayerLocomotionController(
             IPlayerInput input,
@@ -124,7 +126,7 @@ namespace _App
                 _motor.FaceDirection(_runtime.RawMoveDirection, deltaTime);
             }
 
-            _presentation.Tick();
+            _presentation.Tick(deltaTime);
         }
 
         public bool TryInvertGravity()

@@ -1,4 +1,6 @@
 using System;
+using ModularAnimation;
+using ModularAnimation.Unity;
 using VContainer;
 using VContainer.Unity;
 
@@ -31,17 +33,26 @@ namespace _App
                 .As<IPlayerTraversalActor>();
 
             builder.Register(
-                _ => new AnimationController(character, player.PlayerAnimator),
-                Lifetime.Scoped);
+                    _ => new MecanimCharacterAnimationDriver(
+                        player.PlayerAnimator,
+                        PlayerAnimationStates.MecanimBindings),
+                    Lifetime.Scoped)
+                .AsSelf()
+                .As<ICharacterAnimationDriver>();
+            builder.Register(
+                    _ => new MecanimLookAnimationDriver(
+                        player.PlayerAnimator,
+                        "HeadLookX",
+                        "HeadLookY"),
+                    Lifetime.Scoped)
+                .As<ICharacterLookAnimationDriver>();
+            builder.Register<PlayerCharacterAnimationPresenter>(Lifetime.Scoped);
             builder.Register(
                 resolver => new CharacterMovementPolicies(
                     character,
-                    resolver.Resolve<AnimationController>(),
                     player.CharacterFeatures),
                 Lifetime.Scoped)
                 .As<ICharacterMovementPolicyLifecycle>();
-            builder.Register<PlayerPhysicsVolumeAnimationAdapter>(Lifetime.Scoped);
-
             builder.RegisterPlayerTargeting();
             builder.RegisterPlayerCamera(player);
             builder.RegisterPlayerCombat(player);

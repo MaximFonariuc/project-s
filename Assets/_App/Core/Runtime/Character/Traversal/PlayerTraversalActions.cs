@@ -1,4 +1,5 @@
 using System;
+using ModularAnimation;
 using UnityEngine;
 
 namespace _App
@@ -21,7 +22,8 @@ namespace _App
 
         public PlayerTraversalActions(
             Character character,
-            AnimationController animationController,
+            ICharacterAnimationDriver animationDriver,
+            IPlayerLocomotionState locomotionState,
             CharacterFeatureSet features)
         {
             if (character == null)
@@ -29,9 +31,14 @@ namespace _App
                 throw new ArgumentNullException(nameof(character));
             }
 
-            if (animationController == null)
+            if (animationDriver == null)
             {
-                throw new ArgumentNullException(nameof(animationController));
+                throw new ArgumentNullException(nameof(animationDriver));
+            }
+
+            if (locomotionState == null)
+            {
+                throw new ArgumentNullException(nameof(locomotionState));
             }
 
             if (features == null)
@@ -42,7 +49,11 @@ namespace _App
             LadderTraversalSettings settings = features.GetEnabled<LadderTraversalSettings>();
             if (settings != null)
             {
-                _ladder = new LadderTraversalAction(character, animationController, settings);
+                _ladder = new LadderTraversalAction(
+                    character,
+                    animationDriver,
+                    locomotionState,
+                    settings);
             }
         }
 

@@ -1,14 +1,19 @@
 using System;
+using ModularAnimation;
 
 namespace _App
 {
     public sealed class PlayerLocomotionAnimationAdapter : IPlayerLocomotionPresentation
     {
-        private readonly AnimationController _animation;
+        private readonly ICharacterAnimationDriver _driver;
+        private readonly PlayerCharacterAnimationPresenter _presenter;
 
-        public PlayerLocomotionAnimationAdapter(AnimationController animation)
+        public PlayerLocomotionAnimationAdapter(
+            ICharacterAnimationDriver driver,
+            PlayerCharacterAnimationPresenter presenter)
         {
-            _animation = animation ?? throw new ArgumentNullException(nameof(animation));
+            _driver = driver ?? throw new ArgumentNullException(nameof(driver));
+            _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
         }
 
         public void EnterState(PlayerLocomotionStateId stateId, bool dodgeBackwards)
@@ -18,25 +23,25 @@ namespace _App
                 return;
             }
 
-            _animation.CrossFade(
-                dodgeBackwards ? AnimationHashes.RollBack : AnimationHashes.RollFront,
-                0.1f,
-                AnimationController.BASE_LAYER_INDEX);
+            _driver.CrossFade(
+                dodgeBackwards ? PlayerAnimationStates.RollBack : PlayerAnimationStates.RollFront,
+                PlayerAnimationStates.BaseLayer,
+                0.1f);
         }
 
         public void SetSpeedMode(PlayerSpeedMode speedMode)
         {
-            _animation.SetMovementMode(speedMode switch
+            _presenter.SetGait(speedMode switch
             {
-                PlayerSpeedMode.Walk => EAnimationMoveMode.Walking,
-                PlayerSpeedMode.Sprint => EAnimationMoveMode.Sprinting,
-                _ => EAnimationMoveMode.Running
+                PlayerSpeedMode.Walk => CharacterGait.Walk,
+                PlayerSpeedMode.Sprint => CharacterGait.Sprint,
+                _ => CharacterGait.Run
             });
         }
 
-        public void Tick()
+        public void Tick(float deltaTime)
         {
-            _animation.Update();
+            _presenter.Tick(deltaTime);
         }
     }
 }

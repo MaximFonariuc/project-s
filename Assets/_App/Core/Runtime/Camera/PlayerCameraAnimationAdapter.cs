@@ -1,4 +1,5 @@
 using System;
+using ModularAnimation;
 using UnityEngine;
 
 namespace _App
@@ -10,7 +11,8 @@ namespace _App
 
         private readonly Transform _characterTransform;
         private readonly Animator _animator;
-        private readonly AnimationController _animation;
+        private readonly ICharacterLookAnimationDriver _animation;
+        private readonly Transform _head;
 
         private float _headLookX;
         private float _headLookY;
@@ -18,7 +20,7 @@ namespace _App
         public PlayerCameraAnimationAdapter(
             IPlayerActorTransform actor,
             Animator animator,
-            AnimationController animation)
+            ICharacterLookAnimationDriver animation)
         {
             _characterTransform = actor?.Root != null
                 ? actor.Root
@@ -27,6 +29,9 @@ namespace _App
                 ? animator
                 : throw new ArgumentNullException(nameof(animator));
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
+            _head = _animator.isHuman
+                ? _animator.GetBoneTransform(HumanBodyBones.Head)
+                : null;
         }
 
         public void Tick(bool hasTarget, Vector3 targetPosition, float deltaTime)
@@ -36,10 +41,7 @@ namespace _App
 
             if (hasTarget)
             {
-                Transform head = _animator.isHuman
-                    ? _animator.GetBoneTransform(HumanBodyBones.Head)
-                    : null;
-                Vector3 eyePosition = head != null ? head.position : _characterTransform.position;
+                Vector3 eyePosition = _head != null ? _head.position : _characterTransform.position;
                 Vector3 direction = targetPosition - eyePosition;
                 if (direction.sqrMagnitude > 0.0001f)
                 {
@@ -53,8 +55,7 @@ namespace _App
             _headLookX = Mathf.Lerp(_headLookX, targetX, interpolation);
             _headLookY = Mathf.Lerp(_headLookY, targetY, interpolation);
 
-            _animation.SetFloat(AnimationHashes.HeadLookX, _headLookX);
-            _animation.SetFloat(AnimationHashes.HeadLookY, _headLookY);
+            _animation.SetLook(_headLookX, _headLookY);
         }
     }
 }

@@ -1,4 +1,6 @@
 using System;
+using ModularAnimation;
+using ModularAnimation.Unity;
 using VContainer;
 
 namespace _App
@@ -18,7 +20,8 @@ namespace _App
             builder.Register<CombatInputBuffer>(Lifetime.Scoped);
             builder.Register<IPlayerCombatAnimation>(
                 resolver => new PlayerCombatAnimationAdapter(
-                    resolver.Resolve<AnimationController>(),
+                    resolver.Resolve<ICharacterAnimationDriver>(),
+                    resolver.Resolve<MecanimCharacterAnimationDriver>(),
                     player.CombatAnimations),
                 Lifetime.Scoped);
             builder.Register<IPlayerWeaponRig>(

@@ -43,7 +43,6 @@ namespace _App
 
         private IPlayerInput _input;
         private ICharacterMovementPolicyLifecycle _movementPolicyLifecycle;
-        private PlayerPhysicsVolumeAnimationAdapter _physicsVolumeAnimation;
         private PlayerLocomotionController _locomotionController;
         private PlayerTargetingController _targetingController;
         private PlayerCameraController _cameraController;
@@ -73,7 +72,6 @@ namespace _App
         public void Construct(
             IPlayerInput input,
             ICharacterMovementPolicyLifecycle movementPolicyLifecycle,
-            PlayerPhysicsVolumeAnimationAdapter physicsVolumeAnimation,
             PlayerLocomotionController locomotionController,
             PlayerTargetingController targetingController,
             PlayerCameraController cameraController,
@@ -83,7 +81,6 @@ namespace _App
         {
             _input = input;
             _movementPolicyLifecycle = movementPolicyLifecycle;
-            _physicsVolumeAnimation = physicsVolumeAnimation;
             _locomotionController = locomotionController;
             _targetingController = targetingController;
             _cameraController = cameraController;
@@ -96,7 +93,7 @@ namespace _App
 
         protected virtual void Awake()
         {
-            if (_input == null || _movementPolicyLifecycle == null || _physicsVolumeAnimation == null ||
+            if (_input == null || _movementPolicyLifecycle == null ||
                 _locomotionController == null || _targetingController == null || _cameraController == null ||
                 _combatController == null || _traversalController == null ||
                 _simulationPauseController == null)
@@ -108,7 +105,6 @@ namespace _App
 
         private void OnEnable()
         {
-            _physicsVolumeAnimation?.Enable();
             _movementPolicyLifecycle?.Enable();
             _locomotionController?.Enable();
             _targetingController?.Enable();
@@ -129,7 +125,6 @@ namespace _App
             _targetingController?.Disable();
             _locomotionController?.Disable();
             _movementPolicyLifecycle?.Disable();
-            _physicsVolumeAnimation?.Disable();
         }
 
         protected virtual void Update()

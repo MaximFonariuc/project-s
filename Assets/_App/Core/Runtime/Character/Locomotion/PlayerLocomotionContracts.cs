@@ -72,12 +72,18 @@ namespace _App
     {
         void EnterState(PlayerLocomotionStateId stateId, bool dodgeBackwards);
         void SetSpeedMode(PlayerSpeedMode speedMode);
-        void Tick();
+        void Tick(float deltaTime);
     }
 
     public interface IPlayerLocomotionEvents
     {
         event Action DodgeAccepted;
+    }
+
+    public interface IPlayerLocomotionState
+    {
+        PlayerLocomotionStateId? CurrentState { get; }
+        PlayerSpeedMode SpeedMode { get; }
     }
 
     public interface IPlayerLocomotionCommands

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using ModularAnimation;
+using ModularAnimation.Unity;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -10,7 +12,8 @@ namespace _App
         private const string UnsheathePostfix = "_Unsheathe";
         private const string SheathePostfix = "_Sheathe";
 
-        private readonly AnimationController _animation;
+        private readonly ICharacterAnimationDriver _animation;
+        private readonly MecanimCharacterAnimationDriver _mecanim;
         private readonly AnimationsData _animationsData;
         private readonly RuntimeAnimatorController _sourceController;
         private readonly AnimatorOverrideController _overrideController;
@@ -23,15 +26,17 @@ namespace _App
         public int ComboCount => _comboClips.Count;
 
         public PlayerCombatAnimationAdapter(
-            AnimationController animation,
+            ICharacterAnimationDriver animation,
+            MecanimCharacterAnimationDriver mecanim,
             AnimationsData animationsData)
         {
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
+            _mecanim = mecanim ?? throw new ArgumentNullException(nameof(mecanim));
             _animationsData = animationsData != null
                 ? animationsData
                 : throw new ArgumentNullException(nameof(animationsData));
 
-            Animator animator = _animation.Animator;
+            Animator animator = _mecanim.Animator;
             if (animator == null || animator.runtimeAnimatorController == null)
             {
                 throw new InvalidOperationException("Player combat requires an Animator runtime controller.");
@@ -57,6 +62,7 @@ namespace _App
             }
 
             animator.runtimeAnimatorController = _overrideController;
+            _animation.RefreshBindings();
         }
 
         public void ApplyLoadout(ECharacterType characterType, EWeaponType weaponType)
@@ -76,6 +82,7 @@ namespace _App
                 _comboClips = Array.Empty<AnimationClip>();
             }
             ApplyOverrides(_comboClips);
+            _animation.RefreshBindings();
         }
 
         public bool HasSkill(
@@ -87,10 +94,10 @@ namespace _App
             return skill?.AnimationClip != null;
         }
 
-        public bool TryPlayComboStep(int comboIndex, out string stateName)
+        public bool TryPlayComboStep(int comboIndex, out AnimationPlayback playback)
         {
             ThrowIfDisposed();
-            stateName = null;
+            playback = default;
             if (comboIndex < 0 || comboIndex >= _comboClips.Count)
             {
                 return false;
@@ -102,8 +109,16 @@ namespace _App
                 return false;
             }
 
-            stateName = clip.name;
-            _animation.CrossFade(stateName, 0.1f, AnimationController.BASE_LAYER_INDEX);
+            playback = _animation.CrossFade(
+                PlayerAnimationStates.State(clip.name),
+                PlayerAnimationStates.BaseLayer,
+                0.1f,
+                clip.length);
+            if (!playback.IsValid || playback.Duration <= 0.0f)
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -111,10 +126,10 @@ namespace _App
             ECharacterType characterType,
             EWeaponType weaponType,
             ESkillType skillType,
-            out string stateName)
+            out AnimationPlayback playback)
         {
             ThrowIfDisposed();
-            stateName = null;
+            playback = default;
 
             Skill skill = _animationsData.GetSkill<Skill>(characterType, weaponType, skillType);
             AnimationClip clip = skill?.AnimationClip;
@@ -123,36 +138,43 @@ namespace _App
                 return false;
             }
 
-            stateName = "Skill";
-            _animation.CrossFade(AnimationHashes.Skill, 0.1f, AnimationController.BASE_LAYER_INDEX);
+            playback = _animation.CrossFade(
+                PlayerAnimationStates.Skill,
+                PlayerAnimationStates.BaseLayer,
+                0.1f,
+                clip.length);
+            if (!playback.IsValid || playback.Duration <= 0.0f)
+            {
+                return false;
+            }
+
             return true;
         }
 
         public bool TryPlayWeaponTransition(
             EWeaponType weaponType,
             bool draw,
-            out string stateName)
+            out AnimationPlayback playback)
         {
             ThrowIfDisposed();
             if (weaponType is EWeaponType.None or EWeaponType.Unarmed)
             {
-                stateName = null;
+                playback = default;
                 return false;
             }
 
-            stateName = weaponType + (draw ? UnsheathePostfix : SheathePostfix);
-            _animation.CrossFade(stateName, 0.1f, AnimationController.SWITCH_LAYER_INDEX);
+            string stateName = weaponType + (draw ? UnsheathePostfix : SheathePostfix);
+            playback = _animation.CrossFade(
+                PlayerAnimationStates.State(stateName),
+                PlayerAnimationStates.WeaponLayer,
+                0.1f);
+            if (!playback.IsValid || playback.Duration <= 0.0f)
+            {
+                playback = default;
+                return false;
+            }
+
             return true;
-        }
-
-        public bool IsInState(string stateName, int layerIndex)
-        {
-            return !string.IsNullOrEmpty(stateName) && _animation.IsInState(stateName, layerIndex);
-        }
-
-        public float GetNormalizedTime(int layerIndex)
-        {
-            return _animation.GetNormalizedTime(layerIndex);
         }
 
         public void Dispose()
@@ -163,9 +185,10 @@ namespace _App
             }
 
             _disposed = true;
-            if (_animation.Animator != null && _animation.Animator.runtimeAnimatorController == _overrideController)
+            if (_mecanim.Animator != null && _mecanim.Animator.runtimeAnimatorController == _overrideController)
             {
-                _animation.Animator.runtimeAnimatorController = _sourceController;
+                _mecanim.Animator.runtimeAnimatorController = _sourceController;
+                _animation.RefreshBindings();
             }
 
             Object.Destroy(_overrideController);
@@ -194,7 +217,7 @@ namespace _App
             {
                 Debug.LogWarning(
                     $"Animator controller has no override slot named '{clip.name}'.",
-                    _animation.Animator);
+                    _mecanim.Animator);
                 return false;
             }
 

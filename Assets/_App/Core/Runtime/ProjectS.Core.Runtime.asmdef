@@ -4,6 +4,8 @@
     "references": [
         "ModularInput.Core",
         "ModularInput.Unity",
+        "ModularAnimation.Core",
+        "ModularAnimation.Unity",
         "ModularStateMachine.Core",
         "ModularStateMachine.VContainer",
         "UniTask",

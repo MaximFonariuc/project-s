@@ -58,7 +58,8 @@ namespace _App
             builder.Register<PlayerLocomotionController>(Lifetime.Scoped)
                 .AsSelf()
                 .As<IPlayerLocomotionCommands>()
-                .As<IPlayerLocomotionEvents>();
+                .As<IPlayerLocomotionEvents>()
+                .As<IPlayerLocomotionState>();
         }
     }
 }

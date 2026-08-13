@@ -1,0 +1,16 @@
+{
+    "name": "ModularAnimation.Unity",
+    "rootNamespace": "ModularAnimation.Unity",
+    "references": [
+        "ModularAnimation.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

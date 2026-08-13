@@ -98,18 +98,6 @@ namespace _App
             }
         }
 
-        public void OnSwimDirectionChanged(SwimDirection swimDirection)
-        {
-            SetInteger(AnimationHashes.SwimDirection, (int)swimDirection);
-            ResetSwimDirectionAfterDelay().Forget();
-        }
-
-        private async UniTaskVoid ResetSwimDirectionAfterDelay()
-        {
-            await UniTask.Delay(500);
-            SetInteger(AnimationHashes.SwimDirection, 0);
-        }
-
         public void OnPhysicsVolumeChanged(PhysicsVolume newPhysicsVolume)
         {
             if (newPhysicsVolume != null && newPhysicsVolume.WaterVolume)

@@ -1,4 +1,5 @@
 using System;
+using ModularAnimation;
 using VContainer;
 
 namespace _App
@@ -30,7 +31,7 @@ namespace _App
                 resolver => new PlayerCameraAnimationAdapter(
                     resolver.Resolve<IPlayerActorTransform>(),
                     player.PlayerAnimator,
-                    resolver.Resolve<AnimationController>()),
+                    resolver.Resolve<ICharacterLookAnimationDriver>()),
                 Lifetime.Scoped);
             builder.Register(
                     resolver => new PlayerCameraController(

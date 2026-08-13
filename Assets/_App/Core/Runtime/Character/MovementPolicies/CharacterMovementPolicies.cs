@@ -22,17 +22,11 @@ namespace _App
 
         public CharacterMovementPolicies(
             Character character,
-            AnimationController animationController,
             CharacterFeatureSet features)
         {
             if (character == null)
             {
                 throw new ArgumentNullException(nameof(character));
-            }
-
-            if (animationController == null)
-            {
-                throw new ArgumentNullException(nameof(animationController));
             }
 
             if (features == null)
@@ -66,7 +60,7 @@ namespace _App
             SwimmingSettings swimming = features.GetEnabled<SwimmingSettings>();
             if (swimming != null)
             {
-                _swimming = new SwimmingMovementPolicy(character, animationController, swimming);
+                _swimming = new SwimmingMovementPolicy(character, swimming);
             }
         }
 
