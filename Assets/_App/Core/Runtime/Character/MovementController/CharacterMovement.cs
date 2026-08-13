@@ -9,8 +9,8 @@ namespace _App
         private const float KINDA_SMALL_NUMBER = 0.0001f;
         private const float HEMISPHERE_LIMIT = 0.01f;
 
-        private const int MAX_COLLISION_COUNT = 16;
-        private const int MAX_OVERLAP_COUNT = 16;
+        private const int INITIAL_COLLISION_CAPACITY = 16;
+        private const int INITIAL_OVERLAP_CAPACITY = 16;
 
         private const float SWEEP_EDGE_REJECT_DISTANCE = 0.0015f;
 
@@ -62,7 +62,8 @@ namespace _App
         private CapsuleCollider _capsuleCollider;
         private readonly CharacterCapsuleShape _capsule = new CharacterCapsuleShape();
         private readonly CharacterCollisionFilter _collisionFilter = new CharacterCollisionFilter();
-        private readonly CharacterCollisionBuffer _collisions = new CharacterCollisionBuffer(MAX_COLLISION_COUNT);
+        private readonly CharacterCollisionBuffer _collisions =
+            new CharacterCollisionBuffer(INITIAL_COLLISION_CAPACITY);
         private readonly CharacterForceAccumulator _forces = new CharacterForceAccumulator();
         private CharacterPhysicsQueries _queries;
 
@@ -389,7 +390,10 @@ namespace _App
             _capsuleCollider = GetComponent<CapsuleCollider>();
 
             _collisionFilter.Bind(_rigidbody, _capsuleCollider);
-            _queries = new CharacterPhysicsQueries(MAX_COLLISION_COUNT, MAX_OVERLAP_COUNT, _collisionFilter);
+            _queries = new CharacterPhysicsQueries(
+                INITIAL_COLLISION_CAPACITY,
+                INITIAL_OVERLAP_CAPACITY,
+                _collisionFilter);
         }
 
         public Vector3 GetPlaneConstraintNormal()
@@ -739,11 +743,12 @@ namespace _App
             PerchOffset = _perchOffset;
             PerchAdditionalHeight = _perchAdditionalHeight;
 
-            _advanced.OnValidate();
+            _advanced.Sanitize();
         }
 
         private void Awake()
         {
+            _advanced.Sanitize();
             CacheComponents();
 
             SetDimensions(_radius, _height);

@@ -6,11 +6,16 @@ namespace _App
     [Serializable]
     public struct Advanced
     {
+        private const int MinimumMovementIterations = 3;
+        private const int MinimumDepenetrationIterations = 2;
+
         public float MinMoveDistance;
         public float MinMoveDistanceSqr => MinMoveDistance * MinMoveDistance;
 
+        [Min(MinimumMovementIterations)]
         public int MaxMovementIterations;
 
+        [Min(MinimumDepenetrationIterations)]
         public int MaxDepenetrationIterations;
 
         public bool UseFastGeomNormalPath;
@@ -30,7 +35,7 @@ namespace _App
             MinMoveDistance = 0.0f;
 
             MaxMovementIterations = 5;
-            MaxDepenetrationIterations = 1;
+            MaxDepenetrationIterations = 4;
 
             EnablePhysicsInteraction = false;
             AllowPushCharacters = false;
@@ -39,12 +44,14 @@ namespace _App
             ImpartPlatformVelocity = false;
         }
 
-        public void OnValidate()
+        public void Sanitize()
         {
             MinMoveDistance = Mathf.Max(MinMoveDistance, 0.0f);
 
-            MaxMovementIterations = Mathf.Max(MaxMovementIterations, 1);
-            MaxDepenetrationIterations = Mathf.Max(MaxDepenetrationIterations, 1);
+            MaxMovementIterations = Mathf.Max(MaxMovementIterations, MinimumMovementIterations);
+            MaxDepenetrationIterations = Mathf.Max(
+                MaxDepenetrationIterations,
+                MinimumDepenetrationIterations);
         }
     }
 }

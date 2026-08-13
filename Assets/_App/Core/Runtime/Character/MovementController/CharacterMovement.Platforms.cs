@@ -57,11 +57,15 @@ namespace _App
             Vector3 prevNormal = default;
 
             int maxSlideCount = _advanced.MaxMovementIterations;
+            bool canApplyRemainingDisplacement = false;
             while (maxSlideCount-- > 0 && displacement.sqrMagnitude > _advanced.MinMoveDistanceSqr)
             {
                 bool collided = MovementSweepTest(UpdatedPosition, default, displacement, out CollisionResult collisionResult);
                 if (!collided)
+                {
+                    canApplyRemainingDisplacement = true;
                     break;
+                }
 
 
                 UpdatedPosition += collisionResult.DisplacementToHit;
@@ -73,7 +77,7 @@ namespace _App
                 AddCollisionResult(ref collisionResult);
             }
 
-            if (displacement.sqrMagnitude > _advanced.MinMoveDistanceSqr)
+            if (canApplyRemainingDisplacement && displacement.sqrMagnitude > _advanced.MinMoveDistanceSqr)
                 UpdatedPosition += displacement;
         }
 

@@ -1,11 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace _App
 {
     internal sealed class CharacterPhysicsQueries
     {
-        private readonly RaycastHit[] _hits;
-        private readonly Collider[] _overlaps;
+        private RaycastHit[] _hits;
+        private Collider[] _overlaps;
         private readonly CharacterCollisionFilter _filter;
 
         public CharacterPhysicsQueries(int hitCapacity, int overlapCapacity, CharacterCollisionFilter filter)
@@ -22,7 +23,26 @@ namespace _App
         public int OverlapCapsule(Vector3 bottom, Vector3 top, float radius, int layerMask, Collider[] results,
             QueryTriggerInteraction triggerInteraction, CharacterMovement.ColliderFilterCallback externalFilter)
         {
-            int rawCount = Physics.OverlapCapsuleNonAlloc(bottom, top, radius, results, layerMask, triggerInteraction);
+            bool usesInternalBuffer = ReferenceEquals(results, _overlaps);
+            int rawCount;
+
+            while (true)
+            {
+                rawCount = Physics.OverlapCapsuleNonAlloc(
+                    bottom,
+                    top,
+                    radius,
+                    results,
+                    layerMask,
+                    triggerInteraction);
+
+                if (!usesInternalBuffer || rawCount < results.Length)
+                    break;
+
+                Array.Resize(ref _overlaps, _overlaps.Length * 2);
+                results = _overlaps;
+            }
+
             int filteredCount = 0;
 
             for (int i = 0; i < rawCount; i++)
@@ -43,10 +63,19 @@ namespace _App
         {
             hitResult = default;
 
-            int rawHitCount = thickness == 0.0f
-                ? Physics.RaycastNonAlloc(origin, direction, _hits, distance, layerMask, triggerInteraction)
-                : Physics.SphereCastNonAlloc(origin - direction * thickness, thickness, direction, _hits, distance,
-                    layerMask, triggerInteraction);
+            int rawHitCount;
+            while (true)
+            {
+                rawHitCount = thickness == 0.0f
+                    ? Physics.RaycastNonAlloc(origin, direction, _hits, distance, layerMask, triggerInteraction)
+                    : Physics.SphereCastNonAlloc(origin - direction * thickness, thickness, direction, _hits,
+                        distance, layerMask, triggerInteraction);
+
+                if (rawHitCount < _hits.Length)
+                    break;
+
+                Array.Resize(ref _hits, _hits.Length * 2);
+            }
 
             float closestDistance = Mathf.Infinity;
             int hitIndex = -1;
@@ -74,8 +103,24 @@ namespace _App
         public int CapsuleCastRaw(Vector3 bottom, Vector3 top, float radius, Vector3 direction, float distance,
             int layerMask, QueryTriggerInteraction triggerInteraction)
         {
-            return Physics.CapsuleCastNonAlloc(bottom, top, radius, direction, _hits, distance, layerMask,
-                triggerInteraction);
+            int rawHitCount;
+            while (true)
+            {
+                rawHitCount = Physics.CapsuleCastNonAlloc(
+                    bottom,
+                    top,
+                    radius,
+                    direction,
+                    _hits,
+                    distance,
+                    layerMask,
+                    triggerInteraction);
+
+                if (rawHitCount < _hits.Length)
+                    return rawHitCount;
+
+                Array.Resize(ref _hits, _hits.Length * 2);
+            }
         }
 
         public bool CapsuleCast(Vector3 bottom, Vector3 top, float radius, Vector3 direction, float distance,
@@ -122,8 +167,24 @@ namespace _App
             hitResult = default;
             startPenetrating = false;
 
-            int rawHitCount = Physics.BoxCastNonAlloc(center, halfExtents, direction, _hits, orientation, distance,
-                layerMask, triggerInteraction);
+            int rawHitCount;
+            while (true)
+            {
+                rawHitCount = Physics.BoxCastNonAlloc(
+                    center,
+                    halfExtents,
+                    direction,
+                    _hits,
+                    orientation,
+                    distance,
+                    layerMask,
+                    triggerInteraction);
+
+                if (rawHitCount < _hits.Length)
+                    break;
+
+                Array.Resize(ref _hits, _hits.Length * 2);
+            }
 
             float closestDistance = Mathf.Infinity;
             int hitIndex = -1;

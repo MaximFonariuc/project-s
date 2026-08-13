@@ -245,39 +245,36 @@ namespace _App
 
                         UpdatedPosition += impactNormal * (recoverDistance + PENETRATION_OFFSET);
 
-                        if (_collisions.Count < MAX_COLLISION_COUNT)
+                        Vector3 point;
+
+                        if (hitLocation == EHitLocation.Above)
+                            point = UpdatedPosition + _capsule.TransformedTopCenter - recoverDirection * _radius;
+                        else if (hitLocation == EHitLocation.Below)
+                            point = UpdatedPosition + _capsule.TransformedBottomCenter - recoverDirection * _radius;
+                        else
+                            point = UpdatedPosition + _capsule.TransformedCenter - recoverDirection * _radius;
+
+                        CollisionResult collisionResult = new CollisionResult
                         {
-                            Vector3 point;
+                            StartPenetrating = true,
 
-                            if (hitLocation == EHitLocation.Above)
-                                point = UpdatedPosition + _capsule.TransformedTopCenter - recoverDirection * _radius;
-                            else if (hitLocation == EHitLocation.Below)
-                                point = UpdatedPosition + _capsule.TransformedBottomCenter - recoverDirection * _radius;
-                            else
-                                point = UpdatedPosition + _capsule.TransformedCenter - recoverDirection * _radius;
+                            HitLocation = hitLocation,
+                            IsWalkable = isWalkable,
 
-                            CollisionResult collisionResult = new CollisionResult
-                            {
-                                StartPenetrating = true,
+                            Position = UpdatedPosition,
 
-                                HitLocation = hitLocation,
-                                IsWalkable = isWalkable,
+                            Velocity = _velocity,
+                            OtherVelocity = GetRigidbodyVelocity(attachedRigidbody, point),
 
-                                Position = UpdatedPosition,
+                            Point = point,
+                            Normal = impactNormal,
 
-                                Velocity = _velocity,
-                                OtherVelocity = GetRigidbodyVelocity(attachedRigidbody, point),
+                            SurfaceNormal = impactNormal,
 
-                                Point = point,
-                                Normal = impactNormal,
+                            Collider = overlappedCollider
+                        };
 
-                                SurfaceNormal = impactNormal,
-
-                                Collider = overlappedCollider
-                            };
-
-                            AddCollisionResult(ref collisionResult);
-                        }
+                        AddCollisionResult(ref collisionResult);
                     }
                 }
             }
@@ -333,14 +330,39 @@ namespace _App
 
         public bool CheckHeight(float testHeight)
         {
+            testHeight = Mathf.Max(testHeight, _radius * 2.0f);
+            float heightDelta = testHeight - _height;
+            if (heightDelta <= KINDA_SMALL_NUMBER)
+                return false;
+
             IgnoreCollision(_platforms.CurrentPlatform);
 
-            int overlapCount =
-                OverlapTest(Position, Rotation, Radius, testHeight, CollisionLayers, _queries.Overlaps, TriggerInteraction);
+            CharacterCapsuleShape.Calculate(
+                _radius,
+                _height,
+                out Vector3 _,
+                out Vector3 _,
+                out Vector3 topCenter);
+
+            Vector3 worldUp = Rotation * Vector3.up;
+            Vector3 worldTopCenter = Position + Rotation * topCenter;
+            float sweepRadius = Mathf.Max(0.0f, _radius - SMALL_CONTACT_OFFSET);
+
+            bool blocked = _queries.CapsuleCast(
+                worldTopCenter,
+                worldTopCenter,
+                sweepRadius,
+                worldUp,
+                heightDelta,
+                CollisionLayers,
+                TriggerInteraction,
+                ColliderFilter,
+                out RaycastHit _,
+                out bool startPenetrating);
 
             IgnoreCollision(_platforms.CurrentPlatform, false);
 
-            return overlapCount > 0;
+            return blocked || startPenetrating;
         }
 
         public bool IsWithinEdgeTolerance(Vector3 characterPosition, Vector3 inPoint, float testRadius)
@@ -984,13 +1006,17 @@ namespace _App
             }
 
             int maxSlideCount = _advanced.MaxMovementIterations;
+            bool canApplyRemainingDisplacement = !DetectCollisions;
             while (DetectCollisions && maxSlideCount-- > 0 && displacement.sqrMagnitude > _advanced.MinMoveDistanceSqr)
             {
                 bool collided = MovementSweepTest(UpdatedPosition, _velocity, displacement,
                     out CollisionResult collisionResult);
 
                 if (!collided)
+                {
+                    canApplyRemainingDisplacement = true;
                     break;
+                }
 
                 UpdatedPosition += collisionResult.DisplacementToHit;
 
@@ -1046,7 +1072,7 @@ namespace _App
                 AddCollisionResult(ref collisionResult);
             }
 
-            if (displacement.sqrMagnitude > _advanced.MinMoveDistanceSqr)
+            if (canApplyRemainingDisplacement && displacement.sqrMagnitude > _advanced.MinMoveDistanceSqr)
                 UpdatedPosition += displacement;
 
             if (IsGrounded || _grounding.HasLanded)

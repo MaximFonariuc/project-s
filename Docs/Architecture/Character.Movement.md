@@ -169,7 +169,15 @@ sequenceDiagram
 ## Инварианты
 
 - Симуляция выполняется только через `Move` в fixed-step владельца `Character`.
-- Physics queries используют заранее выделенные buffers и один collision filter.
+- Physics queries переиспользуют внутренние buffers и один collision filter. При насыщении внутренний buffer
+  увеличивается и query повторяется; результаты не отбрасываются молча. Переданный снаружи buffer остаётся
+  ограниченным ответственностью вызывающего кода.
+- Остаток displacement применяется только после sweep без blocking hit. Исчерпание iteration budget
+  останавливает движение в последней безопасной позиции и никогда не превращается в непроверенный teleport.
+- Runtime configuration нормализует solver минимум до трёх movement iterations и двух depenetration iterations;
+  новые компоненты используют `5 / 4`.
+- Изменение высоты стойки сохраняет положение стоп. Проверка вставания sweep-тестирует только расширяемую
+  верхнюю часть capsule, поэтому текущий контакт с полом не считается потолком.
 - Serialized field names не менять без `FormerlySerializedAs` и проверки scene/prefab migration.
 - `Rigidbody` остаётся kinematic, `useGravity` выключен; gravity интегрирует `Character`.
 - Platform displacement добавляется к character displacement; при сходе сохранённая скорость платформы
@@ -183,7 +191,8 @@ sequenceDiagram
 ## Ручная проверка после изменений
 
 - idle на ровной поверхности: grounded, стабильная ground distance;
-- run и остановка, wall collision, узкое препятствие;
+- run и остановка, wall collision, угол из двух поверхностей и узкое препятствие;
+- crouch/uncrouch на ровной поверхности и блокировка вставания под низким потолком;
 - jump/fall/landing и повторный прыжок;
 - slope limit, edge/perch и step offset;
 - dodge при высоком и низком frame rate;

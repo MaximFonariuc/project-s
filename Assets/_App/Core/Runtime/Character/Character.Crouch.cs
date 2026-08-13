@@ -35,6 +35,7 @@ namespace _App
             if (!_isCrouched && CrouchInputPressed && IsCrouchAllowed())
             {
                 _isCrouched = true;
+                CharacterMovement.SetHeight(_crouchedHeight);
 
                 OnCrouched();
             }
@@ -44,6 +45,7 @@ namespace _App
                     return;
 
                 _isCrouched = false;
+                CharacterMovement.SetHeight(_unCrouchedHeight);
 
                 OnUnCrouched();
             }
