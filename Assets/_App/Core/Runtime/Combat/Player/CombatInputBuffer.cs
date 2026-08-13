@@ -1,56 +1,67 @@
+using System;
+using ModularInput;
+
 namespace _App
 {
     internal sealed class CombatInputBuffer
     {
-        private const float DefaultLifetime = 0.35f;
-
         private readonly ICombatClock _clock;
+        private readonly CombatInputBufferSettings _settings;
+        private readonly InputBuffer<ESkillType> _buffer;
 
-        private ESkillType _skillType;
-        private float _expiresAt;
-        private bool _hasValue;
+        public int Count => _buffer.Count;
 
-        public CombatInputBuffer(ICombatClock clock)
+        public CombatInputBuffer(
+            ICombatClock clock,
+            CombatInputBufferSettings settings)
         {
-            _clock = clock;
+            _clock = clock ?? throw new ArgumentNullException(nameof(clock));
+            _settings = settings ?? throw new ArgumentNullException(nameof(settings));
+            _buffer = new InputBuffer<ESkillType>(_settings.BufferOptions);
         }
 
-        public void Store(ESkillType skillType)
+        public bool Store(ESkillType skillType)
         {
-            _skillType = skillType;
-            _expiresAt = _clock.UnscaledTime + DefaultLifetime;
-            _hasValue = true;
+            return _buffer.TryEnqueue(
+                skillType,
+                _clock.UnscaledTime,
+                _settings.GetWriteOptions(skillType));
         }
 
         public bool TryConsume(out ESkillType skillType)
         {
-            if (!TryPeek(out skillType))
+            if (!_buffer.TryConsume(
+                    _clock.UnscaledTime,
+                    out InputBufferEntry<ESkillType> entry))
             {
-                return false;
-            }
-
-            Clear();
-            return true;
-        }
-
-        public bool TryPeek(out ESkillType skillType)
-        {
-            if (!_hasValue || _clock.UnscaledTime > _expiresAt)
-            {
-                Clear();
                 skillType = default;
                 return false;
             }
 
-            skillType = _skillType;
+            skillType = entry.Action;
+            return true;
+        }
+
+        public bool TryConsume(
+            InputBufferEntryPredicate<ESkillType> predicate,
+            out ESkillType skillType)
+        {
+            if (!_buffer.TryConsume(
+                    _clock.UnscaledTime,
+                    predicate,
+                    out InputBufferEntry<ESkillType> entry))
+            {
+                skillType = default;
+                return false;
+            }
+
+            skillType = entry.Action;
             return true;
         }
 
         public void Clear()
         {
-            _skillType = default;
-            _expiresAt = 0.0f;
-            _hasValue = false;
+            _buffer.Clear();
         }
     }
 }

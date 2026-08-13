@@ -16,6 +16,7 @@ namespace _App
         };
         [SerializeField] private CombatActionAuthoring _weaponTransition =
             CombatActionAuthoring.CreatePrototypeWeaponTransition();
+        [SerializeField] private CombatInputBufferAuthoring _inputBuffer = new();
 
         internal PlayerCombatActionCatalog CreateCatalog()
         {
@@ -74,6 +75,13 @@ namespace _App
                 comboOverrides,
                 skills,
                 _weaponTransition.Build());
+        }
+
+        internal CombatInputBufferSettings CreateInputBufferSettings()
+        {
+            return _inputBuffer != null
+                ? _inputBuffer.Build()
+                : CombatInputBufferSettings.CreatePrototypeDefaults();
         }
     }
 

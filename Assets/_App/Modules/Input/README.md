@@ -5,6 +5,7 @@
 Документация деревьев классов:
 
 - `Documentation~/Core.md` — стабильная абстрактная модель и маршрутизация;
+- `Documentation~/Buffering.md` — generic semantic input buffer, политики очереди и зависимости;
 - `Documentation~/UnityAdapter.md` — адаптер Unity Input System и платформенные устройства;
 - `Documentation~/PackageBoundary.md` — граница будущего UPM-пакета.
 

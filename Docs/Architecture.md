@@ -20,7 +20,7 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 - **Player Input** — gameplay зависит от project-specific порта `IPlayerInput`. `PlayerInputAdapter` переводит сигналы независимого `IInputService` в семантические команды игрока, а `UnityInputSource` остаётся инфраструктурной деталью composition root.
 - **Combatant vitality** — `Health` является единственным владельцем текущего здоровья и публикует подтверждённые события damage/death.
 - **Damage boundary** — `Hurtbox` принимает попадание и передаёт его владельцу `Health`; `Weapon` формирует `DamageInfo` и фильтрует повторное попадание одной цели в рамках одного окна hitbox.
-- **Player Combat** — `PlayerCombatController` владеет combat phase, input buffer, combo index, cooldown, weapon state и hit window. Внешние consumers используют раздельные `IPlayerCombatCommands` и `IPlayerCombatState`.
+- **Player Combat** — `PlayerCombatController` владеет combat phase, правилами потребления input buffer, combo index, cooldown, weapon state и hit window. Нейтральное хранение semantic actions вынесено в `ModularInput.InputBuffer<TAction>`, а жанровая форма задаётся authoring-политиками. Внешние consumers используют раздельные `IPlayerCombatCommands` и `IPlayerCombatState`.
 - **Animation presentation** — `PlayerLocomotionAnimationAdapter` и `PlayerCharacterAnimationPresenter` переводят подтверждённый locomotion snapshot в backend-neutral `ICharacterAnimationDriver`. Animator остаётся presentation backend и не владеет gameplay-состоянием.
 - **Player Targeting** — `PlayerTargetingController` владеет lock-on state и выбором цели. Camera и будущий Combat читают его через `IPlayerTargetingState`, не управляя target selection.
 - **Player Camera** — `PlayerCameraController` владеет free-look/target-lock режимом, zoom, shoulder и framing state. `CinemachineCameraRig` является заменяемым presentation adapter, а locomotion читает только `ICameraOrientation`.
@@ -44,7 +44,7 @@ Player Animation presentation, immutable locomotion snapshot и граница M
 
 Player Camera и Player Targeting описаны раздельно в `Docs/Architecture/Player.Camera.md` и `Docs/Architecture/Player.Targeting.md`.
 
-Player Combat, его phase graph, input buffer и зависимости описаны в `Docs/Architecture/Player.Combat.md`.
+Player Combat и его phase graph описаны в `Docs/Architecture/Player.Combat.md`; отдельное дерево input buffer, dependency boundary и варианты конфигурации — в `Docs/Architecture/Combat.InputBuffer.md`.
 
 Player Traversal, interaction flow и ownership локальной simulation pause описаны в `Docs/Architecture/Player.Traversal.md`.
 

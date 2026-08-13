@@ -31,8 +31,8 @@ classDiagram
         +Disable()
     }
     class CombatInputBuffer {
-        +Store(skillType)
-        +TryConsume(skillType) bool
+        +Store(skillType) bool
+        +TryConsume(predicate, skillType) bool
         +Clear()
     }
     class IPlayerCombatAnimation {
@@ -129,13 +129,15 @@ sequenceDiagram
     Combat->>Animation: PlayComboStep(0)
     Input->>Combat: AttackRequested
     Combat->>Buffer: Store(Default, expires)
-    Animation-->>Combat: normalized time enters cancel window
-    Combat->>Buffer: TryConsume()
+    Animation-->>Combat: action frame opens chain/cancel window
+    Combat->>Buffer: TryConsume(allowed action predicate)
     Combat->>Weapon: CloseHitbox()
     Combat->>Animation: PlayComboStep(1)
 ```
 
-Buffer хранит последнюю команду вместе с ограниченным временем жизни `0.35s`. Время жизни считается по unscaled clock, поэтому ввод можно принять во время hit stop. Cooldown навыков использует scaled clock и останавливается вместе с gameplay time.
+Buffer хранит несколько semantic actions в очереди фиксированной ёмкости. Capacity, lifetime, priority, duplicate, overflow и selection policies задаются в `PlayerCombatActionProfile`; prototype default сохраняет lifetime `0.35s`. Время жизни считается по unscaled clock, поэтому ввод можно принять во время hit stop. Cooldown навыков использует scaled clock и останавливается вместе с gameplay time.
+
+Общая очередь находится в `ModularInput` и ничего не знает о combat. `PlayerCombatController` остаётся владельцем правил: в combo default action потребляется только в chain window, skill — только в cancel window после проверки availability/cooldown; во время skill любая следующая attack-команда требует cancel window. Полное дерево классов и варианты настройки для Hack and Slash, souls-like и action RPG описаны в `Docs/Architecture/Combat.InputBuffer.md`.
 
 Новый input не читает `Keyboard.current` или `Gamepad.current`: keyboard, gamepad и будущий mobile UI продолжают входить через `IPlayerInput`.
 

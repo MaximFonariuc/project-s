@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using ModularAnimation;
+using ModularInput;
 using UnityEngine;
 
 namespace _App
@@ -31,6 +32,7 @@ namespace _App
         private readonly PlayerCombatActionCatalog _actionCatalog;
         private readonly ICombatClock _clock;
         private readonly ECharacterType _characterType;
+        private readonly InputBufferEntryPredicate<ESkillType> _bufferedActionPredicate;
         private readonly Dictionary<ESkillType, float> _lastSkillUseTime =
             new Dictionary<ESkillType, float>();
 
@@ -39,6 +41,8 @@ namespace _App
         private ESkillType? _acceptedBufferedAction;
         private EWeaponType _pendingWeapon;
         private bool _weaponApplied;
+        private bool _canAcceptDefaultBufferedAction;
+        private bool _canAcceptSkillBufferedAction;
         private bool _enabled;
 
         public event Action<PlayerCombatPhase> PhaseChanged;
@@ -92,6 +96,7 @@ namespace _App
             _actionCatalog = actionCatalog ?? throw new ArgumentNullException(nameof(actionCatalog));
             _clock = clock ?? throw new ArgumentNullException(nameof(clock));
             _characterType = characterType;
+            _bufferedActionPredicate = CanAcceptBufferedAction;
         }
 
         public void Enable()
@@ -138,10 +143,9 @@ namespace _App
                 return false;
             }
 
-            if (Phase == PlayerCombatPhase.ComboAttack)
+            if (Phase is PlayerCombatPhase.ComboAttack or PlayerCombatPhase.SkillAttack)
             {
-                _inputBuffer.Store(skillType);
-                return true;
+                return _inputBuffer.Store(skillType);
             }
 
             if (Phase != PlayerCombatPhase.Ready ||
@@ -336,6 +340,7 @@ namespace _App
             SetPhase(PlayerCombatPhase.SkillAttack);
             SetComboIndex(0);
             SetHitWindow(false);
+            _acceptedBufferedAction = null;
 
             await ExecuteObservedActionAsync(
                 definition,
@@ -345,7 +350,7 @@ namespace _App
 
             _lastSkillUseTime[skillType] = _clock.ScaledTime;
             SetHitWindow(false);
-            return null;
+            return _acceptedBufferedAction;
         }
 
         private async UniTask<bool> RunWeaponTransitionAsync(
@@ -393,7 +398,12 @@ namespace _App
             switch (_observationMode)
             {
                 case ActionObservationMode.Combo:
-                    return ObserveComboFrame(in frame);
+                    return ObserveBufferedActionFrame(
+                        in frame,
+                        frame.CanChain && ComboIndex < _animation.ComboCount - 1);
+
+                case ActionObservationMode.Skill:
+                    return ObserveBufferedActionFrame(in frame, frame.CanCancel);
 
                 case ActionObservationMode.WeaponTransition:
                     if (frame.CommitReached)
@@ -407,24 +417,26 @@ namespace _App
             return CombatActionDirective.Continue;
         }
 
-        private CombatActionDirective ObserveComboFrame(in CombatActionFrame frame)
+        private CombatActionDirective ObserveBufferedActionFrame(
+            in CombatActionFrame frame,
+            bool canAcceptDefaultAction)
         {
-            if (!_inputBuffer.TryPeek(out ESkillType bufferedAction))
+            _canAcceptDefaultBufferedAction = canAcceptDefaultAction;
+            _canAcceptSkillBufferedAction = frame.CanCancel;
+            if (!_inputBuffer.TryConsume(_bufferedActionPredicate, out ESkillType bufferedAction))
             {
                 return CombatActionDirective.Continue;
             }
 
-            bool canAccept = bufferedAction == ESkillType.Default
-                ? frame.CanChain && ComboIndex < _animation.ComboCount - 1
-                : frame.CanCancel && CanUseSkill(bufferedAction);
-            if (!canAccept)
-            {
-                return CombatActionDirective.Continue;
-            }
-
-            _inputBuffer.TryConsume(out _);
             _acceptedBufferedAction = bufferedAction;
             return CombatActionDirective.Interrupt;
+        }
+
+        private bool CanAcceptBufferedAction(in InputBufferEntry<ESkillType> entry)
+        {
+            return entry.Action == ESkillType.Default
+                ? _canAcceptDefaultBufferedAction
+                : _canAcceptSkillBufferedAction && CanUseSkill(entry.Action);
         }
 
         private bool CanUseSkill(ESkillType skillType)

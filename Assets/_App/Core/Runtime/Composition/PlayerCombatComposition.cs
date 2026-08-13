@@ -16,12 +16,18 @@ namespace _App
                 throw new InvalidOperationException("Player combat requires an AnimationsData reference.");
             }
 
+            PlayerCombatActionProfile actionProfile = player.CombatActionProfile;
+            PlayerCombatActionCatalog actionCatalog = actionProfile != null
+                ? actionProfile.CreateCatalog()
+                : PlayerCombatActionCatalog.CreatePrototypeDefaults();
+            CombatInputBufferSettings inputBufferSettings = actionProfile != null
+                ? actionProfile.CreateInputBufferSettings()
+                : CombatInputBufferSettings.CreatePrototypeDefaults();
+
             builder.Register<ICombatClock, UnityCombatClock>(Lifetime.Scoped);
+            builder.RegisterInstance(inputBufferSettings);
             builder.Register<CombatInputBuffer>(Lifetime.Scoped);
-            builder.RegisterInstance(
-                player.CombatActionProfile != null
-                    ? player.CombatActionProfile.CreateCatalog()
-                    : PlayerCombatActionCatalog.CreatePrototypeDefaults());
+            builder.RegisterInstance(actionCatalog);
             builder.Register<CombatActionExecutor>(Lifetime.Scoped);
             builder.Register<IPlayerCombatAnimation>(
                 resolver => new PlayerCombatAnimationAdapter(

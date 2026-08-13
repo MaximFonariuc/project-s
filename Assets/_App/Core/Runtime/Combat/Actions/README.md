@@ -86,8 +86,9 @@ classDiagram
   Outside that window the executor exposes unrestricted movement intent.
 - Invulnerability is an explicit action window evaluated by the executor;
   `Health` remains the owner of whether incoming damage is accepted.
-- Input buffering remains a separate concern. A buffered combo is consumed only
-  in a chain window; a buffered skill is consumed only in a cancel window.
+- Input buffering remains a separate concern. Project S adapts the reusable
+  `ModularInput.InputBuffer<TAction>` and consumes a buffered combo only in a
+  chain window and a buffered skill only in a cancel window.
 
 ## Temporary animation policy
 
