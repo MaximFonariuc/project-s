@@ -34,6 +34,12 @@ namespace _App
                     "Player locomotion requires Character, AbilitiesData and Animator references.");
             }
 
+            if (_player.FollowCameraPrefab == null || _player.FollowTarget == null)
+            {
+                throw new InvalidOperationException(
+                    "Player camera requires a Cinemachine camera prefab and follow target.");
+            }
+
             builder.Register<IInputSource>(_ => new UnityInputSource(_inputActions), Lifetime.Scoped);
             builder.Register<IInputService, InputRouter>(Lifetime.Scoped);
             builder.Register<IPlayerInput, PlayerInputAdapter>(Lifetime.Scoped);
@@ -48,6 +54,40 @@ namespace _App
                     character,
                     resolver.Resolve<AnimationController>()),
                 Lifetime.Scoped);
+
+            PlayerCameraSettings cameraSettings = _player.CameraSettings;
+            builder.Register(
+                    _ => new CinemachineCameraRig(
+                        _player.FollowCameraPrefab,
+                        _player.FollowTarget,
+                        cameraSettings.DefaultDistance),
+                    Lifetime.Scoped)
+                .AsSelf()
+                .As<IPlayerCameraRig>()
+                .As<ICameraOrientation>();
+
+            builder.Register<PlayerTargetingController>(Lifetime.Scoped)
+                .AsSelf()
+                .As<IPlayerTargetingState>()
+                .As<IPlayerTargetingCommands>();
+            builder.Register<IPlayerCameraPresentation>(
+                resolver => new PlayerCameraAnimationAdapter(
+                    character,
+                    _player.PlayerAnimator,
+                    resolver.Resolve<AnimationController>()),
+                Lifetime.Scoped);
+            builder.Register(
+                    resolver => new PlayerCameraController(
+                        resolver.Resolve<IPlayerInput>(),
+                        character,
+                        resolver.Resolve<IPlayerCameraRig>(),
+                        resolver.Resolve<IPlayerTargetingState>(),
+                        resolver.Resolve<IPlayerCameraPresentation>(),
+                        cameraSettings),
+                    Lifetime.Scoped)
+                .AsSelf()
+                .As<IPlayerCameraState>()
+                .As<IPlayerCameraCommands>();
 
             builder.Register<ICharacterMotor, CharacterMotor>(Lifetime.Scoped);
             builder.Register<IPlayerMovementReference, CameraRelativeMovementReference>(Lifetime.Scoped);

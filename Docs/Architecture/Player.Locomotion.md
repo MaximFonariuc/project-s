@@ -62,6 +62,11 @@ classDiagram
     class CameraRelativeMovementReference {
         <<adapter>>
     }
+    class ICameraOrientation {
+        <<camera read port>>
+        +Forward Vector3
+        +Right Vector3
+    }
     class IStateMachine~PlayerLocomotionStateId~
     class PlayerLocomotionState {
         <<abstract>>
@@ -95,6 +100,7 @@ classDiagram
     CharacterMotor --> Character
     Character --> CharacterMovement
     IPlayerMovementReference <|.. CameraRelativeMovementReference
+    CameraRelativeMovementReference --> ICameraOrientation
     IPlayerLocomotionPresentation <|.. PlayerLocomotionAnimationAdapter
     PlayerLocomotionAnimationAdapter --> AnimationController
     PlayerLocomotionState <|-- PlayerIdleState

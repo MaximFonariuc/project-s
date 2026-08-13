@@ -40,40 +40,44 @@ namespace _App
         [SerializeField] private Transform _weaponHand;
         [SerializeField] private Transform _weapon;
 
-        private float _headLookX;
-        private float _headLookY;
-
-        private float _cameraTargetYaw;
-        private float _cameraTargetPitch;
-        private float _cameraRotationOnGravityFlip;
-
-        private float _followDistanceSmoothVelocity;
-
         private Character _character;
         private IPlayerInput _input;
         private AbilityController _abilityController;
         private CombatControllerBase _combatControllerBase;
         private AnimationController _animationController;
         private PlayerLocomotionController _locomotionController;
-        private PlayerTargetLockSystem _targetLockSystem;
+        private PlayerTargetingController _targetingController;
+        private PlayerCameraController _cameraController;
         private Weapon _equippedWeapon;
-
-        private bool _activeCursor;
 
         internal AbilitiesData AbilitiesData => _abilitiesData;
         internal Animator PlayerAnimator => _animator;
+        internal CinemachineThirdPersonFollow FollowCameraPrefab => _followCamera;
+        internal Transform FollowTarget => _followTarget;
+        internal PlayerCameraSettings CameraSettings => new PlayerCameraSettings(
+            _followDistance,
+            _followMinDistance,
+            _followMaxDistance,
+            _invertLook,
+            _mouseSensitivity,
+            _minPitch,
+            _maxPitch);
 
         [Inject]
         public void Construct(
             IPlayerInput input,
             AbilityController abilityController,
             AnimationController animationController,
-            PlayerLocomotionController locomotionController)
+            PlayerLocomotionController locomotionController,
+            PlayerTargetingController targetingController,
+            PlayerCameraController cameraController)
         {
             _input = input;
             _abilityController = abilityController;
             _animationController = animationController;
             _locomotionController = locomotionController;
+            _targetingController = targetingController;
+            _cameraController = cameraController;
         }
 
         private void SetCallbacks()
@@ -84,9 +88,7 @@ namespace _App
             _input.InteractRequested += Interact;
             _input.PauseRequested += Pause;
             _input.InverseGravityRequested += InverseGravity;
-            _input.CursorRequested += CursorChanged;
             _input.SkillRequested += Skill;
-            _input.LockOnRequested += LockOn;
             _input.SwitchCombatStateRequested += SwitchCombatState;
             _locomotionController.DodgeAccepted += OnDodgeAccepted;
 
@@ -110,9 +112,7 @@ namespace _App
             _input.InteractRequested -= Interact;
             _input.PauseRequested -= Pause;
             _input.InverseGravityRequested -= InverseGravity;
-            _input.CursorRequested -= CursorChanged;
             _input.SkillRequested -= Skill;
-            _input.LockOnRequested -= LockOn;
             _input.SwitchCombatStateRequested -= SwitchCombatState;
             _locomotionController.DodgeAccepted -= OnDodgeAccepted;
 
@@ -129,7 +129,7 @@ namespace _App
         protected virtual void Awake()
         {
             if (_input == null || _abilityController == null || _animationController == null ||
-                _locomotionController == null)
+                _locomotionController == null || _targetingController == null || _cameraController == null)
             {
                 Debug.LogError($"{nameof(ThirdPersonController)} requires its gameplay dependencies from the composition root.", this);
                 enabled = false;
@@ -137,16 +137,7 @@ namespace _App
             }
 
             _character = GetComponent<Character>();
-            _followCamera = Instantiate(_followCamera);
-
             InitControllers();
-
-            if (_followCamera)
-            {
-                _followCamera.GetComponent<CinemachineCamera>().Follow = _followTarget;
-                _followCamera.CameraDistance = _followDistance;
-            }
-
             SetCallbacks();
         }
 
@@ -158,25 +149,23 @@ namespace _App
         private void InitControllers()
         {
             _combatControllerBase = new PlayerCombatController(_characterType, _animationController, _skillsData);
-            _targetLockSystem = new PlayerTargetLockSystem(_character, _followCamera.GetComponent<CinemachineCamera>());
             _equippedWeapon = _weapon != null ? _weapon.GetComponent<Weapon>() : null;
-        }
-
-        protected virtual void Start()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void OnEnable()
         {
             _abilityController?.EnableAllAbilities();
             _locomotionController?.Enable();
+            _targetingController?.Enable();
+            _cameraController?.Enable();
             _input?.Enable();
         }
 
         private void OnDisable()
         {
             _input?.Disable();
+            _cameraController?.Disable();
+            _targetingController?.Disable();
             _locomotionController?.Disable();
             _abilityController?.DisableAllAbilities();
         }
@@ -186,18 +175,17 @@ namespace _App
             HandleTraversalInput();
             UpdateMovementIntent();
             _locomotionController?.Tick(Time.deltaTime);
-            HandleCameraInput();
+            _targetingController?.Tick();
         }
 
         protected virtual void LateUpdate()
         {
-            UpdateCamera();
-            UpdateHeadLook();
+            _cameraController?.LateTick(Time.unscaledDeltaTime, Time.deltaTime);
         }
 
         #endregion
 
-        #region Movement&Camera Inputs
+        #region Movement Inputs
 
         private void HandleTraversalInput()
         {
@@ -221,129 +209,6 @@ namespace _App
                 !attacking && !switching,
                 !_combatControllerBase.IsSkillAttack && !switching,
                 faceMoveDirection));
-        }
-
-        private void HandleCameraInput()
-        {
-            if (_character.RotationMode != ERotationMode.None)
-            {
-                Vector2 lookInput = _input.Look * _mouseSensitivity;
-                AddControlYawInput(_invertLook ? lookInput.x : -lookInput.x);
-                AddControlPitchInput(_invertLook ? -lookInput.y : lookInput.y, _minPitch, _maxPitch);
-
-                Vector2 zoomInput = _input.Zoom * _mouseSensitivity;
-                AddControlZoomInput(zoomInput.y);
-            }
-            else
-            {
-                if (_input.Move.x != 0)
-                {
-                    _character.SetYaw(_input.Move.x > 0 ? 90.0f : -90.0f);
-                }
-
-                if (_character.CameraTransform)
-                {
-                    _character.CameraTransform.position = _character.transform.position + new Vector3(0, 2, -5);
-                    _character.CameraTransform.rotation = Quaternion.Euler(10, 90, 0);
-                }
-            }
-        }
-
-        private void AddControlYawInput(float value, float minValue = -180.0f, float maxValue = 180.0f)
-        {
-            if (value == 0.0f)
-            {
-                return;
-            }
-
-            _cameraTargetYaw = MathLib.ClampAngle(_cameraTargetYaw + value, minValue, maxValue);
-        }
-
-        private void AddControlPitchInput(float value, float minValue = -80.0f, float maxValue = 80.0f)
-        {
-            if (value == 0.0f)
-            {
-                return;
-            }
-
-            _cameraTargetPitch = MathLib.ClampAngle(_cameraTargetPitch + value, minValue, maxValue);
-        }
-
-        private void AddControlZoomInput(float value)
-        {
-            if (value == 0.0f)
-            {
-                return;
-            }
-
-            _followDistance = Mathf.Clamp(_followDistance - value, _followMinDistance, _followMaxDistance);
-        }
-
-        private void UpdateCamera()
-        {
-            if (_activeCursor)
-            {
-                return;
-            }
-
-            if (_targetLockSystem.IsTargetLocked && _targetLockSystem.CurrentTarget != null)
-            {
-                float distanceToTarget =
-                    Vector3.Distance(_followTarget.position, _targetLockSystem.CurrentTarget.position);
-
-                if (distanceToTarget > TargetLockSystem.MAX_LOCK_DISTANCE)
-                {
-                    LockOn();
-                }
-                else
-                {
-                    Vector3 directionToTarget = _targetLockSystem.CurrentTarget.position - _followTarget.position;
-
-                    Quaternion lookRotation = Quaternion.LookRotation(directionToTarget);
-                    Vector3 lookEuler = lookRotation.eulerAngles;
-
-                    float targetYaw = lookEuler.y;
-                    float targetPitch = lookEuler.x;
-
-                    _cameraTargetYaw = targetYaw;
-                    _cameraTargetPitch = targetPitch;
-                }
-            }
-
-            _followTarget.rotation = Quaternion.Euler(_cameraTargetPitch, _cameraTargetYaw,
-                _cameraRotationOnGravityFlip != 0 ? _cameraRotationOnGravityFlip : 0);
-
-            _followCamera.CameraDistance =
-                Mathf.SmoothDamp(_followCamera.CameraDistance, _followDistance, ref _followDistanceSmoothVelocity,
-                    0.1f);
-        }
-
-        private void UpdateHeadLook()
-        {
-            const float interpolationSpeed = 5f;
-
-            const float clampMin = -0.5f;
-            const float clampMax = 0.5f;
-
-            float targetX = 0f;
-            float targetY = 0f;
-
-            if (_targetLockSystem.IsTargetLocked || _targetLockSystem.CurrentTarget != null)
-            {
-                var head = _animator.GetBoneTransform(HumanBodyBones.Head);
-                Vector3 eyePos = head != null ? head.position : transform.position;
-                Vector3 directionToTarget = _targetLockSystem.CurrentTarget.position - eyePos;
-                Vector3 localDirection = transform.InverseTransformDirection(directionToTarget.normalized);
-
-                targetX = Mathf.Clamp(localDirection.x, clampMin, clampMax);
-                targetY = Mathf.Clamp(localDirection.y, clampMin, clampMax);
-            }
-
-            _headLookX = Mathf.Lerp(_headLookX, targetX, Time.deltaTime * interpolationSpeed);
-            _headLookY = Mathf.Lerp(_headLookY, targetY, Time.deltaTime * interpolationSpeed);
-
-            _animationController.SetFloat(AnimationHashes.HeadLookX, _headLookX);
-            _animationController.SetFloat(AnimationHashes.HeadLookY, _headLookY);
         }
 
         #endregion
@@ -420,15 +285,7 @@ namespace _App
                 return;
             }
 
-            _cameraRotationOnGravityFlip = _cameraRotationOnGravityFlip >= 0 ? -180 : 0;
-            _invertLook = _cameraRotationOnGravityFlip >= 0;
-        }
-
-        private void CursorChanged()
-        {
-            _activeCursor = !_activeCursor;
-            Cursor.lockState = _activeCursor ? CursorLockMode.None : CursorLockMode.Locked;
-            Cursor.visible = _activeCursor;
+            _cameraController.ToggleGravityOrientation();
         }
 
         private void Skill(ESkillType skillNumber)
@@ -440,11 +297,6 @@ namespace _App
 
             _combatControllerBase.TryAttack(skillNumber);
             UpdateMovementIntent();
-        }
-
-        private void LockOn()
-        {
-            _targetLockSystem.AcquireTarget(_character.SetRotationMode);
         }
 
         private void OnDodgeAccepted()
