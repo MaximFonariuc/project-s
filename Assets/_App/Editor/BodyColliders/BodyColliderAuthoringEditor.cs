@@ -13,13 +13,6 @@ namespace _App.Editor
             var authoring = (BodyColliderAuthoring)target;
             EditorGUILayout.Space();
 
-            if (authoring.Animator != null && authoring.Animator.GetComponent("RASCALSkinnedMeshCollider") != null)
-            {
-                EditorGUILayout.HelpBox(
-                    "RASCAL is present on this rig. It generates runtime mesh collision and can overlap these combat hurtboxes. Keep only one collider source active for combat contacts.",
-                    MessageType.Warning);
-            }
-
             if (authoring.Animator != null && !authoring.Animator.isHuman && authoring.GenericBones.Count == 0)
             {
                 EditorGUILayout.HelpBox(

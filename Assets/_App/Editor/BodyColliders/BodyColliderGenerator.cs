@@ -116,11 +116,6 @@ namespace _App.Editor
                 Undo.CollapseUndoOperations(undoGroup);
 
                 string message = $"Generated {zones.Count} {rigType} body colliders for '{authoring.name}'.";
-                if (HasRascal(authoring.Animator))
-                {
-                    message += " RASCAL is also present; disable its generated collision when using this hurtbox rig to avoid duplicate contacts.";
-                }
-
                 return new BodyColliderGenerationResult(true, rigType, zones.Count, removed, message);
             }
             catch (Exception exception)
@@ -546,11 +541,6 @@ namespace _App.Editor
                 ? AnimationUtility.CalculateTransformPath(definition.EndBone, root)
                 : string.Empty;
             return $"{definition.Id}|{startPath}|{endPath}";
-        }
-
-        private static bool HasRascal(Animator animator)
-        {
-            return animator != null && animator.GetComponent("RASCALSkinnedMeshCollider") != null;
         }
 
         private static BodyColliderGenerationResult Failure(string message, BodyRigType rigType = BodyRigType.Auto)

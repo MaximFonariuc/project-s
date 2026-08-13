@@ -177,12 +177,6 @@ Animator bones -> generated collider transforms           (presentation pose)
 
 Команда `Clear Generated` удаляет только GameObjects с `GeneratedBodyCollider`. Корневой movement capsule, weapon colliders, manual colliders и сторонние компоненты не затрагиваются. Все операции поддерживают Unity Undo и создают обычные prefab overrides; автоматически применять или сохранять prefab tool не будет.
 
-## RASCAL
-
-Подключённый `_Modules/RASCAL` создаёт per-bone mesh colliders и способен обновлять их в runtime с CPU budget. Это полезно для механик, которым нужна форма деформируемой поверхности, но избыточно для предсказуемых combat hurtboxes.
-
-`BodyColliderAuthoring` показывает предупреждение, если RASCAL находится на том же Animator. Обе системы не удаляют и не перенастраивают друг друга, однако одновременные collider sets могут дать duplicate physics contacts. Для боевого actor следует оставить активным один источник hurtbox collision.
-
 ## Файлы и ownership
 
 ```text
