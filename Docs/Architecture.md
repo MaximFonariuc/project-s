@@ -25,6 +25,7 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 - **Player Targeting** — `PlayerTargetingController` владеет lock-on state и выбором цели. Camera и будущий Combat читают его через `IPlayerTargetingState`, не управляя target selection.
 - **Player Camera** — `PlayerCameraController` владеет free-look/target-lock режимом, zoom, shoulder и framing state. `CinemachineCameraRig` является заменяемым presentation adapter, а locomotion читает только `ICameraOrientation`.
 - **Player Traversal** — `PlayerTraversalController` владеет interaction/climb workflow и согласованием gravity inversion между locomotion и camera. `PlayerSimulationGate` объединяет persistent pause request и временные traversal locks, оставаясь единственным владельцем вызова `Character.Pause` в player flow.
+- **Character Simulation** — `Character` остаётся совместимым Unity facade и владельцем movement mode/fixed-step, но runtime state прыжка, реестр physics volumes и cancellable simulation loop имеют отдельных внутренних owners. Collision solving остаётся в `CharacterMovement`; детали и class tree описаны в `Docs/Architecture/Character.Simulation.md`.
 - **Authoring data** — существующие `AbilitiesData` и `AnimationsData` остаются ScriptableObject-конфигурацией, а runtime progress хранится в экземплярах controllers/abilities.
 
 ## Composition
@@ -44,5 +45,7 @@ Player Combat, его phase graph, input buffer и зависимости опи
 Player Traversal, interaction flow и ownership локальной simulation pause описаны в `Docs/Architecture/Player.Traversal.md`.
 
 Anti-corruption boundary между feature controllers и legacy `Character`, а также дерево player composition описаны в `Docs/Architecture/Player.ActorBoundary.md`.
+
+Внутренняя декомпозиция `Character`, fixed-step lifecycle и разрешённые зависимости описаны в `Docs/Architecture/Character.Simulation.md`.
 
 `Assets/Scenes/Demo Scene.unity` сохраняется как reference-сцена без переноса её содержимого. Рабочая сцена находится в `Assets/_Game/Scenes/PrototypeArena.unity` и является стартовой сценой разработки.
