@@ -4,6 +4,8 @@
 
 Player Locomotion владеет интерпретацией семантического input и текущим locomotion-состоянием игрока. Физическое ядро `CharacterMovement` сохранено: оно выполняет движение capsule, ground/slope checks, step offset, depenetration, столкновения и moving-platform correction.
 
+Внутренняя модель физического ядра описана отдельно в [Character.Movement.md](Character.Movement.md).
+
 Граница специально остаётся внутри `_App`, пока не стабилизированы публичный API, настройки и traversal-сценарии. Сейчас это не UPM-пакет и не `_Modules/CharacterMotion`.
 
 ## Дерево классов
