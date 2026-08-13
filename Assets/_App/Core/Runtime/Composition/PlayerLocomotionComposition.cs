@@ -7,7 +7,13 @@ namespace _App
     {
         public static void RegisterPlayerLocomotion(this IContainerBuilder builder)
         {
+            builder.Register(
+                resolver => PlayerLocomotionSettings.From(
+                    resolver.Resolve<Character>(),
+                    resolver.Resolve<CharacterAbilityRuntime>()),
+                Lifetime.Scoped);
             builder.Register<ICharacterMotor, CharacterMotor>(Lifetime.Scoped);
+            builder.Register<IPlayerLocomotionActions, PlayerLocomotionActionAdapter>(Lifetime.Scoped);
             builder.Register<IPlayerMovementReference, CameraRelativeMovementReference>(Lifetime.Scoped);
             builder.Register<IPlayerLocomotionPresentation, PlayerLocomotionAnimationAdapter>(Lifetime.Scoped);
             builder.Register<PlayerLocomotionRuntime>(Lifetime.Scoped);

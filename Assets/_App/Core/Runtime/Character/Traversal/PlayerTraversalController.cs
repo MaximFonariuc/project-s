@@ -12,7 +12,7 @@ namespace _App
         private readonly IPlayerTraversalActor _actor;
         private readonly IPlayerSimulationLock _simulationLock;
         private readonly IPlayerInteractionProbe _interactionProbe;
-        private readonly AbilityController _abilities;
+        private readonly IPlayerTraversalActions _actions;
         private readonly IPlayerCombatCommands _combatCommands;
         private readonly IPlayerCombatState _combatState;
         private readonly IPlayerLocomotionCommands _locomotion;
@@ -28,7 +28,7 @@ namespace _App
             IPlayerTraversalActor actor,
             IPlayerSimulationLock simulationLock,
             IPlayerInteractionProbe interactionProbe,
-            AbilityController abilities,
+            IPlayerTraversalActions actions,
             IPlayerCombatCommands combatCommands,
             IPlayerCombatState combatState,
             IPlayerLocomotionCommands locomotion,
@@ -38,7 +38,7 @@ namespace _App
             _actor = actor ?? throw new ArgumentNullException(nameof(actor));
             _simulationLock = simulationLock ?? throw new ArgumentNullException(nameof(simulationLock));
             _interactionProbe = interactionProbe ?? throw new ArgumentNullException(nameof(interactionProbe));
-            _abilities = abilities ?? throw new ArgumentNullException(nameof(abilities));
+            _actions = actions ?? throw new ArgumentNullException(nameof(actions));
             _combatCommands = combatCommands ?? throw new ArgumentNullException(nameof(combatCommands));
             _combatState = combatState ?? throw new ArgumentNullException(nameof(combatState));
             _locomotion = locomotion ?? throw new ArgumentNullException(nameof(locomotion));
@@ -79,7 +79,7 @@ namespace _App
                 return;
             }
 
-            _abilities.GetAbility<LadderClimbAbility>()?.OnClimbInput(_input.Move);
+            _actions.ApplyClimbInput(_input.Move);
         }
 
         public bool TryInteract()
@@ -89,21 +89,19 @@ namespace _App
                 return false;
             }
 
-            LadderClimbAbility ladder = _abilities.GetAbility<LadderClimbAbility>();
-            if (ladder == null)
+            if (!_actions.IsClimbAvailable)
             {
                 return false;
             }
 
             if (_combatState.CurrentWeapon == EWeaponType.Unarmed)
             {
-                ladder.Climb().Forget();
-                return true;
+                return _actions.TryBeginClimb();
             }
 
             int operationVersion = ++_interactionVersion;
             _interactionPending = true;
-            SheatheAndClimbAsync(ladder, operationVersion).Forget();
+            SheatheAndClimbAsync(operationVersion).Forget();
             return true;
         }
 
@@ -123,9 +121,7 @@ namespace _App
             Disable();
         }
 
-        private async UniTaskVoid SheatheAndClimbAsync(
-            LadderClimbAbility ladder,
-            int operationVersion)
+        private async UniTaskVoid SheatheAndClimbAsync(int operationVersion)
         {
             AcquireSimulationPause();
             try
@@ -136,7 +132,7 @@ namespace _App
                     return;
                 }
 
-                ladder.Climb().Forget();
+                _actions.TryBeginClimb();
             }
             catch (Exception exception)
             {

@@ -56,12 +56,10 @@ namespace _App
 
         void SetMovementDirection(Vector3 worldDirection);
         void FaceDirection(Vector3 worldDirection, float deltaTime);
+        void SnapFacingDirection(Vector3 worldDirection);
         void PressJump();
         void ReleaseJump();
-        void StartGliding();
-        void StopGliding();
         void SetSpeedMode(PlayerSpeedMode speedMode);
-        bool TryDodge(Vector3 worldDirection, bool backwards);
         bool TryInvertGravity();
     }
 

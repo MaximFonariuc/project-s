@@ -40,7 +40,18 @@ classDiagram
     class CharacterInteractionProbe {
         <<legacy physics adapter>>
     }
-    class AbilityController
+    class IPlayerTraversalActions {
+        <<action port>>
+        +IsClimbAvailable bool
+        +ApplyClimbInput(input)
+        +TryBeginClimb() bool
+    }
+    class PlayerTraversalActionAdapter {
+        <<legacy ability adapter>>
+    }
+    class CharacterAbilityRuntime {
+        <<internal lifecycle owner>>
+    }
     class LadderClimbAbility
     class IPlayerCombatCommands
     class IPlayerCombatState
@@ -70,13 +81,15 @@ classDiagram
     PlayerTraversalController --> IPlayerInput
     PlayerTraversalController --> IPlayerTraversalActor
     PlayerTraversalController --> IPlayerInteractionProbe
-    PlayerTraversalController --> AbilityController
+    PlayerTraversalController --> IPlayerTraversalActions
     PlayerTraversalController --> IPlayerCombatCommands
     PlayerTraversalController --> IPlayerCombatState
     PlayerTraversalController --> IPlayerLocomotionCommands
     PlayerTraversalController --> IPlayerCameraCommands
     PlayerTraversalController --> IPlayerSimulationLock
-    AbilityController --> LadderClimbAbility
+    IPlayerTraversalActions <|.. PlayerTraversalActionAdapter
+    PlayerTraversalActionAdapter --> CharacterAbilityRuntime : resolves once
+    PlayerTraversalActionAdapter --> LadderClimbAbility
     IPlayerInteractionProbe <|.. CharacterInteractionProbe
     CharacterInteractionProbe --> Character
     IPlayerSimulationLock <|.. PlayerSimulationGate
@@ -97,17 +110,17 @@ sequenceDiagram
     participant Probe as IPlayerInteractionProbe
     participant Gate as PlayerSimulationGate
     participant Combat as IPlayerCombatCommands
-    participant Ladder as LadderClimbAbility
+    participant Actions as IPlayerTraversalActions
 
     Input->>Traversal: InteractRequested
     Traversal->>Probe: HasInteractable()
     alt weapon is sheathed
-        Traversal->>Ladder: Climb()
+        Traversal->>Actions: TryBeginClimb()
     else weapon is equipped
         Traversal->>Gate: AcquirePause()
         Traversal->>Combat: ToggleWeaponAsync(Unarmed)
         Combat-->>Traversal: confirmed
-        Traversal->>Ladder: Climb()
+        Traversal->>Actions: TryBeginClimb()
         Traversal->>Gate: Dispose pause lease
     end
 ```
@@ -115,6 +128,8 @@ sequenceDiagram
 Повторный Interact во время sheathe блокируется владельцем workflow. Disable инвалидирует ожидающую операцию и освобождает pause lease; завершившийся позже async continuation не запускает climb и не меняет состояние нового lifecycle.
 
 `CharacterInteractionProbe` сохраняет текущую физическую семантику: `CharacterMovement.OverlapTest`, первый collider и `IInteractable`. Это legacy adapter, а не стабильная универсальная interaction system. Layer mask и выбор лучшего кандидата должны стать отдельной authoring policy только вместе с реальными типами взаимодействий.
+
+`PlayerTraversalController` не запрашивает ability по concrete type. Переходный `PlayerTraversalActionAdapter` один раз получает `LadderClimbAbility` из внутреннего runtime при composition и реализует узкий traversal port. Детали общего runtime и его class tree описаны в [Player.Abilities.md](Player.Abilities.md).
 
 ## Simulation pause ownership
 

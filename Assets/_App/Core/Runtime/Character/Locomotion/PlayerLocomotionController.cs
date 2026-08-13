@@ -15,6 +15,7 @@ namespace _App
 
         private readonly IPlayerInput _input;
         private readonly ICharacterMotor _motor;
+        private readonly IPlayerLocomotionActions _actions;
         private readonly IPlayerMovementReference _movementReference;
         private readonly IPlayerLocomotionPresentation _presentation;
         private readonly PlayerLocomotionRuntime _runtime;
@@ -32,6 +33,7 @@ namespace _App
         public PlayerLocomotionController(
             IPlayerInput input,
             ICharacterMotor motor,
+            IPlayerLocomotionActions actions,
             IPlayerMovementReference movementReference,
             IPlayerLocomotionPresentation presentation,
             PlayerLocomotionRuntime runtime,
@@ -39,6 +41,7 @@ namespace _App
         {
             _input = input ?? throw new ArgumentNullException(nameof(input));
             _motor = motor ?? throw new ArgumentNullException(nameof(motor));
+            _actions = actions ?? throw new ArgumentNullException(nameof(actions));
             _movementReference = movementReference ?? throw new ArgumentNullException(nameof(movementReference));
             _presentation = presentation ?? throw new ArgumentNullException(nameof(presentation));
             _runtime = runtime ?? throw new ArgumentNullException(nameof(runtime));
@@ -77,7 +80,7 @@ namespace _App
             _sprintHeld = false;
             _movementIntent = PlayerMovementIntent.Unrestricted;
             _motor.ReleaseJump();
-            _motor.StopGliding();
+            _actions.StopGliding();
             SetSpeedMode(PlayerSpeedMode.Run);
             _motor.SetMovementDirection(Vector3.zero);
 
@@ -272,11 +275,11 @@ namespace _App
                     break;
 
                 case InputSignalPhase.Performed when _movementIntent.AllowJump && !_motor.IsSwimming && !_motor.IsDodging:
-                    _motor.StartGliding();
+                    _actions.StartGliding();
                     break;
 
                 case InputSignalPhase.Canceled:
-                    _motor.StopGliding();
+                    _actions.StopGliding();
                     _motor.ReleaseJump();
                     break;
             }
@@ -294,7 +297,7 @@ namespace _App
             bool backwards = _input.Move.y < -0.5f &&
                              _motor.RotationMode == ERotationMode.OrientToViewAndMovement;
 
-            if (!_motor.TryDodge(_runtime.RawMoveDirection, backwards))
+            if (!_actions.TryDodge(_runtime.RawMoveDirection, backwards))
             {
                 return;
             }

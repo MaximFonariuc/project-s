@@ -6,6 +6,7 @@ namespace _App
     {
         public static void RegisterPlayerTraversal(this IContainerBuilder builder)
         {
+            builder.Register<IPlayerTraversalActions, PlayerTraversalActionAdapter>(Lifetime.Scoped);
             builder.Register<IPlayerInteractionProbe, CharacterInteractionProbe>(Lifetime.Scoped);
             builder.Register<PlayerSimulationGate>(Lifetime.Scoped)
                 .As<IPlayerSimulationPause>()

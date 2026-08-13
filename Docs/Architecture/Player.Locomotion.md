@@ -42,9 +42,23 @@ classDiagram
         +IsDodging bool
         +Velocity Vector3
         +SetMovementDirection(direction)
+        +SnapFacingDirection(direction)
         +PressJump()
-        +TryDodge(direction, backwards)
         +SetSpeedMode(mode)
+    }
+    class IPlayerLocomotionActions {
+        <<action port>>
+        +StartGliding()
+        +StopGliding()
+        +TryDodge(direction, backwards) bool
+    }
+    class PlayerLocomotionActionAdapter {
+        <<legacy ability adapter>>
+    }
+    class PlayerLocomotionSettings {
+        +WalkSpeed float
+        +RunSpeed float
+        +SprintSpeed float
     }
     class CharacterMotor {
         <<adapter>>
@@ -97,12 +111,15 @@ classDiagram
 
     PlayerLocomotionController --> IPlayerInput
     PlayerLocomotionController --> ICharacterMotor
+    PlayerLocomotionController --> IPlayerLocomotionActions
     PlayerLocomotionController --> IPlayerMovementReference
     PlayerLocomotionController --> IStateMachine~PlayerLocomotionStateId~
     PlayerLocomotionController --> IPlayerLocomotionPresentation
     IPlayerLocomotionCommands <|.. PlayerLocomotionController
     ICharacterMotor <|.. CharacterMotor
+    IPlayerLocomotionActions <|.. PlayerLocomotionActionAdapter
     CharacterMotor --> Character
+    CharacterMotor --> PlayerLocomotionSettings
     Character --> CharacterMovement
     IPlayerMovementReference <|.. CameraRelativeMovementReference
     CameraRelativeMovementReference --> ICameraOrientation
@@ -115,6 +132,8 @@ classDiagram
     PlayerLocomotionState <|-- PlayerDodgeState
     PlayerLocomotionComposition ..> PlayerLocomotionController : constructs
     PlayerLocomotionComposition ..> CharacterMotor : constructs
+    PlayerLocomotionComposition ..> PlayerLocomotionActionAdapter : constructs
+    PlayerLocomotionComposition ..> PlayerLocomotionSettings : constructs
     PlayerLocomotionComposition ..> IStateMachine~PlayerLocomotionStateId~ : constructs
 ```
 
@@ -140,7 +159,7 @@ stateDiagram-v2
 
 `Jump` начинается не по нажатию кнопки, а после подтверждения motor: `Character` должен перейти в `Falling` и получить восходящую скорость. По той же причине `Dodge` становится активным только после перехода `Character` в custom movement mode. State machine не дублирует физическое состояние заранее.
 
-`Walk` и `Sprint` являются взаимоисключающими speed modes, а не отдельными locomotion states. Единственный runtime-owner скорости — `CharacterMotor`; старые `WalkAbility` и `SprintAbility` используются только как источник уже настроенных значений скорости.
+`Walk` и `Sprint` являются взаимоисключающими speed modes, а не отдельными locomotion states. Единственный runtime-owner скорости — `CharacterMotor`. При composition значения старых `WalkAbility` и `SprintAbility` один раз переводятся в immutable `PlayerLocomotionSettings`; motor больше не знает об ability registry.
 
 ## Направление зависимостей
 
@@ -150,9 +169,11 @@ flowchart LR
     Combat["Combat"] -->|"PlayerMovementIntent"| Controller
     CameraBasis["IPlayerMovementReference"] --> Controller
     Controller --> Machine["Locomotion State Machine"]
+    Controller --> Actions["IPlayerLocomotionActions"]
     Machine --> MotorPort["ICharacterMotor"]
     Motor["CharacterMotor"] -.implements.-> MotorPort
     Motor --> Character
+    Motor --> Settings["PlayerLocomotionSettings"]
     Character --> Collision["CharacterMovement"]
     Machine --> Presentation["IPlayerLocomotionPresentation"]
     AnimationAdapter["Animation Adapter"] -.implements.-> Presentation
@@ -163,6 +184,7 @@ flowchart LR
 - Camera участвует только как basis для camera-relative направления через отдельный adapter; locomotion не зависит от Cinemachine API.
 - Traversal запрашивает инверсию gravity через `IPlayerLocomotionCommands` и меняет camera orientation только после подтверждения команды.
 - Animation получает подтверждённое состояние. Продолжительность dodge задаётся gameplay-конфигурацией, а не длиной animation clip.
+- Glide и dodge проходят через `IPlayerLocomotionActions`; concrete abilities скрыты за переходным adapter и не входят в motor port.
 - `Character` симулируется с `Time.fixedDeltaTime`; presentation обновляется в frame `Update`.
 
 ## Lifecycle и ownership
@@ -173,11 +195,11 @@ flowchart LR
 
 ## Текущая граница
 
-В core locomotion входят `Idle / Run / Jump / Fall / Dodge`, camera-relative ground/air input, walk/run/sprint и variable jump/glide forwarding. Swimming и ladder traversal пока сохраняют существующие abilities и не объявлены частью стабильного API. Их следует мигрировать отдельным решением после стабилизации базового движения.
+В core locomotion входят `Idle / Run / Jump / Fall / Dodge`, camera-relative ground/air input, walk/run/sprint и variable jump/glide forwarding. Swimming и ladder traversal пока сохраняют существующие abilities и не объявлены частью стабильного API. Glide/dodge также остаются legacy implementations, но controller обращается к ним только через узкий action port.
 
 Кандидат на `_Modules/CharacterMotion` появляется только после того, как:
 
-- `ICharacterMotor` перестанет зависеть от legacy ability-конфигурации;
+- параметры motor будут перенесены из переходного `PlayerLocomotionSettings` в стабильную authoring model;
 - traversal и root motion получат явные контракты;
 - параметры движения будут собраны в стабильную authoring model;
 - модуль можно будет использовать без `ThirdPersonController`, Combat и assets Project S.

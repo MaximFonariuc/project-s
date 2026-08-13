@@ -6,7 +6,6 @@ namespace _App
     public sealed class CharacterMotor : ICharacterMotor
     {
         private readonly Character _character;
-        private readonly AbilityController _abilities;
         private readonly float _walkSpeed;
         private readonly float _runSpeed;
         private readonly float _sprintSpeed;
@@ -23,14 +22,17 @@ namespace _App
         public Vector3 Forward => _character.GetForwardVector();
         public Vector3 Velocity => _character.GetVelocity();
 
-        public CharacterMotor(Character character, AbilityController abilities)
+        public CharacterMotor(Character character, PlayerLocomotionSettings settings)
         {
             _character = character ?? throw new ArgumentNullException(nameof(character));
-            _abilities = abilities ?? throw new ArgumentNullException(nameof(abilities));
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
 
-            _runSpeed = _character.MaxWalkSpeed;
-            _walkSpeed = _abilities.GetAbility<WalkAbility>()?.MaxSpeed ?? _runSpeed;
-            _sprintSpeed = _abilities.GetAbility<SprintAbility>()?.MaxSpeed ?? _runSpeed;
+            _walkSpeed = settings.WalkSpeed;
+            _runSpeed = settings.RunSpeed;
+            _sprintSpeed = settings.SprintSpeed;
         }
 
         public void SetMovementDirection(Vector3 worldDirection)
@@ -55,6 +57,17 @@ namespace _App
             _character.SetRotation(rotation);
         }
 
+        public void SnapFacingDirection(Vector3 worldDirection)
+        {
+            Vector3 planarDirection = Vector3.ProjectOnPlane(worldDirection, Up);
+            if (planarDirection.sqrMagnitude <= 0.0001f)
+            {
+                return;
+            }
+
+            _character.SetRotation(Quaternion.LookRotation(planarDirection.normalized, Up));
+        }
+
         public void PressJump()
         {
             _character.Jump();
@@ -63,16 +76,6 @@ namespace _App
         public void ReleaseJump()
         {
             _character.StopJumping();
-        }
-
-        public void StartGliding()
-        {
-            _abilities.GetAbility<GlideAbility>()?.Glide();
-        }
-
-        public void StopGliding()
-        {
-            _abilities.GetAbility<GlideAbility>()?.StopGliding();
         }
 
         public void SetSpeedMode(PlayerSpeedMode speedMode)
@@ -89,28 +92,6 @@ namespace _App
                 PlayerSpeedMode.Sprint => _sprintSpeed,
                 _ => _runSpeed
             };
-        }
-
-        public bool TryDodge(Vector3 worldDirection, bool backwards)
-        {
-            DodgeAbility dodge = _abilities.GetAbility<DodgeAbility>();
-            if (dodge == null || !dodge.IsDodgeAllowed())
-            {
-                return false;
-            }
-
-            SetMovementDirection(worldDirection);
-            if (!backwards && worldDirection.sqrMagnitude > 0.0001f)
-            {
-                Vector3 planarDirection = Vector3.ProjectOnPlane(worldDirection, Up);
-                if (planarDirection.sqrMagnitude > 0.0001f)
-                {
-                    _character.SetRotation(Quaternion.LookRotation(planarDirection.normalized, Up));
-                }
-            }
-
-            dodge.Dodge();
-            return true;
         }
 
         public bool TryInvertGravity()

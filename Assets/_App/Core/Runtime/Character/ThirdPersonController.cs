@@ -40,7 +40,7 @@ namespace _App
         [SerializeField] private Transform _weapon;
 
         private IPlayerInput _input;
-        private AbilityController _abilityController;
+        private ICharacterAbilityLifecycle _abilityLifecycle;
         private PlayerPhysicsVolumeAnimationAdapter _physicsVolumeAnimation;
         private PlayerLocomotionController _locomotionController;
         private PlayerTargetingController _targetingController;
@@ -70,7 +70,7 @@ namespace _App
         [Inject]
         public void Construct(
             IPlayerInput input,
-            AbilityController abilityController,
+            ICharacterAbilityLifecycle abilityLifecycle,
             PlayerPhysicsVolumeAnimationAdapter physicsVolumeAnimation,
             PlayerLocomotionController locomotionController,
             PlayerTargetingController targetingController,
@@ -80,7 +80,7 @@ namespace _App
             PlayerSimulationPauseController simulationPauseController)
         {
             _input = input;
-            _abilityController = abilityController;
+            _abilityLifecycle = abilityLifecycle;
             _physicsVolumeAnimation = physicsVolumeAnimation;
             _locomotionController = locomotionController;
             _targetingController = targetingController;
@@ -94,7 +94,7 @@ namespace _App
 
         protected virtual void Awake()
         {
-            if (_input == null || _abilityController == null || _physicsVolumeAnimation == null ||
+            if (_input == null || _abilityLifecycle == null || _physicsVolumeAnimation == null ||
                 _locomotionController == null || _targetingController == null || _cameraController == null ||
                 _combatController == null || _traversalController == null ||
                 _simulationPauseController == null)
@@ -107,7 +107,7 @@ namespace _App
         private void OnEnable()
         {
             _physicsVolumeAnimation?.Enable();
-            _abilityController?.EnableAllAbilities();
+            _abilityLifecycle?.Enable();
             _locomotionController?.Enable();
             _targetingController?.Enable();
             _cameraController?.Enable();
@@ -126,7 +126,7 @@ namespace _App
             _cameraController?.Disable();
             _targetingController?.Disable();
             _locomotionController?.Disable();
-            _abilityController?.DisableAllAbilities();
+            _abilityLifecycle?.Disable();
             _physicsVolumeAnimation?.Disable();
         }
 

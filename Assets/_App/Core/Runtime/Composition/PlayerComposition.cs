@@ -32,11 +32,13 @@ namespace _App
                 _ => new AnimationController(character, player.PlayerAnimator),
                 Lifetime.Scoped);
             builder.Register(
-                resolver => new AbilityController(
+                resolver => new CharacterAbilityRuntime(
                     player.AbilitiesData,
                     character,
                     resolver.Resolve<AnimationController>()),
-                Lifetime.Scoped);
+                Lifetime.Scoped)
+                .AsSelf()
+                .As<ICharacterAbilityLifecycle>();
             builder.Register<PlayerPhysicsVolumeAnimationAdapter>(Lifetime.Scoped);
 
             builder.RegisterPlayerTargeting();
