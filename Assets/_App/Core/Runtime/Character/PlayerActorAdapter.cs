@@ -7,9 +7,12 @@ namespace _App
         IPlayerActorTransform,
         IPlayerTargetingActor,
         IPlayerCombatActor,
+        IRootMotionPolicyTarget,
+        IDamageImmunityTarget,
         IPlayerTraversalActor
     {
         private readonly Character _character;
+        private readonly Health _health;
 
         public Transform Root => _character.transform;
         public Vector3 Position => _character.transform.position;
@@ -18,17 +21,33 @@ namespace _App
         public bool IsFalling => _character.IsFalling();
         public bool IsClimbing => _character.IsClimbing();
         public ERotationMode RotationMode => _character.RotationMode;
+        public RootMotionPolicy RootMotionPolicy =>
+            _character.RootMotionController != null
+                ? _character.RootMotionController.Policy
+                : RootMotionPolicy.Ignore;
+        public bool IsDamageImmune => _health != null && _health.IsDamageImmune;
 
         public PlayerActorAdapter(Character character)
         {
             _character = character != null
                 ? character
                 : throw new ArgumentNullException(nameof(character));
+            _health = _character.GetComponent<Health>();
         }
 
         public void SetRotationMode(ERotationMode rotationMode)
         {
             _character.SetRotationMode(rotationMode);
+        }
+
+        public void SetRootMotionPolicy(RootMotionPolicy policy)
+        {
+            _character.RootMotionController?.SetPolicy(policy);
+        }
+
+        public void SetDamageImmune(bool immune)
+        {
+            _health?.SetDamageImmune(immune);
         }
     }
 }

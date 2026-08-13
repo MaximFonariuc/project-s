@@ -10,12 +10,16 @@ namespace _App
     public sealed class PlayerCombatController :
         IPlayerCombatCommands,
         IPlayerCombatState,
+        ICombatActionObserver,
         IDisposable
     {
-        private const float AttackWindowStart = 0.5f;
-        private const float AttackWindowEnd = 0.75f;
-        private const float HitWindowStart = 0.2f;
-        private const float HitWindowEnd = 0.55f;
+        private enum ActionObservationMode
+        {
+            None,
+            Combo,
+            Skill,
+            WeaponTransition
+        }
 
         private readonly IPlayerInput _input;
         private readonly IPlayerCombatActor _actor;
@@ -23,16 +27,18 @@ namespace _App
         private readonly IPlayerCombatAnimation _animation;
         private readonly IPlayerWeaponRig _weaponRig;
         private readonly CombatInputBuffer _inputBuffer;
+        private readonly CombatActionExecutor _actionExecutor;
+        private readonly PlayerCombatActionCatalog _actionCatalog;
         private readonly ICombatClock _clock;
         private readonly ECharacterType _characterType;
-        private readonly Dictionary<ESkillType, float> _skillCooldowns = new Dictionary<ESkillType, float>
-        {
-            [ESkillType.Special] = 1.25f
-        };
         private readonly Dictionary<ESkillType, float> _lastSkillUseTime =
             new Dictionary<ESkillType, float>();
 
         private CancellationTokenSource _actionCancellation;
+        private ActionObservationMode _observationMode;
+        private ESkillType? _acceptedBufferedAction;
+        private EWeaponType _pendingWeapon;
+        private bool _weaponApplied;
         private bool _enabled;
 
         public event Action<PlayerCombatPhase> PhaseChanged;
@@ -49,16 +55,18 @@ namespace _App
         {
             get
             {
-                bool attacking = Phase is PlayerCombatPhase.ComboAttack or PlayerCombatPhase.SkillAttack;
-                bool switching = Phase == PlayerCombatPhase.WeaponSwitch;
-                bool faceMoveDirection = attacking &&
-                                         _actor.RotationMode == ERotationMode.OrientRotationToMovement;
+                PlayerMovementIntent intent = _actionExecutor.MovementIntent;
+                if (!intent.FaceMoveDirection ||
+                    _actor.RotationMode == ERotationMode.OrientRotationToMovement)
+                {
+                    return intent;
+                }
 
                 return new PlayerMovementIntent(
-                    attacking ? 0.0f : 1.0f,
-                    !attacking && !switching,
-                    Phase != PlayerCombatPhase.SkillAttack && !switching,
-                    faceMoveDirection);
+                    intent.TranslationScale,
+                    intent.AllowJump,
+                    intent.AllowDodge,
+                    false);
             }
         }
 
@@ -69,6 +77,8 @@ namespace _App
             IPlayerCombatAnimation animation,
             IPlayerWeaponRig weaponRig,
             CombatInputBuffer inputBuffer,
+            CombatActionExecutor actionExecutor,
+            PlayerCombatActionCatalog actionCatalog,
             ICombatClock clock,
             ECharacterType characterType)
         {
@@ -78,6 +88,8 @@ namespace _App
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _weaponRig = weaponRig ?? throw new ArgumentNullException(nameof(weaponRig));
             _inputBuffer = inputBuffer ?? throw new ArgumentNullException(nameof(inputBuffer));
+            _actionExecutor = actionExecutor ?? throw new ArgumentNullException(nameof(actionExecutor));
+            _actionCatalog = actionCatalog ?? throw new ArgumentNullException(nameof(actionCatalog));
             _clock = clock ?? throw new ArgumentNullException(nameof(clock));
             _characterType = characterType;
         }
@@ -281,40 +293,26 @@ namespace _App
                     return null;
                 }
 
-                bool advanceCombo = false;
-                float elapsed = 0.0f;
-                while (elapsed < playback.Duration * AttackWindowEnd)
-                {
-                    token.ThrowIfCancellationRequested();
-                    float normalizedTime = Mathf.Clamp01(elapsed / playback.Duration);
-                    SetHitWindow(normalizedTime is >= HitWindowStart and < HitWindowEnd);
-
-                    if (normalizedTime is >= AttackWindowStart and <= AttackWindowEnd &&
-                        _inputBuffer.TryConsume(out ESkillType bufferedAction))
-                    {
-                        SetHitWindow(false);
-                        if (bufferedAction == ESkillType.Default && ComboIndex < _animation.ComboCount - 1)
-                        {
-                            SetComboIndex(ComboIndex + 1);
-                            advanceCombo = true;
-                            break;
-                        }
-
-                        if (bufferedAction != ESkillType.Default && CanUseSkill(bufferedAction))
-                        {
-                            return bufferedAction;
-                        }
-                    }
-
-                    await UniTask.Yield(token);
-                    elapsed += _clock.DeltaTime;
-                }
+                CombatActionDefinition definition = _actionCatalog.GetCombo(ComboIndex);
+                _acceptedBufferedAction = null;
+                await ExecuteObservedActionAsync(
+                    definition,
+                    playback.Duration,
+                    ActionObservationMode.Combo,
+                    token);
 
                 SetHitWindow(false);
-                if (!advanceCombo)
+                if (!_acceptedBufferedAction.HasValue)
                 {
                     break;
                 }
+
+                if (_acceptedBufferedAction.Value != ESkillType.Default)
+                {
+                    return _acceptedBufferedAction.Value;
+                }
+
+                SetComboIndex(ComboIndex + 1);
             }
 
             return null;
@@ -325,6 +323,7 @@ namespace _App
             CancellationToken token)
         {
             if (!CanUseSkill(skillType) ||
+                !_actionCatalog.TryGetSkill(skillType, out CombatActionDefinition definition) ||
                 !_animation.TryPlaySkill(
                     _characterType,
                     CurrentWeapon,
@@ -338,15 +337,11 @@ namespace _App
             SetComboIndex(0);
             SetHitWindow(false);
 
-            float elapsed = 0.0f;
-            while (elapsed < playback.Duration * AttackWindowEnd)
-            {
-                token.ThrowIfCancellationRequested();
-                float normalizedTime = Mathf.Clamp01(elapsed / playback.Duration);
-                SetHitWindow(normalizedTime is >= HitWindowStart and < HitWindowEnd);
-                await UniTask.Yield(token);
-                elapsed += _clock.DeltaTime;
-            }
+            await ExecuteObservedActionAsync(
+                definition,
+                playback.Duration,
+                ActionObservationMode.Skill,
+                token);
 
             _lastSkillUseTime[skillType] = _clock.ScaledTime;
             SetHitWindow(false);
@@ -364,29 +359,84 @@ namespace _App
                 return false;
             }
 
-            float elapsed = 0.0f;
-            float applyAt = playback.Duration * 0.5f;
-            while (elapsed < applyAt)
+            _pendingWeapon = resultingWeapon;
+            _weaponApplied = false;
+            CombatActionRunResult result = await ExecuteObservedActionAsync(
+                _actionCatalog.GetWeaponTransition(),
+                playback.Duration,
+                ActionObservationMode.WeaponTransition,
+                token);
+
+            return result == CombatActionRunResult.Completed && _weaponApplied;
+        }
+
+        private async UniTask<CombatActionRunResult> ExecuteObservedActionAsync(
+            CombatActionDefinition definition,
+            float duration,
+            ActionObservationMode observationMode,
+            CancellationToken token)
+        {
+            _observationMode = observationMode;
+            try
             {
-                token.ThrowIfCancellationRequested();
-                await UniTask.Yield(token);
-                elapsed += _clock.DeltaTime;
+                return await _actionExecutor.ExecuteAsync(definition, duration, this, token);
+            }
+            finally
+            {
+                _observationMode = ActionObservationMode.None;
+            }
+        }
+
+        CombatActionDirective ICombatActionObserver.Observe(in CombatActionFrame frame)
+        {
+            SetHitWindow(frame.IsHitboxOpen);
+            switch (_observationMode)
+            {
+                case ActionObservationMode.Combo:
+                    return ObserveComboFrame(in frame);
+
+                case ActionObservationMode.WeaponTransition:
+                    if (frame.CommitReached)
+                    {
+                        ApplyWeapon(_pendingWeapon);
+                        _weaponApplied = true;
+                    }
+                    break;
             }
 
-            ApplyWeapon(resultingWeapon);
-            return true;
+            return CombatActionDirective.Continue;
+        }
+
+        private CombatActionDirective ObserveComboFrame(in CombatActionFrame frame)
+        {
+            if (!_inputBuffer.TryPeek(out ESkillType bufferedAction))
+            {
+                return CombatActionDirective.Continue;
+            }
+
+            bool canAccept = bufferedAction == ESkillType.Default
+                ? frame.CanChain && ComboIndex < _animation.ComboCount - 1
+                : frame.CanCancel && CanUseSkill(bufferedAction);
+            if (!canAccept)
+            {
+                return CombatActionDirective.Continue;
+            }
+
+            _inputBuffer.TryConsume(out _);
+            _acceptedBufferedAction = bufferedAction;
+            return CombatActionDirective.Interrupt;
         }
 
         private bool CanUseSkill(ESkillType skillType)
         {
-            if (!_skillCooldowns.TryGetValue(skillType, out float cooldown) ||
+            if (!_actionCatalog.TryGetSkill(skillType, out CombatActionDefinition definition) ||
                 !_animation.HasSkill(_characterType, CurrentWeapon, skillType))
             {
                 return false;
             }
 
             return !_lastSkillUseTime.TryGetValue(skillType, out float lastUseTime) ||
-                   _clock.ScaledTime - lastUseTime >= cooldown;
+                   _clock.ScaledTime - lastUseTime >= definition.Cooldown;
         }
 
         private CancellationTokenSource BeginAction()
@@ -421,6 +471,7 @@ namespace _App
 
             _actionCancellation = null;
             cancellation.Cancel();
+            _actionExecutor.Abort();
             cancellation.Dispose();
         }
 

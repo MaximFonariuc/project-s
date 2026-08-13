@@ -23,6 +23,18 @@ namespace _App
         ERotationMode RotationMode { get; }
     }
 
+    public interface IRootMotionPolicyTarget
+    {
+        RootMotionPolicy RootMotionPolicy { get; }
+        void SetRootMotionPolicy(RootMotionPolicy policy);
+    }
+
+    public interface IDamageImmunityTarget
+    {
+        bool IsDamageImmune { get; }
+        void SetDamageImmune(bool immune);
+    }
+
     public interface IPlayerTraversalActor
     {
         bool IsClimbing { get; }

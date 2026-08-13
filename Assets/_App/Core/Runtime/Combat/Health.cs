@@ -14,6 +14,7 @@ namespace _App
         public int MaxHealth => _maxHealth;
         public int CurrentHealth { get; private set; }
         public bool IsAlive => CurrentHealth > 0;
+        public bool IsDamageImmune { get; private set; }
 
         private void Awake()
         {
@@ -27,7 +28,7 @@ namespace _App
 
         public bool TryReceiveDamage(DamageInfo damage)
         {
-            if (!IsAlive || damage.Amount <= 0)
+            if (!IsAlive || IsDamageImmune || damage.Amount <= 0)
             {
                 return false;
             }
@@ -46,6 +47,16 @@ namespace _App
         public void RestoreFull()
         {
             CurrentHealth = _maxHealth;
+        }
+
+        public void SetDamageImmune(bool immune)
+        {
+            IsDamageImmune = immune;
+        }
+
+        private void OnDisable()
+        {
+            IsDamageImmune = false;
         }
     }
 }

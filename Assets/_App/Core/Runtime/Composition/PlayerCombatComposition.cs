@@ -18,6 +18,11 @@ namespace _App
 
             builder.Register<ICombatClock, UnityCombatClock>(Lifetime.Scoped);
             builder.Register<CombatInputBuffer>(Lifetime.Scoped);
+            builder.RegisterInstance(
+                player.CombatActionProfile != null
+                    ? player.CombatActionProfile.CreateCatalog()
+                    : PlayerCombatActionCatalog.CreatePrototypeDefaults());
+            builder.Register<CombatActionExecutor>(Lifetime.Scoped);
             builder.Register<IPlayerCombatAnimation>(
                 resolver => new PlayerCombatAnimationAdapter(
                     resolver.Resolve<ICharacterAnimationDriver>(),
@@ -41,6 +46,8 @@ namespace _App
                         resolver.Resolve<IPlayerCombatAnimation>(),
                         resolver.Resolve<IPlayerWeaponRig>(),
                         resolver.Resolve<CombatInputBuffer>(),
+                        resolver.Resolve<CombatActionExecutor>(),
+                        resolver.Resolve<PlayerCombatActionCatalog>(),
                         resolver.Resolve<ICombatClock>(),
                         player.CharacterType),
                     Lifetime.Scoped)

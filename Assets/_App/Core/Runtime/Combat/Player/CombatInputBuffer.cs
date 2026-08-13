@@ -24,6 +24,17 @@ namespace _App
 
         public bool TryConsume(out ESkillType skillType)
         {
+            if (!TryPeek(out skillType))
+            {
+                return false;
+            }
+
+            Clear();
+            return true;
+        }
+
+        public bool TryPeek(out ESkillType skillType)
+        {
             if (!_hasValue || _clock.UnscaledTime > _expiresAt)
             {
                 Clear();
@@ -32,7 +43,6 @@ namespace _App
             }
 
             skillType = _skillType;
-            Clear();
             return true;
         }
 
