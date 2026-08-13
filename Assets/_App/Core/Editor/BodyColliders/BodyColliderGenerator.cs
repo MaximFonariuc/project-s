@@ -611,7 +611,10 @@ namespace _App.Editor
                 {
                     BoneWeight[] weights = renderer.sharedMesh.boneWeights;
                     var bakedMesh = new Mesh { name = $"{renderer.name}_BodyColliderBake" };
-                    renderer.BakeMesh(bakedMesh, false);
+                    // Compensate for the renderer scale here because sampled vertices are
+                    // converted to world space with renderer.transform.TransformPoint below.
+                    // Without compensation a scaled renderer applies its scale twice.
+                    renderer.BakeMesh(bakedMesh, true);
                     Vector3[] vertices = bakedMesh.vertices;
 
                     if (weights.Length != vertices.Length)
