@@ -1,5 +1,4 @@
 using ModularAnimation;
-using ModularAnimation.Unity;
 using UnityEngine;
 
 namespace _App
@@ -8,14 +7,6 @@ namespace _App
     {
         public static readonly AnimationLayerId BaseLayer = AnimationLayerId.Base;
         public static readonly AnimationLayerId WeaponLayer = new AnimationLayerId(1);
-
-        public static readonly MecanimCharacterAnimationBindings MecanimBindings =
-            new MecanimCharacterAnimationBindings(
-                "MovementType",
-                "MovementDirection",
-                "OnGround",
-                "FallingDuration",
-                "SpeedMultiplier");
 
         public static readonly AnimationStateId RollFront = State("RollFront");
         public static readonly AnimationStateId RollBack = State("RollBack");

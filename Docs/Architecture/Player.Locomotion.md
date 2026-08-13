@@ -24,6 +24,7 @@ classDiagram
     }
     class PlayerLocomotionController {
         +CurrentState PlayerLocomotionStateId
+        +Snapshot PlayerLocomotionSnapshot
         +Enable()
         +Disable()
         +SetMovementIntent(intent)
@@ -36,10 +37,29 @@ classDiagram
         +AllowDodge bool
         +FaceMoveDirection bool
     }
+    class PlayerLocomotionSnapshot {
+        <<immutable output>>
+        +IsValid bool
+        +State PlayerLocomotionStateId
+        +SpeedMode PlayerSpeedMode
+        +Mode PlayerLocomotionMode
+        +Velocity Vector3
+        +MoveDirection Vector3
+        +ForwardSpeed float
+        +LateralSpeed float
+        +VerticalSpeed float
+        +NormalizedSpeed float
+        +IsGrounded bool
+        +IsCrouched bool
+        +DodgeBackwards bool
+    }
     class ICharacterMotor {
         <<motor port>>
+        +IsGrounded bool
         +IsFalling bool
         +IsDodging bool
+        +IsFlying bool
+        +MaxSpeed float
         +Velocity Vector3
         +SetMovementDirection(direction)
         +SnapFacingDirection(direction)
@@ -99,16 +119,16 @@ classDiagram
     class PlayerDodgeState
     class IPlayerLocomotionPresentation {
         <<presentation port>>
-        +EnterState(state, dodgeBackwards)
-        +SetSpeedMode(mode)
-        +Tick()
+        +Present(snapshot, deltaTime)
+        +Reset()
     }
     class IPlayerLocomotionCommands {
         <<command port>>
         +TryInvertGravity() bool
     }
     class PlayerLocomotionAnimationAdapter
-    class AnimationController
+    class PlayerCharacterAnimationPresenter
+    class ICharacterAnimationDriver
     class PlayerLocomotionComposition {
         <<composition>>
     }
@@ -119,6 +139,7 @@ classDiagram
     PlayerLocomotionController --> IPlayerMovementReference
     PlayerLocomotionController --> IStateMachine~PlayerLocomotionStateId~
     PlayerLocomotionController --> IPlayerLocomotionPresentation
+    PlayerLocomotionController --> PlayerLocomotionSnapshot : publishes
     IPlayerLocomotionCommands <|.. PlayerLocomotionController
     ICharacterMotor <|.. CharacterMotor
     IPlayerLocomotionActions <|.. PlayerLocomotionActions
@@ -130,7 +151,9 @@ classDiagram
     IPlayerMovementReference <|.. CameraRelativeMovementReference
     CameraRelativeMovementReference --> ICameraOrientation
     IPlayerLocomotionPresentation <|.. PlayerLocomotionAnimationAdapter
-    PlayerLocomotionAnimationAdapter --> AnimationController
+    PlayerLocomotionAnimationAdapter --> PlayerCharacterAnimationPresenter
+    PlayerLocomotionAnimationAdapter --> ICharacterAnimationDriver : state transitions
+    PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver : locomotion frame
     PlayerLocomotionState <|-- PlayerIdleState
     PlayerLocomotionState <|-- PlayerRunState
     PlayerLocomotionState <|-- PlayerJumpState
@@ -167,6 +190,14 @@ stateDiagram-v2
 
 `Walk` и `Sprint` являются взаимоисключающими speed modes, а не отдельными locomotion states. Единственный runtime-owner скорости — `CharacterMotor`. При composition значения `WalkSpeedSettings` и `SprintSpeedSettings` один раз переводятся в immutable `PlayerLocomotionSettings`; motor не знает об authoring-каталоге.
 
+## Locomotion snapshot
+
+`PlayerLocomotionController` один раз за frame собирает immutable `PlayerLocomotionSnapshot` после подтверждения motor state и выполнения state-machine tick. Snapshot содержит фактическую velocity, локальные forward/lateral/vertical компоненты, normalized speed, gait, locomotion mode и подтверждённое состояние `Idle / Run / Jump / Fall / Dodge`.
+
+До первого tick и после `Disable` snapshot имеет `IsValid == false`; consumers не должны трактовать default enum values как подтверждённое состояние.
+
+Animation, Camera, VFX и последующие read-only consumers должны получать locomotion-результат через snapshot либо узкий consumer-specific port. Они не читают `Character`, input и state machine независимо и поэтому не создают конкурирующие копии состояния. `PlayerLocomotionAnimationAdapter` обнаруживает смену presentation state по последовательным snapshot и запускает dodge cross-fade; сами locomotion states больше не зависят от animation presentation.
+
 ## Направление зависимостей
 
 ```mermaid
@@ -181,7 +212,7 @@ flowchart LR
     Motor --> Character
     Motor --> Settings["PlayerLocomotionSettings"]
     Character --> Collision["CharacterMovement"]
-    Machine --> Presentation["IPlayerLocomotionPresentation"]
+    Controller -->|"PlayerLocomotionSnapshot"| Presentation["IPlayerLocomotionPresentation"]
     AnimationAdapter["Animation Adapter"] -.implements.-> Presentation
 ```
 

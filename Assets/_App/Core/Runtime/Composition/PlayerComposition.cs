@@ -17,10 +17,11 @@ namespace _App
 
             if (!player.TryGetComponent(out Character character) ||
                 player.CharacterFeatures == null ||
-                player.PlayerAnimator == null)
+                player.PlayerAnimator == null ||
+                player.AnimationProfile == null)
             {
                 throw new InvalidOperationException(
-                    "Player requires Character, CharacterFeatureSet and Animator references.");
+                    "Player requires Character, CharacterFeatureSet, Animator and animation profile references.");
             }
 
             player.CharacterFeatures.ValidateConfiguration();
@@ -37,7 +38,7 @@ namespace _App
             builder.Register(
                     _ => new MecanimCharacterAnimationDriver(
                         player.PlayerAnimator,
-                        PlayerAnimationStates.MecanimBindings),
+                        player.AnimationProfile.CreateBindings()),
                     Lifetime.Scoped)
                 .AsSelf()
                 .As<ICharacterAnimationDriver>();
@@ -60,6 +61,7 @@ namespace _App
             builder.RegisterPlayerCombat(player);
             builder.RegisterPlayerLocomotion(player.CharacterFeatures);
             builder.RegisterPlayerTraversal(player.CharacterFeatures);
+            builder.Register<PlayerActorController>(Lifetime.Scoped);
             builder.RegisterComponent(player);
         }
     }

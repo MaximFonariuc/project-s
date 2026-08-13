@@ -1,72 +1,51 @@
 using System;
 using ModularAnimation;
-using UnityEngine;
 
 namespace _App
 {
     public sealed class PlayerCharacterAnimationPresenter
     {
-        private readonly Character _character;
         private readonly ICharacterAnimationDriver _driver;
 
-        private CharacterGait _gait = CharacterGait.Run;
-
-        public CharacterGait Gait => _gait;
-
-        public PlayerCharacterAnimationPresenter(
-            Character character,
-            ICharacterAnimationDriver driver)
+        public PlayerCharacterAnimationPresenter(ICharacterAnimationDriver driver)
         {
-            _character = character != null
-                ? character
-                : throw new ArgumentNullException(nameof(character));
             _driver = driver ?? throw new ArgumentNullException(nameof(driver));
         }
 
-        public void SetGait(CharacterGait gait)
+        public void Present(in PlayerLocomotionSnapshot snapshot, float deltaTime)
         {
-            _gait = gait;
-        }
-
-        public void Tick(float deltaTime)
-        {
-            Vector3 up = _character.GetUpVector();
-            Vector3 velocity = _character.GetVelocity();
-            Vector3 localVelocity = _character.transform.InverseTransformDirection(velocity);
-            float maxSpeed = Mathf.Max(_character.GetMaxSpeed(), 0.0001f);
-
             var frame = new CharacterLocomotionFrame(
-                localVelocity.z,
-                localVelocity.x,
-                Vector3.Dot(velocity, up),
-                Mathf.Clamp01(Vector3.ProjectOnPlane(velocity, up).magnitude / maxSpeed),
-                _character.IsGrounded(),
-                _gait,
-                ResolveMode());
+                snapshot.ForwardSpeed,
+                snapshot.LateralSpeed,
+                snapshot.VerticalSpeed,
+                snapshot.NormalizedSpeed,
+                snapshot.IsGrounded,
+                ResolveGait(snapshot.SpeedMode),
+                ResolveMode(snapshot.Mode));
 
             _driver.ApplyLocomotion(frame, deltaTime);
         }
 
-        private CharacterLocomotionMode ResolveMode()
+        private static CharacterGait ResolveGait(PlayerSpeedMode speedMode)
         {
-            if (_character.IsClimbing())
+            return speedMode switch
             {
-                return CharacterLocomotionMode.Climbing;
-            }
+                PlayerSpeedMode.Walk => CharacterGait.Walk,
+                PlayerSpeedMode.Sprint => CharacterGait.Sprint,
+                _ => CharacterGait.Run
+            };
+        }
 
-            if (_character.IsSwimming())
+        private static CharacterLocomotionMode ResolveMode(PlayerLocomotionMode mode)
+        {
+            return mode switch
             {
-                return CharacterLocomotionMode.Swimming;
-            }
-
-            if (_character.IsFlying())
-            {
-                return CharacterLocomotionMode.Flying;
-            }
-
-            return _character.IsFalling()
-                ? CharacterLocomotionMode.Airborne
-                : CharacterLocomotionMode.Grounded;
+                PlayerLocomotionMode.Airborne => CharacterLocomotionMode.Airborne,
+                PlayerLocomotionMode.Swimming => CharacterLocomotionMode.Swimming,
+                PlayerLocomotionMode.Climbing => CharacterLocomotionMode.Climbing,
+                PlayerLocomotionMode.Flying => CharacterLocomotionMode.Flying,
+                _ => CharacterLocomotionMode.Grounded
+            };
         }
     }
 }

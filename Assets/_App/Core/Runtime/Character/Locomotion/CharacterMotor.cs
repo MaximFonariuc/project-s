@@ -11,13 +11,16 @@ namespace _App
         private readonly float _sprintSpeed;
         private PlayerSpeedMode _speedMode = PlayerSpeedMode.Run;
 
+        public bool IsGrounded => _character.IsGrounded();
         public bool IsFalling => _character.IsFalling();
         public bool IsJumping => _character.IsJumping();
         public bool IsDodging => _character.IsDodging();
         public bool IsSwimming => _character.IsSwimming();
         public bool IsClimbing => _character.IsClimbing();
+        public bool IsFlying => _character.IsFlying();
         public bool IsCrouched => _character.IsCrouched();
         public ERotationMode RotationMode => _character.RotationMode;
+        public float MaxSpeed => _character.GetMaxSpeed();
         public Vector3 Up => _character.GetUpVector();
         public Vector3 Forward => _character.GetForwardVector();
         public Vector3 Velocity => _character.GetVelocity();

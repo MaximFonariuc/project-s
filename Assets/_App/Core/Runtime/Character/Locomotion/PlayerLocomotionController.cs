@@ -23,6 +23,7 @@ namespace _App
         private readonly IStateMachine<PlayerLocomotionStateId> _stateMachine;
 
         private PlayerMovementIntent _movementIntent = PlayerMovementIntent.Unrestricted;
+        private PlayerLocomotionSnapshot _snapshot = PlayerLocomotionSnapshot.Invalid;
         private bool _walkHeld;
         private bool _sprintHeld;
         private bool _enabled;
@@ -31,6 +32,7 @@ namespace _App
 
         public PlayerLocomotionStateId? CurrentState => _stateMachine.CurrentStateId;
         public PlayerSpeedMode SpeedMode => _runtime.SpeedMode;
+        public PlayerLocomotionSnapshot Snapshot => _snapshot;
 
         public PlayerLocomotionController(
             IPlayerInput input,
@@ -92,6 +94,8 @@ namespace _App
                 _stateMachine.Stop();
             }
 
+            _snapshot = PlayerLocomotionSnapshot.Invalid;
+            _presentation.Reset();
             _actions.Disable();
             _enabled = false;
         }
@@ -126,7 +130,8 @@ namespace _App
                 _motor.FaceDirection(_runtime.RawMoveDirection, deltaTime);
             }
 
-            _presentation.Tick(deltaTime);
+            _snapshot = CreateSnapshot(stateId);
+            _presentation.Present(_snapshot, deltaTime);
         }
 
         public bool TryInvertGravity()
@@ -267,7 +272,57 @@ namespace _App
         {
             _runtime.SpeedMode = speedMode;
             _motor.SetSpeedMode(speedMode);
-            _presentation.SetSpeedMode(speedMode);
+        }
+
+        private PlayerLocomotionSnapshot CreateSnapshot(PlayerLocomotionStateId stateId)
+        {
+            Vector3 up = _motor.Up.normalized;
+            Vector3 forward = Vector3.ProjectOnPlane(_motor.Forward, up).normalized;
+            if (forward.sqrMagnitude <= MoveThresholdSqr)
+            {
+                forward = Vector3.ProjectOnPlane(Vector3.forward, up).normalized;
+            }
+
+            Vector3 right = Vector3.Cross(up, forward).normalized;
+            Vector3 velocity = _motor.Velocity;
+            Vector3 planarVelocity = Vector3.ProjectOnPlane(velocity, up);
+            float maxSpeed = Mathf.Max(_motor.MaxSpeed, 0.0001f);
+
+            return new PlayerLocomotionSnapshot(
+                stateId,
+                _runtime.SpeedMode,
+                ResolveMode(),
+                velocity,
+                _runtime.EffectiveMoveDirection,
+                Vector3.Dot(planarVelocity, forward),
+                Vector3.Dot(planarVelocity, right),
+                Vector3.Dot(velocity, up),
+                planarVelocity.magnitude / maxSpeed,
+                _motor.IsGrounded,
+                _motor.IsCrouched,
+                stateId == PlayerLocomotionStateId.Dodge && _runtime.DodgeBackwards);
+        }
+
+        private PlayerLocomotionMode ResolveMode()
+        {
+            if (_motor.IsClimbing)
+            {
+                return PlayerLocomotionMode.Climbing;
+            }
+
+            if (_motor.IsSwimming)
+            {
+                return PlayerLocomotionMode.Swimming;
+            }
+
+            if (_motor.IsFlying)
+            {
+                return PlayerLocomotionMode.Flying;
+            }
+
+            return _motor.IsGrounded
+                ? PlayerLocomotionMode.Grounded
+                : PlayerLocomotionMode.Airborne;
         }
 
         private void OnJumpChanged(InputSignalPhase phase)

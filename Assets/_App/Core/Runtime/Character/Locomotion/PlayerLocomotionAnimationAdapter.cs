@@ -7,6 +7,8 @@ namespace _App
     {
         private readonly ICharacterAnimationDriver _driver;
         private readonly PlayerCharacterAnimationPresenter _presenter;
+        private PlayerLocomotionStateId _previousState;
+        private bool _hasPreviousState;
 
         public PlayerLocomotionAnimationAdapter(
             ICharacterAnimationDriver driver,
@@ -16,32 +18,40 @@ namespace _App
             _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
         }
 
-        public void EnterState(PlayerLocomotionStateId stateId, bool dodgeBackwards)
+        public void Present(in PlayerLocomotionSnapshot snapshot, float deltaTime)
         {
-            if (stateId != PlayerLocomotionStateId.Dodge)
+            if (!snapshot.IsValid)
+            {
+                Reset();
+                return;
+            }
+
+            if (!_hasPreviousState || _previousState != snapshot.State)
+            {
+                EnterState(snapshot);
+                _previousState = snapshot.State;
+                _hasPreviousState = true;
+            }
+
+            _presenter.Present(snapshot, deltaTime);
+        }
+
+        public void Reset()
+        {
+            _hasPreviousState = false;
+        }
+
+        private void EnterState(in PlayerLocomotionSnapshot snapshot)
+        {
+            if (snapshot.State != PlayerLocomotionStateId.Dodge)
             {
                 return;
             }
 
             _driver.CrossFade(
-                dodgeBackwards ? PlayerAnimationStates.RollBack : PlayerAnimationStates.RollFront,
+                snapshot.DodgeBackwards ? PlayerAnimationStates.RollBack : PlayerAnimationStates.RollFront,
                 PlayerAnimationStates.BaseLayer,
                 0.1f);
-        }
-
-        public void SetSpeedMode(PlayerSpeedMode speedMode)
-        {
-            _presenter.SetGait(speedMode switch
-            {
-                PlayerSpeedMode.Walk => CharacterGait.Walk,
-                PlayerSpeedMode.Sprint => CharacterGait.Sprint,
-                _ => CharacterGait.Run
-            });
-        }
-
-        public void Tick(float deltaTime)
-        {
-            _presenter.Tick(deltaTime);
         }
     }
 }

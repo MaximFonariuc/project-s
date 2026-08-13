@@ -33,9 +33,6 @@ classDiagram
         +Collided
         +Landed
     }
-    class AnimationController {
-        <<swim presentation adapter>>
-    }
     class CharacterFeatureSet {
         <<authoring>>
     }
@@ -48,7 +45,6 @@ classDiagram
     CharacterMovementPolicies o-- LandingForcePolicy
     FlyingMovementPolicy --> Character
     SwimmingMovementPolicy --> Character
-    SwimmingMovementPolicy --> AnimationController
     GravityAlignmentPolicy --> Character
     GroundOrientationPolicy --> Character
     LandingForcePolicy --> Character
@@ -65,7 +61,7 @@ classDiagram
 | `GroundOrientationPolicy` | `AfterSimulationUpdated` | усреднение ground normals и визуально-физический наклон |
 | `LandingForcePolicy` | `Landed` | передача подтверждённого landing impulse ground Rigidbody |
 
-`Enable / Disable` владельца идемпотентны и симметричны. `ThirdPersonController` знает только `ICharacterMovementPolicyLifecycle`; VContainer создаёт owner из `CharacterFeatureSet`. При уничтожении scope `Dispose` гарантирует снятие подписок.
+`Enable / Disable` владельца идемпотентны и симметричны. `PlayerActorController` знает только `ICharacterMovementPolicyLifecycle`; VContainer создаёт owner из `CharacterFeatureSet`. При уничтожении scope `Dispose` гарантирует снятие подписок.
 
 ## Границы
 

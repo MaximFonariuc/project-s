@@ -1,3 +1,4 @@
+using ModularAnimation.Unity;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -5,7 +6,7 @@ using VContainer;
 
 namespace _App
 {
-    public class ThirdPersonController : MonoBehaviour, ITestable
+    public class ThirdPersonController : MonoBehaviour
     {
         [SerializeField] private ECharacterType _characterType;
 
@@ -34,25 +35,20 @@ namespace _App
         [SerializeField] private AnimationsData _skillsData;
         [SerializeField] private PlayerCombatActionProfile _combatActionProfile;
 
-        [Header("AnimationController")] 
+        [Header("AnimationController")]
         [SerializeField] private Animator _animator;
+        [SerializeField] private MecanimCharacterAnimationProfile _animationProfile;
 
         [Header("WeaponHolder")] 
         [SerializeField] private Transform _weaponHolder;
         [SerializeField] private Transform _weaponHand;
         [SerializeField] private Transform _weapon;
 
-        private IPlayerInput _input;
-        private ICharacterMovementPolicyLifecycle _movementPolicyLifecycle;
-        private PlayerLocomotionController _locomotionController;
-        private PlayerTargetingController _targetingController;
-        private PlayerCameraController _cameraController;
-        private PlayerCombatController _combatController;
-        private PlayerTraversalController _traversalController;
-        private PlayerSimulationPauseController _simulationPauseController;
+        private PlayerActorController _actorController;
 
         internal CharacterFeatureSet CharacterFeatures => _characterFeatures;
         internal Animator PlayerAnimator => _animator;
+        internal MecanimCharacterAnimationProfile AnimationProfile => _animationProfile;
         internal ECharacterType CharacterType => _characterType;
         internal AnimationsData CombatAnimations => _skillsData;
         internal PlayerCombatActionProfile CombatActionProfile => _combatActionProfile;
@@ -71,82 +67,49 @@ namespace _App
             _maxPitch);
 
         [Inject]
-        public void Construct(
-            IPlayerInput input,
-            ICharacterMovementPolicyLifecycle movementPolicyLifecycle,
-            PlayerLocomotionController locomotionController,
-            PlayerTargetingController targetingController,
-            PlayerCameraController cameraController,
-            PlayerCombatController combatController,
-            PlayerTraversalController traversalController,
-            PlayerSimulationPauseController simulationPauseController)
+        public void Construct(PlayerActorController actorController)
         {
-            _input = input;
-            _movementPolicyLifecycle = movementPolicyLifecycle;
-            _locomotionController = locomotionController;
-            _targetingController = targetingController;
-            _cameraController = cameraController;
-            _combatController = combatController;
-            _traversalController = traversalController;
-            _simulationPauseController = simulationPauseController;
+            _actorController = actorController;
         }
 
         #region Monobehavior
 
         protected virtual void Awake()
         {
-            if (_input == null || _movementPolicyLifecycle == null ||
-                _locomotionController == null || _targetingController == null || _cameraController == null ||
-                _combatController == null || _traversalController == null ||
-                _simulationPauseController == null)
+            if (_actorController == null)
             {
-                Debug.LogError($"{nameof(ThirdPersonController)} requires its gameplay dependencies from the composition root.", this);
+                Debug.LogError(
+                    $"{nameof(ThirdPersonController)} requires {nameof(PlayerActorController)} from the composition root.",
+                    this);
                 enabled = false;
             }
         }
 
         private void OnEnable()
         {
-            _movementPolicyLifecycle?.Enable();
-            _locomotionController?.Enable();
-            _targetingController?.Enable();
-            _cameraController?.Enable();
-            _combatController?.Enable();
-            _traversalController?.Enable();
-            _simulationPauseController?.Enable();
-            _input?.Enable();
+            _actorController?.Enable();
         }
 
         private void OnDisable()
         {
-            _input?.Disable();
-            _simulationPauseController?.Disable();
-            _traversalController?.Disable();
-            _combatController?.Disable();
-            _cameraController?.Disable();
-            _targetingController?.Disable();
-            _locomotionController?.Disable();
-            _movementPolicyLifecycle?.Disable();
+            _actorController?.Disable();
         }
 
         protected virtual void Update()
         {
-            _traversalController?.Tick();
-            _locomotionController?.SetMovementIntent(_combatController.MovementIntent);
-            _locomotionController?.Tick(Time.deltaTime);
-            _targetingController?.Tick();
+            _actorController?.Tick(Time.deltaTime);
         }
 
         protected virtual void LateUpdate()
         {
-            _cameraController?.LateTick(Time.unscaledDeltaTime, Time.deltaTime);
+            _actorController?.LateTick(Time.unscaledDeltaTime, Time.deltaTime);
         }
 
         #endregion
 
         public void InverseGravity()
         {
-            _traversalController?.TryInvertGravity();
+            _actorController?.TryInvertGravity();
         }
     }
 }

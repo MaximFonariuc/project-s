@@ -19,6 +19,63 @@ namespace _App
         Sprint
     }
 
+    public enum PlayerLocomotionMode
+    {
+        Grounded,
+        Airborne,
+        Swimming,
+        Climbing,
+        Flying
+    }
+
+    public readonly struct PlayerLocomotionSnapshot
+    {
+        public static PlayerLocomotionSnapshot Invalid => default;
+
+        public bool IsValid { get; }
+        public PlayerLocomotionStateId State { get; }
+        public PlayerSpeedMode SpeedMode { get; }
+        public PlayerLocomotionMode Mode { get; }
+        public Vector3 Velocity { get; }
+        public Vector3 MoveDirection { get; }
+        public float ForwardSpeed { get; }
+        public float LateralSpeed { get; }
+        public float VerticalSpeed { get; }
+        public float NormalizedSpeed { get; }
+        public bool IsGrounded { get; }
+        public bool IsCrouched { get; }
+        public bool DodgeBackwards { get; }
+
+        public PlayerLocomotionSnapshot(
+            PlayerLocomotionStateId state,
+            PlayerSpeedMode speedMode,
+            PlayerLocomotionMode mode,
+            Vector3 velocity,
+            Vector3 moveDirection,
+            float forwardSpeed,
+            float lateralSpeed,
+            float verticalSpeed,
+            float normalizedSpeed,
+            bool isGrounded,
+            bool isCrouched,
+            bool dodgeBackwards)
+        {
+            IsValid = true;
+            State = state;
+            SpeedMode = speedMode;
+            Mode = mode;
+            Velocity = velocity;
+            MoveDirection = moveDirection;
+            ForwardSpeed = forwardSpeed;
+            LateralSpeed = lateralSpeed;
+            VerticalSpeed = verticalSpeed;
+            NormalizedSpeed = Mathf.Clamp01(normalizedSpeed);
+            IsGrounded = isGrounded;
+            IsCrouched = isCrouched;
+            DodgeBackwards = dodgeBackwards;
+        }
+    }
+
     public readonly struct PlayerMovementIntent
     {
         public static PlayerMovementIntent Unrestricted => new PlayerMovementIntent(1.0f, true, true, false);
@@ -43,13 +100,16 @@ namespace _App
 
     public interface ICharacterMotor
     {
+        bool IsGrounded { get; }
         bool IsFalling { get; }
         bool IsJumping { get; }
         bool IsDodging { get; }
         bool IsSwimming { get; }
         bool IsClimbing { get; }
+        bool IsFlying { get; }
         bool IsCrouched { get; }
         ERotationMode RotationMode { get; }
+        float MaxSpeed { get; }
         Vector3 Up { get; }
         Vector3 Forward { get; }
         Vector3 Velocity { get; }
@@ -70,9 +130,8 @@ namespace _App
 
     public interface IPlayerLocomotionPresentation
     {
-        void EnterState(PlayerLocomotionStateId stateId, bool dodgeBackwards);
-        void SetSpeedMode(PlayerSpeedMode speedMode);
-        void Tick(float deltaTime);
+        void Present(in PlayerLocomotionSnapshot snapshot, float deltaTime);
+        void Reset();
     }
 
     public interface IPlayerLocomotionEvents
@@ -84,6 +143,7 @@ namespace _App
     {
         PlayerLocomotionStateId? CurrentState { get; }
         PlayerSpeedMode SpeedMode { get; }
+        PlayerLocomotionSnapshot Snapshot { get; }
     }
 
     public interface IPlayerLocomotionCommands

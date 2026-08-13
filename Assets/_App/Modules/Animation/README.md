@@ -26,6 +26,7 @@ classDiagram
     class AnimationLayerId
     class AnimationPlayback
     class MecanimCharacterAnimationBindings
+    class MecanimCharacterAnimationProfile
     class MecanimCharacterAnimationDriver
     class MecanimLookAnimationDriver
     class PlayerCharacterAnimationPresenter
@@ -35,6 +36,7 @@ classDiagram
     ICharacterAnimationDriver <|.. MecanimCharacterAnimationDriver
     ICharacterLookAnimationDriver <|.. MecanimLookAnimationDriver
     MecanimCharacterAnimationDriver --> MecanimCharacterAnimationBindings
+    MecanimCharacterAnimationProfile --> MecanimCharacterAnimationBindings : creates
     ICharacterAnimationDriver --> CharacterLocomotionFrame
     ICharacterAnimationDriver --> AnimationStateId
     ICharacterAnimationDriver --> AnimationLayerId
@@ -50,8 +52,11 @@ classDiagram
 - `ModularAnimation.Unity` contains the Mecanim implementation. It depends only
   on `ModularAnimation.Core` and Unity animation APIs.
 - Animator parameter names are supplied through
+  `MecanimCharacterAnimationProfile`, which creates immutable
   `MecanimCharacterAnimationBindings`; the module does not impose Project S
-  controller names. Look animation is a separate optional contract.
+  controller names. A character can use a different Animator Controller by
+  assigning a profile with the matching parameter contract. Look animation is
+  a separate optional contract.
 - Project-specific state names, locomotion sampling and combat clip selection
   remain in `_App/Core`.
 - `_App/Core -> ModularAnimation`; the module never references `_App/Core` or
@@ -81,6 +86,8 @@ change when the backend changes.
 ## Current migration boundary
 
 The player path uses this module for locomotion, camera look, dodge, combat and
-ladder traversal. The old Project S `AnimationController` remains only on the
-legacy enemy path; new player code must not depend on it. Enemy migration is a
-separate scope so this refactor does not silently redesign enemy gameplay.
+ladder traversal. `PlayerLocomotionController` publishes one immutable
+`PlayerLocomotionSnapshot`; the Project S presenter maps it into the module's
+`CharacterLocomotionFrame`. Neither the presenter nor the driver reads
+`Character` or input directly. Enemy migration remains a separate scope so the
+animation boundary does not silently redesign enemy gameplay.

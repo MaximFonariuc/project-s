@@ -5,7 +5,7 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 ## Физические границы проекта
 
 - `Assets/_App/Core` — first-party код, который знает о Project S: gameplay, presentation adapters, composition и editor tooling.
-- `Assets/_App/Modules` — наши независимые архитектурные модули. Сейчас здесь находятся `Input` и `StateMachine`; они не ссылаются на `Core` и `_Game`.
+- `Assets/_App/Modules` — наши независимые архитектурные модули. Сейчас здесь находятся `Input`, `StateMachine` и `Animation`; они не ссылаются на `Core` и `_Game`.
 - `Assets/_Game` — сцены, prefabs, модели, анимации, материалы, настройки и другой игровой контент без first-party скриптов.
 - `Assets/_Modules` — импортированные сторонние расширения. Интеграционный код Project S остаётся в `_App`, а vendor-код не изменяется без явно задокументированного patch.
 
@@ -15,13 +15,13 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 
 ## Выделенные сущности и владельцы состояния
 
-- **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references, lifecycle и frame ticks. `PlayerActorAdapter` изолирует Camera, Targeting, Combat и Traversal от большого legacy-класса `Character` через consumer-specific порты.
-- **Player Locomotion** — `PlayerLocomotionController` владеет semantic movement intent и машиной `Idle / Run / Jump / Fall / Dodge`. `CharacterMotor` является портом к существующим `Character` и `CharacterMovement`, не переписывая проверенную collision physics.
+- **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references и делегирует lifecycle/frame ticks scoped-координатору `PlayerActorController`. `PlayerActorAdapter` изолирует Camera, Targeting, Combat и Traversal от большого legacy-класса `Character` через consumer-specific порты.
+- **Player Locomotion** — `PlayerLocomotionController` владеет semantic movement intent и машиной `Idle / Run / Jump / Fall / Dodge`, а также публикует единый immutable `PlayerLocomotionSnapshot`. `CharacterMotor` является портом к существующим `Character` и `CharacterMovement`, не переписывая проверенную collision physics.
 - **Player Input** — gameplay зависит от project-specific порта `IPlayerInput`. `PlayerInputAdapter` переводит сигналы независимого `IInputService` в семантические команды игрока, а `UnityInputSource` остаётся инфраструктурной деталью composition root.
 - **Combatant vitality** — `Health` является единственным владельцем текущего здоровья и публикует подтверждённые события damage/death.
 - **Damage boundary** — `Hurtbox` принимает попадание и передаёт его владельцу `Health`; `Weapon` формирует `DamageInfo` и фильтрует повторное попадание одной цели в рамках одного окна hitbox.
 - **Player Combat** — `PlayerCombatController` владеет combat phase, input buffer, combo index, cooldown, weapon state и hit window. Внешние consumers используют раздельные `IPlayerCombatCommands` и `IPlayerCombatState`.
-- **Animation presentation** — `AnimationController` отображает подтверждённое gameplay-состояние, но не владеет здоровьем и уроном.
+- **Animation presentation** — `PlayerLocomotionAnimationAdapter` и `PlayerCharacterAnimationPresenter` переводят подтверждённый locomotion snapshot в backend-neutral `ICharacterAnimationDriver`. Animator остаётся presentation backend и не владеет gameplay-состоянием.
 - **Player Targeting** — `PlayerTargetingController` владеет lock-on state и выбором цели. Camera и будущий Combat читают его через `IPlayerTargetingState`, не управляя target selection.
 - **Player Camera** — `PlayerCameraController` владеет free-look/target-lock режимом, zoom, shoulder и framing state. `CinemachineCameraRig` является заменяемым presentation adapter, а locomotion читает только `ICameraOrientation`.
 - **Player Traversal** — `PlayerTraversalController` владеет interaction/climb workflow и согласованием gravity inversion между locomotion и camera. `PlayerSimulationGate` объединяет persistent pause request и временные traversal locks, оставаясь единственным владельцем вызова `Character.Pause` в player flow.
@@ -39,6 +39,8 @@ Input выделен в независимый first-party module boundary. Ег
 Общее синхронное ядро конечных машин состояний выделено в `Assets/_App/Modules/StateMachine`. Core не зависит от Unity или DI container; VContainer используется отдельной integration assembly только в composition root. Диаграммы, lifecycle и package boundary описаны в `Assets/_App/Modules/StateMachine/Documentation~`.
 
 Player Locomotion, его class tree, state graph и ограничения зависимостей описаны в `Docs/Architecture/Player.Locomotion.md`.
+
+Player Animation presentation, immutable locomotion snapshot и граница Mecanim backend описаны в `Docs/Architecture/Player.Animation.md`.
 
 Player Camera и Player Targeting описаны раздельно в `Docs/Architecture/Player.Camera.md` и `Docs/Architecture/Player.Targeting.md`.
 
