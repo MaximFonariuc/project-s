@@ -40,6 +40,11 @@ namespace _App
                     "Player camera requires a Cinemachine camera prefab and follow target.");
             }
 
+            if (_player.CombatAnimations == null)
+            {
+                throw new InvalidOperationException("Player combat requires an AnimationsData reference.");
+            }
+
             builder.Register<IInputSource>(_ => new UnityInputSource(_inputActions), Lifetime.Scoped);
             builder.Register<IInputService, InputRouter>(Lifetime.Scoped);
             builder.Register<IPlayerInput, PlayerInputAdapter>(Lifetime.Scoped);
@@ -89,6 +94,37 @@ namespace _App
                 .As<IPlayerCameraState>()
                 .As<IPlayerCameraCommands>();
 
+            builder.Register<ICombatClock, UnityCombatClock>(Lifetime.Scoped);
+            builder.Register<CombatInputBuffer>(Lifetime.Scoped);
+            builder.Register<IPlayerCombatAnimation>(
+                resolver => new PlayerCombatAnimationAdapter(
+                    resolver.Resolve<AnimationController>(),
+                    _player.CombatAnimations),
+                Lifetime.Scoped);
+            builder.Register<IPlayerWeaponRig>(
+                _ => new PlayerWeaponRig(
+                    _player.WeaponHolder,
+                    _player.WeaponHand,
+                    _player.WeaponTransform,
+                    _player.WeaponTransform != null
+                        ? _player.WeaponTransform.GetComponent<Weapon>()
+                        : null),
+                Lifetime.Scoped);
+            builder.Register(
+                    resolver => new PlayerCombatController(
+                        resolver.Resolve<IPlayerInput>(),
+                        character,
+                        resolver.Resolve<IPlayerLocomotionEvents>(),
+                        resolver.Resolve<IPlayerCombatAnimation>(),
+                        resolver.Resolve<IPlayerWeaponRig>(),
+                        resolver.Resolve<CombatInputBuffer>(),
+                        resolver.Resolve<ICombatClock>(),
+                        _player.CharacterType),
+                    Lifetime.Scoped)
+                .AsSelf()
+                .As<IPlayerCombatCommands>()
+                .As<IPlayerCombatState>();
+
             builder.Register<ICharacterMotor, CharacterMotor>(Lifetime.Scoped);
             builder.Register<IPlayerMovementReference, CameraRelativeMovementReference>(Lifetime.Scoped);
             builder.Register<IPlayerLocomotionPresentation, PlayerLocomotionAnimationAdapter>(Lifetime.Scoped);
@@ -118,7 +154,9 @@ namespace _App
                 .Transition(PlayerLocomotionStateId.Dodge, PlayerLocomotionStateId.Run)
                 .Transition(PlayerLocomotionStateId.Dodge, PlayerLocomotionStateId.Fall);
 
-            builder.Register<PlayerLocomotionController>(Lifetime.Scoped);
+            builder.Register<PlayerLocomotionController>(Lifetime.Scoped)
+                .AsSelf()
+                .As<IPlayerLocomotionEvents>();
             builder.RegisterComponent(_player);
         }
     }

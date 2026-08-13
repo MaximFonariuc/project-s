@@ -43,15 +43,19 @@ namespace _App
         private Character _character;
         private IPlayerInput _input;
         private AbilityController _abilityController;
-        private CombatControllerBase _combatControllerBase;
         private AnimationController _animationController;
         private PlayerLocomotionController _locomotionController;
         private PlayerTargetingController _targetingController;
         private PlayerCameraController _cameraController;
-        private Weapon _equippedWeapon;
+        private PlayerCombatController _combatController;
 
         internal AbilitiesData AbilitiesData => _abilitiesData;
         internal Animator PlayerAnimator => _animator;
+        internal ECharacterType CharacterType => _characterType;
+        internal AnimationsData CombatAnimations => _skillsData;
+        internal Transform WeaponHolder => _weaponHolder;
+        internal Transform WeaponHand => _weaponHand;
+        internal Transform WeaponTransform => _weapon;
         internal CinemachineThirdPersonFollow FollowCameraPrefab => _followCamera;
         internal Transform FollowTarget => _followTarget;
         internal PlayerCameraSettings CameraSettings => new PlayerCameraSettings(
@@ -70,7 +74,8 @@ namespace _App
             AnimationController animationController,
             PlayerLocomotionController locomotionController,
             PlayerTargetingController targetingController,
-            PlayerCameraController cameraController)
+            PlayerCameraController cameraController,
+            PlayerCombatController combatController)
         {
             _input = input;
             _abilityController = abilityController;
@@ -78,25 +83,16 @@ namespace _App
             _locomotionController = locomotionController;
             _targetingController = targetingController;
             _cameraController = cameraController;
+            _combatController = combatController;
         }
 
         private void SetCallbacks()
         {
             _character.PhysicsVolumeChanged += _animationController.OnPhysicsVolumeChanged;
 
-            _input.AttackRequested += Attack;
             _input.InteractRequested += Interact;
             _input.PauseRequested += Pause;
             _input.InverseGravityRequested += InverseGravity;
-            _input.SkillRequested += Skill;
-            _input.SwitchCombatStateRequested += SwitchCombatState;
-            _locomotionController.DodgeAccepted += OnDodgeAccepted;
-
-            if (_equippedWeapon != null)
-            {
-                _combatControllerBase.HitWindowOpened += OpenWeaponHitbox;
-                _combatControllerBase.HitWindowClosed += CloseWeaponHitbox;
-            }
         }
 
         private void RemoveCallbacks()
@@ -108,20 +104,9 @@ namespace _App
 
             _character.PhysicsVolumeChanged -= _animationController.OnPhysicsVolumeChanged;
 
-            _input.AttackRequested -= Attack;
             _input.InteractRequested -= Interact;
             _input.PauseRequested -= Pause;
             _input.InverseGravityRequested -= InverseGravity;
-            _input.SkillRequested -= Skill;
-            _input.SwitchCombatStateRequested -= SwitchCombatState;
-            _locomotionController.DodgeAccepted -= OnDodgeAccepted;
-
-            if (_equippedWeapon != null)
-            {
-                _combatControllerBase.HitWindowOpened -= OpenWeaponHitbox;
-                _combatControllerBase.HitWindowClosed -= CloseWeaponHitbox;
-                _equippedWeapon.DisableHitbox();
-            }
         }
 
         #region Monobehavior
@@ -129,7 +114,8 @@ namespace _App
         protected virtual void Awake()
         {
             if (_input == null || _abilityController == null || _animationController == null ||
-                _locomotionController == null || _targetingController == null || _cameraController == null)
+                _locomotionController == null || _targetingController == null || _cameraController == null ||
+                _combatController == null)
             {
                 Debug.LogError($"{nameof(ThirdPersonController)} requires its gameplay dependencies from the composition root.", this);
                 enabled = false;
@@ -137,7 +123,6 @@ namespace _App
             }
 
             _character = GetComponent<Character>();
-            InitControllers();
             SetCallbacks();
         }
 
@@ -146,24 +131,20 @@ namespace _App
             RemoveCallbacks();
         }
 
-        private void InitControllers()
-        {
-            _combatControllerBase = new PlayerCombatController(_characterType, _animationController, _skillsData);
-            _equippedWeapon = _weapon != null ? _weapon.GetComponent<Weapon>() : null;
-        }
-
         private void OnEnable()
         {
             _abilityController?.EnableAllAbilities();
             _locomotionController?.Enable();
             _targetingController?.Enable();
             _cameraController?.Enable();
+            _combatController?.Enable();
             _input?.Enable();
         }
 
         private void OnDisable()
         {
             _input?.Disable();
+            _combatController?.Disable();
             _cameraController?.Disable();
             _targetingController?.Disable();
             _locomotionController?.Disable();
@@ -199,47 +180,12 @@ namespace _App
 
         private void UpdateMovementIntent()
         {
-            bool attacking = _combatControllerBase.IsComboAttack || _combatControllerBase.IsSkillAttack;
-            bool switching = _combatControllerBase.IsSwitching;
-            bool faceMoveDirection = attacking &&
-                                     _character.RotationMode == ERotationMode.OrientRotationToMovement;
-
-            _locomotionController.SetMovementIntent(new PlayerMovementIntent(
-                attacking ? 0.0f : 1.0f,
-                !attacking && !switching,
-                !_combatControllerBase.IsSkillAttack && !switching,
-                faceMoveDirection));
+            _locomotionController.SetMovementIntent(_combatController.MovementIntent);
         }
 
         #endregion
 
         #region Actions
-
-        private void Attack()
-        {
-            if (!_character.CanAttack() || _combatControllerBase.IsSwitching)
-            {
-                return;
-            }
-
-            _combatControllerBase.TryAttack();
-            UpdateMovementIntent();
-        }
-
-        private void OpenWeaponHitbox()
-        {
-            if (_combatControllerBase.CurrentWeapon is EWeaponType.None or EWeaponType.Unarmed)
-            {
-                return;
-            }
-
-            _equippedWeapon.EnableHitbox();
-        }
-
-        private void CloseWeaponHitbox()
-        {
-            _equippedWeapon.DisableHitbox();
-        }
 
         private void Interact()
         {
@@ -248,17 +194,9 @@ namespace _App
                 return;
             }
 
-            if (_combatControllerBase.CurrentWeapon != EWeaponType.Unarmed)
+            if (_combatController.CurrentWeapon != EWeaponType.Unarmed)
             {
-                _character.Pause(true);
-                _combatControllerBase?.ToggleWeaponAsync(EWeaponType.TwoHanded, () =>
-                {
-                    WeaponHandler();
-                    _character.Pause(false);
-                    var ladderClimbAbility = _abilityController.GetAbility<LadderClimbAbility>();
-                    ladderClimbAbility?.Climb().Forget();
-                });
-                UpdateMovementIntent();
+                SheatheAndClimbAsync().Forget();
             }
             else
             {
@@ -288,39 +226,29 @@ namespace _App
             _cameraController.ToggleGravityOrientation();
         }
 
-        private void Skill(ESkillType skillNumber)
+        private async UniTaskVoid SheatheAndClimbAsync()
         {
-            if (!_character.CanAttack() || _combatControllerBase.IsSwitching)
+            _character.Pause(true);
+            try
             {
-                return;
+                if (!await _combatController.ToggleWeaponAsync(EWeaponType.Unarmed))
+                {
+                    return;
+                }
+
+                LadderClimbAbility ladder = _abilityController.GetAbility<LadderClimbAbility>();
+                if (ladder != null)
+                {
+                    ladder.Climb().Forget();
+                }
             }
-
-            _combatControllerBase.TryAttack(skillNumber);
-            UpdateMovementIntent();
-        }
-
-        private void OnDodgeAccepted()
-        {
-            _combatControllerBase.InterruptCombo();
-            UpdateMovementIntent();
-        }
-
-        private void SwitchCombatState()
-        {
-            if (_character.IsFalling())
+            finally
             {
-                return;
+                if (_character != null)
+                {
+                    _character.Pause(false);
+                }
             }
-
-            _combatControllerBase?.ToggleWeaponAsync(EWeaponType.TwoHanded, WeaponHandler).Forget();
-            UpdateMovementIntent();
-        }
-        
-        private void WeaponHandler()
-        {
-            _weapon.SetParent(_combatControllerBase.CurrentWeapon != EWeaponType.Unarmed ? _weaponHand : _weaponHolder);
-            _weapon.localPosition = Vector3.zero;
-            _weapon.localRotation = Quaternion.identity;
         }
 
         #endregion

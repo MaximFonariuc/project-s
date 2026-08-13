@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _App
@@ -74,5 +75,10 @@ namespace _App
         void EnterState(PlayerLocomotionStateId stateId, bool dodgeBackwards);
         void SetSpeedMode(PlayerSpeedMode speedMode);
         void Tick();
+    }
+
+    public interface IPlayerLocomotionEvents
+    {
+        event Action DodgeAccepted;
     }
 }

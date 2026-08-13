@@ -161,7 +161,7 @@ flowchart LR
 
 ## Lifecycle и ownership
 
-`GameLifetimeScope` регистрирует один scoped-набор motor/controller/runtime/state machine для активного Player. `ThirdPersonController` остаётся Unity-host для serialized references и временным координатором ещё не выделенных Combat/Camera/Traversal features.
+`GameLifetimeScope` регистрирует один scoped-набор motor/controller/runtime/state machine для активного Player. `ThirdPersonController` остаётся Unity-host для serialized references и временным координатором traversal; Combat и Camera используют отдельные scoped controllers.
 
 `PlayerLocomotionController.Enable` только подписывает semantic input. Первый motor snapshot и запуск state machine происходят в первом `Tick`, после завершения `Awake` Unity-компонентов. `Disable` симметрично снимает callbacks, освобождает jump/glide, сбрасывает speed mode и останавливает state machine.
 

@@ -15,11 +15,12 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 
 ## Выделенные сущности и владельцы состояния
 
-- **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references и временным координатором ещё не выделенных Combat/Traversal features. Он больше не владеет locomotion, camera и targeting state.
+- **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references и временным координатором traversal. Он больше не владеет locomotion, camera, targeting и combat state.
 - **Player Locomotion** — `PlayerLocomotionController` владеет semantic movement intent и машиной `Idle / Run / Jump / Fall / Dodge`. `CharacterMotor` является портом к существующим `Character` и `CharacterMovement`, не переписывая проверенную collision physics.
 - **Player Input** — gameplay зависит от project-specific порта `IPlayerInput`. `PlayerInputAdapter` переводит сигналы независимого `IInputService` в семантические команды игрока, а `UnityInputSource` остаётся инфраструктурной деталью composition root.
 - **Combatant vitality** — `Health` является единственным владельцем текущего здоровья и публикует подтверждённые события damage/death.
 - **Damage boundary** — `Hurtbox` принимает попадание и передаёт его владельцу `Health`; `Weapon` формирует `DamageInfo` и фильтрует повторное попадание одной цели в рамках одного окна hitbox.
+- **Player Combat** — `PlayerCombatController` владеет combat phase, input buffer, combo index, cooldown, weapon state и hit window. Внешние consumers используют раздельные `IPlayerCombatCommands` и `IPlayerCombatState`.
 - **Animation presentation** — `AnimationController` отображает подтверждённое gameplay-состояние, но не владеет здоровьем и уроном.
 - **Player Targeting** — `PlayerTargetingController` владеет lock-on state и выбором цели. Camera и будущий Combat читают его через `IPlayerTargetingState`, не управляя target selection.
 - **Player Camera** — `PlayerCameraController` владеет free-look/target-lock режимом, zoom, shoulder и framing state. `CinemachineCameraRig` является заменяемым presentation adapter, а locomotion читает только `ICameraOrientation`.
@@ -27,7 +28,7 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 
 ## Composition
 
-`GameLifetimeScope` — composition root gameplay-сцены. Он владеет scoped input adapter, Player Locomotion, Player Targeting, Player Camera, locomotion state machine и инъекцией `ThirdPersonController`. Локальные ссылки prefab/scene остаются serialized references.
+`GameLifetimeScope` — composition root gameplay-сцены. Он владеет scoped input adapter, Player Locomotion, Player Targeting, Player Camera, Player Combat, locomotion state machine и инъекцией `ThirdPersonController`. Локальные ссылки prefab/scene остаются serialized references.
 
 Input выделен в независимый first-party module boundary. Его class trees и зависимости описаны в `Assets/_App/Modules/Input/Documentation~`, а Project S adapter — в `Docs/Architecture/Input.Player.md`.
 
@@ -36,5 +37,7 @@ Input выделен в независимый first-party module boundary. Ег
 Player Locomotion, его class tree, state graph и ограничения зависимостей описаны в `Docs/Architecture/Player.Locomotion.md`.
 
 Player Camera и Player Targeting описаны раздельно в `Docs/Architecture/Player.Camera.md` и `Docs/Architecture/Player.Targeting.md`.
+
+Player Combat, его phase graph, input buffer и зависимости описаны в `Docs/Architecture/Player.Combat.md`.
 
 `Assets/Scenes/Demo Scene.unity` сохраняется как reference-сцена без переноса её содержимого. Рабочая сцена находится в `Assets/_Game/Scenes/PrototypeArena.unity` и является стартовой сценой разработки.
