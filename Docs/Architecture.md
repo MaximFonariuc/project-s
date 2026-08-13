@@ -11,6 +11,8 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 
 Допустимое направление зависимостей: `_App/Core -> _App/Modules`. `_Game` связывает компоненты и content через Unity serialization; `_Modules` рассматриваются как внешние зависимости.
 
+Физическое направление ссылок закреплено assemblies `ProjectS.Core.Runtime` и `ProjectS.Core.Editor`. Их дерево, разрешённые package references и сохранённый технический долг описаны в `Docs/Architecture/Core.Assemblies.md`.
+
 ## Выделенные сущности и владельцы состояния
 
 - **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references и временным координатором ещё не выделенных Combat/Camera/Traversal features. Он больше не владеет базовым locomotion input.

@@ -1,0 +1,23 @@
+{
+    "name": "ProjectS.Core.Runtime",
+    "rootNamespace": "_App",
+    "references": [
+        "ModularInput.Core",
+        "ModularInput.Unity",
+        "ModularStateMachine.Core",
+        "ModularStateMachine.VContainer",
+        "UniTask",
+        "Unity.Cinemachine",
+        "Unity.InputSystem",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

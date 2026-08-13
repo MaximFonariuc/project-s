@@ -85,6 +85,9 @@ Assets/
 - Организовывать код по gameplay feature, а не создавать полный набор `Domain/Application/Infrastructure` для каждой папки.
 - `Common` содержит только доказанно общие малые типы. Общий `Utils` запрещён.
 - Editor-код хранить в соответствующем `Editor` и не включать в runtime assemblies.
+- Код конкретной игры размещать внутри `Assets/_App/Core/Runtime` (`ProjectS.Core.Runtime`); editor tooling — внутри `Assets/_App/Core/Editor` (`ProjectS.Core.Editor`). Скрипты непосредственно в корне `Core` запрещены.
+- `ProjectS.Core.Editor` может ссылаться на `ProjectS.Core.Runtime`. Обратная ссылка запрещена; узкий editor-only код внутри runtime partial type допускается только под `#if UNITY_EDITOR`, если разделение assemblies разрушает partial class.
+- Assembly definitions в `_App/Modules` не ссылаются на `ProjectS.Core.Runtime` или `ProjectS.Core.Editor`. Эта проверка является обязательной частью module boundary.
 - Не создавать asmdef на каждую папку. Добавлять assembly boundary, когда она даёт независимую компиляцию, явное направление зависимостей или готовит стабильный модуль к извлечению.
 - Generated и imported vendor content не смешивать с first-party кодом. Любое осознанное изменение vendor-кода документировать как локальный patch, чтобы обновление зависимости не затёрло его незаметно.
 
