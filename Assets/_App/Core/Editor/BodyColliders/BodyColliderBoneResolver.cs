@@ -47,6 +47,8 @@ namespace _App.Editor
 
     internal static class BodyColliderBoneResolver
     {
+        private const float AutomaticSurfacePadding = 0f;
+
         public static List<BodyColliderBuildDefinition> Resolve(BodyColliderAuthoring authoring, out BodyRigType resolvedRigType)
         {
             Animator animator = authoring.Animator;
@@ -79,11 +81,11 @@ namespace _App.Editor
             Transform neck = GetBone(animator, HumanBodyBones.Neck);
             Transform head = GetBone(animator, HumanBodyBones.Head);
 
-            Add(result, profile, "pelvis", BodyHitZone.Pelvis, BodyColliderShape.Box, hips, spine, false, 0.32f, 0.02f);
-            Add(result, profile, "abdomen", BodyHitZone.Abdomen, BodyColliderShape.Box, spine, chest, false, 0.30f, 0.02f);
-            Add(result, profile, "chest", BodyHitZone.Chest, BodyColliderShape.Box, chest ?? spine, neck, false, 0.34f, 0.025f);
-            Add(result, profile, "neck", BodyHitZone.Neck, BodyColliderShape.Capsule, neck, head, false, 0.25f, 0.01f);
-            Add(result, profile, "head", BodyHitZone.Head, BodyColliderShape.Sphere, head, neck, true, 0.48f, 0.01f);
+            Add(result, profile, "pelvis", BodyHitZone.Pelvis, BodyColliderShape.Box, hips, spine, false, 0.32f, AutomaticSurfacePadding);
+            Add(result, profile, "abdomen", BodyHitZone.Abdomen, BodyColliderShape.Box, spine, chest, false, 0.30f, AutomaticSurfacePadding);
+            Add(result, profile, "chest", BodyHitZone.Chest, BodyColliderShape.Box, chest ?? spine, neck, false, 0.34f, AutomaticSurfacePadding);
+            Add(result, profile, "neck", BodyHitZone.Neck, BodyColliderShape.Capsule, neck, head, false, 0.25f, AutomaticSurfacePadding);
+            Add(result, profile, "head", BodyHitZone.Head, BodyColliderShape.Sphere, head, neck, true, 0.48f, AutomaticSurfacePadding);
 
             AddLimb(result, profile, animator, HumanBodyBones.LeftUpperArm, HumanBodyBones.LeftLowerArm, "left-upper-arm", BodyHitZone.LeftUpperArm, 0.20f);
             AddLimb(result, profile, animator, HumanBodyBones.LeftLowerArm, HumanBodyBones.LeftHand, "left-lower-arm", BodyHitZone.LeftLowerArm, 0.18f);
@@ -167,11 +169,11 @@ namespace _App.Editor
             Transform neck = FindBone(bones, "neck");
             Transform head = FindBone(bones, "head");
 
-            Add(result, profile, "pelvis", BodyHitZone.Pelvis, BodyColliderShape.Box, pelvis, spine, false, 0.32f, 0.02f);
-            Add(result, profile, "abdomen", BodyHitZone.Abdomen, BodyColliderShape.Box, spine, chest, false, 0.30f, 0.02f);
-            Add(result, profile, "chest", BodyHitZone.Chest, BodyColliderShape.Box, chest ?? spine, neck, false, 0.34f, 0.025f);
-            Add(result, profile, "neck", BodyHitZone.Neck, BodyColliderShape.Capsule, neck, head, false, 0.25f, 0.01f);
-            Add(result, profile, "head", BodyHitZone.Head, BodyColliderShape.Sphere, head, neck, true, 0.48f, 0.01f);
+            Add(result, profile, "pelvis", BodyHitZone.Pelvis, BodyColliderShape.Box, pelvis, spine, false, 0.32f, AutomaticSurfacePadding);
+            Add(result, profile, "abdomen", BodyHitZone.Abdomen, BodyColliderShape.Box, spine, chest, false, 0.30f, AutomaticSurfacePadding);
+            Add(result, profile, "chest", BodyHitZone.Chest, BodyColliderShape.Box, chest ?? spine, neck, false, 0.34f, AutomaticSurfacePadding);
+            Add(result, profile, "neck", BodyHitZone.Neck, BodyColliderShape.Capsule, neck, head, false, 0.25f, AutomaticSurfacePadding);
+            Add(result, profile, "head", BodyHitZone.Head, BodyColliderShape.Sphere, head, neck, true, 0.48f, AutomaticSurfacePadding);
 
             AddGenericSide(result, profile, bones, true);
             AddGenericSide(result, profile, bones, false);
@@ -193,21 +195,21 @@ namespace _App.Editor
 
             if (left)
             {
-                Add(result, profile, "left-upper-arm", BodyHitZone.LeftUpperArm, BodyColliderShape.Capsule, upperArm, lowerArm, false, 0.20f, 0.02f);
-                Add(result, profile, "left-lower-arm", BodyHitZone.LeftLowerArm, BodyColliderShape.Capsule, lowerArm, hand, false, 0.18f, 0.02f);
-                Add(result, profile, "left-hand", BodyHitZone.LeftHand, BodyColliderShape.Sphere, hand, lowerArm, true, 0.32f, 0.01f);
-                Add(result, profile, "left-upper-leg", BodyHitZone.LeftUpperLeg, BodyColliderShape.Capsule, upperLeg, lowerLeg, false, 0.22f, 0.025f);
-                Add(result, profile, "left-lower-leg", BodyHitZone.LeftLowerLeg, BodyColliderShape.Capsule, lowerLeg, foot, false, 0.19f, 0.025f);
-                Add(result, profile, "left-foot", BodyHitZone.LeftFoot, BodyColliderShape.Box, foot, lowerLeg, true, 0.30f, 0.01f);
+                Add(result, profile, "left-upper-arm", BodyHitZone.LeftUpperArm, BodyColliderShape.Capsule, upperArm, lowerArm, false, 0.20f, AutomaticSurfacePadding);
+                Add(result, profile, "left-lower-arm", BodyHitZone.LeftLowerArm, BodyColliderShape.Capsule, lowerArm, hand, false, 0.18f, AutomaticSurfacePadding);
+                Add(result, profile, "left-hand", BodyHitZone.LeftHand, BodyColliderShape.Sphere, hand, lowerArm, true, 0.32f, AutomaticSurfacePadding);
+                Add(result, profile, "left-upper-leg", BodyHitZone.LeftUpperLeg, BodyColliderShape.Capsule, upperLeg, lowerLeg, false, 0.22f, AutomaticSurfacePadding);
+                Add(result, profile, "left-lower-leg", BodyHitZone.LeftLowerLeg, BodyColliderShape.Capsule, lowerLeg, foot, false, 0.19f, AutomaticSurfacePadding);
+                Add(result, profile, "left-foot", BodyHitZone.LeftFoot, BodyColliderShape.Box, foot, lowerLeg, true, 0.30f, AutomaticSurfacePadding);
             }
             else
             {
-                Add(result, profile, "right-upper-arm", BodyHitZone.RightUpperArm, BodyColliderShape.Capsule, upperArm, lowerArm, false, 0.20f, 0.02f);
-                Add(result, profile, "right-lower-arm", BodyHitZone.RightLowerArm, BodyColliderShape.Capsule, lowerArm, hand, false, 0.18f, 0.02f);
-                Add(result, profile, "right-hand", BodyHitZone.RightHand, BodyColliderShape.Sphere, hand, lowerArm, true, 0.32f, 0.01f);
-                Add(result, profile, "right-upper-leg", BodyHitZone.RightUpperLeg, BodyColliderShape.Capsule, upperLeg, lowerLeg, false, 0.22f, 0.025f);
-                Add(result, profile, "right-lower-leg", BodyHitZone.RightLowerLeg, BodyColliderShape.Capsule, lowerLeg, foot, false, 0.19f, 0.025f);
-                Add(result, profile, "right-foot", BodyHitZone.RightFoot, BodyColliderShape.Box, foot, lowerLeg, true, 0.30f, 0.01f);
+                Add(result, profile, "right-upper-arm", BodyHitZone.RightUpperArm, BodyColliderShape.Capsule, upperArm, lowerArm, false, 0.20f, AutomaticSurfacePadding);
+                Add(result, profile, "right-lower-arm", BodyHitZone.RightLowerArm, BodyColliderShape.Capsule, lowerArm, hand, false, 0.18f, AutomaticSurfacePadding);
+                Add(result, profile, "right-hand", BodyHitZone.RightHand, BodyColliderShape.Sphere, hand, lowerArm, true, 0.32f, AutomaticSurfacePadding);
+                Add(result, profile, "right-upper-leg", BodyHitZone.RightUpperLeg, BodyColliderShape.Capsule, upperLeg, lowerLeg, false, 0.22f, AutomaticSurfacePadding);
+                Add(result, profile, "right-lower-leg", BodyHitZone.RightLowerLeg, BodyColliderShape.Capsule, lowerLeg, foot, false, 0.19f, AutomaticSurfacePadding);
+                Add(result, profile, "right-foot", BodyHitZone.RightFoot, BodyColliderShape.Box, foot, lowerLeg, true, 0.30f, AutomaticSurfacePadding);
             }
         }
 
@@ -221,7 +223,7 @@ namespace _App.Editor
             BodyHitZone zone,
             float radiusScale)
         {
-            Add(result, profile, id, zone, BodyColliderShape.Capsule, GetBone(animator, start), GetBone(animator, end), false, radiusScale, 0.02f);
+            Add(result, profile, id, zone, BodyColliderShape.Capsule, GetBone(animator, start), GetBone(animator, end), false, radiusScale, AutomaticSurfacePadding);
         }
 
         private static void AddAnchor(
@@ -235,7 +237,7 @@ namespace _App.Editor
             BodyColliderShape shape,
             float radiusScale)
         {
-            Add(result, profile, id, zone, shape, GetBone(animator, start), GetBone(animator, reference), true, radiusScale, 0.01f);
+            Add(result, profile, id, zone, shape, GetBone(animator, start), GetBone(animator, reference), true, radiusScale, AutomaticSurfacePadding);
         }
 
         private static void Add(
