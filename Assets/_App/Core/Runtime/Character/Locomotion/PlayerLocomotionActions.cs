@@ -5,61 +5,89 @@ namespace _App
 {
     public interface IPlayerLocomotionActions
     {
+        void Enable();
+        void Disable();
         void StartGliding();
         void StopGliding();
         bool TryDodge(Vector3 worldDirection, bool backwards);
     }
 
-    internal sealed class PlayerLocomotionActionAdapter : IPlayerLocomotionActions
+    internal sealed class PlayerLocomotionActions : IPlayerLocomotionActions
     {
-        private const float DirectionThresholdSqr = 0.0001f;
+        private readonly PlayerDodgeAction _dodge;
+        private readonly PlayerGlideAction _glide;
+        private bool _enabled;
 
-        private readonly ICharacterMotor _motor;
-        private readonly DodgeAbility _dodge;
-        private readonly GlideAbility _glide;
-
-        public PlayerLocomotionActionAdapter(
+        public PlayerLocomotionActions(
+            Character character,
             ICharacterMotor motor,
-            CharacterAbilityRuntime abilities)
+            CharacterFeatureSet features)
         {
-            _motor = motor ?? throw new ArgumentNullException(nameof(motor));
-
-            if (abilities == null)
+            if (character == null)
             {
-                throw new ArgumentNullException(nameof(abilities));
+                throw new ArgumentNullException(nameof(character));
             }
 
-            _dodge = abilities.Get<DodgeAbility>();
-            _glide = abilities.Get<GlideAbility>();
+            if (motor == null)
+            {
+                throw new ArgumentNullException(nameof(motor));
+            }
+
+            if (features == null)
+            {
+                throw new ArgumentNullException(nameof(features));
+            }
+
+            DodgeSettings dodgeSettings = features.GetEnabled<DodgeSettings>();
+            if (dodgeSettings != null)
+            {
+                _dodge = new PlayerDodgeAction(character, motor, dodgeSettings);
+            }
+
+            GlideSettings glideSettings = features.GetEnabled<GlideSettings>();
+            if (glideSettings != null)
+            {
+                _glide = new PlayerGlideAction(character, glideSettings);
+            }
+        }
+
+        public void Enable()
+        {
+            if (_enabled)
+            {
+                return;
+            }
+
+            _dodge?.Enable();
+            _glide?.Enable();
+            _enabled = true;
+        }
+
+        public void Disable()
+        {
+            if (!_enabled)
+            {
+                return;
+            }
+
+            _glide?.Disable();
+            _dodge?.Disable();
+            _enabled = false;
         }
 
         public void StartGliding()
         {
-            _glide?.Glide();
+            _glide?.Start();
         }
 
         public void StopGliding()
         {
-            _glide?.StopGliding();
+            _glide?.Stop();
         }
 
         public bool TryDodge(Vector3 worldDirection, bool backwards)
         {
-            if (_dodge == null || !_dodge.IsDodgeAllowed())
-            {
-                return false;
-            }
-
-            Vector3 clampedDirection = Vector3.ClampMagnitude(worldDirection, 1.0f);
-            _motor.SetMovementDirection(clampedDirection);
-
-            if (!backwards && clampedDirection.sqrMagnitude > DirectionThresholdSqr)
-            {
-                _motor.SnapFacingDirection(clampedDirection);
-            }
-
-            _dodge.Dodge();
-            return true;
+            return _dodge?.TryRequest(worldDirection, backwards) == true;
         }
     }
 }

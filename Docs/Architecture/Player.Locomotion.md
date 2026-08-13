@@ -52,9 +52,13 @@ classDiagram
         +StopGliding()
         +TryDodge(direction, backwards) bool
     }
-    class PlayerLocomotionActionAdapter {
-        <<legacy ability adapter>>
+    class PlayerLocomotionActions {
+        <<action owner>>
+        +Enable()
+        +Disable()
     }
+    class PlayerDodgeAction
+    class PlayerGlideAction
     class PlayerLocomotionSettings {
         +WalkSpeed float
         +RunSpeed float
@@ -117,7 +121,9 @@ classDiagram
     PlayerLocomotionController --> IPlayerLocomotionPresentation
     IPlayerLocomotionCommands <|.. PlayerLocomotionController
     ICharacterMotor <|.. CharacterMotor
-    IPlayerLocomotionActions <|.. PlayerLocomotionActionAdapter
+    IPlayerLocomotionActions <|.. PlayerLocomotionActions
+    PlayerLocomotionActions o-- PlayerDodgeAction
+    PlayerLocomotionActions o-- PlayerGlideAction
     CharacterMotor --> Character
     CharacterMotor --> PlayerLocomotionSettings
     Character --> CharacterMovement
@@ -132,7 +138,7 @@ classDiagram
     PlayerLocomotionState <|-- PlayerDodgeState
     PlayerLocomotionComposition ..> PlayerLocomotionController : constructs
     PlayerLocomotionComposition ..> CharacterMotor : constructs
-    PlayerLocomotionComposition ..> PlayerLocomotionActionAdapter : constructs
+    PlayerLocomotionComposition ..> PlayerLocomotionActions : constructs
     PlayerLocomotionComposition ..> PlayerLocomotionSettings : constructs
     PlayerLocomotionComposition ..> IStateMachine~PlayerLocomotionStateId~ : constructs
 ```
@@ -159,7 +165,7 @@ stateDiagram-v2
 
 `Jump` начинается не по нажатию кнопки, а после подтверждения motor: `Character` должен перейти в `Falling` и получить восходящую скорость. По той же причине `Dodge` становится активным только после перехода `Character` в custom movement mode. State machine не дублирует физическое состояние заранее.
 
-`Walk` и `Sprint` являются взаимоисключающими speed modes, а не отдельными locomotion states. Единственный runtime-owner скорости — `CharacterMotor`. При composition значения старых `WalkAbility` и `SprintAbility` один раз переводятся в immutable `PlayerLocomotionSettings`; motor больше не знает об ability registry.
+`Walk` и `Sprint` являются взаимоисключающими speed modes, а не отдельными locomotion states. Единственный runtime-owner скорости — `CharacterMotor`. При composition значения `WalkSpeedSettings` и `SprintSpeedSettings` один раз переводятся в immutable `PlayerLocomotionSettings`; motor не знает об authoring-каталоге.
 
 ## Направление зависимостей
 
@@ -184,7 +190,7 @@ flowchart LR
 - Camera участвует только как basis для camera-relative направления через отдельный adapter; locomotion не зависит от Cinemachine API.
 - Traversal запрашивает инверсию gravity через `IPlayerLocomotionCommands` и меняет camera orientation только после подтверждения команды.
 - Animation получает подтверждённое состояние. Продолжительность dodge задаётся gameplay-конфигурацией, а не длиной animation clip.
-- Glide и dodge проходят через `IPlayerLocomotionActions`; concrete abilities скрыты за переходным adapter и не входят в motor port.
+- Glide и dodge проходят через `IPlayerLocomotionActions`. Их runtime-state принадлежит `PlayerGlideAction` и `PlayerDodgeAction`; общий ability runtime отсутствует.
 - `Character` симулируется с `Time.fixedDeltaTime`; presentation обновляется в frame `Update`.
 
 ## Lifecycle и ownership
@@ -195,11 +201,10 @@ flowchart LR
 
 ## Текущая граница
 
-В core locomotion входят `Idle / Run / Jump / Fall / Dodge`, camera-relative ground/air input, walk/run/sprint и variable jump/glide forwarding. Swimming и ladder traversal пока сохраняют существующие abilities и не объявлены частью стабильного API. Glide/dodge также остаются legacy implementations, но controller обращается к ним только через узкий action port.
+В core locomotion входят `Idle / Run / Jump / Fall / Dodge`, camera-relative ground/air input, walk/run/sprint и variable jump/glide. Swimming является отдельной movement policy, а ladder — отдельным Traversal feature и не входит в locomotion API.
 
 Кандидат на `_Modules/CharacterMotion` появляется только после того, как:
 
-- параметры motor будут перенесены из переходного `PlayerLocomotionSettings` в стабильную authoring model;
 - traversal и root motion получат явные контракты;
 - параметры движения будут собраны в стабильную authoring model;
 - модуль можно будет использовать без `ThirdPersonController`, Combat и assets Project S.

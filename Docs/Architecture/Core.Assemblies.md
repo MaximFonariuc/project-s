@@ -7,8 +7,7 @@
 ```text
 Assets/_App/Core/
 ├── Runtime/                         # ProjectS.Core.Runtime
-│   ├── Ability/
-│   ├── Character/
+│   ├── Character/                    # simulation, locomotion, traversal, movement policies
 │   ├── Combat/
 │   ├── Common/
 │   ├── Composition/
@@ -18,7 +17,7 @@ Assets/_App/Core/
 │   ├── Environment/
 │   ├── IK/
 │   ├── Input/
-│   ├── Settings/
+│   ├── Settings/CharacterFeatures/   # immutable feature authoring data
 │   └── TargetLock/
 └── Editor/                          # ProjectS.Core.Editor
 ```

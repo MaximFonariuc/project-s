@@ -14,12 +14,14 @@ namespace _App
             }
 
             if (!player.TryGetComponent(out Character character) ||
-                player.AbilitiesData == null ||
+                player.CharacterFeatures == null ||
                 player.PlayerAnimator == null)
             {
                 throw new InvalidOperationException(
-                    "Player requires Character, AbilitiesData and Animator references.");
+                    "Player requires Character, CharacterFeatureSet and Animator references.");
             }
+
+            player.CharacterFeatures.ValidateConfiguration();
 
             builder.RegisterComponent(character);
             builder.Register<PlayerActorAdapter>(Lifetime.Scoped)
@@ -32,20 +34,19 @@ namespace _App
                 _ => new AnimationController(character, player.PlayerAnimator),
                 Lifetime.Scoped);
             builder.Register(
-                resolver => new CharacterAbilityRuntime(
-                    player.AbilitiesData,
+                resolver => new CharacterMovementPolicies(
                     character,
-                    resolver.Resolve<AnimationController>()),
+                    resolver.Resolve<AnimationController>(),
+                    player.CharacterFeatures),
                 Lifetime.Scoped)
-                .AsSelf()
-                .As<ICharacterAbilityLifecycle>();
+                .As<ICharacterMovementPolicyLifecycle>();
             builder.Register<PlayerPhysicsVolumeAnimationAdapter>(Lifetime.Scoped);
 
             builder.RegisterPlayerTargeting();
             builder.RegisterPlayerCamera(player);
             builder.RegisterPlayerCombat(player);
-            builder.RegisterPlayerLocomotion();
-            builder.RegisterPlayerTraversal();
+            builder.RegisterPlayerLocomotion(player.CharacterFeatures);
+            builder.RegisterPlayerTraversal(player.CharacterFeatures);
             builder.RegisterComponent(player);
         }
     }

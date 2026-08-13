@@ -20,23 +20,26 @@ namespace _App
 
         internal static PlayerLocomotionSettings From(
             Character character,
-            CharacterAbilityRuntime abilities)
+            CharacterFeatureSet features)
         {
             if (character == null)
             {
                 throw new ArgumentNullException(nameof(character));
             }
 
-            if (abilities == null)
+            if (features == null)
             {
-                throw new ArgumentNullException(nameof(abilities));
+                throw new ArgumentNullException(nameof(features));
             }
 
             float runSpeed = character.MaxWalkSpeed;
+            WalkSpeedSettings walk = features.GetEnabled<WalkSpeedSettings>();
+            SprintSpeedSettings sprint = features.GetEnabled<SprintSpeedSettings>();
+
             return new PlayerLocomotionSettings(
-                abilities.Get<WalkAbility>()?.MaxSpeed ?? runSpeed,
+                walk?.MaxSpeed ?? runSpeed,
                 runSpeed,
-                abilities.Get<SprintAbility>()?.MaxSpeed ?? runSpeed);
+                sprint?.MaxSpeed ?? runSpeed);
         }
     }
 }

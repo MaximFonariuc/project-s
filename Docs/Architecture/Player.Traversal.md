@@ -46,13 +46,15 @@ classDiagram
         +ApplyClimbInput(input)
         +TryBeginClimb() bool
     }
-    class PlayerTraversalActionAdapter {
-        <<legacy ability adapter>>
+    class PlayerTraversalActions {
+        <<action owner>>
+        +Enable()
+        +Disable()
     }
-    class CharacterAbilityRuntime {
-        <<internal lifecycle owner>>
+    class LadderTraversalAction
+    class LadderTraversalSettings {
+        <<authoring>>
     }
-    class LadderClimbAbility
     class IPlayerCombatCommands
     class IPlayerCombatState
     class IPlayerLocomotionCommands {
@@ -87,9 +89,9 @@ classDiagram
     PlayerTraversalController --> IPlayerLocomotionCommands
     PlayerTraversalController --> IPlayerCameraCommands
     PlayerTraversalController --> IPlayerSimulationLock
-    IPlayerTraversalActions <|.. PlayerTraversalActionAdapter
-    PlayerTraversalActionAdapter --> CharacterAbilityRuntime : resolves once
-    PlayerTraversalActionAdapter --> LadderClimbAbility
+    IPlayerTraversalActions <|.. PlayerTraversalActions
+    PlayerTraversalActions o-- LadderTraversalAction
+    PlayerTraversalActions ..> LadderTraversalSettings : reads once
     IPlayerInteractionProbe <|.. CharacterInteractionProbe
     CharacterInteractionProbe --> Character
     IPlayerSimulationLock <|.. PlayerSimulationGate
@@ -129,7 +131,7 @@ sequenceDiagram
 
 `CharacterInteractionProbe` сохраняет текущую физическую семантику: `CharacterMovement.OverlapTest`, первый collider и `IInteractable`. Это legacy adapter, а не стабильная универсальная interaction system. Layer mask и выбор лучшего кандидата должны стать отдельной authoring policy только вместе с реальными типами взаимодействий.
 
-`PlayerTraversalController` не запрашивает ability по concrete type. Переходный `PlayerTraversalActionAdapter` один раз получает `LadderClimbAbility` из внутреннего runtime при composition и реализует узкий traversal port. Детали общего runtime и его class tree описаны в [Player.Abilities.md](Player.Abilities.md).
+`PlayerTraversalController` зависит только от `IPlayerTraversalActions`. `PlayerTraversalActions` создаёт и владеет `LadderTraversalAction`, читая `LadderTraversalSettings` один раз при composition. Общего ability runtime и lookup по concrete type нет. `Disable` отменяет активные async ladder operations и восстанавливает movement mode/constraints.
 
 ## Simulation pause ownership
 

@@ -1,30 +1,71 @@
 using System;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace _App
 {
     internal interface IPlayerTraversalActions
     {
+        void Enable();
+        void Disable();
         bool IsClimbAvailable { get; }
         void ApplyClimbInput(Vector2 input);
         bool TryBeginClimb();
     }
 
-    internal sealed class PlayerTraversalActionAdapter : IPlayerTraversalActions
+    internal sealed class PlayerTraversalActions : IPlayerTraversalActions
     {
-        private readonly LadderClimbAbility _ladder;
+        private readonly LadderTraversalAction _ladder;
+        private bool _enabled;
 
         public bool IsClimbAvailable => _ladder != null;
 
-        public PlayerTraversalActionAdapter(CharacterAbilityRuntime abilities)
+        public PlayerTraversalActions(
+            Character character,
+            AnimationController animationController,
+            CharacterFeatureSet features)
         {
-            if (abilities == null)
+            if (character == null)
             {
-                throw new ArgumentNullException(nameof(abilities));
+                throw new ArgumentNullException(nameof(character));
             }
 
-            _ladder = abilities.Get<LadderClimbAbility>();
+            if (animationController == null)
+            {
+                throw new ArgumentNullException(nameof(animationController));
+            }
+
+            if (features == null)
+            {
+                throw new ArgumentNullException(nameof(features));
+            }
+
+            LadderTraversalSettings settings = features.GetEnabled<LadderTraversalSettings>();
+            if (settings != null)
+            {
+                _ladder = new LadderTraversalAction(character, animationController, settings);
+            }
+        }
+
+        public void Enable()
+        {
+            if (_enabled)
+            {
+                return;
+            }
+
+            _ladder?.Enable();
+            _enabled = true;
+        }
+
+        public void Disable()
+        {
+            if (!_enabled)
+            {
+                return;
+            }
+
+            _ladder?.Disable();
+            _enabled = false;
         }
 
         public void ApplyClimbInput(Vector2 input)
@@ -34,12 +75,12 @@ namespace _App
 
         public bool TryBeginClimb()
         {
-            if (_ladder == null)
+            if (!_enabled || _ladder == null)
             {
                 return false;
             }
 
-            _ladder.Climb().Forget();
+            _ladder.BeginClimb();
             return true;
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using ModularStateMachine.VContainerIntegration;
 using VContainer;
 
@@ -5,15 +6,27 @@ namespace _App
 {
     internal static class PlayerLocomotionComposition
     {
-        public static void RegisterPlayerLocomotion(this IContainerBuilder builder)
+        public static void RegisterPlayerLocomotion(
+            this IContainerBuilder builder,
+            CharacterFeatureSet features)
         {
+            if (features == null)
+            {
+                throw new ArgumentNullException(nameof(features));
+            }
+
             builder.Register(
                 resolver => PlayerLocomotionSettings.From(
                     resolver.Resolve<Character>(),
-                    resolver.Resolve<CharacterAbilityRuntime>()),
+                    features),
                 Lifetime.Scoped);
             builder.Register<ICharacterMotor, CharacterMotor>(Lifetime.Scoped);
-            builder.Register<IPlayerLocomotionActions, PlayerLocomotionActionAdapter>(Lifetime.Scoped);
+            builder.Register<IPlayerLocomotionActions>(
+                resolver => new PlayerLocomotionActions(
+                    resolver.Resolve<Character>(),
+                    resolver.Resolve<ICharacterMotor>(),
+                    features),
+                Lifetime.Scoped);
             builder.Register<IPlayerMovementReference, CameraRelativeMovementReference>(Lifetime.Scoped);
             builder.Register<IPlayerLocomotionPresentation, PlayerLocomotionAnimationAdapter>(Lifetime.Scoped);
             builder.Register<PlayerLocomotionRuntime>(Lifetime.Scoped);

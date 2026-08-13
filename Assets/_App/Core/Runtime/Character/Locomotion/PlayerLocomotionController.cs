@@ -55,6 +55,7 @@ namespace _App
                 return;
             }
 
+            _actions.Enable();
             _input.WalkChanged += OnWalkChanged;
             _input.SprintChanged += OnSprintChanged;
             _input.JumpChanged += OnJumpChanged;
@@ -89,6 +90,7 @@ namespace _App
                 _stateMachine.Stop();
             }
 
+            _actions.Disable();
             _enabled = false;
         }
 

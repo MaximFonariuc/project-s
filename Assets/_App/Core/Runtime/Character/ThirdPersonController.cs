@@ -1,5 +1,6 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VContainer;
 
 namespace _App
@@ -25,8 +26,9 @@ namespace _App
         [SerializeField] private float _minPitch = -80.0f;
         [SerializeField] private float _maxPitch = 80.0f;
 
-        [Header("Abilities")] 
-        [SerializeField] private AbilitiesData _abilitiesData;
+        [Header("Character Features")]
+        [FormerlySerializedAs("_abilitiesData")]
+        [SerializeField] private CharacterFeatureSet _characterFeatures;
 
         [Header("CombatController")] 
         [SerializeField] private AnimationsData _skillsData;
@@ -40,7 +42,7 @@ namespace _App
         [SerializeField] private Transform _weapon;
 
         private IPlayerInput _input;
-        private ICharacterAbilityLifecycle _abilityLifecycle;
+        private ICharacterMovementPolicyLifecycle _movementPolicyLifecycle;
         private PlayerPhysicsVolumeAnimationAdapter _physicsVolumeAnimation;
         private PlayerLocomotionController _locomotionController;
         private PlayerTargetingController _targetingController;
@@ -49,7 +51,7 @@ namespace _App
         private PlayerTraversalController _traversalController;
         private PlayerSimulationPauseController _simulationPauseController;
 
-        internal AbilitiesData AbilitiesData => _abilitiesData;
+        internal CharacterFeatureSet CharacterFeatures => _characterFeatures;
         internal Animator PlayerAnimator => _animator;
         internal ECharacterType CharacterType => _characterType;
         internal AnimationsData CombatAnimations => _skillsData;
@@ -70,7 +72,7 @@ namespace _App
         [Inject]
         public void Construct(
             IPlayerInput input,
-            ICharacterAbilityLifecycle abilityLifecycle,
+            ICharacterMovementPolicyLifecycle movementPolicyLifecycle,
             PlayerPhysicsVolumeAnimationAdapter physicsVolumeAnimation,
             PlayerLocomotionController locomotionController,
             PlayerTargetingController targetingController,
@@ -80,7 +82,7 @@ namespace _App
             PlayerSimulationPauseController simulationPauseController)
         {
             _input = input;
-            _abilityLifecycle = abilityLifecycle;
+            _movementPolicyLifecycle = movementPolicyLifecycle;
             _physicsVolumeAnimation = physicsVolumeAnimation;
             _locomotionController = locomotionController;
             _targetingController = targetingController;
@@ -94,7 +96,7 @@ namespace _App
 
         protected virtual void Awake()
         {
-            if (_input == null || _abilityLifecycle == null || _physicsVolumeAnimation == null ||
+            if (_input == null || _movementPolicyLifecycle == null || _physicsVolumeAnimation == null ||
                 _locomotionController == null || _targetingController == null || _cameraController == null ||
                 _combatController == null || _traversalController == null ||
                 _simulationPauseController == null)
@@ -107,7 +109,7 @@ namespace _App
         private void OnEnable()
         {
             _physicsVolumeAnimation?.Enable();
-            _abilityLifecycle?.Enable();
+            _movementPolicyLifecycle?.Enable();
             _locomotionController?.Enable();
             _targetingController?.Enable();
             _cameraController?.Enable();
@@ -126,7 +128,7 @@ namespace _App
             _cameraController?.Disable();
             _targetingController?.Disable();
             _locomotionController?.Disable();
-            _abilityLifecycle?.Disable();
+            _movementPolicyLifecycle?.Disable();
             _physicsVolumeAnimation?.Disable();
         }
 

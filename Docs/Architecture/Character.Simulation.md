@@ -2,7 +2,7 @@
 
 `Character` остаётся Unity-компонентом и совместимым facade над `CharacterMovement`. Его ответственность — хранить authoring-конфигурацию, принимать ограниченные команды персонажа, владеть режимом движения и выполнять один упорядоченный fixed-step. Collision solver остаётся в `CharacterMovement`, а Player-логика обращается к этой границе через `CharacterMotor` и consumer-specific actor ports.
 
-Рефакторинг намеренно сохраняет имя типа, GUID `Character.cs`, все serialized field names, public/protected API, events и virtual hooks. Поэтому существующие prefabs, scene instances, `CharacterWithSlide` и `CharacterWithSlopeLimit` не требуют миграции.
+Рефакторинг намеренно сохраняет имя и GUID `Character.cs`, все serialized field names, public/protected API, events и virtual hooks. Исторические варианты переименованы в `SlidingCharacter` и `SlopeLimitedCharacter` с сохранением их MonoScript GUID, поэтому serialized references не требуют переназначения.
 
 ## Дерево классов
 
@@ -21,8 +21,8 @@ classDiagram
         +StopJumping()
         +Pause(paused)
     }
-    class CharacterWithSlide
-    class CharacterWithSlopeLimit
+    class SlidingCharacter
+    class SlopeLimitedCharacter
     class CharacterMovement {
         <<collision motor>>
         +Velocity
@@ -50,8 +50,8 @@ classDiagram
     class PlayerActorAdapter
 
     MonoBehaviour <|-- Character
-    Character <|-- CharacterWithSlide
-    Character <|-- CharacterWithSlopeLimit
+    Character <|-- SlidingCharacter
+    Character <|-- SlopeLimitedCharacter
     Character *-- CharacterSimulationLoop
     Character *-- CharacterJumpState
     Character *-- CharacterPhysicsVolumeRegistry
@@ -112,10 +112,10 @@ sequenceDiagram
 
 ## Инварианты и расширение
 
-- Новые game-specific movement modes добавляются через существующие virtual hooks или отдельную верхнеуровневую ability/state machine; `Internal`-классы не наследуются снаружи.
+- Новые game-specific movement modes добавляются через существующие virtual hooks либо явный action/state/policy соответствующего feature; `Internal`-классы не наследуются снаружи.
 - Нельзя вызывать внутренние шаги симуляции из Combat, Animation или Camera. Эти системы отправляют intent через свои порты.
 - Serialized fields нельзя переносить в новые settings-классы без отдельной prefab/scene migration. Текущий split безопасен для существующего authoring data.
-- `Character` пока остаётся legacy-compatible facade, а не кандидатом в `_Modules`: его API содержит Project S abilities и inheritance hooks. Стабильная переиспользуемая граница находится ниже (`CharacterMovement`) и выше (`ICharacterMotor`).
+- `Character` пока остаётся legacy-compatible facade, а не кандидатом в `_Modules`: его API содержит Project S input flags и inheritance hooks. Стабильная переиспользуемая граница находится ниже (`CharacterMovement`) и выше (`ICharacterMotor`).
 - Не добавлять DI к `CharacterJumpState`, `CharacterPhysicsVolumeRegistry` и `CharacterSimulationLoop`: у них нет независимого lifecycle или реальной сменяемости.
 
 ## Ручная проверка
@@ -126,5 +126,5 @@ sequenceDiagram
 - disable/enable объекта: loop и события возобновляются один раз;
 - pause/unpause: collider и velocity восстанавливают согласованное состояние;
 - вход/выход из перекрывающихся physics volumes и выбор highest priority;
-- `CharacterWithSlide` и `CharacterWithSlopeLimit` продолжают вызывать virtual hooks;
+- `SlidingCharacter` и `SlopeLimitedCharacter` продолжают вызывать virtual hooks;
 - prefab/scene diff не появляется только из-за перекомпиляции.

@@ -52,6 +52,7 @@ namespace _App
                 return;
             }
 
+            _actions.Enable();
             _input.InteractRequested += OnInteractRequested;
             _input.InverseGravityRequested += OnInverseGravityRequested;
             _enabled = true;
@@ -70,6 +71,7 @@ namespace _App
             _interactionVersion++;
             _interactionPending = false;
             ReleaseSimulationPause();
+            _actions.Disable();
         }
 
         public void Tick()

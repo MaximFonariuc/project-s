@@ -26,8 +26,9 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 - **Player Camera** — `PlayerCameraController` владеет free-look/target-lock режимом, zoom, shoulder и framing state. `CinemachineCameraRig` является заменяемым presentation adapter, а locomotion читает только `ICameraOrientation`.
 - **Player Traversal** — `PlayerTraversalController` владеет interaction/climb workflow и согласованием gravity inversion между locomotion и camera. `PlayerSimulationGate` объединяет persistent pause request и временные traversal locks, оставаясь единственным владельцем вызова `Character.Pause` в player flow.
 - **Character Simulation** — `Character` остаётся совместимым Unity facade и владельцем movement mode/fixed-step, но runtime state прыжка, реестр physics volumes и cancellable simulation loop имеют отдельных внутренних owners. Collision solving остаётся в `CharacterMovement`; детали и class tree описаны в `Docs/Architecture/Character.Simulation.md`.
-- **Character Abilities Runtime** — внутренний `CharacterAbilityRuntime` создаёт abilities из `AbilitiesData` и владеет их lifecycle. Locomotion и Traversal используют consumer-specific action ports вместо generic lookup по типу.
-- **Authoring data** — существующие `AbilitiesData` и `AnimationsData` остаются ScriptableObject-конфигурацией, а runtime progress хранится в экземплярах controllers/abilities.
+- **Character Features** — `CharacterFeatureSet` является только authoring-каталогом включённых настроек. Общая runtime ability-система, generic lookup и factories удалены; поведение принадлежит Locomotion, Traversal и Movement Policies.
+- **Character Movement Policies** — scoped owner подключает опциональные fly/swim/gravity/ground/landing rules к явным simulation events `Character` и симметрично освобождает subscriptions.
+- **Authoring data** — `CharacterFeatureSet` и `AnimationsData` остаются ScriptableObject-конфигурацией, а runtime progress хранится только в экземплярах feature controllers/actions/policies.
 
 ## Composition
 
@@ -45,7 +46,9 @@ Player Combat, его phase graph, input buffer и зависимости опи
 
 Player Traversal, interaction flow и ownership локальной simulation pause описаны в `Docs/Architecture/Player.Traversal.md`.
 
-Переходная граница character abilities, её lifecycle и запрет generic service locator описаны в `Docs/Architecture/Player.Abilities.md`.
+Authoring-модель character features и serialization migration описаны в `Docs/Architecture/Character.Features.md`.
+
+Опциональные movement policies, их class tree и simulation subscriptions описаны в `Docs/Architecture/Character.MovementPolicies.md`.
 
 Anti-corruption boundary между feature controllers и legacy `Character`, а также дерево player composition описаны в `Docs/Architecture/Player.ActorBoundary.md`.
 

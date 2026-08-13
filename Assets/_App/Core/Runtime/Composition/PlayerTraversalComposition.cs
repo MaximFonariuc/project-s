@@ -1,12 +1,25 @@
+using System;
 using VContainer;
 
 namespace _App
 {
     internal static class PlayerTraversalComposition
     {
-        public static void RegisterPlayerTraversal(this IContainerBuilder builder)
+        public static void RegisterPlayerTraversal(
+            this IContainerBuilder builder,
+            CharacterFeatureSet features)
         {
-            builder.Register<IPlayerTraversalActions, PlayerTraversalActionAdapter>(Lifetime.Scoped);
+            if (features == null)
+            {
+                throw new ArgumentNullException(nameof(features));
+            }
+
+            builder.Register<IPlayerTraversalActions>(
+                resolver => new PlayerTraversalActions(
+                    resolver.Resolve<Character>(),
+                    resolver.Resolve<AnimationController>(),
+                    features),
+                Lifetime.Scoped);
             builder.Register<IPlayerInteractionProbe, CharacterInteractionProbe>(Lifetime.Scoped);
             builder.Register<PlayerSimulationGate>(Lifetime.Scoped)
                 .As<IPlayerSimulationPause>()
