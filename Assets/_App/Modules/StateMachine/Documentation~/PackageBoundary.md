@@ -24,7 +24,7 @@ flowchart TD
     Adapter -.forbidden.-> Project
 ```
 
-Каталог уже использует package-friendly layout и отдельные asmdef. Для физического переноса в UPM package корень `Assets/_Modules/StateMachine` становится корнем пакета, после чего добавляется `package.json`.
+Каталог уже использует package-friendly layout и отдельные asmdef. Для физического переноса в UPM package корень `Assets/_App/Modules/StateMachine` становится корнем пакета, после чего добавляется `package.json`.
 
 ## Публичная граница
 

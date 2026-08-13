@@ -2,6 +2,15 @@
 
 Project S остаётся feature-oriented monolith. MVC/MVVM не используются как архитектура gameplay; состояние принадлежит gameplay-компонентам и plain C# controllers/state machines, а Unity-компоненты служат lifecycle и presentation adapters. Для сложных UI-экранов по умолчанию применяется MVP Passive View.
 
+## Физические границы проекта
+
+- `Assets/_App/Core` — first-party код, который знает о Project S: gameplay, presentation adapters, composition и editor tooling.
+- `Assets/_App/Modules` — наши независимые архитектурные модули. Сейчас здесь находятся `Input` и `StateMachine`; они не ссылаются на `Core` и `_Game`.
+- `Assets/_Game` — сцены, prefabs, модели, анимации, материалы, настройки и другой игровой контент без first-party скриптов.
+- `Assets/_Modules` — импортированные сторонние расширения. Интеграционный код Project S остаётся в `_App`, а vendor-код не изменяется без явно задокументированного patch.
+
+Допустимое направление зависимостей: `_App/Core -> _App/Modules`. `_Game` связывает компоненты и content через Unity serialization; `_Modules` рассматриваются как внешние зависимости.
+
 ## Выделенные сущности и владельцы состояния
 
 - **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references и временным координатором ещё не выделенных Combat/Camera/Traversal features. Он больше не владеет базовым locomotion input.
@@ -17,9 +26,9 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 
 `GameLifetimeScope` — composition root gameplay-сцены. Он владеет scoped input adapter, Player Locomotion, его state machine и инъекцией `ThirdPersonController`. Локальные ссылки prefab/scene остаются serialized references.
 
-Input выделен в независимый module boundary. Его class trees и зависимости описаны в `Assets/_Modules/Input/Documentation~`, а Project S adapter — в `Docs/Architecture/Input.Player.md`.
+Input выделен в независимый first-party module boundary. Его class trees и зависимости описаны в `Assets/_App/Modules/Input/Documentation~`, а Project S adapter — в `Docs/Architecture/Input.Player.md`.
 
-Общее синхронное ядро конечных машин состояний выделено в `Assets/_Modules/StateMachine`. Core не зависит от Unity или DI container; VContainer используется отдельной integration assembly только в composition root. Диаграммы, lifecycle и package boundary описаны в `Assets/_Modules/StateMachine/Documentation~`.
+Общее синхронное ядро конечных машин состояний выделено в `Assets/_App/Modules/StateMachine`. Core не зависит от Unity или DI container; VContainer используется отдельной integration assembly только в composition root. Диаграммы, lifecycle и package boundary описаны в `Assets/_App/Modules/StateMachine/Documentation~`.
 
 Player Locomotion, его class tree, state graph и ограничения зависимостей описаны в `Docs/Architecture/Player.Locomotion.md`.
 

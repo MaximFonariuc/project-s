@@ -180,20 +180,20 @@ Animator bones -> generated collider transforms           (presentation pose)
 ## Файлы и ownership
 
 ```text
-Assets/_App/Runtime/Combat/BodyColliders/
+Assets/_App/Core/Runtime/Combat/BodyColliders/
 ├── BodyColliderAuthoring.cs       # scene/prefab authoring references
 ├── BodyColliderProfile.cs         # shared immutable configuration
 ├── BodyColliderRig.cs             # runtime owner and Health gateway
 ├── BodyColliderTypes.cs           # enums and explicit Generic mapping
 └── GeneratedBodyCollider.cs       # safe regeneration marker
 
-Assets/_App/Editor/BodyColliders/
+Assets/_App/Core/Editor/BodyColliders/
 ├── BodyColliderAuthoringEditor.cs # Inspector workflow and warnings
 ├── BodyColliderBoneResolver.cs    # Humanoid/Generic resolution
 └── BodyColliderGenerator.cs       # fitting, Undo and lifecycle
 ```
 
-Код остаётся в `_App`, поскольку damage zones, `Health` и текущий `Weapon` — контракты конкретной игры. Перенос в `_Modules` допустим только после стабилизации независимого damage-receiver API и реального повторного использования вне Project S.
+Код остаётся в `_App/Core`, поскольку damage zones, `Health` и текущий `Weapon` — контракты конкретной игры. Перенос в `_App/Modules` допустим только после стабилизации независимого damage-receiver API и реального повторного использования вне Project S.
 
 ## Выполненная проверка
 

@@ -43,46 +43,50 @@ UniTask, MessagePipe, PrimeTween, Addressables, localization, ZLinq и друг�
 
 ## 4. Структура проекта
 
-Сохранять три корневые first-party области внутри `Assets`:
+Сохранять следующие корневые области внутри `Assets`:
 
 ```text
 Assets/
-├── _App/                         # логика конкретной игры
-│   ├── Runtime/
-│   │   ├── Character/
-│   │   ├── Combat/
-│   │   ├── Enemies/
-│   │   ├── Camera/
-│   │   ├── Input/
-│   │   ├── UI/
-│   │   ├── Common/
-│   │   └── Composition/
-│   ├── Editor/
-│   └── Tests/                    # только по явному запросу
-├── _Game/                        # игровые и authoring assets
+├── _App/                         # весь first-party код
+│   ├── Core/                     # логика конкретно Project S
+│   │   ├── Runtime/
+│   │   │   ├── Character/
+│   │   │   ├── Combat/
+│   │   │   ├── Enemies/
+│   │   │   ├── Camera/
+│   │   │   ├── Input/
+│   │   │   ├── UI/
+│   │   │   ├── Common/
+│   │   │   └── Composition/
+│   │   ├── Editor/
+│   │   └── Tests/                # только по явному запросу
+│   └── Modules/                  # наши независимые архитектурные модули
+│       └── <ModuleName>/
+│           ├── Runtime/
+│           └── Editor/
+├── _Game/                        # игровые и authoring assets, без first-party кода
 │   ├── Animations/
 │   ├── Audio/
 │   ├── Materials/
 │   ├── Prefabs/
 │   ├── Scenes/
 │   └── Settings/
-└── _Modules/                     # независимые custom extensions
-    └── <ModuleName>/
-        ├── Runtime/
-        └── Editor/
+└── _Modules/                     # сторонние/vendor расширения
 ```
 
-- `_App` — единственное штатное место для first-party скриптов, зависящих от Project S. Новую игровую логику не создавать в `_Game`, корне `Assets` и случайных папках.
-- `_Game` хранит сцены, prefabs, animations, materials, audio, VFX и другие assets конкретной игры. Скрипты допустимы только как generated/vendor companion files, которые нельзя безопасно отделить.
-- `_Modules` хранит собственные переиспользуемые расширения с независимой ответственностью. Game-specific Player/Combat/Enemy logic остаётся в `_App`.
-- Направление зависимостей: `_App -> _Modules`. Код в `_Modules` не ссылается на `_App` и assets из `_Game`.
-- `_Game` может использовать компоненты из `_App` и `_Modules` на сценах/prefabs, но runtime-код не должен получать assets через неявный поиск по папкам.
+- `_App` — единственное штатное место для скриптов, которые разрабатываются для Project S или его first-party модулей. Новые first-party скрипты не создавать в `_Game`, `_Modules`, корне `Assets` и случайных папках.
+- `_App/Core` хранит код конкретной игры: Player, Character, Combat, Enemy, Camera, UI, composition и связанные editor-инструменты. Этот код может знать о Project S и его контенте.
+- `_App/Modules` хранит разработанные нами переиспользуемые архитектурные решения: Input, StateMachine и следующие модули со стабильной независимой ответственностью. Модуль не ссылается на `_App/Core` и assets из `_Game`.
+- Направление first-party зависимостей: `_App/Core -> _App/Modules`. Обратная зависимость запрещена; модули не зависят друг от друга без явного контракта и обоснованной интеграционной assembly.
+- `_Game` хранит сцены, prefabs, animations, materials, audio, VFX и другие assets конкретной игры. First-party код здесь запрещён; допустимы только generated/vendor companion scripts, которые нельзя безопасно отделить.
+- `_Modules` хранит только сторонние/imported/vendor расширения. Наши Input, StateMachine, gameplay и editor-tools сюда не помещать. Стороннюю структуру не переписывать; интеграционные адаптеры к ней находятся в `_App`.
+- `_Game` может использовать компоненты из `_App/Core`, `_App/Modules` и сторонних `_Modules` на сценах/prefabs, но runtime-код не должен получать assets через неявный поиск по папкам.
 - Существующие корневые `Resources`, `Scenes`, `Settings`, TextMesh Pro и vendor/imported folders не переносить автоматически. Реорганизация существующих assets выполняется только отдельным запросом с проверкой Unity references.
 - Организовывать код по gameplay feature, а не создавать полный набор `Domain/Application/Infrastructure` для каждой папки.
 - `Common` содержит только доказанно общие малые типы. Общий `Utils` запрещён.
 - Editor-код хранить в соответствующем `Editor` и не включать в runtime assemblies.
 - Не создавать asmdef на каждую папку. Добавлять assembly boundary, когда она даёт независимую компиляцию, явное направление зависимостей или готовит стабильный модуль к извлечению.
-- Generated и imported vendor content не смешивать с first-party кодом.
+- Generated и imported vendor content не смешивать с first-party кодом. Любое осознанное изменение vendor-кода документировать как локальный patch, чтобы обновление зависимости не затёрло его незаметно.
 
 ## 5. Архитектурный подход
 
@@ -165,9 +169,9 @@ Assets/
 - Каждый event subscription, coroutine, cancellation source и временный resource имеет owner и путь освобождения.
 - Не создавать отдельный `Update` для большого числа однотипных объектов, если профилирование подтвердило необходимость агрегированного tick.
 
-## 11. Извлечение в _Modules и UPM-пакеты
+## 11. Извлечение в _App/Modules и UPM-пакеты
 
-Не проектировать module/package API заранее. Код можно переносить из `_App` в `_Modules`, когда одновременно выполнено следующее:
+Не проектировать module/package API заранее. Код можно переносить из `_App/Core` в `_App/Modules`, когда одновременно выполнено следующее:
 
 - ответственность и публичная граница стабилизировались в реальном использовании;
 - модуль не ссылается на контент и код конкретной игры;
@@ -175,9 +179,10 @@ Assets/
 - lifecycle, configuration и ownership понятны без знания сцены проекта;
 - извлечение уменьшает связанность или даёт реальное повторное использование.
 
-- `_Modules/<ModuleName>` сначала остаётся обычным модулем внутри `Assets`. Не добавлять `package.json` и не называть его UPM package без необходимости отдельного versioning/distribution.
+- `_App/Modules/<ModuleName>` сначала остаётся обычным first-party модулем внутри `Assets`. Не добавлять `package.json` и не называть его UPM package без необходимости отдельного versioning/distribution.
 - В настоящий UPM package модуль выносится отдельным решением, когда его нужно независимо версионировать, переиспользовать между проектами или распространять.
-- Module/package не ссылается на Project S. Project S может ссылаться на module/package.
+- First-party module/package не ссылается на `_App/Core`, `_Game` и Project S. Project S может ссылаться на module/package.
+- `_Modules` не является промежуточной стадией для нашего кода: это каталог уже импортированных сторонних расширений.
 - Не выносить незрелый Player/Combat feature только ради структуры.
 
 ## 12. Проверка изменений

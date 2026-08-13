@@ -30,7 +30,7 @@ flowchart TD
 
 Единственная внешняя package dependency — `com.unity.inputsystem`. VContainer остаётся деталью композиции проекта и не попадёт в package manifest.
 
-UPM-перенос не должен менять namespaces или public API: корень `Assets/_Modules/Input` переносится как package root, после чего добавляется `package.json`. До стабилизации реального использования package versioning не вводится.
+UPM-перенос не должен менять namespaces или public API: корень `Assets/_App/Modules/Input` переносится как package root, после чего добавляется `package.json`. До стабилизации реального использования package versioning не вводится.
 
 ## Критерии независимости
 
