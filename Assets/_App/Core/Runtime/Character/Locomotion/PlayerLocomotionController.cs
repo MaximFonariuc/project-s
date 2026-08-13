@@ -5,7 +5,10 @@ using UnityEngine;
 
 namespace _App
 {
-    public sealed class PlayerLocomotionController : IPlayerLocomotionEvents, IDisposable
+    public sealed class PlayerLocomotionController :
+        IPlayerLocomotionCommands,
+        IPlayerLocomotionEvents,
+        IDisposable
     {
         private const float MoveThresholdSqr = 0.0001f;
         private const float AscendingThreshold = 0.05f;

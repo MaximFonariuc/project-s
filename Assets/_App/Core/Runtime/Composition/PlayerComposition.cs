@@ -25,7 +25,8 @@ namespace _App
             builder.Register<PlayerActorAdapter>(Lifetime.Scoped)
                 .As<IPlayerActorTransform>()
                 .As<IPlayerTargetingActor>()
-                .As<IPlayerCombatActor>();
+                .As<IPlayerCombatActor>()
+                .As<IPlayerTraversalActor>();
 
             builder.Register(
                 _ => new AnimationController(character, player.PlayerAnimator),
@@ -36,11 +37,13 @@ namespace _App
                     character,
                     resolver.Resolve<AnimationController>()),
                 Lifetime.Scoped);
+            builder.Register<PlayerPhysicsVolumeAnimationAdapter>(Lifetime.Scoped);
 
             builder.RegisterPlayerTargeting();
             builder.RegisterPlayerCamera(player);
             builder.RegisterPlayerCombat(player);
             builder.RegisterPlayerLocomotion();
+            builder.RegisterPlayerTraversal();
             builder.RegisterComponent(player);
         }
     }

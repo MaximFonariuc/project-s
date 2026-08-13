@@ -151,6 +151,8 @@ Gameplay не получает damage из animation event. Hit window вычи�
 
 Combat не вызывает motor. `IPlayerCombatState.MovementIntent` ограничивает translation/jump/dodge и передаётся в `PlayerLocomotionController` через Unity-host. Успешный dodge публикуется узким `IPlayerLocomotionEvents` и прерывает combo/skill.
 
+Traversal использует раздельные `IPlayerCombatState` и `IPlayerCombatCommands`: проверяет экипированное оружие и запрашивает подтверждённый переход в `Unarmed` перед climb. Combat при этом не знает о лестнице, interaction probe или simulation pause.
+
 Combat gates читаются через `IPlayerCombatActor`; controller не получает весь public API legacy `Character`. Реализация порта остаётся тонким `PlayerActorAdapter` без собственного runtime state.
 
 Targeting не является зависимостью Combat на этом этапе. Когда появятся направленные атаки и target assistance, Combat должен читать `IPlayerTargetingState`, но не менять target и не управлять камерой.

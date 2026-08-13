@@ -22,4 +22,9 @@ namespace _App
         bool IsFalling { get; }
         ERotationMode RotationMode { get; }
     }
+
+    public interface IPlayerTraversalActor
+    {
+        bool IsClimbing { get; }
+    }
 }

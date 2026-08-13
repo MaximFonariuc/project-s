@@ -2,7 +2,7 @@
 
 ## Назначение
 
-`Character` пока объединяет физическую simulation policy, rotation policy, traversal-состояние и ряд legacy-проверок. Передавать этот concrete-класс во все новые feature controllers опасно: Camera, Targeting и Combat получают значительно больше возможностей, чем им требуется, и становятся зависимыми от дальнейшего рефакторинга `Character`.
+`Character` пока объединяет физическую simulation policy, rotation policy, traversal-состояние и ряд legacy-проверок. Передавать этот concrete-класс во все новые feature controllers опасно: Camera, Targeting, Combat и Traversal получают значительно больше возможностей, чем им требуется, и становятся зависимыми от дальнейшего рефакторинга `Character`.
 
 `PlayerActorAdapter` образует anti-corruption boundary вокруг этой legacy-модели. Он не создаёт второе состояние игрока и ничего не кэширует: каждый запрос делегируется единственному owner — `Character`. Consumers получают только узкий порт под собственную ответственность.
 
@@ -29,6 +29,10 @@ classDiagram
         +IsFalling bool
         +RotationMode ERotationMode
     }
+    class IPlayerTraversalActor {
+        <<traversal state port>>
+        +IsClimbing bool
+    }
     class PlayerActorAdapter {
         <<legacy adapter>>
     }
@@ -38,12 +42,14 @@ classDiagram
         +RotationMode ERotationMode
         +CanAttack() bool
         +IsFalling() bool
+        +IsClimbing() bool
         +SetRotationMode(mode)
     }
     class PlayerCameraController
     class PlayerCameraAnimationAdapter
     class PlayerTargetingController
     class PlayerCombatController
+    class PlayerTraversalController
     class PlayerComposition {
         <<composition>>
     }
@@ -53,11 +59,13 @@ classDiagram
     IPlayerActorTransform <|.. PlayerActorAdapter
     IPlayerTargetingActor <|.. PlayerActorAdapter
     IPlayerCombatActor <|.. PlayerActorAdapter
+    IPlayerTraversalActor <|.. PlayerActorAdapter
     PlayerActorAdapter --> Character
     PlayerCameraController --> IPlayerActorTransform
     PlayerCameraAnimationAdapter --> IPlayerActorTransform
     PlayerTargetingController --> IPlayerTargetingActor
     PlayerCombatController --> IPlayerCombatActor
+    PlayerTraversalController --> IPlayerTraversalActor
     PlayerComposition ..> PlayerActorAdapter : registers once per scope
 ```
 
@@ -68,9 +76,11 @@ flowchart LR
     Camera["Camera feature"] --> TransformPort["IPlayerActorTransform"]
     Targeting["Targeting feature"] --> TargetingPort["IPlayerTargetingActor"]
     Combat["Combat feature"] --> CombatPort["IPlayerCombatActor"]
+    Traversal["Traversal feature"] --> TraversalPort["IPlayerTraversalActor"]
     TransformPort --> Adapter["PlayerActorAdapter"]
     TargetingPort --> Adapter
     CombatPort --> Adapter
+    TraversalPort --> Adapter
     Adapter --> Legacy["Character"]
     Legacy --> Movement["CharacterMovement"]
 ```
@@ -78,7 +88,8 @@ flowchart LR
 - Camera может прочитать направление и transform, но не может менять rotation policy или вызывать combat gates.
 - Targeting может временно менять только rotation policy, сохраняя и восстанавливая предыдущее значение.
 - Combat видит только разрешение атаки, falling state и rotation mode; он не получает motor API.
-- `PlayerActorAdapter` регистрируется один раз на gameplay scope и публикуется под тремя портами. Service locator и runtime search не используются.
+- Traversal читает только climbing state; interaction physics и simulation pause проходят через отдельные adapters.
+- `PlayerActorAdapter` регистрируется один раз на gameplay scope и публикуется под четырьмя consumer-specific портами. Service locator и runtime search не используются.
 
 ## Граница абстракции
 
@@ -88,6 +99,6 @@ flowchart LR
 
 ## Composition
 
-`GameLifetimeScope` остаётся единственным scene composition root, но делегирует регистрацию игрока в `PlayerComposition`. Внутри Composition-региона feature-блоки `PlayerCameraComposition`, `PlayerTargetingComposition`, `PlayerCombatComposition` и `PlayerLocomotionComposition` владеют только wiring своих зависимостей. Они не являются runtime services и не доступны gameplay-коду.
+`GameLifetimeScope` остаётся единственным scene composition root, но делегирует регистрацию игрока в `PlayerComposition`. Внутри Composition-региона feature-блоки `PlayerCameraComposition`, `PlayerTargetingComposition`, `PlayerCombatComposition`, `PlayerLocomotionComposition` и `PlayerTraversalComposition` владеют только wiring своих зависимостей. Они не являются runtime services и не доступны gameplay-коду.
 
 Новые asmdef не добавлены: граница уже выражена контрактами и направлением ссылок, а features пока недостаточно стабильны для независимого versioning или package extraction.

@@ -6,7 +6,8 @@ namespace _App
     internal sealed class PlayerActorAdapter :
         IPlayerActorTransform,
         IPlayerTargetingActor,
-        IPlayerCombatActor
+        IPlayerCombatActor,
+        IPlayerTraversalActor
     {
         private readonly Character _character;
 
@@ -15,6 +16,7 @@ namespace _App
         public Vector3 Forward => _character.transform.forward;
         public bool CanAttack => _character.CanAttack();
         public bool IsFalling => _character.IsFalling();
+        public bool IsClimbing => _character.IsClimbing();
         public ERotationMode RotationMode => _character.RotationMode;
 
         public PlayerActorAdapter(Character character)

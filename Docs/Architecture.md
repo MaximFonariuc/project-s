@@ -15,7 +15,7 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 
 ## Выделенные сущности и владельцы состояния
 
-- **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references и временным координатором traversal. `PlayerActorAdapter` изолирует новые Camera, Targeting и Combat от большого legacy-класса `Character` через consumer-specific порты.
+- **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references, lifecycle и frame ticks. `PlayerActorAdapter` изолирует Camera, Targeting, Combat и Traversal от большого legacy-класса `Character` через consumer-specific порты.
 - **Player Locomotion** — `PlayerLocomotionController` владеет semantic movement intent и машиной `Idle / Run / Jump / Fall / Dodge`. `CharacterMotor` является портом к существующим `Character` и `CharacterMovement`, не переписывая проверенную collision physics.
 - **Player Input** — gameplay зависит от project-specific порта `IPlayerInput`. `PlayerInputAdapter` переводит сигналы независимого `IInputService` в семантические команды игрока, а `UnityInputSource` остаётся инфраструктурной деталью composition root.
 - **Combatant vitality** — `Health` является единственным владельцем текущего здоровья и публикует подтверждённые события damage/death.
@@ -24,11 +24,12 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 - **Animation presentation** — `AnimationController` отображает подтверждённое gameplay-состояние, но не владеет здоровьем и уроном.
 - **Player Targeting** — `PlayerTargetingController` владеет lock-on state и выбором цели. Camera и будущий Combat читают его через `IPlayerTargetingState`, не управляя target selection.
 - **Player Camera** — `PlayerCameraController` владеет free-look/target-lock режимом, zoom, shoulder и framing state. `CinemachineCameraRig` является заменяемым presentation adapter, а locomotion читает только `ICameraOrientation`.
+- **Player Traversal** — `PlayerTraversalController` владеет interaction/climb workflow и согласованием gravity inversion между locomotion и camera. `PlayerSimulationGate` объединяет persistent pause request и временные traversal locks, оставаясь единственным владельцем вызова `Character.Pause` в player flow.
 - **Authoring data** — существующие `AbilitiesData` и `AnimationsData` остаются ScriptableObject-конфигурацией, а runtime progress хранится в экземплярах controllers/abilities.
 
 ## Composition
 
-`GameLifetimeScope` — composition root gameplay-сцены. Он регистрирует input boundary и делегирует player wiring в `PlayerComposition`; Camera, Targeting, Combat и Locomotion имеют отдельные composition-блоки внутри той же Composition-области. Регистрации не просачиваются в gameplay-код, а локальные prefab/scene ссылки остаются serialized references.
+`GameLifetimeScope` — composition root gameplay-сцены. Он регистрирует input boundary и делегирует player wiring в `PlayerComposition`; Camera, Targeting, Combat, Locomotion и Traversal имеют отдельные composition-блоки внутри той же Composition-области. Регистрации не просачиваются в gameplay-код, а локальные prefab/scene ссылки остаются serialized references.
 
 Input выделен в независимый first-party module boundary. Его class trees и зависимости описаны в `Assets/_App/Modules/Input/Documentation~`, а Project S adapter — в `Docs/Architecture/Input.Player.md`.
 
@@ -39,6 +40,8 @@ Player Locomotion, его class tree, state graph и ограничения за
 Player Camera и Player Targeting описаны раздельно в `Docs/Architecture/Player.Camera.md` и `Docs/Architecture/Player.Targeting.md`.
 
 Player Combat, его phase graph, input buffer и зависимости описаны в `Docs/Architecture/Player.Combat.md`.
+
+Player Traversal, interaction flow и ownership локальной simulation pause описаны в `Docs/Architecture/Player.Traversal.md`.
 
 Anti-corruption boundary между feature controllers и legacy `Character`, а также дерево player composition описаны в `Docs/Architecture/Player.ActorBoundary.md`.
 

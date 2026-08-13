@@ -81,4 +81,9 @@ namespace _App
     {
         event Action DodgeAccepted;
     }
+
+    public interface IPlayerLocomotionCommands
+    {
+        bool TryInvertGravity();
+    }
 }

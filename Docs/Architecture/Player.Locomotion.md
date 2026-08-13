@@ -85,6 +85,10 @@ classDiagram
         +SetSpeedMode(mode)
         +Tick()
     }
+    class IPlayerLocomotionCommands {
+        <<command port>>
+        +TryInvertGravity() bool
+    }
     class PlayerLocomotionAnimationAdapter
     class AnimationController
     class PlayerLocomotionComposition {
@@ -96,6 +100,7 @@ classDiagram
     PlayerLocomotionController --> IPlayerMovementReference
     PlayerLocomotionController --> IStateMachine~PlayerLocomotionStateId~
     PlayerLocomotionController --> IPlayerLocomotionPresentation
+    IPlayerLocomotionCommands <|.. PlayerLocomotionController
     ICharacterMotor <|.. CharacterMotor
     CharacterMotor --> Character
     Character --> CharacterMovement
@@ -156,6 +161,7 @@ flowchart LR
 - Gameplay input не знает о клавиатуре, gamepad или bindings.
 - Combat не вызывает `Character.SetMovementDirection`, `Jump` или `Dodge`. Он передаёт ограниченный intent: масштаб translation, разрешение jump/dodge и запрос разворота по input.
 - Camera участвует только как basis для camera-relative направления через отдельный adapter; locomotion не зависит от Cinemachine API.
+- Traversal запрашивает инверсию gravity через `IPlayerLocomotionCommands` и меняет camera orientation только после подтверждения команды.
 - Animation получает подтверждённое состояние. Продолжительность dodge задаётся gameplay-конфигурацией, а не длиной animation clip.
 - `Character` симулируется с `Time.fixedDeltaTime`; presentation обновляется в frame `Update`.
 
