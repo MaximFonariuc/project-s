@@ -58,9 +58,9 @@ namespace _App
             Vector3 direction = owner.transform.position - transform.root.position;
             DamageInfo damage = new DamageInfo(_damage, hitPoint, direction.normalized, transform.root.gameObject);
 
-            if (hurtbox.TryReceiveDamage(damage))
+            if (hurtbox.TryReceiveDamage(damage, out DamageInfo appliedDamage))
             {
-                OnDamageApplied(hurtbox, damage);
+                OnDamageApplied(hurtbox, appliedDamage);
             }
         }
 
