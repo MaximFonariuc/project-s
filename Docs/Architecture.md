@@ -4,22 +4,23 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 
 ## Выделенные сущности и владельцы состояния
 
-- **Player Actor** — существующий `ThirdPersonController` координирует персонажа, способности, бой, input и camera intent. Его следует постепенно уменьшать по мере появления устойчивых feature boundaries.
-- **Character Motor** — существующие `Character` и `CharacterMovement`; это уже работающая база движения, она не переписывается без отдельной задачи.
+- **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references и временным координатором ещё не выделенных Combat/Camera/Traversal features. Он больше не владеет базовым locomotion input.
+- **Player Locomotion** — `PlayerLocomotionController` владеет semantic movement intent и машиной `Idle / Run / Jump / Fall / Dodge`. `CharacterMotor` является портом к существующим `Character` и `CharacterMovement`, не переписывая проверенную collision physics.
 - **Player Input** — gameplay зависит от project-specific порта `IPlayerInput`. `PlayerInputAdapter` переводит сигналы независимого `IInputService` в семантические команды игрока, а `UnityInputSource` остаётся инфраструктурной деталью composition root.
 - **Combatant vitality** — `Health` является единственным владельцем текущего здоровья и публикует подтверждённые события damage/death.
 - **Damage boundary** — `Hurtbox` принимает попадание и передаёт его владельцу `Health`; `Weapon` формирует `DamageInfo` и фильтрует повторное попадание одной цели в рамках одного окна hitbox.
-- **Enemy Agent** — `EnemyController` и `EnemyStateMachine`; получение урона переводит агента в hit/dead state.
 - **Animation presentation** — `AnimationController` отображает подтверждённое gameplay-состояние, но не владеет здоровьем и уроном.
 - **Camera presentation** — Cinemachine остаётся presentation-слоем; gameplay сообщает intent через существующий controller.
 - **Authoring data** — существующие `AbilitiesData` и `AnimationsData` остаются ScriptableObject-конфигурацией, а runtime progress хранится в экземплярах controllers/abilities.
 
 ## Composition
 
-`GameLifetimeScope` — composition root gameplay-сцены. На первом шаге он владеет только input adapter и инъекцией `ThirdPersonController`. Новые регистрации добавляются лишь для зависимостей с реальным общим lifecycle; локальные ссылки prefab/scene остаются serialized references.
+`GameLifetimeScope` — composition root gameplay-сцены. Он владеет scoped input adapter, Player Locomotion, его state machine и инъекцией `ThirdPersonController`. Локальные ссылки prefab/scene остаются serialized references.
 
 Input выделен в независимый module boundary. Его class trees и зависимости описаны в `Assets/_Modules/Input/Documentation~`, а Project S adapter — в `Docs/Architecture/Input.Player.md`.
 
 Общее синхронное ядро конечных машин состояний выделено в `Assets/_Modules/StateMachine`. Core не зависит от Unity или DI container; VContainer используется отдельной integration assembly только в composition root. Диаграммы, lifecycle и package boundary описаны в `Assets/_Modules/StateMachine/Documentation~`.
+
+Player Locomotion, его class tree, state graph и ограничения зависимостей описаны в `Docs/Architecture/Player.Locomotion.md`.
 
 `Assets/Scenes/Demo Scene.unity` сохраняется как reference-сцена без переноса её содержимого. Рабочая сцена находится в `Assets/_Game/Scenes/PrototypeArena.unity` и является стартовой сценой разработки.

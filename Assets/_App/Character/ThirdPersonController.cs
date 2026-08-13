@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using ModularInput;
 using Unity.Cinemachine;
 using UnityEngine;
 using VContainer;
@@ -55,15 +54,26 @@ namespace _App
         private AbilityController _abilityController;
         private CombatControllerBase _combatControllerBase;
         private AnimationController _animationController;
+        private PlayerLocomotionController _locomotionController;
         private PlayerTargetLockSystem _targetLockSystem;
         private Weapon _equippedWeapon;
 
         private bool _activeCursor;
 
+        internal AbilitiesData AbilitiesData => _abilitiesData;
+        internal Animator PlayerAnimator => _animator;
+
         [Inject]
-        public void Construct(IPlayerInput input)
+        public void Construct(
+            IPlayerInput input,
+            AbilityController abilityController,
+            AnimationController animationController,
+            PlayerLocomotionController locomotionController)
         {
             _input = input;
+            _abilityController = abilityController;
+            _animationController = animationController;
+            _locomotionController = locomotionController;
         }
 
         private void SetCallbacks()
@@ -72,16 +82,13 @@ namespace _App
 
             _input.AttackRequested += Attack;
             _input.InteractRequested += Interact;
-            _input.WalkChanged += Walk;
-            _input.JumpChanged += Jump;
-            _input.SprintChanged += Sprint;
             _input.PauseRequested += Pause;
             _input.InverseGravityRequested += InverseGravity;
             _input.CursorRequested += CursorChanged;
             _input.SkillRequested += Skill;
             _input.LockOnRequested += LockOn;
-            _input.DodgeRequested += Dodge;
             _input.SwitchCombatStateRequested += SwitchCombatState;
+            _locomotionController.DodgeAccepted += OnDodgeAccepted;
 
             if (_equippedWeapon != null)
             {
@@ -101,16 +108,13 @@ namespace _App
 
             _input.AttackRequested -= Attack;
             _input.InteractRequested -= Interact;
-            _input.WalkChanged -= Walk;
-            _input.JumpChanged -= Jump;
-            _input.SprintChanged -= Sprint;
             _input.PauseRequested -= Pause;
             _input.InverseGravityRequested -= InverseGravity;
             _input.CursorRequested -= CursorChanged;
             _input.SkillRequested -= Skill;
             _input.LockOnRequested -= LockOn;
-            _input.DodgeRequested -= Dodge;
             _input.SwitchCombatStateRequested -= SwitchCombatState;
+            _locomotionController.DodgeAccepted -= OnDodgeAccepted;
 
             if (_equippedWeapon != null)
             {
@@ -124,9 +128,10 @@ namespace _App
 
         protected virtual void Awake()
         {
-            if (_input == null)
+            if (_input == null || _abilityController == null || _animationController == null ||
+                _locomotionController == null)
             {
-                Debug.LogError($"{nameof(ThirdPersonController)} requires {nameof(IPlayerInput)} from the composition root.", this);
+                Debug.LogError($"{nameof(ThirdPersonController)} requires its gameplay dependencies from the composition root.", this);
                 enabled = false;
                 return;
             }
@@ -152,9 +157,7 @@ namespace _App
 
         private void InitControllers()
         {
-            _animationController = new AnimationController(_character, _animator);
             _combatControllerBase = new PlayerCombatController(_characterType, _animationController, _skillsData);
-            _abilityController = new AbilityController(_abilitiesData, _character, _animationController);
             _targetLockSystem = new PlayerTargetLockSystem(_character, _followCamera.GetComponent<CinemachineCamera>());
             _equippedWeapon = _weapon != null ? _weapon.GetComponent<Weapon>() : null;
         }
@@ -167,19 +170,23 @@ namespace _App
         private void OnEnable()
         {
             _abilityController?.EnableAllAbilities();
+            _locomotionController?.Enable();
             _input?.Enable();
         }
 
         private void OnDisable()
         {
-            _abilityController?.DisableAllAbilities();
             _input?.Disable();
+            _locomotionController?.Disable();
+            _abilityController?.DisableAllAbilities();
         }
 
         protected virtual void Update()
         {
-            HandleInput();
-            _animationController?.Update();
+            HandleTraversalInput();
+            UpdateMovementIntent();
+            _locomotionController?.Tick(Time.deltaTime);
+            HandleCameraInput();
         }
 
         protected virtual void LateUpdate()
@@ -192,40 +199,32 @@ namespace _App
 
         #region Movement&Camera Inputs
 
-        protected virtual void HandleInput()
+        private void HandleTraversalInput()
         {
             if (_character.IsClimbing() && _input.Move.sqrMagnitude > 0.01f)
             {
                 var ladder = _abilityController.GetAbility<LadderClimbAbility>();
-                
-                ladder.OnClimbInput(_input.Move);
+
+                ladder?.OnClimbInput(_input.Move);
             }
-            
-            var movementDirection = GetMovementDirection();
+        }
 
-            var attacking = _combatControllerBase.IsComboAttack || _combatControllerBase.IsSkillAttack;
-            _character.SetMovementDirection(attacking ? Vector3.zero : movementDirection);
+        private void UpdateMovementIntent()
+        {
+            bool attacking = _combatControllerBase.IsComboAttack || _combatControllerBase.IsSkillAttack;
+            bool switching = _combatControllerBase.IsSwitching;
+            bool faceMoveDirection = attacking &&
+                                     _character.RotationMode == ERotationMode.OrientRotationToMovement;
 
-            if (_character.RotationMode == ERotationMode.OrientRotationToMovement && attacking)
-            {
-                if (movementDirection.sqrMagnitude > 0.01f)
-                {
-                    Quaternion targetRotation =
-                        Quaternion.LookRotation(movementDirection.normalized, _character.GetUpVector());
+            _locomotionController.SetMovementIntent(new PlayerMovementIntent(
+                attacking ? 0.0f : 1.0f,
+                !attacking && !switching,
+                !_combatControllerBase.IsSkillAttack && !switching,
+                faceMoveDirection));
+        }
 
-                    float currentYaw = _character.transform.eulerAngles.y;
-                    float targetYaw = targetRotation.eulerAngles.y;
-
-                    float smoothYaw = Mathf.LerpAngle(
-                        currentYaw,
-                        targetYaw,
-                        Time.deltaTime * 10
-                    );
-
-                    _character.SetYaw(smoothYaw);
-                }
-            }
-
+        private void HandleCameraInput()
+        {
             if (_character.RotationMode != ERotationMode.None)
             {
                 Vector2 lookInput = _input.Look * _mouseSensitivity;
@@ -248,27 +247,6 @@ namespace _App
                     _character.CameraTransform.rotation = Quaternion.Euler(10, 90, 0);
                 }
             }
-        }
-
-
-        private Vector3 GetMovementDirection()
-        {
-            Vector3 movementDirection = Vector3.zero;
-
-            movementDirection += Vector3.right * _input.Move.x;
-
-            if (_character.RotationMode != ERotationMode.None)
-            {
-                movementDirection += Vector3.forward * _input.Move.y;
-
-                if (_character.CameraTransform)
-                {
-                    movementDirection =
-                        movementDirection.relativeTo(_character.CameraTransform, _character.GetUpVector());
-                }
-            }
-
-            return movementDirection;
         }
 
         private void AddControlYawInput(float value, float minValue = -180.0f, float maxValue = 180.0f)
@@ -380,6 +358,7 @@ namespace _App
             }
 
             _combatControllerBase.TryAttack();
+            UpdateMovementIntent();
         }
 
         private void OpenWeaponHitbox()
@@ -414,6 +393,7 @@ namespace _App
                     var ladderClimbAbility = _abilityController.GetAbility<LadderClimbAbility>();
                     ladderClimbAbility?.Climb().Forget();
                 });
+                UpdateMovementIntent();
             }
             else
             {
@@ -428,79 +408,6 @@ namespace _App
             }
         }
 
-        private void Walk(InputSignalPhase phase)
-        {
-            if (_character.IsCrouched())
-            {
-                return;
-            }
-
-            var walkAbility = _abilityController.GetAbility<WalkAbility>();
-
-            switch (phase)
-            {
-                case InputSignalPhase.Started:
-                    walkAbility?.Walk();
-                    _animationController.IsWalking = true;
-                    break;
-
-                case InputSignalPhase.Canceled:
-                    _animationController.IsWalking = false;
-                    walkAbility?.StopWalking();
-                    break;
-            }
-        }
-
-        private void Jump(InputSignalPhase phase)
-        {
-            if (_combatControllerBase.IsComboAttack || _combatControllerBase.IsSkillAttack || _combatControllerBase.IsSwitching ||
-                _character.IsDodging())
-            {
-                return;
-            }
-
-            var glideAbility = _abilityController.GetAbility<GlideAbility>();
-
-            switch (phase)
-            {
-                case InputSignalPhase.Started:
-                    _character?.Jump();
-                    break;
-
-                case InputSignalPhase.Performed when !_character.IsSwimming():
-                    glideAbility?.Glide();
-                    break;
-
-                case InputSignalPhase.Canceled:
-                    glideAbility?.StopGliding();
-                    _character?.StopJumping();
-                    break;
-            }
-        }
-
-        private void Sprint(InputSignalPhase phase)
-        {
-            if (_character.IsCrouched())
-            {
-                return;
-            }
-
-            var sprintAbility = _abilityController.GetAbility<SprintAbility>();
-
-            switch (phase)
-            {
-                case InputSignalPhase.Started:
-                    sprintAbility?.Sprint();
-                    _animationController.IsSprinting = true;
-                    break;
-
-                case InputSignalPhase.Canceled:
-                    _animationController.IsSprinting = false;
-                    sprintAbility?.StopSprinting();
-                    break;
-            }
-        }
-
         private void Pause()
         {
             _character.Pause(!_character.IsPaused);
@@ -508,12 +415,11 @@ namespace _App
 
         public void InverseGravity()
         {
-            if (!_character.IsFalling())
+            if (!_locomotionController.TryInvertGravity())
             {
                 return;
             }
 
-            _character.GravityScale *= -1.0f;
             _cameraRotationOnGravityFlip = _cameraRotationOnGravityFlip >= 0 ? -180 : 0;
             _invertLook = _cameraRotationOnGravityFlip >= 0;
         }
@@ -533,6 +439,7 @@ namespace _App
             }
 
             _combatControllerBase.TryAttack(skillNumber);
+            UpdateMovementIntent();
         }
 
         private void LockOn()
@@ -540,33 +447,10 @@ namespace _App
             _targetLockSystem.AcquireTarget(_character.SetRotationMode);
         }
 
-        private void Dodge()
+        private void OnDodgeAccepted()
         {
-            if (_character.IsSwimming() || _character.IsFalling() || _combatControllerBase.IsSkillAttack ||
-                _combatControllerBase.IsSwitching)
-            {
-                return;
-            }
-
-            var dodgeAbility = _abilityController.GetAbility<DodgeAbility>();
-            if (dodgeAbility.IsDodgeAllowed())
-            {
-                _combatControllerBase.InterruptCombo();
-
-                var movementDirection = GetMovementDirection();
-
-                bool isDodgingBack = _input.Move.y < -0.5f &&
-                                     _character.RotationMode == ERotationMode.OrientToViewAndMovement;
-
-                if (movementDirection.sqrMagnitude > 0.01f && !isDodgingBack)
-                {
-                    Quaternion targetRotation =
-                        Quaternion.LookRotation(movementDirection.normalized, _character.GetUpVector());
-                    _character.SetYaw(targetRotation.eulerAngles.y);
-                }
-
-                dodgeAbility.Dodge(isDodgingBack ? AnimationHashes.RollBack : AnimationHashes.RollFront);
-            }
+            _combatControllerBase.InterruptCombo();
+            UpdateMovementIntent();
         }
 
         private void SwitchCombatState()
@@ -577,6 +461,7 @@ namespace _App
             }
 
             _combatControllerBase?.ToggleWeaponAsync(EWeaponType.TwoHanded, WeaponHandler).Forget();
+            UpdateMovementIntent();
         }
         
         private void WeaponHandler()

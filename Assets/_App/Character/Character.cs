@@ -1647,7 +1647,7 @@ namespace _App
         
         private void OnLateFixedUpdate()
         {
-            Simulate(Time.deltaTime);
+            Simulate(Time.fixedDeltaTime);
         }
         
         public void Pause(bool pause, bool clearState = true, bool useAutoUnpause = false, float pauseDuration = 0f)

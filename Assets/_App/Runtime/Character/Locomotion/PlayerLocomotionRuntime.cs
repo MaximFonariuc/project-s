@@ -1,0 +1,12 @@
+using UnityEngine;
+
+namespace _App
+{
+    public sealed class PlayerLocomotionRuntime
+    {
+        internal Vector3 RawMoveDirection { get; set; }
+        internal Vector3 EffectiveMoveDirection { get; set; }
+        internal PlayerSpeedMode SpeedMode { get; set; } = PlayerSpeedMode.Run;
+        internal bool DodgeBackwards { get; set; }
+    }
+}

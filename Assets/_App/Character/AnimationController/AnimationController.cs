@@ -25,7 +25,12 @@ namespace _App
         public bool IsSprinting
         {
 	        get => _currentMovementType == (int)EAnimationMoveMode.Sprinting;
-	        set => _currentMovementType = value ? 3 : 2;
+            set => _currentMovementType = value ? 3 : 2;
+        }
+
+        public void SetMovementMode(EAnimationMoveMode movementMode)
+        {
+            _currentMovementType = (int)movementMode;
         }
 
         public AnimationController(Character character, Animator animator)
@@ -74,11 +79,6 @@ namespace _App
             }
             else
             {
-                var fallingDuration = Animator.GetFloat(AnimationHashes.FallingDuration);
-                if (_character.IsGrounded() && fallingDuration <= -7)
-                {
-                    _character.Pause(true, true, true, fallingDuration <= -10 ? 1f : 0.5f);
-                }
                 SetFloat(AnimationHashes.FallingDuration, 0);
             }
 

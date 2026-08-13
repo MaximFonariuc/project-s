@@ -9,7 +9,7 @@ namespace _App
 
         public override IAbility CreateAbilityInstance(Character character, AnimationController animationController)
         {
-            var ability = new WalkAbility(character, _maxWalkSpeed);
+            var ability = new WalkAbility(_maxWalkSpeed);
             return ability;
         }
     }

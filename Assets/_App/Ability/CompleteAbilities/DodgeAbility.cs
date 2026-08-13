@@ -5,38 +5,35 @@ namespace _App
     public class DodgeAbility : IAbility
     {
         private readonly Character _character;
-        private readonly AnimationController _animationController;
         private readonly bool _canEverDodge;
         private readonly float _dodgeImpulse;
+        private readonly float _dodgeDuration;
 
         private float _dodgingTime;
         private bool _dodgeInputPressed;
 
-        private int _currentDodgeAnimHash;
-
         public bool IsDodging => _character.MovementMode == EMovementMode.Custom && _character.CustomMovement == (int)ECustomMovementMode.Dodging;
 
-        public DodgeAbility(Character character, 
-            AnimationController animationController, 
+        public DodgeAbility(
+            Character character,
             bool canEverDodge, 
-            float dodgeImpulse)
+            float dodgeImpulse,
+            float dodgeDuration)
         {
             _character = character;
-            _animationController = animationController;
             _canEverDodge = canEverDodge;
             _dodgeImpulse = dodgeImpulse;
+            _dodgeDuration = Mathf.Max(0.01f, dodgeDuration);
         }
 
         public bool CanDoDodge() => !IsDodging;
 
-        public void Dodge(int dodgeAnimationHash)
+        public void Dodge()
         {
             if (!CanDoDodge())
                 return;
 
             _dodgeInputPressed = true;
-
-            _currentDodgeAnimHash = dodgeAnimationHash;
         }
 
         public bool IsDodgeAllowed()
@@ -44,7 +41,7 @@ namespace _App
             if (_character.IsCrouched())
                 return false;
 
-            return _canEverDodge && (_character.IsWalking() || !_character.IsFalling());
+            return _canEverDodge && _character.IsWalking();
         }
 
         private void DoDodge()
@@ -57,19 +54,17 @@ namespace _App
                 dodgeDirection = _character.GetForwardVector();
             }
 
-            Vector3 dodgeDirection2D = dodgeDirection.OnlyXZ().normalized;
+            Vector3 dodgeDirection2D = Vector3.ProjectOnPlane(dodgeDirection, _character.GetUpVector()).normalized;
 
             _character.SetVelocity(dodgeDirection2D * _dodgeImpulse);
-
-            _animationController?.CrossFade(_currentDodgeAnimHash, 0.1f, AnimationController.BASE_LAYER_INDEX);
         }
         
         private void ResetDodgeState()
         {
             _dodgingTime = 0f;
             _dodgeInputPressed = false;
-            _currentDodgeAnimHash = 0;
-            _character.SetMovementMode(EMovementMode.Falling);
+            _character.SetMovementMode(
+                _character.IsGrounded() ? EMovementMode.Walking : EMovementMode.Falling);
         }
 
         private void DodgingMovementMode(float deltaTime)
@@ -77,9 +72,7 @@ namespace _App
             _character.SetMovementDirection(Vector3.zero);
             _dodgingTime += deltaTime;
 
-            float dodgeAnimLength = _animationController.GetAnimationClipLength(_currentDodgeAnimHash);
-
-            if (_dodgingTime >= dodgeAnimLength * 0.5f)
+            if (_dodgingTime >= _dodgeDuration)
             {
                 ResetDodgeState();
             }
