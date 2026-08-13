@@ -16,7 +16,7 @@ namespace _App
         private const int MaxBufferSize = 128;
 
         private readonly IPlayerInput _input;
-        private readonly Character _character;
+        private readonly IPlayerTargetingActor _actor;
         private readonly ICameraOrientation _camera;
         private readonly LayerMask _targetMask;
         private readonly HashSet<int> _visitedTargets = new HashSet<int>();
@@ -39,19 +39,17 @@ namespace _App
 
         public PlayerTargetingController(
             IPlayerInput input,
-            Character character,
+            IPlayerTargetingActor actor,
             ICameraOrientation camera)
         {
             _input = input ?? throw new ArgumentNullException(nameof(input));
-            _character = character != null
-                ? character
-                : throw new ArgumentNullException(nameof(character));
+            _actor = actor ?? throw new ArgumentNullException(nameof(actor));
             _camera = camera ?? throw new ArgumentNullException(nameof(camera));
             _targetMask = LayerMask.GetMask("Enemy");
 
             if (_targetMask.value == 0)
             {
-                Debug.LogError("Player targeting requires an Enemy physics layer.", _character);
+                Debug.LogError("Player targeting requires an Enemy physics layer.", _actor.Root);
             }
         }
 
@@ -92,7 +90,7 @@ namespace _App
             }
 
             float maxDistanceSqr = MaxLockDistance * MaxLockDistance;
-            if ((CurrentTarget.position - _character.transform.position).sqrMagnitude > maxDistanceSqr)
+            if ((CurrentTarget.position - _actor.Position).sqrMagnitude > maxDistanceSqr)
             {
                 ClearTarget();
             }
@@ -116,9 +114,9 @@ namespace _App
                 return false;
             }
 
-            _rotationModeBeforeLock = _character.RotationMode;
+            _rotationModeBeforeLock = _actor.RotationMode;
             SetTarget(target, targetCollider);
-            _character.SetRotationMode(ERotationMode.OrientToViewAndMovement);
+            _actor.SetRotationMode(ERotationMode.OrientToViewAndMovement);
             return true;
         }
 
@@ -150,9 +148,9 @@ namespace _App
             _hasTarget = false;
             CurrentTarget = null;
             _currentTargetCollider = null;
-            if (_character.RotationMode == ERotationMode.OrientToViewAndMovement)
+            if (_actor.RotationMode == ERotationMode.OrientToViewAndMovement)
             {
-                _character.SetRotationMode(_rotationModeBeforeLock);
+                _actor.SetRotationMode(_rotationModeBeforeLock);
             }
             TargetChanged?.Invoke(null);
         }
@@ -258,7 +256,7 @@ namespace _App
             while (true)
             {
                 int hits = Physics.OverlapSphereNonAlloc(
-                    _character.transform.position,
+                    _actor.Position,
                     MaxLockDistance,
                     _overlapBuffer,
                     _targetMask,
@@ -289,12 +287,12 @@ namespace _App
                     aimCollider = candidateCollider;
                 }
 
-                return target != _character.transform;
+                return target != _actor.Root;
             }
 
             target = candidateCollider.transform.root;
             aimCollider = candidateCollider;
-            return target != null && target != _character.transform;
+            return target != null && target != _actor.Root;
         }
 
         private float HorizontalViewPosition(Vector3 worldPosition)

@@ -16,13 +16,13 @@ namespace _App
         private float _headLookY;
 
         public PlayerCameraAnimationAdapter(
-            Character character,
+            IPlayerActorTransform actor,
             Animator animator,
             AnimationController animation)
         {
-            _characterTransform = character != null
-                ? character.transform
-                : throw new ArgumentNullException(nameof(character));
+            _characterTransform = actor?.Root != null
+                ? actor.Root
+                : throw new ArgumentNullException(nameof(actor));
             _animator = animator != null
                 ? animator
                 : throw new ArgumentNullException(nameof(animator));

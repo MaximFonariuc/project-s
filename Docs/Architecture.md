@@ -15,7 +15,7 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 
 ## Выделенные сущности и владельцы состояния
 
-- **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references и временным координатором traversal. Он больше не владеет locomotion, camera, targeting и combat state.
+- **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references и временным координатором traversal. `PlayerActorAdapter` изолирует новые Camera, Targeting и Combat от большого legacy-класса `Character` через consumer-specific порты.
 - **Player Locomotion** — `PlayerLocomotionController` владеет semantic movement intent и машиной `Idle / Run / Jump / Fall / Dodge`. `CharacterMotor` является портом к существующим `Character` и `CharacterMovement`, не переписывая проверенную collision physics.
 - **Player Input** — gameplay зависит от project-specific порта `IPlayerInput`. `PlayerInputAdapter` переводит сигналы независимого `IInputService` в семантические команды игрока, а `UnityInputSource` остаётся инфраструктурной деталью composition root.
 - **Combatant vitality** — `Health` является единственным владельцем текущего здоровья и публикует подтверждённые события damage/death.
@@ -28,7 +28,7 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 
 ## Composition
 
-`GameLifetimeScope` — composition root gameplay-сцены. Он владеет scoped input adapter, Player Locomotion, Player Targeting, Player Camera, Player Combat, locomotion state machine и инъекцией `ThirdPersonController`. Локальные ссылки prefab/scene остаются serialized references.
+`GameLifetimeScope` — composition root gameplay-сцены. Он регистрирует input boundary и делегирует player wiring в `PlayerComposition`; Camera, Targeting, Combat и Locomotion имеют отдельные composition-блоки внутри той же Composition-области. Регистрации не просачиваются в gameplay-код, а локальные prefab/scene ссылки остаются serialized references.
 
 Input выделен в независимый first-party module boundary. Его class trees и зависимости описаны в `Assets/_App/Modules/Input/Documentation~`, а Project S adapter — в `Docs/Architecture/Input.Player.md`.
 
@@ -39,5 +39,7 @@ Player Locomotion, его class tree, state graph и ограничения за
 Player Camera и Player Targeting описаны раздельно в `Docs/Architecture/Player.Camera.md` и `Docs/Architecture/Player.Targeting.md`.
 
 Player Combat, его phase graph, input buffer и зависимости описаны в `Docs/Architecture/Player.Combat.md`.
+
+Anti-corruption boundary между feature controllers и legacy `Character`, а также дерево player composition описаны в `Docs/Architecture/Player.ActorBoundary.md`.
 
 `Assets/Scenes/Demo Scene.unity` сохраняется как reference-сцена без переноса её содержимого. Рабочая сцена находится в `Assets/_Game/Scenes/PrototypeArena.unity` и является стартовой сценой разработки.

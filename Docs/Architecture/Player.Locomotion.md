@@ -87,8 +87,8 @@ classDiagram
     }
     class PlayerLocomotionAnimationAdapter
     class AnimationController
-    class GameLifetimeScope {
-        <<composition root>>
+    class PlayerLocomotionComposition {
+        <<composition>>
     }
 
     PlayerLocomotionController --> IPlayerInput
@@ -108,9 +108,9 @@ classDiagram
     PlayerLocomotionState <|-- PlayerJumpState
     PlayerLocomotionState <|-- PlayerFallState
     PlayerLocomotionState <|-- PlayerDodgeState
-    GameLifetimeScope ..> PlayerLocomotionController : constructs
-    GameLifetimeScope ..> CharacterMotor : constructs
-    GameLifetimeScope ..> IStateMachine~PlayerLocomotionStateId~ : constructs
+    PlayerLocomotionComposition ..> PlayerLocomotionController : constructs
+    PlayerLocomotionComposition ..> CharacterMotor : constructs
+    PlayerLocomotionComposition ..> IStateMachine~PlayerLocomotionStateId~ : constructs
 ```
 
 ## Состояния
@@ -161,7 +161,7 @@ flowchart LR
 
 ## Lifecycle и ownership
 
-`GameLifetimeScope` регистрирует один scoped-набор motor/controller/runtime/state machine для активного Player. `ThirdPersonController` остаётся Unity-host для serialized references и временным координатором traversal; Combat и Camera используют отдельные scoped controllers.
+`PlayerLocomotionComposition`, вызванный единственным `GameLifetimeScope`, регистрирует один scoped-набор motor/controller/runtime/state machine для активного Player. `ThirdPersonController` остаётся Unity-host для serialized references и временным координатором traversal; Combat и Camera используют отдельные scoped controllers.
 
 `PlayerLocomotionController.Enable` только подписывает semantic input. Первый motor snapshot и запуск state machine происходят в первом `Tick`, после завершения `Awake` Unity-компонентов. `Disable` симметрично снимает callbacks, освобождает jump/glide, сбрасывает speed mode и останавливает state machine.
 

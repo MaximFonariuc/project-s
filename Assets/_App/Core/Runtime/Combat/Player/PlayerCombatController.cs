@@ -18,7 +18,7 @@ namespace _App
         private const float AnimationStateTimeout = 2.0f;
 
         private readonly IPlayerInput _input;
-        private readonly Character _character;
+        private readonly IPlayerCombatActor _actor;
         private readonly IPlayerLocomotionEvents _locomotionEvents;
         private readonly IPlayerCombatAnimation _animation;
         private readonly IPlayerWeaponRig _weaponRig;
@@ -52,7 +52,7 @@ namespace _App
                 bool attacking = Phase is PlayerCombatPhase.ComboAttack or PlayerCombatPhase.SkillAttack;
                 bool switching = Phase == PlayerCombatPhase.WeaponSwitch;
                 bool faceMoveDirection = attacking &&
-                                         _character.RotationMode == ERotationMode.OrientRotationToMovement;
+                                         _actor.RotationMode == ERotationMode.OrientRotationToMovement;
 
                 return new PlayerMovementIntent(
                     attacking ? 0.0f : 1.0f,
@@ -64,7 +64,7 @@ namespace _App
 
         internal PlayerCombatController(
             IPlayerInput input,
-            Character character,
+            IPlayerCombatActor actor,
             IPlayerLocomotionEvents locomotionEvents,
             IPlayerCombatAnimation animation,
             IPlayerWeaponRig weaponRig,
@@ -73,9 +73,7 @@ namespace _App
             ECharacterType characterType)
         {
             _input = input ?? throw new ArgumentNullException(nameof(input));
-            _character = character != null
-                ? character
-                : throw new ArgumentNullException(nameof(character));
+            _actor = actor ?? throw new ArgumentNullException(nameof(actor));
             _locomotionEvents = locomotionEvents ?? throw new ArgumentNullException(nameof(locomotionEvents));
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _weaponRig = weaponRig ?? throw new ArgumentNullException(nameof(weaponRig));
@@ -123,7 +121,7 @@ namespace _App
 
         public bool TryAttack(ESkillType skillType = ESkillType.Default)
         {
-            if (!_enabled || !_character.CanAttack() || Phase == PlayerCombatPhase.WeaponSwitch)
+            if (!_enabled || !_actor.CanAttack || Phase == PlayerCombatPhase.WeaponSwitch)
             {
                 return false;
             }
@@ -148,7 +146,7 @@ namespace _App
         public async UniTask<bool> ToggleWeaponAsync(EWeaponType targetWeapon)
         {
             if (!_enabled || targetWeapon == EWeaponType.None || Phase != PlayerCombatPhase.Ready ||
-                _character.IsFalling())
+                _actor.IsFalling)
             {
                 return false;
             }
@@ -206,7 +204,7 @@ namespace _App
             }
             catch (Exception exception)
             {
-                Debug.LogException(exception, _character);
+                Debug.LogException(exception, _actor.Root);
                 return false;
             }
             finally
@@ -257,7 +255,7 @@ namespace _App
             }
             catch (Exception exception)
             {
-                Debug.LogException(exception, _character);
+                Debug.LogException(exception, _actor.Root);
             }
             finally
             {
@@ -407,7 +405,7 @@ namespace _App
                 {
                     Debug.LogError(
                         $"Combat animation state '{stateName}' was not entered within {AnimationStateTimeout:0.0}s.",
-                        _character);
+                        _actor.Root);
                     return false;
                 }
 

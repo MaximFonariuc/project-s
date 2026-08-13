@@ -40,25 +40,27 @@ classDiagram
         +Forward Vector3
         +Right Vector3
     }
-    class Character {
-        <<player actor>>
+    class IPlayerTargetingActor {
+        <<actor port>>
+        +Position Vector3
+        +Root Transform
         +RotationMode ERotationMode
         +SetRotationMode(mode)
     }
     class PlayerCameraController {
         <<state consumer>>
     }
-    class GameLifetimeScope {
-        <<composition root>>
+    class PlayerTargetingComposition {
+        <<composition>>
     }
 
     IPlayerTargetingCommands <|.. PlayerTargetingController
     IPlayerTargetingState <|.. PlayerTargetingController
     PlayerTargetingController --> IPlayerInput
     PlayerTargetingController --> ICameraOrientation
-    PlayerTargetingController --> Character
+    PlayerTargetingController --> IPlayerTargetingActor
     PlayerCameraController --> IPlayerTargetingState
-    GameLifetimeScope ..> PlayerTargetingController : constructs
+    PlayerTargetingComposition ..> PlayerTargetingController : constructs
 ```
 
 ## Выбор цели
@@ -82,12 +84,15 @@ flowchart LR
     Input["LockOn semantic command"] --> Targeting["PlayerTargetingController"]
     CameraView["ICameraOrientation"] --> Targeting
     Physics["Enemy layer query"] --> Targeting
+    Actor["IPlayerTargetingActor"] --> Targeting
     Targeting --> State["IPlayerTargetingState"]
     State --> Camera["PlayerCameraController"]
     State -.-> Combat["Future combat consumer"]
 ```
 
 Targeting зависит от read-only camera orientation, но камера зависит только от read-only targeting state. Ни один controller не получает concrete-тип другого через constructor, поэтому нет циклической зависимости.
+
+Доступ к игроку ограничен `IPlayerTargetingActor`: controller читает позицию и может изменить только rotation policy. Concrete `Character` скрыт за `PlayerActorAdapter`; составные colliders целей по-прежнему разрешаются до их корневого `Character` как часть target selection.
 
 Старые `PlayerTargetLockSystem` и дублирующий `TargetLockSystem`, которые напрямую меняли `CinemachineCamera.LookAt` и использовали `Camera.main`, удалены. Enemy targeting пока сохраняет отдельную legacy-ветку `TargetLockSystemBase`; её рефакторинг не входит в player camera scope.
 

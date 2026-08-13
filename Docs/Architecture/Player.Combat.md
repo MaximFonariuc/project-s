@@ -2,7 +2,7 @@
 
 ## Ответственность
 
-Player Combat владеет подтверждённым боевым состоянием игрока: текущей фазой, экипированным оружием, combo index, input buffer, cooldown навыков и hit window. Он принимает семантические команды и выдаёт ограниченный `PlayerMovementIntent`, но не двигает `Character`, не читает устройства ввода и не меняет Animator или collider напрямую.
+Player Combat владеет подтверждённым боевым состоянием игрока: текущей фазой, экипированным оружием, combo index, input buffer, cooldown навыков и hit window. Он принимает семантические команды и выдаёт ограниченный `PlayerMovementIntent`, но не зависит напрямую от `Character`, не читает устройства ввода и не меняет Animator или collider напрямую.
 
 Текущая реализация сохраняет существующие `AnimationsData`, Animator Controller и настроенные prefab references. Это рефакторинг runtime ownership, а не замена игровых анимаций или создание новой attack authoring model.
 
@@ -70,8 +70,14 @@ classDiagram
         +UnscaledTime float
     }
     class UnityCombatClock
-    class GameLifetimeScope {
-        <<composition root>>
+    class IPlayerCombatActor {
+        <<actor gate port>>
+        +CanAttack bool
+        +IsFalling bool
+        +RotationMode ERotationMode
+    }
+    class PlayerCombatComposition {
+        <<composition>>
     }
 
     IPlayerCombatCommands <|.. PlayerCombatController
@@ -82,11 +88,12 @@ classDiagram
     PlayerCombatController --> IPlayerCombatAnimation
     PlayerCombatController --> IPlayerWeaponRig
     PlayerCombatController --> ICombatClock
+    PlayerCombatController --> IPlayerCombatActor
     IPlayerCombatAnimation <|.. PlayerCombatAnimationAdapter
     IPlayerWeaponRig <|.. PlayerWeaponRig
     PlayerWeaponRig --> Weapon
     ICombatClock <|.. UnityCombatClock
-    GameLifetimeScope ..> PlayerCombatController : constructs
+    PlayerCombatComposition ..> PlayerCombatController : constructs
 ```
 
 ## Фазы и переходы
@@ -143,6 +150,8 @@ Gameplay не получает damage из animation event. Hit window вычи�
 ## Locomotion и targeting
 
 Combat не вызывает motor. `IPlayerCombatState.MovementIntent` ограничивает translation/jump/dodge и передаётся в `PlayerLocomotionController` через Unity-host. Успешный dodge публикуется узким `IPlayerLocomotionEvents` и прерывает combo/skill.
+
+Combat gates читаются через `IPlayerCombatActor`; controller не получает весь public API legacy `Character`. Реализация порта остаётся тонким `PlayerActorAdapter` без собственного runtime state.
 
 Targeting не является зависимостью Combat на этом этапе. Когда появятся направленные атаки и target assistance, Combat должен читать `IPlayerTargetingState`, но не менять target и не управлять камерой.
 

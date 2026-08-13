@@ -66,11 +66,16 @@ classDiagram
     class PlayerCameraAnimationAdapter {
         <<animation adapter>>
     }
+    class IPlayerActorTransform {
+        <<actor read port>>
+        +Root Transform
+        +Forward Vector3
+    }
     class CameraRelativeMovementReference {
         <<locomotion adapter>>
     }
-    class GameLifetimeScope {
-        <<composition root>>
+    class PlayerCameraComposition {
+        <<composition>>
     }
 
     IPlayerCameraCommands <|.. PlayerCameraController
@@ -79,12 +84,14 @@ classDiagram
     PlayerCameraController --> IPlayerTargetingState
     PlayerCameraController --> IPlayerCameraRig
     PlayerCameraController --> IPlayerCameraPresentation
+    PlayerCameraController --> IPlayerActorTransform
     ICameraOrientation <|-- IPlayerCameraRig
     IPlayerCameraRig <|.. CinemachineCameraRig
     IPlayerCameraPresentation <|.. PlayerCameraAnimationAdapter
+    PlayerCameraAnimationAdapter --> IPlayerActorTransform
     CameraRelativeMovementReference --> ICameraOrientation
-    GameLifetimeScope ..> CinemachineCameraRig : constructs
-    GameLifetimeScope ..> PlayerCameraController : constructs
+    PlayerCameraComposition ..> CinemachineCameraRig : constructs
+    PlayerCameraComposition ..> PlayerCameraController : constructs
 ```
 
 ## Поток данных
@@ -105,13 +112,14 @@ flowchart LR
 - Input передаёт семантические значения; controller не знает о keyboard, mouse, gamepad или binding path.
 - Targeting публикует read-only state. Камера не запускает physics query и не выбирает цель.
 - Locomotion читает только `ICameraOrientation`; зависимость от `Character.CameraTransform` устранена.
+- Camera controller и head-look adapter читают actor только через `IPlayerActorTransform`; combat/traversal API класса `Character` им недоступен.
 - Combat в будущем сможет задавать временный framing через `IPlayerCameraCommands`, не получая доступ к Cinemachine.
 
 ## Режимы и lifecycle
 
 `FreeLook` интегрирует look input в yaw/pitch с ограничением pitch. `TargetLock` плавно ориентирует follow target на `AimPosition`. При потере цели controller автоматически возвращается в `FreeLook`.
 
-Camera rig создаётся `GameLifetimeScope` из существующих serialized-ссылок `ThirdPersonController`. Имена полей сохранены, поэтому prefab и сцена не требуют миграции. При уничтожении scope runtime-экземпляр Cinemachine camera удаляется через `IDisposable`.
+Camera rig регистрируется `PlayerCameraComposition` из существующих serialized-ссылок `ThirdPersonController`, а сам composition-блок вызывается единственным `GameLifetimeScope`. Имена полей сохранены, поэтому prefab и сцена не требуют миграции. При уничтожении scope runtime-экземпляр Cinemachine camera удаляется через `IDisposable`.
 
 Поворот, zoom, FOV и shoulder interpolation используют unscaled delta time: камера остаётся отзывчивой во время hit stop. Head-look animation использует scaled delta time и замораживается вместе с gameplay presentation.
 

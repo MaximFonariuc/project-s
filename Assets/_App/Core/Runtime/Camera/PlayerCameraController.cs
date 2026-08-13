@@ -15,7 +15,7 @@ namespace _App
         private const float DefaultRecenterPitch = 10.0f;
 
         private readonly IPlayerInput _input;
-        private readonly Character _character;
+        private readonly IPlayerActorTransform _actor;
         private readonly IPlayerCameraRig _rig;
         private readonly IPlayerTargetingState _targeting;
         private readonly IPlayerCameraPresentation _presentation;
@@ -43,16 +43,14 @@ namespace _App
 
         public PlayerCameraController(
             IPlayerInput input,
-            Character character,
+            IPlayerActorTransform actor,
             IPlayerCameraRig rig,
             IPlayerTargetingState targeting,
             IPlayerCameraPresentation presentation,
             PlayerCameraSettings settings)
         {
             _input = input ?? throw new ArgumentNullException(nameof(input));
-            _character = character != null
-                ? character
-                : throw new ArgumentNullException(nameof(character));
+            _actor = actor ?? throw new ArgumentNullException(nameof(actor));
             _rig = rig ?? throw new ArgumentNullException(nameof(rig));
             _targeting = targeting ?? throw new ArgumentNullException(nameof(targeting));
             _presentation = presentation ?? throw new ArgumentNullException(nameof(presentation));
@@ -158,7 +156,7 @@ namespace _App
 
         public void Recenter()
         {
-            Vector3 forward = Vector3.ProjectOnPlane(_character.transform.forward, Vector3.up);
+            Vector3 forward = Vector3.ProjectOnPlane(_actor.Forward, Vector3.up);
             if (forward.sqrMagnitude <= 0.0001f)
             {
                 return;
