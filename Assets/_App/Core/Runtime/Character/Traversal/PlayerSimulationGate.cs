@@ -52,7 +52,6 @@ namespace _App
             _disposed = true;
             _lockCount = 0;
             _pauseRequested = false;
-            ApplyState();
         }
 
         private void ReleasePause()

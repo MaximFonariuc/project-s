@@ -36,6 +36,7 @@ namespace _App
             }
 
             _input.PauseRequested -= Toggle;
+            _simulation.SetPaused(false);
             _enabled = false;
         }
 

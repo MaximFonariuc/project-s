@@ -141,6 +141,8 @@ sequenceDiagram
 - traversal получает disposable lease на время sheathe;
 - фактическая симуляция возобновляется только когда request снят и все leases освобождены.
 
+При обычном `Disable` pause controller снимает persistent request до разрушения Unity-компонентов, а traversal освобождает свои leases. `PlayerSimulationGate.Dispose` только инвалидирует scoped state и не вызывает `Character.Pause`: к моменту container teardown Unity уже может уничтожить `CharacterMovement`.
+
 Это предотвращает ситуацию, когда завершение traversal случайно снимает паузу, установленную другим владельцем. Глобальный pause menu в будущем должен иметь отдельный owner времени и action maps; текущий gate не следует расширять до глобального service locator.
 
 ## Gravity inversion
