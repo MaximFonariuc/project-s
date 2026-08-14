@@ -105,6 +105,26 @@ def load_binding_scan(database_root: Path) -> dict[str, dict]:
     return {item["animationId"]: item for item in scan}
 
 
+def apply_catalog(rows: list[dict[str, str]], database_root: Path) -> None:
+    catalog_path = database_root / "player_animation_catalog.json"
+    if not catalog_path.is_file():
+        return
+    catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+    entries = {entry["AnimationID"]: entry for entry in catalog.get("entries", [])}
+    for row in rows:
+        entry = entries.get(row.get("AnimationID", ""))
+        if not entry:
+            continue
+        row["_CatalogRelativeFolder"] = entry["RelativeFolder"]
+        row["_CatalogFileStem"] = entry["FileStem"]
+        row["_CatalogCategory"] = entry["CatalogCategory"]
+        row["_CatalogType"] = entry["CatalogType"]
+        row["_ClassificationSource"] = entry["ClassificationSource"]
+        row["_CatalogEvidence"] = entry["Evidence"]
+        row["_ReviewStatus"] = entry["ReviewStatus"]
+        row["_IDBank"] = entry["IDBank"]
+
+
 def standalone_rows(rows: list[dict[str, str]], scan_by_id: dict[str, dict]) -> list[dict[str, str]]:
     result = []
     for row in canonical_rows(rows):
@@ -119,22 +139,26 @@ def artifact_paths(library_root: Path, config: dict, row: dict[str, str]) -> dic
     conversion_root = resolve_from_library(library_root, config["conversion"]["phase5_output"])
     retarget_root = resolve_from_library(library_root, config["retarget"]["phase7_output"])
     export_root = resolve_from_library(library_root, config["fbx_export"]["phase8_output"])
-    action_folder = safe_name(row.get("ActionType", ""), "Unknown")
-    variant = safe_name(
-        row.get("ActionVariant", ""),
-        safe_name(row.get("FriendlyName", ""), animation_id),
-    )
-    file_stem = f"Player_{action_folder}_{variant}__{row['LibraryID']}"
+    relative_folder = row.get("_CatalogRelativeFolder", "")
+    file_stem = row.get("_CatalogFileStem", "")
+    if not relative_folder or not file_stem:
+        relative_folder = safe_name(row.get("ActionType", ""), "Unknown")
+        variant = safe_name(
+            row.get("ActionVariant", ""),
+            safe_name(row.get("FriendlyName", ""), animation_id),
+        )
+        file_stem = f"Player_{relative_folder}_{variant}__{row['LibraryID']}"
+    export_folder = export_root / Path(relative_folder)
     return {
         "hkx": (library_root / row["OriginalPath"]).resolve(),
         "convertedBlend": conversion_root / animation_id / f"{animation_id}.blend",
         "conversionMetadata": conversion_root / animation_id / f"{animation_id}.conversion.json",
         "retargetedBlend": retarget_root / animation_id / f"{animation_id}.blend",
         "retargetMetadata": retarget_root / animation_id / f"{animation_id}.retarget.json",
-        "fbx": export_root / action_folder / f"{file_stem}.fbx",
-        "exportReceipt": export_root / action_folder / f"{file_stem}.export.json",
-        "fbxValidation": export_root / action_folder / f"{file_stem}.validation.json",
-        "contract": export_root / action_folder / f"{file_stem}.animlib.json",
+        "fbx": export_folder / f"{file_stem}.fbx",
+        "exportReceipt": export_folder / f"{file_stem}.export.json",
+        "fbxValidation": export_folder / f"{file_stem}.validation.json",
+        "contract": export_folder / f"{file_stem}.animlib.json",
     }
 
 
@@ -378,6 +402,12 @@ def build_contract(
         "ActionType": row.get("ActionType", "Unknown"),
         "ActionVariant": row.get("ActionVariant", "Unknown"),
         "Direction": row.get("Direction", "Unknown"),
+        "CatalogCategory": row.get("_CatalogCategory", "Unsorted"),
+        "CatalogType": row.get("_CatalogType", "Unknown"),
+        "ClassificationSource": row.get("_ClassificationSource", "LegacyFallback"),
+        "Evidence": row.get("_CatalogEvidence", "Catalog entry unavailable"),
+        "ReviewStatus": row.get("_ReviewStatus", "NeedsReview"),
+        "IDBank": row.get("_IDBank", "Unknown"),
         "Loop": row.get("Loop", "").lower() in {"yes", "true", "1"},
         "FrameCount": retarget["frameCount"],
         "FrameRate": retarget["frameRate"],
@@ -396,6 +426,10 @@ def build_contract(
             f"CharacterType:{safe_name(row.get('CharacterType', ''), 'Unknown')}",
             f"SemanticConfidence:{safe_name(row.get('SemanticConfidence', ''), 'Unknown')}",
             f"Source:{row['SourceGame']}",
+            f"Catalog:{safe_name(row.get('_CatalogCategory', ''), 'Unsorted')}",
+            f"CatalogType:{safe_name(row.get('_CatalogType', ''), 'Unknown')}",
+            f"ReviewStatus:{safe_name(row.get('_ReviewStatus', ''), 'NeedsReview')}",
+            f"IDBank:{safe_name(row.get('_IDBank', ''), 'Unknown')}",
         ],
     }
     write_json_atomic(paths["contract"], contract)
@@ -578,6 +612,7 @@ def main() -> int:
     database_root = resolve_from_library(library_root, config["paths"]["database"])
     animations_path = database_root / "animations.csv"
     fields, all_rows = load_csv(animations_path)
+    apply_catalog(all_rows, database_root)
     scan_by_id = load_binding_scan(database_root)
     canonical = canonical_rows(all_rows)
     rows = standalone_rows(all_rows, scan_by_id)

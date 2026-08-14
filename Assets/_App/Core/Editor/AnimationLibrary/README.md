@@ -30,10 +30,17 @@ classDiagram
         -ValidatePhase9Import()
         -ValidateImport(assetPath, guid) ImportResult
     }
+    class AnimationLibraryOrganizer {
+        -Organize()
+        -ApplyCatalogMetadata(metadata, entry)
+        -MoveAsset(source, destination) bool
+    }
 
     AnimationLibraryMetadataReader --> AnimationLibraryImportMetadata : parses and verifies
     AnimationLibraryAssetPostprocessor --> AnimationLibraryMetadataReader : import gate
     AnimationLibraryImportValidator --> AnimationLibraryMetadataReader : validation gate
+    AnimationLibraryOrganizer --> AnimationLibraryImportMetadata : updates catalog metadata
+    AnimationLibraryOrganizer --> AssetDatabase : GUID-safe moves
     AnimationLibraryAssetPostprocessor --> ModelImporter : configures
     AnimationLibraryImportValidator --> ModelImporter : inspects
 ```
@@ -45,5 +52,12 @@ Import flow:
 1. `AnimationLibraryMetadataReader` limits processing to the canonical player import root, parses the contract, and rejects an FBX or normalized Avatar whose SHA-256 differs.
 2. `AnimationLibraryAssetPostprocessor` applies Humanoid/Avatar, excludes the FBX bind-pose prefix from the clip, and applies root-motion and label policies during the matching importer callbacks. A cold project reimport queues one dependent reimport when Unity processes a clip before its Avatar.
 3. `AnimationLibraryImportValidator` reads the expected clip count from the staging manifest, independently checks the imported sub-assets and importer settings, verifies the exact clip range and requires non-constant pose curves in addition to root translation, then writes the Phase 9 receipt consumed by the external pipeline ledger.
+
+Catalog organization:
+
+- `Database/player_animation_catalog.json` is the machine-readable source of the folder and filename mapping.
+- `AnimationLibraryOrganizer` moves each FBX and adjacent contract through `AssetDatabase.MoveAsset`, checks that the GUID did not change, applies catalog labels and writes an organization receipt.
+- Curated identities are filed as `Reviewed`. Automatic folders require explicit TAE evidence. Everything else stays honestly marked `NeedsReview` and is grouped by the first three digits of its animation ID.
+- Filenames start with the original `a000_XXXXXX` ID, then a conservative type token, then the stable `LibraryID`; this makes both ID lookup and provenance visible in the Project window.
 
 The source Avatar is loaded from the contract and is normalized through the same Blender FBX profile as the animation-only exports. Clip semantics are never inferred by the importer; `Probable` and `Unknown` catalog entries remain unverified after a successful technical import.

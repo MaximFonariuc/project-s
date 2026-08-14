@@ -28,6 +28,12 @@ namespace ProjectS.Core.Editor.AnimationLibrary
         public string ActionType;
         public string ActionVariant;
         public string Direction;
+        public string CatalogCategory;
+        public string CatalogType;
+        public string ClassificationSource;
+        public string Evidence;
+        public string ReviewStatus;
+        public string IDBank;
         public bool Loop;
         public int FrameCount;
         public int FrameRate;

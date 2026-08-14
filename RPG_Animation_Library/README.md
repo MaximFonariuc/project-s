@@ -2,7 +2,7 @@
 
 Internal, non-commercial prototype pipeline for cataloging and later retargeting FromSoftware-compatible animation references into Project S.
 
-The authoritative execution specification is stored as `CODEX_FromSoftware_Animation_Pipeline.md`. The current bounded pilot implements Phase 0 through Phase 9; batch processing remains disabled.
+The authoritative execution specification is stored as `CODEX_FromSoftware_Animation_Pipeline.md`. The bounded pilot established Phases 0 through 9; the canonical `c0000/a00_hi` standalone full-body batch has now been processed and technically validated in Unity.
 
 Raw data is not copied into this directory. `config/pipeline.json` maps the logical immutable `01_RAW` sources to the existing `../Elden` folders and archives. Inventory operations only open source files for reading.
 
@@ -95,5 +95,11 @@ python RPG_Animation_Library/scripts/finalize_phase9_unity.py --config RPG_Anima
 Phase 9 evidence is stored in `Database/unity_import_operations.csv`, `Database/phase_9_state.json` and `03_CATALOG/reports/phase_9_status.md`. A PASS proves the bounded technical import and does not promote uncertain semantic labels or approve bulk conversion.
 
 Environment and installed tool versions are documented in `03_CATALOG/reports/environment.md` and `00_Tools/README.md`.
+
+The imported player catalog is organized by curated semantics, explicit TAE evidence and conservative ID-bank fallback. See `03_CATALOG/reports/player_animation_organization.md`, `Database/player_animation_catalog.csv` and `Database/player_animation_catalog.json`. Generate/synchronize it with:
+
+```powershell
+py -3 scripts/organize_player_animation_catalog.py --config config/pipeline.json
+```
 
 Do not rename, overwrite, unpack, or convert files inside the mapped RAW sources.
