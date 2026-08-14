@@ -48,6 +48,7 @@ classDiagram
         -health Health
     }
     class Health {
+        <<temporary prototype>>
         +IsAlive bool
     }
     class IPlayerInput {
@@ -78,7 +79,7 @@ classDiagram
     IPlayerTargetingCommands <|.. PlayerTargetingController
     IPlayerTargetingState <|.. PlayerTargetingController
     ICombatTarget <|.. CombatTarget
-    CombatTarget --> Health : optional availability
+    CombatTarget --> Health : temporary availability
     PlayerTargetingController --> IPlayerInput
     PlayerTargetingController --> ICameraOrientation
     PlayerTargetingController --> IPlayerTargetingActor
@@ -111,7 +112,7 @@ classDiagram
 - `Target Root` — логический корень actor; по умолчанию объект компонента;
 - `Aim Point` — предпочтительная явная точка, например грудь или центр босса;
 - `Aim Collider` — fallback через `bounds.center`, если `Aim Point` не задан;
-- `Health` — опциональный источник доступности. При отсутствии `Health` цель считается доступной, пока компонент активен.
+- `Health` — текущий опциональный prototype-источник доступности. При отсутствии `Health` цель считается доступной, пока компонент активен.
 
 Collider цели должен находиться на physics layer `Enemy`. Для составного body rig достаточно одного `CombatTarget` на общем родителе: все дочерние colliders разрешаются в один `TargetId`.
 
@@ -132,6 +133,8 @@ flowchart LR
 ```
 
 Targeting зависит от read-only camera orientation и узкой actor boundary. Камера и combat получают только `IPlayerTargetingState`. `CombatTarget` адаптирует Unity hierarchy и опциональный `Health` к контракту цели, поэтому selection больше не зависит от concrete `Character`, enemy AI или body-collider implementation.
+
+Concrete-ссылка `CombatTarget -> Health` считается временным техническим долгом prototype flow. При реализации `Character Stats and Resources` она заменяется узким read-only life-state port; `ICombatTarget` и алгоритм выбора цели при этом меняться не должны.
 
 Старые `PlayerTargetLockSystem` и дублирующий `TargetLockSystem`, напрямую управлявшие `CinemachineCamera.LookAt`, удалены. Отдельная legacy-ветка enemy targeting в `TargetLockSystemBase` пока не входит в player targeting flow.
 

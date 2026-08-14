@@ -18,7 +18,7 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 - **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references и делегирует lifecycle/frame ticks scoped-координатору `PlayerActorController`. `PlayerActorAdapter` изолирует Camera, Targeting, Combat и Traversal от большого legacy-класса `Character` через consumer-specific порты.
 - **Player Locomotion** — `PlayerLocomotionController` владеет semantic movement intent и машиной `Idle / Run / Jump / Fall / Dodge`, а также публикует единый immutable `PlayerLocomotionSnapshot`. `CharacterMotor` является портом к существующим `Character` и `CharacterMovement`, не переписывая проверенную collision physics.
 - **Player Input** — gameplay зависит от project-specific порта `IPlayerInput`. `PlayerInputAdapter` переводит сигналы независимого `IInputService` в семантические команды игрока, а `UnityInputSource` остаётся инфраструктурной деталью composition root.
-- **Combatant vitality** — `Health` является единственным владельцем текущего здоровья и публикует подтверждённые события damage/death.
+- **Combatant vitality** — текущий `Health` является временным prototype-owner hit points и публикует подтверждённые события damage/death. Целевая модель разделяет Attributes, Derived Stats, Resources, Modifiers, Costs/Regeneration и узкий Life State; решение зафиксировано в `Docs/Architecture/Character.StatsAndResources.md` и пока не реализуется.
 - **Combat hit resolution** — `Weapon` сообщает только physics-кандидата; scoped `CombatHitResolver` связывает его с action execution, применяет multiplier `Hurtbox`, фильтрует повторную цель и публикует подтверждённый `CombatHitResult`. `Health` остаётся владельцем здоровья.
 - **Player Combat** — scoped `IStateMachine<PlayerCombatPhase>` владеет фазой `Ready / Executing / Recovery / WeaponSwitch / Interrupted`; `PlayerCombatController` координирует semantic commands, action graph, input buffer, cooldown, weapon state и hit window. Внешние consumers используют раздельные `IPlayerCombatCommands` и `IPlayerCombatState`.
 - **Animation presentation** — `PlayerLocomotionAnimationAdapter` и `PlayerCharacterAnimationPresenter` переводят подтверждённый locomotion snapshot в backend-neutral `ICharacterAnimationDriver`. Animator остаётся presentation backend и не владеет gameplay-состоянием.
@@ -59,5 +59,9 @@ Authoring-модель character features и serialization migration описа�
 Anti-corruption boundary между feature controllers и legacy `Character`, а также дерево player composition описаны в `Docs/Architecture/Player.ActorBoundary.md`.
 
 Внутренняя декомпозиция `Character`, fixed-step lifecycle и разрешённые зависимости описаны в `Docs/Architecture/Character.Simulation.md`.
+
+Будущая система характеристик и ресурсов, временный статус `Health` и правила её последующей миграции описаны в `Docs/Architecture/Character.StatsAndResources.md`.
+
+Следующий активный scope после фиксации этого решения — состояния игрока и единая координация animation presentation. Финальные animation clips для этого не требуются.
 
 `Assets/Scenes/Demo Scene.unity` сохраняется как reference-сцена без переноса её содержимого. Рабочая сцена находится в `Assets/_Game/Scenes/PrototypeArena.unity` и является стартовой сценой разработки.

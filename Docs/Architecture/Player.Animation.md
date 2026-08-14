@@ -127,3 +127,9 @@ Combat gameplay не знает о clip references. `PlayerCombatAction` сод�
 ## Вариативность моделей
 
 Humanoid и Generic персонажи используют одинаковый `ICharacterAnimationDriver`. Различия Animator Controller и parameter naming задаются отдельным `MecanimCharacterAnimationProfile`; retargeting, avatar и совместимость clips остаются authoring-ответственностью конкретного character prefab. Новый Playables/backend реализует тот же driver contract и выбирается только в Composition Root.
+
+## Следующий активный scope
+
+Следующая работа возвращается к gameplay states и animation presentation игрока. Требуется определить одного владельца arbitration между Locomotion, Combat, Reaction и Traversal presentation, чтобы независимые adapters не конкурировали за один Animator и корректно восстанавливался предыдущий визуальный state после interruption.
+
+Эта работа не должна зависеть от финальных animation clips и не переносит gameplay authority в Animator. Приоритеты и transitions будут выводиться из подтверждённых gameplay states; конкретная схема фиксируется после аудита текущих adapters и Animator profile.
