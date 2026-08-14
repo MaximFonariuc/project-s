@@ -8,7 +8,14 @@ namespace ProjectS.Core.Editor.AnimationLibrary
 {
     internal static class AnimationLibraryImportValidator
     {
-        private const string MenuPath = "Tools/Project S/Animation Library/Validate Phase 9 Pilot";
+        private const string MenuPath = "Tools/Project S/Animation Library/Validate Phase 9 Import";
+        private const string StagingManifestPath = "RPG_Animation_Library/08_UNITY/phase_9/staging_manifest.json";
+
+        [Serializable]
+        private sealed class StagingManifest
+        {
+            public int importCount;
+        }
 
         [Serializable]
         private sealed class Receipt
@@ -18,6 +25,7 @@ namespace ProjectS.Core.Editor.AnimationLibrary
             public string UnityVersion;
             public string Timestamp;
             public string ImportRoot;
+            public int ExpectedImportCount;
             public ImportResult[] Imports;
         }
 
@@ -48,7 +56,7 @@ namespace ProjectS.Core.Editor.AnimationLibrary
         }
 
         [MenuItem(MenuPath, false, 2300)]
-        private static void ValidatePhase9Pilot()
+        private static void ValidatePhase9Import()
         {
             string[] guids = AssetDatabase.FindAssets("t:Model", new[] { AnimationLibraryMetadataReader.ImportRoot.TrimEnd('/') });
             var results = new List<ImportResult>(guids.Length);
@@ -67,7 +75,8 @@ namespace ProjectS.Core.Editor.AnimationLibrary
                 allPassed &= string.Equals(result.Status, "PASS", StringComparison.Ordinal);
             }
 
-            if (results.Count != 5)
+            int expectedImportCount = ReadExpectedImportCount();
+            if (expectedImportCount <= 0 || results.Count != expectedImportCount)
             {
                 allPassed = false;
             }
@@ -78,6 +87,7 @@ namespace ProjectS.Core.Editor.AnimationLibrary
                 UnityVersion = Application.unityVersion,
                 Timestamp = DateTime.UtcNow.ToString("O"),
                 ImportRoot = AnimationLibraryMetadataReader.ImportRoot,
+                ExpectedImportCount = expectedImportCount,
                 Imports = results.ToArray(),
             };
             string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
@@ -93,6 +103,28 @@ namespace ProjectS.Core.Editor.AnimationLibrary
             else
             {
                 Debug.LogError($"[AnimationLibrary] Phase 9 import validation FAIL. Receipt: {receiptPath}");
+            }
+        }
+
+        private static int ReadExpectedImportCount()
+        {
+            string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
+            string manifestPath = Path.Combine(projectRoot, StagingManifestPath);
+            if (!File.Exists(manifestPath))
+            {
+                Debug.LogError($"[AnimationLibrary] Staging manifest is missing: {manifestPath}");
+                return 0;
+            }
+
+            try
+            {
+                StagingManifest manifest = JsonUtility.FromJson<StagingManifest>(File.ReadAllText(manifestPath));
+                return manifest?.importCount ?? 0;
+            }
+            catch (Exception exception)
+            {
+                Debug.LogError($"[AnimationLibrary] Cannot read staging manifest: {exception.Message}");
+                return 0;
             }
         }
 

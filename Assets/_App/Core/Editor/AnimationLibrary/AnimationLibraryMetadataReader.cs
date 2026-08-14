@@ -7,7 +7,7 @@ namespace ProjectS.Core.Editor.AnimationLibrary
 {
     internal static class AnimationLibraryMetadataReader
     {
-        public const string ImportRoot = "Assets/_Game/Animations/Imported/FromSoftwarePilot/";
+        public const string ImportRoot = "Assets/_Game/Animations/Imported/FromSoftwarePlayer/";
 
         public static bool TryReadForModel(
             string modelAssetPath,

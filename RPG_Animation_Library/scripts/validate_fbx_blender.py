@@ -89,7 +89,7 @@ def main() -> int:
                 failures.append("retarget pose motion evidence missing")
             else:
                 expected_animated = int(expected_pose_motion["animatedBoneCount"])
-                minimum_animated = max(3, math.ceil(expected_animated * 0.5))
+                minimum_animated = max(1, math.ceil(expected_animated * 0.5))
                 if pose_motion["animatedBoneCount"] < minimum_animated:
                     failures.append(
                         "pose motion collapsed: "

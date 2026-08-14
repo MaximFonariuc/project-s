@@ -114,11 +114,24 @@ namespace ProjectS.Core.Editor.AnimationLibrary
             EditorApplication.delayCall += () =>
             {
                 UnityEngine.Object asset = AssetDatabase.LoadMainAssetAtPath(importedAssetPath);
-                if (asset != null)
+                if (asset != null && !LabelsMatch(AssetDatabase.GetLabels(asset), labels))
                 {
                     AssetDatabase.SetLabels(asset, labels);
                 }
             };
+        }
+
+        private static bool LabelsMatch(string[] actual, string[] expected)
+        {
+            actual ??= Array.Empty<string>();
+            expected ??= Array.Empty<string>();
+            if (actual.Length != expected.Length)
+            {
+                return false;
+            }
+
+            var actualLabels = new HashSet<string>(actual, StringComparer.Ordinal);
+            return actualLabels.Count == expected.Length && actualLabels.SetEquals(expected);
         }
 
         private static Avatar LoadAvatar(string avatarAssetPath)

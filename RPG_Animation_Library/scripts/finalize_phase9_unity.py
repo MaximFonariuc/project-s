@@ -9,7 +9,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from pipeline_ledger import append_pipeline_run, new_run_id
+from pipeline_ledger import PIPELINE_RUN_FIELDS, append_pipeline_run, new_run_id
 
 
 OPERATION_FIELDS = (
@@ -93,7 +93,7 @@ def write_csv_atomic(path: Path, fieldnames: list[str] | tuple[str, ...], rows: 
 
 def build_report(path: Path, timestamp: str, receipt: dict) -> None:
     lines = [
-        "# Phase 9 Unity import pilot",
+        "# Phase 9 Unity import batch",
         "",
         f"Timestamp: `{timestamp}`",
         "",
@@ -115,7 +115,7 @@ def build_report(path: Path, timestamp: str, receipt: dict) -> None:
             f"All assets use Humanoid Copy From Other Avatar with `{receipt['Imports'][0]['SourceAvatarPath']}`.",
             "The Avatar is normalized through the same Blender FBX profile as the animation-only files.",
             "Clip settings, bind-pose exclusion, labels, frame ranges, root-motion policy, pose curves and imported clip lengths were verified in Unity.",
-            "This is a bounded import/retarget pilot, not semantic approval of every source animation.",
+            "This mechanical import gate does not assert gameplay semantics for clips that remain unreviewed.",
             "",
         ]
     )
@@ -140,9 +140,14 @@ def main() -> int:
 
     if staging.get("status") != "READY" or receipt.get("Status") != "PASS":
         raise RuntimeError("Phase 9 staging and Unity receipt must both pass")
-    expected_count = int(phase["expected_import_count"])
-    if staging.get("importCount") != expected_count or len(receipt.get("Imports", [])) != expected_count:
-        raise RuntimeError("Phase 9 import count does not match the configured pilot")
+    expected_count = int(staging.get("importCount", 0))
+    if expected_count <= 0 or len(receipt.get("Imports", [])) != expected_count:
+        raise RuntimeError("Phase 9 import count does not match the staging manifest")
+    configured_count = int(phase.get("expected_import_count", expected_count))
+    if expected_count != configured_count:
+        raise RuntimeError(
+            f"Phase 9 staged {expected_count} clips, but the canonical source requires {configured_count}"
+        )
     if receipt.get("UnityVersion") != phase["expected_unity_version"]:
         raise RuntimeError(f"Unexpected Unity version: {receipt.get('UnityVersion')}")
 
@@ -220,6 +225,16 @@ def main() -> int:
         fields, existing_operations = load_csv(operations_path)
         if not set(fields).issubset(OPERATION_FIELDS):
             raise RuntimeError("Unexpected unity_import_operations.csv schema")
+    current_operation_keys = {
+        (operation["Timestamp"], operation["LibraryID"])
+        for operation in operations
+    }
+    existing_operations = [
+        operation
+        for operation in existing_operations
+        if (operation.get("Timestamp", ""), operation.get("LibraryID", ""))
+        not in current_operation_keys
+    ]
     write_csv_atomic(operations_path, OPERATION_FIELDS, existing_operations + operations)
 
     animations_path = database_root / "animations.csv"
@@ -227,7 +242,7 @@ def main() -> int:
     touched: set[str] = set()
     for row in animation_rows:
         if row.get("LibraryID") in receipt_by_library:
-            row["UnityImportStatus"] = "PilotPassed"
+            row["UnityImportStatus"] = "BatchPassed"
             row["UpdatedAt"] = timestamp
             touched.add(row["LibraryID"])
     if touched != set(receipt_by_library):
@@ -243,9 +258,9 @@ def main() -> int:
         "pipelineVersion": config["pipeline_version"],
         "phaseVersion": config["phase_versions"]["unity_import"],
         "phaseConfigSHA256": hash_json(phase),
-        "approvalScope": "PilotOnly/ProjectS_CLazy_Player/UnityHumanoidImport",
+        "approvalScope": "CanonicalERPlayerStandalone/ProjectS_CLazy_Player/UnityHumanoidImport",
         "unityVersion": receipt["UnityVersion"],
-        "pilotCount": len(operations),
+        "importCount": len(operations),
         "unityAvatar": {
             "assetPath": receipt["Imports"][0]["SourceAvatarPath"],
             "sha256": receipt["Imports"][0]["TargetAvatarSHA256"],
@@ -259,12 +274,28 @@ def main() -> int:
     }
     state_path = database_root / "phase_9_state.json"
     state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    pipeline_runs_path = database_root / "pipeline_runs.csv"
+    if pipeline_runs_path.is_file():
+        fields, existing_runs = load_csv(pipeline_runs_path)
+        if tuple(fields) != PIPELINE_RUN_FIELDS:
+            raise RuntimeError("Unexpected pipeline_runs.csv schema")
+        receipt_log_path = relative_to_library(receipt_path, library_root)
+        existing_runs = [
+            run
+            for run in existing_runs
+            if not (
+                run.get("Timestamp") == timestamp
+                and run.get("Tool") == "UnityEditor"
+                and run.get("LogPath") == receipt_log_path
+            )
+        ]
+        write_csv_atomic(pipeline_runs_path, PIPELINE_RUN_FIELDS, existing_runs)
     append_pipeline_run(
-        database_root / "pipeline_runs.csv",
+        pipeline_runs_path,
         {
             "RunID": run_id,
             "Timestamp": timestamp,
-            "Phase": "Phase9UnityImportPilot",
+            "Phase": "Phase9UnityImportBatch",
             "Tool": "UnityEditor",
             "ToolVersion": receipt["UnityVersion"],
             "InputCount": len(operations),

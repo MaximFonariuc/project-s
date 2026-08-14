@@ -156,6 +156,7 @@
     ],
     "repeatability_animation": "a000_019270",
     "minimum_pose_height": 0.45,
+    "minimum_pose_extent": 0.4,
     "maximum_pose_extent": 5.0,
     "rest_height_tolerance": 0.000001,
     "root_translation_tolerance": 0.001
@@ -186,6 +187,7 @@
     ],
     "repeatability_animation": "a000_019270",
     "minimum_pose_height": 0.3,
+    "minimum_pose_extent": 0.5,
     "maximum_pose_extent": 3.0,
     "root_translation_tolerance": 0.00001
   },
@@ -207,13 +209,13 @@
     "root_translation_tolerance": 0.001
   },
   "unity_import": {
-    "pilot_only": true,
+    "pilot_only": false,
     "phase9_input": "07_FBX/phase_8",
     "phase9_output": "08_UNITY/phase_9",
-    "unity_asset_root": "../Assets/_Game/Animations/Imported/FromSoftwarePilot",
+    "unity_asset_root": "../Assets/_Game/Animations/Imported/FromSoftwarePlayer",
     "expected_unity_version": "6000.0.80f1",
-    "expected_import_count": 5,
-    "validation_menu": "Tools/Project S/Animation Library/Validate Phase 9 Pilot"
+    "expected_import_count": 984,
+    "validation_menu": "Tools/Project S/Animation Library/Validate Phase 9 Import"
   },
   "semantic_preview": {
     "source_tae": "02_UNPACKED/EldenVins/mod/chr/c0000-events/c0000-anibnd-dcx-wanibnd/INTERROOT_win64/chr/c0000/tae/a00.tae",
