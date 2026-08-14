@@ -16,6 +16,8 @@ namespace _App
                 throw new InvalidOperationException("Player combat requires an AnimationsData reference.");
             }
 
+            player.CombatAnimations.ValidateConfiguration();
+
             PlayerCombatActionProfile actionProfile = player.CombatActionProfile;
             CombatInputBufferSettings inputBufferSettings = actionProfile != null
                 ? actionProfile.CreateInputBufferSettings()
@@ -37,8 +39,8 @@ namespace _App
                 .As<ICombatHitEvents>();
             builder.Register<IPlayerCombatAnimation>(
                 resolver => new PlayerCombatAnimationAdapter(
-                    resolver.Resolve<PlayerAnimationCoordinator>(),
                     resolver.Resolve<MecanimCharacterAnimationDriver>(),
+                    resolver.Resolve<IAnimationClipActionDriver>(),
                     player.CombatAnimations),
                 Lifetime.Scoped);
             builder.Register(

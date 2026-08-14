@@ -2,81 +2,42 @@ using System;
 using System.Collections.Generic;
 using ModularAnimation;
 using ModularAnimation.Unity;
-using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace _App
 {
     internal sealed class PlayerCombatAnimationAdapter : IPlayerCombatAnimation
     {
-        private readonly PlayerAnimationCoordinator _animation;
         private readonly MecanimCharacterAnimationDriver _mecanim;
+        private readonly IAnimationClipActionDriver _actionDriver;
         private readonly AnimationsData _animationsData;
-        private readonly RuntimeAnimatorController _sourceController;
-        private readonly AnimatorOverrideController _overrideController;
-        private readonly List<KeyValuePair<AnimationClip, AnimationClip>> _baselineOverrides;
-        private readonly HashSet<string> _overrideNames;
 
-        private IReadOnlyList<AnimationClip> _comboClips = Array.Empty<AnimationClip>();
+        private IReadOnlyList<CombatAnimationPresentation> _comboActions =
+            Array.Empty<CombatAnimationPresentation>();
+        private ECharacterType _characterType;
+        private float _activeBlendOutSeconds;
         private bool _disposed;
 
-        public int ComboCount => _comboClips.Count;
+        public int ComboCount => _comboActions.Count;
 
         public PlayerCombatAnimationAdapter(
-            PlayerAnimationCoordinator animation,
             MecanimCharacterAnimationDriver mecanim,
+            IAnimationClipActionDriver actionDriver,
             AnimationsData animationsData)
         {
-            _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _mecanim = mecanim ?? throw new ArgumentNullException(nameof(mecanim));
+            _actionDriver = actionDriver ?? throw new ArgumentNullException(nameof(actionDriver));
             _animationsData = animationsData != null
                 ? animationsData
                 : throw new ArgumentNullException(nameof(animationsData));
-
-            Animator animator = _mecanim.Animator;
-            if (animator == null || animator.runtimeAnimatorController == null)
-            {
-                throw new InvalidOperationException("Player combat requires an Animator runtime controller.");
-            }
-
-            _sourceController = animator.runtimeAnimatorController;
-            _overrideController = new AnimatorOverrideController(_sourceController);
-            _baselineOverrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(
-                _overrideController.overridesCount);
-            _overrideController.GetOverrides(_baselineOverrides);
-
-            _overrideNames = new HashSet<string>(StringComparer.Ordinal);
-            for (int i = 0; i < _baselineOverrides.Count; i++)
-            {
-                AnimationClip original = _baselineOverrides[i].Key;
-                if (original == null)
-                {
-                    continue;
-                }
-
-                _overrideNames.Add(original.name);
-                _baselineOverrides[i] = new KeyValuePair<AnimationClip, AnimationClip>(original, original);
-            }
-
-            animator.runtimeAnimatorController = _overrideController;
-            _mecanim.RefreshBindings();
         }
 
         public void ApplyLoadout(ECharacterType characterType, EWeaponType weaponType)
         {
             ThrowIfDisposed();
-            _overrideController.ApplyOverrides(_baselineOverrides);
-
-            IReadOnlyList<AnimationClip> defaults =
-                _animationsData.GetDefaultsAnimationClips(characterType, weaponType);
-            ApplyOverrides(defaults);
-
-            _comboClips = _animationsData.GetComboClips(characterType, weaponType);
-            ApplyOverrides(_comboClips);
-            _mecanim.RefreshBindings();
-            _animation.CrossFade(
-                PlayerAnimationSource.Equipment,
-                PlayerAnimationSlots.WeaponRest);
+            _characterType = characterType;
+            _mecanim.ApplyControllerOverrides(
+                _animationsData.GetControllerOverrides(characterType, weaponType));
+            _comboActions = _animationsData.GetComboActions(characterType, weaponType);
         }
 
         public bool HasNamedAnimation(
@@ -84,96 +45,76 @@ namespace _App
             EWeaponType weaponType,
             PlayerCombatAnimationId animationId)
         {
-            return _animationsData.GetActionClip(
+            return _animationsData.TryGetAction(
                 characterType,
                 weaponType,
-                animationId) != null;
+                animationId,
+                out _);
         }
 
-        public bool TryPlayComboStep(int comboIndex, out AnimationPlayback playback)
+        public bool TryPlayComboStep(
+            int comboIndex,
+            out AnimationActionPlayback playback)
         {
             ThrowIfDisposed();
-            playback = default;
-            if (comboIndex < 0 || comboIndex >= _comboClips.Count)
+            if (comboIndex < 0 || comboIndex >= _comboActions.Count)
             {
+                playback = default;
                 return false;
             }
 
-            AnimationClip clip = _comboClips[comboIndex];
-            if (clip == null)
-            {
-                return false;
-            }
-
-            playback = _animation.CrossFade(
-                PlayerAnimationSource.Combat,
-                PlayerAnimationSlots.Combo(comboIndex),
-                clip.length);
-            if (!playback.IsValid || playback.Duration <= 0.0f)
-            {
-                return false;
-            }
-
-            return true;
+            return TryPlay(_comboActions[comboIndex], out playback);
         }
 
         public bool TryPlayNamedAnimation(
             ECharacterType characterType,
             EWeaponType weaponType,
             PlayerCombatAnimationId animationId,
-            out AnimationPlayback playback)
+            out AnimationActionPlayback playback)
         {
             ThrowIfDisposed();
-            playback = default;
-
-            AnimationClip clip = _animationsData.GetActionClip(
-                characterType,
-                weaponType,
-                animationId);
-            if (clip == null || !TryApplyOverride(clip))
+            if (!_animationsData.TryGetAction(
+                    characterType,
+                    weaponType,
+                    animationId,
+                    out CombatAnimationPresentation presentation))
             {
+                playback = default;
                 return false;
             }
 
-            playback = _animation.CrossFade(
-                PlayerAnimationSource.Combat,
-                PlayerAnimationSlots.CombatAction,
-                clip.length);
-            if (!playback.IsValid || playback.Duration <= 0.0f)
-            {
-                return false;
-            }
-
-            return true;
+            return TryPlay(presentation, out playback);
         }
 
         public bool TryPlayWeaponTransition(
             EWeaponType weaponType,
             bool draw,
-            out AnimationPlayback playback)
+            out AnimationActionPlayback playback)
         {
             ThrowIfDisposed();
-            if (weaponType is EWeaponType.None or EWeaponType.Unarmed)
+            if (weaponType is EWeaponType.None or EWeaponType.Unarmed ||
+                !_animationsData.TryGetWeaponTransition(
+                    _characterType,
+                    weaponType,
+                    draw,
+                    out CombatAnimationPresentation presentation))
             {
                 playback = default;
                 return false;
             }
 
-            playback = _animation.CrossFade(
-                PlayerAnimationSource.Combat,
-                PlayerAnimationSlots.WeaponTransition(weaponType, draw));
-            if (!playback.IsValid || playback.Duration <= 0.0f)
-            {
-                playback = default;
-                return false;
-            }
-
-            return true;
+            return TryPlay(presentation, out playback);
         }
 
         public void Release()
         {
-            _animation.ReleaseAll(PlayerAnimationSource.Combat);
+            if (_disposed)
+            {
+                return;
+            }
+
+            _actionDriver.StopAction(_activeBlendOutSeconds);
+            _activeBlendOutSeconds = 0.0f;
         }
 
         public void Dispose()
@@ -183,46 +124,30 @@ namespace _App
                 return;
             }
 
+            _actionDriver.StopAction(0.0f);
+            _activeBlendOutSeconds = 0.0f;
             _disposed = true;
-            Release();
-            _animation.ReleaseAll(PlayerAnimationSource.Equipment);
-            if (_mecanim.Animator != null && _mecanim.Animator.runtimeAnimatorController == _overrideController)
-            {
-                _mecanim.Animator.runtimeAnimatorController = _sourceController;
-                _mecanim.RefreshBindings();
-            }
-
-            Object.Destroy(_overrideController);
         }
 
-        private void ApplyOverrides(IReadOnlyList<AnimationClip> clips)
+        private bool TryPlay(
+            CombatAnimationPresentation presentation,
+            out AnimationActionPlayback playback)
         {
-            if (clips == null)
+            if (presentation == null || !presentation.IsValid)
             {
-                return;
-            }
-
-            for (int i = 0; i < clips.Count; i++)
-            {
-                AnimationClip clip = clips[i];
-                if (clip != null)
-                {
-                    TryApplyOverride(clip);
-                }
-            }
-        }
-
-        private bool TryApplyOverride(AnimationClip clip)
-        {
-            if (!_overrideNames.Contains(clip.name))
-            {
-                Debug.LogWarning(
-                    $"Animator controller has no override slot named '{clip.name}'.",
-                    _mecanim.Animator);
+                playback = default;
                 return false;
             }
 
-            _overrideController[clip.name] = clip;
+            AnimationClipActionRequest request = presentation.CreateRequest();
+            playback = _actionDriver.PlayAction(in request);
+            if (!playback.IsValid || playback.Duration <= 0.0f)
+            {
+                playback = default;
+                return false;
+            }
+
+            _activeBlendOutSeconds = presentation.BlendOutSeconds;
             return true;
         }
 

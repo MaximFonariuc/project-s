@@ -135,6 +135,22 @@ namespace ModularAnimation
         }
     }
 
+    public readonly struct AnimationActionPlayback
+    {
+        public static AnimationActionPlayback Invalid => default;
+
+        public int Sequence { get; }
+        public float Duration { get; }
+
+        public bool IsValid => Sequence != 0;
+
+        public AnimationActionPlayback(int sequence, float duration)
+        {
+            Sequence = sequence;
+            Duration = Math.Max(0.0f, duration);
+        }
+    }
+
     public readonly struct AnimationStateBinding
     {
         public AnimationStateId State { get; }

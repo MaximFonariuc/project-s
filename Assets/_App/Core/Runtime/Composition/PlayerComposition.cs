@@ -43,15 +43,16 @@ namespace _App
                         player.AnimationProfile.CreateBindings()),
                     Lifetime.Scoped)
                 .AsSelf()
-                .As<ICharacterAnimationDriver>();
+                .As<ICharacterAnimationDriver>()
+                .As<IAnimationClipActionDriver>();
             builder.Register(
                     _ => player.AnimationProfile.CreateStateCatalog(player.PlayerAnimator),
                     Lifetime.Scoped)
                 .As<IAnimationStateCatalog>();
             builder.Register<PlayerAnimationCoordinator>(Lifetime.Scoped);
             builder.Register(
-                    _ => new MecanimLookAnimationDriver(
-                        player.PlayerAnimator,
+                    resolver => new MecanimLookAnimationDriver(
+                        resolver.Resolve<MecanimCharacterAnimationDriver>(),
                         "HeadLookX",
                         "HeadLookY"),
                     Lifetime.Scoped)

@@ -7,9 +7,7 @@ namespace _App
 {
     internal enum PlayerAnimationSource
     {
-        Equipment,
         Locomotion,
-        Combat,
         Traversal,
         Reaction
     }
@@ -251,9 +249,7 @@ namespace _App
             {
                 PlayerAnimationSource.Reaction => 300,
                 PlayerAnimationSource.Traversal => 200,
-                PlayerAnimationSource.Combat => 100,
                 PlayerAnimationSource.Locomotion => 0,
-                PlayerAnimationSource.Equipment => -100,
                 _ => throw new ArgumentOutOfRangeException(nameof(source), source, null)
             };
         }

@@ -15,8 +15,6 @@ classDiagram
         +JumpWalk
         +Fall
         +LandSoft
-        +Combo(index) AnimationSlotId
-        +WeaponTransition(type, draw) AnimationSlotId
         +Reaction(state) AnimationSlotId
     }
     class PlayerAnimationCoordinator {
@@ -36,17 +34,19 @@ classDiagram
     class PlayerLocomotionAnimationResolver
     class LocomotionAnimationSettings
     class PlayerCombatAnimationAdapter
+    class IAnimationClipActionDriver
+    class CombatAnimationSet
     class CharacterReactionAnimationAdapter
     class LadderTraversalAction
 
     PlayerLocomotionAnimationAdapter --> PlayerAnimationSlots
     PlayerLocomotionAnimationAdapter --> PlayerLocomotionAnimationResolver
     PlayerLocomotionAnimationResolver --> LocomotionAnimationSettings
-    PlayerCombatAnimationAdapter --> PlayerAnimationSlots
+    PlayerCombatAnimationAdapter --> IAnimationClipActionDriver
+    PlayerCombatAnimationAdapter --> CombatAnimationSet
     CharacterReactionAnimationAdapter --> PlayerAnimationSlots
     LadderTraversalAction --> PlayerAnimationSlots
     PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator
-    PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     CharacterReactionAnimationAdapter --> PlayerAnimationCoordinator
     LadderTraversalAction --> PlayerAnimationCoordinator
     PlayerAnimationCoordinator --> IAnimationStateCatalog
@@ -57,21 +57,25 @@ classDiagram
 
 - `PlayerAnimationSlots` is the only Project S vocabulary for requested poses.
   Adding or replacing an Animator Controller does not change these identifiers.
-- `PlayerAnimationCoordinator` owns layer arbitration with the priority
-  `Reaction > Traversal > Combat > Locomotion > Equipment`. Requests blocked by
+- `PlayerAnimationCoordinator` owns controller-state arbitration with the priority
+  `Reaction > Traversal > Locomotion`. Requests blocked by
   a higher-priority owner are retained, so the newest valid state is restored
   after an interruption. Adapters do not compete by writing directly to Animator.
 - `IAnimationStateCatalog` resolves a semantic slot to a concrete state, layer,
   blend time and fallback duration. Resolution is cached during the character
   scope.
-- Locomotion, combat, traversal and reaction adapters own only the translation
+- Locomotion, traversal and reaction adapters own only the translation
   from confirmed gameplay state to a semantic animation request.
+- `PlayerCombatAnimationAdapter` is deliberately outside controller-state
+  arbitration. It translates the confirmed combat action into an authored clip
+  request for the Playables action lane. Combat interruption stops that lane;
+  gameplay state never waits for Animator state inspection.
 - `PlayerLocomotionAnimationResolver` owns presentation-only phases. It derives
   jump variants, fall and landing severity from `PlayerLocomotionSnapshot`, but
   never changes motor or gameplay state.
 - Reaction-specific slots fall back to the general state slot in Project S;
   absent optional reaction presentation does not block damage or state changes.
-- Combat and traversal may require a positive presentation duration because
+- Combat and traversal require a positive presentation duration because
   their current authoring uses it for the temporary action/traversal timeline.
   Combat gameplay windows themselves remain owned by `CombatActionExecutor`.
 - Root motion selection remains in combat/traversal gameplay and is not part of
@@ -79,13 +83,17 @@ classDiagram
 
 ## Current authoring
 
-`Player_MecanimAnimationProfile.asset` maps the current player slots to nested
-states in `XController.controller`. It contains explicit durations for dodge,
-combat, weapon transitions and ladder traversal, including cases where the
-state name differs from the clip name.
+`Player_MecanimAnimationProfile.asset` maps 18 locomotion and traversal slots to
+nested states in `XController.controller`. It contains explicit durations for
+dodge and ladder traversal, including cases where the state name differs from
+the clip name.
 
-`XController.controller` is a code-driven clip graph. Base and weapon layers do
-not contain automatic Animator transitions: state entry, interruption and
-restoration are owned by `PlayerAnimationCoordinator`. Blend durations are fixed
-seconds (`CrossFadeInFixedTime`), not normalized clip time. The Grounded state
-keeps the locomotion blend tree, while Jump/Fall/Land/Dodge are selected explicitly.
+`XController.controller` contains only continuous locomotion, traversal and
+additive look presentation. It has no combat state machine and no weapon-switch
+layer. State entry, interruption and restoration are owned by
+`PlayerAnimationCoordinator`; blend durations are fixed seconds, not normalized
+clip time.
+
+`CombatAnimationSet` assets own combo, named-action and draw/sheathe clip
+presentation, including blend-in, blend-out, playback speed, optional AvatarMask
+and foot IK. They do not own hit windows, cancel rules, damage or root motion.

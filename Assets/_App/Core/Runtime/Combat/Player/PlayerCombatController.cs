@@ -299,7 +299,7 @@ namespace _App
                 PlayerCombatAction action = initialAction;
                 while (action != null && CanUseAction(action))
                 {
-                    if (!TryPlayAction(action, out AnimationPlayback playback))
+                    if (!TryPlayAction(action, out AnimationActionPlayback playback))
                     {
                         break;
                     }
@@ -344,7 +344,7 @@ namespace _App
 
         private bool TryPlayAction(
             PlayerCombatAction action,
-            out AnimationPlayback playback)
+            out AnimationActionPlayback playback)
         {
             PlayerCombatPresentation presentation = action.Presentation;
             return presentation.Kind switch
@@ -367,7 +367,10 @@ namespace _App
             EWeaponType resultingWeapon,
             CancellationToken token)
         {
-            if (!_animation.TryPlayWeaponTransition(animationWeapon, draw, out AnimationPlayback playback))
+            if (!_animation.TryPlayWeaponTransition(
+                    animationWeapon,
+                    draw,
+                    out AnimationActionPlayback playback))
             {
                 return false;
             }
@@ -624,7 +627,7 @@ namespace _App
             InterruptAttack();
         }
 
-        private static bool FailPlayback(out AnimationPlayback playback)
+        private static bool FailPlayback(out AnimationActionPlayback playback)
         {
             playback = default;
             return false;
