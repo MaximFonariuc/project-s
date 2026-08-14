@@ -7,8 +7,9 @@
 platforms и публикует подтверждённый результат движения. Семантический input, locomotion states, combat,
 Animator и Cinemachine в это дерево не входят.
 
-Публичный API и serialized-поля исходного компонента сохранены. Это позволяет сценам, prefab references,
-`Character` и `CharacterMotor` продолжать использовать тот же Unity-компонент после внутреннего рефакторинга.
+Gameplay API и используемые serialized-поля исходного компонента сохранены. Неиспользуемый visual-root hook
+удалён после prefab audit: motor больше не изменяет локальную позицию animation hierarchy во время grounding.
+`Character` и `CharacterMotor` продолжают использовать тот же Unity-компонент и collision contract.
 
 ## Дерево классов
 
@@ -139,6 +140,7 @@ Input -> PlayerLocomotionController -> ICharacterMotor -> CharacterMotor
 - Gameplay передаёт velocity/intents через `Character`/`ICharacterMotor`, а не вызывает внутренний solver.
 - `CharacterMovement` не читает Input System и не знает о locomotion/combat states.
 - Animation и camera adapters читают подтверждённое состояние верхнего locomotion-слоя.
+- Visual hierarchy не передаётся в `CharacterMovement`; grounding изменяет только motor pose.
 - Combat не получает доступ к внутренним collaborators. Для рывка/knockback используются ограниченные
   команды motor/`Character`, а не изменение grounding/platform state.
 - `Internal/*` не является публичным extension API. Новый behaviour добавляется через существующие callbacks

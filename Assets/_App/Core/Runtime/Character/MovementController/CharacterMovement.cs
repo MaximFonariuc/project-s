@@ -30,11 +30,6 @@ namespace _App
         [SerializeField] private EPlaneConstraintType _planeConstraint;
 
         [Space(15f)]
-        [SerializeField] private Transform _rootTransform;
-
-        [SerializeField] private Vector3 _rootTransformOffset = new Vector3(0, 0, 0);
-
-        [Space(15f)]
         [SerializeField] private float _radius;
         [SerializeField] private float _height;
 
@@ -126,18 +121,6 @@ namespace _App
 
                 return _capsuleCollider;
             }
-        }
-
-        public Transform RootTransform
-        {
-            get => _rootTransform;
-            set => _rootTransform = value;
-        }
-
-        public Vector3 RootTransformOffset
-        {
-            get => _rootTransformOffset;
-            set => _rootTransformOffset = value;
         }
 
         public Vector3 Position => GetPosition();

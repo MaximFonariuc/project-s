@@ -359,11 +359,6 @@ namespace _App
                 }
             }
 
-            if (_rootTransform)
-            {
-                _rootTransform.localPosition =
-                    _rootTransformOffset - new Vector3(0.0f, AVG_GROUND_DISTANCE, 0.0f);
-            }
         }
 
 

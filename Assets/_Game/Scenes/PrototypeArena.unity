@@ -2623,94 +2623,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137644620}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &139744808
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 139744812}
-  - component: {fileID: 139744811}
-  - component: {fileID: 139744810}
-  - component: {fileID: 139744809}
-  m_Layer: 8
-  m_Name: Hurtbox_Chest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &139744809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139744808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 3
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 139744810}
---- !u!65 &139744810
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139744808}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.21447563, y: 0.14451861, z: 0.29758945}
-  m_Center: {x: -0.006445229, y: -0.14194182, z: -0.0000004917383}
---- !u!114 &139744811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139744808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: chest|TPose/root/pelvis/spine_01|TPose/root/pelvis/spine_01/spine_02/spine_03/neck_01
-  _lockGeometry: 0
---- !u!4 &139744812
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139744808}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.00000011254698, y: 0, z: 0.6138412, w: 0.78942955}
-  m_LocalPosition: {x: -0.20264141, y: 0.0515152, z: -0.0000000010272552}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 710030049}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &141330912
 GameObject:
   m_ObjectHideFlags: 0
@@ -3579,11 +3491,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Asset: {fileID: -944628639613478452, guid: 2d5deefb9a5fdcc478b3271d479a6bd1, type: 3}
   m_ActionId: 7607c7b6-cd76-4816-beef-bd0341cfe950
---- !u!4 &194089008 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7981463624736844962, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &195585618
 GameObject:
   m_ObjectHideFlags: 0
@@ -3693,11 +3600,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!4 &203341491 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2990257130874019568, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &204030926
 GameObject:
   m_ObjectHideFlags: 0
@@ -5091,96 +4993,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 263310132}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &267716500
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 267716504}
-  - component: {fileID: 267716503}
-  - component: {fileID: 267716502}
-  - component: {fileID: 267716501}
-  m_Layer: 8
-  m_Name: Hurtbox_RightUpperLeg
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &267716501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267716500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 15
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 267716502}
---- !u!136 &267716502
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267716500}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.12781778
-  m_Height: 0.70691276
-  m_Direction: 1
-  m_Center: {x: -0.0024765208, y: -0.0053043664, z: 0.0018257499}
---- !u!114 &267716503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267716500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: right-upper-leg|TPose/root/pelvis/thigh_r|TPose/root/pelvis/thigh_r/calf_r
-  _lockGeometry: 0
---- !u!4 &267716504
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267716500}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.018112611, y: 0, z: 0.7069953, w: 0.7069863}
-  m_LocalPosition: {x: -0.21651815, y: -0.00007303362, z: -0.0055469894}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1168551650}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &268175761
 GameObject:
   m_ObjectHideFlags: 0
@@ -7523,11 +7335,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 353255161}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &353787278 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2385658886188894569, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &359583162
 GameObject:
   m_ObjectHideFlags: 0
@@ -7705,96 +7512,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 401221368}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &404147215
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 404147219}
-  - component: {fileID: 404147218}
-  - component: {fileID: 404147217}
-  - component: {fileID: 404147216}
-  m_Layer: 8
-  m_Name: Hurtbox_RightLowerArm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &404147216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 404147215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 10
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 404147217}
---- !u!136 &404147217
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 404147215}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.07900892
-  m_Height: 0.42304584
-  m_Direction: 1
-  m_Center: {x: 0.004335828, y: -0.0025441349, z: 0.00439607}
---- !u!114 &404147218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 404147215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: right-lower-arm|TPose/root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r|TPose/root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r
-  _lockGeometry: 0
---- !u!4 &404147219
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 404147215}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.00019111628, y: 0, z: -0.7031157, w: 0.7110754}
-  m_LocalPosition: {x: 0.13250586, y: 0.001492127, z: 0.000035272416}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 353787278}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &412672624
 GameObject:
   m_ObjectHideFlags: 0
@@ -8039,96 +7756,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415849500}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &425835918
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 425835922}
-  - component: {fileID: 425835921}
-  - component: {fileID: 425835920}
-  - component: {fileID: 425835919}
-  m_Layer: 8
-  m_Name: Hurtbox_LeftUpperArm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &425835919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425835918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 6
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 425835920}
---- !u!136 &425835920
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425835918}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.10674685
-  m_Height: 0.4697976
-  m_Direction: 1
-  m_Center: {x: -0.0004550442, y: 0.0007672012, z: -0.0028024316}
---- !u!114 &425835921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425835918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: left-upper-arm|TPose/root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l|TPose/root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l
-  _lockGeometry: 0
---- !u!4 &425835922
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425835918}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.0022980608, y: 0, z: 0.7015745, w: 0.7125925}
-  m_LocalPosition: {x: -0.12800685, y: 0.0019920296, z: -0.00041805598}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 917406719}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &436904431
 GameObject:
   m_ObjectHideFlags: 0
@@ -9287,94 +8914,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480762442}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &483202913
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 483202917}
-  - component: {fileID: 483202916}
-  - component: {fileID: 483202915}
-  - component: {fileID: 483202914}
-  m_Layer: 8
-  m_Name: Hurtbox_Pelvis
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &483202914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483202913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 5
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 483202915}
---- !u!65 &483202915
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483202913}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.2218958, y: 0.23772688, z: 0.2785885}
-  m_Center: {x: -0.0074147806, y: -0.0518957, z: -0.000000461936}
---- !u!114 &483202916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483202913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: pelvis|TPose/root/pelvis|TPose/root/pelvis/spine_01
-  _lockGeometry: 0
---- !u!4 &483202917
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483202913}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.0000001391276, y: 0, z: 0.76618034, w: 0.6426257}
-  m_LocalPosition: {x: -0.054065365, y: -0.00956307, z: 0.0000000037252903}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1849890408}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &483545113
 GameObject:
   m_ObjectHideFlags: 0
@@ -9610,94 +9149,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &491000981
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 491000985}
-  - component: {fileID: 491000984}
-  - component: {fileID: 491000983}
-  - component: {fileID: 491000982}
-  m_Layer: 8
-  m_Name: Hurtbox_LeftHand
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &491000982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491000981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 8
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 491000983}
---- !u!135 &491000983
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491000981}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.079481974
-  m_Center: {x: -0.052137464, y: 0.016651696, z: 0.008252248}
---- !u!114 &491000984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491000981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: left-hand|TPose/root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l|TPose/root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l
-  _lockGeometry: 0
---- !u!4 &491000985
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491000981}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 194089008}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &498716722
 GameObject:
   m_ObjectHideFlags: 0
@@ -10330,11 +9781,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512801476}
   m_CullTransparentMesh: 0
---- !u!4 &514290795 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8401527799830302460, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &517172690
 GameObject:
   m_ObjectHideFlags: 0
@@ -11129,8 +10575,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _planeConstraint: 0
-  _rootTransform: {fileID: 0}
-  _rootTransformOffset: {x: 0, y: 0, z: 0}
   _radius: 0.15
   _height: 0.82
   _slopeLimit: 45
@@ -12364,11 +11808,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 657102262}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &710030049 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3690582471276742312, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &737055812
 GameObject:
   m_ObjectHideFlags: 0
@@ -12563,96 +12002,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 528449153}
   m_LocalEulerAnglesHint: {x: 59.138, y: 76.884, z: 104.549}
---- !u!1 &744206701
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 744206705}
-  - component: {fileID: 744206704}
-  - component: {fileID: 744206703}
-  - component: {fileID: 744206702}
-  m_Layer: 8
-  m_Name: Hurtbox_LeftLowerArm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &744206702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744206701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 7
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 744206703}
---- !u!136 &744206703
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744206701}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.079012334
-  m_Height: 0.42305225
-  m_Direction: 1
-  m_Center: {x: 0.004335005, y: -0.0025437772, z: -0.004391622}
---- !u!114 &744206704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744206701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: left-lower-arm|TPose/root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l|TPose/root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l
-  _lockGeometry: 0
---- !u!4 &744206705
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744206701}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.00019694463, y: 0, z: 0.71106654, w: 0.7031247}
-  m_LocalPosition: {x: -0.13250563, y: -0.0014870128, z: -0.000036614976}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 911279420}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &761443152
 GameObject:
   m_ObjectHideFlags: 0
@@ -15011,16 +14360,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909694873}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &911279420 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3876422511012234869, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &917406719 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 115210994402443641, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &921109209
 GameObject:
   m_ObjectHideFlags: 0
@@ -15457,94 +14796,6 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!1 &944511837
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 944511838}
-  - component: {fileID: 944511841}
-  - component: {fileID: 944511840}
-  - component: {fileID: 944511839}
-  m_Layer: 8
-  m_Name: Hurtbox_RightFoot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &944511838
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944511837}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.00029613034, y: 0, z: -0.67568576, w: 0.7371897}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1104633542}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &944511839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944511837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 17
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 944511840}
---- !u!65 &944511840
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944511837}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.23722243, y: 0.12641644, z: 0.13047022}
-  m_Center: {x: -0.06980458, y: -0.061335444, z: 0.002223052}
---- !u!114 &944511841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944511837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: right-foot|TPose/root/pelvis/thigh_r/calf_r/foot_r|TPose/root/pelvis/thigh_r/calf_r
-  _lockGeometry: 0
 --- !u!1 &955559707
 GameObject:
   m_ObjectHideFlags: 0
@@ -15841,11 +15092,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979245893}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &982729032 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1304686663936972039, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &995853831
 GameObject:
   m_ObjectHideFlags: 0
@@ -16144,11 +15390,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008273250}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1008619888 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8401501964127735100, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1008974371
 GameObject:
   m_ObjectHideFlags: 0
@@ -17829,94 +17070,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073481350}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1079554474
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1079554478}
-  - component: {fileID: 1079554477}
-  - component: {fileID: 1079554476}
-  - component: {fileID: 1079554475}
-  m_Layer: 8
-  m_Name: Hurtbox_RightHand
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1079554475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079554474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 11
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 1079554476}
---- !u!135 &1079554476
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079554474}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.07311436
-  m_Center: {x: 0.051325228, y: -0.014540434, z: -0.0048013553}
---- !u!114 &1079554477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079554474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: right-hand|TPose/root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r|TPose/root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r
-  _lockGeometry: 0
---- !u!4 &1079554478
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079554474}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1495612930}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1084447999
 GameObject:
   m_ObjectHideFlags: 0
@@ -18241,11 +17394,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103260046}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1104633542 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2056507068414892043, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1117611990
 GameObject:
   m_ObjectHideFlags: 0
@@ -18354,94 +17502,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117611990}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1143477278
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1143477282}
-  - component: {fileID: 1143477281}
-  - component: {fileID: 1143477280}
-  - component: {fileID: 1143477279}
-  m_Layer: 8
-  m_Name: Hurtbox_Head
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1143477279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1143477278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 1
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 1143477280}
---- !u!135 &1143477280
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1143477278}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.16327481
-  m_Center: {x: -0.08818713, y: -0.042139545, z: -0.00000067055225}
---- !u!114 &1143477281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1143477278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: head|TPose/root/pelvis/spine_01/spine_02/spine_03/neck_01/head|TPose/root/pelvis/spine_01/spine_02/spine_03/neck_01
-  _lockGeometry: 0
---- !u!4 &1143477282
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1143477278}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1008619888}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1149656524
 GameObject:
   m_ObjectHideFlags: 0
@@ -18729,11 +17789,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1166410175}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1168551650 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 751055853669364154, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1169154432
 GameObject:
   m_ObjectHideFlags: 0
@@ -21298,11 +20353,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slopeBehaviour: 1
   _slopeLimit: 0
---- !u!4 &1382401573 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3151062875748167713, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1387417841
 GameObject:
   m_ObjectHideFlags: 0
@@ -21599,94 +20649,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &1399609416
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1399609420}
-  - component: {fileID: 1399609419}
-  - component: {fileID: 1399609418}
-  - component: {fileID: 1399609417}
-  m_Layer: 8
-  m_Name: Hurtbox_LeftFoot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1399609417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1399609416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 14
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 1399609418}
---- !u!65 &1399609418
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1399609416}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.23713082, y: 0.12641668, z: 0.13028818}
-  m_Center: {x: -0.06857857, y: -0.06145504, z: -0.002043821}
---- !u!114 &1399609419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1399609416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: left-foot|TPose/root/pelvis/thigh_l/calf_l/foot_l|TPose/root/pelvis/thigh_l/calf_l
-  _lockGeometry: 0
---- !u!4 &1399609420
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1399609416}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.0003231371, y: 0, z: 0.7371899, w: 0.6756855}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 514290795}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1415425197
 GameObject:
   m_ObjectHideFlags: 0
@@ -22096,96 +21058,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4088002383373906203, guid: cf835ff7834dfc94ea877abf63f4306b, type: 3}
   m_PrefabInstance: {fileID: 270179846}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1455191662
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1455191666}
-  - component: {fileID: 1455191665}
-  - component: {fileID: 1455191664}
-  - component: {fileID: 1455191663}
-  m_Layer: 8
-  m_Name: Hurtbox_LeftLowerLeg
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1455191663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455191662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 13
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 1455191664}
---- !u!136 &1455191664
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455191662}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.10048098
-  m_Height: 0.65257925
-  m_Direction: 1
-  m_Center: {x: -0.001536034, y: -0.0030188262, z: 0.009187765}
---- !u!114 &1455191665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455191662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: left-lower-leg|TPose/root/pelvis/thigh_l/calf_l|TPose/root/pelvis/thigh_l/calf_l/foot_l
-  _lockGeometry: 0
---- !u!4 &1455191666
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455191662}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.017677786, y: 0, z: -0.70588136, w: 0.7081095}
-  m_LocalPosition: {x: 0.2257364, y: 0.000636838, z: -0.0056528626}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1382401573}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1462883869
 GameObject:
   m_ObjectHideFlags: 0
@@ -22939,11 +21811,6 @@ Transform:
   - {fileID: 1256163399}
   m_Father: {fileID: 1066359007}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1495612930 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8602694310953265, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1509416327 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1371281727060681900, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
@@ -22982,7 +21849,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727f9f31ea8e412a94ae698ff0c0bc35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
   _hitbox: {fileID: 1509416333}
 --- !u!1 &1511098732
 GameObject:
@@ -27643,11 +26509,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847496255}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1849890408 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7302470911803045054, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1857011647
 GameObject:
   m_ObjectHideFlags: 0
@@ -28976,96 +27837,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &1954687211
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1954687215}
-  - component: {fileID: 1954687214}
-  - component: {fileID: 1954687213}
-  - component: {fileID: 1954687212}
-  m_Layer: 8
-  m_Name: Hurtbox_RightUpperArm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1954687212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954687211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 9
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 1954687213}
---- !u!136 &1954687213
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954687211}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.10674749
-  m_Height: 0.46979937
-  m_Direction: 1
-  m_Center: {x: -0.00047715753, y: 0.0007685125, z: 0.0028000325}
---- !u!114 &1954687214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954687211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: right-upper-arm|TPose/root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r|TPose/root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r
-  _lockGeometry: 0
---- !u!4 &1954687215
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954687211}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.0023349915, y: 0, z: -0.71258974, w: 0.7015772}
-  m_LocalPosition: {x: 0.12800656, y: -0.0019931966, z: 0.0004183746}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2010218298}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1959385089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29513,96 +28284,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989490099}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1992513401
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1992513405}
-  - component: {fileID: 1992513404}
-  - component: {fileID: 1992513403}
-  - component: {fileID: 1992513402}
-  m_Layer: 8
-  m_Name: Hurtbox_RightLowerLeg
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1992513402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1992513401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 16
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 1992513403}
---- !u!136 &1992513403
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1992513401}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.10048023
-  m_Height: 0.6525793
-  m_Direction: 1
-  m_Center: {x: -0.001994118, y: -0.0030204803, z: -0.009100027}
---- !u!114 &1992513404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1992513401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: right-lower-leg|TPose/root/pelvis/thigh_r/calf_r|TPose/root/pelvis/thigh_r/calf_r/foot_r
-  _lockGeometry: 0
---- !u!4 &1992513405
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1992513401}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.017728101, y: 0, z: 0.70788723, w: 0.70610297}
-  m_LocalPosition: {x: -0.22573715, y: -0.0006371316, z: 0.00565296}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 203341491}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2004633255
 GameObject:
   m_ObjectHideFlags: 0
@@ -29711,11 +28392,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004633255}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &2010218298 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6124647005815107306, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2017199096 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 7c2b1955a2348c54aa090a1ad07ce13a, type: 3}
@@ -29740,186 +28416,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 7c2b1955a2348c54aa090a1ad07ce13a, type: 3}
   m_PrefabInstance: {fileID: 21002875}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2019864066
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2019864070}
-  - component: {fileID: 2019864069}
-  - component: {fileID: 2019864068}
-  - component: {fileID: 2019864067}
-  m_Layer: 8
-  m_Name: Hurtbox_LeftUpperLeg
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2019864067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2019864066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 12
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 2019864068}
---- !u!136 &2019864068
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2019864066}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.12781708
-  m_Height: 0.70691013
-  m_Direction: 1
-  m_Center: {x: -0.0023796707, y: -0.005305186, z: -0.0019511282}
---- !u!114 &2019864069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2019864066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: left-upper-leg|TPose/root/pelvis/thigh_l|TPose/root/pelvis/thigh_l/calf_l
-  _lockGeometry: 0
---- !u!4 &2019864070
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2019864066}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.018106252, y: 0, z: -0.70675427, w: 0.7072274}
-  m_LocalPosition: {x: 0.21651725, y: 0.000072865, z: 0.0055470443}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2069068415}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2037727410
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2037727414}
-  - component: {fileID: 2037727413}
-  - component: {fileID: 2037727412}
-  - component: {fileID: 2037727411}
-  m_Layer: 8
-  m_Name: Hurtbox_Neck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2037727411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037727410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 2
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 2037727412}
---- !u!136 &2037727412
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037727410}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.081601694
-  m_Height: 0.28660294
-  m_Direction: 1
-  m_Center: {x: -0.00056162477, y: -0.0005800612, z: -0.0000005066395}
---- !u!114 &2037727413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037727410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8dc069d0072344f81868c0c340c283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _generationKey: neck|TPose/root/pelvis/spine_01/spine_02/spine_03/neck_01|TPose/root/pelvis/spine_01/spine_02/spine_03/neck_01/head
-  _lockGeometry: 0
---- !u!4 &2037727414
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037727410}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.00000016883234, y: 0, z: 0.6932159, w: 0.72073}
-  m_LocalPosition: {x: -0.05009154, y: 0.0019501774, z: 0.00000004549214}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 982729032}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2037947246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30417,11 +28913,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slopeBehaviour: 1
   _slopeLimit: 60
---- !u!4 &2069068415 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7165950012897644771, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2071595822
 GameObject:
   m_ObjectHideFlags: 0
@@ -31281,71 +29772,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7302470911803045054, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 483202917}
-    - targetCorrespondingSourceObject: {fileID: 3690582471276742312, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 139744812}
-    - targetCorrespondingSourceObject: {fileID: 115210994402443641, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 425835922}
-    - targetCorrespondingSourceObject: {fileID: 3876422511012234869, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 744206705}
-    - targetCorrespondingSourceObject: {fileID: 7981463624736844962, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 491000985}
-    - targetCorrespondingSourceObject: {fileID: 6124647005815107306, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1954687215}
-    - targetCorrespondingSourceObject: {fileID: 2385658886188894569, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 404147219}
-    - targetCorrespondingSourceObject: {fileID: 8602694310953265, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1079554478}
-    - targetCorrespondingSourceObject: {fileID: 1304686663936972039, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2037727414}
-    - targetCorrespondingSourceObject: {fileID: 8401501964127735100, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1143477282}
-    - targetCorrespondingSourceObject: {fileID: 7165950012897644771, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2019864070}
-    - targetCorrespondingSourceObject: {fileID: 3151062875748167713, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1455191666}
-    - targetCorrespondingSourceObject: {fileID: 8401527799830302460, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1399609420}
-    - targetCorrespondingSourceObject: {fileID: 751055853669364154, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 267716504}
-    - targetCorrespondingSourceObject: {fileID: 2990257130874019568, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1992513405}
-    - targetCorrespondingSourceObject: {fileID: 2056507068414892043, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 944511838}
+    m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1410514102364398667, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5700940806182977517}
-    - targetCorrespondingSourceObject: {fileID: 1410514102364398667, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5700940806182977516}
-    - targetCorrespondingSourceObject: {fileID: 1410514102364398667, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5700940806182977525}
-    - targetCorrespondingSourceObject: {fileID: 1410514102364398667, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5700940806182977530}
-    - targetCorrespondingSourceObject: {fileID: 1410514102364398667, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5700940806182977529}
     - targetCorrespondingSourceObject: {fileID: 1371281727060681900, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1509416333}
@@ -31353,128 +29781,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1509416334}
   m_SourcePrefab: {fileID: 100100000, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
---- !u!1 &5700940806182977515 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1410514102364398667, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5700940806182977516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5700940806182977515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7c8a60007817147aaeb9e672fc10f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rig: {fileID: 5700940806182977529}
-  _health: {fileID: 5700940806182977517}
-  _zone: 0
-  _customZoneId: 
-  _damageMultiplier: 1
-  _collider: {fileID: 5700940806182977523}
---- !u!114 &5700940806182977517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5700940806182977515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6966667063b7ead408c37e6cb89ee21f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 100
 --- !u!114 &5700940806182977519 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5823435522177661927, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
   m_PrefabInstance: {fileID: 5700940806182977514}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5700940806182977515}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bf2b4abd6d2ccc4696278ee934b3da2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &5700940806182977523 stripped
-CapsuleCollider:
-  m_CorrespondingSourceObject: {fileID: 4017530211653983932, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
-  m_PrefabInstance: {fileID: 5700940806182977514}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &5700940806182977525
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5700940806182977515}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5700940806182977529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5700940806182977515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 240f5b836d201824cad1a9d778689955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: {fileID: 5700940806182977517}
-  _zones:
-  - {fileID: 483202914}
-  - {fileID: 139744809}
-  - {fileID: 2037727411}
-  - {fileID: 1143477279}
-  - {fileID: 425835919}
-  - {fileID: 744206702}
-  - {fileID: 491000982}
-  - {fileID: 2019864067}
-  - {fileID: 1455191663}
-  - {fileID: 1399609417}
-  - {fileID: 1954687212}
-  - {fileID: 404147216}
-  - {fileID: 1079554475}
-  - {fileID: 267716501}
-  - {fileID: 1992513402}
-  - {fileID: 944511839}
---- !u!114 &5700940806182977530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5700940806182977515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18e517e54bba1c74aaaa0b66a95d44fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigType: 0
-  _animator: {fileID: 5700940806182977525}
-  _health: {fileID: 5700940806182977517}
-  _profile: {fileID: 0}
-  _sourceMeshes: []
-  _genericBones: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -167,6 +167,13 @@ sequenceDiagram
 
 `CharacterReactionProfile` опционален. При отсутствии asset используются безопасные prototype defaults: poise `10`, hit-stun `0.25s`, knockdown `0.8s`, airborne `0.45s`. Ни одного Animator state система в таком режиме не требует.
 
+Player prefab использует явный
+`Assets/_Game/Settings/Combat/Player/PlayerCharacterReactionProfile.asset` с теми
+же стартовыми gameplay timings. Animation mapping пока намеренно пуст: текущий
+Animator Controller не содержит hit-stun/knockdown/airborne reaction states.
+Профиль будет дополнен вместе с реальными reaction clips, без изменения runtime
+state machine и damage pipeline.
+
 Когда финальные клипы появятся, profile связывает пару `ReactionId + State` с backend-neutral animation state. Пустой `ReactionId` является fallback для состояния. `CharacterReactionAnimationAdapter` только вызывает `ICharacterAnimationDriver`; он не завершает gameplay reaction по длине клипа и не меняет state machine. После возврата в `Stable` обычную позу снова отображает locomotion presentation.
 
 ## Lifecycle и границы

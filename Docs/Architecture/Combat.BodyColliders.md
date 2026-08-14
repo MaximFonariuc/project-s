@@ -164,6 +164,19 @@ Animator bones -> generated collider transforms           (presentation pose)
 
 Профиль создаётся через `Create > Project S > Combat > Body Collider Profile`. Он не хранит runtime state и может переиспользоваться несколькими актёрами.
 
+### Текущая конфигурация Player
+
+`Assets/_Game/Settings/Combat/Player/PlayerBodyColliderProfile.asset` назначен
+`BodyColliderAuthoring` внутри `Assets/_Game/Prefabs/Character/Player.prefab`.
+Authoring использует единственный Humanoid Animator `Player/TPose` и явно выбранный
+`CLazyRunner` как skin-fitting source. В prefab хранятся `Health`, `BodyColliderRig`
+и 17 generated hurtbox-зон; scene instance не владеет их overrides.
+
+Корневой movement `CapsuleCollider` не является `Hurtbox`. Он отвечает только за
+locomotion collisions и не конкурирует с составными зонами за первое попадание.
+Отдельный пустой Animator на actor root запрещён: animation, root motion, IK и
+body-collider authoring используют один `TPose` Animator.
+
 На `GeneratedBodyCollider` можно включить `Lock Geometry`. Следующая генерация сохранит transform, тип и размеры этого collider, но продолжит обновлять owner, layer и zone metadata. Это позволяет вручную поправить проблемную область без потери правки при регенерации.
 
 ## Использование
