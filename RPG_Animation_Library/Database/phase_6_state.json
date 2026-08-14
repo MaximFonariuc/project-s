@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "timestamp": "2026-08-14T18:01:08.791626Z",
+  "pipelineVersion": "0.6.0",
+  "phaseVersion": "1.0.0",
+  "phaseConfigSHA256": "bc89eae33f0f30b25a62c163fa3f11d468681e4e3751dc1f5443654a609fc947",
+  "sourceProfile": "ER_Player",
+  "targetProfile": "ProjectS_CLazy_Player",
+  "retargetMap": "ER_Player_to_ProjectS_CLazy",
+  "mappedBoneCount": 52,
+  "heightScale": 0.7696939045648541,
+  "outputs": {
+    "config/skeleton_profiles/ER_Player.json": "2b660cc9796fa658165743795a65c67e6bca11d6a4f600b5f4b8d71ef210ac05",
+    "config/skeleton_profiles/ProjectS_CLazy_Player.json": "a33e22e1c5a0c518400e87bd4eeba47260c4548d6381a0fa4f2ff29defacef6f",
+    "config/retarget_maps/ER_Player_to_ProjectS_CLazy.json": "abf7450e4a53aaf9769d923365d4608c0840c1f1a64613535eb3b749f251cd44",
+    "Database/skeleton_profile_operations.csv": "09f84fc8c5361128f064a3c88e9a5b79b35528008453959a315af65e1d3c05d8",
+    "03_CATALOG/reports/phase_6_status.md": "67cb5663671c0ae6108609440689ab4fed5942d128bd231fa9f3c03beb3a7fad"
+  }
+}

@@ -50,3 +50,9 @@ Never discard raw fields after normalization. An event that cannot be mapped saf
 `phase_5_state.json` records the exact pilot approval scope and hashes both the versioned evidence and ignored local conversion artifacts. Phase state hashes are historical run evidence: later phases may legitimately enrich the shared `animations.csv`, so use the newest phase state plus the current Phase 3 index state when validating the active catalog.
 
 `PilotPassed` in `ConversionStatus` means only that the selected source HKX survived the bounded Blender gate. It does not imply semantic approval, successful retargeting, FBX export, Unity import, or compatibility with another skeleton family.
+
+## Phase 6 skeleton evidence
+
+`skeleton_profile_operations.csv` records the measured source and target armatures used by the pilot retarget boundary. The versioned skeleton profiles identify semantic bones, root-motion ownership, coordinate space, scale, and Unity rig type.
+
+`ER_Player_to_ProjectS_CLazy.json` is a skeleton-family mapping. It is intentionally shared by every pilot clip and excludes service, control, cloth, SFX and weapon bones that have no target equivalent. A clip-specific map would be a pipeline defect, not an extension point.
