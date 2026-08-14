@@ -6,12 +6,12 @@ namespace _App
 {
     internal sealed class CharacterReactionAnimationAdapter : ICharacterReactionPresentation
     {
-        private readonly ICharacterAnimationDriver _animation;
+        private readonly PlayerAnimationCoordinator _animation;
         private readonly Dictionary<CharacterReactionAnimationKey, CharacterReactionAnimationBinding>
             _bindings;
 
         public CharacterReactionAnimationAdapter(
-            ICharacterAnimationDriver animation,
+            PlayerAnimationCoordinator animation,
             CharacterReactionProfile profile)
         {
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
@@ -32,6 +32,7 @@ namespace _App
                 ? binding.ExpectedDuration
                 : snapshot.RemainingDuration;
             _animation.CrossFade(
+                PlayerAnimationSource.Reaction,
                 binding.State,
                 binding.Layer,
                 binding.TransitionDuration,
@@ -40,7 +41,7 @@ namespace _App
 
         public void Reset()
         {
-            // Locomotion presentation remains responsible for the stable pose.
+            _animation.ReleaseAll(PlayerAnimationSource.Reaction);
         }
 
         private bool TryGetBinding(

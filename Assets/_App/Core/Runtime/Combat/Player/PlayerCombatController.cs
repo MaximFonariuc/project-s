@@ -499,12 +499,14 @@ namespace _App
             SetHitWindow(false);
             EndAttackExecution();
             SetComboIndex(0);
+            _animation.Release();
             ReturnToReady();
         }
 
         private void CancelActiveAction()
         {
             EndAttackExecution();
+            _animation.Release();
             CancellationTokenSource cancellation = _actionCancellation;
             if (cancellation == null)
             {

@@ -52,6 +52,7 @@ classDiagram
         +Disable()
     }
     class LadderTraversalAction
+    class PlayerAnimationCoordinator
     class LadderTraversalSettings {
         <<authoring>>
     }
@@ -91,6 +92,7 @@ classDiagram
     PlayerTraversalController --> IPlayerSimulationLock
     IPlayerTraversalActions <|.. PlayerTraversalActions
     PlayerTraversalActions o-- LadderTraversalAction
+    LadderTraversalAction --> PlayerAnimationCoordinator : traversal requests
     PlayerTraversalActions ..> LadderTraversalSettings : reads once
     IPlayerInteractionProbe <|.. CharacterInteractionProbe
     CharacterInteractionProbe --> Character

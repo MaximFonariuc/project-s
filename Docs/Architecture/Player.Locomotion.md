@@ -128,6 +128,7 @@ classDiagram
     }
     class PlayerLocomotionAnimationAdapter
     class PlayerCharacterAnimationPresenter
+    class PlayerAnimationCoordinator
     class ICharacterAnimationDriver
     class PlayerLocomotionComposition {
         <<composition>>
@@ -152,7 +153,8 @@ classDiagram
     CameraRelativeMovementReference --> ICameraOrientation
     IPlayerLocomotionPresentation <|.. PlayerLocomotionAnimationAdapter
     PlayerLocomotionAnimationAdapter --> PlayerCharacterAnimationPresenter
-    PlayerLocomotionAnimationAdapter --> ICharacterAnimationDriver : state transitions
+    PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator : dodge request
+    PlayerAnimationCoordinator --> ICharacterAnimationDriver : accepted transition
     PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver : locomotion frame
     PlayerLocomotionState <|-- PlayerIdleState
     PlayerLocomotionState <|-- PlayerRunState
@@ -196,7 +198,7 @@ stateDiagram-v2
 
 До первого tick и после `Disable` snapshot имеет `IsValid == false`; consumers не должны трактовать default enum values как подтверждённое состояние.
 
-Animation, Camera, VFX и последующие read-only consumers должны получать locomotion-результат через snapshot либо узкий consumer-specific port. Они не читают `Character`, input и state machine независимо и поэтому не создают конкурирующие копии состояния. `PlayerLocomotionAnimationAdapter` обнаруживает смену presentation state по последовательным snapshot и запускает dodge cross-fade; сами locomotion states больше не зависят от animation presentation.
+Animation, Camera, VFX и последующие read-only consumers должны получать locomotion-результат через snapshot либо узкий consumer-specific port. Они не читают `Character`, input и state machine независимо и поэтому не создают конкурирующие копии состояния. `PlayerLocomotionAnimationAdapter` обнаруживает смену presentation state по последовательным snapshot и отправляет dodge request в `PlayerAnimationCoordinator`; сами locomotion states больше не зависят от animation presentation.
 
 ## Направление зависимостей
 

@@ -30,6 +30,7 @@ classDiagram
     class MecanimCharacterAnimationDriver
     class MecanimLookAnimationDriver
     class PlayerCharacterAnimationPresenter
+    class PlayerAnimationCoordinator
     class PlayerLocomotionAnimationAdapter
     class PlayerCombatAnimationAdapter
 
@@ -42,9 +43,10 @@ classDiagram
     ICharacterAnimationDriver --> AnimationLayerId
     ICharacterAnimationDriver --> AnimationPlayback
     PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
-    PlayerLocomotionAnimationAdapter --> ICharacterAnimationDriver
+    PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator
     PlayerLocomotionAnimationAdapter --> PlayerCharacterAnimationPresenter
-    PlayerCombatAnimationAdapter --> ICharacterAnimationDriver
+    PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
+    PlayerAnimationCoordinator --> ICharacterAnimationDriver
 ```
 
 - `ModularAnimation.Core` contains semantic values and the driver contract. It
@@ -61,6 +63,9 @@ classDiagram
   remain in `_App/Core`.
 - `_App/Core -> ModularAnimation`; the module never references `_App/Core` or
   `_Game` assets.
+- Project-specific source priorities and layer ownership live in
+  `PlayerAnimationCoordinator` inside `_App/Core`; they are intentionally not
+  part of the reusable module API.
 
 ## Ownership rules
 

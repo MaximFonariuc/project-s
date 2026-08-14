@@ -1,5 +1,4 @@
 using System;
-using ModularAnimation;
 using VContainer;
 
 namespace _App
@@ -18,7 +17,7 @@ namespace _App
             builder.Register<IPlayerTraversalActions>(
                 resolver => new PlayerTraversalActions(
                     resolver.Resolve<Character>(),
-                    resolver.Resolve<ICharacterAnimationDriver>(),
+                    resolver.Resolve<PlayerAnimationCoordinator>(),
                     resolver.Resolve<IPlayerLocomotionState>(),
                     features),
                 Lifetime.Scoped);

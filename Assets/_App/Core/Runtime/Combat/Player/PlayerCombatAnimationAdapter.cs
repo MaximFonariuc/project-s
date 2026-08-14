@@ -12,7 +12,7 @@ namespace _App
         private const string UnsheathePostfix = "_Unsheathe";
         private const string SheathePostfix = "_Sheathe";
 
-        private readonly ICharacterAnimationDriver _animation;
+        private readonly PlayerAnimationCoordinator _animation;
         private readonly MecanimCharacterAnimationDriver _mecanim;
         private readonly AnimationsData _animationsData;
         private readonly RuntimeAnimatorController _sourceController;
@@ -26,7 +26,7 @@ namespace _App
         public int ComboCount => _comboClips.Count;
 
         public PlayerCombatAnimationAdapter(
-            ICharacterAnimationDriver animation,
+            PlayerAnimationCoordinator animation,
             MecanimCharacterAnimationDriver mecanim,
             AnimationsData animationsData)
         {
@@ -62,7 +62,7 @@ namespace _App
             }
 
             animator.runtimeAnimatorController = _overrideController;
-            _animation.RefreshBindings();
+            _mecanim.RefreshBindings();
         }
 
         public void ApplyLoadout(ECharacterType characterType, EWeaponType weaponType)
@@ -76,7 +76,7 @@ namespace _App
 
             _comboClips = _animationsData.GetComboClips(characterType, weaponType);
             ApplyOverrides(_comboClips);
-            _animation.RefreshBindings();
+            _mecanim.RefreshBindings();
         }
 
         public bool HasNamedAnimation(
@@ -106,6 +106,7 @@ namespace _App
             }
 
             playback = _animation.CrossFade(
+                PlayerAnimationSource.Combat,
                 PlayerAnimationStates.State(clip.name),
                 PlayerAnimationStates.BaseLayer,
                 0.1f,
@@ -137,6 +138,7 @@ namespace _App
             }
 
             playback = _animation.CrossFade(
+                PlayerAnimationSource.Combat,
                 PlayerAnimationStates.Skill,
                 PlayerAnimationStates.BaseLayer,
                 0.1f,
@@ -163,6 +165,7 @@ namespace _App
 
             string stateName = weaponType + (draw ? UnsheathePostfix : SheathePostfix);
             playback = _animation.CrossFade(
+                PlayerAnimationSource.Combat,
                 PlayerAnimationStates.State(stateName),
                 PlayerAnimationStates.WeaponLayer,
                 0.1f);
@@ -175,6 +178,11 @@ namespace _App
             return true;
         }
 
+        public void Release()
+        {
+            _animation.ReleaseAll(PlayerAnimationSource.Combat);
+        }
+
         public void Dispose()
         {
             if (_disposed)
@@ -183,10 +191,11 @@ namespace _App
             }
 
             _disposed = true;
+            Release();
             if (_mecanim.Animator != null && _mecanim.Animator.runtimeAnimatorController == _overrideController)
             {
                 _mecanim.Animator.runtimeAnimatorController = _sourceController;
-                _animation.RefreshBindings();
+                _mecanim.RefreshBindings();
             }
 
             Object.Destroy(_overrideController);

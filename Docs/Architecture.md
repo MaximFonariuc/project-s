@@ -21,7 +21,7 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 - **Combatant vitality** — текущий `Health` является временным prototype-owner hit points и публикует подтверждённые события damage/death. Целевая модель разделяет Attributes, Derived Stats, Resources, Modifiers, Costs/Regeneration и узкий Life State; решение зафиксировано в `Docs/Architecture/Character.StatsAndResources.md` и пока не реализуется.
 - **Combat hit resolution** — `Weapon` сообщает только physics-кандидата; scoped `CombatHitResolver` связывает его с action execution, применяет multiplier `Hurtbox`, фильтрует повторную цель и публикует подтверждённый `CombatHitResult`. `Health` остаётся владельцем здоровья.
 - **Player Combat** — scoped `IStateMachine<PlayerCombatPhase>` владеет фазой `Ready / Executing / Recovery / WeaponSwitch / Interrupted`; `PlayerCombatController` координирует semantic commands, action graph, input buffer, cooldown, weapon state и hit window. Внешние consumers используют раздельные `IPlayerCombatCommands` и `IPlayerCombatState`.
-- **Animation presentation** — `PlayerLocomotionAnimationAdapter` и `PlayerCharacterAnimationPresenter` переводят подтверждённый locomotion snapshot в backend-neutral `ICharacterAnimationDriver`. Animator остаётся presentation backend и не владеет gameplay-состоянием.
+- **Animation presentation** — `PlayerAnimationCoordinator` является единственным владельцем layer arbitration и playback speed для Locomotion, Combat, Reaction и Traversal. `PlayerCharacterAnimationPresenter` отдельно переводит подтверждённый locomotion snapshot в backend-neutral параметры driver. Animator остаётся presentation backend и не владеет gameplay-состоянием.
 - **Player Targeting** — `PlayerTargetingController` владеет lock-on state и выбором цели. Camera и будущий Combat читают его через `IPlayerTargetingState`, не управляя target selection.
 - **Player Camera** — `PlayerCameraController` владеет free-look/target-lock режимом, zoom, shoulder и framing state. `CinemachineCameraRig` является заменяемым presentation adapter, а locomotion читает только `ICameraOrientation`.
 - **Player Traversal** — `PlayerTraversalController` владеет interaction/climb workflow и согласованием gravity inversion между locomotion и camera. `PlayerSimulationGate` объединяет persistent pause request и временные traversal locks, оставаясь единственным владельцем вызова `Character.Pause` в player flow.
@@ -62,6 +62,6 @@ Anti-corruption boundary между feature controllers и legacy `Character`, �
 
 Будущая система характеристик и ресурсов, временный статус `Health` и правила её последующей миграции описаны в `Docs/Architecture/Character.StatsAndResources.md`.
 
-Следующий активный scope после фиксации этого решения — состояния игрока и единая координация animation presentation. Финальные animation clips для этого не требуются.
+Animation layer arbitration уже централизован. Следующий state scope — interruption rules между Reaction, Traversal и Combat; финальные animation clips для него не требуются.
 
 `Assets/Scenes/Demo Scene.unity` сохраняется как reference-сцена без переноса её содержимого. Рабочая сцена находится в `Assets/_Game/Scenes/PrototypeArena.unity` и является стартовой сценой разработки.

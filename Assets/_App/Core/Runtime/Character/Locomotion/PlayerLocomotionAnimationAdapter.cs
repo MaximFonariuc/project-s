@@ -1,20 +1,19 @@
 using System;
-using ModularAnimation;
 
 namespace _App
 {
-    public sealed class PlayerLocomotionAnimationAdapter : IPlayerLocomotionPresentation
+    internal sealed class PlayerLocomotionAnimationAdapter : IPlayerLocomotionPresentation
     {
-        private readonly ICharacterAnimationDriver _driver;
+        private readonly PlayerAnimationCoordinator _animation;
         private readonly PlayerCharacterAnimationPresenter _presenter;
         private PlayerLocomotionStateId _previousState;
         private bool _hasPreviousState;
 
         public PlayerLocomotionAnimationAdapter(
-            ICharacterAnimationDriver driver,
+            PlayerAnimationCoordinator animation,
             PlayerCharacterAnimationPresenter presenter)
         {
-            _driver = driver ?? throw new ArgumentNullException(nameof(driver));
+            _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
         }
 
@@ -28,6 +27,15 @@ namespace _App
 
             if (!_hasPreviousState || _previousState != snapshot.State)
             {
+                if (_hasPreviousState &&
+                    _previousState == PlayerLocomotionStateId.Dodge &&
+                    snapshot.State != PlayerLocomotionStateId.Dodge)
+                {
+                    _animation.Release(
+                        PlayerAnimationSource.Locomotion,
+                        PlayerAnimationStates.BaseLayer);
+                }
+
                 EnterState(snapshot);
                 _previousState = snapshot.State;
                 _hasPreviousState = true;
@@ -38,6 +46,7 @@ namespace _App
 
         public void Reset()
         {
+            _animation.ReleaseAll(PlayerAnimationSource.Locomotion);
             _hasPreviousState = false;
         }
 
@@ -48,7 +57,8 @@ namespace _App
                 return;
             }
 
-            _driver.CrossFade(
+            _animation.CrossFade(
+                PlayerAnimationSource.Locomotion,
                 snapshot.DodgeBackwards ? PlayerAnimationStates.RollBack : PlayerAnimationStates.RollFront,
                 PlayerAnimationStates.BaseLayer,
                 0.1f);

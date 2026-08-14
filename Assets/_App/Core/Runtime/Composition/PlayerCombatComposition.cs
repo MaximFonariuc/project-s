@@ -1,5 +1,4 @@
 using System;
-using ModularAnimation;
 using ModularAnimation.Unity;
 using ModularStateMachine.VContainerIntegration;
 using VContainer;
@@ -38,7 +37,7 @@ namespace _App
                 .As<ICombatHitEvents>();
             builder.Register<IPlayerCombatAnimation>(
                 resolver => new PlayerCombatAnimationAdapter(
-                    resolver.Resolve<ICharacterAnimationDriver>(),
+                    resolver.Resolve<PlayerAnimationCoordinator>(),
                     resolver.Resolve<MecanimCharacterAnimationDriver>(),
                     player.CombatAnimations),
                 Lifetime.Scoped);

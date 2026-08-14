@@ -24,7 +24,7 @@ namespace _App
             builder.Register<CharacterPoise>(Lifetime.Scoped);
             builder.Register<ICharacterReactionPresentation>(
                 resolver => new CharacterReactionAnimationAdapter(
-                    resolver.Resolve<ModularAnimation.ICharacterAnimationDriver>(),
+                    resolver.Resolve<PlayerAnimationCoordinator>(),
                     profile),
                 Lifetime.Scoped);
             builder.Register<ICharacterReactionInterruption, PlayerCombatReactionInterruption>(

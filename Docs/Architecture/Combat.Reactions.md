@@ -12,7 +12,7 @@
 - блокировку player movement intent и прерывание текущей атаки/смены оружия;
 - направленный knockback через `ICharacterImpactMotor`;
 - возврат из временной реакции и явное восстановление после `Health.RestoreFull()`;
-- опциональное отображение состояний через `ICharacterAnimationDriver`.
+- опциональное отображение состояний через `PlayerAnimationCoordinator` и backend-neutral animation driver.
 
 Hit stop не входит в reaction state machine и имеет отдельного time-scale owner, описанного в `Docs/Architecture/Combat.HitStop.md`. Invulnerability frames, get-up phase, ragdoll и финальные reaction clips пока не входят в этот блок.
 
@@ -76,6 +76,7 @@ classDiagram
         +Reset()
     }
     class CharacterReactionAnimationAdapter
+    class PlayerAnimationCoordinator
     class ICharacterAnimationDriver
     class CharacterReactionProfile {
         <<optional authoring data>>
@@ -100,7 +101,8 @@ classDiagram
     PlayerCombatReactionInterruption ..|> ICharacterReactionInterruption
     PlayerCombatReactionInterruption --> IPlayerCombatCommands
     CharacterReactionAnimationAdapter ..|> ICharacterReactionPresentation
-    CharacterReactionAnimationAdapter --> ICharacterAnimationDriver
+    CharacterReactionAnimationAdapter --> PlayerAnimationCoordinator
+    PlayerAnimationCoordinator --> ICharacterAnimationDriver
     CharacterReactionAnimationAdapter --> CharacterReactionProfile : optional mapping
     PlayerReactionComposition ..> CharacterReactionController : constructs
 ```
@@ -174,7 +176,7 @@ Animator Controller не содержит hit-stun/knockdown/airborne reaction s
 Профиль будет дополнен вместе с реальными reaction clips, без изменения runtime
 state machine и damage pipeline.
 
-Когда финальные клипы появятся, profile связывает пару `ReactionId + State` с backend-neutral animation state. Пустой `ReactionId` является fallback для состояния. `CharacterReactionAnimationAdapter` только вызывает `ICharacterAnimationDriver`; он не завершает gameplay reaction по длине клипа и не меняет state machine. После возврата в `Stable` обычную позу снова отображает locomotion presentation.
+Когда финальные клипы появятся, profile связывает пару `ReactionId + State` с backend-neutral animation state. Пустой `ReactionId` является fallback для состояния. `CharacterReactionAnimationAdapter` отправляет приоритетный request в `PlayerAnimationCoordinator`; он не завершает gameplay reaction по длине клипа и не меняет state machine. После возврата в `Stable` adapter освобождает request, а coordinator восстанавливает наиболее приоритетный оставшийся presentation state.
 
 ## Lifecycle и границы
 

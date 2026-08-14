@@ -50,6 +50,7 @@ namespace _App
             PlayerCombatAnimationId animationId,
             out AnimationPlayback playback);
         bool TryPlayWeaponTransition(EWeaponType weaponType, bool draw, out AnimationPlayback playback);
+        void Release();
     }
 
     internal interface IPlayerWeaponRig

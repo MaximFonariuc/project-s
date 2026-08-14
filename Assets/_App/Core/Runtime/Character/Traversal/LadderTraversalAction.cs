@@ -9,7 +9,7 @@ namespace _App
 	internal sealed class LadderTraversalAction
 	{
 		private readonly Character _character;
-		private readonly ICharacterAnimationDriver _animationDriver;
+		private readonly PlayerAnimationCoordinator _animation;
 		private readonly IPlayerLocomotionState _locomotionState;
 		private readonly LayerMask _ladderMask;
 
@@ -33,12 +33,12 @@ namespace _App
 
 		public LadderTraversalAction(
 			Character character,
-			ICharacterAnimationDriver animationDriver,
+			PlayerAnimationCoordinator animation,
 			IPlayerLocomotionState locomotionState,
 			LadderTraversalSettings settings)
 		{
 			_character = character ?? throw new ArgumentNullException(nameof(character));
-			_animationDriver = animationDriver ?? throw new ArgumentNullException(nameof(animationDriver));
+			_animation = animation ?? throw new ArgumentNullException(nameof(animation));
 			_locomotionState = locomotionState ?? throw new ArgumentNullException(nameof(locomotionState));
 			if (settings == null)
 			{
@@ -253,7 +253,7 @@ namespace _App
 			else
 			{
 				Play(PlayerAnimationStates.LadderIdle, BLEND_TIME);
-				_animationDriver.SetPlaybackSpeed(1.0f);
+				_animation.SetPlaybackSpeed(PlayerAnimationSource.Traversal, 1.0f);
 			}
 		}
 
@@ -292,7 +292,7 @@ namespace _App
 					? PlayerAnimationStates.LadderAscend
 					: PlayerAnimationStates.LadderDescend;
 				float speedFactor = SpeedFactor;
-				_animationDriver.SetPlaybackSpeed(speedFactor);
+				_animation.SetPlaybackSpeed(PlayerAnimationSource.Traversal, speedFactor);
 				float clipLen = Play(state, 0.0f).Duration / speedFactor;
 
 				Vector3 start = _character.GetPosition();
@@ -388,7 +388,7 @@ namespace _App
 				_character.RootMotionController.RootMovementUpdate(out var _, out var _);
 				_character.EnableGroundConstraint(true);
 				_character.SetRotationMode(_previousRotationMode);
-				_animationDriver.SetPlaybackSpeed(1.0f);
+				_animation.ReleaseAll(PlayerAnimationSource.Traversal);
 			}
 		}
 
@@ -406,7 +406,8 @@ namespace _App
 
 		private AnimationPlayback Play(AnimationStateId state, float transitionDuration)
 		{
-			AnimationPlayback playback = _animationDriver.CrossFade(
+			AnimationPlayback playback = _animation.CrossFade(
+				PlayerAnimationSource.Traversal,
 				state,
 				PlayerAnimationStates.BaseLayer,
 				transitionDuration);
@@ -442,6 +443,7 @@ namespace _App
 			_lifecycleCts = null;
 			_activeLadder = null;
 			_climbingState = EClimbingState.None;
+			_animation.ReleaseAll(PlayerAnimationSource.Traversal);
 			_enabled = false;
 		}
 	}

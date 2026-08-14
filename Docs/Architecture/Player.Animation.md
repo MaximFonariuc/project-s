@@ -33,6 +33,20 @@ classDiagram
     class PlayerLocomotionAnimationAdapter {
         <<state transition adapter>>
     }
+    class PlayerAnimationCoordinator {
+        <<single layer arbitration owner>>
+        +CrossFade(source, state, layer, transition, duration)
+        +SetPlaybackSpeed(source, speed)
+        +Release(source, layer)
+        +ReleaseAll(source)
+    }
+    class PlayerAnimationSource {
+        <<priority>>
+        Locomotion
+        Combat
+        Traversal
+        Reaction
+    }
     class PlayerCharacterAnimationPresenter {
         <<locomotion mapper>>
         +Present(snapshot, deltaTime)
@@ -56,6 +70,8 @@ classDiagram
     class MecanimCharacterAnimationBindings
     class Animator
     class PlayerCombatAnimationAdapter
+    class CharacterReactionAnimationAdapter
+    class LadderTraversalAction
     class PlayerCombatAnimationId {
         +Value string
     }
@@ -79,27 +95,34 @@ classDiagram
     PlayerLocomotionController --> IPlayerLocomotionPresentation
     IPlayerLocomotionPresentation <|.. PlayerLocomotionAnimationAdapter
     PlayerLocomotionAnimationAdapter --> PlayerCharacterAnimationPresenter
-    PlayerLocomotionAnimationAdapter --> ICharacterAnimationDriver : dodge transition
+    PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator : dodge request
     PlayerCharacterAnimationPresenter --> CharacterLocomotionFrame : maps
     PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
+    PlayerAnimationCoordinator --> PlayerAnimationSource
+    PlayerAnimationCoordinator --> ICharacterAnimationDriver : exclusive transitions
     ICharacterAnimationDriver <|.. MecanimCharacterAnimationDriver
     MecanimCharacterAnimationProfile --> MecanimCharacterAnimationBindings : creates
     MecanimCharacterAnimationDriver --> MecanimCharacterAnimationBindings
     MecanimCharacterAnimationDriver --> Animator
-    PlayerCombatAnimationAdapter --> ICharacterAnimationDriver
+    PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
+    CharacterReactionAnimationAdapter --> PlayerAnimationCoordinator
+    LadderTraversalAction --> PlayerAnimationCoordinator
     PlayerCombatAnimationAdapter --> AnimationsData
     PlayerCombatAnimationAdapter --> PlayerCombatAnimationId
     AnimationsData *-- OverrideAnimation
     OverrideAnimation *-- CombatAnimationClip
-    PlayerTraversalActions --> ICharacterAnimationDriver
+    PlayerTraversalActions --> LadderTraversalAction
 ```
 
 ## Направление зависимостей
 
 ```mermaid
 flowchart LR
-    Gameplay["Locomotion / Combat / Traversal"] --> ProjectAdapters["Project S presentation adapters"]
-    ProjectAdapters --> ModulePort["ModularAnimation.Core contracts"]
+    Gameplay["Locomotion / Combat / Reaction / Traversal"] --> ProjectAdapters["Project S presentation adapters"]
+    ProjectAdapters --> Coordinator["PlayerAnimationCoordinator"]
+    Coordinator --> ModulePort["ModularAnimation.Core driver"]
+    ProjectAdapters --> LocomotionFrame["Locomotion parameter presenter"]
+    LocomotionFrame --> ModulePort
     Profile["Mecanim character profile"] --> UnityDriver["ModularAnimation.Unity driver"]
     ModulePort --> UnityDriver
     UnityDriver --> Animator
@@ -115,8 +138,27 @@ flowchart LR
 - `PlayerLocomotionController` — единственный owner locomotion snapshot.
 - `PlayerLocomotionAnimationAdapter` обнаруживает смену подтверждённого state и отправляет presentation transition.
 - `PlayerCharacterAnimationPresenter` является stateless mapper snapshot → `CharacterLocomotionFrame`.
+- `PlayerAnimationCoordinator` — единственный owner явных `CrossFade`, владельца animation layer и source-specific playback speed.
 - `MecanimCharacterAnimationDriver` кэширует parameter hashes и clip durations, но не принимает gameplay-решения.
-- Combat и Traversal используют тот же driver через отдельные adapters и не меняют locomotion state.
+- Locomotion parameters обновляются независимо от layer arbitration, поэтому underlying blend tree получает актуальную скорость даже во время action animation.
+- Combat, Reaction и Traversal отправляют coordinator только presentation requests и не меняют locomotion state.
+
+## Arbitration animation states
+
+Для одного layer одновременно существует только один effective owner. Приоритеты принадлежат Project S Core, а не универсальному animation module:
+
+```text
+Reaction > Traversal > Combat > Locomotion
+```
+
+- Более высокий source может прервать визуальный state более низкого.
+- Более низкий request не изменяет Animator и получает `AnimationPlayback.Invalid`; gameplay action обязан трактовать это как непринятое presentation-действие.
+- Последний валидный request каждого source/layer сохраняется. После `Release` coordinator восстанавливает самый приоритетный оставшийся request.
+- Combat освобождает свои layers при completion, cancellation, interruption и disable.
+- Reaction освобождает layer при возврате в `Stable` или reset lifecycle.
+- Traversal освобождает layers при выходе из climbing mode и при disable.
+- Locomotion освобождает явный dodge request при выходе из `Dodge`; обычные blend parameters продолжают обновляться каждый frame.
+- `SpeedMultiplier` применяется только текущим владельцем Base Layer и сбрасывается либо восстанавливается вместе со сменой owner.
 
 ## Combat presentation lookup
 
@@ -128,8 +170,8 @@ Combat gameplay не знает о clip references. `PlayerCombatAction` сод�
 
 Humanoid и Generic персонажи используют одинаковый `ICharacterAnimationDriver`. Различия Animator Controller и parameter naming задаются отдельным `MecanimCharacterAnimationProfile`; retargeting, avatar и совместимость clips остаются authoring-ответственностью конкретного character prefab. Новый Playables/backend реализует тот же driver contract и выбирается только в Composition Root.
 
-## Следующий активный scope
+## Следующий state scope
 
-Следующая работа возвращается к gameplay states и animation presentation игрока. Требуется определить одного владельца arbitration между Locomotion, Combat, Reaction и Traversal presentation, чтобы независимые adapters не конкурировали за один Animator и корректно восстанавливался предыдущий визуальный state после interruption.
+Layer arbitration теперь имеет одного владельца. Следующий отдельный блок — согласование gameplay interruption rules: прежде всего реакция во время traversal, запрет новых действий при non-stable reaction и явное восстановление presentation после сложного interruption.
 
-Эта работа не должна зависеть от финальных animation clips и не переносит gameplay authority в Animator. Приоритеты и transitions будут выводиться из подтверждённых gameplay states; конкретная схема фиксируется после аудита текущих adapters и Animator profile.
+Эта работа не зависит от финальных animation clips и не переносит gameplay authority в Animator. Gameplay state machines по-прежнему подтверждают состояние, coordinator решает только конфликт presentation requests.
