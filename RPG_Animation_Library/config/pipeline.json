@@ -1,10 +1,11 @@
 {
   "schema_version": 1,
-  "pipeline_version": "0.3.0",
+  "pipeline_version": "0.4.0",
   "phase_versions": {
     "inventory": "1.0.0",
     "unpack": "1.1.0",
-    "index": "1.0.0"
+    "index": "1.0.0",
+    "semantic_preview": "1.0.0"
   },
   "project_root": ".",
   "paths": {
@@ -140,5 +141,98 @@
   "conversion": {
     "pilot_only": true,
     "max_batch_size": 20
+  },
+  "semantic_preview": {
+    "source_tae": "02_UNPACKED/EldenVins/mod/chr/c0000-events/c0000-anibnd-dcx-wanibnd/INTERROOT_win64/chr/c0000/tae/a00.tae",
+    "tae_template": "../Elden/.pipeline/tools/WitchyBND-3.0.1.0/Assets/Templates/TAE.Template.ER.xml",
+    "flver": "02_UNPACKED/EldenVins/mod/chr/c0000-character/c0000-chrbnd-dcx/c0000.flver",
+    "base_anibnd": "../Elden/ELDEN VINS/mod/chr/c0000.anibnd.dcx",
+    "animation_anibnd": "../Elden/ELDEN VINS/mod/chr/c0000_a00_hi.anibnd.dcx",
+    "preview_output": "03_CATALOG/previews/phase_4",
+    "sample_count": 6,
+    "pilots": [
+      {
+        "animation_id": "a000_010000",
+        "friendly_name": "Unknown",
+        "confidence": "Unknown",
+        "character_type": "Player",
+        "weapon_family": "Unknown",
+        "action_type": "Unknown",
+        "action_variant": "Unknown",
+        "direction": "Unknown",
+        "qa_status": "NeedsReview",
+        "notes": "Pose projection collapses horizontally; full-body semantics are not reliable. Raw TAE contains only Wwise sound events. Requires interactive DSAnimStudio review."
+      },
+      {
+        "animation_id": "a000_019270",
+        "friendly_name": "Forward Roll",
+        "confidence": "Verified",
+        "character_type": "Player",
+        "weapon_family": "Unknown",
+        "action_type": "Dodge",
+        "action_variant": "ForwardRoll",
+        "direction": "Forward",
+        "qa_status": "Previewed",
+        "notes": "Sampled poses show a forward roll and TAE FlagType 8 explicitly marks the interval as dodging. Weapon context is not established."
+      },
+      {
+        "animation_id": "a000_020000",
+        "friendly_name": "Forward Step",
+        "confidence": "Probable",
+        "character_type": "Player",
+        "weapon_family": "Unknown",
+        "action_type": "Locomotion",
+        "action_variant": "ForwardStep",
+        "direction": "Forward",
+        "qa_status": "NeedsReview",
+        "notes": "Sampled poses look like a short forward locomotion cycle, but TAE also contains BulletBehavior. Keep Probable until interactive review resolves the context."
+      },
+      {
+        "animation_id": "a000_040590",
+        "friendly_name": "Forward Leaping Attack",
+        "confidence": "Probable",
+        "character_type": "Player",
+        "weapon_family": "Unknown",
+        "action_type": "Attack",
+        "action_variant": "ForwardLeapingAttack",
+        "direction": "Forward",
+        "qa_status": "Previewed",
+        "notes": "Sampled poses show a forward aerial attack and TAE has AttackBehavior from 0.4 to 1.4 seconds. Weapon context is not established."
+      },
+      {
+        "animation_id": "a000_041150",
+        "friendly_name": "Rising Strike",
+        "confidence": "Probable",
+        "character_type": "Player",
+        "weapon_family": "Unknown",
+        "action_type": "Attack",
+        "action_variant": "RisingStrike",
+        "direction": "Forward",
+        "qa_status": "Previewed",
+        "notes": "Sampled poses show a crouched wind-up into a rising strike; TAE has AttackBehavior from 0.6 to 0.76666665 seconds. Weapon context is not established."
+      },
+      {
+        "animation_id": "a000_080000",
+        "friendly_name": "Unknown",
+        "confidence": "Unknown",
+        "character_type": "Player",
+        "weapon_family": "Unknown",
+        "action_type": "Unknown",
+        "action_variant": "Unknown",
+        "direction": "Unknown",
+        "qa_status": "NeedsReview",
+        "notes": "Long stance/gesture-like motion without a sufficiently reliable semantic identity. Requires interactive DSAnimStudio review."
+      }
+    ],
+    "rejected_candidates": [
+      {
+        "animation_id": "a000_012100",
+        "reason": "Soulstruct rejected the HKX because the Havok type hkMemoryResourceContainer is missing from the active type registry."
+      },
+      {
+        "animation_id": "a000_050470",
+        "reason": "Soulstruct rejected the HKX because the Havok type hkxScene is missing from the active type registry."
+      }
+    ]
   }
 }

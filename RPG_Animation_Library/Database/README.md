@@ -27,3 +27,18 @@ They are rebuilt from the Phase 1 manifest or a verified Phase 2 receipt.
 Unverified semantics must remain `Unknown`. A name inferred from a file or directory is not `Verified` until a reliable source mapping or preview confirms it.
 
 `animation_index_state.json` records the phase configuration hash, input fingerprint, record count, and final CSV SHA-256 used for idempotent reruns.
+
+## Phase 4 pilot evidence
+
+`pilot_clips.csv` contains the small, explicitly reviewed Phase 4 subset. It stores semantic confidence, sampled duration and root translation, TAE linkage, preview location, and QA notes without redefining canonical identity.
+
+`tae_events.csv` is event evidence rather than gameplay configuration. It preserves:
+
+- raw TAE event ID and template name;
+- exact source start/end strings and calculated duration;
+- group index, enum label context, and all raw parameters as compact JSON;
+- separate normalized start/end classes for search and later mapping.
+
+Never discard raw fields after normalization. An event that cannot be mapped safely must remain `Unknown`.
+
+`phase_4_state.json` hashes every versioned Phase 4 output. Because Phase 4 enriches `animations.csv`, the Phase 3 output hash becomes stale until `index_animations.py` is run again; the indexer preserves curated values while refreshing its own state.

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "timestamp": "2026-08-14T15:48:36.094728Z",
+  "pipelineVersion": "0.4.0",
+  "phaseVersion": "1.0.0",
+  "phaseConfigSHA256": "eceabc17c039777bfe965ba6f308f9cbc11b763801f332bfbc4e9b61c3fb5581",
+  "pilotCount": 6,
+  "eventCount": 189,
+  "outputs": {
+    "Database/pilot_clips.csv": "d1e62f892adc1c52a3940cc9587e39e2b91127c8ed3ecd38f3df3b26f32afd13",
+    "Database/tae_events.csv": "6b5257a1cf7d6874c71553a347459bf25c5a0162e49211018e30f0a386ce9a38",
+    "Database/animations.csv": "e68d8199d9035f099b65df290aa49b40a41374071d3d97d6678d071c3d2b0b21",
+    "03_CATALOG/reports/phase_4_status.md": "046f4f57684b9d1519f788ea997d6c15ba246d028a5706976d2af65581e87aab",
+    "03_CATALOG/previews/phase_4/a000_010000.png": "bfae8fc2fb28a57b8a4cd2a8534eb068aa65b401b3c8d172f4eb21b87b2ecefe",
+    "03_CATALOG/previews/phase_4/a000_019270.png": "8a3b5fd69b40c12cc80b9de1fbf824feb638a83188925a6eb2d3f81fb8224f12",
+    "03_CATALOG/previews/phase_4/a000_020000.png": "7a44e7aa9986b7474fca8e5ac81d5787a13d810f456360348c32ed1d9ee38221",
+    "03_CATALOG/previews/phase_4/a000_040590.png": "005d0df42d0d6bc28d8afd0376d5095d57da6443d097bab0ec59b2618f0c398e",
+    "03_CATALOG/previews/phase_4/a000_041150.png": "0a2f4332ec8af55de53b3a84015f89105d426112f20e7d8cd4c6544cc05c00f8",
+    "03_CATALOG/previews/phase_4/a000_080000.png": "e24d5ac3b0e8108ed9658444d2896f6425daa07e7b5adf5b4d82a6bd66b744e1"
+  }
+}

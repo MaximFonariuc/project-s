@@ -1,8 +1,8 @@
 # Phase 3 animation index
 
-Timestamp: `2026-08-14T15:20:01.106781Z`
+Timestamp: `2026-08-14T15:50:40.562617Z`
 
-Result: **SKIPPED_UNCHANGED**.
+Result: **PASS**.
 
 ## What was attempted
 
@@ -18,7 +18,7 @@ Index Phase 1 RAW identities and verified Phase 2 unpack outputs into one canoni
 
 - Records: **12,690**
 - Duplicate SourceHash groups: **110**
-- Existing CSV reused unchanged: **Yes**
+- Existing CSV reused unchanged: **No**
 
 ### By stage
 
@@ -43,7 +43,7 @@ Index Phase 1 RAW identities and verified Phase 2 unpack outputs into one canoni
 - `Database/animation_index_state.json`
 - `Database/pipeline_runs.csv`
 - `03_CATALOG/reports/phase_3_status.md`
-- `logs/index_20260814T152001Z_95453a55.log`
+- `logs/index_20260814T155040Z_79414f5c.log`
 
 ## Known blockers
 

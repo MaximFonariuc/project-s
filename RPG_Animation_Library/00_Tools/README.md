@@ -15,3 +15,9 @@ The configured paths are recorded in `config/pipeline.json`. Paths are resolved 
 The Soulstruct add-on was validated in Blender 5.2 by initializing Blender's GPU module before add-on registration in background mode. Its Elden Ring animation support remains experimental and must stay behind a pilot gate.
 
 Phase 2 invokes WitchyBND with its silent CLI flag (`-s`) and passes only a copied container below `02_UNPACKED`. The configured executable SHA-256 is verified before the first job starts.
+
+Phase 4 passes a temporary copy of `a00.tae` to WitchyBND and supplies an Elden Ring project identity only inside the temporary work directory. The repository stores the serialized evidence as CSV, not the generated XML tree.
+
+DSAnimStudio 4.9.9 can open `.anibnd`/`.anibnd.dcx` directly and is the preferred interactive animation/TAE viewer. Its standard startup requires a selected game executable/project, so the automated Phase 4 preview uses Blender/Soulstruct pose sampling instead of pretending DSAnimStudio has a supported headless renderer.
+
+On the current Intel graphics host, Blender 5.2 can write the requested pose JSON and then fault in `igxelpicd64.dll` during process shutdown. The Phase 4 runner accepts that known non-zero exit only after the expected JSON exists and parses successfully; a missing or invalid output still fails the phase.
