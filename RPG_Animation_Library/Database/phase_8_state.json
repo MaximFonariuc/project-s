@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "timestamp": "2026-08-14T18:11:30.039871Z",
+  "pipelineVersion": "0.8.0",
+  "phaseVersion": "1.0.0",
+  "phaseConfigSHA256": "631601199a888785b6c56561f37c9cd9bac2e9cbe9fcb95effa5963ce921ef07",
+  "approvalScope": "PilotOnly/ProjectS_CLazy_Player/UnityFBX",
+  "pilotCount": 5,
+  "outputs": {
+    "Database/fbx_export_operations.csv": "a6fd9ae9f7df5ddd565204cabd28590ed30b49ad888ab30436477131a84b1888",
+    "03_CATALOG/reports/phase_8_status.md": "44c252c5d04eee5643f5e50eb6da29f98fc29453dd49c24a1504a91f84377733",
+    "config/unity_import_profiles/ProjectS_Humanoid.json": "620136a371c42ba0c654da01bf5e564a73e3dac33673a26134067fdcfca71430"
+  },
+  "artifacts": {
+    "07_FBX/phase_8/Dodge/Player_Dodge_ForwardRoll__RPGREF_6139DF2ED3414FD6A29783C4.fbx": {
+      "sha256": "27993c5f19b4034d0f7b4b3415382981d6c756e40a9f18d38c17df6583180cbf",
+      "sizeBytes": 634892,
+      "metadataPath": "07_FBX/phase_8/Dodge/Player_Dodge_ForwardRoll__RPGREF_6139DF2ED3414FD6A29783C4.animlib.json",
+      "metadataSHA256": "a4d416cc31674925ce53319264eb4480c0079326710b84b3803e8e629c364fe2",
+      "exportReceiptSHA256": "fa7f3c56fc84947e4383e26b58767cc173a5027bbfeaee64b23bea64008e5e6d",
+      "reimportValidationSHA256": "ed406326c4a2017558fc34aea71f723ea580a1b24c3a59378da64df086c3510f"
+    },
+    "07_FBX/phase_8/Locomotion/Player_Locomotion_ForwardStep__RPGREF_7C4D02DD2CF66D4C4B1425CC.fbx": {
+      "sha256": "d249e94893611f36c4190842d51d6a3f8a37ef2cf614e58faeb638ac99f356b7",
+      "sizeBytes": 542332,
+      "metadataPath": "07_FBX/phase_8/Locomotion/Player_Locomotion_ForwardStep__RPGREF_7C4D02DD2CF66D4C4B1425CC.animlib.json",
+      "metadataSHA256": "f327e4457225ffecba60b3e8c019e935d559cb23a36c4799e1535a33d6c4a213",
+      "exportReceiptSHA256": "94831a86c5d77a5214d5eac893521f5229b67e0e6e14b3e46bf73a34f8c05bd8",
+      "reimportValidationSHA256": "9fcfd2c79b3460ad4342d00327fadb213d6cc354afe8f5c14c6aece23b6569c7"
+    },
+    "07_FBX/phase_8/Attack/Player_Attack_ForwardLeapingAttack__RPGREF_7BF0E1BA1FB96046803D49F9.fbx": {
+      "sha256": "b975a70004065920b2dc5e8de2e9dec99e8f96aa263ea23096f309d6e4192967",
+      "sizeBytes": 723036,
+      "metadataPath": "07_FBX/phase_8/Attack/Player_Attack_ForwardLeapingAttack__RPGREF_7BF0E1BA1FB96046803D49F9.animlib.json",
+      "metadataSHA256": "a63cbe8206a8e2a00f7f48496b46c8c34db508a3e167f2f62cb854a4f1c53604",
+      "exportReceiptSHA256": "61ae62b371fe242b7edb23e21ce70227a15b8c24562c0d73d01800321188dd84",
+      "reimportValidationSHA256": "e30fdc49bac2f0085094a1323eff466db18685a914dcc318b75f1dc114dff46c"
+    },
+    "07_FBX/phase_8/Attack/Player_Attack_RisingStrike__RPGREF_AD2D98A037757115F711E21D.fbx": {
+      "sha256": "481d69f4ac7ee0769d51de19c61202bfed24f0e959024688d773967e7eec95d9",
+      "sizeBytes": 673100,
+      "metadataPath": "07_FBX/phase_8/Attack/Player_Attack_RisingStrike__RPGREF_AD2D98A037757115F711E21D.animlib.json",
+      "metadataSHA256": "c76ef7c95642010584dc34810e022b39752ce9ca24d54cdc53a33ba95046bb1f",
+      "exportReceiptSHA256": "9cb1a730fe998861887bef31de2dd424ce2b779eadba81adf4fdb9f0e6ba165a",
+      "reimportValidationSHA256": "2855b747981145a99281e02f805d629d92cf95f272c3af1f162760c255bf7a14"
+    },
+    "07_FBX/phase_8/Unknown/Player_Unknown_Unknown__RPGREF_0F567AEF0CF5F974E6D6AEE4.fbx": {
+      "sha256": "d77899a28c83be99e33a420b26c87cab3f95b7011964ee75bc1f4a8d56cf8fe1",
+      "sizeBytes": 1055004,
+      "metadataPath": "07_FBX/phase_8/Unknown/Player_Unknown_Unknown__RPGREF_0F567AEF0CF5F974E6D6AEE4.animlib.json",
+      "metadataSHA256": "0116dd355f9814e2890998e9ecc88a5a274190ed3905490a3d68df2274618365",
+      "exportReceiptSHA256": "9441db33cea6d54961195edcba36efb9f9ccf4cda8cbed8ee82c87cb03fbaaa3",
+      "reimportValidationSHA256": "17460cff5ea5e6bf007addf865e4c0eb144363a30ec93a8225d088c0d5ca6ace"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "pipeline_version": "0.7.0",
+  "pipeline_version": "0.8.0",
   "phase_versions": {
     "inventory": "1.0.0",
     "unpack": "1.1.0",
@@ -8,7 +8,8 @@
     "semantic_preview": "1.0.0",
     "conversion": "1.0.0",
     "skeleton_profile": "1.0.0",
-    "retarget": "1.0.0"
+    "retarget": "1.0.0",
+    "fbx_export": "1.0.0"
   },
   "project_root": ".",
   "paths": {
@@ -186,6 +187,21 @@
     "minimum_pose_height": 0.3,
     "maximum_pose_extent": 3.0,
     "root_translation_tolerance": 0.00001
+  },
+  "fbx_export": {
+    "pilot_only": true,
+    "phase8_input": "05_RETARGETED/phase_7",
+    "phase8_output": "07_FBX/phase_8",
+    "unity_import_profile": "config/unity_import_profiles/ProjectS_Humanoid.json",
+    "target_avatar_asset": "Assets/_Game/Models/AnimationSources/CLazy/TPose.FBX",
+    "phase8_pilots": [
+      "a000_019270",
+      "a000_020000",
+      "a000_040590",
+      "a000_041150",
+      "a000_080000"
+    ],
+    "root_translation_tolerance": 0.001
   },
   "semantic_preview": {
     "source_tae": "02_UNPACKED/EldenVins/mod/chr/c0000-events/c0000-anibnd-dcx-wanibnd/INTERROOT_win64/chr/c0000/tae/a00.tae",

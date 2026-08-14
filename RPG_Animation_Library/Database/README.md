@@ -62,3 +62,9 @@ Never discard raw fields after normalization. An event that cannot be mapped saf
 `retarget_operations.csv` is the append-only pilot retarget ledger. It records the source/target artifacts and profiles, mapped-bone count, measured scale, target root motion, pose bounds, motion fingerprint, clean-reopen result and repeatability result.
 
 `PilotPassed` in `RetargetStatus` means that the selected action was baked onto `ProjectS_CLazy_Player` and passed the mechanical gates. Contact sheets are retained for human pose review. They do not promote `Probable` or `Unknown` semantic labels to `Verified`.
+
+## Phase 8 FBX evidence
+
+`fbx_export_operations.csv` records each animation-only FBX, its adjacent `.animlib.json` contract, hashes, pinned pipeline/profile identifiers and the clean Blender reimport result.
+
+The adjacent contract is the authoritative hand-off to Unity. It carries semantic metadata without encoding gameplay events into the animation file and tells the editor importer whether the clip is in-place or preserves scaled root motion.
