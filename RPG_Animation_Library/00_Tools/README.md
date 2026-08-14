@@ -21,3 +21,5 @@ Phase 4 passes a temporary copy of `a00.tae` to WitchyBND and supplies an Elden 
 DSAnimStudio 4.9.9 can open `.anibnd`/`.anibnd.dcx` directly and is the preferred interactive animation/TAE viewer. Its standard startup requires a selected game executable/project, so the automated Phase 4 preview uses Blender/Soulstruct pose sampling instead of pretending DSAnimStudio has a supported headless renderer.
 
 On the current Intel graphics host, Blender 5.2 can write the requested pose JSON and then fault in `igxelpicd64.dll` during process shutdown. The Phase 4 runner accepts that known non-zero exit only after the expected JSON exists and parses successfully; a missing or invalid output still fails the phase.
+
+Phase 5 applies a stricter rule to native Blender artifacts: both `.blend` and conversion metadata must exist before the known shutdown fault can be tolerated, and the saved file must then reopen successfully in a clean Blender process with an identical per-frame motion fingerprint. No FBX or Unity asset is produced in this phase.

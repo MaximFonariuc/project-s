@@ -42,3 +42,11 @@ Unverified semantics must remain `Unknown`. A name inferred from a file or direc
 Never discard raw fields after normalization. An event that cannot be mapped safely must remain `Unknown`.
 
 `phase_4_state.json` hashes every versioned Phase 4 output. Because Phase 4 enriches `animations.csv`, the Phase 3 output hash becomes stale until `index_animations.py` is run again; the indexer preserves curated values while refreshing its own state.
+
+## Phase 5 conversion evidence
+
+`conversion_operations.csv` is an append-only audit ledger for HKX-to-Blender pilot attempts. Each row records source identity, generated `.blend` path/hash/size, motion fingerprint, source timing and root-motion metrics, and the result of every hard-gate dimension.
+
+`phase_5_state.json` records the exact pilot approval scope and hashes both the versioned evidence and ignored local conversion artifacts. Phase state hashes are historical run evidence: later phases may legitimately enrich the shared `animations.csv`, so use the newest phase state plus the current Phase 3 index state when validating the active catalog.
+
+`PilotPassed` in `ConversionStatus` means only that the selected source HKX survived the bounded Blender gate. It does not imply semantic approval, successful retargeting, FBX export, Unity import, or compatibility with another skeleton family.

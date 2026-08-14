@@ -1,6 +1,6 @@
 # Phase 3 animation index
 
-Timestamp: `2026-08-14T15:50:40.562617Z`
+Timestamp: `2026-08-14T16:01:03.046336Z`
 
 Result: **PASS**.
 
@@ -43,7 +43,7 @@ Index Phase 1 RAW identities and verified Phase 2 unpack outputs into one canoni
 - `Database/animation_index_state.json`
 - `Database/pipeline_runs.csv`
 - `03_CATALOG/reports/phase_3_status.md`
-- `logs/index_20260814T155040Z_79414f5c.log`
+- `logs/index_20260814T160103Z_d59cedc6.log`
 
 ## Known blockers
 

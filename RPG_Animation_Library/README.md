@@ -58,6 +58,23 @@ Generated Phase 4 outputs:
 - `Database/phase_4_state.json`;
 - curated fields for the selected rows in `Database/animations.csv`.
 
+Run the Phase 5 HKX-to-Blender hard gate:
+
+```powershell
+python RPG_Animation_Library/scripts/run_phase5_conversion.py --config RPG_Animation_Library/config/pipeline.json
+```
+
+Phase 5 converts only the five configured `c0000/a00_hi` pilot clips into native `.blend` files below ignored `04_CONVERTED/phase_5`. Each artifact is reopened in a fresh Blender process and checked against a deterministic per-frame motion fingerprint. One root-motion clip is also imported twice to verify repeatability.
+
+The PASS result approves only the tested standard Elden Ring player HKX variant. It does not approve unrecognized HKX containers, other skeleton families, bulk conversion, retargeting, FBX export, or Unity import.
+
+Versioned Phase 5 evidence:
+
+- `03_CATALOG/reports/phase_5_status.md`;
+- `Database/conversion_operations.csv`;
+- `Database/phase_5_state.json`;
+- `ConversionStatus=PilotPassed` for the selected rows in `Database/animations.csv`.
+
 Environment and installed tool versions are documented in `03_CATALOG/reports/environment.md` and `00_Tools/README.md`.
 
 Do not rename, overwrite, unpack, or convert files inside the mapped RAW sources.

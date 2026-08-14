@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "timestamp": "2026-08-14T15:59:29.476696Z",
+  "pipelineVersion": "0.5.0",
+  "phaseVersion": "1.0.0",
+  "phaseConfigSHA256": "fd1af25f7fb1485cb917173b3f34eafce06042bcb485f739fbfd7a41035fb31a",
+  "bridgeApproval": "PilotOnly",
+  "approvalScope": "EldenRing/c0000/a00_hi/recognized-standard-animation-HKX",
+  "pilotCount": 5,
+  "restSkeletonHeightSpread": 0.0,
+  "repeatabilityAnimation": "a000_019270",
+  "outputs": {
+    "Database/conversion_operations.csv": "c68866de15851c511f3a88e7d2528be4327b9b52de60141731b73314d4381029",
+    "Database/animations.csv": "7c02d0587ca00b6040a9ba830278e5e9330ab65ecbea92b88d2feb0fe84f55ea",
+    "03_CATALOG/reports/phase_5_status.md": "2e809e5742b1c12001378468fe08b9c582455925ab7f4b21dfd9e83f1203ac39"
+  },
+  "artifacts": {
+    "04_CONVERTED/phase_5/a000_019270/a000_019270.blend": {
+      "sha256": "465399a168eba3db1458ac901f012a0f2af8c615bab186e59306c331ee40dadf",
+      "sizeBytes": 511717,
+      "motionFingerprintSHA256": "14b2c3f2522bc2f26708927f3743856c447f6a3e91f4d5c81cbe04ea766542c9",
+      "metadataSHA256": "6f02ebdc39907ab0f12984d6a06acfe695cd4f1e493725694801f1da16bd6e7f",
+      "reopenValidationSHA256": "25d45f27b873fc9705597ae8387e2f20e460bd47d5187fc143425d29f4ad210c"
+    },
+    "04_CONVERTED/phase_5/a000_020000/a000_020000.blend": {
+      "sha256": "3e9d49178585cdc9d1fb25d96129234050faa99a0f238957c3e412f825db30f6",
+      "sizeBytes": 383766,
+      "motionFingerprintSHA256": "11f6c1be37c4c6f8a3fca1958142a7a8bd7c8a248df8e4340c99ea2cd7c87c84",
+      "metadataSHA256": "8ced31057bf31fe6521c8211f8ac19c3679cba516ce14633524167b4f8d200c0",
+      "reopenValidationSHA256": "25507421cf87a481e687d377106ebfda872cf3deb32921be54565eba472eb8cb"
+    },
+    "04_CONVERTED/phase_5/a000_040590/a000_040590.blend": {
+      "sha256": "cb871135d2cabb19151af863b63c201eb69f6e8b259e7db7cd5c60412685af41",
+      "sizeBytes": 629359,
+      "motionFingerprintSHA256": "b24b2bd1408f16de9e54ce2632209e9ba86f70c03f067e1dfc3f33d6c8015a5e",
+      "metadataSHA256": "da1261dbc29c1977ebdc35651e26e854fd6307573bbaf435eb7b3f5b1e27255c",
+      "reopenValidationSHA256": "f8d84460fac53131deabc9d4c186d49a28fa7a9be99b11bdb147bc65cac7af8f"
+    },
+    "04_CONVERTED/phase_5/a000_041150/a000_041150.blend": {
+      "sha256": "2856351063b483fd63cf200eaa43b87bb901639b759e0f50603f5b8af8f6daff",
+      "sizeBytes": 552775,
+      "motionFingerprintSHA256": "c113aea4a8d37b8666559daea20355188ebf18b3a739fb0be785a68ef9ae40b3",
+      "metadataSHA256": "e0025868e61ac7d8bf1b7dc3153ba7bfa3b14baaa745b7801b36aeba42a8bf4f",
+      "reopenValidationSHA256": "1c9a6feca8d375aa177fc00589f69c28f6da8ae4f6ff154751df5ac95f2365bd"
+    },
+    "04_CONVERTED/phase_5/a000_080000/a000_080000.blend": {
+      "sha256": "c968af3d0b8403cf6db8891967154f717e7f8a0a561382958111216996bc13cb",
+      "sizeBytes": 1659629,
+      "motionFingerprintSHA256": "cc4a3a364f56cccaa875e207191a82a6a4fe60f0b64776a5d9278b8d8a6116ef",
+      "metadataSHA256": "dd82f7ba496954ea126102d7e38a952f2229219b72a3e9b64d9d090771ec687f",
+      "reopenValidationSHA256": "c22f4bc9fe868d90101ac51607e253811a8bb4e30c41f0b6275255e3fd93fc22"
+    }
+  }
+}
