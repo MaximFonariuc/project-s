@@ -11,7 +11,7 @@
 - применяет multiplier зоны к базовому damage;
 - публикует событие только после того, как `Health` действительно принял удар.
 
-Hit reaction, poise/stagger state, hit stop, VFX, audio и camera impulse пока не реализуются. Они должны подписываться на подтверждённый результат и не возвращать эти обязанности в `Weapon`.
+Reaction и poise/stagger обрабатываются отдельным target-local consumer, описанным в `Docs/Architecture/Combat.Reactions.md`. Hit stop, VFX, audio и camera impulse пока не реализуются. Они должны потреблять подтверждённый результат и не возвращать эти обязанности в `Weapon`.
 
 ## Дерево классов
 

@@ -10,6 +10,7 @@ namespace _App
         private readonly PlayerTargetingController _targeting;
         private readonly PlayerCameraController _camera;
         private readonly PlayerCombatController _combat;
+        private readonly CharacterReactionController _reaction;
         private readonly PlayerTraversalController _traversal;
         private readonly PlayerSimulationPauseController _simulationPause;
 
@@ -22,6 +23,7 @@ namespace _App
             PlayerTargetingController targeting,
             PlayerCameraController camera,
             PlayerCombatController combat,
+            CharacterReactionController reaction,
             PlayerTraversalController traversal,
             PlayerSimulationPauseController simulationPause)
         {
@@ -32,6 +34,7 @@ namespace _App
             _targeting = targeting ?? throw new ArgumentNullException(nameof(targeting));
             _camera = camera ?? throw new ArgumentNullException(nameof(camera));
             _combat = combat ?? throw new ArgumentNullException(nameof(combat));
+            _reaction = reaction ?? throw new ArgumentNullException(nameof(reaction));
             _traversal = traversal ?? throw new ArgumentNullException(nameof(traversal));
             _simulationPause = simulationPause ?? throw new ArgumentNullException(nameof(simulationPause));
         }
@@ -51,6 +54,7 @@ namespace _App
                 _targeting.Enable();
                 _camera.Enable();
                 _combat.Enable();
+                _reaction.Enable();
                 _traversal.Enable();
                 _simulationPause.Enable();
                 _input.Enable();
@@ -72,6 +76,7 @@ namespace _App
             _input.Disable();
             _simulationPause.Disable();
             _traversal.Disable();
+            _reaction.Disable();
             _combat.Disable();
             _camera.Disable();
             _targeting.Disable();
@@ -87,8 +92,12 @@ namespace _App
                 return;
             }
 
+            _reaction.Tick(deltaTime);
             _traversal.Tick();
-            _locomotion.SetMovementIntent(_combat.MovementIntent);
+            _locomotion.SetMovementIntent(
+                _reaction.BlocksActions
+                    ? PlayerMovementIntent.Locked
+                    : _combat.MovementIntent);
             _locomotion.Tick(deltaTime);
             _targeting.Tick();
         }

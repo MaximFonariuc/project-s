@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _App
 {
-    public sealed class CharacterMotor : ICharacterMotor
+    public sealed class CharacterMotor : ICharacterMotor, ICharacterImpactMotor
     {
         private readonly Character _character;
         private readonly float _walkSpeed;
@@ -108,5 +108,9 @@ namespace _App
             return true;
         }
 
+        public void ApplyKnockback(Vector3 worldVelocity)
+        {
+            _character.LaunchCharacter(worldVelocity, false, true);
+        }
     }
 }

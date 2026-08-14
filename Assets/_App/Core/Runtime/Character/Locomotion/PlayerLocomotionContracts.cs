@@ -79,6 +79,7 @@ namespace _App
     public readonly struct PlayerMovementIntent
     {
         public static PlayerMovementIntent Unrestricted => new PlayerMovementIntent(1.0f, true, true, false);
+        public static PlayerMovementIntent Locked => new PlayerMovementIntent(0.0f, false, false, false);
 
         public float TranslationScale { get; }
         public bool AllowJump { get; }
@@ -121,6 +122,14 @@ namespace _App
         void ReleaseJump();
         void SetSpeedMode(PlayerSpeedMode speedMode);
         bool TryInvertGravity();
+    }
+
+    public interface ICharacterImpactMotor
+    {
+        bool IsGrounded { get; }
+        Vector3 Up { get; }
+
+        void ApplyKnockback(Vector3 worldVelocity);
     }
 
     public interface IPlayerMovementReference

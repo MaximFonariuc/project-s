@@ -17,7 +17,7 @@ namespace _App
         public Transform Root => _character.transform;
         public Vector3 Position => _character.transform.position;
         public Vector3 Forward => _character.transform.forward;
-        public bool CanAttack => _character.CanAttack();
+        public bool CanAttack => _health.IsAlive && _character.CanAttack();
         public bool IsFalling => _character.IsFalling();
         public bool IsClimbing => _character.IsClimbing();
         public ERotationMode RotationMode => _character.RotationMode;
@@ -25,14 +25,16 @@ namespace _App
             _character.RootMotionController != null
                 ? _character.RootMotionController.Policy
                 : RootMotionPolicy.Ignore;
-        public bool IsDamageImmune => _health != null && _health.IsDamageImmune;
+        public bool IsDamageImmune => _health.IsDamageImmune;
 
-        public PlayerActorAdapter(Character character)
+        public PlayerActorAdapter(Character character, Health health)
         {
             _character = character != null
                 ? character
                 : throw new ArgumentNullException(nameof(character));
-            _health = _character.GetComponent<Health>();
+            _health = health != null
+                ? health
+                : throw new ArgumentNullException(nameof(health));
         }
 
         public void SetRotationMode(ERotationMode rotationMode)
@@ -47,7 +49,7 @@ namespace _App
 
         public void SetDamageImmune(bool immune)
         {
-            _health?.SetDamageImmune(immune);
+            _health.SetDamageImmune(immune);
         }
     }
 }

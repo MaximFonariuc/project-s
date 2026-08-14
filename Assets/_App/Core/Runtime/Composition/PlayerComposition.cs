@@ -16,17 +16,19 @@ namespace _App
             }
 
             if (!player.TryGetComponent(out Character character) ||
+                !player.TryGetComponent(out Health health) ||
                 player.CharacterFeatures == null ||
                 player.PlayerAnimator == null ||
                 player.AnimationProfile == null)
             {
                 throw new InvalidOperationException(
-                    "Player requires Character, CharacterFeatureSet, Animator and animation profile references.");
+                    "Player requires Character, Health, CharacterFeatureSet, Animator and animation profile references.");
             }
 
             player.CharacterFeatures.ValidateConfiguration();
 
             builder.RegisterComponent(character);
+            builder.RegisterComponent(health);
             builder.Register<PlayerActorAdapter>(Lifetime.Scoped)
                 .As<IPlayerActorTransform>()
                 .As<IPlayerTargetingActor>()
@@ -60,6 +62,7 @@ namespace _App
             builder.RegisterPlayerCamera(player);
             builder.RegisterPlayerCombat(player);
             builder.RegisterPlayerLocomotion(player.CharacterFeatures);
+            builder.RegisterPlayerReaction(player);
             builder.RegisterPlayerTraversal(player.CharacterFeatures);
             builder.Register<PlayerActorController>(Lifetime.Scoped);
             builder.RegisterComponent(player);

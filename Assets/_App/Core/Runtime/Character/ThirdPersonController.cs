@@ -35,6 +35,9 @@ namespace _App
         [SerializeField] private AnimationsData _skillsData;
         [SerializeField] private PlayerCombatActionProfile _combatActionProfile;
 
+        [Header("Combat Reactions")]
+        [SerializeField] private CharacterReactionProfile _reactionProfile;
+
         [Header("AnimationController")]
         [SerializeField] private Animator _animator;
         [SerializeField] private MecanimCharacterAnimationProfile _animationProfile;
@@ -52,6 +55,7 @@ namespace _App
         internal ECharacterType CharacterType => _characterType;
         internal AnimationsData CombatAnimations => _skillsData;
         internal PlayerCombatActionProfile CombatActionProfile => _combatActionProfile;
+        internal CharacterReactionProfile ReactionProfile => _reactionProfile;
         internal Transform WeaponHolder => _weaponHolder;
         internal Transform WeaponHand => _weaponHand;
         internal Transform WeaponTransform => _weapon;

@@ -119,5 +119,6 @@ Hitbox открывается только по `CombatActionFrame` и закр�
 - `Disable` отменяет UniTask action, aborts executor, очищает buffer, закрывает hitbox, снимает callbacks и останавливает state machine.
 - State machine и её states создаются scoped-регистрациями VContainer в `PlayerCombatComposition`; controller не вызывает `Resolve` и не владеет container.
 - Animator, graph authoring и input buffer не являются владельцами combat phase.
+- Входящая реакция не входит в combat state machine: `PlayerCombatReactionInterruption` использует только `IPlayerCombatCommands`, чтобы отменить executing/recovery/weapon-switch action. Владельцем hit-stun/death остаётся `CharacterReactionController`.
 
 Текущий `IPlayerCombatActor.CanAttack` сохраняет проверенное наземное ограничение. Graph уже поддерживает `Grounded/Airborne`, но включение воздушных атак требует отдельного изменения actor gate и реальных air clips, а не скрытого обхода текущей locomotion policy.

@@ -46,6 +46,8 @@ Player Camera и Player Targeting описаны раздельно в `Docs/Arc
 
 Player Combat и его state machine описаны в `Docs/Architecture/Player.Combat.md`; semantic commands, moveset graph и Grounded/Airborne branches — в `Docs/Architecture/Combat.ActionModel.md`; отдельное дерево input buffer и его policies — в `Docs/Architecture/Combat.InputBuffer.md`.
 
+Character Reaction, poise, hit-stun/knockdown/airborne/death state machine и её границы с Health, Combat, Locomotion и Animation описаны в `Docs/Architecture/Combat.Reactions.md`.
+
 Player Traversal, interaction flow и ownership локальной simulation pause описаны в `Docs/Architecture/Player.Traversal.md`.
 
 Authoring-модель character features и serialization migration описаны в `Docs/Architecture/Character.Features.md`.

@@ -256,7 +256,8 @@ namespace _App
 
         public void InterruptAttack()
         {
-            if (Phase is not PlayerCombatPhase.Executing and not PlayerCombatPhase.Recovery)
+            PlayerCombatPhase phase = Phase;
+            if (phase == PlayerCombatPhase.Ready)
             {
                 return;
             }
@@ -267,7 +268,11 @@ namespace _App
             _acceptedBufferedAction = null;
             SetHitWindow(false);
             SetComboIndex(0);
-            _stateMachine.ChangeState<PlayerCombatInterruptedState>();
+            if (phase is PlayerCombatPhase.Executing or PlayerCombatPhase.Recovery)
+            {
+                _stateMachine.ChangeState<PlayerCombatInterruptedState>();
+            }
+
             ReturnToReady();
         }
 

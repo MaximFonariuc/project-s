@@ -10,6 +10,7 @@ namespace _App
 
         public event Action<CombatHitResult> Damaged;
         public event Action<CombatHitResult> Died;
+        public event Action Revived;
 
         public int MaxHealth => _maxHealth;
         public int CurrentHealth { get; private set; }
@@ -46,7 +47,13 @@ namespace _App
 
         public void RestoreFull()
         {
+            bool wasDead = !IsAlive;
             CurrentHealth = _maxHealth;
+
+            if (wasDead)
+            {
+                Revived?.Invoke();
+            }
         }
 
         public void SetDamageImmune(bool immune)

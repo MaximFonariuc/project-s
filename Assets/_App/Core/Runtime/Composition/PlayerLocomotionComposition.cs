@@ -20,7 +20,9 @@ namespace _App
                     resolver.Resolve<Character>(),
                     features),
                 Lifetime.Scoped);
-            builder.Register<ICharacterMotor, CharacterMotor>(Lifetime.Scoped);
+            builder.Register<CharacterMotor>(Lifetime.Scoped)
+                .As<ICharacterMotor>()
+                .As<ICharacterImpactMotor>();
             builder.Register<IPlayerLocomotionActions>(
                 resolver => new PlayerLocomotionActions(
                     resolver.Resolve<Character>(),
