@@ -31,6 +31,13 @@ namespace _App
                     features),
                 Lifetime.Scoped);
             builder.Register<IPlayerMovementReference, CameraRelativeMovementReference>(Lifetime.Scoped);
+            LocomotionAnimationSettings animationSettings =
+                features.GetEnabled<LocomotionAnimationSettings>();
+            builder.RegisterInstance(
+                animationSettings != null
+                    ? animationSettings.CreatePolicy()
+                    : PlayerLocomotionAnimationPolicy.CreateDefaults());
+            builder.Register<PlayerLocomotionAnimationResolver>(Lifetime.Scoped);
             builder.Register<IPlayerLocomotionPresentation, PlayerLocomotionAnimationAdapter>(Lifetime.Scoped);
             builder.Register<PlayerLocomotionRuntime>(Lifetime.Scoped);
 

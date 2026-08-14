@@ -14,127 +14,190 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementType: MovementType
   _movementDirection: MovementDirection
-  _onGround: OnGround
-  _fallingDuration: FallingDuration
+  _verticalSpeed: VerticalSpeed
   _speedMultiplier: SpeedMultiplier
   _validationController: {fileID: 9100000, guid: e460e0a6d47ef134fbba4ca79be04cee, type: 2}
+  _stateControlMode: 0
   _states:
+  - _slot: Locomotion.Grounded
+    _state: Locomotion.Move
+    _layer: Base Layer
+    _transitionSeconds: 0.12
+    _expectedDuration: 0
+    _fallbackSlot: 
+    _required: 1
+  - _slot: Locomotion.Jump.Walk
+    _state: Locomotion.Jump.Jump.JumpWalking
+    _layer: Base Layer
+    _transitionSeconds: 0.08
+    _expectedDuration: 0.5
+    _fallbackSlot: 
+    _required: 1
+  - _slot: Locomotion.Jump.Run
+    _state: Locomotion.Jump.Jump.JumpRunning
+    _layer: Base Layer
+    _transitionSeconds: 0.08
+    _expectedDuration: 0.533
+    _fallbackSlot: 
+    _required: 1
+  - _slot: Locomotion.Jump.Sprint
+    _state: Locomotion.Jump.Jump.JumpSprinting
+    _layer: Base Layer
+    _transitionSeconds: 0.08
+    _expectedDuration: 0.5
+    _fallbackSlot: 
+    _required: 1
+  - _slot: Locomotion.Fall
+    _state: Locomotion.Jump.Fall
+    _layer: Base Layer
+    _transitionSeconds: 0.1
+    _expectedDuration: 0
+    _fallbackSlot: 
+    _required: 1
+  - _slot: Locomotion.Land.Soft
+    _state: Locomotion.Jump.Landing.LandSoft
+    _layer: Base Layer
+    _transitionSeconds: 0.08
+    _expectedDuration: 0.527
+    _fallbackSlot: 
+    _required: 1
+  - _slot: Locomotion.Land.Medium
+    _state: Locomotion.Jump.Landing.LandMedium
+    _layer: Base Layer
+    _transitionSeconds: 0.1
+    _expectedDuration: 0.92
+    _fallbackSlot: 
+    _required: 1
+  - _slot: Locomotion.Land.Hard
+    _state: Locomotion.Jump.Landing.LandHard
+    _layer: Base Layer
+    _transitionSeconds: 0.12
+    _expectedDuration: 1.353
+    _fallbackSlot: 
+    _required: 1
   - _slot: Locomotion.Dodge.Forward
     _state: Locomotion.Roll.RollFront
     _layer: Base Layer
-    _transitionDuration: 0.1
+    _transitionSeconds: 0.08
     _expectedDuration: 0.867
     _fallbackSlot: 
     _required: 1
   - _slot: Locomotion.Dodge.Backward
     _state: Locomotion.Roll.RollBack
     _layer: Base Layer
-    _transitionDuration: 0.1
+    _transitionSeconds: 0.08
     _expectedDuration: 0.867
     _fallbackSlot: 
     _required: 1
   - _slot: Combat.Action
     _state: Attack.Skill
     _layer: Base Layer
-    _transitionDuration: 0.1
+    _transitionSeconds: 0.1
     _expectedDuration: 1.6
     _fallbackSlot: 
     _required: 1
   - _slot: Combat.Combo.0
     _state: Attack.BaseAttack1
     _layer: Base Layer
-    _transitionDuration: 0.1
+    _transitionSeconds: 0.1
     _expectedDuration: 1
     _fallbackSlot: 
     _required: 1
   - _slot: Combat.Combo.1
     _state: Attack.BaseAttack2
     _layer: Base Layer
-    _transitionDuration: 0.1
+    _transitionSeconds: 0.1
     _expectedDuration: 1
     _fallbackSlot: 
     _required: 1
   - _slot: Combat.Combo.2
     _state: Attack.BaseAttack3
     _layer: Base Layer
-    _transitionDuration: 0.1
+    _transitionSeconds: 0.1
     _expectedDuration: 1
     _fallbackSlot: 
     _required: 1
   - _slot: Combat.Combo.3
     _state: Attack.BaseAttack4
     _layer: Base Layer
-    _transitionDuration: 0.1
+    _transitionSeconds: 0.1
     _expectedDuration: 1.333
+    _fallbackSlot: 
+    _required: 1
+  - _slot: Combat.Weapon.Rest
+    _state: Waiting
+    _layer: SwitchWeapon Layer
+    _transitionSeconds: 0.08
+    _expectedDuration: 0
     _fallbackSlot: 
     _required: 1
   - _slot: Combat.Weapon.TwoHanded.Draw
     _state: TwoHanded_Unsheathe
     _layer: SwitchWeapon Layer
-    _transitionDuration: 0.1
+    _transitionSeconds: 0.1
     _expectedDuration: 1
     _fallbackSlot: 
     _required: 1
   - _slot: Combat.Weapon.TwoHanded.Sheathe
     _state: TwoHanded_Sheathe
     _layer: SwitchWeapon Layer
-    _transitionDuration: 0.1
+    _transitionSeconds: 0.1
     _expectedDuration: 1
     _fallbackSlot: 
     _required: 1
   - _slot: Traversal.Ladder.EnterTopFront
     _state: Ladder.Ladder_Enter_Top_Front
     _layer: Base Layer
-    _transitionDuration: 0.15
+    _transitionSeconds: 0.15
     _expectedDuration: 1.833
     _fallbackSlot: 
     _required: 1
   - _slot: Traversal.Ladder.EnterTopBack
     _state: Ladder.Ladder_Enter_Top_Back
     _layer: Base Layer
-    _transitionDuration: 0.15
+    _transitionSeconds: 0.15
     _expectedDuration: 1.833
     _fallbackSlot: 
     _required: 1
   - _slot: Traversal.Ladder.EnterBottom
     _state: Ladder.Ladder_Enter_Bottom
     _layer: Base Layer
-    _transitionDuration: 0.15
+    _transitionSeconds: 0.15
     _expectedDuration: 0.433
     _fallbackSlot: 
     _required: 1
   - _slot: Traversal.Ladder.ExitTop
     _state: Ladder.Ladder_Exit_Top
     _layer: Base Layer
-    _transitionDuration: 0.15
+    _transitionSeconds: 0.15
     _expectedDuration: 1.833
     _fallbackSlot: 
     _required: 1
   - _slot: Traversal.Ladder.ExitBottom
     _state: Ladder.Ladder_Exit_Bottom
     _layer: Base Layer
-    _transitionDuration: 0.15
+    _transitionSeconds: 0.15
     _expectedDuration: 0.667
     _fallbackSlot: 
     _required: 1
   - _slot: Traversal.Ladder.Ascend
     _state: Ladder.Ladder_Ascend
     _layer: Base Layer
-    _transitionDuration: 0
+    _transitionSeconds: 0
     _expectedDuration: 1
     _fallbackSlot: 
     _required: 1
   - _slot: Traversal.Ladder.Descend
     _state: Ladder.Ladder_Descend
     _layer: Base Layer
-    _transitionDuration: 0
+    _transitionSeconds: 0
     _expectedDuration: 1
     _fallbackSlot: 
     _required: 1
   - _slot: Traversal.Ladder.Idle
     _state: Ladder.Ladder_Idle
     _layer: Base Layer
-    _transitionDuration: 0.15
+    _transitionSeconds: 0.15
     _expectedDuration: 1
     _fallbackSlot: 
     _required: 1

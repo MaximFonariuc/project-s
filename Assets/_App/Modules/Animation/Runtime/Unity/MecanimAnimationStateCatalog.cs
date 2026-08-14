@@ -9,7 +9,7 @@ namespace ModularAnimation.Unity
         public AnimationSlotId Slot { get; }
         public string State { get; }
         public string Layer { get; }
-        public float TransitionDuration { get; }
+        public float TransitionSeconds { get; }
         public float ExpectedDuration { get; }
         public AnimationSlotId FallbackSlot { get; }
         public bool Required { get; }
@@ -18,7 +18,7 @@ namespace ModularAnimation.Unity
             AnimationSlotId slot,
             string state,
             string layer,
-            float transitionDuration,
+            float transitionSeconds,
             float expectedDuration,
             AnimationSlotId fallbackSlot,
             bool required)
@@ -26,7 +26,7 @@ namespace ModularAnimation.Unity
             Slot = slot;
             State = state?.Trim();
             Layer = layer?.Trim();
-            TransitionDuration = Mathf.Max(0.0f, transitionDuration);
+            TransitionSeconds = Mathf.Max(0.0f, transitionSeconds);
             ExpectedDuration = Mathf.Max(0.0f, expectedDuration);
             FallbackSlot = fallbackSlot;
             Required = required;
@@ -183,7 +183,7 @@ namespace ModularAnimation.Unity
             binding = new AnimationStateBinding(
                 state,
                 new AnimationLayerId(layerIndex),
-                definition.TransitionDuration,
+                definition.TransitionSeconds,
                 definition.ExpectedDuration);
             return true;
         }

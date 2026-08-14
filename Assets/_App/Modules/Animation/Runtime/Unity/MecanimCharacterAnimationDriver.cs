@@ -45,9 +45,8 @@ namespace ModularAnimation.Unity
                 0.33f,
                 deltaTime);
             _animator.SetFloat(_bindings.MovementDirection.Hash, signedMovement, 0.1f, deltaTime);
-            _animator.SetBool(_bindings.OnGround.Hash, frame.IsGrounded);
             _animator.SetFloat(
-                _bindings.FallingDuration.Hash,
+                _bindings.VerticalSpeed.Hash,
                 frame.Mode == CharacterLocomotionMode.Airborne ? frame.VerticalSpeed : 0.0f,
                 0.1f,
                 deltaTime);
@@ -56,7 +55,7 @@ namespace ModularAnimation.Unity
         public AnimationPlayback CrossFade(
             AnimationStateId state,
             AnimationLayerId layer,
-            float transitionDuration,
+            float transitionSeconds,
             float expectedDuration = 0.0f)
         {
             if (!state.IsValid || layer.Index >= _animator.layerCount)
@@ -72,7 +71,11 @@ namespace ModularAnimation.Unity
                 return AnimationPlayback.Invalid;
             }
 
-            _animator.CrossFade(state.Hash, Mathf.Max(0.0f, transitionDuration), layer.Index);
+            _animator.CrossFadeInFixedTime(
+                state.Hash,
+                Mathf.Max(0.0f, transitionSeconds),
+                layer.Index,
+                0.0f);
 
             float duration = expectedDuration > 0.0f
                 ? expectedDuration
@@ -123,8 +126,7 @@ namespace ModularAnimation.Unity
         {
             RequireParameter(_bindings.MovementType, AnimatorControllerParameterType.Float);
             RequireParameter(_bindings.MovementDirection, AnimatorControllerParameterType.Float);
-            RequireParameter(_bindings.OnGround, AnimatorControllerParameterType.Bool);
-            RequireParameter(_bindings.FallingDuration, AnimatorControllerParameterType.Float);
+            RequireParameter(_bindings.VerticalSpeed, AnimatorControllerParameterType.Float);
             RequireParameter(_bindings.SpeedMultiplier, AnimatorControllerParameterType.Float);
         }
 

@@ -11,7 +11,7 @@ classDiagram
     class ICharacterAnimationDriver {
         <<interface>>
         +ApplyLocomotion(frame, deltaTime)
-        +CrossFade(state, layer, transition, duration) AnimationPlayback
+        +CrossFade(state, layer, transitionSeconds, duration) AnimationPlayback
         +SetPlaybackSpeed(speed)
         +RefreshBindings()
     }
@@ -74,6 +74,12 @@ classDiagram
   controller names, layer indices or state paths. A character can use a
   different Animator Controller by assigning a matching profile. Look animation
   is a separate optional contract.
+- Mecanim blends use `CrossFadeInFixedTime`; profile transition values are
+  seconds and therefore do not change meaning when clips are replaced.
+- The locomotion contract publishes `VerticalSpeed`. Animator transitions do
+  not interpret that value as a timer or own the jump/fall gameplay decision.
+- Discrete phases are selected through semantic slots, so the Mecanim contract
+  does not require gameplay triggers or an `OnGround` transition parameter.
 - `_App/Core` requests semantic slots such as `Combat.Combo.0` and
   `Traversal.Ladder.Ascend`. Only the character profile knows that these resolve
   to concrete Mecanim layers and nested state paths.
@@ -82,7 +88,8 @@ classDiagram
   missing optional presentation never changes gameplay state.
 - `ModularAnimation.Unity.Editor` validates the profile against an assigned
   Animator Controller and reports duplicate slots, missing layers/states,
-  missing fallback slots and states without Motion.
+  missing fallback slots, states without Motion and automatic transitions on
+  layers declared as code-driven.
 - `_App/Core -> ModularAnimation`; the module never references `_App/Core` or
   `_Game` assets.
 - Project-specific source priorities and layer ownership live in

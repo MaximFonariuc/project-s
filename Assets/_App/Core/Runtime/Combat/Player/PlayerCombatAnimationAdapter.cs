@@ -74,6 +74,9 @@ namespace _App
             _comboClips = _animationsData.GetComboClips(characterType, weaponType);
             ApplyOverrides(_comboClips);
             _mecanim.RefreshBindings();
+            _animation.CrossFade(
+                PlayerAnimationSource.Equipment,
+                PlayerAnimationSlots.WeaponRest);
         }
 
         public bool HasNamedAnimation(
@@ -182,6 +185,7 @@ namespace _App
 
             _disposed = true;
             Release();
+            _animation.ReleaseAll(PlayerAnimationSource.Equipment);
             if (_mecanim.Animator != null && _mecanim.Animator.runtimeAnimatorController == _overrideController)
             {
                 _mecanim.Animator.runtimeAnimatorController = _sourceController;

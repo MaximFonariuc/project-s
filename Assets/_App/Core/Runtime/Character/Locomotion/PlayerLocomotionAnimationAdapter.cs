@@ -6,15 +6,16 @@ namespace _App
     {
         private readonly PlayerAnimationCoordinator _animation;
         private readonly PlayerCharacterAnimationPresenter _presenter;
-        private PlayerLocomotionStateId _previousState;
-        private bool _hasPreviousState;
+        private readonly PlayerLocomotionAnimationResolver _resolver;
 
         public PlayerLocomotionAnimationAdapter(
             PlayerAnimationCoordinator animation,
-            PlayerCharacterAnimationPresenter presenter)
+            PlayerCharacterAnimationPresenter presenter,
+            PlayerLocomotionAnimationResolver resolver)
         {
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
+            _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
         }
 
         public void Present(in PlayerLocomotionSnapshot snapshot, float deltaTime)
@@ -25,41 +26,36 @@ namespace _App
                 return;
             }
 
-            if (!_hasPreviousState || _previousState != snapshot.State)
-            {
-                if (_hasPreviousState &&
-                    _previousState == PlayerLocomotionStateId.Dodge &&
-                    snapshot.State != PlayerLocomotionStateId.Dodge)
-                {
-                    _animation.ReleaseAll(PlayerAnimationSource.Locomotion);
-                }
-
-                EnterState(snapshot);
-                _previousState = snapshot.State;
-                _hasPreviousState = true;
-            }
-
             _presenter.Present(snapshot, deltaTime);
+            if (_resolver.TryResolve(snapshot, deltaTime, out PlayerLocomotionAnimationStateId state))
+            {
+                _animation.CrossFade(PlayerAnimationSource.Locomotion, ResolveSlot(state));
+            }
         }
 
         public void Reset()
         {
             _animation.ReleaseAll(PlayerAnimationSource.Locomotion);
-            _hasPreviousState = false;
+            _resolver.Reset();
         }
 
-        private void EnterState(in PlayerLocomotionSnapshot snapshot)
+        private static ModularAnimation.AnimationSlotId ResolveSlot(
+            PlayerLocomotionAnimationStateId state)
         {
-            if (snapshot.State != PlayerLocomotionStateId.Dodge)
+            return state switch
             {
-                return;
-            }
-
-            _animation.CrossFade(
-                PlayerAnimationSource.Locomotion,
-                snapshot.DodgeBackwards
-                    ? PlayerAnimationSlots.DodgeBackward
-                    : PlayerAnimationSlots.DodgeForward);
+                PlayerLocomotionAnimationStateId.Grounded => PlayerAnimationSlots.Grounded,
+                PlayerLocomotionAnimationStateId.JumpWalk => PlayerAnimationSlots.JumpWalk,
+                PlayerLocomotionAnimationStateId.JumpRun => PlayerAnimationSlots.JumpRun,
+                PlayerLocomotionAnimationStateId.JumpSprint => PlayerAnimationSlots.JumpSprint,
+                PlayerLocomotionAnimationStateId.Fall => PlayerAnimationSlots.Fall,
+                PlayerLocomotionAnimationStateId.LandSoft => PlayerAnimationSlots.LandSoft,
+                PlayerLocomotionAnimationStateId.LandMedium => PlayerAnimationSlots.LandMedium,
+                PlayerLocomotionAnimationStateId.LandHard => PlayerAnimationSlots.LandHard,
+                PlayerLocomotionAnimationStateId.DodgeForward => PlayerAnimationSlots.DodgeForward,
+                PlayerLocomotionAnimationStateId.DodgeBackward => PlayerAnimationSlots.DodgeBackward,
+                _ => throw new ArgumentOutOfRangeException(nameof(state), state, null)
+            };
         }
     }
 }

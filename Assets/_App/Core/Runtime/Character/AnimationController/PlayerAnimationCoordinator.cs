@@ -7,6 +7,7 @@ namespace _App
 {
     internal enum PlayerAnimationSource
     {
+        Equipment,
         Locomotion,
         Combat,
         Traversal,
@@ -80,6 +81,15 @@ namespace _App
             }
 
             AnimationLayerId layer = binding.Layer;
+            float expectedDuration = expectedDurationOverride > 0.0f
+                ? expectedDurationOverride
+                : binding.ExpectedDuration;
+            var key = new RequestKey(source, layer.Index);
+            bool hadPreviousRequest = _requests.TryGetValue(
+                key,
+                out AnimationRequest previousRequest);
+            _requests[key] = new AnimationRequest(binding, expectedDuration);
+
             if (_owners.TryGetValue(layer.Index, out PlayerAnimationSource owner) &&
                 owner != source &&
                 GetPriority(owner) > GetPriority(source))
@@ -90,21 +100,21 @@ namespace _App
             AnimationPlayback playback = _driver.CrossFade(
                 binding.State,
                 layer,
-                binding.TransitionDuration,
-                expectedDurationOverride > 0.0f
-                    ? expectedDurationOverride
-                    : binding.ExpectedDuration);
+                binding.TransitionSeconds,
+                expectedDuration);
             if (!playback.IsValid)
             {
+                if (hadPreviousRequest)
+                {
+                    _requests[key] = previousRequest;
+                }
+                else
+                {
+                    _requests.Remove(key);
+                }
+
                 return AnimationPlayback.Invalid;
             }
-
-            var key = new RequestKey(source, layer.Index);
-            _requests[key] = new AnimationRequest(
-                binding,
-                expectedDurationOverride > 0.0f
-                    ? expectedDurationOverride
-                    : binding.ExpectedDuration);
 
             bool ownerChanged = !_owners.TryGetValue(layer.Index, out owner) || owner != source;
             _owners[layer.Index] = source;
@@ -174,7 +184,7 @@ namespace _App
                 AnimationPlayback playback = _driver.CrossFade(
                     request.Binding.State,
                     request.Binding.Layer,
-                    request.Binding.TransitionDuration,
+                    request.Binding.TransitionSeconds,
                     request.ExpectedDuration);
                 if (playback.IsValid)
                 {
@@ -243,6 +253,7 @@ namespace _App
                 PlayerAnimationSource.Traversal => 200,
                 PlayerAnimationSource.Combat => 100,
                 PlayerAnimationSource.Locomotion => 0,
+                PlayerAnimationSource.Equipment => -100,
                 _ => throw new ArgumentOutOfRangeException(nameof(source), source, null)
             };
         }

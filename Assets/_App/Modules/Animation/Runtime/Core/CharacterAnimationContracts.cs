@@ -139,7 +139,7 @@ namespace ModularAnimation
     {
         public AnimationStateId State { get; }
         public AnimationLayerId Layer { get; }
-        public float TransitionDuration { get; }
+        public float TransitionSeconds { get; }
         public float ExpectedDuration { get; }
 
         public bool IsValid => State.IsValid;
@@ -147,12 +147,12 @@ namespace ModularAnimation
         public AnimationStateBinding(
             AnimationStateId state,
             AnimationLayerId layer,
-            float transitionDuration,
+            float transitionSeconds,
             float expectedDuration)
         {
             State = state;
             Layer = layer;
-            TransitionDuration = Math.Max(0.0f, transitionDuration);
+            TransitionSeconds = Math.Max(0.0f, transitionSeconds);
             ExpectedDuration = Math.Max(0.0f, expectedDuration);
         }
     }
@@ -168,7 +168,7 @@ namespace ModularAnimation
         AnimationPlayback CrossFade(
             AnimationStateId state,
             AnimationLayerId layer,
-            float transitionDuration,
+            float transitionSeconds,
             float expectedDuration = 0.0f);
         void SetPlaybackSpeed(float speed);
         void RefreshBindings();

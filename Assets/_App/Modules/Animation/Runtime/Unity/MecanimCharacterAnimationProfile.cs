@@ -1,9 +1,16 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ModularAnimation.Unity
 {
+    public enum MecanimStateControlMode
+    {
+        CodeDriven,
+        AnimatorTransitions
+    }
+
     [CreateAssetMenu(
         fileName = "MecanimCharacterAnimationProfile",
         menuName = "Modular Animation/Mecanim Character Profile")]
@@ -11,16 +18,19 @@ namespace ModularAnimation.Unity
     {
         [SerializeField] private string _movementType = "MovementType";
         [SerializeField] private string _movementDirection = "MovementDirection";
-        [SerializeField] private string _onGround = "OnGround";
-        [SerializeField] private string _fallingDuration = "FallingDuration";
+        [FormerlySerializedAs("_fallingDuration")]
+        [SerializeField] private string _verticalSpeed = "VerticalSpeed";
         [SerializeField] private string _speedMultiplier = "SpeedMultiplier";
 
         [Header("Semantic Animation States")]
         [Tooltip("Optional controller used by editor validation. Runtime uses the controller assigned to Animator.")]
         [SerializeField] private RuntimeAnimatorController _validationController;
+        [SerializeField] private MecanimStateControlMode _stateControlMode =
+            MecanimStateControlMode.CodeDriven;
         [SerializeField] private List<MecanimAnimationStateAuthoring> _states = new();
 
         public RuntimeAnimatorController ValidationController => _validationController;
+        public MecanimStateControlMode StateControlMode => _stateControlMode;
         public IReadOnlyList<MecanimAnimationStateAuthoring> States =>
             _states ?? (IReadOnlyList<MecanimAnimationStateAuthoring>)Array.Empty<MecanimAnimationStateAuthoring>();
 
@@ -29,8 +39,7 @@ namespace ModularAnimation.Unity
             return new MecanimCharacterAnimationBindings(
                 _movementType,
                 _movementDirection,
-                _onGround,
-                _fallingDuration,
+                _verticalSpeed,
                 _speedMultiplier);
         }
 
@@ -70,7 +79,8 @@ namespace ModularAnimation.Unity
         [Tooltip("State path relative to its Animator layer, for example Locomotion.Roll.RollFront.")]
         [SerializeField] private string _state;
         [SerializeField] private string _layer = "Base Layer";
-        [SerializeField, Min(0.0f)] private float _transitionDuration = 0.1f;
+        [FormerlySerializedAs("_transitionDuration")]
+        [SerializeField, Min(0.0f)] private float _transitionSeconds = 0.1f;
         [SerializeField, Min(0.0f)] private float _expectedDuration;
         [Tooltip("Optional semantic slot used when this state is unavailable.")]
         [SerializeField] private string _fallbackSlot;
@@ -79,7 +89,7 @@ namespace ModularAnimation.Unity
         public string Slot => _slot;
         public string State => _state;
         public string Layer => _layer;
-        public float TransitionDuration => _transitionDuration;
+        public float TransitionSeconds => _transitionSeconds;
         public float ExpectedDuration => _expectedDuration;
         public string FallbackSlot => _fallbackSlot;
         public bool Required => _required;
@@ -90,7 +100,7 @@ namespace ModularAnimation.Unity
                 new AnimationSlotId(_slot),
                 _state,
                 _layer,
-                _transitionDuration,
+                _transitionSeconds,
                 _expectedDuration,
                 new AnimationSlotId(_fallbackSlot),
                 _required);

@@ -25,27 +25,23 @@ namespace ModularAnimation.Unity
     {
         public MecanimParameterBinding MovementType { get; }
         public MecanimParameterBinding MovementDirection { get; }
-        public MecanimParameterBinding OnGround { get; }
-        public MecanimParameterBinding FallingDuration { get; }
+        public MecanimParameterBinding VerticalSpeed { get; }
         public MecanimParameterBinding SpeedMultiplier { get; }
         public bool IsValid =>
             MovementType.IsValid &&
             MovementDirection.IsValid &&
-            OnGround.IsValid &&
-            FallingDuration.IsValid &&
+            VerticalSpeed.IsValid &&
             SpeedMultiplier.IsValid;
 
         public MecanimCharacterAnimationBindings(
             string movementType,
             string movementDirection,
-            string onGround,
-            string fallingDuration,
+            string verticalSpeed,
             string speedMultiplier)
         {
             MovementType = new MecanimParameterBinding(movementType);
             MovementDirection = new MecanimParameterBinding(movementDirection);
-            OnGround = new MecanimParameterBinding(onGround);
-            FallingDuration = new MecanimParameterBinding(fallingDuration);
+            VerticalSpeed = new MecanimParameterBinding(verticalSpeed);
             SpeedMultiplier = new MecanimParameterBinding(speedMultiplier);
         }
     }

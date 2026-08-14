@@ -37,6 +37,24 @@ namespace ModularAnimation.Unity.Editor
                 return;
             }
 
+            MecanimCharacterAnimationBindings bindings = profile.CreateBindings();
+            ValidateParameter(
+                controller,
+                bindings.MovementType,
+                AnimatorControllerParameterType.Float);
+            ValidateParameter(
+                controller,
+                bindings.MovementDirection,
+                AnimatorControllerParameterType.Float);
+            ValidateParameter(
+                controller,
+                bindings.VerticalSpeed,
+                AnimatorControllerParameterType.Float);
+            ValidateParameter(
+                controller,
+                bindings.SpeedMultiplier,
+                AnimatorControllerParameterType.Float);
+
             IReadOnlyList<MecanimAnimationStateAuthoring> states = profile.States;
             var slots = new HashSet<string>(System.StringComparer.Ordinal);
             for (int i = 0; i < states.Count; i++)
@@ -72,6 +90,11 @@ namespace ModularAnimation.Unity.Editor
                 ValidateMapping(controller, mapping, slots);
             }
 
+            if (profile.StateControlMode == MecanimStateControlMode.CodeDriven)
+            {
+                ValidateCodeDrivenLayers(controller, states);
+            }
+
             if (states.Count == 0)
             {
                 EditorGUILayout.HelpBox("No semantic animation states are configured.", MessageType.Warning);
@@ -82,6 +105,67 @@ namespace ModularAnimation.Unity.Editor
                     $"Inspected {states.Count} semantic animation mapping(s).",
                     MessageType.None);
             }
+        }
+
+        private static void ValidateCodeDrivenLayers(
+            AnimatorController controller,
+            IReadOnlyList<MecanimAnimationStateAuthoring> mappings)
+        {
+            var validatedLayers = new HashSet<string>(System.StringComparer.Ordinal);
+            for (int i = 0; i < mappings.Count; i++)
+            {
+                string layerName = mappings[i]?.Layer?.Trim();
+                if (string.IsNullOrEmpty(layerName) || !validatedLayers.Add(layerName))
+                {
+                    continue;
+                }
+
+                AnimatorControllerLayer layer = FindLayer(controller, layerName);
+                if (layer != null && CountTransitions(layer.stateMachine) > 0)
+                {
+                    DrawIssue(
+                        $"Code-driven layer '{layerName}' contains automatic Animator transitions.",
+                        true);
+                }
+            }
+        }
+
+        private static int CountTransitions(AnimatorStateMachine stateMachine)
+        {
+            int count = stateMachine.anyStateTransitions.Length +
+                        stateMachine.entryTransitions.Length;
+            for (int i = 0; i < stateMachine.states.Length; i++)
+            {
+                count += stateMachine.states[i].state.transitions.Length;
+            }
+
+            for (int i = 0; i < stateMachine.stateMachines.Length; i++)
+            {
+                AnimatorStateMachine child = stateMachine.stateMachines[i].stateMachine;
+                count += stateMachine.GetStateMachineTransitions(child).Length;
+                count += CountTransitions(child);
+            }
+
+            return count;
+        }
+
+        private static void ValidateParameter(
+            AnimatorController controller,
+            MecanimParameterBinding binding,
+            AnimatorControllerParameterType expectedType)
+        {
+            for (int i = 0; i < controller.parameters.Length; i++)
+            {
+                AnimatorControllerParameter parameter = controller.parameters[i];
+                if (parameter.name == binding.Name && parameter.type == expectedType)
+                {
+                    return;
+                }
+            }
+
+            DrawIssue(
+                $"Missing {expectedType} parameter '{binding.Name}'.",
+                true);
         }
 
         private static void ValidateMapping(

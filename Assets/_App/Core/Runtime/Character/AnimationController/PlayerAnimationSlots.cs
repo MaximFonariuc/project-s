@@ -16,8 +16,26 @@ namespace _App
             new AnimationSlotId("Locomotion.Dodge.Forward");
         public static readonly AnimationSlotId DodgeBackward =
             new AnimationSlotId("Locomotion.Dodge.Backward");
+        public static readonly AnimationSlotId Grounded =
+            new AnimationSlotId("Locomotion.Grounded");
+        public static readonly AnimationSlotId JumpWalk =
+            new AnimationSlotId("Locomotion.Jump.Walk");
+        public static readonly AnimationSlotId JumpRun =
+            new AnimationSlotId("Locomotion.Jump.Run");
+        public static readonly AnimationSlotId JumpSprint =
+            new AnimationSlotId("Locomotion.Jump.Sprint");
+        public static readonly AnimationSlotId Fall =
+            new AnimationSlotId("Locomotion.Fall");
+        public static readonly AnimationSlotId LandSoft =
+            new AnimationSlotId("Locomotion.Land.Soft");
+        public static readonly AnimationSlotId LandMedium =
+            new AnimationSlotId("Locomotion.Land.Medium");
+        public static readonly AnimationSlotId LandHard =
+            new AnimationSlotId("Locomotion.Land.Hard");
         public static readonly AnimationSlotId CombatAction =
             new AnimationSlotId("Combat.Action");
+        public static readonly AnimationSlotId WeaponRest =
+            new AnimationSlotId("Combat.Weapon.Rest");
 
         public static readonly AnimationSlotId LadderEnterTopFront =
             new AnimationSlotId("Traversal.Ladder.EnterTopFront");
