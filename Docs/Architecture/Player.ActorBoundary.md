@@ -6,7 +6,7 @@
 
 `PlayerActorAdapter` образует anti-corruption boundary вокруг этой legacy-модели. Он не создаёт второе состояние игрока и ничего не кэширует: каждый запрос делегируется единственному owner — `Character`. Consumers получают только узкий порт под собственную ответственность.
 
-`PlayerActorController` является scoped runtime coordinator активного игрока. Он владеет порядком enable/disable и frame ticks feature-контроллеров, но не содержит gameplay state. `ThirdPersonController` после composition остаётся только Unity lifecycle/authoring host: хранит scene references и делегирует `OnEnable`, `Update`, `LateUpdate` и legacy-команду инверсии gravity координатору.
+`PlayerActorController` является scoped runtime coordinator активного игрока. Он владеет порядком enable/disable, frame ticks и межfeature-реакцией на подтверждённые state changes, но не содержит gameplay state. `ThirdPersonController` после composition остаётся только Unity lifecycle/authoring host: хранит scene references и делегирует `OnEnable`, `Update`, `LateUpdate` и legacy-команду инверсии gravity координатору.
 
 ## Дерево классов
 
@@ -52,6 +52,10 @@ classDiagram
     class PlayerTargetingController
     class PlayerCombatController
     class PlayerTraversalController
+    class CharacterReactionController {
+        +StateChanged event
+        +BlocksActions bool
+    }
     class PlayerActorController {
         <<scoped coordinator>>
         +Enable()
@@ -84,6 +88,7 @@ classDiagram
     PlayerActorController --> PlayerTargetingController
     PlayerActorController --> PlayerCombatController
     PlayerActorController --> PlayerTraversalController
+    PlayerActorController --> CharacterReactionController : observes state
     PlayerComposition ..> PlayerActorAdapter : registers once per scope
     PlayerComposition ..> PlayerActorController : registers once per scope
 ```
@@ -109,7 +114,7 @@ flowchart LR
 - Combat видит только разрешение атаки, falling state и rotation mode; он не получает motor API.
 - Traversal читает только climbing state; interaction physics и simulation pause проходят через отдельные adapters.
 - `PlayerActorAdapter` регистрируется один раз на gameplay scope и публикуется под четырьмя consumer-specific портами. Service locator и runtime search не используются.
-- `PlayerActorController` не заменяет feature controllers и не дублирует их state: он фиксирует только lifecycle и порядок межfeature-вызовов. При dispose scope он симметрично отключает весь player flow.
+- `PlayerActorController` не заменяет feature controllers и не дублирует их state: он фиксирует lifecycle, порядок межfeature-вызовов и реакцию на их подтверждённые события. Non-stable reaction прерывает Combat/Traversal и немедленно блокирует locomotion intent; сами reaction/combat/traversal states остаются у своих владельцев. При dispose scope coordinator симметрично отключает весь player flow.
 
 ## Граница абстракции
 

@@ -15,7 +15,7 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 
 ## Выделенные сущности и владельцы состояния
 
-- **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references и делегирует lifecycle/frame ticks scoped-координатору `PlayerActorController`. `PlayerActorAdapter` изолирует Camera, Targeting, Combat и Traversal от большого legacy-класса `Character` через consumer-specific порты.
+- **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references и делегирует lifecycle/frame ticks scoped-координатору `PlayerActorController`. Координатор также согласует подтверждённые reaction transitions с Combat, Traversal и Locomotion, не дублируя их state. `PlayerActorAdapter` изолирует Camera, Targeting, Combat и Traversal от большого legacy-класса `Character` через consumer-specific порты.
 - **Player Locomotion** — `PlayerLocomotionController` владеет semantic movement intent и машиной `Idle / Run / Jump / Fall / Dodge`, а также публикует единый immutable `PlayerLocomotionSnapshot`. `CharacterMotor` является портом к существующим `Character` и `CharacterMovement`, не переписывая проверенную collision physics.
 - **Player Input** — gameplay зависит от project-specific порта `IPlayerInput`. `PlayerInputAdapter` переводит сигналы независимого `IInputService` в семантические команды игрока, а `UnityInputSource` остаётся инфраструктурной деталью composition root.
 - **Combatant vitality** — текущий `Health` является временным prototype-owner hit points и публикует подтверждённые события damage/death. Целевая модель разделяет Attributes, Derived Stats, Resources, Modifiers, Costs/Regeneration и узкий Life State; решение зафиксировано в `Docs/Architecture/Character.StatsAndResources.md` и пока не реализуется.
@@ -62,6 +62,6 @@ Anti-corruption boundary между feature controllers и legacy `Character`, �
 
 Будущая система характеристик и ресурсов, временный статус `Health` и правила её последующей миграции описаны в `Docs/Architecture/Character.StatsAndResources.md`.
 
-Animation layer arbitration уже централизован. Следующий state scope — interruption rules между Reaction, Traversal и Combat; финальные animation clips для него не требуются.
+Animation layer arbitration и gameplay interruption между Reaction, Traversal, Combat и Locomotion централизованно согласованы. Следующий state scope следует выбирать из реального gameplay-приоритета, а не расширять общий player coordinator заранее.
 
 `Assets/Scenes/Demo Scene.unity` сохраняется как reference-сцена без переноса её содержимого. Рабочая сцена находится в `Assets/_Game/Scenes/PrototypeArena.unity` и является стартовой сценой разработки.

@@ -27,9 +27,6 @@ namespace _App
                     resolver.Resolve<PlayerAnimationCoordinator>(),
                     profile),
                 Lifetime.Scoped);
-            builder.Register<ICharacterReactionInterruption, PlayerCombatReactionInterruption>(
-                Lifetime.Scoped);
-
             builder.RegisterStateMachine<CharacterReactionStateId>(Lifetime.Scoped)
                 .State<CharacterStableState>(CharacterReactionStateId.Stable, Lifetime.Scoped)
                 .State<CharacterHitStunState>(CharacterReactionStateId.HitStun, Lifetime.Scoped)

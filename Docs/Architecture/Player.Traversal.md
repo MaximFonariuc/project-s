@@ -2,7 +2,7 @@
 
 ## Ответственность
 
-`PlayerTraversalController` владеет application flow перемещений вне базовой locomotion state machine: взаимодействием с лестницей, передачей climb input, снятием оружия перед входом на лестницу и согласованным разворотом gravity/camera orientation. Он не читает Unity devices, не выполняет movement simulation и не управляет Cinemachine или Animator напрямую.
+`PlayerTraversalController` владеет application flow перемещений вне базовой locomotion state machine: взаимодействием с лестницей, передачей climb input, снятием оружия перед входом на лестницу и согласованным разворотом gravity/camera orientation. Начало traversal разрешено только в `Combat.Ready` и при стабильной reaction state. Он не читает Unity devices, не выполняет movement simulation и не управляет Cinemachine или Animator напрямую.
 
 Локальная команда Pause вынесена в `PlayerSimulationPauseController`. Это пауза только симуляции `Character`, а не глобальная пауза игры, UI или времени. Такое название намеренно не обещает будущую pause-menu архитектуру.
 
@@ -21,6 +21,7 @@ classDiagram
         +Enable()
         +Disable()
         +Tick()
+        +Interrupt()
     }
     class IPlayerInput {
         <<semantic input port>>
@@ -45,6 +46,7 @@ classDiagram
         +IsClimbAvailable bool
         +ApplyClimbInput(input)
         +TryBeginClimb() bool
+        +Interrupt()
     }
     class PlayerTraversalActions {
         <<action owner>>
@@ -58,6 +60,9 @@ classDiagram
     }
     class IPlayerCombatCommands
     class IPlayerCombatState
+    class ICharacterReactionState {
+        +BlocksActions bool
+    }
     class IPlayerLocomotionCommands {
         +TryInvertGravity() bool
     }
@@ -87,6 +92,7 @@ classDiagram
     PlayerTraversalController --> IPlayerTraversalActions
     PlayerTraversalController --> IPlayerCombatCommands
     PlayerTraversalController --> IPlayerCombatState
+    PlayerTraversalController --> ICharacterReactionState : entry gate
     PlayerTraversalController --> IPlayerLocomotionCommands
     PlayerTraversalController --> IPlayerCameraCommands
     PlayerTraversalController --> IPlayerSimulationLock
@@ -117,6 +123,7 @@ sequenceDiagram
     participant Actions as IPlayerTraversalActions
 
     Input->>Traversal: InteractRequested
+    Traversal->>Traversal: require Stable reaction + Combat.Ready
     Traversal->>Probe: HasInteractable()
     alt weapon is sheathed
         Traversal->>Actions: TryBeginClimb()
@@ -129,11 +136,11 @@ sequenceDiagram
     end
 ```
 
-Повторный Interact во время sheathe блокируется владельцем workflow. Disable инвалидирует ожидающую операцию и освобождает pause lease; завершившийся позже async continuation не запускает climb и не меняет состояние нового lifecycle.
+Повторный Interact во время sheathe блокируется владельцем workflow. Reaction interruption инвалидирует ожидающую sheathe-операцию, освобождает pause lease, отменяет ladder UniTask и восстанавливает movement mode/constraints. После этого создаётся новый lifecycle token, поэтому traversal остаётся доступным после возврата reaction в `Stable`. Disable выполняет тот же cleanup без повторного запуска lifecycle; завершившийся позже async continuation не запускает climb и не меняет состояние нового lifecycle.
 
 `CharacterInteractionProbe` сохраняет текущую физическую семантику: `CharacterMovement.OverlapTest`, первый collider и `IInteractable`. Это legacy adapter, а не стабильная универсальная interaction system. Layer mask и выбор лучшего кандидата должны стать отдельной authoring policy только вместе с реальными типами взаимодействий.
 
-`PlayerTraversalController` зависит только от `IPlayerTraversalActions`. `PlayerTraversalActions` создаёт и владеет `LadderTraversalAction`, читая `LadderTraversalSettings` один раз при composition. Общего ability runtime и lookup по concrete type нет. `Disable` отменяет активные async ladder operations и восстанавливает movement mode/constraints.
+`PlayerTraversalController` делегирует конкретную механику в `IPlayerTraversalActions`. `PlayerTraversalActions` создаёт и владеет `LadderTraversalAction`, читая `LadderTraversalSettings` один раз при composition. Общего ability runtime и lookup по concrete type нет. `Interrupt` и `Disable` отменяют активные async ladder operations; отменённый step освобождает только собственный token и не может уничтожить token новой операции.
 
 ## Simulation pause ownership
 

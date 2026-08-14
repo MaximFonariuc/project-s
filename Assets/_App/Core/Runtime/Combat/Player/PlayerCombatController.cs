@@ -24,6 +24,7 @@ namespace _App
 
         private readonly IPlayerInput _input;
         private readonly IPlayerCombatActor _actor;
+        private readonly ICharacterReactionState _reactionState;
         private readonly IPlayerLocomotionEvents _locomotionEvents;
         private readonly IPlayerCombatAnimation _animation;
         private readonly IPlayerWeaponRig _weaponRig;
@@ -82,6 +83,7 @@ namespace _App
         internal PlayerCombatController(
             IPlayerInput input,
             IPlayerCombatActor actor,
+            ICharacterReactionState reactionState,
             IPlayerLocomotionEvents locomotionEvents,
             IPlayerCombatAnimation animation,
             IPlayerWeaponRig weaponRig,
@@ -95,6 +97,7 @@ namespace _App
         {
             _input = input ?? throw new ArgumentNullException(nameof(input));
             _actor = actor ?? throw new ArgumentNullException(nameof(actor));
+            _reactionState = reactionState ?? throw new ArgumentNullException(nameof(reactionState));
             _locomotionEvents = locomotionEvents ?? throw new ArgumentNullException(nameof(locomotionEvents));
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _weaponRig = weaponRig ?? throw new ArgumentNullException(nameof(weaponRig));
@@ -158,7 +161,8 @@ namespace _App
 
         public bool TryExecute(PlayerCombatCommandId commandId)
         {
-            if (!_enabled || string.IsNullOrEmpty(commandId.Value) || !_actor.CanAttack ||
+            if (!_enabled || _reactionState.BlocksActions || string.IsNullOrEmpty(commandId.Value) ||
+                !_actor.CanAttack ||
                 Phase == PlayerCombatPhase.WeaponSwitch)
             {
                 return false;
@@ -186,7 +190,8 @@ namespace _App
 
         public async UniTask<bool> ToggleWeaponAsync(EWeaponType targetWeapon)
         {
-            if (!_enabled || targetWeapon == EWeaponType.None || Phase != PlayerCombatPhase.Ready ||
+            if (!_enabled || _reactionState.BlocksActions || targetWeapon == EWeaponType.None ||
+                Phase != PlayerCombatPhase.Ready ||
                 _actor.IsFalling)
             {
                 return false;

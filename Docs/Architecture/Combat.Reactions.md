@@ -2,14 +2,14 @@
 
 ## Ответственность
 
-`CharacterReactionController` владеет реакцией конкретного получателя урона. Он слушает только локальные события `Health`, расходует poise, выбирает состояние реакции, прерывает текущее действие и передаёт импульс motor через ограниченный порт. Исходящий `CombatHitResolver`, `Weapon`, Animator и `Character` не владеют reaction state.
+`CharacterReactionController` владеет реакцией конкретного получателя урона. Он слушает только локальные события `Health`, расходует poise, выбирает состояние реакции и передаёт импульс motor через ограниченный порт. Он не знает о player-combat или traversal: межfeature-прерывание выполняет scoped `PlayerActorController` по подтверждённому `StateChanged`. Исходящий `CombatHitResolver`, `Weapon`, Animator и `Character` не владеют reaction state.
 
 Сейчас система поддерживает:
 
 - накопление `StaggerDamage`, задержку и скорость восстановления poise;
 - `Stable`, `HitStun`, `Knockdown`, `Airborne` и `Dead`;
 - повторное попадание во время активной реакции;
-- блокировку player movement intent и прерывание текущей атаки/смены оружия;
+- блокировку новых player actions и прерывание текущей атаки, смены оружия или traversal через player actor root;
 - направленный knockback через `ICharacterImpactMotor`;
 - возврат из временной реакции и явное восстановление после `Health.RestoreFull()`;
 - опциональное отображение состояний через `PlayerAnimationCoordinator` и backend-neutral animation driver.
@@ -64,12 +64,16 @@ classDiagram
     class CharacterMotor {
         <<Character adapter>>
     }
-    class ICharacterReactionInterruption {
-        <<action interruption port>>
-        +InterruptCurrentAction()
+    class PlayerActorController {
+        <<player cross-feature coordinator>>
+        -OnReactionStateChanged(state)
     }
-    class PlayerCombatReactionInterruption
-    class IPlayerCombatCommands
+    class PlayerCombatController {
+        +InterruptAttack()
+    }
+    class PlayerTraversalController {
+        +Interrupt()
+    }
     class ICharacterReactionPresentation {
         <<presentation port>>
         +Present(snapshot)
@@ -90,7 +94,6 @@ classDiagram
     CharacterReactionController --> CharacterPoise
     CharacterReactionController --> IStateMachine~CharacterReactionStateId~
     CharacterReactionController --> ICharacterImpactMotor
-    CharacterReactionController --> ICharacterReactionInterruption
     CharacterReactionController --> ICharacterReactionPresentation
     IStateMachine~CharacterReactionStateId~ *-- CharacterStableState
     IStateMachine~CharacterReactionStateId~ *-- CharacterHitStunState
@@ -98,8 +101,9 @@ classDiagram
     IStateMachine~CharacterReactionStateId~ *-- CharacterAirborneReactionState
     IStateMachine~CharacterReactionStateId~ *-- CharacterDeadState
     CharacterMotor ..|> ICharacterImpactMotor
-    PlayerCombatReactionInterruption ..|> ICharacterReactionInterruption
-    PlayerCombatReactionInterruption --> IPlayerCombatCommands
+    PlayerActorController --> ICharacterReactionState : observes
+    PlayerActorController --> PlayerCombatController : interrupts
+    PlayerActorController --> PlayerTraversalController : interrupts
     CharacterReactionAnimationAdapter ..|> ICharacterReactionPresentation
     CharacterReactionAnimationAdapter --> PlayerAnimationCoordinator
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
@@ -144,7 +148,9 @@ sequenceDiagram
     participant Health
     participant Reaction as CharacterReactionController
     participant Poise as CharacterPoise
-    participant Combat as ICharacterReactionInterruption
+    participant Actor as PlayerActorController
+    participant Combat as PlayerCombatController
+    participant Traversal as PlayerTraversalController
     participant Motor as ICharacterImpactMotor
     participant View as ICharacterReactionPresentation
 
@@ -152,9 +158,11 @@ sequenceDiagram
     Health-->>Reaction: Damaged(result)
     Reaction->>Poise: ApplyStagger(StaggerDamage)
     alt poise broken or knockback present
-        Reaction->>Combat: InterruptCurrentAction()
-        Reaction->>Motor: ApplyKnockback(direction * force)
         Reaction->>Reaction: change reaction state
+        Reaction-->>Actor: StateChanged(non-stable)
+        Actor->>Combat: InterruptAttack()
+        Actor->>Traversal: Interrupt()
+        Reaction->>Motor: ApplyKnockback(direction * force)
         Reaction->>View: Present(snapshot)
     end
     opt lethal result
@@ -180,10 +188,11 @@ state machine и damage pipeline.
 
 ## Lifecycle и границы
 
-- `PlayerReactionComposition` создаёт settings, poise, state machine, ports и controller в gameplay scope. Gameplay-классы не вызывают `Resolve`.
+- `PlayerReactionComposition` создаёт settings, poise, state machine, motor/presentation ports и controller в gameplay scope. Reaction composition не зависит от Player Combat или Traversal.
 - `Enable` подписывает `Health`, запускает state machine и синхронизируется с текущим alive/dead состоянием.
 - `Disable` симметрично снимает подписки, останавливает machine, сбрасывает runtime state и presentation.
-- `PlayerActorController` тикает reaction перед locomotion и при `BlocksActions` передаёт `PlayerMovementIntent.Locked`.
+- `PlayerActorController` подписывается до запуска reaction state machine. Любой non-stable state синхронно прерывает Combat и Traversal и блокирует locomotion intent; `Stable` восстанавливает актуальный combat movement intent.
+- `PlayerCombatController` и `PlayerTraversalController` дополнительно читают `ICharacterReactionState.BlocksActions`, поэтому новый input не запускает действие между state transition и следующим frame tick.
 - `Health` остаётся единственным владельцем hit points; `CharacterPoise` — единственным владельцем poise; state machine — единственным владельцем reaction phase.
 - Reaction не вызывает `Character` напрямую. Единственный путь физического воздействия — `ICharacterImpactMotor`, реализованный существующим `CharacterMotor`.
 - Система остаётся в `_App/Core`: timings, состояния и связь с combat rules пока проверены только в Project S. Извлечение в `_App/Modules` преждевременно до появления второго реального consumer.

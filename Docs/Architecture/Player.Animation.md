@@ -170,8 +170,8 @@ Combat gameplay не знает о clip references. `PlayerCombatAction` сод�
 
 Humanoid и Generic персонажи используют одинаковый `ICharacterAnimationDriver`. Различия Animator Controller и parameter naming задаются отдельным `MecanimCharacterAnimationProfile`; retargeting, avatar и совместимость clips остаются authoring-ответственностью конкретного character prefab. Новый Playables/backend реализует тот же driver contract и выбирается только в Composition Root.
 
-## Следующий state scope
+## Gameplay interruption
 
-Layer arbitration теперь имеет одного владельца. Следующий отдельный блок — согласование gameplay interruption rules: прежде всего реакция во время traversal, запрет новых действий при non-stable reaction и явное восстановление presentation после сложного interruption.
+Gameplay interruption согласован с presentation arbitration. Подтверждённый non-stable reaction state через `PlayerActorController` прерывает Combat и Traversal до применения knockback, блокирует новые combat/traversal commands и locomotion actions. Каждый feature освобождает свой animation request во время cleanup, после чего `PlayerAnimationCoordinator` оставляет reaction единственным владельцем Base Layer. Возврат в `Stable` снимает reaction request и восстанавливает актуальную locomotion presentation, а не отменённую атаку или traversal.
 
-Эта работа не зависит от финальных animation clips и не переносит gameplay authority в Animator. Gameplay state machines по-прежнему подтверждают состояние, coordinator решает только конфликт presentation requests.
+Правила не зависят от финальных animation clips и не переносят gameplay authority в Animator. Gameplay state machines по-прежнему подтверждают состояние; animation coordinator решает только конфликт presentation requests.

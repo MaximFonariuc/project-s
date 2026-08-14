@@ -70,8 +70,4 @@ namespace _App
         void Reset();
     }
 
-    internal interface ICharacterReactionInterruption
-    {
-        void InterruptCurrentAction();
-    }
 }

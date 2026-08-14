@@ -55,6 +55,7 @@ namespace _App
             _enabled = true;
             try
             {
+                _reaction.StateChanged += OnReactionStateChanged;
                 _gameplayTime.Enable();
                 _movementPolicyLifecycle.Enable();
                 _locomotion.Enable();
@@ -82,6 +83,7 @@ namespace _App
             }
 
             _input.Disable();
+            _reaction.StateChanged -= OnReactionStateChanged;
             _simulationPause.Disable();
             _traversal.Disable();
             _hitStop.Disable();
@@ -129,6 +131,19 @@ namespace _App
         public void Dispose()
         {
             Disable();
+        }
+
+        private void OnReactionStateChanged(CharacterReactionStateId state)
+        {
+            if (state == CharacterReactionStateId.Stable)
+            {
+                _locomotion.SetMovementIntent(_combat.MovementIntent);
+                return;
+            }
+
+            _combat.InterruptAttack();
+            _traversal.Interrupt();
+            _locomotion.SetMovementIntent(PlayerMovementIntent.Locked);
         }
     }
 }

@@ -7,6 +7,7 @@ namespace _App
     {
         void Enable();
         void Disable();
+        void Interrupt();
         bool IsClimbAvailable { get; }
         void ApplyClimbInput(Vector2 input);
         bool TryBeginClimb();
@@ -81,6 +82,11 @@ namespace _App
         public void ApplyClimbInput(Vector2 input)
         {
             _ladder?.OnClimbInput(input);
+        }
+
+        public void Interrupt()
+        {
+            _ladder?.Interrupt();
         }
 
         public bool TryBeginClimb()

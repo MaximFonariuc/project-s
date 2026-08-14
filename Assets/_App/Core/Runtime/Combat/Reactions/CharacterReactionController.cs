@@ -14,7 +14,6 @@ namespace _App
         private readonly CharacterPoise _poise;
         private readonly ICharacterImpactMotor _impactMotor;
         private readonly ICharacterReactionPresentation _presentation;
-        private readonly ICharacterReactionInterruption _interruption;
         private readonly IStateMachine<CharacterReactionStateId> _stateMachine;
         private readonly CharacterReactionSettings _settings;
 
@@ -38,7 +37,6 @@ namespace _App
             CharacterPoise poise,
             ICharacterImpactMotor impactMotor,
             ICharacterReactionPresentation presentation,
-            ICharacterReactionInterruption interruption,
             IStateMachine<CharacterReactionStateId> stateMachine,
             CharacterReactionSettings settings)
         {
@@ -48,7 +46,6 @@ namespace _App
             _poise = poise ?? throw new ArgumentNullException(nameof(poise));
             _impactMotor = impactMotor ?? throw new ArgumentNullException(nameof(impactMotor));
             _presentation = presentation ?? throw new ArgumentNullException(nameof(presentation));
-            _interruption = interruption ?? throw new ArgumentNullException(nameof(interruption));
             _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
             _settings = settings ?? throw new ArgumentNullException(nameof(settings));
         }
@@ -150,9 +147,6 @@ namespace _App
                 return;
             }
 
-            _interruption.InterruptCurrentAction();
-            ApplyKnockback(in hit);
-
             if (!_impactMotor.IsGrounded)
             {
                 EnterTimedReaction(
@@ -184,12 +178,11 @@ namespace _App
                 return;
             }
 
-            _interruption.InterruptCurrentAction();
             _poise.Deplete();
-            ApplyKnockback(in hit);
             _lastHit = hit;
             _remainingDuration = 0.0f;
             _stateMachine.ChangeState<CharacterDeadState, CombatHitResult>(hit);
+            ApplyKnockback(in hit);
 
             CharacterReactionSnapshot snapshot = CreateSnapshot();
             _presentation.Present(in snapshot);
@@ -238,6 +231,7 @@ namespace _App
                     throw new ArgumentOutOfRangeException(nameof(state), state, null);
             }
 
+            ApplyKnockback(in hit);
             CharacterReactionSnapshot snapshot = CreateSnapshot();
             _presentation.Present(in snapshot);
             ReactionStarted?.Invoke(snapshot);

@@ -159,7 +159,7 @@ namespace _App
 			await LerpMovement(start, climbTarget, climbDur, token);
 			_character.TeleportPosition(climbTarget);
 
-			await WaitForClimbEnter();
+			await WaitForClimbEnter(token: token);
 		}
 
 		private async UniTask SmoothAlignToLadder(
@@ -281,10 +281,9 @@ namespace _App
 		private async UniTask Step(int direction)
 		{
 			_stepCts?.Cancel();
-			_stepCts?.Dispose();
-			_stepCts = new CancellationTokenSource();
-			
-			var token = _stepCts.Token;
+			var stepCancellation = new CancellationTokenSource();
+			_stepCts = stepCancellation;
+			var token = stepCancellation.Token;
 			
 			try
 			{
@@ -317,8 +316,12 @@ namespace _App
 			catch (OperationCanceledException) { }
 			finally
 			{
-				_stepCts?.Dispose();
-				_stepCts = null;
+				if (ReferenceEquals(_stepCts, stepCancellation))
+				{
+					_stepCts = null;
+				}
+
+				stepCancellation.Dispose();
 			}
 		}
 
@@ -404,6 +407,18 @@ namespace _App
 			_enabled = true;
 		}
 
+		public void Interrupt()
+		{
+			if (!_enabled)
+			{
+				return;
+			}
+
+			CancelOperations();
+			RestoreTraversalState();
+			_lifecycleCts = new CancellationTokenSource();
+		}
+
 		private AnimationPlayback Play(AnimationStateId state, float transitionDuration)
 		{
 			AnimationPlayback playback = _animation.CrossFade(
@@ -427,24 +442,35 @@ namespace _App
 				return;
 			}
 
-			_lifecycleCts?.Cancel();
+			CancelOperations();
+			RestoreTraversalState();
+			_character.MovementModeChanged -= OnMovementModeChanged;
+			_enabled = false;
+		}
 
+		private void CancelOperations()
+		{
+			CancellationTokenSource lifecycleCancellation = _lifecycleCts;
+			_lifecycleCts = null;
+			lifecycleCancellation?.Cancel();
+			lifecycleCancellation?.Dispose();
+
+			CancellationTokenSource stepCancellation = _stepCts;
+			_stepCts = null;
+			stepCancellation?.Cancel();
+		}
+
+		private void RestoreTraversalState()
+		{
 			if (_character.IsClimbing())
 			{
 				_character.SetMovementMode(
 					_character.IsGrounded() ? EMovementMode.Walking : EMovementMode.Falling);
 			}
 
-			_character.MovementModeChanged -= OnMovementModeChanged;
-			_stepCts?.Cancel();
-			_stepCts?.Dispose();
-			_stepCts = null;
-			_lifecycleCts?.Dispose();
-			_lifecycleCts = null;
 			_activeLadder = null;
 			_climbingState = EClimbingState.None;
 			_animation.ReleaseAll(PlayerAnimationSource.Traversal);
-			_enabled = false;
 		}
 	}
 }

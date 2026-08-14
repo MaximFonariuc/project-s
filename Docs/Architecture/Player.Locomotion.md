@@ -206,6 +206,7 @@ Animation, Camera, VFX и последующие read-only consumers должн�
 flowchart LR
     Input["IPlayerInput"] --> Controller["PlayerLocomotionController"]
     Combat["Combat"] -->|"PlayerMovementIntent"| Controller
+    ActorRoot["PlayerActorController"] -->|"Locked on Reaction / Traversal"| Controller
     CameraBasis["IPlayerMovementReference"] --> Controller
     Controller --> Machine["Locomotion State Machine"]
     Controller --> Actions["IPlayerLocomotionActions"]
@@ -222,13 +223,14 @@ flowchart LR
 - Combat не вызывает `Character.SetMovementDirection`, `Jump` или `Dodge`. Он передаёт ограниченный intent: масштаб translation, разрешение jump/dodge и запрос разворота по input.
 - Camera участвует только как basis для camera-relative направления через отдельный adapter; locomotion не зависит от Cinemachine API.
 - Traversal запрашивает инверсию gravity через `IPlayerLocomotionCommands` и меняет camera orientation только после подтверждения команды.
+- `PlayerActorController` немедленно передаёт `PlayerMovementIntent.Locked` при non-stable reaction и удерживает ограничения во время traversal. Поэтому jump/dodge callbacks не проходят между межfeature transition и следующим locomotion tick.
 - Animation получает подтверждённое состояние. Продолжительность dodge задаётся gameplay-конфигурацией, а не длиной animation clip.
 - Glide и dodge проходят через `IPlayerLocomotionActions`. Их runtime-state принадлежит `PlayerGlideAction` и `PlayerDodgeAction`; общий ability runtime отсутствует.
 - `Character` симулируется с `Time.fixedDeltaTime`; presentation обновляется в frame `Update`.
 
 ## Lifecycle и ownership
 
-`PlayerLocomotionComposition`, вызванный единственным `GameLifetimeScope`, регистрирует один scoped-набор motor/controller/runtime/state machine для активного Player. `ThirdPersonController` остаётся Unity-host для serialized references и временным координатором traversal; Combat и Camera используют отдельные scoped controllers.
+`PlayerLocomotionComposition`, вызванный единственным `GameLifetimeScope`, регистрирует один scoped-набор motor/controller/runtime/state machine для активного Player. `ThirdPersonController` остаётся Unity-host для serialized references, а межfeature-порядком владеет scoped `PlayerActorController`; Combat, Traversal и Camera используют отдельные controllers.
 
 `PlayerLocomotionController.Enable` только подписывает semantic input. Первый motor snapshot и запуск state machine происходят в первом `Tick`, после завершения `Awake` Unity-компонентов. `Disable` симметрично снимает callbacks, освобождает jump/glide, сбрасывает speed mode и останавливает state machine.
 

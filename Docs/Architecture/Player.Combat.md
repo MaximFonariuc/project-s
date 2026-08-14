@@ -43,6 +43,9 @@ classDiagram
     class IPlayerCombatAnimation
     class IPlayerWeaponRig
     class IPlayerCombatActor
+    class ICharacterReactionState {
+        +BlocksActions bool
+    }
     class ICombatClock
     class PlayerCombatComposition {
         <<VContainer composition root>>
@@ -57,6 +60,7 @@ classDiagram
     PlayerCombatController --> IPlayerCombatAnimation
     PlayerCombatController --> IPlayerWeaponRig
     PlayerCombatController --> IPlayerCombatActor
+    PlayerCombatController --> ICharacterReactionState : entry gate
     PlayerCombatController --> ICombatClock
     IStateMachine~PlayerCombatPhase~ *-- PlayerCombatReadyState
     IStateMachine~PlayerCombatPhase~ *-- PlayerCombatExecutingState
@@ -121,6 +125,6 @@ Gameplay timeline использует scaled delta time, поэтому executi
 - `Disable` отменяет UniTask action, aborts executor, очищает buffer, закрывает hitbox, снимает callbacks и останавливает state machine.
 - State machine и её states создаются scoped-регистрациями VContainer в `PlayerCombatComposition`; controller не вызывает `Resolve` и не владеет container.
 - Animator, graph authoring и input buffer не являются владельцами combat phase.
-- Входящая реакция не входит в combat state machine: `PlayerCombatReactionInterruption` использует только `IPlayerCombatCommands`, чтобы отменить executing/recovery/weapon-switch action. Владельцем hit-stun/death остаётся `CharacterReactionController`.
+- Входящая реакция не входит в combat state machine. `PlayerActorController` прерывает executing/recovery/weapon-switch action по подтверждённому reaction state, а `PlayerCombatController` читает только `ICharacterReactionState.BlocksActions`, чтобы не принять новый action во время hit-stun/knockdown/airborne/death. Владельцем этих состояний остаётся `CharacterReactionController`.
 
 Текущий `IPlayerCombatActor.CanAttack` сохраняет проверенное наземное ограничение. Graph уже поддерживает `Grounded/Airborne`, но включение воздушных атак требует отдельного изменения actor gate и реальных air clips, а не скрытого обхода текущей locomotion policy.

@@ -80,6 +80,7 @@ namespace _App
                     resolver => new PlayerCombatController(
                         resolver.Resolve<IPlayerInput>(),
                         resolver.Resolve<IPlayerCombatActor>(),
+                        resolver.Resolve<ICharacterReactionState>(),
                         resolver.Resolve<IPlayerLocomotionEvents>(),
                         resolver.Resolve<IPlayerCombatAnimation>(),
                         resolver.Resolve<IPlayerWeaponRig>(),
