@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,9 +7,11 @@ namespace ProjectS.Core.Editor.AnimationLibrary
 {
     internal sealed class AnimationLibraryAssetPostprocessor : AssetPostprocessor
     {
+        private static readonly HashSet<string> PendingAvatarDependentImports = new(StringComparer.Ordinal);
+
         public override int GetPostprocessOrder() => -1000;
 
-        public override uint GetVersion() => 1;
+        public override uint GetVersion() => 2;
 
         private void OnPreprocessModel()
         {
@@ -32,7 +35,7 @@ namespace ProjectS.Core.Editor.AnimationLibrary
             Avatar sourceAvatar = LoadAvatar(metadata.TargetAvatarAsset);
             if (sourceAvatar == null || !sourceAvatar.isValid || !sourceAvatar.isHuman)
             {
-                Debug.LogError($"[AnimationLibrary] Valid Humanoid Avatar was not found at {metadata.TargetAvatarAsset}.");
+                QueueAvatarDependentReimport(assetPath, metadata.TargetAvatarAsset);
                 return;
             }
 
@@ -80,6 +83,8 @@ namespace ProjectS.Core.Editor.AnimationLibrary
             {
                 ModelImporterClipAnimation clip = clips[index];
                 clip.name = clips.Length == 1 ? metadata.ClipName : $"{metadata.ClipName}_{index + 1}";
+                clip.firstFrame = metadata.ClipFrameStart;
+                clip.lastFrame = metadata.ClipFrameEnd;
                 clip.loop = metadata.Loop;
                 clip.loopTime = metadata.Loop;
                 clip.loopPose = metadata.Loop;
@@ -128,6 +133,29 @@ namespace ProjectS.Core.Editor.AnimationLibrary
             }
 
             return null;
+        }
+
+        private static void QueueAvatarDependentReimport(string modelAssetPath, string avatarAssetPath)
+        {
+            if (!PendingAvatarDependentImports.Add(modelAssetPath))
+            {
+                return;
+            }
+
+            EditorApplication.delayCall += () =>
+            {
+                PendingAvatarDependentImports.Remove(modelAssetPath);
+                Avatar avatar = LoadAvatar(avatarAssetPath);
+                if (avatar == null || !avatar.isValid || !avatar.isHuman)
+                {
+                    Debug.LogError(
+                        $"[AnimationLibrary] Valid Humanoid Avatar was not found at {avatarAssetPath} " +
+                        $"after importing {modelAssetPath}.");
+                    return;
+                }
+
+                AssetDatabase.ImportAsset(modelAssetPath, ImportAssetOptions.ForceUpdate);
+            };
         }
     }
 }

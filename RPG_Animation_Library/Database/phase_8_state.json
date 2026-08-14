@@ -1,57 +1,79 @@
 {
   "schemaVersion": 1,
   "status": "PASS",
-  "timestamp": "2026-08-14T18:31:19.516235Z",
-  "pipelineVersion": "0.9.0",
-  "phaseVersion": "1.0.0",
-  "phaseConfigSHA256": "631601199a888785b6c56561f37c9cd9bac2e9cbe9fcb95effa5963ce921ef07",
+  "timestamp": "2026-08-14T19:10:39.545261Z",
+  "pipelineVersion": "0.9.2",
+  "phaseVersion": "1.2.0",
+  "phaseConfigSHA256": "8212bc114d2e479e7021235d265ecd9de2a67eb3dee445c3a7462551ddafcb8b",
   "approvalScope": "PilotOnly/ProjectS_CLazy_Player/UnityFBX",
   "pilotCount": 5,
+  "unityAvatar": {
+    "assetPath": "Assets/_Game/Models/AnimationSources/CLazy/ProjectS_CLazy_AnimationLibraryAvatar.fbx",
+    "sha256": "e42f7e40781e6b846926f37e6647daea6dbae7fda914bcc6f248b54f2f9fec1d",
+    "sourceFBX": "../Assets/_Game/Models/AnimationSources/CLazy/TPose.FBX",
+    "exporter": "scripts/export_unity_avatar_blender.py"
+  },
   "outputs": {
-    "Database/fbx_export_operations.csv": "57cb86c09b53c5d53ca275495c69292dffca88cc52d97c7db47d3c180811d61d",
-    "03_CATALOG/reports/phase_8_status.md": "476e50e925f4b0e3f04bbd090832e49e9d0cf2384cdca65b2a122d9d6d5e4352",
-    "config/unity_import_profiles/ProjectS_Humanoid.json": "620136a371c42ba0c654da01bf5e564a73e3dac33673a26134067fdcfca71430"
+    "Database/fbx_export_operations.csv": "cb3d9537dd96782c94588f7b5c76ce4ae24ba38a99df41caa79f805c1b3c8ba1",
+    "03_CATALOG/reports/phase_8_status.md": "c2f9b73b4e05f57c85a169f43f1ed973429de16d9cc53b2c6f0a19c5f81f39c6",
+    "config/unity_import_profiles/ProjectS_Humanoid.json": "264a7edcffca630c5a13de39cec5e7563211bd2bdd97cdbc51a704cc8c163eb6"
   },
   "artifacts": {
+    "Assets/_Game/Models/AnimationSources/CLazy/ProjectS_CLazy_AnimationLibraryAvatar.fbx": {
+      "sha256": "e42f7e40781e6b846926f37e6647daea6dbae7fda914bcc6f248b54f2f9fec1d",
+      "sizeBytes": 65516,
+      "sourceFBX": "../Assets/_Game/Models/AnimationSources/CLazy/TPose.FBX",
+      "exporter": "scripts/export_unity_avatar_blender.py"
+    },
     "07_FBX/phase_8/Dodge/Player_Dodge_ForwardRoll__RPGREF_6139DF2ED3414FD6A29783C4.fbx": {
-      "sha256": "98c9f2578a7348726a5c77b01b6b1af60b3b85a42367c834bd10532a85fb6e4e",
-      "sizeBytes": 571260,
+      "sha256": "ca4a316a0f8d497ed6904d5beae2df18024c15ca177fbc7418ea527d2c623155",
+      "sizeBytes": 639116,
       "metadataPath": "07_FBX/phase_8/Dodge/Player_Dodge_ForwardRoll__RPGREF_6139DF2ED3414FD6A29783C4.animlib.json",
-      "metadataSHA256": "9a0b9756283aa546cf02cf1f2e8ee90aaf148bca6961f3b425376a7dd387c820",
-      "exportReceiptSHA256": "2c3d11c440eea41ce71f740d2ecc41128fc28c044cff202ccad9f48db124e468",
-      "reimportValidationSHA256": "9231bd90caf8e7dca4fe2420471ad624667718f8783d5b27e67ae983d8a8deb8"
+      "metadataSHA256": "63e19606c748b9a6faa701ea27cca871e341657b5d5de866a67862069dd150af",
+      "exportReceiptSHA256": "51dced70f20e3f3cbc7d01ba045f6092583cc0346ef4e853db433ca021f2f3b0",
+      "reimportValidationSHA256": "9989037e02e290e5171a27ad2c6b19d4a16ee507c18aaf53cd5279be1e2be608",
+      "expectedAnimatedBoneCount": 22,
+      "fbxAnimatedBoneCount": 22
     },
     "07_FBX/phase_8/Locomotion/Player_Locomotion_ForwardStep__RPGREF_7C4D02DD2CF66D4C4B1425CC.fbx": {
-      "sha256": "3c95441df6cd79d6cc56fb1c3eb6d832d4e0b05749b5d7f3cf1bd30a047a6f8d",
-      "sizeBytes": 500348,
+      "sha256": "3ed89cf47beac07ed3d4759c382f27f47649c0c1bee8bb584c6ca31eabe0728b",
+      "sizeBytes": 546140,
       "metadataPath": "07_FBX/phase_8/Locomotion/Player_Locomotion_ForwardStep__RPGREF_7C4D02DD2CF66D4C4B1425CC.animlib.json",
-      "metadataSHA256": "93ea4ee2806d425943c14bfc03ff814ebcfd20529533ed5b35796d9b0970f918",
-      "exportReceiptSHA256": "e74f25037ef89a05510322cd473f475e174ad89d17d744565535187f072465c3",
-      "reimportValidationSHA256": "caa8f2014358f94fa72ac80af80b8c3598685064271ef853cfd3ee3d144608af"
+      "metadataSHA256": "65a09b223a68114e9bf8047ba05c41df3db9ee4a534feb0df1e6e1860addc6d9",
+      "exportReceiptSHA256": "d98106d641346c9fcf8950aa9b92474c19d7e496bf01832e5d231d1047148756",
+      "reimportValidationSHA256": "e98fca9a9d39246ff303e85360db66d8147cd508de06be3c46490ed779ded130",
+      "expectedAnimatedBoneCount": 22,
+      "fbxAnimatedBoneCount": 22
     },
     "07_FBX/phase_8/Attack/Player_Attack_ForwardLeapingAttack__RPGREF_7BF0E1BA1FB96046803D49F9.fbx": {
-      "sha256": "b83f68bd07b867d37d0f7cc5370f8ee96436f2bce7446057863d04ea4e9d6bf3",
-      "sizeBytes": 641260,
+      "sha256": "9246e95aa9b4191c0ef18371642be894c42c3aa875326dce1ec79218e19b61e2",
+      "sizeBytes": 726908,
       "metadataPath": "07_FBX/phase_8/Attack/Player_Attack_ForwardLeapingAttack__RPGREF_7BF0E1BA1FB96046803D49F9.animlib.json",
-      "metadataSHA256": "ae5dda09e9181e2759c909b124d8b62ee432a8dd4dd11da1efb1c05bc46e7f37",
-      "exportReceiptSHA256": "8388b0fc012092a6127f25aceef3d444fcab799c61a4f198265f9ac9da99cd13",
-      "reimportValidationSHA256": "fbe880109910d2a9d397535a16699cbfa7ee7ef52e5678a114a3785764ccd718"
+      "metadataSHA256": "4dce5bc247addbe9c704125dc41bc86e2ab99d6c504156dfdf5f596b0b2bb559",
+      "exportReceiptSHA256": "b3b9f54d53faa374ea9910a2208401be50b1befa6b525e5f7432ae66e45a944d",
+      "reimportValidationSHA256": "c4983f68db766fa0ab6a90f7e61d0083c2a60f23774729376fc392c25482becf",
+      "expectedAnimatedBoneCount": 22,
+      "fbxAnimatedBoneCount": 22
     },
     "07_FBX/phase_8/Attack/Player_Attack_RisingStrike__RPGREF_AD2D98A037757115F711E21D.fbx": {
-      "sha256": "35fecf2b2679f627f78ef64b3c3084697f74936ec62f35ca08ab6d72749ea980",
-      "sizeBytes": 603148,
+      "sha256": "1f83698395f7100264c1f5521bfd989db6d30300eebfddf4546fa914c24be85d",
+      "sizeBytes": 675116,
       "metadataPath": "07_FBX/phase_8/Attack/Player_Attack_RisingStrike__RPGREF_AD2D98A037757115F711E21D.animlib.json",
-      "metadataSHA256": "acebabca2635022808b86c83832b73c1031ff5e31ad355323d6889139cc46e57",
-      "exportReceiptSHA256": "998b010d5631be9eaf0f7dfdb906bb7f6769d41d3b98670639e2eb2f319744f9",
-      "reimportValidationSHA256": "2296d5aead391e1caab832b9a7a008cf01ccd78059b2c6809f2fd9e69366d9bd"
+      "metadataSHA256": "4c9a862ccd953c9aaeff386901e4a0b4b308dbb902fb5ab5be1d299f649b2fbd",
+      "exportReceiptSHA256": "9dcdada4348508b74a5ee21723911fecd4b2a153a72f67fca36334f173a0a33b",
+      "reimportValidationSHA256": "05c30642e5bcb5d6e7fea15f6662a9cd439a9b9852424e83ad9f4f5963f00b27",
+      "expectedAnimatedBoneCount": 22,
+      "fbxAnimatedBoneCount": 22
     },
     "07_FBX/phase_8/Unknown/Player_Unknown_Unknown__RPGREF_0F567AEF0CF5F974E6D6AEE4.fbx": {
-      "sha256": "c937c608f5703e5b2e61502a6b697e17bb2263835f7aef1b3f0b092e261f381b",
-      "sizeBytes": 908284,
+      "sha256": "68abd714269a6d59a61fb09e9ad583d5c1f46dd38032b900bbc4e444c0000036",
+      "sizeBytes": 1058236,
       "metadataPath": "07_FBX/phase_8/Unknown/Player_Unknown_Unknown__RPGREF_0F567AEF0CF5F974E6D6AEE4.animlib.json",
-      "metadataSHA256": "d72a9f31d8fc5e9aad9edf716f4e5f0e192fdcd7da3496da8803ae7f53790380",
-      "exportReceiptSHA256": "be23e96add08d372c70bcc7f8c39da7f9ad112d837590d33bba364b5868ffde3",
-      "reimportValidationSHA256": "6cc0775991d323da42e045c4c47d8653396b0214b70d483fbda1494e9fb92181"
+      "metadataSHA256": "eece802670811b68bc269d946c8f9f79d6f41d0c89111aba69cc5a6c662815e2",
+      "exportReceiptSHA256": "49d7b299592c0e33d6fb9cff17fde38d056ce8b4aae286bcbc62f3c5d10d8b93",
+      "reimportValidationSHA256": "0fc6b6ec06bf94b001c85165b814f961023f330739229d705e3ec08b2854d28e",
+      "expectedAnimatedBoneCount": 22,
+      "fbxAnimatedBoneCount": 22
     }
   }
 }

@@ -3,7 +3,7 @@
   "id": "ProjectS_Humanoid",
   "animationType": "Humanoid",
   "avatarSetup": "CopyFromOther",
-  "sourceAvatarAsset": "Assets/_Game/Models/AnimationSources/CLazy/TPose.FBX",
+  "sourceAvatarAsset": "Assets/_Game/Models/AnimationSources/CLazy/ProjectS_CLazy_AnimationLibraryAvatar.fbx",
   "importAnimation": true,
   "importMaterials": false,
   "importCameras": false,

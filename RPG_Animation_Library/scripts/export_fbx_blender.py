@@ -34,11 +34,35 @@ def main() -> int:
     armature.hide_viewport = False
     armature.select_set(True)
     bpy.context.view_layer.objects.active = armature
-    armature.data.pose_position = "REST"
-    bpy.context.scene.frame_start = int(expected["frameStart"])
-    bpy.context.scene.frame_end = int(expected["frameEnd"])
+    armature.data.pose_position = "POSE"
+    source_frame_start = int(expected["frameStart"])
+    source_frame_end = int(expected["frameEnd"])
+    frame_count = source_frame_end - source_frame_start + 1
+    bind_pose_frame = 0
+    frame_start = 1
+    frame_end = frame_count
+    bpy.context.scene.frame_start = bind_pose_frame
+    bpy.context.scene.frame_end = frame_end
     bpy.context.scene.render.fps = int(expected["frameRate"])
-    bpy.context.scene.frame_set(int(expected["frameStart"]))
+    action = armature.animation_data.action
+
+    # Keep rest/bind evidence separate from the authored motion. Unity excludes
+    # this prefix from the clip and uses the normalized Avatar from the contract.
+    track = armature.animation_data.nla_tracks.new()
+    track.name = "__UNITY_BIND_POSE_PREFIX__"
+    strip = track.strips.new(action.name, frame_start, action)
+    strip.action_frame_start = source_frame_start
+    strip.action_frame_end = source_frame_end
+    strip.frame_start = frame_start
+    strip.frame_end = frame_end
+    strip.extrapolation = "NOTHING"
+    strip.blend_type = "REPLACE"
+    strip.influence = 1.0
+    armature.animation_data.action = None
+    for pose_bone in armature.pose.bones:
+        pose_bone.matrix_basis.identity()
+    bpy.context.scene.frame_set(bind_pose_frame)
+    bpy.context.view_layer.update()
 
     args.output_fbx.parent.mkdir(parents=True, exist_ok=True)
     result = bpy.ops.export_scene.fbx(
@@ -78,13 +102,17 @@ def main() -> int:
         "animationId": expected["animationId"],
         "blenderVersion": bpy.app.version_string,
         "armature": armature.name,
-        "action": armature.animation_data.action.name,
-        "frameStart": bpy.context.scene.frame_start,
+        "action": action.name,
+        "frameStart": frame_start,
         "frameEnd": bpy.context.scene.frame_end,
-        "frameCount": bpy.context.scene.frame_end - bpy.context.scene.frame_start + 1,
+        "frameCount": frame_count,
+        "bindPoseFrame": bind_pose_frame,
+        "exportFrameStart": bpy.context.scene.frame_start,
+        "exportFrameCount": bpy.context.scene.frame_end - bpy.context.scene.frame_start + 1,
         "frameRate": bpy.context.scene.render.fps,
         "settings": {
             "objectTypes": ["ARMATURE"],
+            "restPosePrefix": True,
             "axisForward": "-Z",
             "axisUp": "Y",
             "addLeafBones": False,

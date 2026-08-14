@@ -77,6 +77,8 @@ Versioned Phase 5 evidence:
 
 The Phase 6-9 pilot then profiles the source and target skeletons, retargets five clips, exports animation-only FBX files and imports them through the Unity Editor gate:
 
+The tracked `Assets/_Game/Models/AnimationSources/CLazy/ProjectS_CLazy_AnimationLibraryAvatar.fbx` is the canonical Humanoid Avatar for these clips. If the target T-pose changes, rebuild it with `scripts/export_unity_avatar_blender.py`, import the generated FBX through Unity as `Humanoid / Create From This Model`, and only then run Phase 8. Do not point animation contracts directly at the original `TPose.FBX`; its FBX transform dialect is not identical to Blender animation-only exports.
+
 ```powershell
 python RPG_Animation_Library/scripts/build_phase6_profiles.py --config RPG_Animation_Library/config/pipeline.json
 python RPG_Animation_Library/scripts/run_phase7_retarget.py --config RPG_Animation_Library/config/pipeline.json

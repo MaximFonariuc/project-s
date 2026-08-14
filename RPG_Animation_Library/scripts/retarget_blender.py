@@ -13,6 +13,9 @@ from pathlib import Path
 import bpy
 from mathutils import Matrix, Quaternion, Vector
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from animation_motion_blender import measure_pose_motion
+
 
 def parse_args() -> argparse.Namespace:
     arguments = sys.argv[sys.argv.index("--") + 1 :] if "--" in sys.argv else []
@@ -303,6 +306,7 @@ def main() -> int:
         target, body_bones, frames
     )
     fingerprint = matrix_fingerprint(target, mapped_target_bones, frames)
+    pose_motion = measure_pose_motion(target, mapped_target_bones, frame_start, frame_end)
 
     expected_target_root = Vector((source_root.x, source_root.y, 0.0)) * world_height_ratio
     root_error = (target_root - expected_target_root).length
@@ -344,6 +348,7 @@ def main() -> int:
         "invalidTransformCount": invalid_count,
         "fingerprintFrames": frames,
         "motionFingerprintSHA256": fingerprint,
+        "poseMotion": pose_motion,
         "poseSamples": samples,
     }
     args.output_blend.parent.mkdir(parents=True, exist_ok=True)

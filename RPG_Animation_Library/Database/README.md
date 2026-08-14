@@ -65,12 +65,12 @@ Never discard raw fields after normalization. An event that cannot be mapped saf
 
 ## Phase 8 FBX evidence
 
-`fbx_export_operations.csv` records each animation-only FBX, its adjacent `.animlib.json` contract, hashes, pinned pipeline/profile identifiers and the clean Blender reimport result.
+`fbx_export_operations.csv` records each animation-only FBX, its adjacent `.animlib.json` contract, hashes, pinned pipeline/profile identifiers and the clean Blender reimport result. Phase 8 rejects a bake when mapped pose rotations collapse even if root translation remains non-zero.
 
-The adjacent contract is the authoritative hand-off to Unity. It carries semantic metadata without encoding gameplay events into the animation file and tells the editor importer whether the clip is in-place or preserves scaled root motion.
+The adjacent contract is the authoritative hand-off to Unity. It carries semantic metadata without encoding gameplay events into the animation file, pins the normalized Humanoid Avatar hash, identifies the bind-pose prefix and tells the editor importer whether the clip is in-place or preserves scaled root motion.
 
 ## Phase 9 Unity import evidence
 
-`unity_import_operations.csv` is the append-only Unity Editor import ledger. Every row binds a Phase 8 FBX hash and adjacent contract to its Unity asset GUID, exact editor version, copied Avatar, imported clip data, labels and root-motion policy.
+`unity_import_operations.csv` is the append-only Unity Editor import ledger. Every row binds a Phase 8 FBX hash and adjacent contract to its Unity asset GUID, exact editor version, copied Avatar, imported clip data, labels, root-motion policy and non-constant pose-curve count. Root translation alone cannot satisfy the Phase 9 motion gate.
 
-`PilotPassed` in `UnityImportStatus` means the bounded clip passed the Unity `Humanoid / Copy From Other Avatar` importer gate with the Project S CLazy Avatar. It confirms import integrity only; semantic confidence remains governed by the catalog and does not make `Probable` or `Unknown` actions verified.
+`PilotPassed` in `UnityImportStatus` means the bounded clip passed the Unity `Humanoid / Copy From Other Avatar` importer gate with the normalized Project S CLazy Avatar. It confirms import integrity only; semantic confidence remains governed by the catalog and does not make `Probable` or `Unknown` actions verified.

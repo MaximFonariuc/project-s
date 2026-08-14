@@ -36,6 +36,9 @@ OPERATION_FIELDS = (
     "SkeletonProfile",
     "RetargetProfile",
     "RootMotionStatus",
+    "ExpectedAnimatedBoneCount",
+    "FBXAnimatedBoneCount",
+    "PoseMotionValidation",
     "FrameCount",
     "FrameRate",
     "DurationSeconds",
@@ -137,7 +140,13 @@ def run_command(command: list[str], cwd: Path, logger: logging.Logger, timeout: 
     return result
 
 
-def build_report(path: Path, timestamp: str, operations: list[dict[str, str]], artifact_root: str) -> None:
+def build_report(
+    path: Path,
+    timestamp: str,
+    operations: list[dict[str, str]],
+    artifact_root: str,
+    avatar_artifact: str,
+) -> None:
     lines = [
         "# Phase 8 Unity FBX export pilot",
         "",
@@ -145,21 +154,23 @@ def build_report(path: Path, timestamp: str, operations: list[dict[str, str]], a
         "",
         "Mechanical gate result: **PASS**.",
         "",
-        "| Animation | FBX bytes | Frames | Root motion | Export | Blender reimport |",
-        "|---|---:|---:|---|---|---|",
+        "| Animation | FBX bytes | Frames | Animated bones | Root motion | Export | Blender reimport |",
+        "|---|---:|---:|---:|---|---|---|",
     ]
     for row in operations:
         lines.append(
             f"| `{row['AnimationID']}` | {row['FBXSizeBytes']} | {row['FrameCount']} | "
+            f"{row['FBXAnimatedBoneCount']}/{row['ExpectedAnimatedBoneCount']} | "
             f"{row['RootMotionStatus']} | {row['ExportValidation']} | {row['ReimportValidation']} |"
         )
     lines.extend(
         [
             "",
             f"Animation-only FBX files and adjacent `.animlib.json` contracts are under ignored `{artifact_root}`.",
+            f"The copied Humanoid Avatar is normalized through the same Blender exporter at `{avatar_artifact}`.",
             "Every contract carries LibraryID, source hash, pinned pipeline version, skeleton/retarget profiles, root-motion policy and export timestamp.",
             "The export contains only the target armature/action; source rigs, meshes and materials are excluded.",
-            "Blender reimport validates armature count, mapped bones, frame timing and root trajectory before Unity receives the files.",
+            "Blender reimport validates armature count, mapped bones, non-constant pose motion, frame timing and root trajectory before Unity receives the files.",
             "",
         ]
     )
@@ -198,17 +209,36 @@ def main() -> int:
 
     blender = resolve_from_library(library_root, config["tools"]["blender"])
     exporter = Path(__file__).with_name("export_fbx_blender.py").resolve()
+    avatar_exporter = Path(__file__).with_name("export_unity_avatar_blender.py").resolve()
     validator = Path(__file__).with_name("validate_fbx_blender.py").resolve()
     import_profile_path = resolve_from_library(library_root, phase["unity_import_profile"])
-    required = (blender, exporter, validator, import_profile_path)
+    avatar_source_path = resolve_from_library(library_root, phase["unity_avatar_source"])
+    unity_avatar_asset_path = (library_root.parent / phase["target_avatar_asset"]).resolve()
+    required = (
+        blender,
+        exporter,
+        avatar_exporter,
+        validator,
+        import_profile_path,
+        avatar_source_path,
+        unity_avatar_asset_path,
+    )
     missing = [str(path) for path in required if not path.exists()]
     if missing:
         raise FileNotFoundError("Missing Phase 8 prerequisites: " + "; ".join(missing))
     import_profile = json.loads(import_profile_path.read_text(encoding="utf-8"))
+    avatar_sha256 = sha256_for(unity_avatar_asset_path)
 
     animation_fields, animation_rows = load_csv(database_root / "animations.csv")
     operations = []
-    artifacts = {}
+    artifacts = {
+        phase["target_avatar_asset"]: {
+            "sha256": avatar_sha256,
+            "sizeBytes": unity_avatar_asset_path.stat().st_size,
+            "sourceFBX": phase["unity_avatar_source"],
+            "exporter": relative_to_library(avatar_exporter, library_root),
+        }
+    }
     for animation_id in phase["phase8_pilots"]:
         canonical = find_row(animation_rows, animation_id)
         source_directory = input_root / animation_id
@@ -250,6 +280,12 @@ def main() -> int:
             raise RuntimeError(f"FBX reimport validation failed for {animation_id}: {validation['failures']}")
 
         root_magnitude = math.sqrt(sum(value * value for value in retarget_metadata["targetRootTranslation"]))
+        expected_pose_motion = retarget_metadata["poseMotion"]
+        imported_pose_motion = validation["poseMotion"]
+        minimum_non_constant_curves = max(
+            3,
+            math.ceil(int(expected_pose_motion["animatedBoneCount"]) * 0.25),
+        )
         contract = {
             "SchemaVersion": 1,
             "LibraryID": canonical["LibraryID"],
@@ -263,6 +299,9 @@ def main() -> int:
             "RetargetProfile": retarget_metadata["retargetProfile"],
             "RootMotionStatus": "RootMotionPreservedScaled" if root_magnitude > 0.001 else "InPlace",
             "RootTranslation": retarget_metadata["targetRootTranslation"],
+            "PoseAnimatedBoneCount": expected_pose_motion["animatedBoneCount"],
+            "PoseTotalRotationDegrees": expected_pose_motion["totalMaxRotationDegrees"],
+            "MinimumNonConstantPoseCurves": minimum_non_constant_curves,
             "ExportTimestamp": timestamp,
             "FriendlyName": canonical["FriendlyName"],
             "SemanticConfidence": canonical["SemanticConfidence"],
@@ -275,8 +314,12 @@ def main() -> int:
             "FrameCount": retarget_metadata["frameCount"],
             "FrameRate": retarget_metadata["frameRate"],
             "DurationSeconds": retarget_metadata["durationSeconds"],
+            "BindPoseFrame": receipt["bindPoseFrame"],
+            "ClipFrameStart": receipt["frameStart"],
+            "ClipFrameEnd": receipt["frameEnd"],
             "UnityImportProfile": import_profile["id"],
             "TargetAvatarAsset": phase["target_avatar_asset"],
+            "TargetAvatarSHA256": avatar_sha256,
             "Labels": [
                 "AnimationLibrary",
                 f"LibraryID:{canonical['LibraryID']}",
@@ -306,6 +349,9 @@ def main() -> int:
             "SkeletonProfile": contract["SkeletonProfile"],
             "RetargetProfile": contract["RetargetProfile"],
             "RootMotionStatus": contract["RootMotionStatus"],
+            "ExpectedAnimatedBoneCount": str(contract["PoseAnimatedBoneCount"]),
+            "FBXAnimatedBoneCount": str(imported_pose_motion["animatedBoneCount"]),
+            "PoseMotionValidation": "PASS",
             "FrameCount": str(contract["FrameCount"]),
             "FrameRate": str(contract["FrameRate"]),
             "DurationSeconds": f"{contract['DurationSeconds']:.9f}",
@@ -322,13 +368,21 @@ def main() -> int:
             "metadataSHA256": operation["MetadataSHA256"],
             "exportReceiptSHA256": sha256_for(receipt_path),
             "reimportValidationSHA256": sha256_for(validation_path),
+            "expectedAnimatedBoneCount": contract["PoseAnimatedBoneCount"],
+            "fbxAnimatedBoneCount": imported_pose_motion["animatedBoneCount"],
         }
 
     operations_path = database_root / "fbx_export_operations.csv"
     _, existing_operations = load_csv(operations_path)
     write_csv_atomic(operations_path, OPERATION_FIELDS, existing_operations + operations)
     report_path = catalog_root / "reports" / "phase_8_status.md"
-    build_report(report_path, timestamp, operations, relative_to_library(artifact_root, library_root))
+    build_report(
+        report_path,
+        timestamp,
+        operations,
+        relative_to_library(artifact_root, library_root),
+        phase["target_avatar_asset"],
+    )
     tracked_outputs = (operations_path, report_path, import_profile_path)
     state = {
         "schemaVersion": 1,
@@ -339,6 +393,12 @@ def main() -> int:
         "phaseConfigSHA256": hash_json(phase),
         "approvalScope": "PilotOnly/ProjectS_CLazy_Player/UnityFBX",
         "pilotCount": len(operations),
+        "unityAvatar": {
+            "assetPath": phase["target_avatar_asset"],
+            "sha256": avatar_sha256,
+            "sourceFBX": phase["unity_avatar_source"],
+            "exporter": relative_to_library(avatar_exporter, library_root),
+        },
         "outputs": {relative_to_library(path, library_root): sha256_for(path) for path in tracked_outputs},
         "artifacts": artifacts,
     }
@@ -358,7 +418,7 @@ def main() -> int:
             "ConfigHash": state["phaseConfigSHA256"],
             "PipelineVersion": config["pipeline_version"],
             "LogPath": relative_to_library(log_path, library_root),
-            "Notes": "status=PASS; animationOnly=true; reimport=PASS",
+            "Notes": "status=PASS; animationOnly=true; normalizedAvatar=true; reimport=PASS",
         },
     )
     logger.info("Phase 8 complete: exports=%d", len(operations))

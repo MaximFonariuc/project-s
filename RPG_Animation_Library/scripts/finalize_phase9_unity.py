@@ -27,11 +27,16 @@ OPERATION_FIELDS = (
     "AnimationType",
     "AvatarSetup",
     "SourceAvatarPath",
+    "TargetAvatarSHA256",
     "RootMotionStatus",
     "ExpectedFrameCount",
     "ImportedClipCount",
     "ImportedClipNames",
     "ImportedClipLengths",
+    "ExpectedAnimatedBoneCount",
+    "MinimumNonConstantPoseCurves",
+    "NonConstantPoseCurveCount",
+    "PoseMotionValidation",
     "Labels",
     "ImportValidation",
     "Status",
@@ -94,20 +99,22 @@ def build_report(path: Path, timestamp: str, receipt: dict) -> None:
         "",
         f"Unity `{receipt['UnityVersion']}` import gate: **PASS** ({len(receipt['Imports'])} clips).",
         "",
-        "| Animation | Unity asset | Clips | Root motion | Avatar | Import |",
-        "|---|---|---:|---|---|---|",
+        "| Animation | Unity asset | Clips | Pose curves | Root motion | Avatar | Import |",
+        "|---|---|---:|---:|---|---|---|",
     ]
     for item in sorted(receipt["Imports"], key=lambda value: value["AnimationID"]):
         lines.append(
             f"| `{item['AnimationID']}` | `{item['AssetPath']}` | {item['ImportedClipCount']} | "
+            f"{item['NonConstantPoseCurveCount']} | "
             f"{item['RootMotionStatus']} | {item['AvatarSetup']} | {item['Status']} |"
         )
     lines.extend(
         [
             "",
             "The Editor importer verifies the adjacent contract and FBX SHA-256 before applying settings.",
-            "All assets use Humanoid Copy From Other Avatar with `Assets/_Game/Models/AnimationSources/CLazy/TPose.FBX`.",
-            "Clip settings, labels, frame ranges, root-motion policy and imported clip lengths were verified in Unity.",
+            f"All assets use Humanoid Copy From Other Avatar with `{receipt['Imports'][0]['SourceAvatarPath']}`.",
+            "The Avatar is normalized through the same Blender FBX profile as the animation-only files.",
+            "Clip settings, bind-pose exclusion, labels, frame ranges, root-motion policy, pose curves and imported clip lengths were verified in Unity.",
             "This is a bounded import/retarget pilot, not semantic approval of every source animation.",
             "",
         ]
@@ -183,11 +190,16 @@ def main() -> int:
             "AnimationType": imported["AnimationType"],
             "AvatarSetup": imported["AvatarSetup"],
             "SourceAvatarPath": imported["SourceAvatarPath"],
+            "TargetAvatarSHA256": imported["TargetAvatarSHA256"],
             "RootMotionStatus": imported["RootMotionStatus"],
             "ExpectedFrameCount": str(imported["ExpectedFrameCount"]),
             "ImportedClipCount": str(imported["ImportedClipCount"]),
             "ImportedClipNames": json.dumps(imported["ImportedClipNames"], separators=(",", ":")),
             "ImportedClipLengths": json.dumps(imported["ImportedClipLengths"], separators=(",", ":")),
+            "ExpectedAnimatedBoneCount": str(imported["ExpectedAnimatedBoneCount"]),
+            "MinimumNonConstantPoseCurves": str(imported["MinimumNonConstantPoseCurves"]),
+            "NonConstantPoseCurveCount": str(imported["NonConstantPoseCurveCount"]),
+            "PoseMotionValidation": imported["PoseMotionValidation"],
             "Labels": json.dumps(imported["Labels"], separators=(",", ":")),
             "ImportValidation": "PASS",
             "Status": "PASS",
@@ -206,7 +218,7 @@ def main() -> int:
     existing_operations: list[dict[str, str]] = []
     if operations_path.is_file():
         fields, existing_operations = load_csv(operations_path)
-        if tuple(fields) != OPERATION_FIELDS:
+        if not set(fields).issubset(OPERATION_FIELDS):
             raise RuntimeError("Unexpected unity_import_operations.csv schema")
     write_csv_atomic(operations_path, OPERATION_FIELDS, existing_operations + operations)
 
@@ -234,6 +246,10 @@ def main() -> int:
         "approvalScope": "PilotOnly/ProjectS_CLazy_Player/UnityHumanoidImport",
         "unityVersion": receipt["UnityVersion"],
         "pilotCount": len(operations),
+        "unityAvatar": {
+            "assetPath": receipt["Imports"][0]["SourceAvatarPath"],
+            "sha256": receipt["Imports"][0]["TargetAvatarSHA256"],
+        },
         "receiptSHA256": sha256_for(receipt_path),
         "outputs": {
             relative_to_library(path, library_root): sha256_for(path)
@@ -257,7 +273,7 @@ def main() -> int:
             "ConfigHash": state["phaseConfigSHA256"],
             "PipelineVersion": config["pipeline_version"],
             "LogPath": relative_to_library(receipt_path, library_root),
-            "Notes": "status=PASS; humanoid=CopyFromOther; consoleErrors=0; consoleWarnings=0",
+            "Notes": "status=PASS; humanoid=CopyFromOther; normalizedAvatar=true; poseCurves=PASS; consoleErrors=0; consoleWarnings=0",
         },
     )
     print(state_path)

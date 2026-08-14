@@ -32,11 +32,16 @@ namespace ProjectS.Core.Editor.AnimationLibrary
             public string AnimationType;
             public string AvatarSetup;
             public string SourceAvatarPath;
+            public string TargetAvatarSHA256;
             public string RootMotionStatus;
             public int ExpectedFrameCount;
             public int ImportedClipCount;
             public string[] ImportedClipNames;
             public float[] ImportedClipLengths;
+            public int ExpectedAnimatedBoneCount;
+            public int MinimumNonConstantPoseCurves;
+            public int NonConstantPoseCurveCount;
+            public string PoseMotionValidation;
             public string[] Labels;
             public string Status;
             public string[] Failures;
@@ -167,18 +172,28 @@ namespace ProjectS.Core.Editor.AnimationLibrary
                         {
                             failures.Add($"frame count mismatch on {clip.name}: {importedFrames}.");
                         }
+
+                        if (!Mathf.Approximately(clip.firstFrame, metadata.ClipFrameStart) ||
+                            !Mathf.Approximately(clip.lastFrame, metadata.ClipFrameEnd))
+                        {
+                            failures.Add(
+                                $"bind-pose prefix was not excluded on {clip.name}: " +
+                                $"{clip.firstFrame:F3}-{clip.lastFrame:F3}.");
+                        }
                     }
                 }
             }
 
             var clipNames = new List<string>();
             var clipLengths = new List<float>();
+            int nonConstantPoseCurveCount = 0;
             foreach (UnityEngine.Object asset in AssetDatabase.LoadAllAssetsAtPath(assetPath))
             {
                 if (asset is AnimationClip clip && !clip.name.StartsWith("__preview__", StringComparison.Ordinal))
                 {
                     clipNames.Add(clip.name);
                     clipLengths.Add(clip.length);
+                    nonConstantPoseCurveCount += CountNonConstantPoseCurves(clip);
                     float expectedLength = (metadata.FrameCount - 1f) / metadata.FrameRate;
                     if (Mathf.Abs(clip.length - expectedLength) > 1f / metadata.FrameRate + 0.001f)
                     {
@@ -190,6 +205,17 @@ namespace ProjectS.Core.Editor.AnimationLibrary
             if (clipNames.Count == 0)
             {
                 failures.Add("No imported AnimationClip sub-asset.");
+            }
+
+            if (metadata.PoseAnimatedBoneCount <= 0 || metadata.MinimumNonConstantPoseCurves <= 0)
+            {
+                failures.Add("Pose-motion evidence is missing from the import contract.");
+            }
+            else if (nonConstantPoseCurveCount < metadata.MinimumNonConstantPoseCurves)
+            {
+                failures.Add(
+                    $"pose motion collapsed: expected at least {metadata.MinimumNonConstantPoseCurves} " +
+                    $"non-constant curves, imported {nonConstantPoseCurveCount}.");
             }
 
             string[] actualLabels = AssetDatabase.GetLabels(AssetDatabase.LoadMainAssetAtPath(assetPath));
@@ -211,15 +237,60 @@ namespace ProjectS.Core.Editor.AnimationLibrary
                 AnimationType = importer != null ? importer.animationType.ToString() : string.Empty,
                 AvatarSetup = importer != null ? importer.avatarSetup.ToString() : string.Empty,
                 SourceAvatarPath = importer != null ? AssetDatabase.GetAssetPath(importer.sourceAvatar) : string.Empty,
+                TargetAvatarSHA256 = metadata.TargetAvatarSHA256,
                 RootMotionStatus = metadata.RootMotionStatus,
                 ExpectedFrameCount = metadata.FrameCount,
                 ImportedClipCount = clipNames.Count,
                 ImportedClipNames = clipNames.ToArray(),
                 ImportedClipLengths = clipLengths.ToArray(),
+                ExpectedAnimatedBoneCount = metadata.PoseAnimatedBoneCount,
+                MinimumNonConstantPoseCurves = metadata.MinimumNonConstantPoseCurves,
+                NonConstantPoseCurveCount = nonConstantPoseCurveCount,
+                PoseMotionValidation = nonConstantPoseCurveCount >= metadata.MinimumNonConstantPoseCurves
+                    ? "PASS"
+                    : "FAIL",
                 Labels = actualLabels,
                 Status = failures.Count == 0 ? "PASS" : "FAIL",
                 Failures = failures.ToArray(),
             };
+        }
+
+        private static int CountNonConstantPoseCurves(AnimationClip clip)
+        {
+            int count = 0;
+            EditorCurveBinding[] bindings = AnimationUtility.GetCurveBindings(clip);
+            foreach (EditorCurveBinding binding in bindings)
+            {
+                string propertyName = binding.propertyName ?? string.Empty;
+                if (propertyName.StartsWith("RootT", StringComparison.Ordinal) ||
+                    propertyName.StartsWith("RootQ", StringComparison.Ordinal) ||
+                    propertyName.StartsWith("MotionT", StringComparison.Ordinal) ||
+                    propertyName.StartsWith("MotionQ", StringComparison.Ordinal))
+                {
+                    continue;
+                }
+
+                AnimationCurve curve = AnimationUtility.GetEditorCurve(clip, binding);
+                if (curve == null || curve.length < 2)
+                {
+                    continue;
+                }
+
+                float minimum = float.PositiveInfinity;
+                float maximum = float.NegativeInfinity;
+                foreach (Keyframe key in curve.keys)
+                {
+                    minimum = Mathf.Min(minimum, key.value);
+                    maximum = Mathf.Max(maximum, key.value);
+                }
+
+                if (maximum - minimum > 0.0001f)
+                {
+                    count++;
+                }
+            }
+
+            return count;
         }
     }
 }

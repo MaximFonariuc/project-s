@@ -17,6 +17,9 @@ namespace ProjectS.Core.Editor.AnimationLibrary
         public string RetargetProfile;
         public string RootMotionStatus;
         public float[] RootTranslation;
+        public int PoseAnimatedBoneCount;
+        public float PoseTotalRotationDegrees;
+        public int MinimumNonConstantPoseCurves;
         public string ExportTimestamp;
         public string FriendlyName;
         public string SemanticConfidence;
@@ -29,8 +32,12 @@ namespace ProjectS.Core.Editor.AnimationLibrary
         public int FrameCount;
         public int FrameRate;
         public float DurationSeconds;
+        public int BindPoseFrame;
+        public int ClipFrameStart;
+        public int ClipFrameEnd;
         public string UnityImportProfile;
         public string TargetAvatarAsset;
+        public string TargetAvatarSHA256;
         public string[] Labels;
 
         public bool HasRootMotion => !string.Equals(RootMotionStatus, "InPlace", StringComparison.Ordinal);

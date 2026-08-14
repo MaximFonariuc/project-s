@@ -45,6 +45,6 @@
   "notes": [
     "The FBX root node is imported by Blender as the armature object; pelvis is the only root bone.",
     "The target has no weapon bones. Weapon sockets remain a Project S gameplay/prefab concern.",
-    "Unity clips imported for this target must copy the Avatar from TPose.FBX rather than generate a new Avatar per clip."
+    "Unity clips copy the Avatar from ProjectS_CLazy_AnimationLibraryAvatar.fbx, normalized through the same Blender FBX exporter as the animation-only files."
   ]
 }

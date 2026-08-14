@@ -12,6 +12,9 @@ from pathlib import Path
 
 import bpy
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from animation_motion_blender import measure_pose_motion
+
 
 def parse_args() -> argparse.Namespace:
     arguments = sys.argv[sys.argv.index("--") + 1 :] if "--" in sys.argv else []
@@ -60,6 +63,8 @@ def main() -> int:
     expected = json.loads(args.expected_metadata.read_text(encoding="utf-8"))
     armature = bpy.data.objects.get(expected["targetArmatureName"])
     failures = []
+    missing = []
+    actual_pose_motion = None
     if armature is None or armature.type != "ARMATURE":
         failures.append("target armature missing")
     elif armature.animation_data is None or armature.animation_data.action is None:
@@ -78,6 +83,21 @@ def main() -> int:
                 failures.append("motion fingerprint mismatch")
             frame_start = int(expected["frameStart"])
             frame_end = int(expected["frameEnd"])
+            actual_pose_motion = measure_pose_motion(
+                armature,
+                expected["mappedTargetBones"],
+                frame_start,
+                frame_end,
+            )
+            expected_pose_motion = expected.get("poseMotion")
+            if expected_pose_motion is None:
+                failures.append("pose motion evidence missing")
+            elif actual_pose_motion["animatedBoneCount"] != expected_pose_motion["animatedBoneCount"]:
+                failures.append(
+                    "animated bone count mismatch: "
+                    f"expected={expected_pose_motion['animatedBoneCount']} "
+                    f"actual={actual_pose_motion['animatedBoneCount']}"
+                )
             bpy.context.scene.frame_set(frame_start)
             bpy.context.view_layer.update()
             root_start = armature.matrix_world.translation.copy()
@@ -94,6 +114,7 @@ def main() -> int:
         "status": "PASS" if not failures else "FAIL",
         "animationId": expected["animationId"],
         "motionFingerprintSHA256": expected.get("motionFingerprintSHA256", ""),
+        "poseMotion": actual_pose_motion,
         "failures": failures,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)

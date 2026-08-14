@@ -53,6 +53,19 @@ namespace ProjectS.Core.Editor.AnimationLibrary
             {
                 error = $"FBX hash does not match its contract: {modelAssetPath}";
                 metadata = null;
+                return true;
+            }
+
+            string avatarPath = Path.GetFullPath(metadata.TargetAvatarAsset ?? string.Empty);
+            if (!File.Exists(avatarPath) ||
+                string.IsNullOrWhiteSpace(metadata.TargetAvatarSHA256) ||
+                !string.Equals(
+                    ComputeSha256(avatarPath),
+                    metadata.TargetAvatarSHA256,
+                    StringComparison.OrdinalIgnoreCase))
+            {
+                error = $"Target Avatar hash does not match the import contract: {metadata.TargetAvatarAsset}";
+                metadata = null;
             }
 
             return true;

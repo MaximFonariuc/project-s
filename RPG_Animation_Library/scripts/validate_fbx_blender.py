@@ -11,6 +11,9 @@ from pathlib import Path
 
 import bpy
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from animation_motion_blender import measure_pose_motion
+
 
 def parse_args() -> argparse.Namespace:
     arguments = sys.argv[sys.argv.index("--") + 1 :] if "--" in sys.argv else []
@@ -42,6 +45,7 @@ def main() -> int:
     actual_frame_end = None
     actual_frame_count = 0
     root_translation = [0.0, 0.0, 0.0]
+    pose_motion = None
     missing_bones = []
     if armature is not None:
         missing_bones = sorted(name for name in expected["mappedTargetBones"] if name not in armature.pose.bones)
@@ -50,16 +54,56 @@ def main() -> int:
         if armature.animation_data is None or armature.animation_data.action is None:
             failures.append("animation action missing")
         else:
-            actual_frame_start, actual_frame_end = (int(round(value)) for value in armature.animation_data.action.frame_range)
-            actual_frame_count = actual_frame_end - actual_frame_start + 1
-            if actual_frame_count != int(expected["frameCount"]):
+            actual_export_start, actual_export_end = (
+                int(round(value)) for value in armature.animation_data.action.frame_range
+            )
+            expected_frame_count = int(expected["frameCount"])
+            imported_bind_pose_frame = 1
+            imported_clip_frame_start = 2
+            imported_clip_frame_end = expected_frame_count + 1
+            actual_frame_start = 1
+            actual_frame_end = expected_frame_count
+            actual_frame_count = actual_export_end - imported_clip_frame_start + 1
+            if actual_export_start != imported_bind_pose_frame:
+                failures.append(
+                    "bind pose prefix missing: "
+                    f"expected={imported_bind_pose_frame} actual={actual_export_start}"
+                )
+            if actual_export_end != imported_clip_frame_end:
+                failures.append(
+                    "export frame end mismatch: "
+                    f"expected={imported_clip_frame_end} actual={actual_export_end}"
+                )
+            if actual_frame_count != expected_frame_count:
                 failures.append(
                     f"frame count mismatch: expected={expected['frameCount']} actual={actual_frame_count}"
                 )
-            bpy.context.scene.frame_set(actual_frame_start)
+            pose_motion = measure_pose_motion(
+                armature,
+                expected["mappedTargetBones"],
+                imported_clip_frame_start,
+                imported_clip_frame_end,
+            )
+            expected_pose_motion = expected.get("poseMotion")
+            if expected_pose_motion is None:
+                failures.append("retarget pose motion evidence missing")
+            else:
+                expected_animated = int(expected_pose_motion["animatedBoneCount"])
+                minimum_animated = max(3, math.ceil(expected_animated * 0.5))
+                if pose_motion["animatedBoneCount"] < minimum_animated:
+                    failures.append(
+                        "pose motion collapsed: "
+                        f"expectedAnimated={expected_animated} "
+                        f"actualAnimated={pose_motion['animatedBoneCount']}"
+                    )
+                if pose_motion["totalMaxRotationDegrees"] < (
+                    float(expected_pose_motion["totalMaxRotationDegrees"]) * 0.2
+                ):
+                    failures.append("pose rotation extent collapsed")
+            bpy.context.scene.frame_set(imported_clip_frame_start)
             bpy.context.view_layer.update()
             root_start = armature.matrix_world.translation.copy()
-            bpy.context.scene.frame_set(actual_frame_end)
+            bpy.context.scene.frame_set(imported_clip_frame_end)
             bpy.context.view_layer.update()
             root_delta = armature.matrix_world.translation - root_start
             root_translation = rounded_vector(root_delta)
@@ -79,7 +123,9 @@ def main() -> int:
         "frameStart": actual_frame_start,
         "frameEnd": actual_frame_end,
         "frameCount": actual_frame_count,
+        "bindPoseFrame": 0 if actual_frame_start is not None else None,
         "rootTranslation": root_translation,
+        "poseMotion": pose_motion,
         "failures": failures,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
