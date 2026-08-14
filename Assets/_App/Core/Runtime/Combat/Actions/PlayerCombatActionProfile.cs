@@ -209,6 +209,15 @@ namespace _App
         [SerializeField] private bool _faceMoveDirection = true;
         [SerializeField] private RootMotionPolicy _rootMotionPolicy = RootMotionPolicy.Ignore;
 
+        [Header("Combat Motion")]
+        [Tooltip("Applies collision-resolved planar motion during the configured action window.")]
+        [SerializeField] private bool _useCombatMotion;
+        [SerializeField, Range(0.0f, 1.0f)] private float _combatMotionStart;
+        [SerializeField, Range(0.0f, 1.0f)] private float _combatMotionEnd = 0.3f;
+        [SerializeField, Min(0.0f)] private float _combatMotionDistance = 0.75f;
+        [SerializeField] private bool _faceCombatTarget = true;
+        [SerializeField, Min(0.0f)] private float _targetStoppingDistance = 0.8f;
+
         internal CombatActionDefinition Build()
         {
             return new CombatActionDefinition(
@@ -243,12 +252,22 @@ namespace _App
                     _allowJump,
                     _allowDodge,
                     _faceMoveDirection),
-                _rootMotionPolicy);
+                _rootMotionPolicy,
+                _useCombatMotion
+                    ? new CombatMotionDefinition(
+                        new NormalizedActionWindow(_combatMotionStart, _combatMotionEnd),
+                        _combatMotionDistance,
+                        _faceCombatTarget,
+                        _targetStoppingDistance)
+                    : CombatMotionDefinition.Disabled);
         }
 
         internal static CombatActionAuthoring CreatePrototypeCombo()
         {
-            return new CombatActionAuthoring();
+            return new CombatActionAuthoring
+            {
+                _useCombatMotion = true
+            };
         }
 
         internal static CombatActionAuthoring CreatePrototypeSkill()
@@ -258,7 +277,9 @@ namespace _App
                 _useChainWindow = false,
                 _useCancelWindow = false,
                 _allowDodge = false,
-                _cooldown = 1.25f
+                _cooldown = 1.25f,
+                _useCombatMotion = true,
+                _combatMotionDistance = 1.0f
             };
         }
 
@@ -278,7 +299,8 @@ namespace _App
                 _commitTime = 0.5f,
                 _translationScale = 1.0f,
                 _allowDodge = false,
-                _faceMoveDirection = false
+                _faceMoveDirection = false,
+                _useCombatMotion = false
             };
         }
 

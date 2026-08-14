@@ -30,6 +30,7 @@ namespace _App
             builder.RegisterInstance(inputBufferSettings);
             builder.Register<CombatInputBuffer>(Lifetime.Scoped);
             builder.RegisterInstance(weaponTransitionAction);
+            builder.Register<CombatMotionController>(Lifetime.Scoped);
             builder.Register<CombatActionExecutor>(Lifetime.Scoped);
             builder.Register<CombatHitResolver>(Lifetime.Scoped)
                 .AsSelf()

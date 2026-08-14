@@ -10,6 +10,7 @@ namespace _App
         private readonly ICombatClock _clock;
         private readonly IRootMotionPolicyTarget _body;
         private readonly IDamageImmunityTarget _damageImmunity;
+        private readonly CombatMotionController _motion;
 
         private CombatActionDefinition _definition;
         private CombatActionFrame _currentFrame;
@@ -29,11 +30,13 @@ namespace _App
         public CombatActionExecutor(
             ICombatClock clock,
             IRootMotionPolicyTarget body,
-            IDamageImmunityTarget damageImmunity)
+            IDamageImmunityTarget damageImmunity,
+            CombatMotionController motion)
         {
             _clock = clock ?? throw new ArgumentNullException(nameof(clock));
             _body = body ?? throw new ArgumentNullException(nameof(body));
             _damageImmunity = damageImmunity ?? throw new ArgumentNullException(nameof(damageImmunity));
+            _motion = motion ?? throw new ArgumentNullException(nameof(motion));
         }
 
         public async UniTask<CombatActionRunResult> ExecuteAsync(
@@ -104,6 +107,7 @@ namespace _App
 
             _activeExecutionId = executionId;
             _currentFrame = CreateFrame(-1.0f, 0.0f);
+            _motion.Begin(definition.Motion, duration);
             ApplyDamageImmunity(_currentFrame.IsInvulnerable);
             return executionId;
         }
@@ -119,6 +123,7 @@ namespace _App
             _elapsed = Mathf.Min(_elapsed + deltaTime, _duration);
             float normalizedTime = Mathf.Clamp01(_elapsed / _duration);
             _currentFrame = CreateFrame(previousTime, normalizedTime);
+            _motion.Advance(normalizedTime);
             ApplyDamageImmunity(_currentFrame.IsInvulnerable);
         }
 
@@ -148,6 +153,7 @@ namespace _App
 
             _body.SetRootMotionPolicy(_previousRootMotionPolicy);
             _damageImmunity.SetDamageImmune(_previousDamageImmunity);
+            _motion.End();
             _definition = default;
             _currentFrame = default;
             _duration = 0.0f;
