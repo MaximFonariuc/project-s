@@ -37,8 +37,10 @@ namespace _App
         private readonly InputBufferEntryPredicate<PlayerCombatCommandId> _bufferedActionPredicate;
         private readonly Dictionary<PlayerCombatActionId, float> _lastActionUseTime =
             new Dictionary<PlayerCombatActionId, float>();
+        private readonly CombatAttackExecution _attackExecution = new CombatAttackExecution();
 
         private CancellationTokenSource _actionCancellation;
+        private ulong _nextAttackExecutionId;
         private ActionObservationMode _observationMode;
         private CombatActionFrame _observedFrame;
         private PlayerCombatAction _currentAction;
@@ -294,6 +296,7 @@ namespace _App
 
                     _currentAction = action;
                     _acceptedBufferedAction = null;
+                    BeginAttackExecution(action);
                     EnterExecuting(action);
                     SetComboIndex(
                         action.Presentation.Kind == PlayerCombatPresentationKind.ComboStep
@@ -312,6 +315,7 @@ namespace _App
                     }
 
                     SetHitWindow(false);
+                    EndAttackExecution();
                     action = _acceptedBufferedAction;
                 }
             }
@@ -488,12 +492,14 @@ namespace _App
             _currentAction = null;
             _acceptedBufferedAction = null;
             SetHitWindow(false);
+            EndAttackExecution();
             SetComboIndex(0);
             ReturnToReady();
         }
 
         private void CancelActiveAction()
         {
+            EndAttackExecution();
             CancellationTokenSource cancellation = _actionCancellation;
             if (cancellation == null)
             {
@@ -504,6 +510,28 @@ namespace _App
             cancellation.Cancel();
             _actionExecutor.Abort();
             cancellation.Dispose();
+        }
+
+        private void BeginAttackExecution(PlayerCombatAction action)
+        {
+            EndAttackExecution();
+            _nextAttackExecutionId++;
+            if (_nextAttackExecutionId == 0)
+            {
+                _nextAttackExecutionId = 1;
+            }
+
+            _attackExecution.Begin(
+                new AttackExecutionId(_nextAttackExecutionId),
+                action.Id,
+                action.Definition.HitDefinition,
+                _actor.Root.gameObject);
+        }
+
+        private void EndAttackExecution()
+        {
+            _weaponRig.CloseHitbox();
+            _attackExecution.End();
         }
 
         private void EnterExecuting(PlayerCombatAction action)
@@ -551,9 +579,10 @@ namespace _App
             }
 
             IsHitWindowOpen = open;
-            if (open && CurrentWeapon is not EWeaponType.None and not EWeaponType.Unarmed)
+            if (open && _attackExecution.IsActive &&
+                CurrentWeapon is not EWeaponType.None and not EWeaponType.Unarmed)
             {
-                _weaponRig.OpenHitbox();
+                _weaponRig.OpenHitbox(_attackExecution);
             }
             else
             {

@@ -1,16 +1,15 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace _App
 {
-    public class Weapon : MonoBehaviour
+    public sealed class Weapon : MonoBehaviour
     {
-        [SerializeField] protected int _damage = 10;
-        [SerializeField] protected Collider _hitbox;
+        [SerializeField] private Collider _hitbox;
 
-        private readonly HashSet<int> _damagedOwners = new HashSet<int>();
+        private CombatAttackExecution _execution;
+        private ICombatHitResolver _resolver;
 
-        protected virtual void Awake()
+        private void Awake()
         {
             if (_hitbox == null)
             {
@@ -20,28 +19,44 @@ namespace _App
             DisableHitbox();
         }
 
-        public virtual void EnableHitbox()
+        internal void EnableHitbox(
+            CombatAttackExecution execution,
+            ICombatHitResolver resolver)
         {
-            _damagedOwners.Clear();
+            _execution = execution != null && execution.IsActive
+                ? execution
+                : null;
+            _resolver = resolver;
 
-            if (_hitbox != null)
+            if (_hitbox != null && _execution != null && _resolver != null)
             {
                 _hitbox.enabled = true;
             }
         }
 
-        public virtual void DisableHitbox()
+        internal void DisableHitbox()
         {
             if (_hitbox != null)
             {
                 _hitbox.enabled = false;
             }
 
-            _damagedOwners.Clear();
+            _execution = null;
+            _resolver = null;
         }
 
-        protected virtual void OnTriggerEnter(Collider other)
+        private void OnDisable()
         {
+            DisableHitbox();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (_execution == null || !_execution.IsActive || _resolver == null)
+            {
+                return;
+            }
+
             Hurtbox hurtbox = other.GetComponentInParent<Hurtbox>();
             if (hurtbox == null || !hurtbox.IsAlive)
             {
@@ -49,21 +64,15 @@ namespace _App
             }
 
             GameObject owner = hurtbox.Owner;
-            if (owner.transform.root == transform.root || !_damagedOwners.Add(owner.GetInstanceID()))
+            if (owner == null)
             {
                 return;
             }
 
             Vector3 hitPoint = other.ClosestPoint(_hitbox.bounds.center);
-            Vector3 direction = owner.transform.position - transform.root.position;
-            DamageInfo damage = new DamageInfo(_damage, hitPoint, direction.normalized, transform.root.gameObject);
-
-            if (hurtbox.TryReceiveDamage(damage, out DamageInfo appliedDamage))
-            {
-                OnDamageApplied(hurtbox, appliedDamage);
-            }
+            Vector3 direction = owner.transform.position - _execution.Source.transform.position;
+            var candidate = new CombatHitCandidate(hurtbox, hitPoint, direction);
+            _resolver.TryResolve(_execution, in candidate, out _);
         }
-
-        protected virtual void OnDamageApplied(Hurtbox hurtbox, DamageInfo damage) { }
     }
 }

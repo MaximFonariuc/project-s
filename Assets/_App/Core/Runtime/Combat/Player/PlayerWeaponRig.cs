@@ -8,17 +8,20 @@ namespace _App
         private readonly Transform _weaponHand;
         private readonly Transform _weaponTransform;
         private readonly Weapon _weapon;
+        private readonly ICombatHitResolver _hitResolver;
 
         public PlayerWeaponRig(
             Transform weaponHolder,
             Transform weaponHand,
             Transform weaponTransform,
-            Weapon weapon)
+            Weapon weapon,
+            ICombatHitResolver hitResolver)
         {
             _weaponHolder = weaponHolder;
             _weaponHand = weaponHand;
             _weaponTransform = weaponTransform;
             _weapon = weapon;
+            _hitResolver = hitResolver;
         }
 
         public void ApplyWeapon(EWeaponType weaponType)
@@ -44,9 +47,9 @@ namespace _App
             _weaponTransform.localRotation = Quaternion.identity;
         }
 
-        public void OpenHitbox()
+        public void OpenHitbox(CombatAttackExecution execution)
         {
-            _weapon?.EnableHitbox();
+            _weapon?.EnableHitbox(execution, _hitResolver);
         }
 
         public void CloseHitbox()

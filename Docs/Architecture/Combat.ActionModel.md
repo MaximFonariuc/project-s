@@ -43,6 +43,7 @@ classDiagram
     }
     class CombatActionDefinition {
         +HitboxWindow
+        +HitDefinition CombatHitDefinition
         +ChainWindow
         +CancelWindow
         +RecoveryStart float
@@ -81,7 +82,7 @@ classDiagram
 - `PlayerCombatActionId` идентифицирует узел moveset: `combo.0`, `combo.1`, `air.combo.0`.
 - `PlayerCombatAnimationId` выбирает named animation slot (`skill.special`) и не определяет gameplay transition.
 - `PlayerCombatPresentation` сообщает animation adapter, как отобразить уже выбранное действие: combo index либо named `PlayerCombatAnimationId`.
-- `CombatActionDefinition` хранит immutable timeline: hitbox, chain/cancel, recovery, movement, invulnerability, commit, completion и cooldown.
+- `CombatActionDefinition` хранит immutable timeline и impact: hitbox, damage, stagger, knockback, reaction id, chain/cancel, recovery, movement, invulnerability, commit, completion и cooldown.
 
 Одна команда может иметь несколько entry/transition rules, если целевые actions принадлежат непересекающимся environment masks. Поэтому `attack.light` может выбирать отдельные наземную и воздушную ветки без проверки платформы или устройства в gameplay-коде. Неоднозначные правила с пересекающимися masks отклоняются при построении graph.
 

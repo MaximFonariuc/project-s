@@ -66,7 +66,7 @@ classDiagram
         <<runtime owner>>
         +Owner GameObject
         +Zones IReadOnlyList~Hurtbox~
-        +TryReceiveDamage(info) bool
+        +TryApplyHit(result) bool
         +SetHurtboxesEnabled(enabled)
     }
 
@@ -75,13 +75,13 @@ classDiagram
         +Zone BodyHitZone
         +ZoneId string
         +DamageMultiplier float
-        +TryReceiveDamage(info) bool
+        +TryApplyHit(result) bool
     }
 
     class Health {
         <<gameplay state owner>>
         +CurrentHealth int
-        +TryReceiveDamage(info) bool
+        +TryApplyHit(result) bool
     }
 
     class Weapon {
@@ -98,15 +98,15 @@ classDiagram
     GeneratedBodyCollider --> BodyColliderRig : generated owner
     BodyColliderRig --> Health : damage owner
     BodyColliderRig o-- Hurtbox : runtime zones
-    Hurtbox --> BodyColliderRig : forwards adjusted damage
-    Weapon --> Hurtbox : reports hit candidate
+    Hurtbox --> BodyColliderRig : forwards confirmed hit
+    Weapon --> Hurtbox : detects physics candidate
 ```
 
 ## Направление зависимостей
 
 ```text
 Editor generation -> Runtime authoring data -> generated primitive colliders
-Weapon -> Hurtbox -> BodyColliderRig -> Health
+Weapon -> CombatHitResolver -> Hurtbox -> BodyColliderRig -> Health
 CharacterMovement -> root CapsuleCollider                 (отдельная ветка)
 Animator bones -> generated collider transforms           (presentation pose)
 ```
@@ -114,7 +114,7 @@ Animator bones -> generated collider transforms           (presentation pose)
 - Runtime-классы не зависят от `UnityEditor`.
 - Gameplay не знает, был скелет импортирован как Humanoid или Generic.
 - `Health` остаётся единственным owner здоровья.
-- `Hurtbox` владеет только метаданными зоны и применяет её damage multiplier перед передачей подтверждённого урона в `BodyColliderRig`.
+- `Hurtbox` владеет только метаданными зоны и передаёт подтверждённый `CombatHitResult` в `BodyColliderRig`; multiplier зоны применяет `CombatHitResolver`.
 - `GeneratedBodyCollider` — маркер владения для безопасной повторной генерации. Очистка никогда не удаляет неизвестные или пользовательские colliders.
 - VContainer здесь не применяется: объекты принадлежат prefab/scene и связаны явными serialized references. DI container не улучшил бы эту локальную границу.
 
@@ -193,7 +193,7 @@ Assets/_App/Core/Editor/BodyColliders/
 └── BodyColliderGenerator.cs       # fitting, Undo and lifecycle
 ```
 
-Код остаётся в `_App/Core`, поскольку damage zones, `Health` и текущий `Weapon` — контракты конкретной игры. Перенос в `_App/Modules` допустим только после стабилизации независимого damage-receiver API и реального повторного использования вне Project S.
+Код остаётся в `_App/Core`, поскольку damage zones, `Health` и текущий `Weapon` — контракты конкретной игры. Перенос в `_App/Modules` допустим только после стабилизации независимого hit-result API и реального повторного использования вне Project S.
 
 ## Выполненная проверка
 
@@ -202,4 +202,4 @@ Assets/_App/Core/Editor/BodyColliders/
 - Explicit Generic synthetic rig: custom `Tail` mapping с fallback geometry.
 - Слой `Hitbox` и trigger mode применены ко всем generated colliders.
 - Root `CapsuleCollider` и manual collider сохраняются после generate/clear.
-- Zone multiplier `2.0` преобразует входящий damage `10` в подтверждённый damage `20` у `Health`.
+- Zone multiplier `2.0` преобразует базовый damage action `10` в подтверждённый `CombatHitResult.Damage = 20` у `Health`.

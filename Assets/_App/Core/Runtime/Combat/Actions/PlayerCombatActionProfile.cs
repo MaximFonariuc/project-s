@@ -187,6 +187,12 @@ namespace _App
         [SerializeField, Range(0.0f, 1.0f)] private float _invulnerabilityStart;
         [SerializeField, Range(0.0f, 1.0f)] private float _invulnerabilityEnd = 0.25f;
 
+        [Header("Impact")]
+        [SerializeField, Min(0)] private int _damage = 10;
+        [SerializeField, Min(0.0f)] private float _staggerDamage = 10.0f;
+        [SerializeField, Min(0.0f)] private float _knockback;
+        [SerializeField] private string _reactionId = "hit.light";
+
         [Header("Lifecycle")]
         [SerializeField, Range(0.0f, 1.0f)] private float _recoveryStart = 0.6f;
         [SerializeField, Range(0.01f, 1.0f)] private float _completionTime = 0.75f;
@@ -215,6 +221,13 @@ namespace _App
                     _useInvulnerabilityWindow,
                     _invulnerabilityStart,
                     _invulnerabilityEnd),
+                new CombatHitDefinition(
+                    _damage,
+                    _staggerDamage,
+                    _knockback,
+                    string.IsNullOrWhiteSpace(_reactionId)
+                        ? CombatReactionId.None
+                        : new CombatReactionId(_reactionId)),
                 _recoveryStart,
                 _completionTime,
                 _hasCommit,
@@ -251,6 +264,9 @@ namespace _App
                 _useHitboxWindow = false,
                 _useChainWindow = false,
                 _useCancelWindow = false,
+                _damage = 0,
+                _staggerDamage = 0.0f,
+                _reactionId = string.Empty,
                 _completionTime = 0.5f,
                 _recoveryStart = 0.5f,
                 _hasCommit = true,

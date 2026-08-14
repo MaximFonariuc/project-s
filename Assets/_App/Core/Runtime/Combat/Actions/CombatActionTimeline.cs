@@ -41,6 +41,7 @@ namespace _App
         public NormalizedActionWindow CancelWindow { get; }
         public NormalizedActionWindow MovementConstraintWindow { get; }
         public NormalizedActionWindow InvulnerabilityWindow { get; }
+        public CombatHitDefinition HitDefinition { get; }
         public float RecoveryStart { get; }
         public float CompletionTime { get; }
         public bool HasCommit { get; }
@@ -55,6 +56,7 @@ namespace _App
             NormalizedActionWindow cancelWindow,
             NormalizedActionWindow movementConstraintWindow,
             NormalizedActionWindow invulnerabilityWindow,
+            CombatHitDefinition hitDefinition,
             float recoveryStart,
             float completionTime,
             bool hasCommit,
@@ -94,6 +96,7 @@ namespace _App
             CancelWindow = cancelWindow;
             MovementConstraintWindow = movementConstraintWindow;
             InvulnerabilityWindow = invulnerabilityWindow;
+            HitDefinition = hitDefinition;
             RecoveryStart = recoveryStart;
             CompletionTime = completionTime;
             HasCommit = hasCommit;

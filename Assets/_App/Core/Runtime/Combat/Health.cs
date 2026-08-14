@@ -4,12 +4,12 @@ using UnityEngine;
 namespace _App
 {
     [DisallowMultipleComponent]
-    public sealed class Health : MonoBehaviour, IDamageReceiver
+    public sealed class Health : MonoBehaviour
     {
         [SerializeField, Min(1)] private int _maxHealth = 100;
 
-        public event Action<DamageInfo> Damaged;
-        public event Action<DamageInfo> Died;
+        public event Action<CombatHitResult> Damaged;
+        public event Action<CombatHitResult> Died;
 
         public int MaxHealth => _maxHealth;
         public int CurrentHealth { get; private set; }
@@ -26,19 +26,19 @@ namespace _App
             _maxHealth = Mathf.Max(1, _maxHealth);
         }
 
-        public bool TryReceiveDamage(DamageInfo damage)
+        internal bool TryApplyHit(in CombatHitResult hit)
         {
-            if (!IsAlive || IsDamageImmune || damage.Amount <= 0)
+            if (!IsAlive || IsDamageImmune || hit.Damage <= 0)
             {
                 return false;
             }
 
-            CurrentHealth = Mathf.Max(0, CurrentHealth - damage.Amount);
-            Damaged?.Invoke(damage);
+            CurrentHealth = Mathf.Max(0, CurrentHealth - hit.Damage);
+            Damaged?.Invoke(hit);
 
             if (!IsAlive)
             {
-                Died?.Invoke(damage);
+                Died?.Invoke(hit);
             }
 
             return true;

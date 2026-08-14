@@ -5,7 +5,7 @@ namespace _App
 {
     [DisallowMultipleComponent]
     [AddComponentMenu("Project S/Combat/Body Collider Rig")]
-    public sealed class BodyColliderRig : MonoBehaviour, IDamageReceiver
+    public sealed class BodyColliderRig : MonoBehaviour
     {
         [SerializeField] private Health _health;
         [SerializeField] private List<Hurtbox> _zones = new List<Hurtbox>();
@@ -24,9 +24,9 @@ namespace _App
             }
         }
 
-        public bool TryReceiveDamage(DamageInfo damage)
+        internal bool TryApplyHit(in CombatHitResult hit)
         {
-            return _health != null && _health.TryReceiveDamage(damage);
+            return _health != null && _health.TryApplyHit(in hit);
         }
 
         public void SetHurtboxesEnabled(bool enabled)

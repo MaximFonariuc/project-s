@@ -111,7 +111,7 @@ sequenceDiagram
     Combat->>Machine: Recovery -> Executing(next action)
 ```
 
-Hitbox открывается только по `CombatActionFrame` и закрывается при completion, cancellation, interruption и disable. Weapon transition применяет loadout только после commit point. Cooldown хранится по `PlayerCombatActionId`; animation lookup использует отдельный `PlayerCombatAnimationId`.
+Hitbox открывается только по `CombatActionFrame` и закрывается при completion, cancellation, interruption и disable. Каждое фактически запущенное action получает отдельный `CombatAttackExecution`, поэтому повторные hurtbox одной цели фильтруются на уровне атаки, а не оружия. Weapon transition применяет loadout только после commit point. Cooldown хранится по `PlayerCombatActionId`; animation lookup использует отдельный `PlayerCombatAnimationId`.
 
 ## Lifecycle
 

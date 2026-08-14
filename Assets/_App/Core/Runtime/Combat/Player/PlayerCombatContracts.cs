@@ -55,7 +55,7 @@ namespace _App
     internal interface IPlayerWeaponRig
     {
         void ApplyWeapon(EWeaponType weaponType);
-        void OpenHitbox();
+        void OpenHitbox(CombatAttackExecution execution);
         void CloseHitbox();
     }
 

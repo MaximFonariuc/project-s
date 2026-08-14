@@ -31,6 +31,10 @@ namespace _App
             builder.Register<CombatInputBuffer>(Lifetime.Scoped);
             builder.RegisterInstance(weaponTransitionAction);
             builder.Register<CombatActionExecutor>(Lifetime.Scoped);
+            builder.Register<CombatHitResolver>(Lifetime.Scoped)
+                .AsSelf()
+                .As<ICombatHitResolver>()
+                .As<ICombatHitEvents>();
             builder.Register<IPlayerCombatAnimation>(
                 resolver => new PlayerCombatAnimationAdapter(
                     resolver.Resolve<ICharacterAnimationDriver>(),
@@ -44,13 +48,14 @@ namespace _App
                         PlayerCombatActionGraph.PrototypeComboCapacity),
                 Lifetime.Scoped);
             builder.Register<IPlayerWeaponRig>(
-                _ => new PlayerWeaponRig(
+                resolver => new PlayerWeaponRig(
                     player.WeaponHolder,
                     player.WeaponHand,
                     player.WeaponTransform,
                     player.WeaponTransform != null
                         ? player.WeaponTransform.GetComponent<Weapon>()
-                        : null),
+                        : null,
+                    resolver.Resolve<ICombatHitResolver>()),
                 Lifetime.Scoped);
 
             builder.RegisterStateMachine<PlayerCombatPhase>(Lifetime.Scoped)

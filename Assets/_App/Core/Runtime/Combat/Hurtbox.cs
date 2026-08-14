@@ -3,7 +3,7 @@ using UnityEngine;
 namespace _App
 {
     [DisallowMultipleComponent]
-    public sealed class Hurtbox : MonoBehaviour, IDamageReceiver
+    public sealed class Hurtbox : MonoBehaviour, ICombatHitTarget
     {
         [SerializeField] private BodyColliderRig _rig;
         [SerializeField] private Health _health;
@@ -17,6 +17,22 @@ namespace _App
         public BodyHitZone Zone => _zone;
         public string ZoneId => BodyColliderBoneDefinition.GetZoneId(_zone, _customZoneId);
         public float DamageMultiplier => Mathf.Max(0f, _damageMultiplier);
+
+        int ICombatHitTarget.TargetId
+        {
+            get
+            {
+                GameObject owner = Owner;
+                return owner != null
+                    ? owner.transform.root.gameObject.GetInstanceID()
+                    : transform.root.gameObject.GetInstanceID();
+            }
+        }
+
+        bool ICombatHitTarget.IsAlive => IsAlive;
+        GameObject ICombatHitTarget.Owner => Owner;
+        string ICombatHitTarget.HitZoneId => ZoneId;
+        float ICombatHitTarget.DamageMultiplier => DamageMultiplier;
 
         private void Awake()
         {
@@ -34,28 +50,16 @@ namespace _App
             ResolveReferences();
         }
 
-        public bool TryReceiveDamage(DamageInfo damage)
+        bool ICombatHitTarget.TryApplyHit(in CombatHitResult hit)
         {
-            return TryReceiveDamage(damage, out _);
-        }
-
-        public bool TryReceiveDamage(DamageInfo damage, out DamageInfo appliedDamage)
-        {
-            appliedDamage = damage;
-
-            if (damage.Amount <= 0 || _damageMultiplier <= 0f)
+            if (hit.Damage <= 0 || _damageMultiplier <= 0f)
             {
                 return false;
             }
 
-            int amount = Mathf.Max(1, Mathf.RoundToInt(damage.Amount * _damageMultiplier));
-            appliedDamage = amount == damage.Amount
-                ? damage
-                : new DamageInfo(amount, damage.Point, damage.Direction, damage.Source);
-
             return _rig != null
-                ? _rig.TryReceiveDamage(appliedDamage)
-                : _health != null && _health.TryReceiveDamage(appliedDamage);
+                ? _rig.TryApplyHit(in hit)
+                : _health != null && _health.TryApplyHit(in hit);
         }
 
         public void SetColliderEnabled(bool enabled)
