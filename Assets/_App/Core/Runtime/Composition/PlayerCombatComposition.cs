@@ -40,7 +40,7 @@ namespace _App
             builder.Register<IPlayerCombatAnimation>(
                 resolver => new PlayerCombatAnimationAdapter(
                     resolver.Resolve<MecanimCharacterAnimationDriver>(),
-                    resolver.Resolve<IAnimationClipActionDriver>(),
+                    resolver.Resolve<PlayerAnimationCoordinator>(),
                     player.CombatAnimations),
                 Lifetime.Scoped);
             builder.Register(

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ModularAnimation;
+using ModularAnimation.Unity;
 using UnityEngine;
 
 namespace _App
@@ -8,8 +9,10 @@ namespace _App
     internal enum PlayerAnimationSource
     {
         Locomotion,
+        Combat,
         Traversal,
-        Reaction
+        Reaction,
+        Death
     }
 
     internal sealed class PlayerAnimationCoordinator
@@ -48,6 +51,7 @@ namespace _App
 
         private readonly ICharacterAnimationDriver _driver;
         private readonly IAnimationStateCatalog _catalog;
+        private readonly AnimationClipActionArbiter _actions;
         private readonly Dictionary<RequestKey, AnimationRequest> _requests =
             new Dictionary<RequestKey, AnimationRequest>();
         private readonly Dictionary<int, PlayerAnimationSource> _owners =
@@ -58,14 +62,39 @@ namespace _App
 
         public PlayerAnimationCoordinator(
             ICharacterAnimationDriver driver,
-            IAnimationStateCatalog catalog)
+            IAnimationStateCatalog catalog,
+            AnimationClipActionArbiter actions)
         {
             _driver = driver ?? throw new ArgumentNullException(nameof(driver));
             _catalog = catalog ?? throw new ArgumentNullException(nameof(catalog));
+            _actions = actions ?? throw new ArgumentNullException(nameof(actions));
             for (int i = 0; i < _playbackSpeeds.Length; i++)
             {
                 _playbackSpeeds[i] = 1.0f;
             }
+        }
+
+        public bool TryPlayAction(
+            PlayerAnimationSource source,
+            in AnimationClipActionRequest request,
+            float blendOutSeconds,
+            out AnimationActionLease lease)
+        {
+            return _actions.TryPlay(
+                CreateActionChannel(source),
+                in request,
+                blendOutSeconds,
+                out lease);
+        }
+
+        public void Tick(float deltaTime)
+        {
+            _actions.Tick(deltaTime);
+        }
+
+        public void StopAllActions(float blendSeconds = 0.0f)
+        {
+            _actions.StopAll(blendSeconds);
         }
 
         public AnimationPlayback CrossFade(
@@ -163,6 +192,7 @@ namespace _App
             }
 
             _playbackSpeeds[(int)source] = 1.0f;
+            _actions.Release(CreateActionChannel(source));
         }
 
         public PlayerAnimationSource? GetOwner(AnimationLayerId layer)
@@ -247,11 +277,19 @@ namespace _App
         {
             return source switch
             {
-                PlayerAnimationSource.Reaction => 300,
-                PlayerAnimationSource.Traversal => 200,
+                PlayerAnimationSource.Death => 500,
+                PlayerAnimationSource.Reaction => 400,
+                PlayerAnimationSource.Traversal => 300,
+                PlayerAnimationSource.Combat => 200,
                 PlayerAnimationSource.Locomotion => 0,
                 _ => throw new ArgumentOutOfRangeException(nameof(source), source, null)
             };
+        }
+
+        private static AnimationActionChannel CreateActionChannel(
+            PlayerAnimationSource source)
+        {
+            return new AnimationActionChannel((int)source + 1, GetPriority(source));
         }
     }
 }

@@ -1,12 +1,10 @@
 using System;
-using ModularAnimation.Unity;
-
 namespace _App
 {
     public sealed class PlayerActorController : IDisposable
     {
         private readonly IPlayerInput _input;
-        private readonly IAnimationClipActionDriver _actionAnimation;
+        private readonly PlayerAnimationCoordinator _animation;
         private readonly ICharacterMovementPolicyLifecycle _movementPolicyLifecycle;
         private readonly PlayerLocomotionController _locomotion;
         private readonly PlayerTargetingController _targeting;
@@ -20,9 +18,9 @@ namespace _App
 
         private bool _enabled;
 
-        public PlayerActorController(
+        internal PlayerActorController(
             IPlayerInput input,
-            IAnimationClipActionDriver actionAnimation,
+            PlayerAnimationCoordinator animation,
             ICharacterMovementPolicyLifecycle movementPolicyLifecycle,
             PlayerLocomotionController locomotion,
             PlayerTargetingController targeting,
@@ -35,8 +33,7 @@ namespace _App
             PlayerSimulationPauseController simulationPause)
         {
             _input = input ?? throw new ArgumentNullException(nameof(input));
-            _actionAnimation = actionAnimation ??
-                               throw new ArgumentNullException(nameof(actionAnimation));
+            _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _movementPolicyLifecycle = movementPolicyLifecycle ??
                                        throw new ArgumentNullException(nameof(movementPolicyLifecycle));
             _locomotion = locomotion ?? throw new ArgumentNullException(nameof(locomotion));
@@ -94,7 +91,7 @@ namespace _App
             _hitStop.Disable();
             _reaction.Disable();
             _combat.Disable();
-            _actionAnimation.StopAction(0.0f);
+            _animation.StopAllActions(0.0f);
             _camera.Disable();
             _targeting.Disable();
             _locomotion.Disable();
@@ -111,7 +108,7 @@ namespace _App
             }
 
             _gameplayTime.Tick(unscaledDeltaTime);
-            _actionAnimation.Tick(scaledDeltaTime);
+            _animation.Tick(scaledDeltaTime);
             _reaction.Tick(scaledDeltaTime);
             _traversal.Tick();
             _locomotion.SetMovementIntent(

@@ -24,7 +24,8 @@ namespace _App
             builder.Register<CharacterPoise>(Lifetime.Scoped);
             builder.Register<ICharacterReactionPresentation>(
                 resolver => new CharacterReactionAnimationAdapter(
-                    resolver.Resolve<PlayerAnimationCoordinator>()),
+                    resolver.Resolve<PlayerAnimationCoordinator>(),
+                    player.CombatAnimations),
                 Lifetime.Scoped);
             builder.RegisterStateMachine<CharacterReactionStateId>(Lifetime.Scoped)
                 .State<CharacterStableState>(CharacterReactionStateId.Stable, Lifetime.Scoped)

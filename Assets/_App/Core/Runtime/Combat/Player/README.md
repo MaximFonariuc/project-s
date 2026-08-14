@@ -31,27 +31,25 @@ classDiagram
         +TryGetNamedAction(id, presentation) bool
         +TryGetWeaponTransition(draw, presentation) bool
     }
-    class CombatAnimationPresentation {
+    class CharacterAnimationActionPresentation {
         +Clip
         +BlendOutSeconds
         +CreateRequest() AnimationClipActionRequest
     }
-    class IAnimationClipActionDriver {
-        <<module interface>>
-        +PlayAction(request) AnimationActionPlayback
-        +StopAction(blendSeconds)
+    class PlayerAnimationCoordinator {
+        +TryPlayAction(source, request, blendOut, lease) bool
     }
-    class MecanimCharacterAnimationDriver
+    class AnimationClipActionArbiter
     class CombatActionExecutor
 
     PlayerCombatController --> IPlayerCombatAnimation
     PlayerCombatController --> CombatActionExecutor
     IPlayerCombatAnimation <|.. PlayerCombatAnimationAdapter
     PlayerCombatAnimationAdapter --> AnimationsData
-    PlayerCombatAnimationAdapter --> IAnimationClipActionDriver
+    PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
+    PlayerAnimationCoordinator --> AnimationClipActionArbiter
     AnimationsData --> CombatAnimationSet
-    CombatAnimationSet --> CombatAnimationPresentation
-    IAnimationClipActionDriver <|.. MecanimCharacterAnimationDriver
+    CombatAnimationSet --> CharacterAnimationActionPresentation
 ```
 
 ## Dependencies and ownership
@@ -61,10 +59,11 @@ classDiagram
 - `CombatAnimationSet` is immutable authoring data for one weapon loadout. Clip
   replacement and blend tuning do not change the combat action graph.
 - `PlayerCombatAnimationAdapter` resolves a presentation and returns only its
-  effective duration. It never reads Animator state or clip progress.
-- `MecanimCharacterAnimationDriver` owns the PlayableGraph. Consecutive actions
-  crossfade between two clip inputs; release blends the action lane back to the
-  controller pose.
+  effective duration. It claims the `Combat` animation channel through
+  `PlayerAnimationCoordinator` and never reads Animator state or clip progress.
+- Combat keeps an `AnimationActionLease`. Consecutive combat clips can crossfade,
+  but a later reaction/death claim invalidates the combat lease. Combat cleanup
+  therefore cannot stop a higher-priority clip.
 - Controller overrides are restricted to continuous loadout locomotion. Finite
   combo, skill and draw/sheathe clips are played directly and have no Animator
   placeholder states.

@@ -26,6 +26,21 @@ classDiagram
         +StopAction(blendSeconds)
         +Tick(deltaTime)
     }
+    class AnimationClipActionArbiter {
+        +TryPlay(channel, request, blendOut, lease) bool
+        +Release(channel)
+        +StopAll(blendSeconds)
+        +Tick(deltaTime)
+    }
+    class AnimationActionChannel {
+        +Id
+        +Priority
+    }
+    class AnimationActionLease {
+        +Playback
+        +IsActive
+        +Release()
+    }
 
     class IAnimationStateCatalog {
         <<interface>>
@@ -53,6 +68,9 @@ classDiagram
 
     ICharacterAnimationDriver <|.. MecanimCharacterAnimationDriver
     IAnimationClipActionDriver <|.. MecanimCharacterAnimationDriver
+    AnimationClipActionArbiter --> IAnimationClipActionDriver
+    AnimationClipActionArbiter --> AnimationActionChannel
+    AnimationClipActionArbiter --> AnimationActionLease
     ICharacterLookAnimationDriver <|.. MecanimLookAnimationDriver
     MecanimCharacterAnimationDriver --> MecanimCharacterAnimationBindings
     MecanimCharacterAnimationProfile --> MecanimCharacterAnimationBindings : creates
@@ -70,7 +88,8 @@ classDiagram
     PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
     PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator
     PlayerLocomotionAnimationAdapter --> PlayerCharacterAnimationPresenter
-    PlayerCombatAnimationAdapter --> IAnimationClipActionDriver
+    PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
+    PlayerAnimationCoordinator --> AnimationClipActionArbiter
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
     PlayerAnimationCoordinator --> IAnimationStateCatalog
 ```
@@ -95,6 +114,14 @@ classDiagram
 - Finite actions use `AnimationClipPlayable` and do not require an Animator
   state, transition, trigger or clip-name placeholder. Two clip inputs allow a
   new action to interrupt and blend from the previous action.
+- `AnimationClipActionArbiter` is the reusable single-lane authority above the
+  raw driver. A caller supplies an opaque channel id and priority; Project S
+  source enums never enter the module. Higher-priority actions can replace lower
+  ones, lower-priority requests are rejected, and equal-priority requests may
+  chain or crossfade.
+- Every accepted action returns an allocation-free `AnimationActionLease`.
+  Releasing a stale lease cannot stop the action that replaced it. Channel
+  release and scope cleanup are also idempotent.
 - A null AvatarMask selects the full-body lane. A supplied mask selects the
   masked lane; switching between the lanes also blends through the graph.
 - The driver owns its graph and runtime loadout controller and disposes both
@@ -105,8 +132,8 @@ classDiagram
 - Discrete phases are selected through semantic slots, so the Mecanim contract
   does not require gameplay triggers or an `OnGround` transition parameter.
 - `_App/Core` requests semantic states such as `Traversal.Ladder.Ascend` only
-  for controller-backed presentation. Combat actions pass authored clips to the
-  separate action driver and never resolve a placeholder Animator state.
+  for controller-backed presentation. Finite actions pass authored clips through
+  the arbiter and never resolve a placeholder Animator state.
 - A mapping can be required or optional and can name another semantic slot as a
   fallback. Required mappings are resolved once at composition and fail fast;
   missing optional presentation never changes gameplay state.
@@ -116,9 +143,10 @@ classDiagram
   layers declared as code-driven.
 - `_App/Core -> ModularAnimation`; the module never references `_App/Core` or
   `_Game` assets.
-- Project-specific source priorities and layer ownership live in
-  `PlayerAnimationCoordinator` inside `_App/Core`; they are intentionally not
-  part of the reusable module API.
+- Project-specific source names and the policy
+  `Death > Reaction > Traversal > Combat > Locomotion` live in
+  `PlayerAnimationCoordinator` inside `_App/Core`. The reusable module only
+  compares numeric channel priorities.
 
 ## Ownership rules
 
@@ -153,8 +181,9 @@ composition root; gameplay timing and action graphs do not change.
 
 ## Current migration boundary
 
-The player path uses this module for locomotion, camera look, dodge, combat and
-ladder traversal. Combat clips run through the Playables action lanes; all other
+The player path uses this module for locomotion, camera look, dodge, combat,
+reaction requests and ladder traversal. Finite clips run through the arbiter and
+Playables action lanes; all other
 semantic controller states remain code-driven. `PlayerLocomotionController` publishes one immutable
 `PlayerLocomotionSnapshot`; the Project S presenter maps it into the module's
 `CharacterLocomotionFrame`. Neither the presenter nor the driver reads

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ModularAnimation;
 using UnityEngine;
 
 namespace _App
@@ -12,20 +13,22 @@ namespace _App
 
         [field: SerializeField] public ECharacterType CharacterType { get; protected set; }
         [field: SerializeField] public List<CombatAnimationSet> AnimationDatas { get; protected set; }
+        [SerializeField] private List<CharacterAnimationActionPresentation> _sharedActions =
+            new List<CharacterAnimationActionPresentation>();
 
-        public IReadOnlyList<CombatAnimationPresentation> GetComboActions(
+        public IReadOnlyList<CharacterAnimationActionPresentation> GetComboActions(
             ECharacterType characterType,
             EWeaponType weaponType)
         {
             CombatAnimationSet animations = FindAnimations(characterType, weaponType);
-            return animations?.ComboActions ?? Array.Empty<CombatAnimationPresentation>();
+            return animations?.ComboActions ?? Array.Empty<CharacterAnimationActionPresentation>();
         }
 
         public bool TryGetAction(
             ECharacterType characterType,
             EWeaponType weaponType,
             PlayerCombatAnimationId animationId,
-            out CombatAnimationPresentation presentation)
+            out CharacterAnimationActionPresentation presentation)
         {
             CombatAnimationSet animations = FindAnimations(characterType, weaponType);
             if (animations != null && animations.TryGetNamedAction(animationId, out presentation))
@@ -41,7 +44,7 @@ namespace _App
             ECharacterType characterType,
             EWeaponType weaponType,
             bool draw,
-            out CombatAnimationPresentation presentation)
+            out CharacterAnimationActionPresentation presentation)
         {
             CombatAnimationSet animations = FindAnimations(characterType, weaponType);
             if (animations != null && animations.TryGetWeaponTransition(draw, out presentation))
@@ -59,6 +62,28 @@ namespace _App
         {
             CombatAnimationSet animations = FindAnimations(characterType, weaponType);
             return animations?.ControllerOverrides ?? EmptyClips;
+        }
+
+        public bool TryGetSharedAction(
+            AnimationSlotId slot,
+            out CharacterAnimationActionPresentation presentation)
+        {
+            if (slot.IsValid && _sharedActions != null)
+            {
+                for (int i = 0; i < _sharedActions.Count; i++)
+                {
+                    CharacterAnimationActionPresentation candidate = _sharedActions[i];
+                    if (candidate != null && candidate.IsValid &&
+                        string.Equals(candidate.Id, slot.Value, StringComparison.Ordinal))
+                    {
+                        presentation = candidate;
+                        return true;
+                    }
+                }
+            }
+
+            presentation = null;
+            return false;
         }
 
         public void ValidateConfiguration()
@@ -90,6 +115,33 @@ namespace _App
                 {
                     throw new InvalidOperationException(
                         $"Animation library '{name}' contains duplicate weapon type '{animationSet.WeaponType}'.");
+                }
+            }
+
+            ValidateSharedActions();
+        }
+
+        private void ValidateSharedActions()
+        {
+            if (_sharedActions == null)
+            {
+                return;
+            }
+
+            var actionIds = new HashSet<string>(StringComparer.Ordinal);
+            for (int i = 0; i < _sharedActions.Count; i++)
+            {
+                CharacterAnimationActionPresentation action = _sharedActions[i];
+                if (action == null || !action.IsValid || string.IsNullOrWhiteSpace(action.Id))
+                {
+                    throw new InvalidOperationException(
+                        $"Animation library '{name}' has an invalid shared action at index {i}.");
+                }
+
+                if (!actionIds.Add(action.Id))
+                {
+                    throw new InvalidOperationException(
+                        $"Animation library '{name}' contains duplicate shared action id '{action.Id}'.");
                 }
             }
         }

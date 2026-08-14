@@ -8,24 +8,24 @@ namespace _App
     internal sealed class PlayerCombatAnimationAdapter : IPlayerCombatAnimation
     {
         private readonly MecanimCharacterAnimationDriver _mecanim;
-        private readonly IAnimationClipActionDriver _actionDriver;
+        private readonly PlayerAnimationCoordinator _animation;
         private readonly AnimationsData _animationsData;
 
-        private IReadOnlyList<CombatAnimationPresentation> _comboActions =
-            Array.Empty<CombatAnimationPresentation>();
+        private IReadOnlyList<CharacterAnimationActionPresentation> _comboActions =
+            Array.Empty<CharacterAnimationActionPresentation>();
         private ECharacterType _characterType;
-        private float _activeBlendOutSeconds;
+        private AnimationActionLease _activeAction;
         private bool _disposed;
 
         public int ComboCount => _comboActions.Count;
 
         public PlayerCombatAnimationAdapter(
             MecanimCharacterAnimationDriver mecanim,
-            IAnimationClipActionDriver actionDriver,
+            PlayerAnimationCoordinator animation,
             AnimationsData animationsData)
         {
             _mecanim = mecanim ?? throw new ArgumentNullException(nameof(mecanim));
-            _actionDriver = actionDriver ?? throw new ArgumentNullException(nameof(actionDriver));
+            _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _animationsData = animationsData != null
                 ? animationsData
                 : throw new ArgumentNullException(nameof(animationsData));
@@ -77,7 +77,7 @@ namespace _App
                     characterType,
                     weaponType,
                     animationId,
-                    out CombatAnimationPresentation presentation))
+                    out CharacterAnimationActionPresentation presentation))
             {
                 playback = default;
                 return false;
@@ -97,7 +97,7 @@ namespace _App
                     _characterType,
                     weaponType,
                     draw,
-                    out CombatAnimationPresentation presentation))
+                    out CharacterAnimationActionPresentation presentation))
             {
                 playback = default;
                 return false;
@@ -113,8 +113,8 @@ namespace _App
                 return;
             }
 
-            _actionDriver.StopAction(_activeBlendOutSeconds);
-            _activeBlendOutSeconds = 0.0f;
+            _activeAction.Release();
+            _activeAction = default;
         }
 
         public void Dispose()
@@ -124,13 +124,13 @@ namespace _App
                 return;
             }
 
-            _actionDriver.StopAction(0.0f);
-            _activeBlendOutSeconds = 0.0f;
+            _activeAction.Release();
+            _activeAction = default;
             _disposed = true;
         }
 
         private bool TryPlay(
-            CombatAnimationPresentation presentation,
+            CharacterAnimationActionPresentation presentation,
             out AnimationActionPlayback playback)
         {
             if (presentation == null || !presentation.IsValid)
@@ -140,14 +140,18 @@ namespace _App
             }
 
             AnimationClipActionRequest request = presentation.CreateRequest();
-            playback = _actionDriver.PlayAction(in request);
-            if (!playback.IsValid || playback.Duration <= 0.0f)
+            if (!_animation.TryPlayAction(
+                    PlayerAnimationSource.Combat,
+                    in request,
+                    presentation.BlendOutSeconds,
+                    out AnimationActionLease action))
             {
                 playback = default;
                 return false;
             }
 
-            _activeBlendOutSeconds = presentation.BlendOutSeconds;
+            _activeAction = action;
+            playback = action.Playback;
             return true;
         }
 

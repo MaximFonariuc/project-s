@@ -45,6 +45,7 @@ namespace _App
                 .AsSelf()
                 .As<ICharacterAnimationDriver>()
                 .As<IAnimationClipActionDriver>();
+            builder.Register<AnimationClipActionArbiter>(Lifetime.Scoped);
             builder.Register(
                     _ => player.AnimationProfile.CreateStateCatalog(player.PlayerAnimator),
                     Lifetime.Scoped)
