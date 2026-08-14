@@ -31,9 +31,7 @@ namespace _App
                     _previousState == PlayerLocomotionStateId.Dodge &&
                     snapshot.State != PlayerLocomotionStateId.Dodge)
                 {
-                    _animation.Release(
-                        PlayerAnimationSource.Locomotion,
-                        PlayerAnimationStates.BaseLayer);
+                    _animation.ReleaseAll(PlayerAnimationSource.Locomotion);
                 }
 
                 EnterState(snapshot);
@@ -59,9 +57,9 @@ namespace _App
 
             _animation.CrossFade(
                 PlayerAnimationSource.Locomotion,
-                snapshot.DodgeBackwards ? PlayerAnimationStates.RollBack : PlayerAnimationStates.RollFront,
-                PlayerAnimationStates.BaseLayer,
-                0.1f);
+                snapshot.DodgeBackwards
+                    ? PlayerAnimationSlots.DodgeBackward
+                    : PlayerAnimationSlots.DodgeForward);
         }
     }
 }

@@ -9,9 +9,6 @@ namespace _App
 {
     internal sealed class PlayerCombatAnimationAdapter : IPlayerCombatAnimation
     {
-        private const string UnsheathePostfix = "_Unsheathe";
-        private const string SheathePostfix = "_Sheathe";
-
         private readonly PlayerAnimationCoordinator _animation;
         private readonly MecanimCharacterAnimationDriver _mecanim;
         private readonly AnimationsData _animationsData;
@@ -107,9 +104,7 @@ namespace _App
 
             playback = _animation.CrossFade(
                 PlayerAnimationSource.Combat,
-                PlayerAnimationStates.State(clip.name),
-                PlayerAnimationStates.BaseLayer,
-                0.1f,
+                PlayerAnimationSlots.Combo(comboIndex),
                 clip.length);
             if (!playback.IsValid || playback.Duration <= 0.0f)
             {
@@ -139,9 +134,7 @@ namespace _App
 
             playback = _animation.CrossFade(
                 PlayerAnimationSource.Combat,
-                PlayerAnimationStates.Skill,
-                PlayerAnimationStates.BaseLayer,
-                0.1f,
+                PlayerAnimationSlots.CombatAction,
                 clip.length);
             if (!playback.IsValid || playback.Duration <= 0.0f)
             {
@@ -163,12 +156,9 @@ namespace _App
                 return false;
             }
 
-            string stateName = weaponType + (draw ? UnsheathePostfix : SheathePostfix);
             playback = _animation.CrossFade(
                 PlayerAnimationSource.Combat,
-                PlayerAnimationStates.State(stateName),
-                PlayerAnimationStates.WeaponLayer,
-                0.1f);
+                PlayerAnimationSlots.WeaponTransition(weaponType, draw));
             if (!playback.IsValid || playback.Duration <= 0.0f)
             {
                 playback = default;

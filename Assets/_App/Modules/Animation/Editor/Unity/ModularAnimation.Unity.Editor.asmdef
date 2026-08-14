@@ -1,0 +1,19 @@
+{
+    "name": "ModularAnimation.Unity.Editor",
+    "rootNamespace": "ModularAnimation.Unity.Editor",
+    "references": [
+        "ModularAnimation.Core",
+        "ModularAnimation.Unity"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

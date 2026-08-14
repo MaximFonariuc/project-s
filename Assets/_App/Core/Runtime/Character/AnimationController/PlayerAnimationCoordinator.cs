@@ -35,25 +35,20 @@ namespace _App
 
         private readonly struct AnimationRequest
         {
-            public AnimationStateId State { get; }
-            public AnimationLayerId Layer { get; }
-            public float TransitionDuration { get; }
+            public AnimationStateBinding Binding { get; }
             public float ExpectedDuration { get; }
 
             public AnimationRequest(
-                AnimationStateId state,
-                AnimationLayerId layer,
-                float transitionDuration,
+                AnimationStateBinding binding,
                 float expectedDuration)
             {
-                State = state;
-                Layer = layer;
-                TransitionDuration = transitionDuration;
+                Binding = binding;
                 ExpectedDuration = expectedDuration;
             }
         }
 
         private readonly ICharacterAnimationDriver _driver;
+        private readonly IAnimationStateCatalog _catalog;
         private readonly Dictionary<RequestKey, AnimationRequest> _requests =
             new Dictionary<RequestKey, AnimationRequest>();
         private readonly Dictionary<int, PlayerAnimationSource> _owners =
@@ -62,9 +57,12 @@ namespace _App
             new float[Enum.GetValues(typeof(PlayerAnimationSource)).Length];
         private readonly List<int> _releaseLayers = new List<int>(4);
 
-        public PlayerAnimationCoordinator(ICharacterAnimationDriver driver)
+        public PlayerAnimationCoordinator(
+            ICharacterAnimationDriver driver,
+            IAnimationStateCatalog catalog)
         {
             _driver = driver ?? throw new ArgumentNullException(nameof(driver));
+            _catalog = catalog ?? throw new ArgumentNullException(nameof(catalog));
             for (int i = 0; i < _playbackSpeeds.Length; i++)
             {
                 _playbackSpeeds[i] = 1.0f;
@@ -73,11 +71,15 @@ namespace _App
 
         public AnimationPlayback CrossFade(
             PlayerAnimationSource source,
-            AnimationStateId state,
-            AnimationLayerId layer,
-            float transitionDuration,
-            float expectedDuration = 0.0f)
+            AnimationSlotId slot,
+            float expectedDurationOverride = 0.0f)
         {
+            if (!_catalog.TryResolve(slot, out AnimationStateBinding binding))
+            {
+                return AnimationPlayback.Invalid;
+            }
+
+            AnimationLayerId layer = binding.Layer;
             if (_owners.TryGetValue(layer.Index, out PlayerAnimationSource owner) &&
                 owner != source &&
                 GetPriority(owner) > GetPriority(source))
@@ -86,10 +88,12 @@ namespace _App
             }
 
             AnimationPlayback playback = _driver.CrossFade(
-                state,
+                binding.State,
                 layer,
-                transitionDuration,
-                expectedDuration);
+                binding.TransitionDuration,
+                expectedDurationOverride > 0.0f
+                    ? expectedDurationOverride
+                    : binding.ExpectedDuration);
             if (!playback.IsValid)
             {
                 return AnimationPlayback.Invalid;
@@ -97,10 +101,10 @@ namespace _App
 
             var key = new RequestKey(source, layer.Index);
             _requests[key] = new AnimationRequest(
-                state,
-                layer,
-                transitionDuration,
-                expectedDuration);
+                binding,
+                expectedDurationOverride > 0.0f
+                    ? expectedDurationOverride
+                    : binding.ExpectedDuration);
 
             bool ownerChanged = !_owners.TryGetValue(layer.Index, out owner) || owner != source;
             _owners[layer.Index] = source;
@@ -123,7 +127,7 @@ namespace _App
             }
         }
 
-        public void Release(PlayerAnimationSource source, AnimationLayerId layer)
+        private void Release(PlayerAnimationSource source, AnimationLayerId layer)
         {
             _requests.Remove(new RequestKey(source, layer.Index));
             if (!_owners.TryGetValue(layer.Index, out PlayerAnimationSource owner) || owner != source)
@@ -168,9 +172,9 @@ namespace _App
                        out AnimationRequest request))
             {
                 AnimationPlayback playback = _driver.CrossFade(
-                    request.State,
-                    request.Layer,
-                    request.TransitionDuration,
+                    request.Binding.State,
+                    request.Binding.Layer,
+                    request.Binding.TransitionDuration,
                     request.ExpectedDuration);
                 if (playback.IsValid)
                 {

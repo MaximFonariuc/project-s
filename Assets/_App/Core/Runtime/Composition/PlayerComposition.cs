@@ -44,6 +44,10 @@ namespace _App
                     Lifetime.Scoped)
                 .AsSelf()
                 .As<ICharacterAnimationDriver>();
+            builder.Register(
+                    _ => player.AnimationProfile.CreateStateCatalog(player.PlayerAnimator),
+                    Lifetime.Scoped)
+                .As<IAnimationStateCatalog>();
             builder.Register<PlayerAnimationCoordinator>(Lifetime.Scoped);
             builder.Register(
                     _ => new MecanimLookAnimationDriver(

@@ -22,8 +22,6 @@ namespace _App
 		private bool _enabled;
 
 		private const float STEP_HEIGHT = 0.52f;
-		private const float BLEND_TIME = 0.15f;
-
 		private const float EXIT_CLIMB_FRAMES = 35f;
 		private const float EXIT_MOVE_FRAMES = 15f;
 		private const float EXIT_TOTAL_FRAMES = 55f;
@@ -110,18 +108,18 @@ namespace _App
 					if (angle <= 90f)
 					{
 						await SmoothAlignToLadder(snapPos, 0.25f, false, token);
-						await PerformEnterTop(PlayerAnimationStates.LadderEnterTopFront, 40f, 18f, true, token);
+						await PerformEnterTop(PlayerAnimationSlots.LadderEnterTopFront, 40f, 18f, true, token);
 					}
 					else
 					{
 						await SmoothAlignToLadder(snapPos, 0.25f, true, token);
-						await PerformEnterTop(PlayerAnimationStates.LadderEnterTopBack, 15f, 35f, false, token);
+						await PerformEnterTop(PlayerAnimationSlots.LadderEnterTopBack, 15f, 35f, false, token);
 					}
 				}
 				else
 				{
 					await SmoothAlignToLadder(snapPos, 0.25f, false, token);
-					AnimationPlayback playback = Play(PlayerAnimationStates.LadderEnterBottom, BLEND_TIME);
+					AnimationPlayback playback = Play(PlayerAnimationSlots.LadderEnterBottom);
 					await WaitForClimbEnter(playback.Duration, token);
 				}
 			}
@@ -130,9 +128,9 @@ namespace _App
 			}
 		}
 
-		private async UniTask PerformEnterTop(AnimationStateId state, float moveFrames, float climbFrames, bool invertRot = false, CancellationToken token = default)
+		private async UniTask PerformEnterTop(AnimationSlotId slot, float moveFrames, float climbFrames, bool invertRot = false, CancellationToken token = default)
 		{
-			float clipLen = Play(state, BLEND_TIME).Duration;
+			float clipLen = Play(slot).Duration;
 
 			float totalFrames = moveFrames + climbFrames;
 			float moveDur = clipLen * (moveFrames / totalFrames);
@@ -209,7 +207,7 @@ namespace _App
 			await UniTask.WaitForSeconds(duration * 0.9f, cancellationToken: token);
 			_character.SetRotation(_activeLadder.transform.rotation);
 			_climbingState = EClimbingState.Grabbed;
-			Play(PlayerAnimationStates.LadderIdle, BLEND_TIME);
+			Play(PlayerAnimationSlots.LadderIdle);
 		}
 
 		public void OnClimbInput(Vector2 input)
@@ -252,7 +250,7 @@ namespace _App
 			}
 			else
 			{
-				Play(PlayerAnimationStates.LadderIdle, BLEND_TIME);
+				Play(PlayerAnimationSlots.LadderIdle);
 				_animation.SetPlaybackSpeed(PlayerAnimationSource.Traversal, 1.0f);
 			}
 		}
@@ -287,12 +285,12 @@ namespace _App
 			
 			try
 			{
-				AnimationStateId state = direction > 0
-					? PlayerAnimationStates.LadderAscend
-					: PlayerAnimationStates.LadderDescend;
+				AnimationSlotId slot = direction > 0
+					? PlayerAnimationSlots.LadderAscend
+					: PlayerAnimationSlots.LadderDescend;
 				float speedFactor = SpeedFactor;
 				_animation.SetPlaybackSpeed(PlayerAnimationSource.Traversal, speedFactor);
-				float clipLen = Play(state, 0.0f).Duration / speedFactor;
+				float clipLen = Play(slot).Duration / speedFactor;
 
 				Vector3 start = _character.GetPosition();
 				Vector3 target = start + _activeLadder.transform.up * (STEP_HEIGHT * direction);
@@ -329,10 +327,10 @@ namespace _App
 		{
 			_climbingState = EClimbingState.Releasing;
 
-			AnimationStateId state = exitTop
-				? PlayerAnimationStates.LadderExitTop
-				: PlayerAnimationStates.LadderExitBottom;
-			float clipLen = Play(state, BLEND_TIME).Duration;
+			AnimationSlotId slot = exitTop
+				? PlayerAnimationSlots.LadderExitTop
+				: PlayerAnimationSlots.LadderExitBottom;
+			float clipLen = Play(slot).Duration;
 			Vector3 start = _character.GetPosition();
 
 			if (exitTop)
@@ -419,17 +417,15 @@ namespace _App
 			_lifecycleCts = new CancellationTokenSource();
 		}
 
-		private AnimationPlayback Play(AnimationStateId state, float transitionDuration)
+		private AnimationPlayback Play(AnimationSlotId slot)
 		{
 			AnimationPlayback playback = _animation.CrossFade(
 				PlayerAnimationSource.Traversal,
-				state,
-				PlayerAnimationStates.BaseLayer,
-				transitionDuration);
+				slot);
 			if (!playback.IsValid || playback.Duration <= 0.0f)
 			{
 				throw new InvalidOperationException(
-					$"Ladder animation state '{state.Hash}' or its clip duration is not configured.");
+					$"Ladder animation slot '{slot}' or its duration is not configured.");
 			}
 
 			return playback;

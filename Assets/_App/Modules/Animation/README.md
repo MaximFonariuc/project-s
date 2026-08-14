@@ -21,12 +21,21 @@ classDiagram
         +SetLook(horizontal, vertical)
     }
 
+    class IAnimationStateCatalog {
+        <<interface>>
+        +TryResolve(slot, binding) bool
+    }
+
     class CharacterLocomotionFrame
+    class AnimationSlotId
     class AnimationStateId
     class AnimationLayerId
+    class AnimationStateBinding
     class AnimationPlayback
     class MecanimCharacterAnimationBindings
     class MecanimCharacterAnimationProfile
+    class MecanimAnimationStateCatalog
+    class MecanimAnimationStateAuthoring
     class MecanimCharacterAnimationDriver
     class MecanimLookAnimationDriver
     class PlayerCharacterAnimationPresenter
@@ -38,6 +47,11 @@ classDiagram
     ICharacterLookAnimationDriver <|.. MecanimLookAnimationDriver
     MecanimCharacterAnimationDriver --> MecanimCharacterAnimationBindings
     MecanimCharacterAnimationProfile --> MecanimCharacterAnimationBindings : creates
+    MecanimCharacterAnimationProfile --> MecanimAnimationStateAuthoring : owns
+    MecanimCharacterAnimationProfile --> MecanimAnimationStateCatalog : creates
+    IAnimationStateCatalog <|.. MecanimAnimationStateCatalog
+    IAnimationStateCatalog --> AnimationSlotId
+    IAnimationStateCatalog --> AnimationStateBinding
     ICharacterAnimationDriver --> CharacterLocomotionFrame
     ICharacterAnimationDriver --> AnimationStateId
     ICharacterAnimationDriver --> AnimationLayerId
@@ -47,20 +61,28 @@ classDiagram
     PlayerLocomotionAnimationAdapter --> PlayerCharacterAnimationPresenter
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
+    PlayerAnimationCoordinator --> IAnimationStateCatalog
 ```
 
 - `ModularAnimation.Core` contains semantic values and the driver contract. It
   has no Unity dependency and does not reference Project S.
 - `ModularAnimation.Unity` contains the Mecanim implementation. It depends only
   on `ModularAnimation.Core` and Unity animation APIs.
-- Animator parameter names are supplied through
+- Animator parameter names and semantic state mappings are supplied through
   `MecanimCharacterAnimationProfile`, which creates immutable
-  `MecanimCharacterAnimationBindings`; the module does not impose Project S
-  controller names. A character can use a different Animator Controller by
-  assigning a profile with the matching parameter contract. Look animation is
-  a separate optional contract.
-- Project-specific state names, locomotion sampling and combat clip selection
-  remain in `_App/Core`.
+  parameter bindings and a state catalog; the module does not impose Project S
+  controller names, layer indices or state paths. A character can use a
+  different Animator Controller by assigning a matching profile. Look animation
+  is a separate optional contract.
+- `_App/Core` requests semantic slots such as `Combat.Combo.0` and
+  `Traversal.Ladder.Ascend`. Only the character profile knows that these resolve
+  to concrete Mecanim layers and nested state paths.
+- A mapping can be required or optional and can name another semantic slot as a
+  fallback. Required mappings are resolved once at composition and fail fast;
+  missing optional presentation never changes gameplay state.
+- `ModularAnimation.Unity.Editor` validates the profile against an assigned
+  Animator Controller and reports duplicate slots, missing layers/states,
+  missing fallback slots and states without Motion.
 - `_App/Core -> ModularAnimation`; the module never references `_App/Core` or
   `_Game` assets.
 - Project-specific source priorities and layer ownership live in
@@ -73,12 +95,14 @@ classDiagram
   windows open or close.
 - The driver may reject an invalid state or layer, but it never changes gameplay
   state.
-- `AnimationPlayback.Duration` is explicit when the caller supplies it. The
-  Mecanim adapter can infer it only when a state and clip share a name; callers
-  that own gameplay timing must verify a positive duration.
+- `AnimationPlayback.Duration` is explicit when gameplay supplies the active
+  override clip duration, otherwise it comes from the character profile. The
+  Mecanim adapter's clip-name inference is only a last fallback and is not the
+  authoring contract.
 - Animator parameters are private implementation details of the Mecanim driver.
-- Root motion is opt-in through `RootMotionPolicy`; in-place locomotion uses
-  `Ignore`.
+- Root motion remains a gameplay/action policy. It is intentionally not stored
+  in the animation profile, because changing presentation must not silently
+  change movement simulation.
 - Humanoid and Generic characters use the same driver contract. Retargeting and
   clip compatibility belong to each character's authoring profile/backend.
 
