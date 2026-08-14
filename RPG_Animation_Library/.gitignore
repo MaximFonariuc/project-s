@@ -1,0 +1,13 @@
+01_RAW/*
+!01_RAW/README.md
+02_UNPACKED/
+04_CONVERTED/
+05_RETARGETED/
+06_CLEAN/
+07_FBX/
+08_UNITY/
+logs/*.log
+__pycache__/
+*.pyc
+
+# Keep configuration, scripts, manifests, reports, and database ledgers versioned.

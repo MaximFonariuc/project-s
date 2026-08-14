@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "pipeline_version": "0.1.0",
+  "project_root": ".",
+  "paths": {
+    "raw": "01_RAW",
+    "unpacked": "02_UNPACKED",
+    "catalog": "03_CATALOG",
+    "converted": "04_CONVERTED",
+    "retargeted": "05_RETARGETED",
+    "clean": "06_CLEAN",
+    "fbx": "07_FBX",
+    "unity": "08_UNITY",
+    "database": "Database",
+    "logs": "logs"
+  },
+  "sources": [
+    {
+      "name": "PlayerRepo",
+      "package_version": "3027-10-9-1766417828",
+      "roots": [
+        {
+          "path": "../Elden/All Characters",
+          "relative_prefix": "All Characters"
+        },
+        {
+          "path": "../Elden/All Characters-3027-10-9-1766417828.zip",
+          "relative_prefix": "Archives"
+        }
+      ]
+    },
+    {
+      "name": "EldenVins",
+      "package_version": "4709-1.8.1-2026-07-04",
+      "roots": [
+        {
+          "path": "../Elden/ELDEN VINS",
+          "relative_prefix": "ELDEN VINS"
+        },
+        {
+          "path": "../Elden/ELDEN VINS 4709 1.8.1 2026-07-04T14-14Z 6Ms7ah25A.zip",
+          "relative_prefix": "Archives"
+        }
+      ]
+    },
+    {
+      "name": "EldenRing_Vanilla",
+      "package_version": null,
+      "roots": []
+    }
+  ],
+  "tools": {
+    "witchybnd": "../Elden/.pipeline/tools/WitchyBND-3.0.1.0/WitchyBND.exe",
+    "dsanimstudio": "../Elden/.pipeline/tools/DSAnimStudio-4.9.9/DS ANIM STUDIO.exe",
+    "blender": "D:/Games/SteamGames/steamapps/common/Blender/blender.exe",
+    "hkx_blender_bridge": "../Elden/.pipeline/blender-user/scripts/addons/io_soulstruct",
+    "unity_editor": "C:/Program Files/Unity/Hub/Editor/6000.0.80f1/Editor/Unity.exe"
+  },
+  "tool_versions": {
+    "witchybnd": {
+      "version": "3.0.1.0",
+      "sha256": "a3e6b2a0f7eac13f5e83b6602a1149322439c0662baa140ecdd84be28af50364"
+    },
+    "dsanimstudio": {
+      "version": "4.9.9",
+      "sha256": "21a0f7e327bfefbae8ead9bc61121b18d5b2f9455f39f3c3cc8ce00a0291305b"
+    },
+    "hkx_blender_bridge": {
+      "name": "Soulstruct for Blender",
+      "version": "2.6.0",
+      "sha256": "19106b66494b327791d0a33d2a022fc490b6d12a0658a334eb45e5ee59b3e3bd"
+    }
+  },
+  "conversion": {
+    "pilot_only": true,
+    "max_batch_size": 20
+  }
+}
