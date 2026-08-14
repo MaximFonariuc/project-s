@@ -214,7 +214,19 @@ namespace _App
         [SerializeField] private bool _useCombatMotion;
         [SerializeField, Range(0.0f, 1.0f)] private float _combatMotionStart;
         [SerializeField, Range(0.0f, 1.0f)] private float _combatMotionEnd = 0.3f;
+        [SerializeField] private bool _overridePlanarVelocity;
         [SerializeField, Min(0.0f)] private float _combatMotionDistance = 0.75f;
+
+        [Header("Combat Vertical Motion")]
+        [Tooltip("OverrideVelocity sets an exact vertical speed. MinimumVelocity preserves ascent and limits falling speed.")]
+        [SerializeField] private CharacterActionVerticalMode _verticalMotionMode =
+            CharacterActionVerticalMode.PreserveVelocity;
+        [SerializeField] private float _combatVerticalVelocity;
+        [Tooltip("One-time signed velocity applied when the combat motion window opens.")]
+        [SerializeField] private float _combatVerticalImpulse;
+        [SerializeField] private bool _overrideVerticalVelocityOnImpulse = true;
+
+        [Header("Combat Target Motion")]
         [SerializeField] private bool _faceCombatTarget = true;
         [SerializeField, Min(0.0f)] private float _targetStoppingDistance = 0.8f;
 
@@ -256,7 +268,12 @@ namespace _App
                 _useCombatMotion
                     ? new CombatMotionDefinition(
                         new NormalizedActionWindow(_combatMotionStart, _combatMotionEnd),
+                        _overridePlanarVelocity,
                         _combatMotionDistance,
+                        _verticalMotionMode,
+                        _combatVerticalVelocity,
+                        _combatVerticalImpulse,
+                        _overrideVerticalVelocityOnImpulse,
                         _faceCombatTarget,
                         _targetStoppingDistance)
                     : CombatMotionDefinition.Disabled);
@@ -266,7 +283,8 @@ namespace _App
         {
             return new CombatActionAuthoring
             {
-                _useCombatMotion = true
+                _useCombatMotion = true,
+                _overridePlanarVelocity = true
             };
         }
 
@@ -279,6 +297,7 @@ namespace _App
                 _allowDodge = false,
                 _cooldown = 1.25f,
                 _useCombatMotion = true,
+                _overridePlanarVelocity = true,
                 _combatMotionDistance = 1.0f
             };
         }

@@ -11,7 +11,8 @@ namespace _App
         private readonly IPlayerTargetingState _targeting;
 
         private CombatMotionDefinition _definition;
-        private float _motionSpeed;
+        private float _planarSpeed;
+        private bool _verticalImpulseApplied;
         private bool _isActive;
 
         public CombatMotionController(
@@ -37,9 +38,10 @@ namespace _App
 
             _definition = definition;
             float motionDuration = actionDuration * (definition.Window.End - definition.Window.Start);
-            _motionSpeed = motionDuration > 0.0f
-                ? definition.Distance / motionDuration
+            _planarSpeed = definition.OverridePlanarVelocity && motionDuration > 0.0f
+                ? definition.PlanarDistance / motionDuration
                 : 0.0f;
+            _verticalImpulseApplied = false;
             _isActive = true;
             Advance(0.0f);
         }
@@ -59,26 +61,50 @@ namespace _App
                 ? targetDirection
                 : Vector3.zero;
 
-            float speed = _motionSpeed;
+            ApplyVerticalImpulse();
+
+            float speed = _planarSpeed;
             if (hasTarget && speed > 0.0f && targetDistance <= _definition.TargetStoppingDistance)
             {
                 speed = 0.0f;
             }
 
-            _motor.SetActionMotion(motionDirection * speed, facingDirection);
+            var intent = new CharacterActionMotionIntent(
+                _definition.OverridePlanarVelocity
+                    ? CharacterActionPlanarMode.OverrideVelocity
+                    : CharacterActionPlanarMode.PreserveVelocity,
+                motionDirection * speed,
+                _definition.VerticalMode,
+                _definition.VerticalVelocity,
+                facingDirection);
+            _motor.SetActionMotion(in intent);
         }
 
         public void End()
         {
             _motor.ClearActionMotion();
             _definition = default;
-            _motionSpeed = 0.0f;
+            _planarSpeed = 0.0f;
+            _verticalImpulseApplied = false;
             _isActive = false;
         }
 
         public void Dispose()
         {
             End();
+        }
+
+        private void ApplyVerticalImpulse()
+        {
+            if (_verticalImpulseApplied || Mathf.Approximately(_definition.VerticalImpulse, 0.0f))
+            {
+                return;
+            }
+
+            _motor.QueueActionVerticalImpulse(
+                _definition.VerticalImpulse,
+                _definition.OverrideVerticalVelocityOnImpulse);
+            _verticalImpulseApplied = true;
         }
 
         private bool TryGetTargetDirection(out Vector3 direction, out float distance)

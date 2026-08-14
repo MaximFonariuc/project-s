@@ -14,8 +14,9 @@ namespace _App
         private readonly float _runSpeed;
         private readonly float _sprintSpeed;
         private PlayerSpeedMode _speedMode = PlayerSpeedMode.Run;
-        private Vector3 _actionPlanarVelocity;
-        private Vector3 _actionFacingDirection;
+        private CharacterActionMotionIntent _actionMotion;
+        private float _pendingActionVerticalImpulse;
+        private bool _overrideVerticalVelocityOnImpulse;
         private bool _hasActionMotion;
 
         public bool IsGrounded => _character.IsGrounded();
@@ -122,17 +123,28 @@ namespace _App
             _character.LaunchCharacter(worldVelocity, false, true);
         }
 
-        public void SetActionMotion(Vector3 planarVelocity, Vector3 facingDirection)
+        public void SetActionMotion(in CharacterActionMotionIntent intent)
         {
-            _actionPlanarVelocity = Vector3.ProjectOnPlane(planarVelocity, Up);
-            _actionFacingDirection = Vector3.ProjectOnPlane(facingDirection, Up);
+            _actionMotion = intent;
             _hasActionMotion = true;
+        }
+
+        public void QueueActionVerticalImpulse(float verticalVelocity, bool overrideVerticalVelocity)
+        {
+            if (Mathf.Approximately(verticalVelocity, 0.0f))
+            {
+                return;
+            }
+
+            _pendingActionVerticalImpulse = verticalVelocity;
+            _overrideVerticalVelocityOnImpulse = overrideVerticalVelocity;
         }
 
         public void ClearActionMotion()
         {
-            _actionPlanarVelocity = Vector3.zero;
-            _actionFacingDirection = Vector3.zero;
+            _actionMotion = default;
+            _pendingActionVerticalImpulse = 0.0f;
+            _overrideVerticalVelocityOnImpulse = false;
             _hasActionMotion = false;
         }
 
@@ -144,17 +156,45 @@ namespace _App
 
         private void OnAfterSimulationUpdated(float deltaTime)
         {
-            if (!_hasActionMotion)
+            bool hasPendingVerticalImpulse =
+                !Mathf.Approximately(_pendingActionVerticalImpulse, 0.0f);
+            if (!_hasActionMotion && !hasPendingVerticalImpulse)
             {
                 return;
             }
 
             Vector3 up = Up;
-            Vector3 verticalVelocity = Vector3.Project(_character.GetVelocity(), up);
-            Vector3 planarVelocity = Vector3.ProjectOnPlane(_actionPlanarVelocity, up);
-            _character.SetVelocity(verticalVelocity + planarVelocity);
+            Vector3 currentVelocity = _character.GetVelocity();
+            Vector3 planarVelocity = _actionMotion.PlanarMode == CharacterActionPlanarMode.OverrideVelocity
+                ? Vector3.ProjectOnPlane(_actionMotion.PlanarVelocity, up)
+                : Vector3.ProjectOnPlane(currentVelocity, up);
+            float verticalVelocity = Vector3.Dot(currentVelocity, up);
+            verticalVelocity = _actionMotion.VerticalMode switch
+            {
+                CharacterActionVerticalMode.OverrideVelocity => _actionMotion.VerticalVelocity,
+                CharacterActionVerticalMode.MinimumVelocity =>
+                    Mathf.Max(verticalVelocity, _actionMotion.VerticalVelocity),
+                _ => verticalVelocity
+            };
 
-            Vector3 facingDirection = Vector3.ProjectOnPlane(_actionFacingDirection, up);
+            if (hasPendingVerticalImpulse)
+            {
+                verticalVelocity = _overrideVerticalVelocityOnImpulse
+                    ? _pendingActionVerticalImpulse
+                    : verticalVelocity + _pendingActionVerticalImpulse;
+                _pendingActionVerticalImpulse = 0.0f;
+                _overrideVerticalVelocityOnImpulse = false;
+            }
+
+            if (verticalVelocity > 0.0001f && _character.IsGrounded())
+            {
+                _character.PauseGroundConstraint();
+                _character.SetMovementMode(EMovementMode.Falling);
+            }
+
+            _character.SetVelocity(planarVelocity + up * verticalVelocity);
+
+            Vector3 facingDirection = Vector3.ProjectOnPlane(_actionMotion.FacingDirection, up);
             if (facingDirection.sqrMagnitude <= 0.0001f)
             {
                 return;
