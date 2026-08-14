@@ -2,116 +2,68 @@
 
 ## Граница
 
-Project S использует два слоя:
+`ModularInput.InputBuffer<TAction>` — нейтральная очередь semantic actions. `_App.CombatInputBuffer` адаптирует её к `PlayerCombatCommandId`, unscaled combat clock и authoring-настройкам Project S.
 
-1. `ModularInput.InputBuffer<TAction>` хранит нейтральные semantic actions.
-2. `_App.CombatInputBuffer` адаптирует очередь к `ESkillType`, unscaled combat
-   clock и authoring-настройкам `PlayerCombatActionProfile`.
-
-Raw keyboard/gamepad/touch input до этой границы не доходит. Любая платформа
-сначала переводит ввод в `IPlayerInput`, поэтому смена устройства не меняет
-combat buffer.
+Raw keyboard, gamepad и будущий mobile UI не попадают в buffer: каждый input source сначала преобразуется в одинаковую команду через `IPlayerInput`.
 
 ```mermaid
 classDiagram
     direction LR
 
     class IPlayerInput {
-        <<semantic input port>>
-        +AttackRequested
-        +SkillRequested
+        +CombatActionRequested(commandId)
     }
     class PlayerCombatController {
+        +TryExecute(commandId) bool
         -CanAcceptBufferedAction(entry) bool
-        +TryAttack(skillType) bool
     }
     class CombatInputBuffer {
-        +Count int
-        +Store(skillType) bool
-        +TryConsume(predicate, skillType) bool
+        +Store(commandId) bool
+        +TryConsume(predicate, commandId) bool
         +Clear()
     }
     class CombatInputBufferSettings {
-        +BufferOptions InputBufferOptions
-        +GetWriteOptions(skillType) InputBufferWriteOptions
+        +GetWriteOptions(commandId)
     }
-    class CombatInputBufferAuthoring {
-        <<serializable authoring>>
-        +Build() CombatInputBufferSettings
-    }
-    class PlayerCombatActionProfile {
-        <<ScriptableObject>>
-        +CreateInputBufferSettings()
-    }
-    class InputBuffer~ESkillType~ {
+    class InputBuffer~PlayerCombatCommandId~ {
         <<ModularInput>>
+    }
+    class PlayerCombatActionGraph {
+        +TryResolveTransition(source, command, environment, frame)
     }
     class ICombatClock {
         +UnscaledTime float
     }
-    class CombatActionFrame {
-        +CanChain bool
-        +CanCancel bool
-    }
 
     IPlayerInput --> PlayerCombatController
     PlayerCombatController --> CombatInputBuffer
-    PlayerCombatController --> CombatActionFrame
-    CombatInputBuffer --> InputBuffer~ESkillType~
+    PlayerCombatController --> PlayerCombatActionGraph
+    CombatInputBuffer --> InputBuffer~PlayerCombatCommandId~
     CombatInputBuffer --> CombatInputBufferSettings
     CombatInputBuffer --> ICombatClock
-    PlayerCombatActionProfile *-- CombatInputBufferAuthoring
-    CombatInputBufferAuthoring --> CombatInputBufferSettings
 ```
 
-## Потребление и ownership
+## Ownership и consumption
 
-`PlayerCombatController` остаётся владельцем combat rules. Он записывает ввод
-во время активной combo/skill action и передаёт buffer predicate,
-соответствующий текущему action frame:
+Buffer хранит команду, timestamp, expiration, priority и duplicate policy. Он не решает, какая action следует за текущей. При каждом `CombatActionFrame` controller передаёт predicate, а graph проверяет одновременно:
 
-- default attack допустим только в `ChainWindow` и пока существует следующий
-  combo step;
-- skill допустим только в `CancelWindow`, после проверки animation availability
-  и cooldown;
-- после skill default action также требует `CancelWindow`; это позволяет
-  настраивать переход обратно в combo без особого типа buffer;
-- очередь атомарно выбирает и удаляет только допустимую команду;
-- expiration считается по unscaled time, поэтому короткий hit stop не уничтожает
-  уже зарегистрированное нажатие;
-- disable, interruption и завершение pipeline очищают очередь.
+- существует ли transition из текущей action по этой команде;
+- открыт ли требуемый `ChainWindow` или `CancelWindow`;
+- подходит ли target action текущему Grounded/Airborne environment;
+- доступна ли presentation и завершён ли cooldown.
 
-Buffer не решает, какая атака следует за текущей, не открывает cancel window и
-не меняет state. Эти решения принадлежат будущему combo graph/combat state
-machine и `CombatActionDefinition`.
+Только прошедшая все проверки команда атомарно удаляется из очереди. Expiration использует unscaled time, поэтому ввод сохраняет предсказуемый lifetime во время hit stop. Cooldown actions использует scaled gameplay time.
 
-## Настройка под разные формы боя
+## Конфигурация
 
-Ниже не пресеты и не жёсткие жанровые классы, а стартовые диапазоны для
-authoring. Финальные значения определяются playtest и конкретным moveset.
+`CombatInputBufferAuthoring` задаёт capacity, overflow, selection, lifetime, priority и duplicate rules. Override адресуется строковым semantic command id (`attack.light`, `skill.special`). Добавление новой команды не требует изменения generic `InputBuffer<TAction>`.
 
-| Форма | Capacity | Selection | Overflow | Повторы | Типичный lifetime |
-|---|---:|---|---|---|---:|
-| Hack and Slash | 3–6 | `OldestFirst` | `DropOldest` | `Allow` для combo | 0.25–0.40 s |
-| Souls-like | 1–2 | `NewestFirst` | `DropOldest` | `ReplaceMatching` | 0.10–0.25 s |
-| Action RPG | 2–4 | `HighestPriorityThenOldest` | `DropLowestPriority` | зависит от action | 0.15–0.35 s |
+Ориентиры для playtest, не жёсткие пресеты:
 
-Примеры смысла конфигурации:
+| Форма боя | Capacity | Selection | Типичный lifetime |
+|---|---:|---|---:|
+| Hack and Slash | 3–6 | OldestFirst | 0.25–0.40 s |
+| Souls-like | 1–2 | NewestFirst | 0.10–0.25 s |
+| Action RPG | 2–4 | HighestPriorityThenOldest | 0.15–0.35 s |
 
-- слэшер сохраняет ритмичную последовательность нескольких атак;
-- souls-like ограничивает «долг» ввода, чтобы персонаж не исполнял длинную
-  очередь после восстановления контроля;
-- action RPG может дать defensive/interrupt action больший priority, не
-  зашивая это решение в общий модуль.
-
-Priority не является универсальным правилом «dodge всегда важнее attack».
-Разрешённость по cancel window проверяется раньше, поэтому запрещённое действие
-никогда не обходит правила текущего состояния только из-за высокого priority.
-
-## Расширение
-
-Новый semantic action добавляется в project-specific input adapter и получает
-authoring override. Общий `InputBuffer<TAction>` менять не нужно. Если dodge,
-jump или item use должны буферизоваться единым combat graph, Project S должен
-перейти с временного `ESkillType` на отдельный `PlayerCombatActionId`; это будет
-изменение game-specific модели, а не инфраструктуры очереди.
+Очередь очищается при disable, interruption и завершении action pipeline. Dodge пока остаётся отдельным locomotion event и прерывает combat; перенос dodge/item/jump в единый action graph выполняется только когда для них появятся реальные общие cancel rules.

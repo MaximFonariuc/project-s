@@ -56,6 +56,23 @@ classDiagram
     class MecanimCharacterAnimationBindings
     class Animator
     class PlayerCombatAnimationAdapter
+    class PlayerCombatAnimationId {
+        +Value string
+    }
+    class AnimationsData {
+        <<character animation catalog>>
+        +GetComboClips(character, weapon)
+        +GetActionClip(character, weapon, animationId)
+    }
+    class OverrideAnimation {
+        <<weapon loadout asset>>
+        +ComboClips
+        +Actions
+    }
+    class CombatAnimationClip {
+        +Id string
+        +AnimationClip AnimationClip
+    }
     class PlayerTraversalActions
 
     PlayerLocomotionController --> PlayerLocomotionSnapshot : creates once per frame
@@ -70,6 +87,10 @@ classDiagram
     MecanimCharacterAnimationDriver --> MecanimCharacterAnimationBindings
     MecanimCharacterAnimationDriver --> Animator
     PlayerCombatAnimationAdapter --> ICharacterAnimationDriver
+    PlayerCombatAnimationAdapter --> AnimationsData
+    PlayerCombatAnimationAdapter --> PlayerCombatAnimationId
+    AnimationsData *-- OverrideAnimation
+    OverrideAnimation *-- CombatAnimationClip
     PlayerTraversalActions --> ICharacterAnimationDriver
 ```
 
@@ -97,7 +118,12 @@ flowchart LR
 - `MecanimCharacterAnimationDriver` кэширует parameter hashes и clip durations, но не принимает gameplay-решения.
 - Combat и Traversal используют тот же driver через отдельные adapters и не меняют locomotion state.
 
+## Combat presentation lookup
+
+Combat gameplay не знает о clip references. `PlayerCombatAction` содержит presentation: combo index либо `PlayerCombatAnimationId`. `PlayerCombatAnimationAdapter` разрешает её через `AnimationsData -> OverrideAnimation` текущего character/weapon loadout и только после этого вызывает driver.
+
+`OverrideAnimation` хранит плоский список combo clips и named `CombatAnimationClip` entries. Enum навыков и generic `SkillBase` hierarchy удалены: строковый animation id позволяет новому action profile добавить presentation slot без изменения C# enum. Animation id не является gameplay action id и не задаёт transitions, cooldown или damage.
+
 ## Вариативность моделей
 
 Humanoid и Generic персонажи используют одинаковый `ICharacterAnimationDriver`. Различия Animator Controller и parameter naming задаются отдельным `MecanimCharacterAnimationProfile`; retargeting, avatar и совместимость clips остаются authoring-ответственностью конкретного character prefab. Новый Playables/backend реализует тот же driver contract и выбирается только в Composition Root.
-

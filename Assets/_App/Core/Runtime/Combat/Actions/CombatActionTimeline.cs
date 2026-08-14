@@ -41,6 +41,7 @@ namespace _App
         public NormalizedActionWindow CancelWindow { get; }
         public NormalizedActionWindow MovementConstraintWindow { get; }
         public NormalizedActionWindow InvulnerabilityWindow { get; }
+        public float RecoveryStart { get; }
         public float CompletionTime { get; }
         public bool HasCommit { get; }
         public float CommitTime { get; }
@@ -54,6 +55,7 @@ namespace _App
             NormalizedActionWindow cancelWindow,
             NormalizedActionWindow movementConstraintWindow,
             NormalizedActionWindow invulnerabilityWindow,
+            float recoveryStart,
             float completionTime,
             bool hasCommit,
             float commitTime,
@@ -64,6 +66,11 @@ namespace _App
             if (completionTime <= 0.0f || completionTime > 1.0f)
             {
                 throw new ArgumentOutOfRangeException(nameof(completionTime));
+            }
+
+            if (recoveryStart < 0.0f || recoveryStart > completionTime)
+            {
+                throw new ArgumentOutOfRangeException(nameof(recoveryStart));
             }
 
             ValidateWindow(hitboxWindow, completionTime, nameof(hitboxWindow));
@@ -87,6 +94,7 @@ namespace _App
             CancelWindow = cancelWindow;
             MovementConstraintWindow = movementConstraintWindow;
             InvulnerabilityWindow = invulnerabilityWindow;
+            RecoveryStart = recoveryStart;
             CompletionTime = completionTime;
             HasCommit = hasCommit;
             CommitTime = hasCommit ? commitTime : 0.0f;
@@ -117,6 +125,7 @@ namespace _App
         public bool CanCancel { get; }
         public bool IsMovementConstrained { get; }
         public bool IsInvulnerable { get; }
+        public bool IsInRecovery { get; }
         public bool CommitReached { get; }
         public bool IsComplete { get; }
 
@@ -127,6 +136,7 @@ namespace _App
             bool canCancel,
             bool isMovementConstrained,
             bool isInvulnerable,
+            bool isInRecovery,
             bool commitReached,
             bool isComplete)
         {
@@ -136,6 +146,7 @@ namespace _App
             CanCancel = canCancel;
             IsMovementConstrained = isMovementConstrained;
             IsInvulnerable = isInvulnerable;
+            IsInRecovery = isInRecovery;
             CommitReached = commitReached;
             IsComplete = isComplete;
         }

@@ -132,6 +132,7 @@ namespace _App
                 !_definition.MovementConstraintWindow.IsEnabled ||
                 _definition.MovementConstraintWindow.Contains(normalizedTime),
                 _definition.InvulnerabilityWindow.Contains(normalizedTime),
+                normalizedTime >= _definition.RecoveryStart,
                 _definition.HasCommit &&
                 previousTime < _definition.CommitTime &&
                 normalizedTime >= _definition.CommitTime,

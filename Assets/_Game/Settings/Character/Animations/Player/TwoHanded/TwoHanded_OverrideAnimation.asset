@@ -23,13 +23,11 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 1afb703f255fd9d48874a7ab01162150, type: 2}
   - {fileID: 7400000, guid: 87b32d930791caa469426ff3162b4928, type: 2}
   - {fileID: 7400000, guid: 793ad126ff2fd7e45878ca85e9de61bd, type: 2}
-  <DefaultCombos>k__BackingField:
-  - <SkillType>k__BackingField: 0
-    <ComboClips>k__BackingField:
-    - {fileID: 7400000, guid: 9512e15339fba7b41adb834cb27eadb9, type: 2}
-    - {fileID: 7400000, guid: f428605e888a87049b0c5d0b3a250e34, type: 2}
-    - {fileID: 7400000, guid: 288e2df73dd556e4586da93887a928ba, type: 2}
-    - {fileID: 7400000, guid: 94834c2bf1bcf43479a6456fcc55fc7f, type: 2}
-  <Skills>k__BackingField:
-  - <SkillType>k__BackingField: -1
+  <ComboClips>k__BackingField:
+  - {fileID: 7400000, guid: 9512e15339fba7b41adb834cb27eadb9, type: 2}
+  - {fileID: 7400000, guid: f428605e888a87049b0c5d0b3a250e34, type: 2}
+  - {fileID: 7400000, guid: 288e2df73dd556e4586da93887a928ba, type: 2}
+  - {fileID: 7400000, guid: 94834c2bf1bcf43479a6456fcc55fc7f, type: 2}
+  <Actions>k__BackingField:
+  - <Id>k__BackingField: skill.special
     <AnimationClip>k__BackingField: {fileID: 7400000, guid: 1e134505adff3f94cbe0638cc8bafa75, type: 2}

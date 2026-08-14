@@ -9,7 +9,7 @@ namespace _App
         private readonly IInputService _input;
         private bool _enabled;
 
-        public event Action AttackRequested;
+        public event Action<PlayerCombatCommandId> CombatActionRequested;
         public event Action InteractRequested;
         public event Action<InputSignalPhase> WalkChanged;
         public event Action<InputSignalPhase> SprintChanged;
@@ -17,7 +17,6 @@ namespace _App
         public event Action PauseRequested;
         public event Action InverseGravityRequested;
         public event Action CursorRequested;
-        public event Action<ESkillType> SkillRequested;
         public event Action LockOnRequested;
         public event Action DodgeRequested;
         public event Action SwitchCombatStateRequested;
@@ -119,7 +118,7 @@ namespace _App
         {
             if (action == PlayerInputIds.Attack)
             {
-                AttackRequested?.Invoke();
+                CombatActionRequested?.Invoke(PlayerCombatCommandIds.LightAttack);
             }
             else if (action == PlayerInputIds.Interact)
             {
@@ -139,15 +138,15 @@ namespace _App
             }
             else if (action == PlayerInputIds.SkillBoneCrash)
             {
-                SkillRequested?.Invoke(ESkillType.BoneCrash);
+                CombatActionRequested?.Invoke(PlayerCombatCommandIds.BoneCrash);
             }
             else if (action == PlayerInputIds.SkillFlashStance)
             {
-                SkillRequested?.Invoke(ESkillType.FlashStance);
+                CombatActionRequested?.Invoke(PlayerCombatCommandIds.FlashStance);
             }
             else if (action == PlayerInputIds.SpecialAttack)
             {
-                SkillRequested?.Invoke(ESkillType.Special);
+                CombatActionRequested?.Invoke(PlayerCombatCommandIds.Special);
             }
             else if (action == PlayerInputIds.LockOn)
             {

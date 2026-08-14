@@ -2,7 +2,7 @@
 
 ## Ответственность
 
-Project S не получает raw controls. `PlayerInputAdapter` переводит стабильные GUID действий из generic Input-модуля в команды уровня игры: attack, dodge, jump, конкретный skill. Это anti-corruption layer между переиспользуемой инфраструктурой и gameplay.
+Project S не получает raw controls. `PlayerInputAdapter` переводит стабильные GUID действий из generic Input-модуля в команды уровня игры. Боевые bindings становятся единым `CombatActionRequested(PlayerCombatCommandId)`, а locomotion/UI сигналы сохраняют собственные typed events. Это anti-corruption layer между переиспользуемой инфраструктурой и gameplay.
 
 ## Дерево классов
 
@@ -15,9 +15,8 @@ classDiagram
         +Move Vector2
         +Look Vector2
         +Zoom Vector2
-        +AttackRequested
+        +CombatActionRequested(commandId)
         +JumpChanged
-        +SkillRequested
         +Enable()
         +Disable()
     }
@@ -33,6 +32,10 @@ classDiagram
         +Dodge
         +SkillBoneCrash
         +SkillFlashStance
+    }
+    class PlayerCombatCommandId {
+        <<Project S semantic id>>
+        +Value string
     }
     class IInputService {
         <<Modular Input port>>
@@ -50,6 +53,7 @@ classDiagram
     IPlayerInput <|.. PlayerInputAdapter
     PlayerInputAdapter --> IInputService
     PlayerInputAdapter --> PlayerInputIds
+    PlayerInputAdapter --> PlayerCombatCommandId
     ThirdPersonController --> IPlayerInput
     GameLifetimeScope ..> PlayerInputAdapter : constructs
     GameLifetimeScope ..> UnityInputSource : constructs
@@ -68,6 +72,7 @@ flowchart LR
 ```
 
 - Gameplay зависит только от `IPlayerInput` и не знает о devices, bindings или Unity callback context.
+- Keyboard/mouse, gamepad и будущий mobile adapter публикуют одинаковый `PlayerCombatCommandId`; input не зависит от animation ids и конкретной реализации moveset.
 - `PlayerInputIds` — project configuration. GUID остаются стабильными после rename action/map.
 - `GameLifetimeScope` — единственное место, где встречаются VContainer, Unity source и project asset.
 - UI prompts могут подписаться на `ActiveDeviceChanged`, не выполняя device polling.

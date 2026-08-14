@@ -7,14 +7,15 @@ namespace _App
     public enum PlayerCombatPhase
     {
         Ready,
-        ComboAttack,
-        SkillAttack,
-        WeaponSwitch
+        Executing,
+        Recovery,
+        WeaponSwitch,
+        Interrupted
     }
 
     public interface IPlayerCombatCommands
     {
-        bool TryAttack(ESkillType skillType = ESkillType.Default);
+        bool TryExecute(PlayerCombatCommandId commandId);
         UniTask<bool> ToggleWeaponAsync(EWeaponType targetWeapon);
         void InterruptAttack();
     }
@@ -38,12 +39,15 @@ namespace _App
         int ComboCount { get; }
 
         void ApplyLoadout(ECharacterType characterType, EWeaponType weaponType);
-        bool HasSkill(ECharacterType characterType, EWeaponType weaponType, ESkillType skillType);
-        bool TryPlayComboStep(int comboIndex, out AnimationPlayback playback);
-        bool TryPlaySkill(
+        bool HasNamedAnimation(
             ECharacterType characterType,
             EWeaponType weaponType,
-            ESkillType skillType,
+            PlayerCombatAnimationId animationId);
+        bool TryPlayComboStep(int comboIndex, out AnimationPlayback playback);
+        bool TryPlayNamedAnimation(
+            ECharacterType characterType,
+            EWeaponType weaponType,
+            PlayerCombatAnimationId animationId,
             out AnimationPlayback playback);
         bool TryPlayWeaponTransition(EWeaponType weaponType, bool draw, out AnimationPlayback playback);
     }

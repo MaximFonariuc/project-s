@@ -1,172 +1,123 @@
-# Project S — Player Combat
+# Project S — Player Combat Runtime
 
 ## Ответственность
 
-Player Combat владеет подтверждённым боевым состоянием игрока: текущей фазой, экипированным оружием, combo index, input buffer, cooldown навыков и hit window. Он принимает семантические команды и выдаёт ограниченный `PlayerMovementIntent`, но не зависит напрямую от `Character`, не читает устройства ввода и не меняет Animator или collider напрямую.
+`PlayerCombatController` координирует выполнение уже определённых combat actions: принимает семантические команды, обращается к action graph, запускает timeline executor, управляет buffer/cooldown и публикует подтверждённое состояние. Animator и weapon rig остаются presentation/scene adapters.
 
-Текущая реализация сохраняет существующие `AnimationsData`, Animator Controller и настроенные prefab references. Это рефакторинг runtime ownership, а не замена игровых анимаций или создание новой attack authoring model.
+Combat не управляет motor напрямую. Он выдаёт только `PlayerMovementIntent`, который читает locomotion.
 
-## Дерево классов
+## Дерево классов и зависимости
 
 ```mermaid
 classDiagram
     direction LR
 
     class IPlayerCombatCommands {
-        <<command port>>
-        +TryAttack(skillType) bool
+        +TryExecute(commandId) bool
         +ToggleWeaponAsync(weapon) UniTask~bool~
         +InterruptAttack()
     }
     class IPlayerCombatState {
-        <<state port>>
         +Phase PlayerCombatPhase
         +CurrentWeapon EWeaponType
         +ComboIndex int
         +IsHitWindowOpen bool
         +MovementIntent PlayerMovementIntent
     }
-    class PlayerCombatController {
-        +Enable()
-        +Disable()
+    class PlayerCombatController
+    class IStateMachine~PlayerCombatPhase~
+    class PlayerCombatReadyState
+    class PlayerCombatExecutingState {
+        +Action PlayerCombatAction
     }
-    class CombatInputBuffer {
-        +Store(skillType) bool
-        +TryConsume(predicate, skillType) bool
-        +Clear()
+    class PlayerCombatRecoveryState {
+        +Action PlayerCombatAction
     }
-    class IPlayerCombatAnimation {
-        <<presentation port>>
-        +ApplyLoadout(character, weapon)
-        +TryPlayComboStep(index, stateName) bool
-        +TryPlaySkill(skill, stateName) bool
-        +TryPlayWeaponTransition(weapon, draw, stateName) bool
+    class PlayerCombatWeaponSwitchState {
+        +TargetWeapon EWeaponType
     }
-    class PlayerCombatAnimationAdapter {
-        <<Animator adapter>>
-    }
-    class IPlayerWeaponRig {
-        <<weapon port>>
-        +ApplyWeapon(weapon)
-        +OpenHitbox()
-        +CloseHitbox()
-    }
-    class PlayerWeaponRig {
-        <<scene adapter>>
-    }
-    class Weapon {
-        <<hitbox owner>>
-    }
-    class IPlayerLocomotionEvents {
-        <<locomotion event port>>
-        +DodgeAccepted
-    }
-    class IPlayerInput {
-        <<semantic input port>>
-    }
-    class ICombatClock {
-        <<time port>>
-        +ScaledTime float
-        +UnscaledTime float
-    }
-    class UnityCombatClock
-    class IPlayerCombatActor {
-        <<actor gate port>>
-        +CanAttack bool
-        +IsFalling bool
-        +RotationMode ERotationMode
-    }
+    class PlayerCombatInterruptedState
+    class PlayerCombatActionGraph
+    class CombatActionExecutor
+    class CombatInputBuffer
+    class IPlayerCombatAnimation
+    class IPlayerWeaponRig
+    class IPlayerCombatActor
+    class ICombatClock
     class PlayerCombatComposition {
-        <<composition>>
+        <<VContainer composition root>>
     }
 
     IPlayerCombatCommands <|.. PlayerCombatController
     IPlayerCombatState <|.. PlayerCombatController
-    PlayerCombatController --> IPlayerInput
-    PlayerCombatController --> IPlayerLocomotionEvents
+    PlayerCombatController --> IStateMachine~PlayerCombatPhase~
+    PlayerCombatController --> PlayerCombatActionGraph
+    PlayerCombatController --> CombatActionExecutor
     PlayerCombatController --> CombatInputBuffer
     PlayerCombatController --> IPlayerCombatAnimation
     PlayerCombatController --> IPlayerWeaponRig
-    PlayerCombatController --> ICombatClock
     PlayerCombatController --> IPlayerCombatActor
-    IPlayerCombatAnimation <|.. PlayerCombatAnimationAdapter
-    IPlayerWeaponRig <|.. PlayerWeaponRig
-    PlayerWeaponRig --> Weapon
-    ICombatClock <|.. UnityCombatClock
+    PlayerCombatController --> ICombatClock
+    IStateMachine~PlayerCombatPhase~ *-- PlayerCombatReadyState
+    IStateMachine~PlayerCombatPhase~ *-- PlayerCombatExecutingState
+    IStateMachine~PlayerCombatPhase~ *-- PlayerCombatRecoveryState
+    IStateMachine~PlayerCombatPhase~ *-- PlayerCombatWeaponSwitchState
+    IStateMachine~PlayerCombatPhase~ *-- PlayerCombatInterruptedState
     PlayerCombatComposition ..> PlayerCombatController : constructs
 ```
 
-## Фазы и переходы
+## State machine
 
 ```mermaid
 stateDiagram-v2
     [*] --> Ready
-    Ready --> ComboAttack: default attack accepted
-    ComboAttack --> ComboAttack: buffered default input in cancel window
-    Ready --> SkillAttack: configured skill accepted
-    ComboAttack --> SkillAttack: buffered skill in cancel window
-    Ready --> WeaponSwitch: switch command accepted
-    ComboAttack --> Ready: animation complete / dodge / disable
-    SkillAttack --> Ready: animation complete / dodge / disable
-    WeaponSwitch --> Ready: midpoint applied / cancel / disable
+    Ready --> Executing: graph entry accepted
+    Executing --> Executing: chain/cancel selects next action
+    Executing --> Recovery: RecoveryStart reached
+    Recovery --> Executing: buffered transition accepted
+    Executing --> Interrupted: dodge/interruption
+    Recovery --> Interrupted: dodge/interruption
+    Interrupted --> Ready
+    Executing --> Ready: action completed / failed
+    Recovery --> Ready: action completed / failed
+    Ready --> WeaponSwitch: switch accepted
+    WeaponSwitch --> Ready: complete / cancel / failure
 ```
 
-`PlayerCombatPhase` имеет один owner — `PlayerCombatController`. Разрешённые переходы проверяются централизованно; отдельные boolean-флаги `IsComboAttack`, `IsSkillAttack` и `IsSwitching` удалены из player flow.
+`IStateMachine<PlayerCombatPhase>` — единственный owner combat phase. Controller больше не хранит собственный mutable phase и не содержит отдельный ручной `CanChangePhase`. `ExecutingState` и `RecoveryState` получают текущий `PlayerCombatAction` как context, а `WeaponSwitchState` — целевое оружие.
 
-Для четырёх фаз generic state machine пока не добавлена: состояние не содержит самостоятельных state nodes, а переходы синхронизируются с асинхронным Animator adapter. Создание пустого класса на каждую фазу добавило бы только indirection. Если attack definitions получат разные enter/tick/exit policies, этот enum станет естественной границей для `ModularStateMachine`.
+`RecoveryStart` является частью gameplay timeline, а не animation event. Поэтому transition в recovery остаётся определённым даже при смене Animator Controller или клипа.
 
-## Input buffer и cancel window
+## Выполнение action
 
 ```mermaid
 sequenceDiagram
     participant Input as IPlayerInput
     participant Combat as PlayerCombatController
-    participant Buffer as CombatInputBuffer
-    participant Animation as CombatAnimationAdapter
-    participant Weapon as PlayerWeaponRig
+    participant Graph as PlayerCombatActionGraph
+    participant Machine as Combat StateMachine
+    participant Executor as CombatActionExecutor
+    participant View as Animation / Weapon adapters
 
-    Input->>Combat: AttackRequested
-    Combat->>Animation: PlayComboStep(0)
-    Input->>Combat: AttackRequested
-    Combat->>Buffer: Store(Default, expires)
-    Animation-->>Combat: action frame opens chain/cancel window
-    Combat->>Buffer: TryConsume(allowed action predicate)
-    Combat->>Weapon: CloseHitbox()
-    Combat->>Animation: PlayComboStep(1)
+    Input->>Combat: CombatActionRequested(command)
+    Combat->>Graph: TryResolveEntry(command, environment)
+    Graph-->>Combat: PlayerCombatAction
+    Combat->>View: play presentation
+    Combat->>Machine: Ready -> Executing(action)
+    Combat->>Executor: ExecuteAsync(definition)
+    Executor-->>Combat: CombatActionFrame
+    Combat->>Machine: Executing -> Recovery(action)
+    Combat->>Graph: resolve buffered transition
+    Combat->>Machine: Recovery -> Executing(next action)
 ```
 
-Buffer хранит несколько semantic actions в очереди фиксированной ёмкости. Capacity, lifetime, priority, duplicate, overflow и selection policies задаются в `PlayerCombatActionProfile`; prototype default сохраняет lifetime `0.35s`. Время жизни считается по unscaled clock, поэтому ввод можно принять во время hit stop. Cooldown навыков использует scaled clock и останавливается вместе с gameplay time.
-
-Общая очередь находится в `ModularInput` и ничего не знает о combat. `PlayerCombatController` остаётся владельцем правил: в combo default action потребляется только в chain window, skill — только в cancel window после проверки availability/cooldown; во время skill любая следующая attack-команда требует cancel window. Полное дерево классов и варианты настройки для Hack and Slash, souls-like и action RPG описаны в `Docs/Architecture/Combat.InputBuffer.md`.
-
-Новый input не читает `Keyboard.current` или `Gamepad.current`: keyboard, gamepad и будущий mobile UI продолжают входить через `IPlayerInput`.
-
-## Animation и hitbox boundary
-
-`PlayerCombatAnimationAdapter` является единственным участником player combat, который знает про Animator layers, state names и `AnimatorOverrideController`. Override controller создаётся один раз на scope, сбрасывается к исходным clips при смене loadout и уничтожается вместе со scope.
-
-`PlayerWeaponRig` владеет только scene references оружия: переносит weapon transform между holder/hand и открывает или закрывает `Weapon` hitbox по подтверждённому hit window. `Weapon` по-прежнему формирует `DamageInfo` и фильтрует повторное попадание одного owner в пределах окна.
-
-Gameplay не получает damage из animation event. Hit window вычисляется контроллером по текущему animation progress и всегда закрывается при завершении, interruption, disable и cancellation.
-
-## Locomotion и targeting
-
-Combat не вызывает motor. `IPlayerCombatState.MovementIntent` ограничивает translation/jump/dodge и передаётся в `PlayerLocomotionController` через Unity-host. Успешный dodge публикуется узким `IPlayerLocomotionEvents` и прерывает combo/skill.
-
-Traversal использует раздельные `IPlayerCombatState` и `IPlayerCombatCommands`: проверяет экипированное оружие и запрашивает подтверждённый переход в `Unarmed` перед climb. Combat при этом не знает о лестнице, interaction probe или simulation pause.
-
-Combat gates читаются через `IPlayerCombatActor`; controller не получает весь public API legacy `Character`. Реализация порта остаётся тонким `PlayerActorAdapter` без собственного runtime state.
-
-Targeting не является зависимостью Combat на этом этапе. Когда появятся направленные атаки и target assistance, Combat должен читать `IPlayerTargetingState`, но не менять target и не управлять камерой.
+Hitbox открывается только по `CombatActionFrame` и закрывается при completion, cancellation, interruption и disable. Weapon transition применяет loadout только после commit point. Cooldown хранится по `PlayerCombatActionId`; animation lookup использует отдельный `PlayerCombatAnimationId`.
 
 ## Lifecycle
 
-`Enable` применяет текущий loadout и симметрично подписывает Attack, Skill, Switch и Dodge. `Disable` снимает callbacks, отменяет активную UniTask-операцию, очищает buffer, закрывает hitbox и возвращает phase в `Ready`. Все `CancellationTokenSource` освобождаются владельцем.
+- `Enable` запускает state machine в `Ready` и симметрично подписывает semantic input, dodge и state events.
+- `Disable` отменяет UniTask action, aborts executor, очищает buffer, закрывает hitbox, снимает callbacks и останавливает state machine.
+- State machine и её states создаются scoped-регистрациями VContainer в `PlayerCombatComposition`; controller не вызывает `Resolve` и не владеет container.
+- Animator, graph authoring и input buffer не являются владельцами combat phase.
 
-Weapon switch использует timeout входа в Animator state, поэтому отсутствующий state не оставляет controller навсегда в `WeaponSwitch`. Смена текущего оружия подтверждается в середине sheathe/unsheathe animation.
-
-## Текущая граница и следующий шаг
-
-Player Combat остаётся в `_App/Core`: его animation state names, hardcoded normalized windows и `AnimationsData` специфичны для Project S. Legacy `CombatControllerBase` сохраняется только для текущего Enemy flow и больше не является базовым классом игрока.
-
-Следующий качественный шаг — заменить общие константы hit/cancel window на `AttackDefinition` для каждой атаки: timings, damage profile, movement intent, cancel rules и presentation references. Такой переход должен выполняться вместе с реальными наземными/воздушными combo requirements, а не как пустая универсальная схема.
+Текущий `IPlayerCombatActor.CanAttack` сохраняет проверенное наземное ограничение. Graph уже поддерживает `Grounded/Airborne`, но включение воздушных атак требует отдельного изменения actor gate и реальных air clips, а не скрытого обхода текущей locomotion policy.

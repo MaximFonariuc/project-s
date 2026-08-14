@@ -6,7 +6,7 @@ namespace _App
 {
     public interface IPlayerInput
     {
-        event Action AttackRequested;
+        event Action<PlayerCombatCommandId> CombatActionRequested;
         event Action InteractRequested;
         event Action<InputSignalPhase> WalkChanged;
         event Action<InputSignalPhase> SprintChanged;
@@ -14,7 +14,6 @@ namespace _App
         event Action PauseRequested;
         event Action InverseGravityRequested;
         event Action CursorRequested;
-        event Action<ESkillType> SkillRequested;
         event Action LockOnRequested;
         event Action DodgeRequested;
         event Action SwitchCombatStateRequested;

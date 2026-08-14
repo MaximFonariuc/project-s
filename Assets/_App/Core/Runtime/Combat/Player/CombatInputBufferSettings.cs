@@ -7,7 +7,7 @@ namespace _App
 {
     internal sealed class CombatInputBufferSettings
     {
-        private readonly Dictionary<ESkillType, InputBufferWriteOptions> _overrides;
+        private readonly Dictionary<PlayerCombatCommandId, InputBufferWriteOptions> _overrides;
 
         public InputBufferOptions BufferOptions { get; }
         public InputBufferWriteOptions DefaultWriteOptions { get; }
@@ -15,16 +15,16 @@ namespace _App
         public CombatInputBufferSettings(
             InputBufferOptions bufferOptions,
             InputBufferWriteOptions defaultWriteOptions,
-            Dictionary<ESkillType, InputBufferWriteOptions> overrides)
+            Dictionary<PlayerCombatCommandId, InputBufferWriteOptions> overrides)
         {
             BufferOptions = bufferOptions;
             DefaultWriteOptions = defaultWriteOptions;
             _overrides = overrides ?? throw new ArgumentNullException(nameof(overrides));
         }
 
-        public InputBufferWriteOptions GetWriteOptions(ESkillType skillType)
+        public InputBufferWriteOptions GetWriteOptions(PlayerCombatCommandId commandId)
         {
-            return _overrides.TryGetValue(skillType, out InputBufferWriteOptions options)
+            return _overrides.TryGetValue(commandId, out InputBufferWriteOptions options)
                 ? options
                 : DefaultWriteOptions;
         }
@@ -40,7 +40,7 @@ namespace _App
                     0.35,
                     0,
                     InputBufferDuplicatePolicy.Allow),
-                new Dictionary<ESkillType, InputBufferWriteOptions>());
+                new Dictionary<PlayerCombatCommandId, InputBufferWriteOptions>());
         }
     }
 
@@ -62,7 +62,7 @@ namespace _App
                 throw new InvalidOperationException("Combat input buffer requires a default action rule.");
             }
 
-            var overrides = new Dictionary<ESkillType, InputBufferWriteOptions>();
+            var overrides = new Dictionary<PlayerCombatCommandId, InputBufferWriteOptions>();
             if (_actionOverrides != null)
             {
                 for (int i = 0; i < _actionOverrides.Count; i++)
@@ -74,10 +74,10 @@ namespace _App
                             $"Combat input buffer has an incomplete action override at index {i}.");
                     }
 
-                    if (!overrides.TryAdd(entry.SkillType, entry.Rule.Build()))
+                    if (!overrides.TryAdd(entry.CommandId, entry.Rule.Build()))
                     {
                         throw new InvalidOperationException(
-                            $"Combat input buffer has duplicate rules for '{entry.SkillType}'.");
+                            $"Combat input buffer has duplicate rules for '{entry.CommandId}'.");
                     }
                 }
             }
@@ -106,10 +106,10 @@ namespace _App
     [Serializable]
     public sealed class CombatBufferedActionOverrideAuthoring
     {
-        [SerializeField] private ESkillType _skillType;
+        [SerializeField] private string _commandId = "attack.light";
         [SerializeField] private CombatBufferedActionRuleAuthoring _rule = new();
 
-        internal ESkillType SkillType => _skillType;
+        internal PlayerCombatCommandId CommandId => new PlayerCombatCommandId(_commandId);
         internal CombatBufferedActionRuleAuthoring Rule => _rule;
     }
 }

@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using _App;
 using UnityEngine;
 
 namespace _App
@@ -9,31 +7,29 @@ namespace _App
     [CreateAssetMenu(fileName = "OverrideAnimation", menuName = "Combat/OverrideAnimation")]
     public class OverrideAnimation : ScriptableObject
     {
-        [Header("DefaultSetting")]
+        [Header("Default Setting")]
         [field: SerializeField] public EWeaponType WeaponType { get; protected set; }
         [field: SerializeField] public List<AnimationClip> DefaultsAnimationClips { get; protected set; }
 
         [Header("Combat")]
-        [field: SerializeField] public List<DefaultSkillCombo> DefaultCombos { get; protected set; }
-        [field: SerializeField] public List<Skill> Skills { get; protected set; }
+        [field: SerializeField] public List<AnimationClip> ComboClips { get; protected set; }
+        [field: SerializeField] public List<CombatAnimationClip> Actions { get; protected set; }
 
-        public T GetSkill<T>(EWeaponType weaponType, ESkillType skillType) where T : SkillBase
+        public AnimationClip GetActionClip(PlayerCombatAnimationId animationId)
         {
-            if (WeaponType != weaponType)
+            if (Actions == null || string.IsNullOrEmpty(animationId.Value))
             {
                 return null;
             }
-            
-            if (typeof(T) == typeof(DefaultSkillCombo))
-            {
-                var defaultCombo = DefaultCombos.FirstOrDefault(combo => combo.SkillType == skillType);
-                return defaultCombo as T;
-            }
 
-            if (typeof(T) == typeof(Skill))
+            for (int i = 0; i < Actions.Count; i++)
             {
-                var skill = Skills.FirstOrDefault(combo => combo.SkillType == skillType);
-                return skill as T;
+                CombatAnimationClip action = Actions[i];
+                if (action != null &&
+                    string.Equals(action.Id, animationId.Value, StringComparison.Ordinal))
+                {
+                    return action.AnimationClip;
+                }
             }
 
             return null;
@@ -55,28 +51,11 @@ namespace _App
         }
 #endif
     }
-    
-    [Serializable]
-    public abstract class SkillBase
-    {
-        [field: SerializeField] public ESkillType SkillType { get; protected set; }
-    }
 
     [Serializable]
-    public class DefaultSkillCombo : SkillBase
+    public sealed class CombatAnimationClip
     {
-        [field: SerializeField] public List<AnimationClip> ComboClips { get; protected set; }
-
-        public AnimationClip GetClip(int comboIndex = 0)
-        {
-            if (ComboClips == null || ComboClips.Count == 0) return null;
-            return ComboClips[Mathf.Clamp(comboIndex, 0, ComboClips.Count - 1)];
-        }
-    }
-
-    [Serializable]
-    public class Skill : SkillBase
-    {
-        [field: SerializeField] public AnimationClip AnimationClip { get; protected set; }
+        [field: SerializeField] public string Id { get; private set; } = "skill.special";
+        [field: SerializeField] public AnimationClip AnimationClip { get; private set; }
     }
 }

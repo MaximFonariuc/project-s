@@ -74,24 +74,20 @@ namespace _App
                 _animationsData.GetDefaultsAnimationClips(characterType, weaponType);
             ApplyOverrides(defaults);
 
-            DefaultSkillCombo combo =
-                _animationsData.GetSkill<DefaultSkillCombo>(characterType, weaponType);
-            _comboClips = combo?.ComboClips;
-            if (_comboClips == null)
-            {
-                _comboClips = Array.Empty<AnimationClip>();
-            }
+            _comboClips = _animationsData.GetComboClips(characterType, weaponType);
             ApplyOverrides(_comboClips);
             _animation.RefreshBindings();
         }
 
-        public bool HasSkill(
+        public bool HasNamedAnimation(
             ECharacterType characterType,
             EWeaponType weaponType,
-            ESkillType skillType)
+            PlayerCombatAnimationId animationId)
         {
-            Skill skill = _animationsData.GetSkill<Skill>(characterType, weaponType, skillType);
-            return skill?.AnimationClip != null;
+            return _animationsData.GetActionClip(
+                characterType,
+                weaponType,
+                animationId) != null;
         }
 
         public bool TryPlayComboStep(int comboIndex, out AnimationPlayback playback)
@@ -122,17 +118,19 @@ namespace _App
             return true;
         }
 
-        public bool TryPlaySkill(
+        public bool TryPlayNamedAnimation(
             ECharacterType characterType,
             EWeaponType weaponType,
-            ESkillType skillType,
+            PlayerCombatAnimationId animationId,
             out AnimationPlayback playback)
         {
             ThrowIfDisposed();
             playback = default;
 
-            Skill skill = _animationsData.GetSkill<Skill>(characterType, weaponType, skillType);
-            AnimationClip clip = skill?.AnimationClip;
+            AnimationClip clip = _animationsData.GetActionClip(
+                characterType,
+                weaponType,
+                animationId);
             if (clip == null || !TryApplyOverride(clip))
             {
                 return false;

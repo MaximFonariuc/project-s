@@ -6,60 +6,51 @@ namespace _App
     [CreateAssetMenu(fileName = "AnimationsData", menuName = "Combat/Animation Data")]
     public class AnimationsData : ScriptableObject
     {
+        private static readonly IReadOnlyList<AnimationClip> EmptyClips =
+            new List<AnimationClip>(0);
+
         [field: SerializeField] public ECharacterType CharacterType { get; protected set; }
         [field: SerializeField] public List<OverrideAnimation> AnimationDatas { get; protected set; }
-        
-        public T GetSkill<T>(ECharacterType characterType, EWeaponType weaponType, ESkillType skillType = ESkillType.Default) where T : SkillBase
-        {
-            if (CharacterType != characterType)
-            {
-                return null;
-            }
-            
-            foreach (var overrideAnimation in AnimationDatas)
-            {
-                if (overrideAnimation.WeaponType == weaponType)
-                {
-                    return overrideAnimation.GetSkill<T>(weaponType, skillType);
-                }
-            }
 
-            return null;
+        public IReadOnlyList<AnimationClip> GetComboClips(
+            ECharacterType characterType,
+            EWeaponType weaponType)
+        {
+            OverrideAnimation animations = FindAnimations(characterType, weaponType);
+            return animations?.ComboClips ?? EmptyClips;
         }
 
-        public Skill GetAllSkillsForCurrentWeapon(ECharacterType characterType, EWeaponType weaponType)
+        public AnimationClip GetActionClip(
+            ECharacterType characterType,
+            EWeaponType weaponType,
+            PlayerCombatAnimationId animationId)
         {
-            if (CharacterType != characterType)
-            {
-                return null;
-            }
-            
-            foreach (var overrideAnimation in AnimationDatas)
-            {
-                if (overrideAnimation.WeaponType == weaponType)
-                {
-                    foreach (var skills in overrideAnimation.Skills)
-                    {
-                        return skills;
-                    }
-                }
-            }
-
-            return null;
+            return FindAnimations(characterType, weaponType)?.GetActionClip(animationId);
         }
 
-        public List<AnimationClip> GetDefaultsAnimationClips(ECharacterType characterType, EWeaponType weaponType)
+        public IReadOnlyList<AnimationClip> GetDefaultsAnimationClips(
+            ECharacterType characterType,
+            EWeaponType weaponType)
         {
-            if (CharacterType != characterType)
+            OverrideAnimation animations = FindAnimations(characterType, weaponType);
+            return animations?.DefaultsAnimationClips ?? EmptyClips;
+        }
+
+        private OverrideAnimation FindAnimations(
+            ECharacterType characterType,
+            EWeaponType weaponType)
+        {
+            if (CharacterType != characterType || AnimationDatas == null)
             {
                 return null;
             }
-            
-            foreach (var overrideAnimation in AnimationDatas)
+
+            for (int i = 0; i < AnimationDatas.Count; i++)
             {
-                if (overrideAnimation.WeaponType == weaponType)
+                OverrideAnimation animations = AnimationDatas[i];
+                if (animations != null && animations.WeaponType == weaponType)
                 {
-                    return overrideAnimation.DefaultsAnimationClips;
+                    return animations;
                 }
             }
 

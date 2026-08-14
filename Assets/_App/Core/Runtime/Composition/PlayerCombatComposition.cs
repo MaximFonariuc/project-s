@@ -1,6 +1,7 @@
 using System;
 using ModularAnimation;
 using ModularAnimation.Unity;
+using ModularStateMachine.VContainerIntegration;
 using VContainer;
 
 namespace _App
@@ -17,23 +18,30 @@ namespace _App
             }
 
             PlayerCombatActionProfile actionProfile = player.CombatActionProfile;
-            PlayerCombatActionCatalog actionCatalog = actionProfile != null
-                ? actionProfile.CreateCatalog()
-                : PlayerCombatActionCatalog.CreatePrototypeDefaults();
             CombatInputBufferSettings inputBufferSettings = actionProfile != null
                 ? actionProfile.CreateInputBufferSettings()
                 : CombatInputBufferSettings.CreatePrototypeDefaults();
+            var weaponTransitionAction = new PlayerWeaponTransitionAction(
+                actionProfile != null
+                    ? actionProfile.CreateWeaponTransitionDefinition()
+                    : CombatActionAuthoring.CreatePrototypeWeaponTransition().Build());
 
             builder.Register<ICombatClock, UnityCombatClock>(Lifetime.Scoped);
             builder.RegisterInstance(inputBufferSettings);
             builder.Register<CombatInputBuffer>(Lifetime.Scoped);
-            builder.RegisterInstance(actionCatalog);
+            builder.RegisterInstance(weaponTransitionAction);
             builder.Register<CombatActionExecutor>(Lifetime.Scoped);
             builder.Register<IPlayerCombatAnimation>(
                 resolver => new PlayerCombatAnimationAdapter(
                     resolver.Resolve<ICharacterAnimationDriver>(),
                     resolver.Resolve<MecanimCharacterAnimationDriver>(),
                     player.CombatAnimations),
+                Lifetime.Scoped);
+            builder.Register(
+                _ => actionProfile != null
+                    ? actionProfile.CreateActionGraph()
+                    : PlayerCombatActionGraph.CreatePrototype(
+                        PlayerCombatActionGraph.PrototypeComboCapacity),
                 Lifetime.Scoped);
             builder.Register<IPlayerWeaponRig>(
                 _ => new PlayerWeaponRig(
@@ -44,6 +52,25 @@ namespace _App
                         ? player.WeaponTransform.GetComponent<Weapon>()
                         : null),
                 Lifetime.Scoped);
+
+            builder.RegisterStateMachine<PlayerCombatPhase>(Lifetime.Scoped)
+                .State<PlayerCombatReadyState>(PlayerCombatPhase.Ready, Lifetime.Scoped)
+                .State<PlayerCombatExecutingState>(PlayerCombatPhase.Executing, Lifetime.Scoped)
+                .State<PlayerCombatRecoveryState>(PlayerCombatPhase.Recovery, Lifetime.Scoped)
+                .State<PlayerCombatWeaponSwitchState>(PlayerCombatPhase.WeaponSwitch, Lifetime.Scoped)
+                .State<PlayerCombatInterruptedState>(PlayerCombatPhase.Interrupted, Lifetime.Scoped)
+                .Transition(PlayerCombatPhase.Ready, PlayerCombatPhase.Executing)
+                .Transition(PlayerCombatPhase.Ready, PlayerCombatPhase.WeaponSwitch)
+                .Transition(PlayerCombatPhase.Executing, PlayerCombatPhase.Executing)
+                .Transition(PlayerCombatPhase.Executing, PlayerCombatPhase.Recovery)
+                .Transition(PlayerCombatPhase.Executing, PlayerCombatPhase.Interrupted)
+                .Transition(PlayerCombatPhase.Executing, PlayerCombatPhase.Ready)
+                .Transition(PlayerCombatPhase.Recovery, PlayerCombatPhase.Executing)
+                .Transition(PlayerCombatPhase.Recovery, PlayerCombatPhase.Interrupted)
+                .Transition(PlayerCombatPhase.Recovery, PlayerCombatPhase.Ready)
+                .Transition(PlayerCombatPhase.Interrupted, PlayerCombatPhase.Ready)
+                .Transition(PlayerCombatPhase.WeaponSwitch, PlayerCombatPhase.Ready);
+
             builder.Register(
                     resolver => new PlayerCombatController(
                         resolver.Resolve<IPlayerInput>(),
@@ -53,7 +80,9 @@ namespace _App
                         resolver.Resolve<IPlayerWeaponRig>(),
                         resolver.Resolve<CombatInputBuffer>(),
                         resolver.Resolve<CombatActionExecutor>(),
-                        resolver.Resolve<PlayerCombatActionCatalog>(),
+                        resolver.Resolve<PlayerCombatActionGraph>(),
+                        resolver.Resolve<PlayerWeaponTransitionAction>(),
+                        resolver.Resolve<ModularStateMachine.IStateMachine<PlayerCombatPhase>>(),
                         resolver.Resolve<ICombatClock>(),
                         player.CharacterType),
                     Lifetime.Scoped)

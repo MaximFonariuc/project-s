@@ -14,13 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <WeaponType>k__BackingField: 1
   <DefaultsAnimationClips>k__BackingField: []
-  <DefaultCombos>k__BackingField:
-  - <SkillType>k__BackingField: 0
-    <ComboClips>k__BackingField:
-    - {fileID: 7400000, guid: 426b0d86537cfd8438a1c4e0112f5afe, type: 2}
-    - {fileID: 7400000, guid: 58e0c78ec2b3f6f47b00885f9c0ee251, type: 2}
-    - {fileID: 7400000, guid: 9f4d00cb339399546930e2a98e99a5df, type: 2}
-    - {fileID: 7400000, guid: c56537f288556094fb593f18768164ac, type: 2}
-  <Skills>k__BackingField:
-  - <SkillType>k__BackingField: -1
+  <ComboClips>k__BackingField:
+  - {fileID: 7400000, guid: 426b0d86537cfd8438a1c4e0112f5afe, type: 2}
+  - {fileID: 7400000, guid: 58e0c78ec2b3f6f47b00885f9c0ee251, type: 2}
+  - {fileID: 7400000, guid: 9f4d00cb339399546930e2a98e99a5df, type: 2}
+  - {fileID: 7400000, guid: c56537f288556094fb593f18768164ac, type: 2}
+  <Actions>k__BackingField:
+  - <Id>k__BackingField: skill.special
     <AnimationClip>k__BackingField: {fileID: 7400000, guid: 2db42cdecbd8b15468f5fdde54ca9b7e, type: 2}

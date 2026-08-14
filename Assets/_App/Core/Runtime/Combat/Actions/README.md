@@ -12,12 +12,11 @@ classDiagram
     class PlayerCombatController
     class PlayerCombatActionProfile {
         <<ScriptableObject authoring>>
-        +CreateCatalog() PlayerCombatActionCatalog
+        +CreateActionGraph() PlayerCombatActionGraph
     }
-    class PlayerCombatActionCatalog {
-        +GetCombo(index) CombatActionDefinition
-        +TryGetSkill(type, definition) bool
-        +GetWeaponTransition() CombatActionDefinition
+    class PlayerCombatActionGraph {
+        +TryResolveEntry(command, environment, action) bool
+        +TryResolveTransition(source, command, environment, frame, action) bool
     }
     class CombatActionDefinition {
         +HitboxWindow
@@ -25,6 +24,7 @@ classDiagram
         +CancelWindow
         +MovementConstraintWindow
         +InvulnerabilityWindow
+        +RecoveryStart
         +CompletionTime
         +CommitTime
         +MovementIntent
@@ -42,6 +42,7 @@ classDiagram
         +CanCancel
         +IsMovementConstrained
         +IsInvulnerable
+        +IsInRecovery
         +CommitReached
         +IsComplete
     }
@@ -52,9 +53,9 @@ classDiagram
     class RootMotionController
     class IPlayerCombatAnimation
 
-    PlayerCombatActionProfile --> PlayerCombatActionCatalog
-    PlayerCombatActionCatalog --> CombatActionDefinition
-    PlayerCombatController --> PlayerCombatActionCatalog
+    PlayerCombatActionProfile --> PlayerCombatActionGraph
+    PlayerCombatActionGraph --> CombatActionDefinition
+    PlayerCombatController --> PlayerCombatActionGraph
     PlayerCombatController --> CombatActionExecutor
     PlayerCombatController --> IPlayerCombatAnimation
     CombatActionExecutor --> CombatActionDefinition
@@ -69,15 +70,15 @@ classDiagram
 
 ## Dependency and ownership rules
 
-- `PlayerCombatController` selects a semantic combo, skill or weapon action. It
+- `PlayerCombatController` resolves a semantic command through the action graph. It
   does not count animation frames and does not read Animator state.
 - `CombatActionExecutor` is the sole owner of elapsed action time. It evaluates
   inclusive normalized windows using the injected combat clock.
 - `IPlayerCombatAnimation` returns presentation duration only. Clip names and
   Animator states are not action identifiers and may be replaced freely.
-- `PlayerCombatActionCatalog` contains immutable runtime definitions.
+- `PlayerCombatActionGraph` contains immutable runtime definitions and transition rules.
   `PlayerCombatActionProfile` is optional immutable authoring data that creates
-  that catalog at composition time.
+  that graph at composition time.
 - Root motion is selected per action and the previous policy is restored on
   completion, interruption, cancellation and disable.
 - Hitbox state is derived from the current action frame. The weapon rig remains
@@ -87,8 +88,8 @@ classDiagram
 - Invulnerability is an explicit action window evaluated by the executor;
   `Health` remains the owner of whether incoming damage is accepted.
 - Input buffering remains a separate concern. Project S adapts the reusable
-  `ModularInput.InputBuffer<TAction>` and consumes a buffered combo only in a
-  chain window and a buffered skill only in a cancel window.
+  `ModularInput.InputBuffer<TAction>` and consumes a command only when the graph
+  resolves it through the current chain/cancel window.
 
 ## Temporary animation policy
 

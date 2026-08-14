@@ -7,7 +7,7 @@ namespace _App
     {
         private readonly ICombatClock _clock;
         private readonly CombatInputBufferSettings _settings;
-        private readonly InputBuffer<ESkillType> _buffer;
+        private readonly InputBuffer<PlayerCombatCommandId> _buffer;
 
         public int Count => _buffer.Count;
 
@@ -17,45 +17,45 @@ namespace _App
         {
             _clock = clock ?? throw new ArgumentNullException(nameof(clock));
             _settings = settings ?? throw new ArgumentNullException(nameof(settings));
-            _buffer = new InputBuffer<ESkillType>(_settings.BufferOptions);
+            _buffer = new InputBuffer<PlayerCombatCommandId>(_settings.BufferOptions);
         }
 
-        public bool Store(ESkillType skillType)
+        public bool Store(PlayerCombatCommandId commandId)
         {
             return _buffer.TryEnqueue(
-                skillType,
+                commandId,
                 _clock.UnscaledTime,
-                _settings.GetWriteOptions(skillType));
+                _settings.GetWriteOptions(commandId));
         }
 
-        public bool TryConsume(out ESkillType skillType)
+        public bool TryConsume(out PlayerCombatCommandId commandId)
         {
             if (!_buffer.TryConsume(
                     _clock.UnscaledTime,
-                    out InputBufferEntry<ESkillType> entry))
+                    out InputBufferEntry<PlayerCombatCommandId> entry))
             {
-                skillType = default;
+                commandId = default;
                 return false;
             }
 
-            skillType = entry.Action;
+            commandId = entry.Action;
             return true;
         }
 
         public bool TryConsume(
-            InputBufferEntryPredicate<ESkillType> predicate,
-            out ESkillType skillType)
+            InputBufferEntryPredicate<PlayerCombatCommandId> predicate,
+            out PlayerCombatCommandId commandId)
         {
             if (!_buffer.TryConsume(
                     _clock.UnscaledTime,
                     predicate,
-                    out InputBufferEntry<ESkillType> entry))
+                    out InputBufferEntry<PlayerCombatCommandId> entry))
             {
-                skillType = default;
+                commandId = default;
                 return false;
             }
 
-            skillType = entry.Action;
+            commandId = entry.Action;
             return true;
         }
 
