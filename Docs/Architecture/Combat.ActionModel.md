@@ -98,6 +98,20 @@ classDiagram
 
 ScriptableObject хранит только authoring data. Очередь input, текущая action, cooldown timestamps и progress timeline принадлежат scoped runtime objects.
 
+### Текущая конфигурация Player
+
+`Assets/_Game/Settings/Combat/Player/PlayerCombatActionProfile.asset` назначен на
+`Assets/_Game/Prefabs/Character/Player.prefab` и является штатным authoring-профилем игрока.
+Он содержит четыре наземных и четыре воздушных combo actions, отдельные ground/air
+варианты `skill.special`, environment-specific entries и переходы через chain/cancel windows.
+
+Input buffer настроен на четыре команды, отбрасывает действие с наименьшим приоритетом
+при переполнении и отдаёт приоритет `skill.special`. Planar и vertical combat motion
+описываются в action definition и исполняются через character motor с разрешением
+столкновений. Текущие timings, damage и distances являются стартовыми tuning values;
+ground/air ветки временно используют имеющиеся четыре combo clips и не привязывают
+gameplay graph к финальному набору анимаций.
+
 ## Зависимости
 
 Разрешено:

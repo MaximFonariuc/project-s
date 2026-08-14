@@ -5615,7 +5615,8 @@ MonoBehaviour:
   _maxPitch: 80
   _characterFeatures: {fileID: 11400000, guid: dc1465bfc5833d04981462926cb47f2e, type: 2}
   _skillsData: {fileID: 11400000, guid: 2bf2c1f18d63ce047aa7de1bc6ebded4, type: 2}
-  _combatActionProfile: {fileID: 0}
+  _combatActionProfile: {fileID: 11400000, guid: 9fed6dc9c6a443d429c2bb4fa917b674, type: 2}
+  _reactionProfile: {fileID: 0}
   _animator: {fileID: 4217215768243810943}
   _animationProfile: {fileID: 11400000, guid: 6fe7abd0a89875d4d88e0f1fb7010a02, type: 2}
   _weaponHolder: {fileID: 4383554178773615751}

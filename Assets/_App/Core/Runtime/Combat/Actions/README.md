@@ -91,22 +91,18 @@ classDiagram
   `ModularInput.InputBuffer<TAction>` and consumes a command only when the graph
   resolves it through the current chain/cancel window.
 
-## Temporary animation policy
+## Current Player authoring
 
-The current clips use prototype defaults matching the previous behavior:
+`Assets/_Game/Settings/Combat/Player/PlayerCombatActionProfile.asset` is assigned
+to the Player prefab. It currently defines four grounded combo actions, four
+airborne combo actions, grounded/airborne `skill.special` variants, and their
+entry, chain and cancel rules.
 
-- hitbox: `0.20 .. 0.55`;
-- combo/cancel: `0.50 .. 0.75`;
-- attack completion: `0.75`;
-- weapon commit and completion: `0.50`;
-- special skill cooldown: `1.25s`;
-- root motion: `Ignore`.
-- movement constraints: full action;
-- invulnerability: disabled.
-
-These values are normalized and are not stored in animation assets. Assign a
-`PlayerCombatActionProfile` when tuning begins; replacing FBX, clips or the
-Animator Controller does not require changes to gameplay code.
+The input buffer holds four commands and prioritizes `skill.special`. Action
+definitions own their normalized hit, chain, cancel, recovery and combat-motion
+windows. Current damage, timing and motion values are initial tuning data. Both
+branches temporarily reuse the four available combo clips, so replacing FBX,
+clips or the Animator Controller does not require changing the gameplay graph.
 
 This tree intentionally remains in `_App/Core`: DMC-like cancel semantics are
 still game-specific. Only a stable, project-neutral timeline should later be
