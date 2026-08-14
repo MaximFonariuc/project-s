@@ -1,0 +1,41 @@
+{
+  "SchemaVersion": 1,
+  "LibraryID": "RPGREF_0F567AEF0CF5F974E6D6AEE4",
+  "AnimationID": "a000_080000",
+  "SourceHash": "9769fe721752c9397902772798ffe01eff947bf1935cd95093e37355052d6904",
+  "SourceBlendSHA256": "181e1e2987e165cdf9e8e7bbdecd91572e3e3b25b70b4e0edddedb15ab00bac7",
+  "FBXSHA256": "c937c608f5703e5b2e61502a6b697e17bb2263835f7aef1b3f0b092e261f381b",
+  "PipelineVersion": "0.9.0",
+  "SkeletonProfile": "ProjectS_CLazy_Player",
+  "SourceSkeletonProfile": "ER_Player",
+  "RetargetProfile": "ER_Player_to_ProjectS_CLazy",
+  "RootMotionStatus": "InPlace",
+  "RootTranslation": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "ExportTimestamp": "2026-08-14T18:31:19.516235Z",
+  "FriendlyName": "Unknown",
+  "SemanticConfidence": "Unknown",
+  "CharacterType": "Player",
+  "WeaponFamily": "Unknown",
+  "ActionType": "Unknown",
+  "ActionVariant": "Unknown",
+  "Direction": "Unknown",
+  "Loop": false,
+  "FrameCount": 181,
+  "FrameRate": 30,
+  "DurationSeconds": 6.033333333333333,
+  "UnityImportProfile": "ProjectS_Humanoid",
+  "TargetAvatarAsset": "Assets/_Game/Models/AnimationSources/CLazy/TPose.FBX",
+  "Labels": [
+    "AnimationLibrary",
+    "LibraryID:RPGREF_0F567AEF0CF5F974E6D6AEE4",
+    "Action:Unknown",
+    "WeaponFamily:Unknown",
+    "CharacterType:Player",
+    "SemanticConfidence:Unknown",
+    "Source:EldenRing"
+  ]
+}

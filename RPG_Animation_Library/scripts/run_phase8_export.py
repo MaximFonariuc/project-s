@@ -281,6 +281,9 @@ def main() -> int:
                 "AnimationLibrary",
                 f"LibraryID:{canonical['LibraryID']}",
                 f"Action:{safe_name(canonical['ActionType'], 'Unknown')}",
+                f"WeaponFamily:{safe_name(canonical['WeaponFamily'], 'Unknown')}",
+                f"CharacterType:{safe_name(canonical['CharacterType'], 'Unknown')}",
+                f"SemanticConfidence:{safe_name(canonical['SemanticConfidence'], 'Unknown')}",
                 f"Source:{canonical['SourceGame']}",
             ],
         }

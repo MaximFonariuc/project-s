@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "pipeline_version": "0.8.0",
+  "pipeline_version": "0.9.0",
   "phase_versions": {
     "inventory": "1.0.0",
     "unpack": "1.1.0",
@@ -9,7 +9,8 @@
     "conversion": "1.0.0",
     "skeleton_profile": "1.0.0",
     "retarget": "1.0.0",
-    "fbx_export": "1.0.0"
+    "fbx_export": "1.0.0",
+    "unity_import": "1.0.0"
   },
   "project_root": ".",
   "paths": {
@@ -202,6 +203,15 @@
       "a000_080000"
     ],
     "root_translation_tolerance": 0.001
+  },
+  "unity_import": {
+    "pilot_only": true,
+    "phase9_input": "07_FBX/phase_8",
+    "phase9_output": "08_UNITY/phase_9",
+    "unity_asset_root": "../Assets/_Game/Animations/Imported/FromSoftwarePilot",
+    "expected_unity_version": "6000.0.80f1",
+    "expected_import_count": 5,
+    "validation_menu": "Tools/Project S/Animation Library/Validate Phase 9 Pilot"
   },
   "semantic_preview": {
     "source_tae": "02_UNPACKED/EldenVins/mod/chr/c0000-events/c0000-anibnd-dcx-wanibnd/INTERROOT_win64/chr/c0000/tae/a00.tae",

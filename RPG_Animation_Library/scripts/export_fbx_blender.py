@@ -34,6 +34,7 @@ def main() -> int:
     armature.hide_viewport = False
     armature.select_set(True)
     bpy.context.view_layer.objects.active = armature
+    armature.data.pose_position = "REST"
     bpy.context.scene.frame_start = int(expected["frameStart"])
     bpy.context.scene.frame_end = int(expected["frameEnd"])
     bpy.context.scene.render.fps = int(expected["frameRate"])

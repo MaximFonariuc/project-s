@@ -274,7 +274,7 @@ def main() -> int:
     if len(imported_armatures) != 1:
         raise RuntimeError(f"Expected one imported target armature, found {len(imported_armatures)}")
     target = imported_armatures[0]
-    target.name = "ProjectS_CLazy_Player"
+    target.name = target_profile["armatureName"]
     target.data.name = "ProjectS_CLazy_Player_Armature"
     target.rotation_mode = "QUATERNION"
 

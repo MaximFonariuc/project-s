@@ -1,0 +1,41 @@
+{
+  "SchemaVersion": 1,
+  "LibraryID": "RPGREF_7BF0E1BA1FB96046803D49F9",
+  "AnimationID": "a000_040590",
+  "SourceHash": "2a004bd709a723b61f993a019f48dae5c68c341eb8f17cb9dae09782a707bff6",
+  "SourceBlendSHA256": "7a8b86028571f40edb39f7890ec1955d400ded0bcf962efd23e9e143782bc5be",
+  "FBXSHA256": "b83f68bd07b867d37d0f7cc5370f8ee96436f2bce7446057863d04ea4e9d6bf3",
+  "PipelineVersion": "0.9.0",
+  "SkeletonProfile": "ProjectS_CLazy_Player",
+  "SourceSkeletonProfile": "ER_Player",
+  "RetargetProfile": "ER_Player_to_ProjectS_CLazy",
+  "RootMotionStatus": "RootMotionPreservedScaled",
+  "RootTranslation": [
+    0.0,
+    -2.6489127,
+    0.0
+  ],
+  "ExportTimestamp": "2026-08-14T18:31:19.516235Z",
+  "FriendlyName": "Forward Leaping Attack",
+  "SemanticConfidence": "Probable",
+  "CharacterType": "Player",
+  "WeaponFamily": "Unknown",
+  "ActionType": "Attack",
+  "ActionVariant": "ForwardLeapingAttack",
+  "Direction": "Forward",
+  "Loop": false,
+  "FrameCount": 87,
+  "FrameRate": 30,
+  "DurationSeconds": 2.9,
+  "UnityImportProfile": "ProjectS_Humanoid",
+  "TargetAvatarAsset": "Assets/_Game/Models/AnimationSources/CLazy/TPose.FBX",
+  "Labels": [
+    "AnimationLibrary",
+    "LibraryID:RPGREF_7BF0E1BA1FB96046803D49F9",
+    "Action:Attack",
+    "WeaponFamily:Unknown",
+    "CharacterType:Player",
+    "SemanticConfidence:Probable",
+    "Source:EldenRing"
+  ]
+}

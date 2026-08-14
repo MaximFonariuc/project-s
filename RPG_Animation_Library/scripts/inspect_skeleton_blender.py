@@ -20,6 +20,7 @@ def parse_args() -> argparse.Namespace:
     source.add_argument("--fbx", type=Path)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--sample-bone", action="append", default=[])
+    parser.add_argument("--import-animation", action="store_true")
     return parser.parse_args(arguments)
 
 
@@ -43,7 +44,7 @@ def load_scene(args: argparse.Namespace) -> Path:
 
     path = args.fbx.resolve()
     bpy.ops.wm.read_factory_settings(use_empty=True)
-    bpy.ops.import_scene.fbx(filepath=str(path), use_anim=False)
+    bpy.ops.import_scene.fbx(filepath=str(path), use_anim=args.import_animation)
     return path
 
 

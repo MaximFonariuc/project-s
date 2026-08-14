@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "timestamp": "2026-08-14T18:34:12.7388946Z",
+  "pipelineVersion": "0.9.0",
+  "phaseVersion": "1.0.0",
+  "phaseConfigSHA256": "1b2500705da7a4af2ab7528f26417183d0ddf4ef5789dc016ccb0a19b89eef72",
+  "approvalScope": "PilotOnly/ProjectS_CLazy_Player/UnityHumanoidImport",
+  "unityVersion": "6000.0.80f1",
+  "pilotCount": 5,
+  "receiptSHA256": "d809e966bccdf5aaa7021cbe1469280fb15d4f83c0572716c8820102862cc04f",
+  "outputs": {
+    "Database/unity_import_operations.csv": "e6038cf9aa435d2df10107d4ba5c6a5c2a915909bad48f762aca3b4717ff852b",
+    "Database/animations.csv": "fc178f5adfbacc3cebf6320cb8b9d0168c8760bd980ca789ec15a1f61fefb81a",
+    "03_CATALOG/reports/phase_9_status.md": "56eccdfeba01f8be492a7f780ddf999eb3787cc53561b82de623ae7c0f10c840"
+  },
+  "artifacts": {
+    "Assets/_Game/Animations/Imported/FromSoftwarePilot/Unknown/Player_Unknown_Unknown__RPGREF_0F567AEF0CF5F974E6D6AEE4.fbx": {
+      "assetGuid": "a2eebd2364cab804a9cfba2406f07179",
+      "sha256": "c937c608f5703e5b2e61502a6b697e17bb2263835f7aef1b3f0b092e261f381b",
+      "metadataPath": "Assets/_Game/Animations/Imported/FromSoftwarePilot/Unknown/Player_Unknown_Unknown__RPGREF_0F567AEF0CF5F974E6D6AEE4.animlib.json",
+      "metadataSHA256": "d72a9f31d8fc5e9aad9edf716f4e5f0e192fdcd7da3496da8803ae7f53790380",
+      "clipNames": [
+        "a000_080000"
+      ]
+    },
+    "Assets/_Game/Animations/Imported/FromSoftwarePilot/Dodge/Player_Dodge_ForwardRoll__RPGREF_6139DF2ED3414FD6A29783C4.fbx": {
+      "assetGuid": "162b96f483b4d244196f6cdda0c92f09",
+      "sha256": "98c9f2578a7348726a5c77b01b6b1af60b3b85a42367c834bd10532a85fb6e4e",
+      "metadataPath": "Assets/_Game/Animations/Imported/FromSoftwarePilot/Dodge/Player_Dodge_ForwardRoll__RPGREF_6139DF2ED3414FD6A29783C4.animlib.json",
+      "metadataSHA256": "9a0b9756283aa546cf02cf1f2e8ee90aaf148bca6961f3b425376a7dd387c820",
+      "clipNames": [
+        "ForwardRoll"
+      ]
+    },
+    "Assets/_Game/Animations/Imported/FromSoftwarePilot/Attack/Player_Attack_ForwardLeapingAttack__RPGREF_7BF0E1BA1FB96046803D49F9.fbx": {
+      "assetGuid": "9ac2ca92f632b164285134ced00f8136",
+      "sha256": "b83f68bd07b867d37d0f7cc5370f8ee96436f2bce7446057863d04ea4e9d6bf3",
+      "metadataPath": "Assets/_Game/Animations/Imported/FromSoftwarePilot/Attack/Player_Attack_ForwardLeapingAttack__RPGREF_7BF0E1BA1FB96046803D49F9.animlib.json",
+      "metadataSHA256": "ae5dda09e9181e2759c909b124d8b62ee432a8dd4dd11da1efb1c05bc46e7f37",
+      "clipNames": [
+        "ForwardLeapingAttack"
+      ]
+    },
+    "Assets/_Game/Animations/Imported/FromSoftwarePilot/Locomotion/Player_Locomotion_ForwardStep__RPGREF_7C4D02DD2CF66D4C4B1425CC.fbx": {
+      "assetGuid": "bcb69eb04db9ab84797a66afd68dbf73",
+      "sha256": "3c95441df6cd79d6cc56fb1c3eb6d832d4e0b05749b5d7f3cf1bd30a047a6f8d",
+      "metadataPath": "Assets/_Game/Animations/Imported/FromSoftwarePilot/Locomotion/Player_Locomotion_ForwardStep__RPGREF_7C4D02DD2CF66D4C4B1425CC.animlib.json",
+      "metadataSHA256": "93ea4ee2806d425943c14bfc03ff814ebcfd20529533ed5b35796d9b0970f918",
+      "clipNames": [
+        "ForwardStep"
+      ]
+    },
+    "Assets/_Game/Animations/Imported/FromSoftwarePilot/Attack/Player_Attack_RisingStrike__RPGREF_AD2D98A037757115F711E21D.fbx": {
+      "assetGuid": "c6607c76f2c299845b8c5621c88c6e1b",
+      "sha256": "35fecf2b2679f627f78ef64b3c3084697f74936ec62f35ca08ab6d72749ea980",
+      "metadataPath": "Assets/_Game/Animations/Imported/FromSoftwarePilot/Attack/Player_Attack_RisingStrike__RPGREF_AD2D98A037757115F711E21D.animlib.json",
+      "metadataSHA256": "acebabca2635022808b86c83832b73c1031ff5e31ad355323d6889139cc46e57",
+      "clipNames": [
+        "RisingStrike"
+      ]
+    }
+  }
+}

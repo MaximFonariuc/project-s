@@ -1,0 +1,41 @@
+{
+  "SchemaVersion": 1,
+  "LibraryID": "RPGREF_AD2D98A037757115F711E21D",
+  "AnimationID": "a000_041150",
+  "SourceHash": "40b5c3791661b69788f3976f959398f39a14f2837060992c35916ee03ec5fe8e",
+  "SourceBlendSHA256": "9178603f40523de5a222fdb64f55d08d886d7863021d96be3ac67e23704670b4",
+  "FBXSHA256": "35fecf2b2679f627f78ef64b3c3084697f74936ec62f35ca08ab6d72749ea980",
+  "PipelineVersion": "0.9.0",
+  "SkeletonProfile": "ProjectS_CLazy_Player",
+  "SourceSkeletonProfile": "ER_Player",
+  "RetargetProfile": "ER_Player_to_ProjectS_CLazy",
+  "RootMotionStatus": "RootMotionPreservedScaled",
+  "RootTranslation": [
+    0.0,
+    -1.6833478,
+    0.0
+  ],
+  "ExportTimestamp": "2026-08-14T18:31:19.516235Z",
+  "FriendlyName": "Rising Strike",
+  "SemanticConfidence": "Probable",
+  "CharacterType": "Player",
+  "WeaponFamily": "Unknown",
+  "ActionType": "Attack",
+  "ActionVariant": "RisingStrike",
+  "Direction": "Forward",
+  "Loop": false,
+  "FrameCount": 73,
+  "FrameRate": 30,
+  "DurationSeconds": 2.433333333333333,
+  "UnityImportProfile": "ProjectS_Humanoid",
+  "TargetAvatarAsset": "Assets/_Game/Models/AnimationSources/CLazy/TPose.FBX",
+  "Labels": [
+    "AnimationLibrary",
+    "LibraryID:RPGREF_AD2D98A037757115F711E21D",
+    "Action:Attack",
+    "WeaponFamily:Unknown",
+    "CharacterType:Player",
+    "SemanticConfidence:Probable",
+    "Source:EldenRing"
+  ]
+}

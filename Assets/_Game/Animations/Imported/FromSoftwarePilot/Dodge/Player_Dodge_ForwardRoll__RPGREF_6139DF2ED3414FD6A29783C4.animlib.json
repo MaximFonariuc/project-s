@@ -1,0 +1,41 @@
+{
+  "SchemaVersion": 1,
+  "LibraryID": "RPGREF_6139DF2ED3414FD6A29783C4",
+  "AnimationID": "a000_019270",
+  "SourceHash": "e7535fa41bf42bf5e4bc9d003166d55638b1e1e388a4a74ff5af6688eb5e4e2c",
+  "SourceBlendSHA256": "f6fe20a4460c282821a57f62e15b72d7b81c54be910b569ba75a4ec462e5eb7c",
+  "FBXSHA256": "98c9f2578a7348726a5c77b01b6b1af60b3b85a42367c834bd10532a85fb6e4e",
+  "PipelineVersion": "0.9.0",
+  "SkeletonProfile": "ProjectS_CLazy_Player",
+  "SourceSkeletonProfile": "ER_Player",
+  "RetargetProfile": "ER_Player_to_ProjectS_CLazy",
+  "RootMotionStatus": "RootMotionPreservedScaled",
+  "RootTranslation": [
+    0.0,
+    3.9215202,
+    0.0
+  ],
+  "ExportTimestamp": "2026-08-14T18:31:19.516235Z",
+  "FriendlyName": "Forward Roll",
+  "SemanticConfidence": "Verified",
+  "CharacterType": "Player",
+  "WeaponFamily": "Unknown",
+  "ActionType": "Dodge",
+  "ActionVariant": "ForwardRoll",
+  "Direction": "Forward",
+  "Loop": false,
+  "FrameCount": 65,
+  "FrameRate": 30,
+  "DurationSeconds": 2.1666666666666665,
+  "UnityImportProfile": "ProjectS_Humanoid",
+  "TargetAvatarAsset": "Assets/_Game/Models/AnimationSources/CLazy/TPose.FBX",
+  "Labels": [
+    "AnimationLibrary",
+    "LibraryID:RPGREF_6139DF2ED3414FD6A29783C4",
+    "Action:Dodge",
+    "WeaponFamily:Unknown",
+    "CharacterType:Player",
+    "SemanticConfidence:Verified",
+    "Source:EldenRing"
+  ]
+}

@@ -2,7 +2,7 @@
 
 Internal, non-commercial prototype pipeline for cataloging and later retargeting FromSoftware-compatible animation references into Project S.
 
-The authoritative execution specification is stored as `CODEX_FromSoftware_Animation_Pipeline.md`. The first repository milestone intentionally implements Phase 0 and Phase 1 only.
+The authoritative execution specification is stored as `CODEX_FromSoftware_Animation_Pipeline.md`. The current bounded pilot implements Phase 0 through Phase 9; batch processing remains disabled.
 
 Raw data is not copied into this directory. `config/pipeline.json` maps the logical immutable `01_RAW` sources to the existing `../Elden` folders and archives. Inventory operations only open source files for reading.
 
@@ -74,6 +74,23 @@ Versioned Phase 5 evidence:
 - `Database/conversion_operations.csv`;
 - `Database/phase_5_state.json`;
 - `ConversionStatus=PilotPassed` for the selected rows in `Database/animations.csv`.
+
+The Phase 6-9 pilot then profiles the source and target skeletons, retargets five clips, exports animation-only FBX files and imports them through the Unity Editor gate:
+
+```powershell
+python RPG_Animation_Library/scripts/build_phase6_profiles.py --config RPG_Animation_Library/config/pipeline.json
+python RPG_Animation_Library/scripts/run_phase7_retarget.py --config RPG_Animation_Library/config/pipeline.json
+python RPG_Animation_Library/scripts/run_phase8_export.py --config RPG_Animation_Library/config/pipeline.json
+python RPG_Animation_Library/scripts/stage_phase9_unity.py --config RPG_Animation_Library/config/pipeline.json
+```
+
+After importing the five staged FBX files in Unity, run `Tools/Project S/Animation Library/Validate Phase 9 Pilot`, then finalize the versioned receipt:
+
+```powershell
+python RPG_Animation_Library/scripts/finalize_phase9_unity.py --config RPG_Animation_Library/config/pipeline.json
+```
+
+Phase 9 evidence is stored in `Database/unity_import_operations.csv`, `Database/phase_9_state.json` and `03_CATALOG/reports/phase_9_status.md`. A PASS proves the bounded technical import and does not promote uncertain semantic labels or approve bulk conversion.
 
 Environment and installed tool versions are documented in `03_CATALOG/reports/environment.md` and `00_Tools/README.md`.
 
