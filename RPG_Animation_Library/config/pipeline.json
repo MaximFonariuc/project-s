@@ -1,6 +1,11 @@
 {
   "schema_version": 1,
-  "pipeline_version": "0.2.0",
+  "pipeline_version": "0.3.0",
+  "phase_versions": {
+    "inventory": "1.0.0",
+    "unpack": "1.1.0",
+    "index": "1.0.0"
+  },
   "project_root": ".",
   "paths": {
     "raw": "01_RAW",
@@ -115,6 +120,21 @@
           ".hkx"
         ]
       }
+    ]
+  },
+  "index": {
+    "library_id_prefix": "RPGREF",
+    "raw_extensions": [
+      ".hkx",
+      ".tae",
+      ".anibnd",
+      ".anibnd.dcx"
+    ],
+    "unpacked_extensions": [
+      ".hkx",
+      ".tae",
+      ".anibnd",
+      ".anibnd.dcx"
     ]
   },
   "conversion": {

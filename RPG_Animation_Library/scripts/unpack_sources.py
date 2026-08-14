@@ -92,6 +92,18 @@ def sha256_for(path: Path) -> str:
     return digest.hexdigest()
 
 
+def unpack_phase_config_hash(config: dict) -> str:
+    payload = {
+        "phaseVersion": config["phase_versions"]["unpack"],
+        "unpackedPath": config["paths"]["unpacked"],
+        "toolPath": config["tools"]["witchybnd"],
+        "toolVersion": config["tool_versions"]["witchybnd"],
+        "unpack": config["unpack"],
+    }
+    encoded = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
 def resolve_library_root(config_path: Path, config: dict) -> Path:
     configured = Path(config.get("project_root", "."))
     return (config_path.parent.parent / configured).resolve()
@@ -174,8 +186,8 @@ def validate_cached_receipt(
     job_root: Path,
     source_copy: Path,
     input_sha256: str,
-    config_sha256: str,
-    pipeline_version: str,
+    phase_config_sha256: str,
+    phase_version: str,
     tool_version: str,
     tool_sha256: str,
 ) -> tuple[bool, list[dict], str]:
@@ -183,12 +195,15 @@ def validate_cached_receipt(
         return False, [], ""
     expected = {
         "inputSHA256": input_sha256,
-        "configSHA256": config_sha256,
-        "pipelineVersion": pipeline_version,
         "toolVersion": tool_version,
         "toolExecutableSHA256": tool_sha256,
     }
     if any(receipt.get(key) != value for key, value in expected.items()):
+        return False, [], ""
+    if receipt.get("phaseConfigSHA256") is not None and (
+        receipt.get("phaseConfigSHA256") != phase_config_sha256
+        or receipt.get("phaseVersion") != phase_version
+    ):
         return False, [], ""
 
     outputs, fingerprint = inventory_outputs(job_root, source_copy)
@@ -202,7 +217,8 @@ def write_receipt(
     job: dict,
     timestamp: str,
     input_sha256: str,
-    config_sha256: str,
+    phase_config_sha256: str,
+    phase_version: str,
     pipeline_version: str,
     tool_version: str,
     tool_sha256: str,
@@ -218,7 +234,8 @@ def write_receipt(
         "source": job["source"],
         "catalogRelativePath": job["catalog_relative_path"],
         "inputSHA256": input_sha256,
-        "configSHA256": config_sha256,
+        "phaseConfigSHA256": phase_config_sha256,
+        "phaseVersion": phase_version,
         "pipelineVersion": pipeline_version,
         "tool": "WitchyBND",
         "toolVersion": tool_version,
@@ -234,7 +251,7 @@ def run_job(
     job: dict,
     run_id: str,
     config: dict,
-    config_sha256: str,
+    phase_config_sha256: str,
     library_root: Path,
     unpacked_root: Path,
     raw_manifest: dict[tuple[str, str], dict],
@@ -285,13 +302,29 @@ def run_job(
             job_root,
             source_copy,
             input_sha256,
-            config_sha256,
-            config["pipeline_version"],
+            phase_config_sha256,
+            config["phase_versions"]["unpack"],
             tool_version,
             tool_sha256,
         )
         if cache_valid and not force:
             validate_expected_outputs(job, outputs)
+            if receipt.get("phaseConfigSHA256") is None:
+                write_receipt(
+                    receipt_path,
+                    job,
+                    timestamp,
+                    input_sha256,
+                    phase_config_sha256,
+                    config["phase_versions"]["unpack"],
+                    config["pipeline_version"],
+                    tool_version,
+                    tool_sha256,
+                    command,
+                    outputs,
+                    fingerprint,
+                )
+                logger.info("MIGRATE %s: receipt upgraded to phase-scoped provenance", job["id"])
             duration = time.perf_counter() - started
             logger.info("SKIP %s: unchanged PASS receipt and outputs", job["id"])
             return OperationResult(
@@ -354,7 +387,8 @@ def run_job(
             job,
             timestamp,
             input_sha256,
-            config_sha256,
+            phase_config_sha256,
+            config["phase_versions"]["unpack"],
             config["pipeline_version"],
             tool_version,
             tool_sha256,
@@ -554,7 +588,7 @@ def main() -> int:
     )
     logger = logging.getLogger("animation-pipeline.unpack")
 
-    config_sha256 = sha256_for(config_path)
+    phase_config_sha256 = unpack_phase_config_hash(config)
     tool_path = resolve_from_library(library_root, config["tools"]["witchybnd"])
     if not tool_path.is_file():
         raise FileNotFoundError(tool_path)
@@ -574,7 +608,7 @@ def main() -> int:
             job,
             run_id,
             config,
-            config_sha256,
+            phase_config_sha256,
             library_root,
             unpacked_root,
             raw_manifest,
@@ -603,7 +637,7 @@ def main() -> int:
             "InputCount": len(results),
             "SuccessCount": passed + skipped,
             "FailureCount": failures,
-            "ConfigHash": config_sha256,
+            "ConfigHash": phase_config_sha256,
             "PipelineVersion": config["pipeline_version"],
             "LogPath": log_relative_path,
             "Notes": f"passed={passed}; skipped={skipped}; failed={failures}",

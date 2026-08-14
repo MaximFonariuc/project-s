@@ -31,6 +31,14 @@ The pilot is limited to the three configured `c0000` jobs. Use repeated `--job <
 
 Generated unpack data and logs remain ignored. Versioned provenance is stored in `Database/pipeline_runs.csv`, `Database/unpack_operations.csv`, and `03_CATALOG/reports/phase_2_status.md`.
 
+Build or update the Phase 3 canonical identity catalog:
+
+```powershell
+python RPG_Animation_Library/scripts/index_animations.py --config RPG_Animation_Library/config/pipeline.json
+```
+
+Phase 3 indexes loose RAW HKX/TAE/container identities plus hash-verified Phase 2 outputs. It creates stable `LibraryID` values and preserves curated metadata columns on rebuild. Semantic classification remains `Unknown` until Phase 4 preview and identification.
+
 Environment and installed tool versions are documented in `03_CATALOG/reports/environment.md` and `00_Tools/README.md`.
 
 Do not rename, overwrite, unpack, or convert files inside the mapped RAW sources.

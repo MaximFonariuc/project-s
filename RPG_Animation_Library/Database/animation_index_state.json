@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "timestamp": "2026-08-14T15:18:15.402607Z",
+  "pipelineVersion": "0.3.0",
+  "phaseVersion": "1.0.0",
+  "phaseConfigSHA256": "f971ee75d46b9eebec0c317724fb892a335c394c9c9e45fb2b3d39bae47a47d8",
+  "inputFingerprint": "4a677463e90ed26869ff472440a481088e99ff624c40c9d7e1878d5c13c40835",
+  "recordCount": 12690,
+  "outputSHA256": "2f90e000a05ab8e283e6a2a72bc7a9f983234dd30bd3a456b8b5ede832e2e035"
+}

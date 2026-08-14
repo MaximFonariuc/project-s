@@ -1,6 +1,6 @@
 # Phase 1 source inventory
 
-Scan timestamp: `2026-08-14T15:06:39.701186Z`
+Scan timestamp: `2026-08-14T15:17:26.411246Z`
 
 Result: **PASS**. Every file in every configured RAW root is represented by a read-only SHA-256 inventory in deterministic source/path order. This run reused hashes whose size and modification time still match; use `--force` for a complete re-hash.
 
