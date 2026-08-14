@@ -24,7 +24,8 @@ namespace _App
         private readonly HashSet<int> _visitedTargets = new HashSet<int>();
 
         private Collider[] _overlapBuffer = new Collider[InitialBufferSize];
-        private Collider _currentTargetCollider;
+        private ICombatTarget _currentTarget;
+        private UnityEngine.Object _currentTargetObject;
         private ERotationMode _rotationModeBeforeLock;
         private bool _hasTarget;
         private bool _targetSwitchArmed;
@@ -32,12 +33,15 @@ namespace _App
 
         public event Action<Transform> TargetChanged;
 
-        public bool IsTargetLocked => _hasTarget && CurrentTarget != null;
+        public bool IsTargetLocked =>
+            _hasTarget &&
+            _currentTargetObject != null &&
+            CurrentTarget != null &&
+            _currentTarget.IsTargetable;
         public Transform CurrentTarget { get; private set; }
-        public Vector3 AimPosition => _currentTargetCollider != null
-            ? _currentTargetCollider.bounds.center
-            : CurrentTarget != null
-                ? CurrentTarget.position
+        public Vector3 AimPosition =>
+            _currentTargetObject != null && CurrentTarget != null
+                ? _currentTarget.AimPosition
                 : Vector3.zero;
 
         public PlayerTargetingController(
@@ -90,7 +94,9 @@ namespace _App
                 return;
             }
 
-            if (CurrentTarget == null)
+            if (_currentTargetObject == null ||
+                CurrentTarget == null ||
+                !_currentTarget.IsTargetable)
             {
                 ClearTarget();
                 return;
@@ -105,7 +111,7 @@ namespace _App
 
         public bool ToggleLock()
         {
-            if (IsTargetLocked)
+            if (_hasTarget)
             {
                 ClearTarget();
                 return false;
@@ -116,13 +122,23 @@ namespace _App
 
         public bool TryAcquireTarget()
         {
-            if (!TrySelectTarget(0, false, out Transform target, out Collider targetCollider))
+            if (IsTargetLocked)
+            {
+                return true;
+            }
+
+            if (_hasTarget)
+            {
+                ClearTarget();
+            }
+
+            if (!TrySelectTarget(0, false, out ICombatTarget target))
             {
                 return false;
             }
 
             _rotationModeBeforeLock = _actor.RotationMode;
-            SetTarget(target, targetCollider);
+            SetTarget(target);
             _actor.SetRotationMode(ERotationMode.OrientToViewAndMovement);
             return true;
         }
@@ -136,12 +152,12 @@ namespace _App
 
             int normalizedDirection = Math.Sign(direction);
             if (normalizedDirection == 0 ||
-                !TrySelectTarget(normalizedDirection, true, out Transform target, out Collider targetCollider))
+                !TrySelectTarget(normalizedDirection, true, out ICombatTarget target))
             {
                 return false;
             }
 
-            SetTarget(target, targetCollider);
+            SetTarget(target);
             return true;
         }
 
@@ -154,7 +170,8 @@ namespace _App
 
             _hasTarget = false;
             CurrentTarget = null;
-            _currentTargetCollider = null;
+            _currentTarget = null;
+            _currentTargetObject = null;
             if (_actor.RotationMode == ERotationMode.OrientToViewAndMovement)
             {
                 _actor.SetRotationMode(_rotationModeBeforeLock);
@@ -198,11 +215,9 @@ namespace _App
         private bool TrySelectTarget(
             int switchDirection,
             bool excludeCurrent,
-            out Transform selectedTarget,
-            out Collider selectedCollider)
+            out ICombatTarget selectedTarget)
         {
             selectedTarget = null;
-            selectedCollider = null;
 
             int hits = OverlapTargets();
             if (hits == 0)
@@ -221,22 +236,19 @@ namespace _App
                 Collider candidateCollider = _overlapBuffer[i];
                 _overlapBuffer[i] = null;
                 if (candidateCollider == null ||
-                    !TryResolveTarget(
-                        candidateCollider,
-                        out Transform candidateTarget,
-                        out Collider aimCollider))
+                    !TryResolveTarget(candidateCollider, out ICombatTarget candidateTarget))
                 {
                     continue;
                 }
 
-                int targetId = candidateTarget.GetInstanceID();
+                int targetId = candidateTarget.TargetId;
                 if (!_visitedTargets.Add(targetId) ||
-                    (excludeCurrent && candidateTarget == CurrentTarget))
+                    (excludeCurrent && candidateTarget.TargetRoot == CurrentTarget))
                 {
                     continue;
                 }
 
-                Vector3 aimPosition = aimCollider.bounds.center;
+                Vector3 aimPosition = candidateTarget.AimPosition;
                 Vector3 viewDirection = aimPosition - _camera.Position;
                 float distance = viewDirection.magnitude;
                 if (distance <= 0.0001f)
@@ -274,10 +286,9 @@ namespace _App
 
                 bestScore = score;
                 selectedTarget = candidateTarget;
-                selectedCollider = aimCollider;
             }
 
-            return selectedTarget != null;
+            return selectedTarget != null && selectedTarget.TargetRoot != null;
         }
 
         private int OverlapTargets()
@@ -301,27 +312,14 @@ namespace _App
             }
         }
 
-        private bool TryResolveTarget(
-            Collider candidateCollider,
-            out Transform target,
-            out Collider aimCollider)
+        private bool TryResolveTarget(Collider candidateCollider, out ICombatTarget target)
         {
-            Character candidateCharacter = candidateCollider.GetComponentInParent<Character>();
-            if (candidateCharacter != null)
-            {
-                target = candidateCharacter.transform;
-                aimCollider = candidateCharacter.GetComponent<Collider>();
-                if (aimCollider == null)
-                {
-                    aimCollider = candidateCollider;
-                }
-
-                return target != _actor.Root;
-            }
-
-            target = candidateCollider.transform.root;
-            aimCollider = candidateCollider;
-            return target != null && target != _actor.Root;
+            target = candidateCollider.GetComponentInParent<ICombatTarget>();
+            UnityEngine.Object targetObject = target as UnityEngine.Object;
+            return targetObject != null &&
+                   target.IsTargetable &&
+                   target.TargetRoot != null &&
+                   target.TargetRoot != _actor.Root;
         }
 
         private float HorizontalViewPosition(Vector3 worldPosition)
@@ -335,12 +333,13 @@ namespace _App
             return Vector3.Dot(direction.normalized, _camera.Right);
         }
 
-        private void SetTarget(Transform target, Collider targetCollider)
+        private void SetTarget(ICombatTarget target)
         {
+            _currentTarget = target;
+            _currentTargetObject = target as UnityEngine.Object;
             _hasTarget = true;
-            CurrentTarget = target;
-            _currentTargetCollider = targetCollider;
-            TargetChanged?.Invoke(target);
+            CurrentTarget = target.TargetRoot;
+            TargetChanged?.Invoke(CurrentTarget);
         }
     }
 }

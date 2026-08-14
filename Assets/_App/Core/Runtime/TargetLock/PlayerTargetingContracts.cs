@@ -3,6 +3,14 @@ using UnityEngine;
 
 namespace _App
 {
+    public interface ICombatTarget
+    {
+        int TargetId { get; }
+        bool IsTargetable { get; }
+        Transform TargetRoot { get; }
+        Vector3 AimPosition { get; }
+    }
+
     public interface IPlayerTargetingState
     {
         event Action<Transform> TargetChanged;

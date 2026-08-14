@@ -2,7 +2,11 @@
 
 ## Ответственность
 
-`PlayerTargetingController` владеет lock-on state и выбором цели. Он обрабатывает семантическую команду LockOn, выполняет ограниченный physics query, выбирает actor, следит за допустимой дистанцией и меняет rotation policy игрока. Он не управляет камерой, Cinemachine и combat execution.
+`PlayerTargetingController` владеет lock-on state, выбором и переключением цели. Он получает семантические команды ввода, выполняет ограниченный physics query, меняет rotation policy игрока и публикует read-only targeting state для камеры и combat.
+
+`CombatTarget` — явная authoring-граница цели. Он определяет корень actor, точку прицеливания и доступность цели. Случайный collider на слое `Enemy` без `CombatTarget` целью не является.
+
+Targeting не управляет Cinemachine, Animator, damage, AI или смертью персонажа.
 
 ## Дерево классов
 
@@ -24,11 +28,27 @@ classDiagram
         +CurrentTarget Transform
         +AimPosition Vector3
     }
+    class ICombatTarget {
+        <<target port>>
+        +TargetId int
+        +IsTargetable bool
+        +TargetRoot Transform
+        +AimPosition Vector3
+    }
     class PlayerTargetingController {
         +MaxLockDistance float
         +Enable()
         +Disable()
         +Tick()
+    }
+    class CombatTarget {
+        -targetRoot Transform
+        -aimPoint Transform
+        -aimCollider Collider
+        -health Health
+    }
+    class Health {
+        +IsAlive bool
     }
     class IPlayerInput {
         <<input port>>
@@ -57,48 +77,64 @@ classDiagram
 
     IPlayerTargetingCommands <|.. PlayerTargetingController
     IPlayerTargetingState <|.. PlayerTargetingController
+    ICombatTarget <|.. CombatTarget
+    CombatTarget --> Health : optional availability
     PlayerTargetingController --> IPlayerInput
     PlayerTargetingController --> ICameraOrientation
     PlayerTargetingController --> IPlayerTargetingActor
+    PlayerTargetingController --> ICombatTarget : selects
     PlayerCameraController --> IPlayerTargetingState
     PlayerTargetingComposition ..> PlayerTargetingController : constructs
 ```
 
 ## Выбор цели
 
-Кандидаты собираются через `Physics.OverlapSphereNonAlloc` только по слою `Enemy`. Buffer увеличивается до ограниченного максимума; переполнение не создаёт бесконечный рост памяти.
+Кандидаты собираются через `Physics.OverlapSphereNonAlloc` только по слою `Enemy`. Buffer увеличивается до ограниченного максимума и не создаёт неограниченный рост памяти.
 
-При выборе controller:
+Для каждого collider controller ищет `ICombatTarget` вверх по hierarchy и затем:
 
-- отбрасывает кандидатов вне view cone;
-- сводит составные colliders одного actor к корневому `Character`, чтобы limb collider не становился отдельной целью;
-- выбирает ближайшего к направлению центра камеры actor, используя расстояние как дополнительный вес;
-- хранит collider для стабильной точки прицеливания через `bounds.center`;
-- автоматически снимает lock при уничтожении цели или превышении `MaxLockDistance`.
+- отклоняет disabled, destroyed и недоступные цели;
+- сводит составные colliders к одному actor через `TargetId`;
+- отбрасывает actor вне view cone;
+- использует `AimPosition`, а не положение случайного limb collider;
+- при первичном захвате выбирает actor ближе к направлению камеры;
+- при переключении выбирает ближайшую цель слева или справа от текущей.
 
-`SwitchTarget(-1|1)` получает платформо-независимое направление из `IPlayerInput.TargetSwitch`. Текущие bindings: `Z/C`, `Gamepad rightStick/x` и `Joystick stick/x`; будущий touch adapter может публиковать ту же ось без изменения targeting. Controller применяет пороги actuation/release и разрешает только одно переключение до возврата оси в dead zone, поэтому удержание стика не перебирает цели каждый кадр.
+Если `CombatTarget` отключён, уничтожен, его `Health` больше не жив или actor вышел за `MaxLockDistance`, controller снимает lock и восстанавливает прежний rotation mode игрока.
+
+`SwitchTarget(-1|1)` получает платформо-независимое направление из `IPlayerInput.TargetSwitch`. Текущие bindings: `Z/C`, `Gamepad rightStick/x` и `Joystick stick/x`. Пороги actuation/release разрешают только одно переключение до возврата оси в dead zone.
+
+## Authoring цели
+
+На корневой объект противника либо на общего родителя его physics colliders добавляется `CombatTarget`:
+
+- `Target Root` — логический корень actor; по умолчанию объект компонента;
+- `Aim Point` — предпочтительная явная точка, например грудь или центр босса;
+- `Aim Collider` — fallback через `bounds.center`, если `Aim Point` не задан;
+- `Health` — опциональный источник доступности. При отсутствии `Health` цель считается доступной, пока компонент активен.
+
+Collider цели должен находиться на physics layer `Enemy`. Для составного body rig достаточно одного `CombatTarget` на общем родителе: все дочерние colliders разрешаются в один `TargetId`.
 
 ## Зависимости и ownership
 
 ```mermaid
 flowchart LR
-    Input["LockOn semantic command"] --> Targeting["PlayerTargetingController"]
+    Input["Semantic lock-on input"] --> Targeting["PlayerTargetingController"]
     CameraView["ICameraOrientation"] --> Targeting
     Physics["Enemy layer query"] --> Targeting
     Actor["IPlayerTargetingActor"] --> Targeting
+    Target["ICombatTarget"] --> Targeting
+    Health["Health.IsAlive"] --> CombatTarget["CombatTarget"]
+    CombatTarget --> Target
     Targeting --> State["IPlayerTargetingState"]
     State --> Camera["PlayerCameraController"]
-    State -.-> Combat["Future combat consumer"]
+    State -.-> Combat["Combat consumers"]
 ```
 
-Targeting зависит от read-only camera orientation, но камера зависит только от read-only targeting state. Ни один controller не получает concrete-тип другого через constructor, поэтому нет циклической зависимости.
+Targeting зависит от read-only camera orientation и узкой actor boundary. Камера и combat получают только `IPlayerTargetingState`. `CombatTarget` адаптирует Unity hierarchy и опциональный `Health` к контракту цели, поэтому selection больше не зависит от concrete `Character`, enemy AI или body-collider implementation.
 
-Доступ к игроку ограничен `IPlayerTargetingActor`: controller читает позицию и может изменить только rotation policy. Concrete `Character` скрыт за `PlayerActorAdapter`; составные colliders целей по-прежнему разрешаются до их корневого `Character` как часть target selection.
-
-Старые `PlayerTargetLockSystem` и дублирующий `TargetLockSystem`, которые напрямую меняли `CinemachineCamera.LookAt` и использовали `Camera.main`, удалены. Enemy targeting пока сохраняет отдельную legacy-ветку `TargetLockSystemBase`; её рефакторинг не входит в player camera scope.
+Старые `PlayerTargetLockSystem` и дублирующий `TargetLockSystem`, напрямую управлявшие `CinemachineCamera.LookAt`, удалены. Отдельная legacy-ветка enemy targeting в `TargetLockSystemBase` пока не входит в player targeting flow.
 
 ## Почему интерфейсы, а не abstract controller
 
-Здесь сменяемая граница проходит по операциям и состоянию, а не по inheritance tree. `IPlayerTargetingCommands` разрешает отправлять намерения, `IPlayerTargetingState` разрешает наблюдать результат. Новая реализация для soft targeting, aim assist или другого жанра может реализовать эти контракты без наследования lifecycle и physics-алгоритма текущего controller.
-
-Та же модель должна применяться при выделении Combat: отдельные command/state порты вокруг реального владельца combat state. Создавать общий `PlayerControllerBase` или абстрактный класс на каждый gameplay controller не следует.
+Сменяемая граница проходит по операциям, состоянию и описанию цели, а не по inheritance tree. Soft targeting, aim assist либо genre-specific selection могут реализовать command/state ports без наследования physics lifecycle текущего controller. Другой вид target authoring может реализовать `ICombatTarget`, не заставляя lock-on знать про конкретного персонажа.
