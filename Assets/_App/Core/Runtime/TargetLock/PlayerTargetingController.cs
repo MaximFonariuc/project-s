@@ -12,6 +12,8 @@ namespace _App
         public const float MaxLockDistance = 25.0f;
 
         private const float MaxViewAngle = 35.0f;
+        private const float TargetSwitchActuationThreshold = 0.65f;
+        private const float TargetSwitchReleaseThreshold = 0.35f;
         private const int InitialBufferSize = 8;
         private const int MaxBufferSize = 128;
 
@@ -25,6 +27,7 @@ namespace _App
         private Collider _currentTargetCollider;
         private ERotationMode _rotationModeBeforeLock;
         private bool _hasTarget;
+        private bool _targetSwitchArmed;
         private bool _enabled;
 
         public event Action<Transform> TargetChanged;
@@ -61,6 +64,7 @@ namespace _App
             }
 
             _input.LockOnRequested += OnLockOnRequested;
+            _targetSwitchArmed = false;
             _enabled = true;
         }
 
@@ -73,11 +77,14 @@ namespace _App
 
             _input.LockOnRequested -= OnLockOnRequested;
             _enabled = false;
+            _targetSwitchArmed = false;
             ClearTarget();
         }
 
         public void Tick()
         {
+            UpdateTargetSwitchInput();
+
             if (!_hasTarget)
             {
                 return;
@@ -164,6 +171,28 @@ namespace _App
         private void OnLockOnRequested()
         {
             ToggleLock();
+        }
+
+        private void UpdateTargetSwitchInput()
+        {
+            float value = _input.TargetSwitch;
+            float magnitude = Mathf.Abs(value);
+            if (magnitude <= TargetSwitchReleaseThreshold)
+            {
+                _targetSwitchArmed = true;
+                return;
+            }
+
+            if (!_targetSwitchArmed || magnitude < TargetSwitchActuationThreshold)
+            {
+                return;
+            }
+
+            _targetSwitchArmed = false;
+            if (IsTargetLocked)
+            {
+                SwitchTarget(value < 0.0f ? -1 : 1);
+            }
         }
 
         private bool TrySelectTarget(

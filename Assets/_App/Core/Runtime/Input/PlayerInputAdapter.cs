@@ -25,6 +25,7 @@ namespace _App
         public Vector2 Move { get; private set; }
         public Vector2 Look { get; private set; }
         public Vector2 Zoom { get; private set; }
+        public float TargetSwitch { get; private set; }
         public InputDeviceKind ActiveDevice { get; private set; }
 
         public PlayerInputAdapter(IInputService input)
@@ -66,6 +67,7 @@ namespace _App
             Move = Vector2.zero;
             Look = Vector2.zero;
             Zoom = Vector2.zero;
+            TargetSwitch = 0.0f;
             _enabled = false;
         }
 
@@ -95,6 +97,10 @@ namespace _App
             else if (action == PlayerInputIds.Zoom)
             {
                 Zoom = signal.Value.AsVector2();
+            }
+            else if (action == PlayerInputIds.TargetSwitch)
+            {
+                TargetSwitch = signal.Value.AsAxis();
             }
             else if (action == PlayerInputIds.Walk)
             {

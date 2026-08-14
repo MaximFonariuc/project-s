@@ -15,6 +15,7 @@ classDiagram
         +Move Vector2
         +Look Vector2
         +Zoom Vector2
+        +TargetSwitch float
         +CombatActionRequested(commandId)
         +JumpChanged
         +Enable()
@@ -30,6 +31,7 @@ classDiagram
         +Move
         +Attack
         +Dodge
+        +TargetSwitch
         +SkillBoneCrash
         +SkillFlashStance
     }
@@ -76,6 +78,7 @@ flowchart LR
 - `PlayerInputIds` — project configuration. GUID остаются стабильными после rename action/map.
 - `GameLifetimeScope` — единственное место, где встречаются VContainer, Unity source и project asset.
 - UI prompts могут подписаться на `ActiveDeviceChanged`, не выполняя device polling.
+- `TargetSwitch` передаёт нормализованную семантическую ось: `Z/C` для keyboard, `rightStick/x` для gamepad и `stick/x` для joystick. Gameplay не знает, какое устройство создало направление.
 
 ## От чего отказались
 

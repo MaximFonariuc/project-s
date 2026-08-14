@@ -33,6 +33,7 @@ classDiagram
     class IPlayerInput {
         <<input port>>
         +LockOnRequested
+        +TargetSwitch float
     }
     class ICameraOrientation {
         <<view port>>
@@ -75,7 +76,7 @@ classDiagram
 - хранит collider для стабильной точки прицеливания через `bounds.center`;
 - автоматически снимает lock при уничтожении цели или превышении `MaxLockDistance`.
 
-`SwitchTarget(-1|1)` является платформо-независимой командой для последующего binding на mouse, right stick, touch swipe или UI. Сам binding пока не добавлен.
+`SwitchTarget(-1|1)` получает платформо-независимое направление из `IPlayerInput.TargetSwitch`. Текущие bindings: `Z/C`, `Gamepad rightStick/x` и `Joystick stick/x`; будущий touch adapter может публиковать ту же ось без изменения targeting. Controller применяет пороги actuation/release и разрешает только одно переключение до возврата оси в dead zone, поэтому удержание стика не перебирает цели каждый кадр.
 
 ## Зависимости и ownership
 

@@ -22,6 +22,7 @@ namespace _App
         Vector2 Move { get; }
         Vector2 Look { get; }
         Vector2 Zoom { get; }
+        float TargetSwitch { get; }
         InputDeviceKind ActiveDevice { get; }
 
         void Enable();

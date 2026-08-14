@@ -35,6 +35,8 @@ namespace _App
             InputActionId.Parse("b05e1097-622a-4a6b-b1de-035285359b05");
         public static readonly InputActionId LockOn =
             InputActionId.Parse("928fc218-f281-4a43-b7df-69f46c823b8c");
+        public static readonly InputActionId TargetSwitch =
+            InputActionId.Parse("4e695762-e03c-46ed-a6d2-454c4cdc144a");
         public static readonly InputActionId Dodge =
             InputActionId.Parse("e27ccac5-1a1e-4b67-b1b0-cb3334592ea7");
         public static readonly InputActionId SwitchCombatState =
