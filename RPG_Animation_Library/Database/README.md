@@ -56,3 +56,9 @@ Never discard raw fields after normalization. An event that cannot be mapped saf
 `skeleton_profile_operations.csv` records the measured source and target armatures used by the pilot retarget boundary. The versioned skeleton profiles identify semantic bones, root-motion ownership, coordinate space, scale, and Unity rig type.
 
 `ER_Player_to_ProjectS_CLazy.json` is a skeleton-family mapping. It is intentionally shared by every pilot clip and excludes service, control, cloth, SFX and weapon bones that have no target equivalent. A clip-specific map would be a pipeline defect, not an extension point.
+
+## Phase 7 retarget evidence
+
+`retarget_operations.csv` is the append-only pilot retarget ledger. It records the source/target artifacts and profiles, mapped-bone count, measured scale, target root motion, pose bounds, motion fingerprint, clean-reopen result and repeatability result.
+
+`PilotPassed` in `RetargetStatus` means that the selected action was baked onto `ProjectS_CLazy_Player` and passed the mechanical gates. Contact sheets are retained for human pose review. They do not promote `Probable` or `Unknown` semantic labels to `Verified`.

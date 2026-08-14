@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "timestamp": "2026-08-14T18:07:19.509253Z",
+  "pipelineVersion": "0.7.0",
+  "phaseVersion": "1.0.0",
+  "phaseConfigSHA256": "a69bfc6534dd0c6289a576d294bb83a0ecf458637a7e2d6302b69d3c0d4c46ac",
+  "approvalScope": "PilotOnly/ER_Player_to_ProjectS_CLazy",
+  "pilotCount": 5,
+  "mappedBoneCount": 52,
+  "repeatabilityAnimation": "a000_019270",
+  "outputs": {
+    "Database/retarget_operations.csv": "986f87c4a11e66e79374e70f9f192bcd76e8f1686f2c14473b0bd76a8a890c04",
+    "Database/animations.csv": "da4e7ff74d38ac285cfbe532a78a8f626e9653ae66443ac6fa4bc9cc655e22a2",
+    "03_CATALOG/reports/phase_7_status.md": "d167ab69a5f077c431c37e382db27e5a84724ff839a544cf71520df7bd777d6e",
+    "03_CATALOG/previews/phase_7/a000_019270.png": "294f59dac6644abda779b05b717fba2a53c37f9efdb66972c9342203bf408624",
+    "03_CATALOG/previews/phase_7/a000_020000.png": "c5d8b115dc7f877412114225df8f545c04e98fd6f115ed19095960e0c1d03898",
+    "03_CATALOG/previews/phase_7/a000_040590.png": "1aab8565d5bb965c88c54fb8bc53690f00db364ee54d15a6ee4a2bcf18bc265a",
+    "03_CATALOG/previews/phase_7/a000_041150.png": "da433001e75fa7dca3aa29fb6108014b7f9b5423da394bdec0c5af8f2e4658de",
+    "03_CATALOG/previews/phase_7/a000_080000.png": "2d028af1e66c047de5149d238698526d9b18ac194b260e6d330342845f33dc99"
+  },
+  "artifacts": {
+    "05_RETARGETED/phase_7/a000_019270/a000_019270.blend": {
+      "sha256": "224ffdaa329873368b9376af697821c9b00a127420cbd30d42422f19b65cad70",
+      "sizeBytes": 930899,
+      "motionFingerprintSHA256": "2b124742c6c072af82d44104437b646026f2b6e74924fddfaff6a4754cc49548",
+      "metadataSHA256": "6f681da2d26c525806f070ecfe6357a3f864241a0746f30c717ea2fb7b9d86ba",
+      "reopenValidationSHA256": "1e5ba2253697533b4a0ba7e796c9a2cb6bd100d0842d4303871db962126c73ed"
+    },
+    "05_RETARGETED/phase_7/a000_020000/a000_020000.blend": {
+      "sha256": "70da541138c45d6a338bea31f30828f3c9b11475e94ed107b65fea4a3b997f67",
+      "sizeBytes": 732984,
+      "motionFingerprintSHA256": "1eb6ff5f9da72a15f25551e599cb6df005a20ca0fe02b2860cc57f324e4ba56b",
+      "metadataSHA256": "a081042523c30ecc9521b33d5d54823041745e977910681e46d6da51db219f15",
+      "reopenValidationSHA256": "b787c3c2d82a430e812c18552cfbd56e43b04ecd0fa93129380c4761c1449d1d"
+    },
+    "05_RETARGETED/phase_7/a000_040590/a000_040590.blend": {
+      "sha256": "c13a1bf350656eb53a33e7f3c6519fe2ab3ba159803145c1756f5dda6248fc02",
+      "sizeBytes": 1105225,
+      "motionFingerprintSHA256": "1399ef130c7ee2fa7f9ba27a16cded6214efcc6b70a152822ce06d71f14980ba",
+      "metadataSHA256": "8ff8a9a42345afdca70307759c790abd5cd1e48cf6a1d63e1b95d4dc51e7e5a4",
+      "reopenValidationSHA256": "a6a010dd8e7f80f1bf146dc5ce2c2314724a7c4e24f025122ed9ee80fdbb904a"
+    },
+    "05_RETARGETED/phase_7/a000_041150/a000_041150.blend": {
+      "sha256": "8e505d1c9fda9dc649e762fc96c388c6f33768ca4d093f3d4516fbed69b6c38a",
+      "sizeBytes": 993115,
+      "motionFingerprintSHA256": "ba87ff33f82f2a941889294ea65650525cdca86d67c148f2300e5c24fb49514e",
+      "metadataSHA256": "639930b13f07bd61f21ebdc238fee6f7345e9a6fb5b98b1d31ab6a4223a41974",
+      "reopenValidationSHA256": "4ef6dfedd19cccc1c4849dccea81f10a17b475f67e2e64221047b935a63af230"
+    },
+    "05_RETARGETED/phase_7/a000_080000/a000_080000.blend": {
+      "sha256": "00c12eff2fb3a4acd2953c67bd8f58cba902091f9dab0c5018e50c8ecfc20384",
+      "sizeBytes": 2396307,
+      "motionFingerprintSHA256": "408252269e169fffb3c1ea27bc42188ffa4bf4fea8dcc3fb94fb50380c82489c",
+      "metadataSHA256": "70a6633a8c487dbad15a8964f140784951a55f4ce6f515ac343abccbe2256939",
+      "reopenValidationSHA256": "0b157afb2097ba13783731c6a509ef2c75d4ab3194ea1d724bd5a0a315c035b6"
+    }
+  }
+}
