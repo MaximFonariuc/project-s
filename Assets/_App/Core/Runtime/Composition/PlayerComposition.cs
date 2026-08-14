@@ -61,6 +61,7 @@ namespace _App
             builder.RegisterPlayerTargeting();
             builder.RegisterPlayerCamera(player);
             builder.RegisterPlayerCombat(player);
+            builder.RegisterPlayerHitStop();
             builder.RegisterPlayerLocomotion(player.CharacterFeatures);
             builder.RegisterPlayerReaction(player);
             builder.RegisterPlayerTraversal(player.CharacterFeatures);

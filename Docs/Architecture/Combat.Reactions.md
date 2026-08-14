@@ -14,7 +14,7 @@
 - возврат из временной реакции и явное восстановление после `Health.RestoreFull()`;
 - опциональное отображение состояний через `ICharacterAnimationDriver`.
 
-Hit stop, invulnerability frames, get-up phase, ragdoll и финальные reaction clips не входят в этот блок.
+Hit stop не входит в reaction state machine и имеет отдельного time-scale owner, описанного в `Docs/Architecture/Combat.HitStop.md`. Invulnerability frames, get-up phase, ragdoll и финальные reaction clips пока не входят в этот блок.
 
 ## Дерево классов и зависимости
 

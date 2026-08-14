@@ -91,18 +91,45 @@ namespace _App
         }
     }
 
+    public readonly struct CombatHitStop
+    {
+        public static CombatHitStop Disabled => default;
+
+        public bool IsEnabled => Duration > 0.0f;
+        public float Duration { get; }
+        public float TimeScale { get; }
+
+        public CombatHitStop(float duration, float timeScale)
+        {
+            if (duration <= 0.0f)
+            {
+                throw new ArgumentOutOfRangeException(nameof(duration));
+            }
+
+            if (timeScale < 0.0f || timeScale > 1.0f)
+            {
+                throw new ArgumentOutOfRangeException(nameof(timeScale));
+            }
+
+            Duration = duration;
+            TimeScale = timeScale;
+        }
+    }
+
     internal readonly struct CombatHitDefinition
     {
         public int Damage { get; }
         public float StaggerDamage { get; }
         public float Knockback { get; }
         public CombatReactionId ReactionId { get; }
+        public CombatHitStop HitStop { get; }
 
         public CombatHitDefinition(
             int damage,
             float staggerDamage,
             float knockback,
-            CombatReactionId reactionId)
+            CombatReactionId reactionId,
+            CombatHitStop hitStop)
         {
             if (damage < 0)
             {
@@ -123,6 +150,7 @@ namespace _App
             StaggerDamage = staggerDamage;
             Knockback = knockback;
             ReactionId = reactionId;
+            HitStop = hitStop;
         }
     }
 
@@ -134,6 +162,7 @@ namespace _App
         public float StaggerDamage { get; }
         public float Knockback { get; }
         public CombatReactionId ReactionId { get; }
+        public CombatHitStop HitStop { get; }
         public Vector3 Point { get; }
         public Vector3 Direction { get; }
         public GameObject Source { get; }
@@ -147,6 +176,7 @@ namespace _App
             float staggerDamage,
             float knockback,
             CombatReactionId reactionId,
+            CombatHitStop hitStop,
             Vector3 point,
             Vector3 direction,
             GameObject source,
@@ -159,6 +189,7 @@ namespace _App
             StaggerDamage = staggerDamage;
             Knockback = knockback;
             ReactionId = reactionId;
+            HitStop = hitStop;
             Point = point;
             Direction = direction;
             Source = source;

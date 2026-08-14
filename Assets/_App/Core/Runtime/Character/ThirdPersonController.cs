@@ -101,7 +101,7 @@ namespace _App
 
         protected virtual void Update()
         {
-            _actorController?.Tick(Time.deltaTime);
+            _actorController?.Tick(Time.deltaTime, Time.unscaledDeltaTime);
         }
 
         protected virtual void LateUpdate()

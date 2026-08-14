@@ -40,6 +40,7 @@ namespace _App
                 definition.StaggerDamage,
                 definition.Knockback,
                 definition.ReactionId,
+                definition.HitStop,
                 candidate.Point,
                 direction,
                 execution.Source,

@@ -192,6 +192,8 @@ namespace _App
         [SerializeField, Min(0.0f)] private float _staggerDamage = 10.0f;
         [SerializeField, Min(0.0f)] private float _knockback;
         [SerializeField] private string _reactionId = "hit.light";
+        [SerializeField, Min(0.0f)] private float _hitStopDuration = 0.06f;
+        [SerializeField, Range(0.0f, 1.0f)] private float _hitStopTimeScale;
 
         [Header("Lifecycle")]
         [SerializeField, Range(0.0f, 1.0f)] private float _recoveryStart = 0.6f;
@@ -227,7 +229,10 @@ namespace _App
                     _knockback,
                     string.IsNullOrWhiteSpace(_reactionId)
                         ? CombatReactionId.None
-                        : new CombatReactionId(_reactionId)),
+                        : new CombatReactionId(_reactionId),
+                    _hitStopDuration > 0.0f
+                        ? new CombatHitStop(_hitStopDuration, _hitStopTimeScale)
+                        : CombatHitStop.Disabled),
                 _recoveryStart,
                 _completionTime,
                 _hasCommit,

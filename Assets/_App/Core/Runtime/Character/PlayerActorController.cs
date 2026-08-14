@@ -11,6 +11,8 @@ namespace _App
         private readonly PlayerCameraController _camera;
         private readonly PlayerCombatController _combat;
         private readonly CharacterReactionController _reaction;
+        private readonly GameplayTimeScaleController _gameplayTime;
+        private readonly CombatHitStopController _hitStop;
         private readonly PlayerTraversalController _traversal;
         private readonly PlayerSimulationPauseController _simulationPause;
 
@@ -24,6 +26,8 @@ namespace _App
             PlayerCameraController camera,
             PlayerCombatController combat,
             CharacterReactionController reaction,
+            GameplayTimeScaleController gameplayTime,
+            CombatHitStopController hitStop,
             PlayerTraversalController traversal,
             PlayerSimulationPauseController simulationPause)
         {
@@ -35,6 +39,8 @@ namespace _App
             _camera = camera ?? throw new ArgumentNullException(nameof(camera));
             _combat = combat ?? throw new ArgumentNullException(nameof(combat));
             _reaction = reaction ?? throw new ArgumentNullException(nameof(reaction));
+            _gameplayTime = gameplayTime ?? throw new ArgumentNullException(nameof(gameplayTime));
+            _hitStop = hitStop ?? throw new ArgumentNullException(nameof(hitStop));
             _traversal = traversal ?? throw new ArgumentNullException(nameof(traversal));
             _simulationPause = simulationPause ?? throw new ArgumentNullException(nameof(simulationPause));
         }
@@ -49,12 +55,14 @@ namespace _App
             _enabled = true;
             try
             {
+                _gameplayTime.Enable();
                 _movementPolicyLifecycle.Enable();
                 _locomotion.Enable();
                 _targeting.Enable();
                 _camera.Enable();
                 _combat.Enable();
                 _reaction.Enable();
+                _hitStop.Enable();
                 _traversal.Enable();
                 _simulationPause.Enable();
                 _input.Enable();
@@ -76,29 +84,32 @@ namespace _App
             _input.Disable();
             _simulationPause.Disable();
             _traversal.Disable();
+            _hitStop.Disable();
             _reaction.Disable();
             _combat.Disable();
             _camera.Disable();
             _targeting.Disable();
             _locomotion.Disable();
             _movementPolicyLifecycle.Disable();
+            _gameplayTime.Disable();
             _enabled = false;
         }
 
-        public void Tick(float deltaTime)
+        public void Tick(float scaledDeltaTime, float unscaledDeltaTime)
         {
             if (!_enabled)
             {
                 return;
             }
 
-            _reaction.Tick(deltaTime);
+            _gameplayTime.Tick(unscaledDeltaTime);
+            _reaction.Tick(scaledDeltaTime);
             _traversal.Tick();
             _locomotion.SetMovementIntent(
                 _reaction.BlocksActions
                     ? PlayerMovementIntent.Locked
                     : _combat.MovementIntent);
-            _locomotion.Tick(deltaTime);
+            _locomotion.Tick(scaledDeltaTime);
             _targeting.Tick();
         }
 

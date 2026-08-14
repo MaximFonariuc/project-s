@@ -11,7 +11,7 @@
 - применяет multiplier зоны к базовому damage;
 - публикует событие только после того, как `Health` действительно принял удар.
 
-Reaction и poise/stagger обрабатываются отдельным target-local consumer, описанным в `Docs/Architecture/Combat.Reactions.md`. Hit stop, VFX, audio и camera impulse пока не реализуются. Они должны потреблять подтверждённый результат и не возвращать эти обязанности в `Weapon`.
+Reaction и poise/stagger обрабатываются отдельным target-local consumer, описанным в `Docs/Architecture/Combat.Reactions.md`. Hit stop передаётся как immutable часть результата и обрабатывается отдельным consumer из `Docs/Architecture/Combat.HitStop.md`. VFX, audio и camera impulse пока не реализуются и не должны возвращать эти обязанности в `Weapon`.
 
 ## Дерево классов
 
@@ -26,6 +26,7 @@ classDiagram
         +StaggerDamage float
         +Knockback float
         +ReactionId CombatReactionId
+        +HitStop CombatHitStop
     }
     class CombatAttackExecution {
         +Id AttackExecutionId
@@ -80,6 +81,7 @@ classDiagram
         +StaggerDamage float
         +Knockback float
         +ReactionId CombatReactionId
+        +HitStop CombatHitStop
         +Point Vector3
         +Direction Vector3
         +Source GameObject
@@ -142,7 +144,8 @@ CombatActionAuthoring -> CombatActionDefinition -> CombatHitDefinition
 PlayerCombatController -> CombatAttackExecution -> IPlayerWeaponRig
 Weapon -> ICombatHitResolver -> ICombatHitTarget
 Hurtbox -> BodyColliderRig -> Health
-ICombatHitEvents -> reaction / hit stop / VFX / audio adapters (следующие системы)
+ICombatHitEvents -> hit stop / future VFX / audio adapters
+Health.Damaged -> target-local reaction / incoming hit stop
 ```
 
 - `PlayerCombatController` владеет lifecycle execution: новый id на каждое фактически запущенное action, завершение при completion, chain transition, interruption, cancellation и disable.
@@ -158,6 +161,6 @@ ICombatHitEvents -> reaction / hit stop / VFX / audio adapters (следующи
 - Projectile или area attack могут иметь собственный physics adapter и отдельный `CombatAttackExecution`, не меняя `Health` и `Hurtbox`.
 - Stagger/poise consumer читает `StaggerDamage` и `ReactionId` из подтверждённого result.
 - Knockback consumer интерпретирует `Knockback` вместе с нормализованным `Direction`, но применяет движение через предназначенный motor intent.
-- Hit stop, VFX, audio и camera adapters подписываются на `ICombatHitEvents`; они не участвуют в подтверждении damage.
+- Исходящий hit stop подписывается на `ICombatHitEvents`, входящий — на target-local `Health.Damaged`. Future VFX, audio и camera adapters также потребляют подтверждённый result и не участвуют в расчёте damage.
 
 Система остаётся в `_App/Core`: `PlayerCombatActionId`, damage rules и ожидаемые reactions являются правилами Project S. Извлечение в `_App/Modules` возможно только после второго реального consumer и стабилизации game-agnostic контракта.
