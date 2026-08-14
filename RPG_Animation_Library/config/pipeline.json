@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "pipeline_version": "0.1.0",
+  "pipeline_version": "0.2.0",
   "project_root": ".",
   "paths": {
     "raw": "01_RAW",
@@ -59,7 +59,8 @@
   "tool_versions": {
     "witchybnd": {
       "version": "3.0.1.0",
-      "sha256": "a3e6b2a0f7eac13f5e83b6602a1149322439c0662baa140ecdd84be28af50364"
+      "archive_sha256": "a3e6b2a0f7eac13f5e83b6602a1149322439c0662baa140ecdd84be28af50364",
+      "executable_sha256": "00aa5b321d5af0179d3c9154a48d2ab3bb55772eaf624a439cc5f6ad4e21982b"
     },
     "dsanimstudio": {
       "version": "4.9.9",
@@ -70,6 +71,51 @@
       "version": "2.6.0",
       "sha256": "19106b66494b327791d0a33d2a022fc490b6d12a0658a334eb45e5ee59b3e3bd"
     }
+  },
+  "unpack": {
+    "pilot_only": true,
+    "timeout_seconds": 300,
+    "known_container_extensions": [
+      ".anibnd.dcx",
+      ".chrbnd.dcx"
+    ],
+    "jobs": [
+      {
+        "id": "eldenvins-c0000-character",
+        "source": "EldenVins",
+        "input": "../Elden/ELDEN VINS/mod/chr/c0000.chrbnd.dcx",
+        "catalog_relative_path": "ELDEN VINS/mod/chr/c0000.chrbnd.dcx",
+        "output_relative_path": "EldenVins/mod/chr/c0000-character",
+        "minimum_output_files": 5,
+        "required_extensions": [
+          ".flver",
+          ".hkx"
+        ]
+      },
+      {
+        "id": "eldenvins-c0000-events",
+        "source": "EldenVins",
+        "input": "../Elden/ELDEN VINS/mod/chr/c0000.anibnd.dcx",
+        "catalog_relative_path": "ELDEN VINS/mod/chr/c0000.anibnd.dcx",
+        "output_relative_path": "EldenVins/mod/chr/c0000-events",
+        "minimum_output_files": 700,
+        "required_extensions": [
+          ".tae",
+          ".hkx"
+        ]
+      },
+      {
+        "id": "eldenvins-c0000-a00-hi",
+        "source": "EldenVins",
+        "input": "../Elden/ELDEN VINS/mod/chr/c0000_a00_hi.anibnd.dcx",
+        "catalog_relative_path": "ELDEN VINS/mod/chr/c0000_a00_hi.anibnd.dcx",
+        "output_relative_path": "EldenVins/mod/chr/c0000-a00-hi",
+        "minimum_output_files": 1200,
+        "required_extensions": [
+          ".hkx"
+        ]
+      }
+    ]
   },
   "conversion": {
     "pilot_only": true,

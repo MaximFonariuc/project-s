@@ -13,3 +13,5 @@ Third-party binaries and Blender add-ons are stored locally under the ignored `.
 The configured paths are recorded in `config/pipeline.json`. Paths are resolved relative to this library root unless they are absolute.
 
 The Soulstruct add-on was validated in Blender 5.2 by initializing Blender's GPU module before add-on registration in background mode. Its Elden Ring animation support remains experimental and must stay behind a pilot gate.
+
+Phase 2 invokes WitchyBND with its silent CLI flag (`-s`) and passes only a copied container below `02_UNPACKED`. The configured executable SHA-256 is verified before the first job starts.

@@ -1,6 +1,6 @@
 # Phase 1 source inventory
 
-Scan timestamp: `2026-08-14T14:22:28.011067Z`
+Scan timestamp: `2026-08-14T15:06:39.701186Z`
 
 Result: **PASS**. Every file in every configured RAW root is represented by a read-only SHA-256 inventory in deterministic source/path order. This run reused hashes whose size and modification time still match; use `--force` for a complete re-hash.
 
@@ -10,8 +10,8 @@ Result: **PASS**. Every file in every configured RAW root is represented by a re
 - Bytes: **9,792,760,172**
 - Unique SHA-256 values: **11,989**
 - Duplicate hash groups: **32**
-- SHA-256 calculated this run: **12,047**
-- SHA-256 reused from unchanged records: **0**
+- SHA-256 calculated this run: **0**
+- SHA-256 reused from unchanged records: **12,047**
 
 ## Counts by source and type
 

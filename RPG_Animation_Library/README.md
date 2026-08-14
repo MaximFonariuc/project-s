@@ -21,6 +21,16 @@ Generated inventory:
 - `03_CATALOG/reports/phase_1_status.md`
 - `Database/pipeline_runs.csv`
 
+Run the configured Phase 2 pilot unpack after Phase 1 passes:
+
+```powershell
+python RPG_Animation_Library/scripts/unpack_sources.py --config RPG_Animation_Library/config/pipeline.json
+```
+
+The pilot is limited to the three configured `c0000` jobs. Use repeated `--job <id>` arguments for a subset. `--force` replaces only the selected generated job directories after verifying that every resolved target remains below `02_UNPACKED`.
+
+Generated unpack data and logs remain ignored. Versioned provenance is stored in `Database/pipeline_runs.csv`, `Database/unpack_operations.csv`, and `03_CATALOG/reports/phase_2_status.md`.
+
 Environment and installed tool versions are documented in `03_CATALOG/reports/environment.md` and `00_Tools/README.md`.
 
 Do not rename, overwrite, unpack, or convert files inside the mapped RAW sources.

@@ -16,6 +16,8 @@ from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 from typing import Iterable
 
+from pipeline_ledger import append_pipeline_run, new_run_id
+
 
 COMPOUND_EXTENSIONS = (
     ".anibnd.dcx",
@@ -145,9 +147,11 @@ def collect_records(
                 )
                 if can_reuse:
                     digest = previous.SHA256
+                    record_scan_timestamp = previous.ScanTimestamp
                     reused_hashes += 1
                 else:
                     digest = sha256_for(path)
+                    record_scan_timestamp = scan_timestamp
                     hashed_files += 1
                 after = path.stat()
                 if before.st_size != after.st_size or before.st_mtime_ns != after.st_mtime_ns:
@@ -162,7 +166,7 @@ def collect_records(
                         SizeBytes=before.st_size,
                         SHA256=digest,
                         ModifiedTime=modified_time,
-                        ScanTimestamp=scan_timestamp,
+                        ScanTimestamp=record_scan_timestamp,
                     )
                 )
 
@@ -288,37 +292,23 @@ def append_run_ledger(
     config_sha256: str,
     pipeline_version: str,
 ) -> None:
-    fieldnames = (
-        "RunTimestamp",
-        "Phase",
-        "Status",
-        "RecordCount",
-        "ManifestSHA256",
-        "ConfigSHA256",
-        "PipelineVersion",
-        "Python",
-        "HostOS",
-    )
-    row = {
-        "RunTimestamp": scan_timestamp,
+    append_pipeline_run(path, {
+        "RunID": new_run_id(),
+        "Timestamp": scan_timestamp,
         "Phase": "Phase1Inventory",
-        "Status": status,
-        "RecordCount": str(len(records)),
-        "ManifestSHA256": manifest_sha256,
-        "ConfigSHA256": config_sha256,
+        "Tool": "Python",
+        "ToolVersion": platform.python_version(),
+        "InputCount": len(records),
+        "SuccessCount": len(records),
+        "FailureCount": 0,
+        "ConfigHash": config_sha256,
         "PipelineVersion": pipeline_version,
-        "Python": platform.python_version(),
-        "HostOS": platform.platform(),
-    }
-    existing_rows: list[dict[str, str]] = []
-    if path.is_file():
-        with path.open("r", encoding="utf-8-sig", newline="") as source:
-            existing_rows = list(csv.DictReader(source))
-    existing_rows.append(row)
-    with path.open("w", encoding="utf-8-sig", newline="") as destination:
-        writer = csv.DictWriter(destination, fieldnames=fieldnames, lineterminator="\n")
-        writer.writeheader()
-        writer.writerows(existing_rows)
+        "LogPath": "",
+        "Notes": (
+            f"status={status}; manifest_sha256={manifest_sha256}; "
+            f"host_os={platform.platform()}"
+        ),
+    })
 
 
 def main() -> int:

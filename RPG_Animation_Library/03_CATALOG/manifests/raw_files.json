@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "pipelineVersion": "0.1.0",
-  "configSHA256": "9aea8788fda730fe91bfb83660f40494428b8d1ee93e4c31963bc336ec0400d4",
+  "pipelineVersion": "0.2.0",
+  "configSHA256": "db40d2f09ce2076346bcc939ee4f010eaaa726aa8cf77db959c44e0a7e9790be",
   "sourceFingerprint": "d21c604073c873d6647562fded251217646feacd51fa7f0166c42ab09d1cbfea",
-  "scanTimestamp": "2026-08-14T14:22:28.011067Z",
+  "scanTimestamp": "2026-08-14T15:06:39.701186Z",
   "recordCount": 12047,
   "records": [
     {
