@@ -22,7 +22,7 @@
     "FriendlyName": "Unknown",
     "SemanticConfidence": "Unknown",
     "CharacterType": "Unknown",
-    "WeaponFamily": "Unknown",
+    "WeaponFamily": "DuelingShield",
     "ActionType": "Unknown",
     "ActionVariant": "Unknown",
     "Direction": "Unknown",
@@ -32,6 +32,8 @@
     "Evidence": "EventType=1 (AttackBehavior window)",
     "ReviewStatus": "EvidenceOnly",
     "IDBank": "023xxx",
+    "WeaponClassificationSource": "Behavior:CustomManualSelectorGenerator",
+    "WeaponEvidence": "All mapped behavior names explicitly identify DuelingShield: GuardOnDuelingShieldDash_CMSG",
     "Loop": false,
     "FrameCount": 17,
     "FrameRate": 30,
@@ -46,13 +48,13 @@
         "AnimationLibrary",
         "LibraryID:RPGREF_F04D823EBD82611AB70D2735",
         "Action:Unknown",
-        "WeaponFamily:Unknown",
         "CharacterType:Unknown",
         "SemanticConfidence:Unknown",
         "Source:Unknown",
         "Catalog:01_Combat",
         "CatalogType:AttackWindow",
         "ReviewStatus:EvidenceOnly",
-        "IDBank:023xxx"
+        "IDBank:023xxx",
+        "WeaponFamily:DuelingShield"
     ]
 }

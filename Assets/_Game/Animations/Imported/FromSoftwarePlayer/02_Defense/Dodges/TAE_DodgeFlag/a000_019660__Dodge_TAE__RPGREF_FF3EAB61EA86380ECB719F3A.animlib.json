@@ -22,7 +22,7 @@
     "FriendlyName": "Unknown",
     "SemanticConfidence": "Unknown",
     "CharacterType": "Unknown",
-    "WeaponFamily": "Unknown",
+    "WeaponFamily": "DuelingShield",
     "ActionType": "Unknown",
     "ActionVariant": "Unknown",
     "Direction": "Unknown",
@@ -32,6 +32,8 @@
     "Evidence": "FlagType=8 (Flag As Dodging)",
     "ReviewStatus": "EvidenceOnly",
     "IDBank": "019xxx",
+    "WeaponClassificationSource": "Behavior:CustomManualSelectorGenerator",
+    "WeaponEvidence": "All mapped behavior names explicitly identify DuelingShield: BackStepLightGuardOnDuelingShield_CMSG|BackStepLightGuardOnDuelingShield_CMSG00|BackStepLightGuardOnDuelingShield_CMSG01|BackStepLightGuardOnDuelingShield_CMSG02",
     "Loop": false,
     "FrameCount": 31,
     "FrameRate": 30,
@@ -46,13 +48,13 @@
         "AnimationLibrary",
         "LibraryID:RPGREF_FF3EAB61EA86380ECB719F3A",
         "Action:Unknown",
-        "WeaponFamily:Unknown",
         "CharacterType:Unknown",
         "SemanticConfidence:Unknown",
         "Source:Unknown",
         "Catalog:02_Defense",
         "CatalogType:Dodge",
         "ReviewStatus:EvidenceOnly",
-        "IDBank:019xxx"
+        "IDBank:019xxx",
+        "WeaponFamily:DuelingShield"
     ]
 }

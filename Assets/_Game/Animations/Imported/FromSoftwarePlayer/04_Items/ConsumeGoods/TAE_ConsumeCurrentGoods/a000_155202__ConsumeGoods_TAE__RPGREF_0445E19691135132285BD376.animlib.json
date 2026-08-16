@@ -22,7 +22,7 @@
     "FriendlyName": "Unknown",
     "SemanticConfidence": "Unknown",
     "CharacterType": "Unknown",
-    "WeaponFamily": "Unknown",
+    "WeaponFamily": "DuelingShield",
     "ActionType": "Unknown",
     "ActionVariant": "Unknown",
     "Direction": "Unknown",
@@ -32,6 +32,8 @@
     "Evidence": "EventType=65 (ConsumeCurrentGoods)",
     "ReviewStatus": "EvidenceOnly",
     "IDBank": "155xxx",
+    "WeaponClassificationSource": "Behavior:CustomManualSelectorGenerator",
+    "WeaponEvidence": "All mapped behavior names explicitly identify DuelingShield: RideItem_16_DuelingShield",
     "Loop": false,
     "FrameCount": 51,
     "FrameRate": 30,
@@ -46,13 +48,13 @@
         "AnimationLibrary",
         "LibraryID:RPGREF_0445E19691135132285BD376",
         "Action:Unknown",
-        "WeaponFamily:Unknown",
         "CharacterType:Unknown",
         "SemanticConfidence:Unknown",
         "Source:Unknown",
         "Catalog:04_Items",
         "CatalogType:ConsumeGoods",
         "ReviewStatus:EvidenceOnly",
-        "IDBank:155xxx"
+        "IDBank:155xxx",
+        "WeaponFamily:DuelingShield"
     ]
 }

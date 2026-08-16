@@ -22,7 +22,7 @@
     "FriendlyName": "Forward Roll",
     "SemanticConfidence": "Verified",
     "CharacterType": "Player",
-    "WeaponFamily": "Unknown",
+    "WeaponFamily": "Torch",
     "ActionType": "Dodge",
     "ActionVariant": "ForwardRoll",
     "Direction": "Forward",
@@ -32,6 +32,8 @@
     "Evidence": "Verified semantic record: Dodge/ForwardRoll",
     "ReviewStatus": "Reviewed",
     "IDBank": "019xxx",
+    "WeaponClassificationSource": "Behavior:CustomManualSelectorGenerator",
+    "WeaponEvidence": "All mapped behavior names explicitly identify Torch: GuardDamageLargeTorch_CMSG|GuardDamageLargeTorch_CMSG00",
     "Loop": false,
     "FrameCount": 65,
     "FrameRate": 30,
@@ -46,13 +48,13 @@
         "AnimationLibrary",
         "LibraryID:RPGREF_6139DF2ED3414FD6A29783C4",
         "Action:Dodge",
-        "WeaponFamily:Unknown",
         "CharacterType:Player",
         "SemanticConfidence:Verified",
         "Source:EldenRing",
         "Catalog:02_Defense",
         "CatalogType:Dodge",
         "ReviewStatus:Reviewed",
-        "IDBank:019xxx"
+        "IDBank:019xxx",
+        "WeaponFamily:Torch"
     ]
 }

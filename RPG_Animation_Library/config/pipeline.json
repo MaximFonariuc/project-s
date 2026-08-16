@@ -223,6 +223,7 @@
     "flver": "02_UNPACKED/EldenVins/mod/chr/c0000-character/c0000-chrbnd-dcx/c0000.flver",
     "base_anibnd": "../Elden/ELDEN VINS/mod/chr/c0000.anibnd.dcx",
     "animation_anibnd": "../Elden/ELDEN VINS/mod/chr/c0000_a00_hi.anibnd.dcx",
+    "behavior_binder": "../Elden/ELDEN VINS/mod/chr/c0000.behbnd.dcx",
     "preview_output": "03_CATALOG/previews/phase_4",
     "sample_count": 6,
     "pilots": [

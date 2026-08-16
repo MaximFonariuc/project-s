@@ -25,6 +25,7 @@ from pathlib import Path
 
 CATALOG_FILE = "player_animation_catalog.json"
 CATALOG_CSV = "player_animation_catalog.csv"
+BEHAVIOR_EVIDENCE_CSV = "player_animation_behavior_evidence.csv"
 DEATH_FLAGS = {"12", "40", "46", "47", "69"}
 
 
@@ -82,6 +83,9 @@ def write_csv_atomic(path: Path, rows: list[dict[str, object]]) -> None:
         "Evidence",
         "ReviewStatus",
         "IDBank",
+        "WeaponFamily",
+        "WeaponClassificationSource",
+        "WeaponEvidence",
     ]
     path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile("w", encoding="utf-8-sig", newline="", delete=False, dir=path.parent) as target:
@@ -111,6 +115,24 @@ def read_contracts(import_root: Path) -> list[tuple[Path, dict]]:
         seen_library_ids.add(library_id)
         records.append((path, contract))
     return records
+
+
+def read_behavior_evidence(path: Path) -> dict[str, dict[str, str]]:
+    if not path.is_file():
+        raise FileNotFoundError(
+            f"Behavior evidence is missing: {path}. Run "
+            "extract_behavior_animation_evidence.ps1 first."
+        )
+    rows: dict[str, dict[str, str]] = {}
+    with path.open("r", encoding="utf-8-sig", newline="") as source:
+        for row in csv.DictReader(source):
+            animation_id = row.get("AnimationID", "")
+            if not animation_id:
+                raise RuntimeError(f"Behavior evidence contains a row without AnimationID: {path}")
+            if animation_id in rows:
+                raise RuntimeError(f"Duplicate behavior evidence for {animation_id}: {path}")
+            rows[animation_id] = row
+    return rows
 
 
 def read_tae_evidence(animation_id: str, tae_folder: Path) -> tuple[set[str], set[str], bool]:
@@ -148,12 +170,26 @@ def curated_classification(contract: dict) -> tuple[str, str, str] | None:
     )
 
 
-def classify(contract: dict, tae_folder: Path) -> dict[str, object]:
+def classify(
+    contract: dict,
+    tae_folder: Path,
+    behavior_evidence: dict[str, dict[str, str]],
+) -> dict[str, object]:
     animation_id = contract["AnimationID"]
     numeric_id = animation_id.rsplit("_", 1)[-1]
     id_bank = f"{numeric_id[:3]}xxx"
     event_types, flags, has_tae = read_tae_evidence(animation_id, tae_folder)
     curated = curated_classification(contract)
+    behavior = behavior_evidence.get(animation_id, {})
+    behavior_names = behavior.get("BehaviorNames", "")
+    if behavior.get("WeaponEvidenceConfidence") == "ExclusiveNameEvidence":
+        weapon_family = behavior.get("WeaponFamily", "") or "Unknown"
+        weapon_source = "Behavior:CustomManualSelectorGenerator"
+        weapon_evidence = f"All mapped behavior names explicitly identify {weapon_family}: {behavior_names}"
+    else:
+        weapon_family = "Unknown"
+        weapon_source = ""
+        weapon_evidence = ""
 
     if curated:
         folder, catalog_type, token = curated
@@ -208,12 +244,72 @@ def classify(contract: dict, tae_folder: Path) -> dict[str, object]:
         matched = ",".join(sorted(flags.intersection(DEATH_FLAGS), key=int))
         evidence = f"Death/despawn FlagType={matched}"
         review_status = "EvidenceOnly"
+    elif "902" in event_types:
+        folder = "06_Interactions/Mounted/TAE_RideTurning"
+        catalog_type = "MountedRideTurning"
+        file_token = "RideTurning_TAE"
+        source = "TAE:RideTurning"
+        evidence = "EventType=902 (ride turning event)"
+        review_status = "EvidenceOnly"
+    elif "74" in flags:
+        folder = "06_Interactions/Ladder/TAE_LadderCollision"
+        catalog_type = "LadderCollision"
+        file_token = "LadderCollision_TAE"
+        source = "TAE:ChrActionFlag"
+        evidence = "FlagType=74 (Ladder Collision)"
+        review_status = "EvidenceOnly"
+    elif "32" in event_types or "33" in event_types:
+        folder = "07_Equipment/WeaponStyleSwitch/TAE_WeaponEvents"
+        catalog_type = "WeaponStyleSwitch"
+        file_token = "WeaponSwitch_TAE"
+        source = "TAE:WeaponConfiguration"
+        evidence = "EventType=32/33 (SetWeaponStyle or SwitchWeapon)"
+        review_status = "EvidenceOnly"
+    elif "64" in event_types:
+        folder = "08_Magic/Cast/TAE_CastHighlightedMagic"
+        catalog_type = "MagicCast"
+        file_token = "MagicCast_TAE"
+        source = "TAE:CastHighlightedMagic"
+        evidence = "EventType=64 (CastHighlightedMagic)"
+        review_status = "EvidenceOnly"
+    elif weapon_source:
+        motion_kind = "InPlace" if contract.get("RootMotionStatus") == "InPlace" else "RootMotion"
+        folder = (
+            f"90_NeedsReview/01_ByWeapon/{safe_name(weapon_family, 'Unknown')}/"
+            f"{motion_kind}/ID_Banks/{id_bank}"
+        )
+        catalog_type = "WeaponFamilyNeedsReview"
+        file_token = f"{safe_name(weapon_family, 'Weapon')}_{motion_kind}_NeedsReview"
+        source = weapon_source
+        evidence = f"{weapon_evidence}; exact action remains unreviewed"
+        review_status = "NeedsReview"
+    elif "792" in event_types:
+        folder = f"90_NeedsReview/02_FootstepCandidates/ID_Banks/{id_bank}"
+        catalog_type = "FootstepCandidate"
+        file_token = "FootstepCandidate_TAE"
+        source = "TAE:FootSfxParam"
+        evidence = "EventType=792 (footstep sound); exact motion remains unreviewed"
+        review_status = "NeedsReview"
+    elif not has_tae:
+        folder = f"90_NeedsReview/05_MissingTAE/ID_Banks/{id_bank}"
+        catalog_type = "MissingTAE"
+        file_token = "MissingTAE_NeedsReview"
+        source = "MissingTAE"
+        evidence = "TAE entry missing"
+        review_status = "NeedsReview"
+    elif contract.get("RootMotionStatus") != "InPlace":
+        folder = f"90_NeedsReview/03_RootMotion/ID_Banks/{id_bank}"
+        catalog_type = "RootMotionNeedsReview"
+        file_token = "RootMotion_NeedsReview"
+        source = "TechnicalMotionContract"
+        evidence = "Root translation is present; exact action remains unreviewed"
+        review_status = "NeedsReview"
     else:
-        folder = f"90_NeedsReview/ID_Banks/{id_bank}"
-        catalog_type = "NeedsReview"
-        file_token = "NeedsReview"
-        source = "IDBankFallback"
-        evidence = "TAE entry has no supported semantic discriminator" if has_tae else "TAE entry missing"
+        folder = f"90_NeedsReview/04_InPlace/ID_Banks/{id_bank}"
+        catalog_type = "InPlaceNeedsReview"
+        file_token = "InPlace_NeedsReview"
+        source = "TechnicalMotionContract"
+        evidence = "No root translation; exact action remains unreviewed"
         review_status = "NeedsReview"
 
     library_id = contract["LibraryID"]
@@ -228,6 +324,9 @@ def classify(contract: dict, tae_folder: Path) -> dict[str, object]:
         "Evidence": evidence,
         "ReviewStatus": review_status,
         "IDBank": id_bank,
+        "WeaponFamily": weapon_family,
+        "WeaponClassificationSource": weapon_source,
+        "WeaponEvidence": weapon_evidence,
     }
 
 
@@ -240,12 +339,17 @@ def update_contract(contract: dict, entry: dict[str, object]) -> dict:
         "Evidence",
         "ReviewStatus",
         "IDBank",
+        "WeaponFamily",
+        "WeaponClassificationSource",
+        "WeaponEvidence",
     ):
         contract[field] = entry[field]
     labels = [
         label
         for label in contract.get("Labels", [])
-        if not label.startswith(("Catalog:", "CatalogType:", "ReviewStatus:", "IDBank:"))
+        if not label.startswith(
+            ("Catalog:", "CatalogType:", "ReviewStatus:", "IDBank:", "WeaponFamily:")
+        )
     ]
     labels.extend(
         [
@@ -255,6 +359,8 @@ def update_contract(contract: dict, entry: dict[str, object]) -> dict:
             f"IDBank:{entry['IDBank']}",
         ]
     )
+    if entry["WeaponFamily"] != "Unknown":
+        labels.append(f"WeaponFamily:{entry['WeaponFamily']}")
     contract["Labels"] = labels
     return contract
 
@@ -361,8 +467,18 @@ def main() -> int:
     database_root = resolve_from_library(library_root, config["paths"]["database"])
     import_root = resolve_from_library(library_root, config["unity_import"]["unity_asset_root"])
     tae_folder = (library_root.parent / "Elden/.pipeline/work/phase4/a00-tae").resolve()
+    behavior_evidence = read_behavior_evidence(database_root / BEHAVIOR_EVIDENCE_CSV)
     records = read_contracts(import_root)
-    entries = [classify(contract, tae_folder) for _, contract in records]
+    contract_ids = {str(contract["AnimationID"]) for _, contract in records}
+    evidence_ids = set(behavior_evidence)
+    if evidence_ids != contract_ids:
+        missing = sorted(contract_ids - evidence_ids)
+        extra = sorted(evidence_ids - contract_ids)
+        raise RuntimeError(
+            "Behavior evidence does not match the imported catalog: "
+            f"missing={len(missing)}, extra={len(extra)}"
+        )
+    entries = [classify(contract, tae_folder, behavior_evidence) for _, contract in records]
     entries.sort(key=lambda value: str(value["AnimationID"]))
     if len(entries) != int(config["unity_import"]["expected_import_count"]):
         raise RuntimeError(
@@ -379,11 +495,23 @@ def main() -> int:
         "total": len(entries),
         "byType": dict(sorted(Counter(str(entry["CatalogType"]) for entry in entries).items())),
         "byReviewStatus": dict(sorted(Counter(str(entry["ReviewStatus"]) for entry in entries).items())),
+        "byWeaponFamily": dict(
+            sorted(
+                Counter(
+                    str(entry["WeaponFamily"])
+                    for entry in entries
+                    if entry["WeaponFamily"] != "Unknown"
+                ).items()
+            )
+        ),
     }
     payload = {
         "schemaVersion": 1,
         "generatedAt": datetime.now(timezone.utc).isoformat(),
-        "classificationPolicy": "Curated semantics, then explicit TAE evidence, then ID-bank fallback",
+        "classificationPolicy": (
+            "Curated semantics, explicit TAE evidence, exclusive behavior weapon-family evidence, "
+            "then technical motion and ID-bank fallback"
+        ),
         "summary": summary,
         "entries": entries,
     }

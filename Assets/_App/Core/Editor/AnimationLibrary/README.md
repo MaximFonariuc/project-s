@@ -16,6 +16,9 @@ classDiagram
         +RootMotionStatus string
         +ClipName string
         +HasRootMotion bool
+        +WeaponFamily string
+        +WeaponClassificationSource string
+        +WeaponEvidence string
     }
     class AnimationLibraryMetadataReader {
         +TryReadForModel(modelAssetPath, metadata, error) bool
@@ -57,7 +60,9 @@ Catalog organization:
 
 - `Database/player_animation_catalog.json` is the machine-readable source of the folder and filename mapping.
 - `AnimationLibraryOrganizer` moves each FBX and adjacent contract through `AssetDatabase.MoveAsset`, checks that the GUID did not change, applies catalog labels and writes an organization receipt.
-- Curated identities are filed as `Reviewed`. Automatic folders require explicit TAE evidence. Everything else stays honestly marked `NeedsReview` and is grouped by the first three digits of its animation ID.
+- Curated identities are filed as `Reviewed`. Automatic semantic folders require explicit TAE evidence. Otherwise unresolved clips can be grouped by weapon only when the player behavior graph resolves every matching selector to the same explicit weapon family; shared behavior remains unknown.
+- `WeaponFamily`, `WeaponClassificationSource` and `WeaponEvidence` are copied into the adjacent contract. Unity labels include `WeaponFamily:<name>` only for evidence-backed matches.
+- Remaining unknown clips stay honestly marked `NeedsReview` and are grouped by technical motion evidence and the first three digits of their animation ID.
 - Filenames start with the original `a000_XXXXXX` ID, then a conservative type token, then the stable `LibraryID`; this makes both ID lookup and provenance visible in the Project window.
 
 The source Avatar is loaded from the contract and is normalized through the same Blender FBX profile as the animation-only exports. Clip semantics are never inferred by the importer; `Probable` and `Unknown` catalog entries remain unverified after a successful technical import.

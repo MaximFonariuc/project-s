@@ -11,7 +11,6 @@ labels:
 - ReviewStatus:EvidenceOnly
 - SemanticConfidence:Unknown
 - Source:Unknown
-- WeaponFamily:Unknown
 ModelImporter:
   serializedVersion: 24000
   internalIDToNameTable: []

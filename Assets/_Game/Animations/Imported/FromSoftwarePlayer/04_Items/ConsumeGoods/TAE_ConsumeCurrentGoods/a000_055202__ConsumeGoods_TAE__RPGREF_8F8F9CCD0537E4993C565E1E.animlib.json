@@ -22,7 +22,7 @@
     "FriendlyName": "Unknown",
     "SemanticConfidence": "Unknown",
     "CharacterType": "Unknown",
-    "WeaponFamily": "Unknown",
+    "WeaponFamily": "DuelingShield",
     "ActionType": "Unknown",
     "ActionVariant": "Unknown",
     "Direction": "Unknown",
@@ -32,6 +32,8 @@
     "Evidence": "EventType=65 (ConsumeCurrentGoods)",
     "ReviewStatus": "EvidenceOnly",
     "IDBank": "055xxx",
+    "WeaponClassificationSource": "Behavior:CustomManualSelectorGenerator",
+    "WeaponEvidence": "All mapped behavior names explicitly identify DuelingShield: QuickItemEnchantNormal_DuelingShield_CMSG|QuickItemEnchantNormal_DuelingShield_Upper_CMSG",
     "Loop": false,
     "FrameCount": 51,
     "FrameRate": 30,
@@ -46,13 +48,13 @@
         "AnimationLibrary",
         "LibraryID:RPGREF_8F8F9CCD0537E4993C565E1E",
         "Action:Unknown",
-        "WeaponFamily:Unknown",
         "CharacterType:Unknown",
         "SemanticConfidence:Unknown",
         "Source:Unknown",
         "Catalog:04_Items",
         "CatalogType:ConsumeGoods",
         "ReviewStatus:EvidenceOnly",
-        "IDBank:055xxx"
+        "IDBank:055xxx",
+        "WeaponFamily:DuelingShield"
     ]
 }

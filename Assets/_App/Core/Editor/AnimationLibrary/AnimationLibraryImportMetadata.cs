@@ -34,6 +34,8 @@ namespace ProjectS.Core.Editor.AnimationLibrary
         public string Evidence;
         public string ReviewStatus;
         public string IDBank;
+        public string WeaponClassificationSource;
+        public string WeaponEvidence;
         public bool Loop;
         public int FrameCount;
         public int FrameRate;

@@ -22,7 +22,7 @@
     "FriendlyName": "Unknown",
     "SemanticConfidence": "Unknown",
     "CharacterType": "Unknown",
-    "WeaponFamily": "Unknown",
+    "WeaponFamily": "Torch",
     "ActionType": "Unknown",
     "ActionVariant": "Unknown",
     "Direction": "Unknown",
@@ -32,6 +32,8 @@
     "Evidence": "FlagType=8 (Flag As Dodging)",
     "ReviewStatus": "EvidenceOnly",
     "IDBank": "019xxx",
+    "WeaponClassificationSource": "Behavior:CustomManualSelectorGenerator",
+    "WeaponEvidence": "All mapped behavior names explicitly identify Torch: BackStepHeavyGuardOnTorch_CMSG|BackStepHeavyGuardOnTorch_CMSG00|BackStepHeavyGuardOnTorch_CMSG01|BackStepHeavyGuardOnTorch_CMSG02|BackStepOverweightGuardOnTorch_CMSG|BackStepOverweightGuardOnTorch_CMSG00",
     "Loop": false,
     "FrameCount": 46,
     "FrameRate": 30,
@@ -46,13 +48,13 @@
         "AnimationLibrary",
         "LibraryID:RPGREF_16D3E855B33B94B640D6BD08",
         "Action:Unknown",
-        "WeaponFamily:Unknown",
         "CharacterType:Unknown",
         "SemanticConfidence:Unknown",
         "Source:Unknown",
         "Catalog:02_Defense",
         "CatalogType:Dodge",
         "ReviewStatus:EvidenceOnly",
-        "IDBank:019xxx"
+        "IDBank:019xxx",
+        "WeaponFamily:Torch"
     ]
 }

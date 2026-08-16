@@ -11,7 +11,7 @@ labels:
 - ReviewStatus:EvidenceOnly
 - SemanticConfidence:Unknown
 - Source:Unknown
-- WeaponFamily:Unknown
+- WeaponFamily:DuelingShield
 ModelImporter:
   serializedVersion: 24000
   internalIDToNameTable: []

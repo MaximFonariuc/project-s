@@ -96,9 +96,10 @@ Phase 9 evidence is stored in `Database/unity_import_operations.csv`, `Database/
 
 Environment and installed tool versions are documented in `03_CATALOG/reports/environment.md` and `00_Tools/README.md`.
 
-The imported player catalog is organized by curated semantics, explicit TAE evidence and conservative ID-bank fallback. See `03_CATALOG/reports/player_animation_organization.md`, `Database/player_animation_catalog.csv` and `Database/player_animation_catalog.json`. Generate/synchronize it with:
+The imported player catalog is organized by curated semantics, explicit TAE evidence, conservative weapon-family evidence from the player behavior graph and deterministic fallback. See `03_CATALOG/reports/player_animation_organization.md`, `Database/player_animation_catalog.csv` and `Database/player_animation_catalog.json`. Extract the behavior evidence before generating/synchronizing the catalog:
 
 ```powershell
+pwsh -NoProfile -File scripts/extract_behavior_animation_evidence.ps1 -Config config/pipeline.json
 py -3 scripts/organize_player_animation_catalog.py --config config/pipeline.json
 ```
 

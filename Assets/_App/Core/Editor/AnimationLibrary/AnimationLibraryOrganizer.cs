@@ -241,16 +241,25 @@ namespace ProjectS.Core.Editor.AnimationLibrary
             metadata.Evidence = entry.Evidence;
             metadata.ReviewStatus = entry.ReviewStatus;
             metadata.IDBank = entry.IDBank;
+            metadata.WeaponFamily = entry.WeaponFamily;
+            metadata.WeaponClassificationSource = entry.WeaponClassificationSource;
+            metadata.WeaponEvidence = entry.WeaponEvidence;
             var labels = new List<string>(metadata.Labels ?? Array.Empty<string>());
             labels.RemoveAll(
                 label => label.StartsWith("Catalog:", StringComparison.Ordinal) ||
                          label.StartsWith("CatalogType:", StringComparison.Ordinal) ||
                          label.StartsWith("ReviewStatus:", StringComparison.Ordinal) ||
-                         label.StartsWith("IDBank:", StringComparison.Ordinal));
+                         label.StartsWith("IDBank:", StringComparison.Ordinal) ||
+                         label.StartsWith("WeaponFamily:", StringComparison.Ordinal));
             labels.Add($"Catalog:{entry.CatalogCategory}");
             labels.Add($"CatalogType:{entry.CatalogType}");
             labels.Add($"ReviewStatus:{entry.ReviewStatus}");
             labels.Add($"IDBank:{entry.IDBank}");
+            if (!string.IsNullOrWhiteSpace(entry.WeaponFamily) &&
+                !string.Equals(entry.WeaponFamily, "Unknown", StringComparison.Ordinal))
+            {
+                labels.Add($"WeaponFamily:{entry.WeaponFamily}");
+            }
             metadata.Labels = labels.ToArray();
         }
 
@@ -382,6 +391,9 @@ namespace ProjectS.Core.Editor.AnimationLibrary
             public string Evidence;
             public string ReviewStatus;
             public string IDBank;
+            public string WeaponFamily;
+            public string WeaponClassificationSource;
+            public string WeaponEvidence;
         }
 
         [Serializable]

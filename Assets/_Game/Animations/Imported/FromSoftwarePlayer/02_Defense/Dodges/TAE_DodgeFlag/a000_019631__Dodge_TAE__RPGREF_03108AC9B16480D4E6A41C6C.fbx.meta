@@ -11,7 +11,7 @@ labels:
 - ReviewStatus:EvidenceOnly
 - SemanticConfidence:Unknown
 - Source:Unknown
-- WeaponFamily:Unknown
+- WeaponFamily:Torch
 ModelImporter:
   serializedVersion: 24000
   internalIDToNameTable: []
