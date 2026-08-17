@@ -43,6 +43,7 @@ classDiagram
         class MecanimAnimationStateAuthoring
         class MecanimAnimationGraphConfiguration
         class MecanimCharacterAnimationDriver
+        class MecanimPlanarMotionFilterJob
         class IAnimationClipActionDriver {
             <<interface>>
             +PlayAction(request) AnimationActionPlayback
@@ -51,6 +52,16 @@ classDiagram
         }
         class AnimationClipActionArbiter
         class NullCharacterLookAnimationDriver
+        class AnimationMotionTrajectory {
+            +EvaluatePosition(normalizedTime)
+            +EvaluateRotation(normalizedTime)
+        }
+    }
+
+    namespace UnityEditorBackend {
+        class AnimationMotionTrajectoryBaker {
+            +Bake(request) AnimationMotionTrajectory
+        }
     }
 
     namespace ProjectSCore {
@@ -70,7 +81,9 @@ classDiagram
     MecanimCharacterAnimationProfile *-- MecanimAnimationStateAuthoring
     MecanimCharacterAnimationProfile ..> MecanimAnimationGraphConfiguration : creates
     MecanimCharacterAnimationDriver --> MecanimAnimationGraphConfiguration
+    MecanimCharacterAnimationDriver --> MecanimPlanarMotionFilterJob
     AnimationClipActionArbiter --> IAnimationClipActionDriver
+    AnimationMotionTrajectoryBaker ..> AnimationMotionTrajectory : creates
 
     PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
     PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator
@@ -100,7 +113,8 @@ flowchart LR
     B --> X["Layer mixer"]
     F["Full-body action lane\nCombat / Reaction"] --> X
     M["Masked action lane"] --> X
-    X --> A["Animator output"]
+    X --> R["Optional Generic planar-motion filter"]
+    R --> A["Animator output"]
 ```
 
 - Locomotion continuously blends idle, forward, backward, left and right clips
@@ -119,6 +133,9 @@ flowchart LR
   `PlayerAnimationCoordinator`; the reusable module sees numeric channels only.
 - The driver owns and disposes the graph with the VContainer gameplay scope.
   It restores the Animator's previous controller reference on disposal.
+- A configured Generic motion-root path adds one stream job after the layer
+  mixer. It fixes only that bone's local X/Z pose and does not duplicate or
+  mutate source clips.
 
 ## Generic and Humanoid rigs
 
@@ -142,8 +159,13 @@ profile with the same semantic slots, then replace the prefab references.
 - Animator is a presentation endpoint, never a gameplay state owner.
 - Combat does not replace controllers or locomotion clips. It sends finite
   action requests through `PlayerAnimationCoordinator`.
-- Root motion is selected by gameplay action policy and remains outside the
-  animation profile. Presentation cannot silently move the character motor.
+- Animator root motion is always disabled by the runtime driver. Presentation
+  cannot silently move the character transform or motor.
+- Animation-authored displacement is baked in the Editor into an
+  `AnimationMotionTrajectory`. For Generic content, an optional Playables stream
+  job removes planar translation from the rendered motion-root pose without
+  creating a duplicate clip. Gameplay decides whether and how to consume the
+  trajectory.
 - Missing optional presentation may fall back to another semantic slot. It must
   not change gameplay state or combat results.
 - Look animation remains a separate optional contract. The Generic PSO2 rig
@@ -158,3 +180,37 @@ A different animation technology implements `ICharacterAnimationDriver` and,
 when it supports finite actions, `IAnimationClipActionDriver`. Selection belongs
 only in the composition root. Input, locomotion state machines, combat graphs and
 timings do not change with the backend.
+
+## Motor-authoritative animation motion
+
+The runtime never applies `Animator.deltaPosition` or `Animator.deltaRotation`
+to a character. This avoids frame/update-order dependence and prevents an
+animation from bypassing the character collision sweep.
+
+```mermaid
+flowchart LR
+    S["Source clip with animated motion root"] --> B["Editor baker"]
+    B --> T["AnimationMotionTrajectory"]
+    S --> G["PlayableGraph"]
+    G --> F["Planar motion-root filter"]
+    F --> A["Animator pose"]
+    T --> C["Project gameplay action"]
+    C --> M["Character motor"]
+    M --> P["Collision-resolved movement"]
+```
+
+`AnimationMotionTrajectory` stores sampled displacement and rotation in a
+canonical character-local coordinate system. Sampling is allocation-free.
+Source-specific axis conversion and unit scale belong to the Editor bake
+request, so the runtime representation is identical for Generic and Humanoid
+content.
+
+Project S currently bakes PSO2 NGS motion from `pl_rbd_100000_bw`, converts the
+visual rig's 180-degree yaw and 0.6 scale into character-local space, and gives
+the resulting trajectory to combat or dodge gameplay. Combat targeting may
+rotate the local trajectory toward the current target, while
+`CharacterMovement` remains the only collision and grounding authority. Combat
+consumes position deltas between timeline samples rather than an instantaneous
+sample velocity, so a frame hitch does not silently discard authored travel.
+The original Generic clip remains the presentation source; the graph filters
+`pl_rbd_100000_bw` in memory instead of committing large in-place clip copies.

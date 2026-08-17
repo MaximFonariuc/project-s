@@ -21,6 +21,7 @@ namespace ModularAnimation.Unity
         private readonly Animator _animator;
         private readonly MecanimAnimationGraphConfiguration _configuration;
         private readonly RuntimeAnimatorController _sourceController;
+        private readonly bool _sourceApplyRootMotion;
 
         private readonly AnimationClipPlayable[] _locomotionClips =
             new AnimationClipPlayable[MecanimAnimationGraphConfiguration.LocomotionInputCount];
@@ -31,6 +32,7 @@ namespace ModularAnimation.Unity
         private readonly AnimationClipPlayable[] _stateClips =
             new AnimationClipPlayable[ClipSlotCount];
         private readonly bool[] _stateClipValid = new bool[ClipSlotCount];
+        private readonly float[] _stateSpeedMultipliers = { 1.0f, 1.0f };
         private readonly AnimationMixerPlayable[] _actionMixers =
             new AnimationMixerPlayable[ActionLaneCount];
         private readonly AnimationClipPlayable[,] _actionClips =
@@ -80,7 +82,9 @@ namespace ModularAnimation.Unity
                 : throw new ArgumentNullException(nameof(animator));
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _sourceController = _animator.runtimeAnimatorController;
+            _sourceApplyRootMotion = _animator.applyRootMotion;
             _animator.runtimeAnimatorController = null;
+            _animator.applyRootMotion = false;
 
             CreateGraph();
             RefreshBindings();
@@ -116,7 +120,7 @@ namespace ModularAnimation.Unity
             FinishBaseBlend();
             int targetInput = graphState.UsesLocomotion
                 ? 0
-                : CreateStateClip(in graphState);
+                : CreateStateClip(in graphState, expectedDuration);
             StartBaseBlend(targetInput, state, transitionSeconds);
 
             float duration = expectedDuration > 0.0f
@@ -223,7 +227,8 @@ namespace ModularAnimation.Unity
             {
                 if (_stateClipValid[i])
                 {
-                    _stateClips[i].SetSpeed(_playbackSpeed);
+                    _stateClips[i].SetSpeed(
+                        _playbackSpeed * _stateSpeedMultipliers[i]);
                 }
             }
         }
@@ -253,6 +258,7 @@ namespace ModularAnimation.Unity
             if (_animator != null)
             {
                 _animator.runtimeAnimatorController = _sourceController;
+                _animator.applyRootMotion = _sourceApplyRootMotion;
             }
 
             _disposed = true;
@@ -293,7 +299,31 @@ namespace ModularAnimation.Unity
 
             AnimationPlayableOutput output =
                 AnimationPlayableOutput.Create(_graph, "CharacterAnimation", _animator);
-            output.SetSourcePlayable(_layerMixer);
+            if (string.IsNullOrEmpty(_configuration.PlanarMotionRootPath))
+            {
+                output.SetSourcePlayable(_layerMixer);
+            }
+            else
+            {
+                Transform motionRoot = _animator.transform.Find(
+                    _configuration.PlanarMotionRootPath);
+                if (motionRoot == null)
+                {
+                    throw new InvalidOperationException(
+                        $"Animator '{_animator.name}' has no planar motion root " +
+                        $"'{_configuration.PlanarMotionRootPath}'.");
+                }
+
+                var filterJob = new MecanimPlanarMotionFilterJob(
+                    _animator.BindStreamTransform(motionRoot),
+                    motionRoot.localPosition);
+                AnimationScriptPlayable motionFilter =
+                    AnimationScriptPlayable.Create(_graph, filterJob, 1);
+                _graph.Connect(_layerMixer, 0, motionFilter, 0);
+                motionFilter.SetInputWeight(0, 1.0f);
+                output.SetSourcePlayable(motionFilter);
+            }
+
             _graph.Play();
         }
 
@@ -359,7 +389,9 @@ namespace ModularAnimation.Unity
             }
         }
 
-        private int CreateStateClip(in MecanimAnimationGraphState state)
+        private int CreateStateClip(
+            in MecanimAnimationGraphState state,
+            float expectedDuration)
         {
             int currentSlot = _baseCurrentInput > 0 ? _baseCurrentInput - 1 : -1;
             int slot = currentSlot == 0 ? 1 : 0;
@@ -368,11 +400,15 @@ namespace ModularAnimation.Unity
             AnimationClipPlayable playable = AnimationClipPlayable.Create(_graph, state.Clip);
             playable.SetApplyFootIK(state.ApplyFootIk);
             playable.SetTime(0.0d);
-            playable.SetSpeed(_playbackSpeed);
+            float speedMultiplier = expectedDuration > 0.0001f
+                ? state.Clip.length / expectedDuration
+                : 1.0f;
+            playable.SetSpeed(_playbackSpeed * speedMultiplier);
             _graph.Connect(playable, 0, _baseMixer, slot + 1);
             _baseMixer.SetInputWeight(slot + 1, 0.0f);
             _stateClips[slot] = playable;
             _stateClipValid[slot] = true;
+            _stateSpeedMultipliers[slot] = speedMultiplier;
             return slot + 1;
         }
 
@@ -453,6 +489,7 @@ namespace ModularAnimation.Unity
             }
 
             _stateClipValid[slot] = false;
+            _stateSpeedMultipliers[slot] = 1.0f;
             _baseMixer.SetInputWeight(slot + 1, 0.0f);
         }
 

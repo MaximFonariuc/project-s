@@ -16,6 +16,9 @@ namespace ModularAnimation.Unity
         [Header("Semantic States")]
         [SerializeField] private List<MecanimAnimationStateAuthoring> _states = new();
 
+        [Header("Generic In-Place Motion")]
+        [SerializeField] private string _planarMotionRootPath;
+
         public MecanimLocomotionClipSet Locomotion => _locomotion;
         public IReadOnlyList<MecanimAnimationStateAuthoring> States =>
             _states ?? (IReadOnlyList<MecanimAnimationStateAuthoring>)Array.Empty<MecanimAnimationStateAuthoring>();
@@ -26,7 +29,8 @@ namespace ModularAnimation.Unity
                 animator,
                 _locomotion ?? throw new InvalidOperationException(
                     $"Animation profile '{name}' requires a locomotion clip set."),
-                CreateStateDefinitions());
+                CreateStateDefinitions(),
+                _planarMotionRootPath);
         }
 
         private IReadOnlyList<MecanimAnimationStateDefinition> CreateStateDefinitions()

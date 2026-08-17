@@ -28,7 +28,7 @@ classDiagram
         +CompletionTime
         +CommitTime
         +MovementIntent
-        +RootMotionPolicy
+        +Motion
     }
     class CombatActionExecutor {
         +ExecuteAsync(definition, duration, observer, token)
@@ -47,10 +47,11 @@ classDiagram
         +IsComplete
     }
     class ICombatClock
-    class IRootMotionPolicyTarget
     class IDamageImmunityTarget
     class PlayerActorAdapter
-    class RootMotionController
+    class CombatMotionController
+    class AnimationMotionTrajectory
+    class CharacterMotor
     class IPlayerCombatAnimation
 
     PlayerCombatActionProfile --> PlayerCombatActionGraph
@@ -61,11 +62,11 @@ classDiagram
     CombatActionExecutor --> CombatActionDefinition
     CombatActionExecutor --> CombatActionFrame
     CombatActionExecutor --> ICombatClock
-    CombatActionExecutor --> IRootMotionPolicyTarget
     CombatActionExecutor --> IDamageImmunityTarget
-    IRootMotionPolicyTarget <|.. PlayerActorAdapter
     IDamageImmunityTarget <|.. PlayerActorAdapter
-    PlayerActorAdapter --> RootMotionController
+    CombatActionExecutor --> CombatMotionController
+    CombatMotionController --> AnimationMotionTrajectory
+    CombatMotionController --> CharacterMotor
 ```
 
 ## Dependency and ownership rules
@@ -79,8 +80,16 @@ classDiagram
 - `PlayerCombatActionGraph` contains immutable runtime definitions and transition rules.
   `PlayerCombatActionProfile` is optional immutable authoring data that creates
   that graph at composition time.
-- Root motion is selected per action and the previous policy is restored on
-  completion, interruption, cancellation and disable.
+- Animation-authored motion is stored as an optional trajectory on the action's
+  combat-motion definition. `CombatMotionController` evaluates the displacement
+  between the previous and current action times and queues that local delta on
+  the motor; the Animator never moves the actor directly. This preserves motion
+  when a slow frame crosses several baked samples.
+- `CharacterMotor` and `CharacterMovement` remain the only authorities for
+  velocity, collision, grounding and slopes. The motor consumes each queued
+  displacement once through the normal collision sweep and clears the temporary
+  planar velocity on the next simulation step. Interruption or cancellation
+  clears the active continuous intent in `CombatActionExecutor` cleanup.
 - Hitbox state is derived from the current action frame. The weapon rig remains
   the owner of the physical hitbox.
 - Movement constraints may apply to the full action or to a configured window.
@@ -103,6 +112,12 @@ definitions own their normalized hit, chain, cancel, recovery and combat-motion
 windows. Current damage, timing and motion values are initial tuning data. Both
 branches temporarily reuse the four available combo clips, so replacing FBX,
 clips or the Animator Controller does not require changing the gameplay graph.
+
+The PSO2 NGS actions keep their original presentation clips. The Playables graph
+filters the Generic motion-root pose in memory, while matching
+`AnimationMotionTrajectory` assets preserve authored displacement for gameplay.
+Actions without a usable trajectory keep the existing distance-based motor
+motion as a fallback.
 
 This tree intentionally remains in `_App/Core`: DMC-like cancel semantics are
 still game-specific. Only a stable, project-neutral timeline should later be

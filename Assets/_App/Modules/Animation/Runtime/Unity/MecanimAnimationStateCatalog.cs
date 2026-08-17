@@ -78,11 +78,13 @@ namespace ModularAnimation.Unity
         private readonly Animator _animator;
 
         public float LocomotionBlendSeconds { get; }
+        public string PlanarMotionRootPath { get; }
 
         internal MecanimAnimationGraphConfiguration(
             Animator animator,
             MecanimLocomotionClipSet locomotion,
-            IReadOnlyList<MecanimAnimationStateDefinition> definitions)
+            IReadOnlyList<MecanimAnimationStateDefinition> definitions,
+            string planarMotionRootPath)
         {
             _animator = animator != null
                 ? animator
@@ -99,6 +101,15 @@ namespace ModularAnimation.Unity
             }
 
             LocomotionBlendSeconds = locomotion.BlendSeconds;
+            PlanarMotionRootPath = planarMotionRootPath?.Trim() ?? string.Empty;
+            if (!string.IsNullOrEmpty(PlanarMotionRootPath) &&
+                _animator.transform.Find(PlanarMotionRootPath) == null)
+            {
+                throw new InvalidOperationException(
+                    $"Animator '{_animator.name}' has no planar motion root " +
+                    $"'{PlanarMotionRootPath}'.");
+            }
+
             BuildLocomotion(locomotion);
             AddDefinitions(definitions ?? throw new ArgumentNullException(nameof(definitions)));
             ValidateRigCompatibility();

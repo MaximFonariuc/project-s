@@ -43,12 +43,13 @@ MonoBehaviour:
     _allowJump: 0
     _allowDodge: 0
     _faceMoveDirection: 0
-    _rootMotionPolicy: 0
     _useCombatMotion: 0
     _combatMotionStart: 0
     _combatMotionEnd: 0.25
     _overridePlanarVelocity: 0
     _combatMotionDistance: 0
+    _motionTrajectory: {fileID: 0}
+    _motionTrajectoryScale: 1
     _verticalMotionMode: 0
     _combatVerticalVelocity: 0
     _combatVerticalImpulse: 0
@@ -106,12 +107,13 @@ MonoBehaviour:
       _allowJump: 0
       _allowDodge: 1
       _faceMoveDirection: 1
-      _rootMotionPolicy: 0
       _useCombatMotion: 1
       _combatMotionStart: 0
       _combatMotionEnd: 0.36
       _overridePlanarVelocity: 1
       _combatMotionDistance: 0.65
+      _motionTrajectory: {fileID: 11400000, guid: 71155bafcde0ef1448ffa59abe1057a7, type: 2}
+      _motionTrajectoryScale: 1
       _verticalMotionMode: 0
       _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
@@ -154,12 +156,13 @@ MonoBehaviour:
       _allowJump: 0
       _allowDodge: 1
       _faceMoveDirection: 1
-      _rootMotionPolicy: 0
       _useCombatMotion: 1
       _combatMotionStart: 0
       _combatMotionEnd: 0.36
       _overridePlanarVelocity: 1
       _combatMotionDistance: 0.75
+      _motionTrajectory: {fileID: 11400000, guid: 2870b7080082d414999a70523784c943, type: 2}
+      _motionTrajectoryScale: 1
       _verticalMotionMode: 0
       _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
@@ -202,12 +205,13 @@ MonoBehaviour:
       _allowJump: 0
       _allowDodge: 1
       _faceMoveDirection: 1
-      _rootMotionPolicy: 0
       _useCombatMotion: 1
       _combatMotionStart: 0
       _combatMotionEnd: 0.36
       _overridePlanarVelocity: 1
       _combatMotionDistance: 0.8
+      _motionTrajectory: {fileID: 11400000, guid: 9a849e0bebfcdad468f6e4d9655b427c, type: 2}
+      _motionTrajectoryScale: 1
       _verticalMotionMode: 0
       _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
@@ -250,12 +254,13 @@ MonoBehaviour:
       _allowJump: 0
       _allowDodge: 1
       _faceMoveDirection: 1
-      _rootMotionPolicy: 0
       _useCombatMotion: 1
       _combatMotionStart: 0
       _combatMotionEnd: 0.36
       _overridePlanarVelocity: 1
       _combatMotionDistance: 0.95
+      _motionTrajectory: {fileID: 11400000, guid: 878e6494285a9794ca640300b71642f3, type: 2}
+      _motionTrajectoryScale: 1
       _verticalMotionMode: 0
       _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
@@ -298,12 +303,13 @@ MonoBehaviour:
       _allowJump: 0
       _allowDodge: 1
       _faceMoveDirection: 1
-      _rootMotionPolicy: 0
       _useCombatMotion: 1
       _combatMotionStart: 0
       _combatMotionEnd: 0.4
       _overridePlanarVelocity: 1
       _combatMotionDistance: 0.45
+      _motionTrajectory: {fileID: 11400000, guid: 71155bafcde0ef1448ffa59abe1057a7, type: 2}
+      _motionTrajectoryScale: 1
       _verticalMotionMode: 2
       _combatVerticalVelocity: -1.5
       _combatVerticalImpulse: 1
@@ -346,12 +352,13 @@ MonoBehaviour:
       _allowJump: 0
       _allowDodge: 1
       _faceMoveDirection: 1
-      _rootMotionPolicy: 0
       _useCombatMotion: 1
       _combatMotionStart: 0
       _combatMotionEnd: 0.4
       _overridePlanarVelocity: 1
       _combatMotionDistance: 0.52
+      _motionTrajectory: {fileID: 11400000, guid: 2870b7080082d414999a70523784c943, type: 2}
+      _motionTrajectoryScale: 1
       _verticalMotionMode: 2
       _combatVerticalVelocity: -1.5
       _combatVerticalImpulse: 0
@@ -394,12 +401,13 @@ MonoBehaviour:
       _allowJump: 0
       _allowDodge: 1
       _faceMoveDirection: 1
-      _rootMotionPolicy: 0
       _useCombatMotion: 1
       _combatMotionStart: 0
       _combatMotionEnd: 0.4
       _overridePlanarVelocity: 1
       _combatMotionDistance: 0.58
+      _motionTrajectory: {fileID: 11400000, guid: 9a849e0bebfcdad468f6e4d9655b427c, type: 2}
+      _motionTrajectoryScale: 1
       _verticalMotionMode: 2
       _combatVerticalVelocity: -1.5
       _combatVerticalImpulse: 0
@@ -442,12 +450,13 @@ MonoBehaviour:
       _allowJump: 0
       _allowDodge: 1
       _faceMoveDirection: 1
-      _rootMotionPolicy: 0
       _useCombatMotion: 1
       _combatMotionStart: 0
       _combatMotionEnd: 0.4
       _overridePlanarVelocity: 1
       _combatMotionDistance: 0.7
+      _motionTrajectory: {fileID: 11400000, guid: 878e6494285a9794ca640300b71642f3, type: 2}
+      _motionTrajectoryScale: 1
       _verticalMotionMode: 2
       _combatVerticalVelocity: -2.5
       _combatVerticalImpulse: 0
@@ -490,12 +499,13 @@ MonoBehaviour:
       _allowJump: 0
       _allowDodge: 0
       _faceMoveDirection: 1
-      _rootMotionPolicy: 0
       _useCombatMotion: 1
       _combatMotionStart: 0
       _combatMotionEnd: 0.38
       _overridePlanarVelocity: 1
       _combatMotionDistance: 1.1
+      _motionTrajectory: {fileID: 11400000, guid: fe037bbd76d8b3e498dfc527116f42b1, type: 2}
+      _motionTrajectoryScale: 1
       _verticalMotionMode: 0
       _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
@@ -538,12 +548,13 @@ MonoBehaviour:
       _allowJump: 0
       _allowDodge: 0
       _faceMoveDirection: 1
-      _rootMotionPolicy: 0
       _useCombatMotion: 1
       _combatMotionStart: 0
       _combatMotionEnd: 0.42
       _overridePlanarVelocity: 1
       _combatMotionDistance: 0.8
+      _motionTrajectory: {fileID: 11400000, guid: fe037bbd76d8b3e498dfc527116f42b1, type: 2}
+      _motionTrajectoryScale: 1
       _verticalMotionMode: 2
       _combatVerticalVelocity: -1.25
       _combatVerticalImpulse: 0.5

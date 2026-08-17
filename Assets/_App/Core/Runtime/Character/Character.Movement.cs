@@ -276,11 +276,6 @@ namespace _App
                 velocity = velocity.ClampedTo(newMaxSpeed);
             }
 
-            if (RootMotionController?.RootMovementUpdate(out Vector3 targetPosition, out Quaternion targetRotation) ?? false)
-            {
-                CharacterMovement.SetPositionAndRotation(targetPosition, targetRotation, true);
-            }
-
             return velocity;
         }
 

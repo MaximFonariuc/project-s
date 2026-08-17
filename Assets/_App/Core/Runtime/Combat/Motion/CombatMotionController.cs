@@ -43,12 +43,23 @@ namespace _App
                 : 0.0f;
             _verticalImpulseApplied = false;
             _isActive = true;
-            Advance(0.0f);
+            Advance(0.0f, 0.0f);
         }
 
-        public void Advance(float normalizedTime)
+        public void Advance(float previousNormalizedTime, float normalizedTime)
         {
-            if (!_isActive || !_definition.Window.Contains(normalizedTime))
+            if (!_isActive)
+            {
+                return;
+            }
+
+            if (_definition.Trajectory != null)
+            {
+                AdvanceTrajectory(previousNormalizedTime, normalizedTime);
+                return;
+            }
+
+            if (!_definition.Window.Contains(normalizedTime))
             {
                 _motor.ClearActionMotion();
                 return;
@@ -56,24 +67,25 @@ namespace _App
 
             bool hasTarget = TryGetTargetDirection(out Vector3 targetDirection, out float targetDistance);
             Vector3 forward = GetPlanarDirection(_motor.Forward);
-            Vector3 motionDirection = hasTarget ? targetDirection : forward;
+            Vector3 motionForward = hasTarget ? targetDirection : forward;
             Vector3 facingDirection = _definition.FaceTarget && hasTarget
                 ? targetDirection
                 : Vector3.zero;
 
             ApplyVerticalImpulse();
 
-            float speed = _planarSpeed;
-            if (hasTarget && speed > 0.0f && targetDistance <= _definition.TargetStoppingDistance)
+            Vector3 planarVelocity = motionForward * _planarSpeed;
+            if (hasTarget && planarVelocity.sqrMagnitude > 0.0f &&
+                targetDistance <= _definition.TargetStoppingDistance)
             {
-                speed = 0.0f;
+                planarVelocity = Vector3.zero;
             }
 
             var intent = new CharacterActionMotionIntent(
                 _definition.OverridePlanarVelocity
                     ? CharacterActionPlanarMode.OverrideVelocity
                     : CharacterActionPlanarMode.PreserveVelocity,
-                motionDirection * speed,
+                planarVelocity,
                 _definition.VerticalMode,
                 _definition.VerticalVelocity,
                 facingDirection);
@@ -136,6 +148,62 @@ namespace _App
             return direction.sqrMagnitude > DirectionEpsilon
                 ? direction.normalized
                 : Vector3.zero;
+        }
+
+        private void AdvanceTrajectory(float previousNormalizedTime, float normalizedTime)
+        {
+            NormalizedActionWindow window = _definition.Window;
+            float from = Mathf.Clamp(previousNormalizedTime, window.Start, window.End);
+            float to = Mathf.Clamp(normalizedTime, window.Start, window.End);
+            bool isInsideWindow = window.Contains(normalizedTime);
+            bool crossedWindow = to > from;
+            if (!isInsideWindow && !crossedWindow)
+            {
+                _motor.ClearActionMotion();
+                return;
+            }
+
+            bool hasTarget = TryGetTargetDirection(out Vector3 targetDirection, out float targetDistance);
+            Vector3 forward = GetPlanarDirection(_motor.Forward);
+            Vector3 motionForward = hasTarget ? targetDirection : forward;
+            Vector3 facingDirection = _definition.FaceTarget && hasTarget
+                ? targetDirection
+                : Vector3.zero;
+
+            ApplyVerticalImpulse();
+            if (crossedWindow &&
+                (!hasTarget || targetDistance > _definition.TargetStoppingDistance))
+            {
+                Vector3 localDisplacement =
+                    (_definition.Trajectory.EvaluatePosition(to) -
+                     _definition.Trajectory.EvaluatePosition(from)) *
+                    _definition.TrajectoryScale;
+                _motor.QueueActionPlanarDisplacement(
+                    ToWorldPlanar(localDisplacement, motionForward));
+            }
+
+            if (!isInsideWindow)
+            {
+                _motor.ClearActionMotion();
+                return;
+            }
+
+            var intent = new CharacterActionMotionIntent(
+                CharacterActionPlanarMode.OverrideVelocity,
+                Vector3.zero,
+                _definition.VerticalMode,
+                _definition.VerticalVelocity,
+                facingDirection);
+            _motor.SetActionMotion(in intent);
+        }
+
+        private Vector3 ToWorldPlanar(Vector3 localMotion, Vector3 motionForward)
+        {
+            Vector3 up = _motor.Up;
+            Vector3 right = Vector3.Cross(up, motionForward).normalized;
+            return Vector3.ProjectOnPlane(
+                right * localMotion.x + motionForward * localMotion.z,
+                up);
         }
     }
 }

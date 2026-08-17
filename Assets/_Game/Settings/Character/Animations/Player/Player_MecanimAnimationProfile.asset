@@ -99,7 +99,7 @@ MonoBehaviour:
     _usesLocomotion: 0
     _clip: {fileID: 7324215299811307480, guid: 6696a934eca31104aa6c133d48d9a56a, type: 3}
     _transitionSeconds: 0.05
-    _expectedDuration: 0
+    _expectedDuration: 0.35
     _fallbackSlot: 
     _required: 1
     _applyFootIk: 0
@@ -107,7 +107,8 @@ MonoBehaviour:
     _usesLocomotion: 0
     _clip: {fileID: 6332799035040970787, guid: 6696a934eca31104aa6c133d48d9a56a, type: 3}
     _transitionSeconds: 0.05
-    _expectedDuration: 0
+    _expectedDuration: 0.35
     _fallbackSlot: Locomotion.Dodge.Forward
     _required: 1
     _applyFootIk: 0
+  _planarMotionRootPath: pl_rbd_100000_bw

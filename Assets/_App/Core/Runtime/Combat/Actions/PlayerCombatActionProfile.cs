@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ModularAnimation.Unity;
 using UnityEngine;
 
 namespace _App
@@ -207,7 +208,6 @@ namespace _App
         [SerializeField] private bool _allowJump;
         [SerializeField] private bool _allowDodge = true;
         [SerializeField] private bool _faceMoveDirection = true;
-        [SerializeField] private RootMotionPolicy _rootMotionPolicy = RootMotionPolicy.Ignore;
 
         [Header("Combat Motion")]
         [Tooltip("Applies collision-resolved planar motion during the configured action window.")]
@@ -216,6 +216,9 @@ namespace _App
         [SerializeField, Range(0.0f, 1.0f)] private float _combatMotionEnd = 0.3f;
         [SerializeField] private bool _overridePlanarVelocity;
         [SerializeField, Min(0.0f)] private float _combatMotionDistance = 0.75f;
+        [Tooltip("Optional animation-derived trajectory. When assigned, distance is taken from this asset.")]
+        [SerializeField] private AnimationMotionTrajectory _motionTrajectory;
+        [SerializeField, Min(0.0f)] private float _motionTrajectoryScale = 1.0f;
 
         [Header("Combat Vertical Motion")]
         [Tooltip("OverrideVelocity sets an exact vertical speed. MinimumVelocity preserves ascent and limits falling speed.")]
@@ -264,12 +267,13 @@ namespace _App
                     _allowJump,
                     _allowDodge,
                     _faceMoveDirection),
-                _rootMotionPolicy,
                 _useCombatMotion
                     ? new CombatMotionDefinition(
                         new NormalizedActionWindow(_combatMotionStart, _combatMotionEnd),
                         _overridePlanarVelocity,
                         _combatMotionDistance,
+                        _motionTrajectory,
+                        _motionTrajectoryScale,
                         _verticalMotionMode,
                         _combatVerticalVelocity,
                         _combatVerticalImpulse,

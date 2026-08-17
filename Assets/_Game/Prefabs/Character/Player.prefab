@@ -16302,7 +16302,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3968737769867499350, guid: 88e3cb124cd66244b82c9dddec1de3c7, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7058237026597670188, guid: 88e3cb124cd66244b82c9dddec1de3c7, type: 3}
       propertyPath: m_LocalScale.x
@@ -16411,10 +16411,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1351188681811540277, guid: 88e3cb124cd66244b82c9dddec1de3c7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1290754776144310048}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7689955193721280406, guid: 88e3cb124cd66244b82c9dddec1de3c7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1981803089718205699}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88e3cb124cd66244b82c9dddec1de3c7, type: 3}
 --- !u!4 &280845705647070365 stripped
 Transform:
@@ -16441,25 +16438,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7950226204937121756, guid: 88e3cb124cd66244b82c9dddec1de3c7, type: 3}
   m_PrefabInstance: {fileID: 6888784887687874261}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3828575191158116675 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7689955193721280406, guid: 88e3cb124cd66244b82c9dddec1de3c7, type: 3}
-  m_PrefabInstance: {fileID: 6888784887687874261}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1981803089718205699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3828575191158116675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 838519e5d02343249e0d4ddd7578cba4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 7532878003367825795}
-  _rigidbody: {fileID: 3369159904570980666}
 --- !u!4 &4497412085191937017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7058237026597670188, guid: 88e3cb124cd66244b82c9dddec1de3c7, type: 3}

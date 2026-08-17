@@ -95,7 +95,6 @@ namespace _App
 
         private float _fallingTime;
         private PhysicsVolume _physicsVolume;
-        public RootMotionController RootMotionController { get; private set; }
 
         private bool CanEverCrouch => _canEverCrouch;
 
@@ -525,7 +524,6 @@ namespace _App
 
         protected virtual void CacheComponents()
         {
-            RootMotionController = GetComponentInChildren<RootMotionController>();
             _transform = GetComponent<Transform>();
             _characterMovement = GetComponent<CharacterMovement>();
             _camera = Camera.main;

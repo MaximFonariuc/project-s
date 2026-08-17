@@ -386,7 +386,6 @@ namespace _App
 			else if (prevMode == EMovementMode.Custom &&
 			         prevCustom == (int)ECustomMovementMode.Climbing)
 			{
-				_character.RootMotionController.RootMovementUpdate(out var _, out var _);
 				_character.EnableGroundConstraint(true);
 				_character.SetRotationMode(_previousRotationMode);
 				_animation.ReleaseAll(PlayerAnimationSource.Traversal);

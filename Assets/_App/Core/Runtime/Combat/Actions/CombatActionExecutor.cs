@@ -8,13 +8,11 @@ namespace _App
     internal sealed class CombatActionExecutor
     {
         private readonly ICombatClock _clock;
-        private readonly IRootMotionPolicyTarget _body;
         private readonly IDamageImmunityTarget _damageImmunity;
         private readonly CombatMotionController _motion;
 
         private CombatActionDefinition _definition;
         private CombatActionFrame _currentFrame;
-        private RootMotionPolicy _previousRootMotionPolicy;
         private bool _previousDamageImmunity;
         private float _duration;
         private float _elapsed;
@@ -29,12 +27,10 @@ namespace _App
 
         public CombatActionExecutor(
             ICombatClock clock,
-            IRootMotionPolicyTarget body,
             IDamageImmunityTarget damageImmunity,
             CombatMotionController motion)
         {
             _clock = clock ?? throw new ArgumentNullException(nameof(clock));
-            _body = body ?? throw new ArgumentNullException(nameof(body));
             _damageImmunity = damageImmunity ?? throw new ArgumentNullException(nameof(damageImmunity));
             _motion = motion ?? throw new ArgumentNullException(nameof(motion));
         }
@@ -95,9 +91,7 @@ namespace _App
             _definition = definition;
             _duration = duration;
             _elapsed = 0.0f;
-            _previousRootMotionPolicy = _body.RootMotionPolicy;
             _previousDamageImmunity = _damageImmunity.IsDamageImmune;
-            _body.SetRootMotionPolicy(definition.RootMotionPolicy);
 
             int executionId = ++_nextExecutionId;
             if (executionId == 0)
@@ -123,7 +117,7 @@ namespace _App
             _elapsed = Mathf.Min(_elapsed + deltaTime, _duration);
             float normalizedTime = Mathf.Clamp01(_elapsed / _duration);
             _currentFrame = CreateFrame(previousTime, normalizedTime);
-            _motion.Advance(normalizedTime);
+            _motion.Advance(previousTime, normalizedTime);
             ApplyDamageImmunity(_currentFrame.IsInvulnerable);
         }
 
@@ -151,7 +145,6 @@ namespace _App
                 return;
             }
 
-            _body.SetRootMotionPolicy(_previousRootMotionPolicy);
             _damageImmunity.SetDamageImmune(_previousDamageImmunity);
             _motion.End();
             _definition = default;

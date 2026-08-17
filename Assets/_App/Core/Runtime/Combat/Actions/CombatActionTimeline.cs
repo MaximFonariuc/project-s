@@ -48,7 +48,6 @@ namespace _App
         public float CommitTime { get; }
         public float Cooldown { get; }
         public PlayerMovementIntent MovementIntent { get; }
-        public RootMotionPolicy RootMotionPolicy { get; }
         public CombatMotionDefinition Motion { get; }
 
         public CombatActionDefinition(
@@ -64,7 +63,6 @@ namespace _App
             float commitTime,
             float cooldown,
             PlayerMovementIntent movementIntent,
-            RootMotionPolicy rootMotionPolicy,
             CombatMotionDefinition motion)
         {
             if (completionTime <= 0.0f || completionTime > 1.0f)
@@ -85,20 +83,6 @@ namespace _App
             if (motion.IsEnabled)
             {
                 ValidateWindow(motion.Window, completionTime, nameof(motion));
-            }
-
-            if (motion.HasTranslation && rootMotionPolicy is RootMotionPolicy.Translation or RootMotionPolicy.Full)
-            {
-                throw new ArgumentException(
-                    "Code-driven combat translation cannot be combined with translational root motion.",
-                    nameof(rootMotionPolicy));
-            }
-
-            if (motion.FaceTarget && rootMotionPolicy is RootMotionPolicy.Rotation or RootMotionPolicy.Full)
-            {
-                throw new ArgumentException(
-                    "Code-driven combat facing cannot be combined with rotational root motion.",
-                    nameof(rootMotionPolicy));
             }
 
             if (hasCommit && (commitTime < 0.0f || commitTime > completionTime))
@@ -123,7 +107,6 @@ namespace _App
             CommitTime = hasCommit ? commitTime : 0.0f;
             Cooldown = cooldown;
             MovementIntent = movementIntent;
-            RootMotionPolicy = rootMotionPolicy;
             Motion = motion;
         }
 

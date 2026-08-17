@@ -33,7 +33,6 @@ namespace _App
                 .As<IPlayerActorTransform>()
                 .As<IPlayerTargetingActor>()
                 .As<IPlayerCombatActor>()
-                .As<IRootMotionPolicyTarget>()
                 .As<IDamageImmunityTarget>()
                 .As<IPlayerTraversalActor>();
 

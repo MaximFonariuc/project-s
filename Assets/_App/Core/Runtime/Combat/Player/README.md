@@ -55,7 +55,7 @@ classDiagram
 ## Dependencies and ownership
 
 - `PlayerCombatController` and `CombatActionExecutor` own action authority,
-  normalized gameplay windows, interruption and root-motion policy.
+  normalized gameplay windows and interruption.
 - `CombatAnimationSet` is immutable authoring data for one weapon loadout. Clip
   replacement and blend tuning do not change the combat action graph.
 - `PlayerCombatAnimationAdapter` resolves a presentation and returns only its
@@ -67,8 +67,9 @@ classDiagram
 - Controller overrides are restricted to continuous loadout locomotion. Finite
   combo, skill and draw/sheathe clips are played directly and have no Animator
   placeholder states.
-- AvatarMask is a presentation choice. Root motion remains an explicit gameplay
-  policy applied by `CombatActionExecutor` through `IRootMotionPolicyTarget`.
+- AvatarMask is a presentation choice. Animation-derived movement is baked into
+  gameplay trajectory data and consumed through the character motor; this
+  presentation adapter never applies root motion.
 
 ## Current authoring
 
