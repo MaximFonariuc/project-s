@@ -105,6 +105,10 @@ flowchart LR
 
 - Locomotion continuously blends idle, forward, backward, left and right clips
   for walk, run and sprint from `CharacterLocomotionFrame`.
+- `MecanimLocomotionClipSet.BlendSeconds` controls a frame-rate-independent
+  crossfade across every locomotion input. Direction reversals and gait changes
+  preserve both outgoing and incoming weights during the blend instead of
+  switching mixer inputs in one frame.
 - Semantic slots resolve directly to either the locomotion graph or an authored
   finite clip. Transition values are seconds and are evaluated by code.
 - Two finite-clip inputs permit interruption and crossfade without Animator

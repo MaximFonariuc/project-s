@@ -82,11 +82,13 @@ namespace ModularAnimation.Unity
     [Serializable]
     public sealed class MecanimLocomotionClipSet
     {
+        [SerializeField, Min(0.0f)] private float _blendSeconds = 0.15f;
         [SerializeField] private AnimationClip _idle;
         [SerializeField] private MecanimDirectionalClipSet _walk = new();
         [SerializeField] private MecanimDirectionalClipSet _run = new();
         [SerializeField] private MecanimDirectionalClipSet _sprint = new();
 
+        public float BlendSeconds => Mathf.Max(0.0f, _blendSeconds);
         public AnimationClip Idle => _idle;
         public MecanimDirectionalClipSet Walk => _walk;
         public MecanimDirectionalClipSet Run => _run;

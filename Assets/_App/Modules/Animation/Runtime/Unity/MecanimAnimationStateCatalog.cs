@@ -77,6 +77,8 @@ namespace ModularAnimation.Unity
         private readonly HashSet<AnimationSlotId> _unavailable = new HashSet<AnimationSlotId>();
         private readonly Animator _animator;
 
+        public float LocomotionBlendSeconds { get; }
+
         internal MecanimAnimationGraphConfiguration(
             Animator animator,
             MecanimLocomotionClipSet locomotion,
@@ -91,7 +93,13 @@ namespace ModularAnimation.Unity
                     $"Animator '{_animator.name}' requires a valid Generic or Humanoid Avatar.");
             }
 
-            BuildLocomotion(locomotion ?? throw new ArgumentNullException(nameof(locomotion)));
+            if (locomotion == null)
+            {
+                throw new ArgumentNullException(nameof(locomotion));
+            }
+
+            LocomotionBlendSeconds = locomotion.BlendSeconds;
+            BuildLocomotion(locomotion);
             AddDefinitions(definitions ?? throw new ArgumentNullException(nameof(definitions)));
             ValidateRigCompatibility();
 

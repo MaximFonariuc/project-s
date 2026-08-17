@@ -16,6 +16,7 @@ namespace ModularAnimation.Unity
         private const int ActionLaneCount = 2;
         private const int ClipSlotCount = 2;
         private const int BaseInputCount = 3;
+        private const float BlendCompletionExponent = 4.0f;
 
         private readonly Animator _animator;
         private readonly MecanimAnimationGraphConfiguration _configuration;
@@ -23,6 +24,10 @@ namespace ModularAnimation.Unity
 
         private readonly AnimationClipPlayable[] _locomotionClips =
             new AnimationClipPlayable[MecanimAnimationGraphConfiguration.LocomotionInputCount];
+        private readonly float[] _locomotionWeights =
+            new float[MecanimAnimationGraphConfiguration.LocomotionInputCount];
+        private readonly float[] _locomotionTargets =
+            new float[MecanimAnimationGraphConfiguration.LocomotionInputCount];
         private readonly AnimationClipPlayable[] _stateClips =
             new AnimationClipPlayable[ClipSlotCount];
         private readonly bool[] _stateClipValid = new bool[ClipSlotCount];
@@ -59,12 +64,6 @@ namespace ModularAnimation.Unity
         private float _laneBlendElapsed;
         private int _nextActionSequence;
 
-        private float _forward;
-        private float _lateral;
-        private float _normalizedSpeed;
-        private float _forwardVelocity;
-        private float _lateralVelocity;
-        private float _speedVelocity;
         private float _playbackSpeed = 1.0f;
         private bool _disposed;
 
@@ -90,27 +89,7 @@ namespace ModularAnimation.Unity
         public void ApplyLocomotion(in CharacterLocomotionFrame frame, float deltaTime)
         {
             ThrowIfDisposed();
-            float clampedDeltaTime = Mathf.Max(0.0f, deltaTime);
-            _forward = Damp(
-                _forward,
-                frame.ForwardSpeed,
-                ref _forwardVelocity,
-                0.08f,
-                clampedDeltaTime);
-            _lateral = Damp(
-                _lateral,
-                frame.LateralSpeed,
-                ref _lateralVelocity,
-                0.08f,
-                clampedDeltaTime);
-            _normalizedSpeed = Damp(
-                _normalizedSpeed,
-                Mathf.Clamp01(frame.NormalizedSpeed),
-                ref _speedVelocity,
-                0.1f,
-                clampedDeltaTime);
-
-            ApplyLocomotionWeights(frame.Gait);
+            ApplyLocomotionWeights(in frame, Mathf.Max(0.0f, deltaTime));
         }
 
         public AnimationPlayback CrossFade(
@@ -299,7 +278,8 @@ namespace ModularAnimation.Unity
                 playable.SetSpeed(_playbackSpeed);
                 _graph.Connect(playable, 0, _locomotionMixer, i);
                 _locomotionClips[i] = playable;
-                _locomotionMixer.SetInputWeight(i, i == 0 ? 1.0f : 0.0f);
+                _locomotionWeights[i] = i == 0 ? 1.0f : 0.0f;
+                _locomotionMixer.SetInputWeight(i, _locomotionWeights[i]);
             }
 
             _graph.Connect(_locomotionMixer, 0, _baseMixer, 0);
@@ -317,42 +297,66 @@ namespace ModularAnimation.Unity
             _graph.Play();
         }
 
-        private void ApplyLocomotionWeights(CharacterGait gait)
+        private void ApplyLocomotionWeights(
+            in CharacterLocomotionFrame frame,
+            float deltaTime)
         {
-            for (int i = 0; i < _locomotionClips.Length; i++)
+            Array.Clear(_locomotionTargets, 0, _locomotionTargets.Length);
+
+            float movementWeight = Mathf.Clamp01(frame.NormalizedSpeed);
+            _locomotionTargets[0] = 1.0f - movementWeight;
+            if (movementWeight > 0.0001f)
             {
-                _locomotionMixer.SetInputWeight(i, 0.0f);
+                float forwardWeight = Mathf.Max(0.0f, frame.ForwardSpeed);
+                float backwardWeight = Mathf.Max(0.0f, -frame.ForwardSpeed);
+                float leftWeight = Mathf.Max(0.0f, -frame.LateralSpeed);
+                float rightWeight = Mathf.Max(0.0f, frame.LateralSpeed);
+                float directionTotal =
+                    forwardWeight + backwardWeight + leftWeight + rightWeight;
+                if (directionTotal > 0.0001f)
+                {
+                    int gaitIndex = frame.Gait switch
+                    {
+                        CharacterGait.Walk => 0,
+                        CharacterGait.Sprint => 2,
+                        _ => 1
+                    };
+                    int offset =
+                        1 + gaitIndex * MecanimAnimationGraphConfiguration.DirectionCount;
+                    _locomotionTargets[offset] =
+                        movementWeight * forwardWeight / directionTotal;
+                    _locomotionTargets[offset + 1] =
+                        movementWeight * backwardWeight / directionTotal;
+                    _locomotionTargets[offset + 2] =
+                        movementWeight * leftWeight / directionTotal;
+                    _locomotionTargets[offset + 3] =
+                        movementWeight * rightWeight / directionTotal;
+                }
+                else
+                {
+                    _locomotionTargets[0] = 1.0f;
+                }
             }
 
-            float movementWeight = Mathf.Clamp01(_normalizedSpeed);
-            _locomotionMixer.SetInputWeight(0, 1.0f - movementWeight);
-            if (movementWeight <= 0.0001f)
+            float blend = CalculateBlendFactor(
+                _configuration.LocomotionBlendSeconds,
+                deltaTime);
+            float weightTotal = 0.0f;
+            for (int i = 0; i < _locomotionWeights.Length; i++)
             {
-                return;
+                _locomotionWeights[i] = Mathf.Lerp(
+                    _locomotionWeights[i],
+                    _locomotionTargets[i],
+                    blend);
+                weightTotal += _locomotionWeights[i];
             }
 
-            float forwardWeight = Mathf.Max(0.0f, _forward);
-            float backwardWeight = Mathf.Max(0.0f, -_forward);
-            float leftWeight = Mathf.Max(0.0f, -_lateral);
-            float rightWeight = Mathf.Max(0.0f, _lateral);
-            float total = forwardWeight + backwardWeight + leftWeight + rightWeight;
-            if (total <= 0.0001f)
+            float normalization = weightTotal > 0.0001f ? 1.0f / weightTotal : 1.0f;
+            for (int i = 0; i < _locomotionWeights.Length; i++)
             {
-                forwardWeight = 1.0f;
-                total = 1.0f;
+                _locomotionWeights[i] *= normalization;
+                _locomotionMixer.SetInputWeight(i, _locomotionWeights[i]);
             }
-
-            int gaitIndex = gait switch
-            {
-                CharacterGait.Walk => 0,
-                CharacterGait.Sprint => 2,
-                _ => 1
-            };
-            int offset = 1 + gaitIndex * MecanimAnimationGraphConfiguration.DirectionCount;
-            _locomotionMixer.SetInputWeight(offset, movementWeight * forwardWeight / total);
-            _locomotionMixer.SetInputWeight(offset + 1, movementWeight * backwardWeight / total);
-            _locomotionMixer.SetInputWeight(offset + 2, movementWeight * leftWeight / total);
-            _locomotionMixer.SetInputWeight(offset + 3, movementWeight * rightWeight / total);
         }
 
         private int CreateStateClip(in MecanimAnimationGraphState state)
@@ -617,25 +621,15 @@ namespace ModularAnimation.Unity
             _actionMixers[lane].SetInputWeight(slot, 0.0f);
         }
 
-        private static float Damp(
-            float current,
-            float target,
-            ref float velocity,
-            float smoothTime,
-            float deltaTime)
+        private static float CalculateBlendFactor(float blendSeconds, float deltaTime)
         {
-            if (deltaTime <= 0.0f)
+            if (blendSeconds <= 0.0f)
             {
-                return current;
+                return 1.0f;
             }
 
-            return Mathf.SmoothDamp(
-                current,
-                target,
-                ref velocity,
-                smoothTime,
-                float.PositiveInfinity,
-                deltaTime);
+            return 1.0f - Mathf.Exp(
+                -BlendCompletionExponent * deltaTime / blendSeconds);
         }
 
         private void ThrowIfDisposed()
