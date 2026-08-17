@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
-using Object = UnityEngine.Object;
 
 namespace ModularAnimation.Unity
 {
@@ -12,20 +10,22 @@ namespace ModularAnimation.Unity
         IAnimationClipActionDriver,
         IDisposable
     {
-        private const int ControllerInput = 0;
+        private const int BaseInput = 0;
         private const int FullBodyActionInput = 1;
         private const int MaskedActionInput = 2;
         private const int ActionLaneCount = 2;
         private const int ClipSlotCount = 2;
+        private const int BaseInputCount = 3;
 
         private readonly Animator _animator;
-        private readonly MecanimCharacterAnimationBindings _bindings;
+        private readonly MecanimAnimationGraphConfiguration _configuration;
         private readonly RuntimeAnimatorController _sourceController;
-        private readonly AnimatorOverrideController _loadoutController;
-        private readonly List<KeyValuePair<AnimationClip, AnimationClip>> _baselineOverrides;
-        private readonly HashSet<string> _overrideNames;
-        private readonly Dictionary<int, float> _clipDurations = new Dictionary<int, float>();
 
+        private readonly AnimationClipPlayable[] _locomotionClips =
+            new AnimationClipPlayable[MecanimAnimationGraphConfiguration.LocomotionInputCount];
+        private readonly AnimationClipPlayable[] _stateClips =
+            new AnimationClipPlayable[ClipSlotCount];
+        private readonly bool[] _stateClipValid = new bool[ClipSlotCount];
         private readonly AnimationMixerPlayable[] _actionMixers =
             new AnimationMixerPlayable[ActionLaneCount];
         private readonly AnimationClipPlayable[,] _actionClips =
@@ -37,8 +37,16 @@ namespace ModularAnimation.Unity
         private readonly float[] _laneTargetWeights = new float[ActionLaneCount];
 
         private PlayableGraph _graph;
-        private AnimatorControllerPlayable _controllerPlayable;
+        private AnimationMixerPlayable _locomotionMixer;
+        private AnimationMixerPlayable _baseMixer;
         private AnimationLayerMixerPlayable _layerMixer;
+
+        private int _baseCurrentInput;
+        private AnimationStateId _baseCurrentState;
+        private int _baseBlendFrom = -1;
+        private int _baseBlendTo = -1;
+        private float _baseBlendDuration;
+        private float _baseBlendElapsed;
 
         private int _activeLane = -1;
         private int _targetLane = -1;
@@ -51,12 +59,13 @@ namespace ModularAnimation.Unity
         private float _laneBlendElapsed;
         private int _nextActionSequence;
 
-        private float _movementType;
-        private float _movementDirection;
-        private float _verticalSpeed;
-        private float _movementTypeVelocity;
-        private float _movementDirectionVelocity;
-        private float _verticalSpeedVelocity;
+        private float _forward;
+        private float _lateral;
+        private float _normalizedSpeed;
+        private float _forwardVelocity;
+        private float _lateralVelocity;
+        private float _speedVelocity;
+        private float _playbackSpeed = 1.0f;
         private bool _disposed;
 
         public Animator Animator => _animator;
@@ -65,42 +74,15 @@ namespace ModularAnimation.Unity
 
         public MecanimCharacterAnimationDriver(
             Animator animator,
-            MecanimCharacterAnimationBindings bindings)
+            MecanimAnimationGraphConfiguration configuration)
         {
             _animator = animator != null
                 ? animator
                 : throw new ArgumentNullException(nameof(animator));
-            if (!bindings.IsValid)
-            {
-                throw new ArgumentException(
-                    "Complete Mecanim character parameter bindings are required.",
-                    nameof(bindings));
-            }
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            _sourceController = _animator.runtimeAnimatorController;
+            _animator.runtimeAnimatorController = null;
 
-            _bindings = bindings;
-            _sourceController = _animator.runtimeAnimatorController != null
-                ? _animator.runtimeAnimatorController
-                : throw new InvalidOperationException(
-                    $"Animator '{_animator.name}' requires a RuntimeAnimatorController.");
-            _loadoutController = new AnimatorOverrideController(_sourceController);
-            _baselineOverrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(
-                _loadoutController.overridesCount);
-            _loadoutController.GetOverrides(_baselineOverrides);
-            _overrideNames = new HashSet<string>(StringComparer.Ordinal);
-            for (int i = 0; i < _baselineOverrides.Count; i++)
-            {
-                AnimationClip original = _baselineOverrides[i].Key;
-                if (original == null)
-                {
-                    continue;
-                }
-
-                _overrideNames.Add(original.name);
-                _baselineOverrides[i] =
-                    new KeyValuePair<AnimationClip, AnimationClip>(original, original);
-            }
-
-            _animator.runtimeAnimatorController = _loadoutController;
             CreateGraph();
             RefreshBindings();
         }
@@ -108,42 +90,27 @@ namespace ModularAnimation.Unity
         public void ApplyLocomotion(in CharacterLocomotionFrame frame, float deltaTime)
         {
             ThrowIfDisposed();
-
-            float signedMovement = frame.NormalizedSpeed;
-            if (Mathf.Abs(frame.ForwardSpeed) > 0.0001f)
-            {
-                signedMovement *= Mathf.Sign(frame.ForwardSpeed);
-            }
-
-            float movementTypeTarget = frame.NormalizedSpeed > 0.0001f
-                ? (float)frame.Gait
-                : 0.0f;
-            float verticalSpeedTarget = frame.Mode == CharacterLocomotionMode.Airborne
-                ? frame.VerticalSpeed
-                : 0.0f;
-
-            _movementType = Damp(
-                _movementType,
-                movementTypeTarget,
-                ref _movementTypeVelocity,
-                0.33f,
-                deltaTime);
-            _movementDirection = Damp(
-                _movementDirection,
-                signedMovement,
-                ref _movementDirectionVelocity,
+            float clampedDeltaTime = Mathf.Max(0.0f, deltaTime);
+            _forward = Damp(
+                _forward,
+                frame.ForwardSpeed,
+                ref _forwardVelocity,
+                0.08f,
+                clampedDeltaTime);
+            _lateral = Damp(
+                _lateral,
+                frame.LateralSpeed,
+                ref _lateralVelocity,
+                0.08f,
+                clampedDeltaTime);
+            _normalizedSpeed = Damp(
+                _normalizedSpeed,
+                Mathf.Clamp01(frame.NormalizedSpeed),
+                ref _speedVelocity,
                 0.1f,
-                deltaTime);
-            _verticalSpeed = Damp(
-                _verticalSpeed,
-                verticalSpeedTarget,
-                ref _verticalSpeedVelocity,
-                0.1f,
-                deltaTime);
+                clampedDeltaTime);
 
-            _controllerPlayable.SetFloat(_bindings.MovementType.Hash, _movementType);
-            _controllerPlayable.SetFloat(_bindings.MovementDirection.Hash, _movementDirection);
-            _controllerPlayable.SetFloat(_bindings.VerticalSpeed.Hash, _verticalSpeed);
+            ApplyLocomotionWeights(frame.Gait);
         }
 
         public AnimationPlayback CrossFade(
@@ -153,28 +120,29 @@ namespace ModularAnimation.Unity
             float expectedDuration = 0.0f)
         {
             ThrowIfDisposed();
-            if (!state.IsValid || layer.Index >= _controllerPlayable.GetLayerCount())
+            if (layer != AnimationLayerId.Base ||
+                !_configuration.TryGetState(state, out MecanimAnimationGraphState graphState))
             {
                 return AnimationPlayback.Invalid;
             }
 
-            if (!_controllerPlayable.HasState(layer.Index, state.Hash))
+            if (_baseBlendTo < 0 && _baseCurrentState == state)
             {
-                Debug.LogError(
-                    $"Animator '{_animator.name}' has no state hash '{state.Hash}' on layer {layer.Index}.",
-                    _animator);
-                return AnimationPlayback.Invalid;
+                float activeDuration = expectedDuration > 0.0f
+                    ? expectedDuration
+                    : graphState.Duration;
+                return new AnimationPlayback(state, layer, activeDuration);
             }
 
-            _controllerPlayable.CrossFadeInFixedTime(
-                state.Hash,
-                Mathf.Max(0.0f, transitionSeconds),
-                layer.Index,
-                0.0f);
+            FinishBaseBlend();
+            int targetInput = graphState.UsesLocomotion
+                ? 0
+                : CreateStateClip(in graphState);
+            StartBaseBlend(targetInput, state, transitionSeconds);
 
             float duration = expectedDuration > 0.0f
                 ? expectedDuration
-                : GetClipDuration(state.Hash);
+                : graphState.Duration;
             return new AnimationPlayback(state, layer, duration);
         }
 
@@ -183,6 +151,16 @@ namespace ModularAnimation.Unity
             ThrowIfDisposed();
             if (!request.IsValid)
             {
+                return AnimationActionPlayback.Invalid;
+            }
+
+            if (request.Clip.legacy ||
+                request.Clip.humanMotion != _animator.avatar.isHuman)
+            {
+                string rig = _animator.avatar.isHuman ? "Humanoid" : "Generic";
+                Debug.LogError(
+                    $"Action clip '{request.Clip.name}' is incompatible with the {rig} Avatar on Animator '{_animator.name}'.",
+                    _animator);
                 return AnimationActionPlayback.Invalid;
             }
 
@@ -198,7 +176,7 @@ namespace ModularAnimation.Unity
             if (_activeLane == lane && currentSlot >= 0 && _actionClipValid[lane, currentSlot])
             {
                 int nextSlot = 1 - currentSlot;
-                DestroyClip(lane, nextSlot);
+                DestroyActionClip(lane, nextSlot);
                 CreateActionClip(lane, nextSlot, in request);
                 _actionMixers[lane].SetInputWeight(currentSlot, 1.0f);
                 _actionMixers[lane].SetInputWeight(nextSlot, 0.0f);
@@ -248,6 +226,7 @@ namespace ModularAnimation.Unity
             }
 
             float clampedDeltaTime = Mathf.Max(0.0f, deltaTime);
+            UpdateBaseBlend(clampedDeltaTime);
             UpdateClipBlend(clampedDeltaTime);
             UpdateLaneBlend(clampedDeltaTime);
         }
@@ -255,55 +234,29 @@ namespace ModularAnimation.Unity
         public void SetPlaybackSpeed(float speed)
         {
             ThrowIfDisposed();
-            _controllerPlayable.SetFloat(_bindings.SpeedMultiplier.Hash, Mathf.Max(0.0f, speed));
+            _playbackSpeed = Mathf.Max(0.0f, speed);
+            for (int i = 0; i < _locomotionClips.Length; i++)
+            {
+                _locomotionClips[i].SetSpeed(_playbackSpeed);
+            }
+
+            for (int i = 0; i < _stateClips.Length; i++)
+            {
+                if (_stateClipValid[i])
+                {
+                    _stateClips[i].SetSpeed(_playbackSpeed);
+                }
+            }
         }
 
         public void RefreshBindings()
         {
             ThrowIfDisposed();
-            _clipDurations.Clear();
-            CacheClipDurations();
-            ValidateContract();
-        }
-
-        public void ApplyControllerOverrides(IReadOnlyList<AnimationClip> clips)
-        {
-            ThrowIfDisposed();
-            _loadoutController.ApplyOverrides(_baselineOverrides);
-            if (clips != null)
+            if (_animator.avatar == null || !_animator.avatar.isValid)
             {
-                for (int i = 0; i < clips.Count; i++)
-                {
-                    AnimationClip clip = clips[i];
-                    if (clip == null)
-                    {
-                        continue;
-                    }
-
-                    if (!_overrideNames.Contains(clip.name))
-                    {
-                        Debug.LogWarning(
-                            $"Animator controller has no loadout clip slot named '{clip.name}'.",
-                            _animator);
-                        continue;
-                    }
-
-                    _loadoutController[clip.name] = clip;
-                }
+                throw new InvalidOperationException(
+                    $"Animator '{_animator.name}' lost its valid Avatar binding.");
             }
-
-            RefreshBindings();
-        }
-
-        internal void SetFloat(int parameterHash, float value)
-        {
-            ThrowIfDisposed();
-            _controllerPlayable.SetFloat(parameterHash, value);
-        }
-
-        internal void RequireFloat(MecanimParameterBinding binding)
-        {
-            RequireParameter(binding, AnimatorControllerParameterType.Float);
         }
 
         public void Dispose()
@@ -313,25 +266,14 @@ namespace ModularAnimation.Unity
                 return;
             }
 
-            StopAction(0.0f);
-            for (int lane = 0; lane < ActionLaneCount; lane++)
-            {
-                ClearLane(lane);
-            }
-
             if (_graph.IsValid())
             {
                 _graph.Destroy();
             }
 
-            if (_animator != null && _animator.runtimeAnimatorController == _loadoutController)
+            if (_animator != null)
             {
                 _animator.runtimeAnimatorController = _sourceController;
-            }
-
-            if (_loadoutController != null)
-            {
-                Object.Destroy(_loadoutController);
             }
 
             _disposed = true;
@@ -340,15 +282,32 @@ namespace ModularAnimation.Unity
         private void CreateGraph()
         {
             _graph = PlayableGraph.Create($"{_animator.name}.CharacterAnimation");
-            _controllerPlayable = AnimatorControllerPlayable.Create(_graph, _loadoutController);
+            _graph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
+            _locomotionMixer = AnimationMixerPlayable.Create(
+                _graph,
+                MecanimAnimationGraphConfiguration.LocomotionInputCount);
+            _baseMixer = AnimationMixerPlayable.Create(_graph, BaseInputCount);
             _layerMixer = AnimationLayerMixerPlayable.Create(_graph, 3);
             _actionMixers[0] = AnimationMixerPlayable.Create(_graph, ClipSlotCount);
             _actionMixers[1] = AnimationMixerPlayable.Create(_graph, ClipSlotCount);
 
-            _graph.Connect(_controllerPlayable, 0, _layerMixer, ControllerInput);
+            for (int i = 0; i < _locomotionClips.Length; i++)
+            {
+                AnimationClip clip = _configuration.GetLocomotionClip(i);
+                AnimationClipPlayable playable = AnimationClipPlayable.Create(_graph, clip);
+                playable.SetApplyFootIK(false);
+                playable.SetSpeed(_playbackSpeed);
+                _graph.Connect(playable, 0, _locomotionMixer, i);
+                _locomotionClips[i] = playable;
+                _locomotionMixer.SetInputWeight(i, i == 0 ? 1.0f : 0.0f);
+            }
+
+            _graph.Connect(_locomotionMixer, 0, _baseMixer, 0);
+            _baseMixer.SetInputWeight(0, 1.0f);
+            _graph.Connect(_baseMixer, 0, _layerMixer, BaseInput);
             _graph.Connect(_actionMixers[0], 0, _layerMixer, FullBodyActionInput);
             _graph.Connect(_actionMixers[1], 0, _layerMixer, MaskedActionInput);
-            _layerMixer.SetInputWeight(ControllerInput, 1.0f);
+            _layerMixer.SetInputWeight(BaseInput, 1.0f);
             _layerMixer.SetInputWeight(FullBodyActionInput, 0.0f);
             _layerMixer.SetInputWeight(MaskedActionInput, 0.0f);
 
@@ -356,6 +315,141 @@ namespace ModularAnimation.Unity
                 AnimationPlayableOutput.Create(_graph, "CharacterAnimation", _animator);
             output.SetSourcePlayable(_layerMixer);
             _graph.Play();
+        }
+
+        private void ApplyLocomotionWeights(CharacterGait gait)
+        {
+            for (int i = 0; i < _locomotionClips.Length; i++)
+            {
+                _locomotionMixer.SetInputWeight(i, 0.0f);
+            }
+
+            float movementWeight = Mathf.Clamp01(_normalizedSpeed);
+            _locomotionMixer.SetInputWeight(0, 1.0f - movementWeight);
+            if (movementWeight <= 0.0001f)
+            {
+                return;
+            }
+
+            float forwardWeight = Mathf.Max(0.0f, _forward);
+            float backwardWeight = Mathf.Max(0.0f, -_forward);
+            float leftWeight = Mathf.Max(0.0f, -_lateral);
+            float rightWeight = Mathf.Max(0.0f, _lateral);
+            float total = forwardWeight + backwardWeight + leftWeight + rightWeight;
+            if (total <= 0.0001f)
+            {
+                forwardWeight = 1.0f;
+                total = 1.0f;
+            }
+
+            int gaitIndex = gait switch
+            {
+                CharacterGait.Walk => 0,
+                CharacterGait.Sprint => 2,
+                _ => 1
+            };
+            int offset = 1 + gaitIndex * MecanimAnimationGraphConfiguration.DirectionCount;
+            _locomotionMixer.SetInputWeight(offset, movementWeight * forwardWeight / total);
+            _locomotionMixer.SetInputWeight(offset + 1, movementWeight * backwardWeight / total);
+            _locomotionMixer.SetInputWeight(offset + 2, movementWeight * leftWeight / total);
+            _locomotionMixer.SetInputWeight(offset + 3, movementWeight * rightWeight / total);
+        }
+
+        private int CreateStateClip(in MecanimAnimationGraphState state)
+        {
+            int currentSlot = _baseCurrentInput > 0 ? _baseCurrentInput - 1 : -1;
+            int slot = currentSlot == 0 ? 1 : 0;
+            DestroyStateClip(slot);
+
+            AnimationClipPlayable playable = AnimationClipPlayable.Create(_graph, state.Clip);
+            playable.SetApplyFootIK(state.ApplyFootIk);
+            playable.SetTime(0.0d);
+            playable.SetSpeed(_playbackSpeed);
+            _graph.Connect(playable, 0, _baseMixer, slot + 1);
+            _baseMixer.SetInputWeight(slot + 1, 0.0f);
+            _stateClips[slot] = playable;
+            _stateClipValid[slot] = true;
+            return slot + 1;
+        }
+
+        private void StartBaseBlend(
+            int targetInput,
+            AnimationStateId targetState,
+            float duration)
+        {
+            _baseBlendFrom = _baseCurrentInput;
+            _baseBlendTo = targetInput;
+            _baseCurrentState = targetState;
+            _baseBlendDuration = Mathf.Max(0.0f, duration);
+            _baseBlendElapsed = 0.0f;
+            _baseMixer.SetInputWeight(_baseBlendFrom, 1.0f);
+            _baseMixer.SetInputWeight(_baseBlendTo, _baseBlendFrom == _baseBlendTo ? 1.0f : 0.0f);
+            if (_baseBlendDuration <= 0.0f || _baseBlendFrom == _baseBlendTo)
+            {
+                FinishBaseBlend();
+            }
+        }
+
+        private void UpdateBaseBlend(float deltaTime)
+        {
+            if (_baseBlendTo < 0)
+            {
+                return;
+            }
+
+            _baseBlendElapsed += deltaTime;
+            float progress = _baseBlendDuration > 0.0f
+                ? Mathf.Clamp01(_baseBlendElapsed / _baseBlendDuration)
+                : 1.0f;
+            _baseMixer.SetInputWeight(_baseBlendFrom, 1.0f - progress);
+            _baseMixer.SetInputWeight(_baseBlendTo, progress);
+            if (progress >= 1.0f)
+            {
+                FinishBaseBlend();
+            }
+        }
+
+        private void FinishBaseBlend()
+        {
+            if (_baseBlendTo < 0)
+            {
+                return;
+            }
+
+            int previous = _baseBlendFrom;
+            _baseCurrentInput = _baseBlendTo;
+            for (int input = 0; input < BaseInputCount; input++)
+            {
+                _baseMixer.SetInputWeight(input, input == _baseCurrentInput ? 1.0f : 0.0f);
+            }
+
+            if (previous > 0 && previous != _baseCurrentInput)
+            {
+                DestroyStateClip(previous - 1);
+            }
+
+            _baseBlendFrom = -1;
+            _baseBlendTo = -1;
+            _baseBlendDuration = 0.0f;
+            _baseBlendElapsed = 0.0f;
+        }
+
+        private void DestroyStateClip(int slot)
+        {
+            if (!_stateClipValid[slot])
+            {
+                return;
+            }
+
+            _graph.Disconnect(_baseMixer, slot + 1);
+            AnimationClipPlayable playable = _stateClips[slot];
+            if (playable.IsValid())
+            {
+                _graph.DestroyPlayable(playable);
+            }
+
+            _stateClipValid[slot] = false;
+            _baseMixer.SetInputWeight(slot + 1, 0.0f);
         }
 
         private void CreateActionClip(
@@ -372,11 +466,7 @@ namespace ModularAnimation.Unity
             _actionClipValid[lane, slot] = true;
         }
 
-        private void StartClipBlend(
-            int lane,
-            int fromSlot,
-            int toSlot,
-            float duration)
+        private void StartClipBlend(int lane, int fromSlot, int toSlot, float duration)
         {
             _clipBlendLane = lane;
             _clipBlendFromSlot = fromSlot;
@@ -420,7 +510,7 @@ namespace ModularAnimation.Unity
             int fromSlot = _clipBlendFromSlot;
             int toSlot = _clipBlendToSlot;
             _actionMixers[lane].SetInputWeight(toSlot, 1.0f);
-            DestroyClip(lane, fromSlot);
+            DestroyActionClip(lane, fromSlot);
             _activeClipSlots[lane] = toSlot;
             _clipBlendLane = -1;
             _clipBlendFromSlot = -1;
@@ -503,13 +593,13 @@ namespace ModularAnimation.Unity
 
             for (int slot = 0; slot < ClipSlotCount; slot++)
             {
-                DestroyClip(lane, slot);
+                DestroyActionClip(lane, slot);
             }
 
             _activeClipSlots[lane] = -1;
         }
 
-        private void DestroyClip(int lane, int slot)
+        private void DestroyActionClip(int lane, int slot)
         {
             if (!_actionClipValid[lane, slot])
             {
@@ -525,52 +615,6 @@ namespace ModularAnimation.Unity
 
             _actionClipValid[lane, slot] = false;
             _actionMixers[lane].SetInputWeight(slot, 0.0f);
-        }
-
-        private void CacheClipDurations()
-        {
-            AnimationClip[] clips = _loadoutController.animationClips;
-            for (int i = 0; i < clips.Length; i++)
-            {
-                AnimationClip clip = clips[i];
-                if (clip != null)
-                {
-                    _clipDurations[Animator.StringToHash(clip.name)] = clip.length;
-                }
-            }
-        }
-
-        private float GetClipDuration(int stateHash)
-        {
-            return _clipDurations.TryGetValue(stateHash, out float duration)
-                ? duration
-                : 0.0f;
-        }
-
-        private void ValidateContract()
-        {
-            RequireParameter(_bindings.MovementType, AnimatorControllerParameterType.Float);
-            RequireParameter(_bindings.MovementDirection, AnimatorControllerParameterType.Float);
-            RequireParameter(_bindings.VerticalSpeed, AnimatorControllerParameterType.Float);
-            RequireParameter(_bindings.SpeedMultiplier, AnimatorControllerParameterType.Float);
-        }
-
-        private void RequireParameter(
-            MecanimParameterBinding binding,
-            AnimatorControllerParameterType expectedType)
-        {
-            int parameterCount = _controllerPlayable.GetParameterCount();
-            for (int i = 0; i < parameterCount; i++)
-            {
-                AnimatorControllerParameter parameter = _controllerPlayable.GetParameter(i);
-                if (parameter.nameHash == binding.Hash && parameter.type == expectedType)
-                {
-                    return;
-                }
-            }
-
-            throw new InvalidOperationException(
-                $"Animator '{_animator.name}' requires {expectedType} parameter '{binding.Name}'.");
         }
 
         private static float Damp(

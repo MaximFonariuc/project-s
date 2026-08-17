@@ -11,42 +11,32 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c3a62f0af75447bbfd8e23debb3eb25, type: 3}
   m_Name: TwoHanded_CombatAnimationSet
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   _weaponType: 2
-  _controllerOverrides:
-  - {fileID: 7400000, guid: de2150bdfae29ca4f984584d3fcf1dd7, type: 2}
-  - {fileID: 7400000, guid: d92104d7f9325674ca614641551717e4, type: 2}
-  - {fileID: 7400000, guid: 757a9e5f51e7aee4ebc53bb50dd0666b, type: 2}
-  - {fileID: 7400000, guid: 8aeef43e09edfe643a7e0012cbcbc4a7, type: 2}
-  - {fileID: 7400000, guid: 3855579df2de9cd46b1441a02c793104, type: 2}
-  - {fileID: 7400000, guid: 8d4d525e650b0cb4b92a5d761accdada, type: 2}
-  - {fileID: 7400000, guid: 1afb703f255fd9d48874a7ab01162150, type: 2}
-  - {fileID: 7400000, guid: 87b32d930791caa469426ff3162b4928, type: 2}
-  - {fileID: 7400000, guid: 793ad126ff2fd7e45878ca85e9de61bd, type: 2}
   _comboActions:
   - _id: combo.0
-    _clip: {fileID: 7400000, guid: 9512e15339fba7b41adb834cb27eadb9, type: 2}
+    _clip: {fileID: -3438773708172271082, guid: 2324ff58f3397ea4aab2c2a8a1318b1e, type: 3}
     _blendInSeconds: 0.08
     _blendOutSeconds: 0.1
     _playbackSpeed: 1
     _avatarMask: {fileID: 0}
     _applyFootIk: 0
   - _id: combo.1
-    _clip: {fileID: 7400000, guid: f428605e888a87049b0c5d0b3a250e34, type: 2}
+    _clip: {fileID: 4854123119277942759, guid: 2324ff58f3397ea4aab2c2a8a1318b1e, type: 3}
     _blendInSeconds: 0.08
     _blendOutSeconds: 0.1
     _playbackSpeed: 1
     _avatarMask: {fileID: 0}
     _applyFootIk: 0
   - _id: combo.2
-    _clip: {fileID: 7400000, guid: 288e2df73dd556e4586da93887a928ba, type: 2}
+    _clip: {fileID: -3008361138659514256, guid: 2324ff58f3397ea4aab2c2a8a1318b1e, type: 3}
     _blendInSeconds: 0.08
     _blendOutSeconds: 0.1
     _playbackSpeed: 1
     _avatarMask: {fileID: 0}
     _applyFootIk: 0
   - _id: combo.3
-    _clip: {fileID: 7400000, guid: 94834c2bf1bcf43479a6456fcc55fc7f, type: 2}
+    _clip: {fileID: -354816401020543820, guid: 2324ff58f3397ea4aab2c2a8a1318b1e, type: 3}
     _blendInSeconds: 0.08
     _blendOutSeconds: 0.1
     _playbackSpeed: 1
@@ -54,7 +44,7 @@ MonoBehaviour:
     _applyFootIk: 0
   _namedActions:
   - _id: skill.special
-    _clip: {fileID: 7400000, guid: 1e134505adff3f94cbe0638cc8bafa75, type: 2}
+    _clip: {fileID: 146347781487556941, guid: 2324ff58f3397ea4aab2c2a8a1318b1e, type: 3}
     _blendInSeconds: 0.08
     _blendOutSeconds: 0.1
     _playbackSpeed: 1
@@ -62,7 +52,7 @@ MonoBehaviour:
     _applyFootIk: 0
   _drawAction:
     _id: weapon.draw
-    _clip: {fileID: 7400000, guid: 2130afe31dec64544b0417f1c8386812, type: 2}
+    _clip: {fileID: -5285587229462956880, guid: ba29556b21ec8ed4ebcec728496249d2, type: 3}
     _blendInSeconds: 0.1
     _blendOutSeconds: 0.08
     _playbackSpeed: 1
@@ -70,7 +60,7 @@ MonoBehaviour:
     _applyFootIk: 0
   _sheatheAction:
     _id: weapon.sheathe
-    _clip: {fileID: 7400000, guid: 9d1542b22faf4244a8c9be105534d402, type: 2}
+    _clip: {fileID: -5285587229462956880, guid: ba29556b21ec8ed4ebcec728496249d2, type: 3}
     _blendInSeconds: 0.1
     _blendOutSeconds: 0.08
     _playbackSpeed: 1

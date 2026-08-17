@@ -7,7 +7,6 @@ namespace _App
 {
     internal sealed class PlayerCombatAnimationAdapter : IPlayerCombatAnimation
     {
-        private readonly MecanimCharacterAnimationDriver _mecanim;
         private readonly PlayerAnimationCoordinator _animation;
         private readonly AnimationsData _animationsData;
 
@@ -20,11 +19,9 @@ namespace _App
         public int ComboCount => _comboActions.Count;
 
         public PlayerCombatAnimationAdapter(
-            MecanimCharacterAnimationDriver mecanim,
             PlayerAnimationCoordinator animation,
             AnimationsData animationsData)
         {
-            _mecanim = mecanim ?? throw new ArgumentNullException(nameof(mecanim));
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _animationsData = animationsData != null
                 ? animationsData
@@ -35,8 +32,6 @@ namespace _App
         {
             ThrowIfDisposed();
             _characterType = characterType;
-            _mecanim.ApplyControllerOverrides(
-                _animationsData.GetControllerOverrides(characterType, weaponType));
             _comboActions = _animationsData.GetComboActions(characterType, weaponType);
         }
 

@@ -13,9 +13,6 @@ namespace _App
         [FormerlySerializedAs("<WeaponType>k__BackingField")]
         [SerializeField] private EWeaponType _weaponType;
 
-        [FormerlySerializedAs("<DefaultsAnimationClips>k__BackingField")]
-        [SerializeField] private List<AnimationClip> _controllerOverrides = new List<AnimationClip>();
-
         [SerializeField] private List<CharacterAnimationActionPresentation> _comboActions =
             new List<CharacterAnimationActionPresentation>();
 
@@ -27,7 +24,6 @@ namespace _App
         [SerializeField] private CharacterAnimationActionPresentation _sheatheAction;
 
         public EWeaponType WeaponType => _weaponType;
-        public IReadOnlyList<AnimationClip> ControllerOverrides => _controllerOverrides;
         public IReadOnlyList<CharacterAnimationActionPresentation> ComboActions => _comboActions;
 
         public bool TryGetNamedAction(

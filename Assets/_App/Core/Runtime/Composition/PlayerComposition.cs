@@ -37,26 +37,22 @@ namespace _App
                 .As<IDamageImmunityTarget>()
                 .As<IPlayerTraversalActor>();
 
+            MecanimAnimationGraphConfiguration animationConfiguration =
+                player.AnimationProfile.CreateConfiguration(player.PlayerAnimator);
+            builder.RegisterInstance(animationConfiguration)
+                .AsSelf()
+                .As<IAnimationStateCatalog>();
             builder.Register(
                     _ => new MecanimCharacterAnimationDriver(
                         player.PlayerAnimator,
-                        player.AnimationProfile.CreateBindings()),
+                        animationConfiguration),
                     Lifetime.Scoped)
                 .AsSelf()
                 .As<ICharacterAnimationDriver>()
                 .As<IAnimationClipActionDriver>();
             builder.Register<AnimationClipActionArbiter>(Lifetime.Scoped);
-            builder.Register(
-                    _ => player.AnimationProfile.CreateStateCatalog(player.PlayerAnimator),
-                    Lifetime.Scoped)
-                .As<IAnimationStateCatalog>();
             builder.Register<PlayerAnimationCoordinator>(Lifetime.Scoped);
-            builder.Register(
-                    resolver => new MecanimLookAnimationDriver(
-                        resolver.Resolve<MecanimCharacterAnimationDriver>(),
-                        "HeadLookX",
-                        "HeadLookY"),
-                    Lifetime.Scoped)
+            builder.RegisterInstance(NullCharacterLookAnimationDriver.Instance)
                 .As<ICharacterLookAnimationDriver>();
             builder.Register<PlayerCharacterAnimationPresenter>(Lifetime.Scoped);
             builder.Register(

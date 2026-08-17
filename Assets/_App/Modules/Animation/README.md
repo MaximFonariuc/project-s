@@ -1,191 +1,156 @@
 # Animation module
 
-`ModularAnimation` defines a backend-neutral boundary for character animation.
-Gameplay owns movement, combat transitions and action timing; an animation driver
-only converts confirmed presentation data into poses and blends.
+`ModularAnimation` is the backend-neutral presentation boundary for character
+animation. Gameplay owns locomotion, combat phases, cancel windows and action
+timing. The animation module receives confirmed semantic state and produces a
+pose; it never decides whether an action is allowed.
 
-## Dependencies
+The current Unity backend is fully code-driven. It does not require an Animator
+Controller, Animator parameters, transitions, triggers or override controllers.
+
+## Class tree and dependencies
 
 ```mermaid
 classDiagram
-    class ICharacterAnimationDriver {
-        <<interface>>
-        +ApplyLocomotion(frame, deltaTime)
-        +CrossFade(state, layer, transitionSeconds, duration) AnimationPlayback
-        +SetPlaybackSpeed(speed)
-        +RefreshBindings()
+    namespace Core {
+        class ICharacterAnimationDriver {
+            <<interface>>
+            +ApplyLocomotion(frame, deltaTime)
+            +CrossFade(state, layer, transition, duration) AnimationPlayback
+            +SetPlaybackSpeed(speed)
+        }
+        class IAnimationStateCatalog {
+            <<interface>>
+            +TryResolve(slot, binding) bool
+        }
+        class ICharacterLookAnimationDriver {
+            <<interface>>
+            +SetLook(horizontal, vertical)
+        }
+        class CharacterLocomotionFrame
+        class AnimationSlotId
+        class AnimationStateBinding
     }
 
-    class ICharacterLookAnimationDriver {
-        <<interface>>
-        +SetLook(horizontal, vertical)
-    }
-    class IAnimationClipActionDriver {
-        <<interface>>
-        +PlayAction(request) AnimationActionPlayback
-        +StopAction(blendSeconds)
-        +Tick(deltaTime)
-    }
-    class AnimationClipActionArbiter {
-        +TryPlay(channel, request, blendOut, lease) bool
-        +Release(channel)
-        +StopAll(blendSeconds)
-        +Tick(deltaTime)
-    }
-    class AnimationActionChannel {
-        +Id
-        +Priority
-    }
-    class AnimationActionLease {
-        +Playback
-        +IsActive
-        +Release()
+    namespace UnityBackend {
+        class MecanimCharacterAnimationProfile {
+            +Locomotion
+            +States
+            +CreateConfiguration(animator)
+        }
+        class MecanimLocomotionClipSet
+        class MecanimDirectionalClipSet
+        class MecanimAnimationStateAuthoring
+        class MecanimAnimationGraphConfiguration
+        class MecanimCharacterAnimationDriver
+        class IAnimationClipActionDriver {
+            <<interface>>
+            +PlayAction(request) AnimationActionPlayback
+            +StopAction(blendSeconds)
+            +Tick(deltaTime)
+        }
+        class AnimationClipActionArbiter
+        class NullCharacterLookAnimationDriver
     }
 
-    class IAnimationStateCatalog {
-        <<interface>>
-        +TryResolve(slot, binding) bool
+    namespace ProjectSCore {
+        class PlayerAnimationCoordinator
+        class PlayerCharacterAnimationPresenter
+        class PlayerLocomotionAnimationAdapter
+        class PlayerCombatAnimationAdapter
     }
-
-    class CharacterLocomotionFrame
-    class AnimationSlotId
-    class AnimationStateId
-    class AnimationLayerId
-    class AnimationStateBinding
-    class AnimationPlayback
-    class MecanimCharacterAnimationBindings
-    class MecanimCharacterAnimationProfile
-    class MecanimAnimationStateCatalog
-    class MecanimAnimationStateAuthoring
-    class MecanimCharacterAnimationDriver
-    class AnimationClipActionRequest
-    class AnimationActionPlayback
-    class MecanimLookAnimationDriver
-    class PlayerCharacterAnimationPresenter
-    class PlayerAnimationCoordinator
-    class PlayerLocomotionAnimationAdapter
-    class PlayerCombatAnimationAdapter
 
     ICharacterAnimationDriver <|.. MecanimCharacterAnimationDriver
     IAnimationClipActionDriver <|.. MecanimCharacterAnimationDriver
+    IAnimationStateCatalog <|.. MecanimAnimationGraphConfiguration
+    ICharacterLookAnimationDriver <|.. NullCharacterLookAnimationDriver
+
+    MecanimCharacterAnimationProfile *-- MecanimLocomotionClipSet
+    MecanimLocomotionClipSet *-- MecanimDirectionalClipSet
+    MecanimCharacterAnimationProfile *-- MecanimAnimationStateAuthoring
+    MecanimCharacterAnimationProfile ..> MecanimAnimationGraphConfiguration : creates
+    MecanimCharacterAnimationDriver --> MecanimAnimationGraphConfiguration
     AnimationClipActionArbiter --> IAnimationClipActionDriver
-    AnimationClipActionArbiter --> AnimationActionChannel
-    AnimationClipActionArbiter --> AnimationActionLease
-    ICharacterLookAnimationDriver <|.. MecanimLookAnimationDriver
-    MecanimCharacterAnimationDriver --> MecanimCharacterAnimationBindings
-    MecanimCharacterAnimationProfile --> MecanimCharacterAnimationBindings : creates
-    MecanimCharacterAnimationProfile --> MecanimAnimationStateAuthoring : owns
-    MecanimCharacterAnimationProfile --> MecanimAnimationStateCatalog : creates
-    IAnimationStateCatalog <|.. MecanimAnimationStateCatalog
-    IAnimationStateCatalog --> AnimationSlotId
-    IAnimationStateCatalog --> AnimationStateBinding
-    ICharacterAnimationDriver --> CharacterLocomotionFrame
-    ICharacterAnimationDriver --> AnimationStateId
-    ICharacterAnimationDriver --> AnimationLayerId
-    ICharacterAnimationDriver --> AnimationPlayback
-    IAnimationClipActionDriver --> AnimationClipActionRequest
-    IAnimationClipActionDriver --> AnimationActionPlayback
+
     PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
     PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator
-    PlayerLocomotionAnimationAdapter --> PlayerCharacterAnimationPresenter
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
-    PlayerAnimationCoordinator --> AnimationClipActionArbiter
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
     PlayerAnimationCoordinator --> IAnimationStateCatalog
+    PlayerAnimationCoordinator --> AnimationClipActionArbiter
 ```
 
-- `ModularAnimation.Core` contains semantic values and the driver contract. It
-  has no Unity dependency and does not reference Project S.
-- `ModularAnimation.Unity` contains the Mecanim implementation. It depends only
-  on `ModularAnimation.Core` and Unity animation APIs.
-- Animator parameter names and semantic state mappings are supplied through
-  `MecanimCharacterAnimationProfile`, which creates immutable
-  parameter bindings and a state catalog; the module does not impose Project S
-  controller names, layer indices or state paths. A character can use a
-  different Animator Controller by assigning a matching profile. Look animation
-  is a separate optional contract.
-- `MecanimCharacterAnimationDriver` owns one `PlayableGraph`. An
-  `AnimatorControllerPlayable` evaluates continuous Mecanim states, while two
-  clip lanes evaluate full-body and AvatarMask actions. The same graph is the
-  only pose source bound to the Animator.
-- Mecanim state blends use `AnimatorControllerPlayable.CrossFadeInFixedTime`;
-  profile transition values are seconds and therefore do not change meaning
-  when clips are replaced.
-- Finite actions use `AnimationClipPlayable` and do not require an Animator
-  state, transition, trigger or clip-name placeholder. Two clip inputs allow a
-  new action to interrupt and blend from the previous action.
-- `AnimationClipActionArbiter` is the reusable single-lane authority above the
-  raw driver. A caller supplies an opaque channel id and priority; Project S
-  source enums never enter the module. Higher-priority actions can replace lower
-  ones, lower-priority requests are rejected, and equal-priority requests may
-  chain or crossfade.
-- Every accepted action returns an allocation-free `AnimationActionLease`.
-  Releasing a stale lease cannot stop the action that replaced it. Channel
-  release and scope cleanup are also idempotent.
-- A null AvatarMask selects the full-body lane. A supplied mask selects the
-  masked lane; switching between the lanes also blends through the graph.
-- The driver owns its graph and runtime loadout controller and disposes both
-  with the character scope. Action blend progression is ticked with the
-  gameplay presentation delta time, so pause and hit stop remain explicit.
-- The locomotion contract publishes `VerticalSpeed`. Animator transitions do
-  not interpret that value as a timer or own the jump/fall gameplay decision.
-- Discrete phases are selected through semantic slots, so the Mecanim contract
-  does not require gameplay triggers or an `OnGround` transition parameter.
-- `_App/Core` requests semantic states such as `Traversal.Ladder.Ascend` only
-  for controller-backed presentation. Finite actions pass authored clips through
-  the arbiter and never resolve a placeholder Animator state.
-- A mapping can be required or optional and can name another semantic slot as a
-  fallback. Required mappings are resolved once at composition and fail fast;
-  missing optional presentation never changes gameplay state.
-- `ModularAnimation.Unity.Editor` validates the profile against an assigned
-  Animator Controller and reports duplicate slots, missing layers/states,
-  missing fallback slots, states without Motion and automatic transitions on
-  layers declared as code-driven.
-- `_App/Core -> ModularAnimation`; the module never references `_App/Core` or
-  `_Game` assets.
-- Project-specific source names and the policy
-  `Death > Reaction > Traversal > Combat > Locomotion` live in
-  `PlayerAnimationCoordinator` inside `_App/Core`. The reusable module only
-  compares numeric channel priorities.
+Dependency direction remains:
+
+```text
+ProjectS.Core.Runtime -> ModularAnimation.Unity -> ModularAnimation.Core
+```
+
+Both module assemblies are independent of `_App/Core` and `_Game`. Project S
+content enters only through the profile and composition root.
+
+## Runtime graph
+
+One `PlayableGraph` is the only pose source bound to the character Animator:
+
+```mermaid
+flowchart LR
+    L["Locomotion mixer\nIdle + 4 directions x 3 gaits"] --> B["Base state mixer"]
+    S["Semantic finite clips\nJump / Fall / Land / Dodge"] --> B
+    B --> X["Layer mixer"]
+    F["Full-body action lane\nCombat / Reaction"] --> X
+    M["Masked action lane"] --> X
+    X --> A["Animator output"]
+```
+
+- Locomotion continuously blends idle, forward, backward, left and right clips
+  for walk, run and sprint from `CharacterLocomotionFrame`.
+- Semantic slots resolve directly to either the locomotion graph or an authored
+  finite clip. Transition values are seconds and are evaluated by code.
+- Two finite-clip inputs permit interruption and crossfade without Animator
+  states. Full-body and AvatarMask lanes remain isolated.
+- `AnimationClipActionArbiter` is the single priority authority above action
+  playback. Project S maps its policy
+  `Death > Reaction > Traversal > Combat > Locomotion` in
+  `PlayerAnimationCoordinator`; the reusable module sees numeric channels only.
+- The driver owns and disposes the graph with the VContainer gameplay scope.
+  It restores the Animator's previous controller reference on disposal.
+
+## Generic and Humanoid rigs
+
+The runtime algorithm is identical for both rig types. A profile must contain
+only clips compatible with the assigned Avatar:
+
+- Generic Animator + Generic clips from the same transform hierarchy;
+- Humanoid Animator + Humanoid clips retargeted by Unity.
+
+Compatibility is validated once when the gameplay scope is created. Mixed
+Generic/Humanoid profiles, Legacy clips, invalid Avatars, duplicate semantic
+slots and unresolved required slots fail fast. Changing rig family therefore
+means assigning another Avatar/profile pair, not changing gameplay code.
+
+The current player uses the PSO2 NGS male Generic Avatar. Humanoid adaptation is
+a content migration: import a Humanoid model and clips, create a Humanoid
+profile with the same semantic slots, then replace the prefab references.
 
 ## Ownership rules
 
-- Gameplay state machines decide whether an action is allowed and when combat
-  windows open or close.
-- The driver may reject an invalid state or layer, but it never changes gameplay
-  state.
-- `AnimationPlayback.Duration` is explicit when gameplay supplies the active
-  override clip duration, otherwise it comes from the character profile. The
-  Mecanim adapter's clip-name inference is only a last fallback and is not the
-  authoring contract.
-- Animator parameters are private implementation details of the Mecanim driver.
-- Root motion remains a gameplay/action policy. It is intentionally not stored
-  in the animation profile, because changing presentation must not silently
-  change movement simulation.
-- Humanoid and Generic characters use the same driver contract. Retargeting and
-  clip compatibility belong to each character's authoring profile/backend.
+- Animator is a presentation endpoint, never a gameplay state owner.
+- Combat does not replace controllers or locomotion clips. It sends finite
+  action requests through `PlayerAnimationCoordinator`.
+- Root motion is selected by gameplay action policy and remains outside the
+  animation profile. Presentation cannot silently move the character motor.
+- Missing optional presentation may fall back to another semantic slot. It must
+  not change gameplay state or combat results.
+- Look animation remains a separate optional contract. The Generic PSO2 rig
+  currently uses `NullCharacterLookAnimationDriver`; a future aim/look adapter
+  can target rig transforms or Animation Rigging without changing this graph.
+- Editor validation reports content-contract issues before Play Mode. Runtime
+  validation repeats the rig-critical checks at composition.
 
-## Loadout overrides
+## Extension boundary
 
-`AnimatorOverrideController` remains an internal Mecanim detail only for
-continuous loadout-dependent motions such as idle, run and roll. Combat,
-weapon transitions and other finite actions never use it. This keeps existing
-weapon locomotion authoring without reintroducing action states or controller
-transition graphs.
-
-## Extension
-
-A third-party backend implements `ICharacterAnimationDriver` and, when it
-supports finite clips, `IAnimationClipActionDriver`. Selection remains in the
-composition root; gameplay timing and action graphs do not change.
-
-## Current migration boundary
-
-The player path uses this module for locomotion, camera look, dodge, combat,
-reaction requests and ladder traversal. Finite clips run through the arbiter and
-Playables action lanes; all other
-semantic controller states remain code-driven. `PlayerLocomotionController` publishes one immutable
-`PlayerLocomotionSnapshot`; the Project S presenter maps it into the module's
-`CharacterLocomotionFrame`. Neither the presenter nor the driver reads
-`Character` or input directly. Enemy migration remains a separate scope so the
-animation boundary does not silently redesign enemy gameplay.
+A different animation technology implements `ICharacterAnimationDriver` and,
+when it supports finite actions, `IAnimationClipActionDriver`. Selection belongs
+only in the composition root. Input, locomotion state machines, combat graphs and
+timings do not change with the backend.

@@ -39,7 +39,6 @@ namespace _App
                 .As<ICombatHitEvents>();
             builder.Register<IPlayerCombatAnimation>(
                 resolver => new PlayerCombatAnimationAdapter(
-                    resolver.Resolve<MecanimCharacterAnimationDriver>(),
                     resolver.Resolve<PlayerAnimationCoordinator>(),
                     player.CombatAnimations),
                 Lifetime.Scoped);

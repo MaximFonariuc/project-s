@@ -8,9 +8,6 @@ namespace _App
     [CreateAssetMenu(fileName = "AnimationsData", menuName = "Combat/Animation Data")]
     public class AnimationsData : ScriptableObject
     {
-        private static readonly IReadOnlyList<AnimationClip> EmptyClips =
-            new List<AnimationClip>(0);
-
         [field: SerializeField] public ECharacterType CharacterType { get; protected set; }
         [field: SerializeField] public List<CombatAnimationSet> AnimationDatas { get; protected set; }
         [SerializeField] private List<CharacterAnimationActionPresentation> _sharedActions =
@@ -54,14 +51,6 @@ namespace _App
 
             presentation = null;
             return false;
-        }
-
-        public IReadOnlyList<AnimationClip> GetControllerOverrides(
-            ECharacterType characterType,
-            EWeaponType weaponType)
-        {
-            CombatAnimationSet animations = FindAnimations(characterType, weaponType);
-            return animations?.ControllerOverrides ?? EmptyClips;
         }
 
         public bool TryGetSharedAction(

@@ -11,33 +11,32 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c3a62f0af75447bbfd8e23debb3eb25, type: 3}
   m_Name: Unarmed_CombatAnimationSet
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   _weaponType: 1
-  _controllerOverrides: []
   _comboActions:
   - _id: combo.0
-    _clip: {fileID: 7400000, guid: 426b0d86537cfd8438a1c4e0112f5afe, type: 2}
+    _clip: {fileID: -3438773708172271082, guid: 2324ff58f3397ea4aab2c2a8a1318b1e, type: 3}
     _blendInSeconds: 0.08
     _blendOutSeconds: 0.1
     _playbackSpeed: 1
     _avatarMask: {fileID: 0}
     _applyFootIk: 0
   - _id: combo.1
-    _clip: {fileID: 7400000, guid: 58e0c78ec2b3f6f47b00885f9c0ee251, type: 2}
+    _clip: {fileID: 4854123119277942759, guid: 2324ff58f3397ea4aab2c2a8a1318b1e, type: 3}
     _blendInSeconds: 0.08
     _blendOutSeconds: 0.1
     _playbackSpeed: 1
     _avatarMask: {fileID: 0}
     _applyFootIk: 0
   - _id: combo.2
-    _clip: {fileID: 7400000, guid: 9f4d00cb339399546930e2a98e99a5df, type: 2}
+    _clip: {fileID: -3008361138659514256, guid: 2324ff58f3397ea4aab2c2a8a1318b1e, type: 3}
     _blendInSeconds: 0.08
     _blendOutSeconds: 0.1
     _playbackSpeed: 1
     _avatarMask: {fileID: 0}
     _applyFootIk: 0
   - _id: combo.3
-    _clip: {fileID: 7400000, guid: c56537f288556094fb593f18768164ac, type: 2}
+    _clip: {fileID: -354816401020543820, guid: 2324ff58f3397ea4aab2c2a8a1318b1e, type: 3}
     _blendInSeconds: 0.08
     _blendOutSeconds: 0.1
     _playbackSpeed: 1
@@ -45,7 +44,7 @@ MonoBehaviour:
     _applyFootIk: 0
   _namedActions:
   - _id: skill.special
-    _clip: {fileID: 7400000, guid: 2db42cdecbd8b15468f5fdde54ca9b7e, type: 2}
+    _clip: {fileID: 146347781487556941, guid: 2324ff58f3397ea4aab2c2a8a1318b1e, type: 3}
     _blendInSeconds: 0.08
     _blendOutSeconds: 0.1
     _playbackSpeed: 1

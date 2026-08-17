@@ -5,47 +5,28 @@ using UnityEngine.Serialization;
 
 namespace ModularAnimation.Unity
 {
-    public enum MecanimStateControlMode
-    {
-        CodeDriven,
-        AnimatorTransitions
-    }
-
     [CreateAssetMenu(
         fileName = "MecanimCharacterAnimationProfile",
-        menuName = "Modular Animation/Mecanim Character Profile")]
+        menuName = "Modular Animation/Character Animation Profile")]
     public sealed class MecanimCharacterAnimationProfile : ScriptableObject
     {
-        [SerializeField] private string _movementType = "MovementType";
-        [SerializeField] private string _movementDirection = "MovementDirection";
-        [FormerlySerializedAs("_fallingDuration")]
-        [SerializeField] private string _verticalSpeed = "VerticalSpeed";
-        [SerializeField] private string _speedMultiplier = "SpeedMultiplier";
+        [Header("Locomotion")]
+        [SerializeField] private MecanimLocomotionClipSet _locomotion = new();
 
-        [Header("Semantic Animation States")]
-        [Tooltip("Optional controller used by editor validation. Runtime uses the controller assigned to Animator.")]
-        [SerializeField] private RuntimeAnimatorController _validationController;
-        [SerializeField] private MecanimStateControlMode _stateControlMode =
-            MecanimStateControlMode.CodeDriven;
+        [Header("Semantic States")]
         [SerializeField] private List<MecanimAnimationStateAuthoring> _states = new();
 
-        public RuntimeAnimatorController ValidationController => _validationController;
-        public MecanimStateControlMode StateControlMode => _stateControlMode;
+        public MecanimLocomotionClipSet Locomotion => _locomotion;
         public IReadOnlyList<MecanimAnimationStateAuthoring> States =>
             _states ?? (IReadOnlyList<MecanimAnimationStateAuthoring>)Array.Empty<MecanimAnimationStateAuthoring>();
 
-        public MecanimCharacterAnimationBindings CreateBindings()
+        public MecanimAnimationGraphConfiguration CreateConfiguration(Animator animator)
         {
-            return new MecanimCharacterAnimationBindings(
-                _movementType,
-                _movementDirection,
-                _verticalSpeed,
-                _speedMultiplier);
-        }
-
-        public IAnimationStateCatalog CreateStateCatalog(Animator animator)
-        {
-            return new MecanimAnimationStateCatalog(animator, CreateStateDefinitions());
+            return new MecanimAnimationGraphConfiguration(
+                animator,
+                _locomotion ?? throw new InvalidOperationException(
+                    $"Animation profile '{name}' requires a locomotion clip set."),
+                CreateStateDefinitions());
         }
 
         private IReadOnlyList<MecanimAnimationStateDefinition> CreateStateDefinitions()
@@ -73,37 +54,105 @@ namespace ModularAnimation.Unity
     }
 
     [Serializable]
+    public sealed class MecanimDirectionalClipSet
+    {
+        [SerializeField] private AnimationClip _forward;
+        [SerializeField] private AnimationClip _backward;
+        [SerializeField] private AnimationClip _left;
+        [SerializeField] private AnimationClip _right;
+
+        public AnimationClip Forward => _forward;
+        public AnimationClip Backward => _backward;
+        public AnimationClip Left => _left;
+        public AnimationClip Right => _right;
+
+        internal AnimationClip Get(int direction)
+        {
+            return direction switch
+            {
+                0 => _forward,
+                1 => _backward,
+                2 => _left,
+                3 => _right,
+                _ => null
+            };
+        }
+    }
+
+    [Serializable]
+    public sealed class MecanimLocomotionClipSet
+    {
+        [SerializeField] private AnimationClip _idle;
+        [SerializeField] private MecanimDirectionalClipSet _walk = new();
+        [SerializeField] private MecanimDirectionalClipSet _run = new();
+        [SerializeField] private MecanimDirectionalClipSet _sprint = new();
+
+        public AnimationClip Idle => _idle;
+        public MecanimDirectionalClipSet Walk => _walk;
+        public MecanimDirectionalClipSet Run => _run;
+        public MecanimDirectionalClipSet Sprint => _sprint;
+
+        internal AnimationClip Get(CharacterGait gait, int direction)
+        {
+            MecanimDirectionalClipSet selected = gait switch
+            {
+                CharacterGait.Walk => _walk,
+                CharacterGait.Sprint => _sprint,
+                _ => _run
+            };
+
+            AnimationClip clip = selected?.Get(direction);
+            if (clip != null)
+            {
+                return clip;
+            }
+
+            clip = _run?.Get(direction);
+            if (clip != null)
+            {
+                return clip;
+            }
+
+            clip = selected?.Forward ?? _run?.Forward;
+            return clip != null ? clip : _idle;
+        }
+    }
+
+    [Serializable]
     public sealed class MecanimAnimationStateAuthoring
     {
         [SerializeField] private string _slot;
-        [Tooltip("State path relative to its Animator layer, for example Locomotion.Roll.RollFront.")]
-        [SerializeField] private string _state;
-        [SerializeField] private string _layer = "Base Layer";
+        [Tooltip("Use the continuously blended locomotion graph instead of a finite clip.")]
+        [SerializeField] private bool _usesLocomotion;
+        [SerializeField] private AnimationClip _clip;
         [FormerlySerializedAs("_transitionDuration")]
         [SerializeField, Min(0.0f)] private float _transitionSeconds = 0.1f;
         [SerializeField, Min(0.0f)] private float _expectedDuration;
-        [Tooltip("Optional semantic slot used when this state is unavailable.")]
+        [Tooltip("Optional semantic slot used when this clip is unavailable.")]
         [SerializeField] private string _fallbackSlot;
         [SerializeField] private bool _required;
+        [SerializeField] private bool _applyFootIk;
 
         public string Slot => _slot;
-        public string State => _state;
-        public string Layer => _layer;
+        public bool UsesLocomotion => _usesLocomotion;
+        public AnimationClip Clip => _clip;
         public float TransitionSeconds => _transitionSeconds;
         public float ExpectedDuration => _expectedDuration;
         public string FallbackSlot => _fallbackSlot;
         public bool Required => _required;
+        public bool ApplyFootIk => _applyFootIk;
 
         internal MecanimAnimationStateDefinition CreateDefinition()
         {
             return new MecanimAnimationStateDefinition(
                 new AnimationSlotId(_slot),
-                _state,
-                _layer,
+                _usesLocomotion,
+                _clip,
                 _transitionSeconds,
                 _expectedDuration,
                 new AnimationSlotId(_fallbackSlot),
-                _required);
+                _required,
+                _applyFootIk);
         }
     }
 }
