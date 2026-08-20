@@ -65,7 +65,7 @@ flowchart LR
     Gameplay --> Adapter["Animation adapters"]
     Adapter --> Driver["MecanimCharacterAnimationDriver"]
     Driver --> Params["Animator parameters"]
-    Params --> Controller["Player_KurtzPel.controller"]
+    Params --> Controller["XController.controller (recovered graph)"]
     Controller --> Pose["Generic character pose"]
     Motor --> Physics["Collision-resolved movement"]
 ```
@@ -76,9 +76,9 @@ Humanoid content migration without changing gameplay contracts.
 
 KurtzPel authored character motion faces local `+X`. The visual adapter applies
 a constant `-90` degree yaw so the animated body faces Unity/gameplay `+Z`; the
-Player motor and physics root remain unrotated. `MotionSpeed` is planar world
-speed in metres per second. The grounded blend thresholds mirror the current
-movement settings: idle `0`, walk `3`, run `5`, sprint `10`.
+Player motor and physics root remain unrotated. `MovementType` is the damped
+presentation gait: idle `0`, walk `1`, run `2`, sprint `3`. It is smoothed over
+`0.33` seconds before the recovered locomotion Blend Tree evaluates it.
 
 ## Extension order
 

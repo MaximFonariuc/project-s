@@ -100,13 +100,10 @@ The conventional controller must define these parameters:
 
 | Parameter | Type | Meaning |
 | --- | --- | --- |
-| `MotionForward` | Float | normalized local forward direction |
-| `MotionLateral` | Float | normalized local lateral direction |
-| `MotionSpeed` | Float | planar speed in world units per second |
-| `VerticalSpeed` | Float | vertical motor velocity |
-| `Grounded` | Bool | confirmed motor grounding |
-| `Gait` | Int | walk/run/sprint presentation hint |
-| `LocomotionMode` | Int | grounded/airborne; other modes are reserved |
+| `MovementType` | Float | damped idle/walk/run/sprint value (`0..3`) |
+| `MovementDirection` | Float | normalized local forward direction |
+| `FallingDuration` | Float | vertical motor velocity (historical controller name) |
+| `OnGround` | Bool | confirmed motor grounding |
 | `Action` | Trigger | start a semantic finite action |
 | `ActionId` | Int | action family |
 | `ActionVariant` | Int | direction or content variant |
@@ -118,13 +115,18 @@ semantic mapping and the Animator graph together.
 
 ## Current scope
 
-The KurtzPel player controller contains:
+The recovered `XController` graph contains:
 
 - idle/walk/run/sprint 1D locomotion blend tree;
 - jump ascent, fall and landing states;
 - forward and backward dodge;
 - one grounded unarmed light attack;
-- fixed-duration crossfades and explicit cancel transitions.
+- its original locomotion/jump/landing transition graph;
+- `0.25` second action crossfades and explicit cancel transitions.
+
+The driver deliberately retains the historical `0.33` second damping of
+`MovementType`. This is the smoothing boundary between motor gait changes and
+the idle/walk/run/sprint Blend Tree; gameplay remains authoritative.
 
 Swimming and ladder traversal animation are intentionally not implemented yet.
 Their locomotion enum values remain reserved so adding presentation later does

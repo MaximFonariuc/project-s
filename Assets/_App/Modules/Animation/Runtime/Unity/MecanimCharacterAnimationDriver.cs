@@ -6,13 +6,10 @@ namespace ModularAnimation.Unity
 {
     public static class MecanimCharacterParameters
     {
-        public const string MotionForward = "MotionForward";
-        public const string MotionLateral = "MotionLateral";
-        public const string MotionSpeed = "MotionSpeed";
-        public const string VerticalSpeed = "VerticalSpeed";
-        public const string Grounded = "Grounded";
-        public const string Gait = "Gait";
-        public const string LocomotionMode = "LocomotionMode";
+        public const string MovementType = "MovementType";
+        public const string MovementDirection = "MovementDirection";
+        public const string FallingDuration = "FallingDuration";
+        public const string OnGround = "OnGround";
         public const string Action = "Action";
         public const string ActionId = "ActionId";
         public const string ActionVariant = "ActionVariant";
@@ -26,23 +23,18 @@ namespace ModularAnimation.Unity
     /// </summary>
     public sealed class MecanimCharacterAnimationDriver : ICharacterAnimationDriver, IDisposable
     {
-        private const float LocomotionDampSeconds = 0.12f;
-        private const float VerticalDampSeconds = 0.06f;
+        private const float LocomotionDampSeconds = 0.33f;
+        private const float DirectionDampSeconds = 0.1f;
+        private const float VerticalDampSeconds = 0.1f;
 
-        private static readonly int MotionForwardHash = Animator.StringToHash(
-            MecanimCharacterParameters.MotionForward);
-        private static readonly int MotionLateralHash = Animator.StringToHash(
-            MecanimCharacterParameters.MotionLateral);
-        private static readonly int MotionSpeedHash = Animator.StringToHash(
-            MecanimCharacterParameters.MotionSpeed);
-        private static readonly int VerticalSpeedHash = Animator.StringToHash(
-            MecanimCharacterParameters.VerticalSpeed);
-        private static readonly int GroundedHash = Animator.StringToHash(
-            MecanimCharacterParameters.Grounded);
-        private static readonly int GaitHash = Animator.StringToHash(
-            MecanimCharacterParameters.Gait);
-        private static readonly int LocomotionModeHash = Animator.StringToHash(
-            MecanimCharacterParameters.LocomotionMode);
+        private static readonly int MovementTypeHash = Animator.StringToHash(
+            MecanimCharacterParameters.MovementType);
+        private static readonly int MovementDirectionHash = Animator.StringToHash(
+            MecanimCharacterParameters.MovementDirection);
+        private static readonly int FallingDurationHash = Animator.StringToHash(
+            MecanimCharacterParameters.FallingDuration);
+        private static readonly int OnGroundHash = Animator.StringToHash(
+            MecanimCharacterParameters.OnGround);
         private static readonly int ActionHash = Animator.StringToHash(
             MecanimCharacterParameters.Action);
         private static readonly int ActionIdHash = Animator.StringToHash(
@@ -79,30 +71,26 @@ namespace ModularAnimation.Unity
             float inverseMagnitude = planarMagnitude > 0.0001f
                 ? 1.0f / planarMagnitude
                 : 0.0f;
+            float movementType = planarMagnitude > 0.01f
+                ? (float)frame.Gait
+                : 0.0f;
 
             _animator.SetFloat(
-                MotionForwardHash,
+                MovementTypeHash,
+                movementType,
+                LocomotionDampSeconds,
+                safeDeltaTime);
+            _animator.SetFloat(
+                MovementDirectionHash,
                 frame.ForwardSpeed * inverseMagnitude,
-                LocomotionDampSeconds,
+                DirectionDampSeconds,
                 safeDeltaTime);
             _animator.SetFloat(
-                MotionLateralHash,
-                frame.LateralSpeed * inverseMagnitude,
-                LocomotionDampSeconds,
-                safeDeltaTime);
-            _animator.SetFloat(
-                MotionSpeedHash,
-                planarMagnitude,
-                LocomotionDampSeconds,
-                safeDeltaTime);
-            _animator.SetFloat(
-                VerticalSpeedHash,
+                FallingDurationHash,
                 frame.VerticalSpeed,
                 VerticalDampSeconds,
                 safeDeltaTime);
-            _animator.SetBool(GroundedHash, frame.IsGrounded);
-            _animator.SetInteger(GaitHash, (int)frame.Gait);
-            _animator.SetInteger(LocomotionModeHash, (int)frame.Mode);
+            _animator.SetBool(OnGroundHash, frame.IsGrounded);
         }
 
         public AnimationActionPlayback PlayAction(in AnimationActionRequest request)
@@ -154,6 +142,10 @@ namespace ModularAnimation.Unity
 
             _animator.ResetTrigger(ActionHash);
             _animator.ResetTrigger(CancelActionHash);
+            _animator.SetFloat(MovementTypeHash, 0.0f);
+            _animator.SetFloat(MovementDirectionHash, 0.0f);
+            _animator.SetFloat(FallingDurationHash, 0.0f);
+            _animator.SetBool(OnGroundHash, true);
             _animator.SetInteger(ActionIdHash, 0);
             _animator.SetInteger(ActionVariantHash, 0);
             _animator.speed = 1.0f;
@@ -191,13 +183,10 @@ namespace ModularAnimation.Unity
                 parameters[configured[i].nameHash] = configured[i].type;
             }
 
-            RequireParameter(parameters, MotionForwardHash, AnimatorControllerParameterType.Float);
-            RequireParameter(parameters, MotionLateralHash, AnimatorControllerParameterType.Float);
-            RequireParameter(parameters, MotionSpeedHash, AnimatorControllerParameterType.Float);
-            RequireParameter(parameters, VerticalSpeedHash, AnimatorControllerParameterType.Float);
-            RequireParameter(parameters, GroundedHash, AnimatorControllerParameterType.Bool);
-            RequireParameter(parameters, GaitHash, AnimatorControllerParameterType.Int);
-            RequireParameter(parameters, LocomotionModeHash, AnimatorControllerParameterType.Int);
+            RequireParameter(parameters, MovementTypeHash, AnimatorControllerParameterType.Float);
+            RequireParameter(parameters, MovementDirectionHash, AnimatorControllerParameterType.Float);
+            RequireParameter(parameters, FallingDurationHash, AnimatorControllerParameterType.Float);
+            RequireParameter(parameters, OnGroundHash, AnimatorControllerParameterType.Bool);
             RequireParameter(parameters, ActionHash, AnimatorControllerParameterType.Trigger);
             RequireParameter(parameters, ActionIdHash, AnimatorControllerParameterType.Int);
             RequireParameter(parameters, ActionVariantHash, AnimatorControllerParameterType.Int);

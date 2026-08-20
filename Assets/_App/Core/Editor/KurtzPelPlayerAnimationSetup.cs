@@ -16,12 +16,9 @@ namespace _App.Editor.Animation
         private const string MovementPack = RootFolder + "/Movement/KurtzPel_Male_ENFJ.fbx";
         private const string CommonPack = RootFolder + "/Movement/KurtzPel_Common_Ninja.fbx";
         private const string CombatPack = RootFolder + "/Combat/KurtzPel_BlazingFist.fbx";
-        private const string PreviewPrefabPath =
-            RootFolder + "/Preview/KurtzPel_MaleReference.prefab";
         private const string ManifestPath = RootFolder + "/KurtzPel_AnimationManifest.csv";
-        private const string ControllerFolder =
-            "Assets/_Game/Animations/Character/Controllers";
-        private const string ControllerPath = ControllerFolder + "/Player_KurtzPel.controller";
+        private const string ControllerPath =
+            "Assets/_Game/Animations/Character/1. Controllers/XController.controller";
         private const string PlayerPrefabPath =
             "Assets/_Game/Prefabs/Character/Player.prefab";
         private const string CombatProfilePath =
@@ -31,14 +28,9 @@ namespace _App.Editor.Animation
         private const string DodgeSettingsPath =
             "Assets/_Game/Settings/Character/AbillityData/Abilities/DodgeAbilityData.asset";
 
-        private const float TransitionSeconds = 0.1f;
-        private const float ActionTransitionSeconds = 0.07f;
+        private const float ActionTransitionSeconds = 0.25f;
         private const float DodgeDurationSeconds = 0.48f;
         private const float AttackDurationSeconds = 1.3f;
-        private const float WalkBlendSpeed = 3.0f;
-        private const float RunBlendSpeed = 5.0f;
-        private const float SprintBlendSpeed = 10.0f;
-        private const float KurtzPelVisualYaw = -90.0f;
 
         [MenuItem("Tools/Animation/KurtzPel/Build Player Animator and Prefab")]
         public static void BuildPlayerAnimatorAndPrefab()
@@ -52,7 +44,7 @@ namespace _App.Editor.Animation
             AssetDatabase.SaveAssets();
 
             Debug.Log(
-                $"[KurtzPel Player Setup] Built '{ControllerPath}', configured the Player " +
+                $"[KurtzPel Player Setup] Restored '{ControllerPath}', configured the Player " +
                 $"for grounded locomotion, jump/fall/landing, dodge and one unarmed attack. " +
                 $"{colliderResult.Message} Swimming and ladder animation remain intentionally unconfigured.");
         }
@@ -60,22 +52,15 @@ namespace _App.Editor.Animation
         private static AnimatorController BuildController(
             IReadOnlyDictionary<string, float> sourceFrameRates)
         {
-            EnsureFolder(ControllerFolder);
-            if (AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath) != null &&
-                !AssetDatabase.DeleteAsset(ControllerPath))
+            AnimatorController controller =
+                AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
+            if (controller == null)
             {
                 throw new InvalidOperationException(
-                    $"Could not replace Animator Controller: {ControllerPath}");
+                    $"The recovered historical Animator Controller is missing: {ControllerPath}");
             }
 
-            AnimatorController controller =
-                AnimatorController.CreateAnimatorControllerAtPath(ControllerPath);
             AddParameters(controller);
-
-            AnimatorStateMachine machine = controller.layers[0].stateMachine;
-            machine.name = "Player Grounded Action Graph";
-            machine.anyStatePosition = new Vector3(300f, -100f, 0f);
-            machine.entryPosition = new Vector3(40f, 20f, 0f);
 
             AnimationClip idle = LoadClip(MovementPack, "HM_ENFJ_Wait");
             AnimationClip walk = LoadClip(MovementPack, "HM_ENFJ_Walk");
@@ -88,126 +73,65 @@ namespace _App.Editor.Animation
             AnimationClip dodgeBackward = LoadClip(CommonPack, "CC_C_Rage_Avoid");
             AnimationClip lightAttack = LoadClip(CombatPack, "HMGT_BasicCombo_01");
 
-            BlendTree locomotionTree = new BlendTree
+            AnimatorStateMachine machine = controller.layers[0].stateMachine;
+            AnimatorState move = FindState(machine, "Move");
+            BlendTree locomotionTree = move.motion as BlendTree;
+            if (locomotionTree == null || locomotionTree.children.Length != 4)
             {
-                name = "Grounded Locomotion",
-                blendType = BlendTreeType.Simple1D,
-                blendParameter = MecanimCharacterParameters.MotionSpeed,
-                useAutomaticThresholds = false,
-                minThreshold = 0f,
-                maxThreshold = SprintBlendSpeed,
-                hideFlags = HideFlags.HideInHierarchy
-            };
-            AssetDatabase.AddObjectToAsset(locomotionTree, controller);
-            AddBlendChild(locomotionTree, idle, 0f, SourceSpeed(idle, sourceFrameRates));
-            AddBlendChild(
+                throw new InvalidOperationException(
+                    "The historical Move state no longer contains its four-way locomotion Blend Tree.");
+            }
+
+            ConfigureLocomotionTree(
                 locomotionTree,
+                idle,
                 walk,
-                WalkBlendSpeed,
-                SourceSpeed(walk, sourceFrameRates));
-            AddBlendChild(
-                locomotionTree,
                 run,
-                RunBlendSpeed,
-                SourceSpeed(run, sourceFrameRates));
-            AddBlendChild(
-                locomotionTree,
                 sprint,
-                SprintBlendSpeed,
-                SourceSpeed(sprint, sourceFrameRates));
+                sourceFrameRates);
 
-            AnimatorState locomotion = AddState(
-                machine,
-                "Locomotion",
-                locomotionTree,
-                1f,
-                new Vector3(320f, 20f, 0f));
-            AnimatorState jumpUp = AddState(
-                machine,
-                "Jump Up",
-                jump,
-                SourceSpeed(jump, sourceFrameRates),
-                new Vector3(600f, -20f, 0f));
-            AnimatorState falling = AddState(
-                machine,
-                "Fall",
-                fall,
-                SourceSpeed(fall, sourceFrameRates),
-                new Vector3(820f, -20f, 0f));
-            AnimatorState landing = AddState(
-                machine,
-                "Landing",
-                land,
-                SourceSpeed(land, sourceFrameRates),
-                new Vector3(1050f, 20f, 0f));
-            AnimatorState dodgeF = AddState(
-                machine,
-                "Dodge Forward",
+            ConfigureStateMotion(machine, "JumpWalking", jump, sourceFrameRates);
+            ConfigureStateMotion(machine, "JumpRunning", jump, sourceFrameRates);
+            ConfigureStateMotion(machine, "JumpSprinting", jump, sourceFrameRates);
+            ConfigureStateMotion(machine, "Fall", fall, sourceFrameRates);
+            ConfigureStateMotion(machine, "LandDefault", land, sourceFrameRates);
+            ConfigureStateMotion(machine, "LandRun", land, sourceFrameRates);
+            ConfigureStateMotion(machine, "LandWalk", land, sourceFrameRates);
+            ConfigureStateMotion(machine, "LandHard", land, sourceFrameRates);
+            ConfigureStateMotion(machine, "LandSoft", land, sourceFrameRates);
+            ConfigureStateMotion(machine, "LandSprint", land, sourceFrameRates);
+            ConfigureStateMotion(machine, "LandMedium", land, sourceFrameRates);
+
+            AnimatorState dodgeF = FindState(machine, "RollFront");
+            AnimatorState dodgeB = FindState(machine, "RollBack");
+            AnimatorState attack = FindState(machine, "BaseAttack1");
+            ConfigureStateMotion(
+                dodgeF,
                 dodgeForward,
-                SpeedForDuration(dodgeForward, DodgeDurationSeconds / 0.9f),
-                new Vector3(560f, 180f, 0f));
-            AnimatorState dodgeB = AddState(
-                machine,
-                "Dodge Backward",
+                SpeedForDuration(dodgeForward, DodgeDurationSeconds / 0.9f));
+            ConfigureStateMotion(
+                dodgeB,
                 dodgeBackward,
-                SpeedForDuration(dodgeBackward, DodgeDurationSeconds / 0.9f),
-                new Vector3(800f, 180f, 0f));
-            AnimatorState attack = AddState(
-                machine,
-                "Unarmed Light Attack",
+                SpeedForDuration(dodgeBackward, DodgeDurationSeconds / 0.9f));
+            ConfigureStateMotion(
+                attack,
                 lightAttack,
-                SourceSpeed(lightAttack, sourceFrameRates),
-                new Vector3(680f, 330f, 0f));
+                SourceSpeed(lightAttack, sourceFrameRates));
 
-            machine.defaultState = locomotion;
-
-            AddConditionTransition(
-                locomotion,
-                jumpUp,
-                AnimatorConditionMode.IfNot,
-                0f,
-                MecanimCharacterParameters.Grounded,
-                AnimatorConditionMode.Greater,
-                0.05f,
-                MecanimCharacterParameters.VerticalSpeed);
-            AddConditionTransition(
-                locomotion,
-                falling,
-                AnimatorConditionMode.IfNot,
-                0f,
-                MecanimCharacterParameters.Grounded,
-                AnimatorConditionMode.Less,
-                0.05f,
-                MecanimCharacterParameters.VerticalSpeed);
-            AddConditionTransition(
-                jumpUp,
-                falling,
-                AnimatorConditionMode.Less,
-                -0.05f,
-                MecanimCharacterParameters.VerticalSpeed);
-            AddConditionTransition(
-                jumpUp,
-                landing,
-                AnimatorConditionMode.If,
-                0f,
-                MecanimCharacterParameters.Grounded);
-            AddConditionTransition(
-                falling,
-                landing,
-                AnimatorConditionMode.If,
-                0f,
-                MecanimCharacterParameters.Grounded);
-            AddExitTransition(landing, locomotion, 0.72f, TransitionSeconds);
-
+            RemoveSetupTransitions(machine, dodgeF, dodgeB, attack);
             AddActionTransition(machine, dodgeF, 1, 0);
             AddActionTransition(machine, dodgeB, 1, 1);
             AddActionTransition(machine, attack, 2, null);
-            AddExitTransition(dodgeF, locomotion, 0.9f, TransitionSeconds);
-            AddExitTransition(dodgeB, locomotion, 0.9f, TransitionSeconds);
-            AddExitTransition(attack, locomotion, 0.95f, TransitionSeconds);
-            AddCancelTransition(dodgeF, locomotion);
-            AddCancelTransition(dodgeB, locomotion);
-            AddCancelTransition(attack, locomotion);
+            AddCancelTransition(dodgeF, move);
+            AddCancelTransition(dodgeB, move);
+            AddCancelTransition(attack, move);
+
+            AnimatorControllerLayer[] layers = controller.layers;
+            for (int i = 1; i < layers.Length; i++)
+            {
+                layers[i].defaultWeight = 0f;
+            }
+            controller.layers = layers;
 
             EditorUtility.SetDirty(locomotionTree);
             EditorUtility.SetDirty(controller);
@@ -216,104 +140,149 @@ namespace _App.Editor.Animation
 
         private static void AddParameters(AnimatorController controller)
         {
-            AddParameter(controller, MecanimCharacterParameters.MotionForward,
+            EnsureParameter(controller, MecanimCharacterParameters.MovementType,
                 AnimatorControllerParameterType.Float);
-            AddParameter(controller, MecanimCharacterParameters.MotionLateral,
+            EnsureParameter(controller, MecanimCharacterParameters.MovementDirection,
                 AnimatorControllerParameterType.Float);
-            AddParameter(controller, MecanimCharacterParameters.MotionSpeed,
+            EnsureParameter(controller, MecanimCharacterParameters.FallingDuration,
                 AnimatorControllerParameterType.Float);
-            AddParameter(controller, MecanimCharacterParameters.VerticalSpeed,
-                AnimatorControllerParameterType.Float);
-
-            var grounded = new AnimatorControllerParameter
-            {
-                name = MecanimCharacterParameters.Grounded,
-                type = AnimatorControllerParameterType.Bool,
-                defaultBool = true
-            };
-            controller.AddParameter(grounded);
-
-            var gait = new AnimatorControllerParameter
-            {
-                name = MecanimCharacterParameters.Gait,
-                type = AnimatorControllerParameterType.Int,
-                defaultInt = 2
-            };
-            controller.AddParameter(gait);
-            AddParameter(controller, MecanimCharacterParameters.LocomotionMode,
-                AnimatorControllerParameterType.Int);
-            AddParameter(controller, MecanimCharacterParameters.Action,
+            EnsureParameter(controller, MecanimCharacterParameters.OnGround,
+                AnimatorControllerParameterType.Bool);
+            EnsureParameter(controller, MecanimCharacterParameters.Action,
                 AnimatorControllerParameterType.Trigger);
-            AddParameter(controller, MecanimCharacterParameters.ActionId,
+            EnsureParameter(controller, MecanimCharacterParameters.ActionId,
                 AnimatorControllerParameterType.Int);
-            AddParameter(controller, MecanimCharacterParameters.ActionVariant,
+            EnsureParameter(controller, MecanimCharacterParameters.ActionVariant,
                 AnimatorControllerParameterType.Int);
-            AddParameter(controller, MecanimCharacterParameters.CancelAction,
+            EnsureParameter(controller, MecanimCharacterParameters.CancelAction,
                 AnimatorControllerParameterType.Trigger);
         }
 
-        private static void AddParameter(
+        private static void EnsureParameter(
             AnimatorController controller,
             string name,
             AnimatorControllerParameterType type)
         {
+            AnimatorControllerParameter existing = controller.parameters
+                .FirstOrDefault(parameter => parameter.name == name);
+            if (existing != null)
+            {
+                if (existing.type != type)
+                {
+                    throw new InvalidOperationException(
+                        $"Animator parameter '{name}' has type {existing.type}, expected {type}.");
+                }
+
+                return;
+            }
+
             controller.AddParameter(name, type);
         }
 
-        private static AnimatorState AddState(
-            AnimatorStateMachine machine,
-            string name,
-            Motion motion,
-            float speed,
-            Vector3 position)
-        {
-            AnimatorState state = machine.AddState(name, position);
-            state.motion = motion;
-            state.speed = Mathf.Max(0.01f, speed);
-            state.writeDefaultValues = false;
-            return state;
-        }
-
-        private static void AddBlendChild(
+        private static void ConfigureLocomotionTree(
             BlendTree tree,
-            Motion motion,
-            float threshold,
-            float timeScale)
+            AnimationClip idle,
+            AnimationClip walk,
+            AnimationClip run,
+            AnimationClip sprint,
+            IReadOnlyDictionary<string, float> sourceFrameRates)
         {
-            tree.AddChild(motion, threshold);
+            tree.blendType = BlendTreeType.Simple1D;
+            tree.blendParameter = MecanimCharacterParameters.MovementType;
+            tree.useAutomaticThresholds = false;
+            tree.minThreshold = 0f;
+            tree.maxThreshold = 3f;
+
+            Motion[] motions = { idle, walk, run, sprint };
             ChildMotion[] children = tree.children;
-            ChildMotion child = children[^1];
-            child.timeScale = Mathf.Max(0.01f, timeScale);
-            children[^1] = child;
+            for (int i = 0; i < children.Length; i++)
+            {
+                children[i].motion = motions[i];
+                children[i].threshold = i;
+                children[i].timeScale = SourceSpeed(
+                    (AnimationClip)motions[i],
+                    sourceFrameRates);
+            }
+
             tree.children = children;
         }
 
-        private static void AddConditionTransition(
-            AnimatorState source,
-            AnimatorState destination,
-            AnimatorConditionMode mode,
-            float threshold,
-            string parameter)
+        private static void ConfigureStateMotion(
+            AnimatorStateMachine machine,
+            string stateName,
+            AnimationClip motion,
+            IReadOnlyDictionary<string, float> sourceFrameRates)
         {
-            AnimatorStateTransition transition = source.AddTransition(destination);
-            ConfigureImmediateTransition(transition, TransitionSeconds);
-            transition.AddCondition(mode, threshold, parameter);
+            ConfigureStateMotion(
+                FindState(machine, stateName),
+                motion,
+                SourceSpeed(motion, sourceFrameRates));
         }
 
-        private static void AddConditionTransition(
-            AnimatorState source,
-            AnimatorState destination,
-            AnimatorConditionMode firstMode,
-            float firstThreshold,
-            string firstParameter,
-            AnimatorConditionMode secondMode,
-            float secondThreshold,
-            string secondParameter)
+        private static void ConfigureStateMotion(
+            AnimatorState state,
+            Motion motion,
+            float speed)
         {
-            AnimatorStateTransition transition = source.AddTransition(destination);
-            ConfigureImmediateTransition(transition, TransitionSeconds);
-            transition.AddCondition(firstMode, firstThreshold, firstParameter);
-            transition.AddCondition(secondMode, secondThreshold, secondParameter);
+            state.motion = motion;
+            state.speed = Mathf.Max(0.01f, speed);
+            EditorUtility.SetDirty(state);
+        }
+
+        private static AnimatorState FindState(
+            AnimatorStateMachine machine,
+            string stateName)
+        {
+            foreach (ChildAnimatorState child in machine.states)
+            {
+                if (child.state.name == stateName)
+                {
+                    return child.state;
+                }
+            }
+
+            foreach (ChildAnimatorStateMachine child in machine.stateMachines)
+            {
+                try
+                {
+                    return FindState(child.stateMachine, stateName);
+                }
+                catch (InvalidOperationException)
+                {
+                    // Continue searching the remaining historical sub-state machines.
+                }
+            }
+
+            throw new InvalidOperationException(
+                $"Historical Animator state '{stateName}' was not found in '{machine.name}'.");
+        }
+
+        private static void RemoveSetupTransitions(
+            AnimatorStateMachine machine,
+            params AnimatorState[] actionStates)
+        {
+            AnimatorStateTransition[] anyStateTransitions = machine.anyStateTransitions;
+            for (int i = anyStateTransitions.Length - 1; i >= 0; i--)
+            {
+                if (anyStateTransitions[i].conditions.Any(condition =>
+                        condition.parameter == MecanimCharacterParameters.Action))
+                {
+                    machine.RemoveAnyStateTransition(anyStateTransitions[i]);
+                }
+            }
+
+            foreach (AnimatorState state in actionStates)
+            {
+                AnimatorStateTransition[] transitions = state.transitions;
+                for (int i = transitions.Length - 1; i >= 0; i--)
+                {
+                    if (transitions[i].conditions.Any(condition =>
+                            condition.parameter == MecanimCharacterParameters.CancelAction))
+                    {
+                        state.RemoveTransition(transitions[i]);
+                    }
+                }
+            }
         }
 
         private static void AddActionTransition(
@@ -340,20 +309,6 @@ namespace _App.Editor.Animation
                     variant.Value,
                     MecanimCharacterParameters.ActionVariant);
             }
-        }
-
-        private static void AddExitTransition(
-            AnimatorState source,
-            AnimatorState destination,
-            float exitTime,
-            float durationSeconds)
-        {
-            AnimatorStateTransition transition = source.AddTransition(destination);
-            transition.hasExitTime = true;
-            transition.exitTime = exitTime;
-            transition.hasFixedDuration = true;
-            transition.duration = durationSeconds;
-            transition.interruptionSource = TransitionInterruptionSource.None;
         }
 
         private static void AddCancelTransition(
@@ -449,52 +404,21 @@ namespace _App.Editor.Animation
         private static BodyColliderGenerationResult ConfigurePlayerPrefab(
             RuntimeAnimatorController controller)
         {
-            GameObject visualPrefab =
-                AssetDatabase.LoadAssetAtPath<GameObject>(PreviewPrefabPath);
-            if (visualPrefab == null)
-            {
-                throw new InvalidOperationException(
-                    $"KurtzPel preview prefab is missing: {PreviewPrefabPath}");
-            }
-
             GameObject root = PrefabUtility.LoadPrefabContents(PlayerPrefabPath);
             try
             {
-                Transform[] oldVisuals = root.GetComponentsInChildren<Transform>(true)
-                    .Where(transform =>
-                        transform != root.transform &&
-                        transform.name == "CharacterVisual")
-                    .ToArray();
-                for (int i = oldVisuals.Length - 1; i >= 0; i--)
-                {
-                    UnityEngine.Object.DestroyImmediate(oldVisuals[i].gameObject);
-                }
-
-                var visual = (GameObject)PrefabUtility.InstantiatePrefab(
-                    visualPrefab,
-                    root.scene);
-                visual.name = "CharacterVisual";
-                visual.transform.SetParent(root.transform, false);
-                visual.transform.localPosition = Vector3.zero;
-                visual.transform.localRotation = Quaternion.Euler(0.0f, KurtzPelVisualYaw, 0.0f);
-                visual.transform.localScale = Vector3.one * 0.6f;
-
-                Animator animator = visual.GetComponent<Animator>();
+                Animator animator = root.GetComponentsInChildren<Animator>(true)
+                    .FirstOrDefault(candidate => candidate.name == "CharacterVisual");
                 if (animator == null)
                 {
                     throw new InvalidOperationException(
-                        "KurtzPel player visual has no Animator.");
+                        "Player prefab has no CharacterVisual Animator to configure.");
                 }
 
                 animator.runtimeAnimatorController = controller;
                 animator.applyRootMotion = false;
                 animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
                 animator.updateMode = AnimatorUpdateMode.Normal;
-
-                Transform leftHand = FindRequiredBone(visual.transform, "Hand_L");
-                Transform rightHand = FindRequiredBone(visual.transform, "Hand_R");
-                Weapon leftHitbox = CreateUnarmedHitbox(leftHand, "Hitbox_LeftHand");
-                Weapon rightHitbox = CreateUnarmedHitbox(rightHand, "Hitbox_RightHand");
 
                 ThirdPersonController player = root.GetComponent<ThirdPersonController>();
                 if (player == null)
@@ -505,90 +429,28 @@ namespace _App.Editor.Animation
 
                 var playerObject = new SerializedObject(player);
                 playerObject.FindProperty("_animator").objectReferenceValue = animator;
-                SetObjectArray(
-                    playerObject.FindProperty("_unarmedHitboxes"),
-                    leftHitbox,
-                    rightHitbox);
-                playerObject.FindProperty("_weaponHolder").objectReferenceValue = null;
-                playerObject.FindProperty("_weaponHand").objectReferenceValue = null;
-                playerObject.FindProperty("_weapon").objectReferenceValue = null;
                 playerObject.ApplyModifiedPropertiesWithoutUndo();
 
                 BodyColliderAuthoring authoring = root.GetComponent<BodyColliderAuthoring>();
-                if (authoring == null)
+                if (authoring != null)
                 {
-                    authoring = root.AddComponent<BodyColliderAuthoring>();
-                }
-
-                var authoringObject = new SerializedObject(authoring);
-                authoringObject.FindProperty("_rigType").enumValueIndex = (int)BodyRigType.Auto;
-                authoringObject.FindProperty("_animator").objectReferenceValue = animator;
-                authoringObject.FindProperty("_health").objectReferenceValue =
-                    root.GetComponent<Health>();
-                authoringObject.FindProperty("_sourceMeshes").ClearArray();
-                authoringObject.FindProperty("_genericBones").ClearArray();
-                authoringObject.ApplyModifiedPropertiesWithoutUndo();
-
-                BodyColliderGenerationResult colliderResult =
-                    BodyColliderGenerator.Generate(authoring);
-                if (!colliderResult.Success)
-                {
-                    throw new InvalidOperationException(colliderResult.Message);
+                    var authoringObject = new SerializedObject(authoring);
+                    authoringObject.FindProperty("_animator").objectReferenceValue = animator;
+                    authoringObject.ApplyModifiedPropertiesWithoutUndo();
                 }
 
                 PrefabUtility.SaveAsPrefabAsset(root, PlayerPrefabPath);
-                return colliderResult;
+                int colliderCount = root.GetComponentsInChildren<GeneratedBodyCollider>(true).Length;
+                return new BodyColliderGenerationResult(
+                    true,
+                    BodyRigType.Auto,
+                    colliderCount,
+                    0,
+                    $"Preserved {colliderCount} existing generated body colliders.");
             }
             finally
             {
                 PrefabUtility.UnloadPrefabContents(root);
-            }
-        }
-
-        private static Weapon CreateUnarmedHitbox(Transform hand, string objectName)
-        {
-            var node = new GameObject(objectName);
-            node.transform.SetParent(hand, false);
-            node.layer = Mathf.Max(0, LayerMask.NameToLayer("Hitbox"));
-
-            SphereCollider collider = node.AddComponent<SphereCollider>();
-            collider.isTrigger = true;
-            collider.radius = WorldToLocalRadius(node.transform, 0.14f);
-            collider.enabled = false;
-
-            Weapon weapon = node.AddComponent<Weapon>();
-            var serializedWeapon = new SerializedObject(weapon);
-            serializedWeapon.FindProperty("_hitbox").objectReferenceValue = collider;
-            serializedWeapon.ApplyModifiedPropertiesWithoutUndo();
-            return weapon;
-        }
-
-        private static float WorldToLocalRadius(Transform transform, float worldRadius)
-        {
-            Vector3 scale = transform.lossyScale;
-            float averageScale =
-                (Mathf.Abs(scale.x) + Mathf.Abs(scale.y) + Mathf.Abs(scale.z)) / 3f;
-            return worldRadius / Mathf.Max(0.0001f, averageScale);
-        }
-
-        private static Transform FindRequiredBone(Transform root, string boneName)
-        {
-            Transform bone = root.GetComponentsInChildren<Transform>(true)
-                .FirstOrDefault(transform => transform.name == boneName);
-            return bone != null
-                ? bone
-                : throw new InvalidOperationException(
-                    $"KurtzPel player bone '{boneName}' was not found.");
-        }
-
-        private static void SetObjectArray(
-            SerializedProperty property,
-            params UnityEngine.Object[] values)
-        {
-            property.arraySize = values.Length;
-            for (int i = 0; i < values.Length; i++)
-            {
-                property.GetArrayElementAtIndex(i).objectReferenceValue = values[i];
             }
         }
 
@@ -706,18 +568,5 @@ namespace _App.Editor.Animation
             EditorUtility.SetDirty(featureSet);
         }
 
-        private static void EnsureFolder(string folderPath)
-        {
-            if (AssetDatabase.IsValidFolder(folderPath))
-            {
-                return;
-            }
-
-            int separatorIndex = folderPath.LastIndexOf('/');
-            string parentPath = folderPath[..separatorIndex];
-            string folderName = folderPath[(separatorIndex + 1)..];
-            EnsureFolder(parentPath);
-            AssetDatabase.CreateFolder(parentPath, folderName);
-        }
     }
 }
