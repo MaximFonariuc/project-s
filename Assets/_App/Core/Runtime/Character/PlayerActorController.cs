@@ -91,7 +91,7 @@ namespace _App
             _hitStop.Disable();
             _reaction.Disable();
             _combat.Disable();
-            _animation.StopAllActions(0.0f);
+            _animation.StopAllActions();
             _camera.Disable();
             _targeting.Disable();
             _locomotion.Disable();
@@ -108,7 +108,6 @@ namespace _App
             }
 
             _gameplayTime.Tick(unscaledDeltaTime);
-            _animation.Tick(scaledDeltaTime);
             _reaction.Tick(scaledDeltaTime);
             _traversal.Tick();
             _locomotion.SetMovementIntent(

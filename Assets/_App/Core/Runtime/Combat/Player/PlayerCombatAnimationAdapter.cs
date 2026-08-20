@@ -1,38 +1,26 @@
 using System;
-using System.Collections.Generic;
 using ModularAnimation;
-using ModularAnimation.Unity;
 
 namespace _App
 {
     internal sealed class PlayerCombatAnimationAdapter : IPlayerCombatAnimation
     {
         private readonly PlayerAnimationCoordinator _animation;
-        private readonly AnimationsData _animationsData;
 
-        private IReadOnlyList<CharacterAnimationActionPresentation> _comboActions =
-            Array.Empty<CharacterAnimationActionPresentation>();
-        private ECharacterType _characterType;
-        private AnimationActionLease _activeAction;
+        private EWeaponType _weaponType;
         private bool _disposed;
 
-        public int ComboCount => _comboActions.Count;
+        public int ComboCount => _weaponType == EWeaponType.Unarmed ? 1 : 0;
 
-        public PlayerCombatAnimationAdapter(
-            PlayerAnimationCoordinator animation,
-            AnimationsData animationsData)
+        public PlayerCombatAnimationAdapter(PlayerAnimationCoordinator animation)
         {
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
-            _animationsData = animationsData != null
-                ? animationsData
-                : throw new ArgumentNullException(nameof(animationsData));
         }
 
         public void ApplyLoadout(ECharacterType characterType, EWeaponType weaponType)
         {
             ThrowIfDisposed();
-            _characterType = characterType;
-            _comboActions = _animationsData.GetComboActions(characterType, weaponType);
+            _weaponType = weaponType;
         }
 
         public bool HasNamedAnimation(
@@ -40,11 +28,7 @@ namespace _App
             EWeaponType weaponType,
             PlayerCombatAnimationId animationId)
         {
-            return _animationsData.TryGetAction(
-                characterType,
-                weaponType,
-                animationId,
-                out _);
+            return false;
         }
 
         public bool TryPlayComboStep(
@@ -52,13 +36,20 @@ namespace _App
             out AnimationActionPlayback playback)
         {
             ThrowIfDisposed();
-            if (comboIndex < 0 || comboIndex >= _comboActions.Count)
+            if (_weaponType != EWeaponType.Unarmed || comboIndex != 0)
             {
                 playback = default;
                 return false;
             }
 
-            return TryPlay(_comboActions[comboIndex], out playback);
+            var request = new AnimationActionRequest(
+                PlayerAnimatorActions.LightAttack,
+                0,
+                PlayerAnimatorActions.LightAttackDuration);
+            return _animation.TryPlayAction(
+                PlayerAnimationSource.Combat,
+                in request,
+                out playback);
         }
 
         public bool TryPlayNamedAnimation(
@@ -67,18 +58,8 @@ namespace _App
             PlayerCombatAnimationId animationId,
             out AnimationActionPlayback playback)
         {
-            ThrowIfDisposed();
-            if (!_animationsData.TryGetAction(
-                    characterType,
-                    weaponType,
-                    animationId,
-                    out CharacterAnimationActionPresentation presentation))
-            {
-                playback = default;
-                return false;
-            }
-
-            return TryPlay(presentation, out playback);
+            playback = default;
+            return false;
         }
 
         public bool TryPlayWeaponTransition(
@@ -86,30 +67,24 @@ namespace _App
             bool draw,
             out AnimationActionPlayback playback)
         {
-            ThrowIfDisposed();
-            if (weaponType is EWeaponType.None or EWeaponType.Unarmed ||
-                !_animationsData.TryGetWeaponTransition(
-                    _characterType,
-                    weaponType,
-                    draw,
-                    out CharacterAnimationActionPresentation presentation))
-            {
-                playback = default;
-                return false;
-            }
-
-            return TryPlay(presentation, out playback);
+            playback = default;
+            return false;
         }
 
         public void Release()
         {
-            if (_disposed)
+            if (!_disposed)
             {
-                return;
+                _animation.ReleaseAll(PlayerAnimationSource.Combat);
             }
+        }
 
-            _activeAction.Release();
-            _activeAction = default;
+        public void Cancel()
+        {
+            if (!_disposed)
+            {
+                _animation.Cancel(PlayerAnimationSource.Combat);
+            }
         }
 
         public void Dispose()
@@ -119,35 +94,9 @@ namespace _App
                 return;
             }
 
-            _activeAction.Release();
-            _activeAction = default;
+            _animation.Cancel(PlayerAnimationSource.Combat);
+            _animation.ReleaseAll(PlayerAnimationSource.Combat);
             _disposed = true;
-        }
-
-        private bool TryPlay(
-            CharacterAnimationActionPresentation presentation,
-            out AnimationActionPlayback playback)
-        {
-            if (presentation == null || !presentation.IsValid)
-            {
-                playback = default;
-                return false;
-            }
-
-            AnimationClipActionRequest request = presentation.CreateRequest();
-            if (!_animation.TryPlayAction(
-                    PlayerAnimationSource.Combat,
-                    in request,
-                    presentation.BlendOutSeconds,
-                    out AnimationActionLease action))
-            {
-                playback = default;
-                return false;
-            }
-
-            _activeAction = action;
-            playback = action.Playback;
-            return true;
         }
 
         private void ThrowIfDisposed()

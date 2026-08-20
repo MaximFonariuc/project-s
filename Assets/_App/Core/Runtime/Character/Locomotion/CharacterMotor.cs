@@ -15,10 +15,8 @@ namespace _App
         private readonly float _sprintSpeed;
         private PlayerSpeedMode _speedMode = PlayerSpeedMode.Run;
         private CharacterActionMotionIntent _actionMotion;
-        private Vector3 _pendingActionPlanarDisplacement;
         private float _pendingActionVerticalImpulse;
         private bool _overrideVerticalVelocityOnImpulse;
-        private bool _resetPlanarVelocityAfterDisplacement;
         private bool _hasActionMotion;
 
         public bool IsGrounded => _character.IsGrounded();
@@ -131,11 +129,6 @@ namespace _App
             _hasActionMotion = true;
         }
 
-        public void QueueActionPlanarDisplacement(Vector3 worldDisplacement)
-        {
-            _pendingActionPlanarDisplacement += worldDisplacement;
-        }
-
         public void QueueActionVerticalImpulse(float verticalVelocity, bool overrideVerticalVelocity)
         {
             if (Mathf.Approximately(verticalVelocity, 0.0f))
@@ -158,20 +151,14 @@ namespace _App
         public void Dispose()
         {
             ClearActionMotion();
-            _pendingActionPlanarDisplacement = Vector3.zero;
-            _resetPlanarVelocityAfterDisplacement = false;
             _character.AfterSimulationUpdated -= OnAfterSimulationUpdated;
         }
 
         private void OnAfterSimulationUpdated(float deltaTime)
         {
-            bool hasPendingPlanarDisplacement =
-                _pendingActionPlanarDisplacement.sqrMagnitude > 0.0000001f;
             bool hasPendingVerticalImpulse =
                 !Mathf.Approximately(_pendingActionVerticalImpulse, 0.0f);
             if (!_hasActionMotion &&
-                !hasPendingPlanarDisplacement &&
-                !_resetPlanarVelocityAfterDisplacement &&
                 !hasPendingVerticalImpulse)
             {
                 return;
@@ -179,28 +166,10 @@ namespace _App
 
             Vector3 up = Up;
             Vector3 currentVelocity = _character.GetVelocity();
-            Vector3 planarVelocity;
-            if (hasPendingPlanarDisplacement)
-            {
-                planarVelocity = Vector3.ProjectOnPlane(
-                        _pendingActionPlanarDisplacement,
-                        up) /
-                    Mathf.Max(deltaTime, 0.0001f);
-                _pendingActionPlanarDisplacement = Vector3.zero;
-                _resetPlanarVelocityAfterDisplacement = true;
-            }
-            else if (_resetPlanarVelocityAfterDisplacement)
-            {
-                planarVelocity = Vector3.zero;
-                _resetPlanarVelocityAfterDisplacement = false;
-            }
-            else
-            {
-                planarVelocity =
-                    _actionMotion.PlanarMode == CharacterActionPlanarMode.OverrideVelocity
-                        ? Vector3.ProjectOnPlane(_actionMotion.PlanarVelocity, up)
-                        : Vector3.ProjectOnPlane(currentVelocity, up);
-            }
+            Vector3 planarVelocity =
+                _actionMotion.PlanarMode == CharacterActionPlanarMode.OverrideVelocity
+                    ? Vector3.ProjectOnPlane(_actionMotion.PlanarVelocity, up)
+                    : Vector3.ProjectOnPlane(currentVelocity, up);
             float verticalVelocity = Vector3.Dot(currentVelocity, up);
             verticalVelocity = _actionMotion.VerticalMode switch
             {

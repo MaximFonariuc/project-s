@@ -1,177 +1,78 @@
 # Project S — Player Animation Presentation
 
-## Назначение
+## Boundary
 
-Player animation отображает подтверждённый gameplay state и не является владельцем locomotion, combat timings, damage или traversal. Project-specific adapters переводят данные Player в backend-neutral контракты `ModularAnimation`; Unity Animator остаётся одной из сменяемых реализаций driver.
-
-## Дерево классов
+Player animation displays confirmed gameplay state. Locomotion, dodge
+eligibility, combat timing, hit windows and damage remain in gameplay code.
+The Animator Controller owns only motions, blend trees and visual transitions.
 
 ```mermaid
 classDiagram
-    direction LR
-
     class PlayerLocomotionController {
         +Snapshot PlayerLocomotionSnapshot
     }
-    class PlayerLocomotionSnapshot {
-        <<immutable presentation input>>
-        +IsValid bool
-        +State PlayerLocomotionStateId
-        +SpeedMode PlayerSpeedMode
-        +Mode PlayerLocomotionMode
-        +ForwardSpeed float
-        +LateralSpeed float
-        +VerticalSpeed float
-        +NormalizedSpeed float
-        +IsGrounded bool
-    }
-    class IPlayerLocomotionPresentation {
-        <<Project S port>>
-        +Present(snapshot, deltaTime)
-        +Reset()
-    }
-    class PlayerLocomotionAnimationAdapter {
-        <<state transition adapter>>
-    }
+    class PlayerLocomotionAnimationAdapter
+    class PlayerCharacterAnimationPresenter
+    class PlayerCombatAnimationAdapter
     class PlayerAnimationCoordinator {
-        <<single layer arbitration owner>>
-        +CrossFade(source, state, layer, transition, duration)
-        +SetPlaybackSpeed(source, speed)
-        +Release(source, layer)
+        +TryPlayAction(source, request, playback) bool
+        +Cancel(source)
         +ReleaseAll(source)
     }
-    class PlayerAnimationSource {
-        <<priority>>
-        Locomotion
-        Combat
-        Traversal
-        Reaction
-    }
-    class PlayerCharacterAnimationPresenter {
-        <<locomotion mapper>>
-        +Present(snapshot, deltaTime)
-    }
-    class CharacterLocomotionFrame {
-        <<backend-neutral frame>>
-    }
     class ICharacterAnimationDriver {
-        <<module port>>
+        <<module interface>>
         +ApplyLocomotion(frame, deltaTime)
-        +CrossFade(state, layer, transition, duration)
-        +SetPlaybackSpeed(speed)
+        +PlayAction(request) AnimationActionPlayback
+        +CancelAction()
     }
-    class MecanimCharacterAnimationDriver {
-        <<Unity backend>>
-    }
-    class MecanimCharacterAnimationProfile {
-        <<authoring profile>>
-        +CreateBindings()
-    }
-    class MecanimCharacterAnimationBindings
-    class Animator
-    class PlayerCombatAnimationAdapter
-    class CharacterReactionAnimationAdapter
-    class LadderTraversalAction
-    class PlayerCombatAnimationId {
-        +Value string
-    }
-    class AnimationsData {
-        <<character animation catalog>>
-        +GetComboClips(character, weapon)
-        +GetActionClip(character, weapon, animationId)
-    }
-    class OverrideAnimation {
-        <<weapon loadout asset>>
-        +ComboClips
-        +Actions
-    }
-    class CombatAnimationClip {
-        +Id string
-        +AnimationClip AnimationClip
-    }
-    class PlayerTraversalActions
+    class MecanimCharacterAnimationDriver
+    class AnimatorController
+    class CharacterMotor
+    class CombatActionExecutor
 
-    PlayerLocomotionController --> PlayerLocomotionSnapshot : creates once per frame
-    PlayerLocomotionController --> IPlayerLocomotionPresentation
-    IPlayerLocomotionPresentation <|.. PlayerLocomotionAnimationAdapter
+    PlayerLocomotionController --> PlayerLocomotionAnimationAdapter
     PlayerLocomotionAnimationAdapter --> PlayerCharacterAnimationPresenter
-    PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator : dodge request
-    PlayerCharacterAnimationPresenter --> CharacterLocomotionFrame : maps
-    PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
-    PlayerAnimationCoordinator --> PlayerAnimationSource
-    PlayerAnimationCoordinator --> ICharacterAnimationDriver : exclusive transitions
-    ICharacterAnimationDriver <|.. MecanimCharacterAnimationDriver
-    MecanimCharacterAnimationProfile --> MecanimCharacterAnimationBindings : creates
-    MecanimCharacterAnimationDriver --> MecanimCharacterAnimationBindings
-    MecanimCharacterAnimationDriver --> Animator
+    PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator : dodge
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
-    CharacterReactionAnimationAdapter --> PlayerAnimationCoordinator
-    LadderTraversalAction --> PlayerAnimationCoordinator
-    PlayerCombatAnimationAdapter --> AnimationsData
-    PlayerCombatAnimationAdapter --> PlayerCombatAnimationId
-    AnimationsData *-- OverrideAnimation
-    OverrideAnimation *-- CombatAnimationClip
-    PlayerTraversalActions --> LadderTraversalAction
+    PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
+    PlayerAnimationCoordinator --> ICharacterAnimationDriver
+    ICharacterAnimationDriver <|.. MecanimCharacterAnimationDriver
+    MecanimCharacterAnimationDriver --> AnimatorController : parameters
+    PlayerLocomotionController --> CharacterMotor
+    CombatActionExecutor --> CharacterMotor
 ```
 
-## Направление зависимостей
+## Ownership
 
-```mermaid
-flowchart LR
-    Gameplay["Locomotion / Combat / Reaction / Traversal"] --> ProjectAdapters["Project S presentation adapters"]
-    ProjectAdapters --> Coordinator["PlayerAnimationCoordinator"]
-    Coordinator --> ModulePort["ModularAnimation.Core driver"]
-    ProjectAdapters --> LocomotionFrame["Locomotion parameter presenter"]
-    LocomotionFrame --> ModulePort
-    Profile["Mecanim character profile"] --> UnityDriver["ModularAnimation.Unity driver"]
-    ModulePort --> UnityDriver
-    UnityDriver --> Animator
-```
+- `PlayerLocomotionController` owns `Idle / Run / Jump / Fall / Dodge` gameplay
+  state and publishes an immutable snapshot.
+- `PlayerCharacterAnimationPresenter` maps that snapshot to a backend-neutral
+  locomotion frame.
+- `PlayerAnimationCoordinator` arbitrates finite action priority:
+  `Death > Reaction > Traversal > Combat > Locomotion`.
+- `MecanimCharacterAnimationDriver` is the only runtime writer of the Animator
+  parameters. It caches hashes, validates the controller contract and never
+  selects a clip.
+- `Player_KurtzPel.controller` contains the actual states and fixed-duration
+  transitions. It can be replaced by a controller with the same parameter and
+  semantic action contract.
+- `CombatActionDefinition.DurationSeconds` owns gameplay action duration. No
+  combat rule reads an animation clip length or Animator normalized time.
+- Root motion is disabled. Dodge and attack translation go through
+  `CharacterMotor` and the normal collision sweep.
 
-- `_App/Core` знает о семантике Player и зависит от `ModularAnimation`.
-- `ModularAnimation.Core` не зависит от Unity, Project S и `_Game` assets.
-- `ModularAnimation.Unity` зависит только от Core-контрактов и Unity animation API.
-- Profile содержит только имена Animator parameters. Project-specific state ids и выбор clips остаются в `_App/Core` и `_Game`.
+## Current content
 
-## Runtime ownership
+The Player uses the KurtzPel 86-bone Generic Avatar. The controller currently
+contains grounded locomotion, jump/fall/landing, forward/backward dodge and one
+grounded unarmed light attack. Swimming and ladder animation are deferred.
 
-- `PlayerLocomotionController` — единственный owner locomotion snapshot.
-- `PlayerLocomotionAnimationAdapter` обнаруживает смену подтверждённого state и отправляет presentation transition.
-- `PlayerCharacterAnimationPresenter` является stateless mapper snapshot → `CharacterLocomotionFrame`.
-- `PlayerAnimationCoordinator` — единственный owner явных `CrossFade`, владельца animation layer и source-specific playback speed.
-- `MecanimCharacterAnimationDriver` кэширует parameter hashes и clip durations, но не принимает gameplay-решения.
-- Locomotion parameters обновляются независимо от layer arbitration, поэтому underlying blend tree получает актуальную скорость даже во время action animation.
-- Combat, Reaction и Traversal отправляют coordinator только presentation requests и не меняют locomotion state.
+Grounded locomotion uses the coherent ENFJ set with a genuine walk cycle and
+blends by measured planar speed (`0/3/5/10` for idle/walk/run/sprint). The
+KurtzPel visual is rotated `-90` degrees around Y at the presentation boundary
+to align its authored `+X` forward with gameplay `+Z`; the physics root is not
+rotated.
 
-## Arbitration animation states
-
-Для одного layer одновременно существует только один effective owner. Приоритеты принадлежат Project S Core, а не универсальному animation module:
-
-```text
-Reaction > Traversal > Combat > Locomotion
-```
-
-- Более высокий source может прервать визуальный state более низкого.
-- Более низкий request не изменяет Animator и получает `AnimationPlayback.Invalid`; gameplay action обязан трактовать это как непринятое presentation-действие.
-- Последний валидный request каждого source/layer сохраняется. После `Release` coordinator восстанавливает самый приоритетный оставшийся request.
-- Combat освобождает свои layers при completion, cancellation, interruption и disable.
-- Reaction освобождает layer при возврате в `Stable` или reset lifecycle.
-- Traversal освобождает layers при выходе из climbing mode и при disable.
-- Locomotion освобождает явный dodge request при выходе из `Dodge`; обычные blend parameters продолжают обновляться каждый frame.
-- `SpeedMultiplier` применяется только текущим владельцем Base Layer и сбрасывается либо восстанавливается вместе со сменой owner.
-
-## Combat presentation lookup
-
-Combat gameplay не знает о clip references. `PlayerCombatAction` содержит presentation: combo index либо `PlayerCombatAnimationId`. `PlayerCombatAnimationAdapter` разрешает её через `AnimationsData -> OverrideAnimation` текущего character/weapon loadout и только после этого вызывает driver.
-
-`OverrideAnimation` хранит плоский список combo clips и named `CombatAnimationClip` entries. Enum навыков и generic `SkillBase` hierarchy удалены: строковый animation id позволяет новому action profile добавить presentation slot без изменения C# enum. Animation id не является gameplay action id и не задаёт transitions, cooldown или damage.
-
-## Вариативность моделей
-
-Humanoid и Generic персонажи используют одинаковый `ICharacterAnimationDriver`. Различия Animator Controller и parameter naming задаются отдельным `MecanimCharacterAnimationProfile`; retargeting, avatar и совместимость clips остаются authoring-ответственностью конкретного character prefab. Новый Playables/backend реализует тот же driver contract и выбирается только в Composition Root.
-
-## Gameplay interruption
-
-Gameplay interruption согласован с presentation arbitration. Подтверждённый non-stable reaction state через `PlayerActorController` прерывает Combat и Traversal до применения knockback, блокирует новые combat/traversal commands и locomotion actions. Каждый feature освобождает свой animation request во время cleanup, после чего `PlayerAnimationCoordinator` оставляет reaction единственным владельцем Base Layer. Возврат в `Stable` снимает reaction request и восстанавливает актуальную locomotion presentation, а не отменённую атаку или traversal.
-
-Правила не зависят от финальных animation clips и не переносят gameplay authority в Animator. Gameplay state machines по-прежнему подтверждают состояние; animation coordinator решает только конфликт presentation requests.
+Humanoid migration is content work: replace the Avatar and motions while
+preserving the controller parameters and semantic action IDs. Gameplay code and
+the motor remain unchanged.

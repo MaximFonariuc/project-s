@@ -42,6 +42,7 @@ namespace _App
         public NormalizedActionWindow MovementConstraintWindow { get; }
         public NormalizedActionWindow InvulnerabilityWindow { get; }
         public CombatHitDefinition HitDefinition { get; }
+        public float DurationSeconds { get; }
         public float RecoveryStart { get; }
         public float CompletionTime { get; }
         public bool HasCommit { get; }
@@ -57,6 +58,7 @@ namespace _App
             NormalizedActionWindow movementConstraintWindow,
             NormalizedActionWindow invulnerabilityWindow,
             CombatHitDefinition hitDefinition,
+            float durationSeconds,
             float recoveryStart,
             float completionTime,
             bool hasCommit,
@@ -65,6 +67,11 @@ namespace _App
             PlayerMovementIntent movementIntent,
             CombatMotionDefinition motion)
         {
+            if (durationSeconds <= 0.0f)
+            {
+                throw new ArgumentOutOfRangeException(nameof(durationSeconds));
+            }
+
             if (completionTime <= 0.0f || completionTime > 1.0f)
             {
                 throw new ArgumentOutOfRangeException(nameof(completionTime));
@@ -101,6 +108,7 @@ namespace _App
             MovementConstraintWindow = movementConstraintWindow;
             InvulnerabilityWindow = invulnerabilityWindow;
             HitDefinition = hitDefinition;
+            DurationSeconds = durationSeconds;
             RecoveryStart = recoveryStart;
             CompletionTime = completionTime;
             HasCommit = hasCommit;

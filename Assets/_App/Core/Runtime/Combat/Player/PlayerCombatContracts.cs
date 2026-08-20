@@ -54,6 +54,7 @@ namespace _App
             bool draw,
             out AnimationActionPlayback playback);
         void Release();
+        void Cancel();
     }
 
     internal interface IPlayerWeaponRig

@@ -45,7 +45,6 @@ namespace _App
         Vector3 Up { get; }
 
         void SetActionMotion(in CharacterActionMotionIntent intent);
-        void QueueActionPlanarDisplacement(Vector3 worldDisplacement);
         void QueueActionVerticalImpulse(float verticalVelocity, bool overrideVerticalVelocity);
         void ClearActionMotion();
     }

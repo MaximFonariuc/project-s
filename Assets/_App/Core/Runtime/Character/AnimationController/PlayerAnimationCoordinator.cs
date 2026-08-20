@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using ModularAnimation;
-using ModularAnimation.Unity;
 using UnityEngine;
 
 namespace _App
@@ -15,59 +13,50 @@ namespace _App
         Death
     }
 
+    internal static class PlayerAnimatorActions
+    {
+        public static readonly AnimationActionId Dodge = new AnimationActionId(1);
+        public static readonly AnimationActionId LightAttack = new AnimationActionId(2);
+
+        public const float DodgeDuration = 0.48f;
+        public const float LightAttackDuration = 1.30f;
+
+        public static bool TryCreate(
+            AnimationSlotId slot,
+            out AnimationActionRequest request)
+        {
+            if (slot == PlayerAnimationSlots.DodgeForward)
+            {
+                request = new AnimationActionRequest(Dodge, 0, DodgeDuration);
+                return true;
+            }
+
+            if (slot == PlayerAnimationSlots.DodgeBackward)
+            {
+                request = new AnimationActionRequest(Dodge, 1, DodgeDuration);
+                return true;
+            }
+
+            request = default;
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Coordinates semantic action ownership. It never selects clips or performs
+    /// state transitions; those decisions belong to the Animator Controller.
+    /// </summary>
     internal sealed class PlayerAnimationCoordinator
     {
-        private readonly struct RequestKey : IEquatable<RequestKey>
-        {
-            public PlayerAnimationSource Source { get; }
-            public int LayerIndex { get; }
-
-            public RequestKey(PlayerAnimationSource source, int layerIndex)
-            {
-                Source = source;
-                LayerIndex = layerIndex;
-            }
-
-            public bool Equals(RequestKey other) =>
-                Source == other.Source && LayerIndex == other.LayerIndex;
-
-            public override bool Equals(object obj) => obj is RequestKey other && Equals(other);
-            public override int GetHashCode() => ((int)Source * 397) ^ LayerIndex;
-        }
-
-        private readonly struct AnimationRequest
-        {
-            public AnimationStateBinding Binding { get; }
-            public float ExpectedDuration { get; }
-
-            public AnimationRequest(
-                AnimationStateBinding binding,
-                float expectedDuration)
-            {
-                Binding = binding;
-                ExpectedDuration = expectedDuration;
-            }
-        }
-
         private readonly ICharacterAnimationDriver _driver;
-        private readonly IAnimationStateCatalog _catalog;
-        private readonly AnimationClipActionArbiter _actions;
-        private readonly Dictionary<RequestKey, AnimationRequest> _requests =
-            new Dictionary<RequestKey, AnimationRequest>();
-        private readonly Dictionary<int, PlayerAnimationSource> _owners =
-            new Dictionary<int, PlayerAnimationSource>();
         private readonly float[] _playbackSpeeds =
             new float[Enum.GetValues(typeof(PlayerAnimationSource)).Length];
-        private readonly List<int> _releaseLayers = new List<int>(4);
 
-        public PlayerAnimationCoordinator(
-            ICharacterAnimationDriver driver,
-            IAnimationStateCatalog catalog,
-            AnimationClipActionArbiter actions)
+        private PlayerAnimationSource? _actionOwner;
+
+        public PlayerAnimationCoordinator(ICharacterAnimationDriver driver)
         {
             _driver = driver ?? throw new ArgumentNullException(nameof(driver));
-            _catalog = catalog ?? throw new ArgumentNullException(nameof(catalog));
-            _actions = actions ?? throw new ArgumentNullException(nameof(actions));
             for (int i = 0; i < _playbackSpeeds.Length; i++)
             {
                 _playbackSpeeds[i] = 1.0f;
@@ -76,25 +65,26 @@ namespace _App
 
         public bool TryPlayAction(
             PlayerAnimationSource source,
-            in AnimationClipActionRequest request,
-            float blendOutSeconds,
-            out AnimationActionLease lease)
+            in AnimationActionRequest request,
+            out AnimationActionPlayback playback)
         {
-            return _actions.TryPlay(
-                CreateActionChannel(source),
-                in request,
-                blendOutSeconds,
-                out lease);
-        }
+            if (_actionOwner.HasValue &&
+                _actionOwner.Value != source &&
+                GetPriority(_actionOwner.Value) > GetPriority(source))
+            {
+                playback = default;
+                return false;
+            }
 
-        public void Tick(float deltaTime)
-        {
-            _actions.Tick(deltaTime);
-        }
+            playback = _driver.PlayAction(in request);
+            if (!playback.IsValid)
+            {
+                return false;
+            }
 
-        public void StopAllActions(float blendSeconds = 0.0f)
-        {
-            _actions.StopAll(blendSeconds);
+            _actionOwner = source;
+            _driver.SetPlaybackSpeed(_playbackSpeeds[(int)source]);
+            return true;
         }
 
         public AnimationPlayback CrossFade(
@@ -102,174 +92,62 @@ namespace _App
             AnimationSlotId slot,
             float expectedDurationOverride = 0.0f)
         {
-            if (!_catalog.TryResolve(slot, out AnimationStateBinding binding))
+            if (!PlayerAnimatorActions.TryCreate(slot, out AnimationActionRequest request))
             {
                 return AnimationPlayback.Invalid;
             }
 
-            AnimationLayerId layer = binding.Layer;
-            float expectedDuration = expectedDurationOverride > 0.0f
-                ? expectedDurationOverride
-                : binding.ExpectedDuration;
-            var key = new RequestKey(source, layer.Index);
-            bool hadPreviousRequest = _requests.TryGetValue(
-                key,
-                out AnimationRequest previousRequest);
-            _requests[key] = new AnimationRequest(binding, expectedDuration);
-
-            if (_owners.TryGetValue(layer.Index, out PlayerAnimationSource owner) &&
-                owner != source &&
-                GetPriority(owner) > GetPriority(source))
+            if (expectedDurationOverride > 0.0f)
             {
-                return AnimationPlayback.Invalid;
+                request = new AnimationActionRequest(
+                    request.Action,
+                    request.Variant,
+                    expectedDurationOverride);
             }
 
-            AnimationPlayback playback = _driver.CrossFade(
-                binding.State,
-                layer,
-                binding.TransitionSeconds,
-                expectedDuration);
-            if (!playback.IsValid)
-            {
-                if (hadPreviousRequest)
-                {
-                    _requests[key] = previousRequest;
-                }
-                else
-                {
-                    _requests.Remove(key);
-                }
+            return TryPlayAction(source, in request, out AnimationActionPlayback action)
+                ? new AnimationPlayback(action.Sequence, action.Duration)
+                : AnimationPlayback.Invalid;
+        }
 
-                return AnimationPlayback.Invalid;
+        public bool Supports(AnimationSlotId slot)
+        {
+            return PlayerAnimatorActions.TryCreate(slot, out _);
+        }
+
+        public void StopAllActions()
+        {
+            _actionOwner = null;
+            _driver.CancelAction();
+        }
+
+        public void Cancel(PlayerAnimationSource source)
+        {
+            if (_actionOwner == source)
+            {
+                _actionOwner = null;
+                _driver.CancelAction();
+            }
+        }
+
+        public void ReleaseAll(PlayerAnimationSource source)
+        {
+            if (_actionOwner == source)
+            {
+                _actionOwner = null;
+                _driver.SetPlaybackSpeed(1.0f);
             }
 
-            bool ownerChanged = !_owners.TryGetValue(layer.Index, out owner) || owner != source;
-            _owners[layer.Index] = source;
-            if (ownerChanged)
-            {
-                ApplyPlaybackSpeed(layer, source);
-            }
-
-            return playback;
+            _playbackSpeeds[(int)source] = 1.0f;
         }
 
         public void SetPlaybackSpeed(PlayerAnimationSource source, float speed)
         {
             float clampedSpeed = Mathf.Max(0.0f, speed);
             _playbackSpeeds[(int)source] = clampedSpeed;
-            if (_owners.TryGetValue(AnimationLayerId.Base.Index, out PlayerAnimationSource owner) &&
-                owner == source)
+            if (_actionOwner == source)
             {
                 _driver.SetPlaybackSpeed(clampedSpeed);
-            }
-        }
-
-        private void Release(PlayerAnimationSource source, AnimationLayerId layer)
-        {
-            _requests.Remove(new RequestKey(source, layer.Index));
-            if (!_owners.TryGetValue(layer.Index, out PlayerAnimationSource owner) || owner != source)
-            {
-                return;
-            }
-
-            RestoreHighestPriorityRequest(layer);
-        }
-
-        public void ReleaseAll(PlayerAnimationSource source)
-        {
-            _releaseLayers.Clear();
-            foreach (KeyValuePair<RequestKey, AnimationRequest> pair in _requests)
-            {
-                if (pair.Key.Source == source && !_releaseLayers.Contains(pair.Key.LayerIndex))
-                {
-                    _releaseLayers.Add(pair.Key.LayerIndex);
-                }
-            }
-
-            for (int i = 0; i < _releaseLayers.Count; i++)
-            {
-                Release(source, new AnimationLayerId(_releaseLayers[i]));
-            }
-
-            _playbackSpeeds[(int)source] = 1.0f;
-            _actions.Release(CreateActionChannel(source));
-        }
-
-        public PlayerAnimationSource? GetOwner(AnimationLayerId layer)
-        {
-            return _owners.TryGetValue(layer.Index, out PlayerAnimationSource owner)
-                ? owner
-                : null;
-        }
-
-        private void RestoreHighestPriorityRequest(AnimationLayerId layer)
-        {
-            while (TryFindHighestPriorityRequest(
-                       layer.Index,
-                       out RequestKey key,
-                       out AnimationRequest request))
-            {
-                AnimationPlayback playback = _driver.CrossFade(
-                    request.Binding.State,
-                    request.Binding.Layer,
-                    request.Binding.TransitionSeconds,
-                    request.ExpectedDuration);
-                if (playback.IsValid)
-                {
-                    _owners[layer.Index] = key.Source;
-                    ApplyPlaybackSpeed(layer, key.Source);
-                    return;
-                }
-
-                _requests.Remove(key);
-            }
-
-            _owners.Remove(layer.Index);
-            if (layer == AnimationLayerId.Base)
-            {
-                _driver.SetPlaybackSpeed(1.0f);
-            }
-        }
-
-        private bool TryFindHighestPriorityRequest(
-            int layerIndex,
-            out RequestKey selectedKey,
-            out AnimationRequest selectedRequest)
-        {
-            selectedKey = default;
-            selectedRequest = default;
-            int selectedPriority = int.MinValue;
-            bool found = false;
-
-            foreach (KeyValuePair<RequestKey, AnimationRequest> pair in _requests)
-            {
-                if (pair.Key.LayerIndex != layerIndex)
-                {
-                    continue;
-                }
-
-                int priority = GetPriority(pair.Key.Source);
-                if (found && priority <= selectedPriority)
-                {
-                    continue;
-                }
-
-                found = true;
-                selectedPriority = priority;
-                selectedKey = pair.Key;
-                selectedRequest = pair.Value;
-            }
-
-            return found;
-        }
-
-        private void ApplyPlaybackSpeed(
-            AnimationLayerId layer,
-            PlayerAnimationSource source)
-        {
-            if (layer == AnimationLayerId.Base)
-            {
-                _driver.SetPlaybackSpeed(_playbackSpeeds[(int)source]);
             }
         }
 
@@ -281,15 +159,9 @@ namespace _App
                 PlayerAnimationSource.Reaction => 400,
                 PlayerAnimationSource.Traversal => 300,
                 PlayerAnimationSource.Combat => 200,
-                PlayerAnimationSource.Locomotion => 0,
+                PlayerAnimationSource.Locomotion => 100,
                 _ => throw new ArgumentOutOfRangeException(nameof(source), source, null)
             };
-        }
-
-        private static AnimationActionChannel CreateActionChannel(
-            PlayerAnimationSource source)
-        {
-            return new AnimationActionChannel((int)source + 1, GetPriority(source));
         }
     }
 }

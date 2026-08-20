@@ -13,8 +13,5 @@ MonoBehaviour:
   m_Name: DodgeAbilityData
   m_EditorClassIdentifier: 
   _canEverDodge: 1
-  _dodgeImpulse: 5
-  _dodgeDuration: 0.35
-  _forwardMotionTrajectory: {fileID: 11400000, guid: 5e70a45983af4104fbf6422702e84f44, type: 2}
-  _backwardMotionTrajectory: {fileID: 11400000, guid: c92f32aaaf68742459799b6bb6be17a2, type: 2}
-  _motionTrajectoryScale: 1
+  _dodgeImpulse: 6
+  _dodgeDuration: 0.48

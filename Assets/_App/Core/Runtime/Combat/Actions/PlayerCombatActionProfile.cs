@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using ModularAnimation.Unity;
 using UnityEngine;
 
 namespace _App
@@ -197,6 +196,7 @@ namespace _App
         [SerializeField, Range(0.0f, 1.0f)] private float _hitStopTimeScale;
 
         [Header("Lifecycle")]
+        [SerializeField, Min(0.01f)] private float _durationSeconds = 1.3f;
         [SerializeField, Range(0.0f, 1.0f)] private float _recoveryStart = 0.6f;
         [SerializeField, Range(0.01f, 1.0f)] private float _completionTime = 0.75f;
         [SerializeField] private bool _hasCommit;
@@ -216,9 +216,6 @@ namespace _App
         [SerializeField, Range(0.0f, 1.0f)] private float _combatMotionEnd = 0.3f;
         [SerializeField] private bool _overridePlanarVelocity;
         [SerializeField, Min(0.0f)] private float _combatMotionDistance = 0.75f;
-        [Tooltip("Optional animation-derived trajectory. When assigned, distance is taken from this asset.")]
-        [SerializeField] private AnimationMotionTrajectory _motionTrajectory;
-        [SerializeField, Min(0.0f)] private float _motionTrajectoryScale = 1.0f;
 
         [Header("Combat Vertical Motion")]
         [Tooltip("OverrideVelocity sets an exact vertical speed. MinimumVelocity preserves ascent and limits falling speed.")]
@@ -257,6 +254,7 @@ namespace _App
                     _hitStopDuration > 0.0f
                         ? new CombatHitStop(_hitStopDuration, _hitStopTimeScale)
                         : CombatHitStop.Disabled),
+                Mathf.Max(0.01f, _durationSeconds),
                 _recoveryStart,
                 _completionTime,
                 _hasCommit,
@@ -272,8 +270,6 @@ namespace _App
                         new NormalizedActionWindow(_combatMotionStart, _combatMotionEnd),
                         _overridePlanarVelocity,
                         _combatMotionDistance,
-                        _motionTrajectory,
-                        _motionTrajectoryScale,
                         _verticalMotionMode,
                         _combatVerticalVelocity,
                         _combatVerticalImpulse,
@@ -316,6 +312,7 @@ namespace _App
                 _damage = 0,
                 _staggerDamage = 0.0f,
                 _reactionId = string.Empty,
+                _durationSeconds = 0.8f,
                 _completionTime = 0.5f,
                 _recoveryStart = 0.5f,
                 _hasCommit = true,

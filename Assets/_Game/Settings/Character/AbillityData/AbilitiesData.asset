@@ -31,5 +31,3 @@ MonoBehaviour:
     _settings: {fileID: 11400000, guid: 9a487b384bd74e54fbaaa9fcf576ad12, type: 2}
   - _isEnabled: 1
     _settings: {fileID: 11400000, guid: 7cf671a065a3f384db85b1924f14b812, type: 2}
-  - _isEnabled: 1
-    _settings: {fileID: 11400000, guid: d93c18d266fe1b14fb34d14afaddff0e, type: 2}

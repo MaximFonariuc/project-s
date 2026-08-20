@@ -117,7 +117,7 @@ namespace _App
             _elapsed = Mathf.Min(_elapsed + deltaTime, _duration);
             float normalizedTime = Mathf.Clamp01(_elapsed / _duration);
             _currentFrame = CreateFrame(previousTime, normalizedTime);
-            _motion.Advance(previousTime, normalizedTime);
+            _motion.Advance(normalizedTime);
             ApplyDamageImmunity(_currentFrame.IsInvulnerable);
         }
 

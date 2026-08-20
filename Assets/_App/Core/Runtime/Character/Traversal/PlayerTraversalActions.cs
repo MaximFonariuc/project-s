@@ -47,7 +47,7 @@ namespace _App
             }
 
             LadderTraversalSettings settings = features.GetEnabled<LadderTraversalSettings>();
-            if (settings != null)
+            if (settings != null && animation.Supports(PlayerAnimationSlots.LadderIdle))
             {
                 _ladder = new LadderTraversalAction(
                     character,

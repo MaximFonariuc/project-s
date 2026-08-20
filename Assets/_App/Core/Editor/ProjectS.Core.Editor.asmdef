@@ -3,8 +3,7 @@
     "rootNamespace": "_App.Editor",
     "references": [
         "ProjectS.Core.Runtime",
-        "ModularAnimation.Unity",
-        "ModularAnimation.Unity.Editor"
+        "ModularAnimation.Unity"
     ],
     "includePlatforms": [
         "Editor"

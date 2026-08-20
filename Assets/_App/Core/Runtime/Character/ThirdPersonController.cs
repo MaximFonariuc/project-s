@@ -1,4 +1,3 @@
-using ModularAnimation.Unity;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -31,8 +30,7 @@ namespace _App
         [FormerlySerializedAs("_abilitiesData")]
         [SerializeField] private CharacterFeatureSet _characterFeatures;
 
-        [Header("CombatController")] 
-        [SerializeField] private AnimationsData _skillsData;
+        [Header("CombatController")]
         [SerializeField] private PlayerCombatActionProfile _combatActionProfile;
 
         [Header("Combat Reactions")]
@@ -40,7 +38,7 @@ namespace _App
 
         [Header("AnimationController")]
         [SerializeField] private Animator _animator;
-        [SerializeField] private MecanimCharacterAnimationProfile _animationProfile;
+        [SerializeField] private Weapon[] _unarmedHitboxes;
 
         [Header("WeaponHolder")] 
         [SerializeField] private Transform _weaponHolder;
@@ -51,9 +49,8 @@ namespace _App
 
         internal CharacterFeatureSet CharacterFeatures => _characterFeatures;
         internal Animator PlayerAnimator => _animator;
-        internal MecanimCharacterAnimationProfile AnimationProfile => _animationProfile;
+        internal Weapon[] UnarmedHitboxes => _unarmedHitboxes;
         internal ECharacterType CharacterType => _characterType;
-        internal AnimationsData CombatAnimations => _skillsData;
         internal PlayerCombatActionProfile CombatActionProfile => _combatActionProfile;
         internal CharacterReactionProfile ReactionProfile => _reactionProfile;
         internal Transform WeaponHolder => _weaponHolder;

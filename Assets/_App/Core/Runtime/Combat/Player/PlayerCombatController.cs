@@ -299,7 +299,7 @@ namespace _App
                 PlayerCombatAction action = initialAction;
                 while (action != null && CanUseAction(action))
                 {
-                    if (!TryPlayAction(action, out AnimationActionPlayback playback))
+                    if (!TryPlayAction(action, out _))
                     {
                         break;
                     }
@@ -315,7 +315,7 @@ namespace _App
 
                     await ExecuteObservedActionAsync(
                         action.Definition,
-                        playback.Duration,
+                        action.Definition.DurationSeconds,
                         ActionObservationMode.CombatAction,
                         cancellation.Token);
 
@@ -379,7 +379,7 @@ namespace _App
             _weaponApplied = false;
             CombatActionRunResult result = await ExecuteObservedActionAsync(
                 _weaponTransitionAction.Definition,
-                playback.Duration,
+                _weaponTransitionAction.Definition.DurationSeconds,
                 ActionObservationMode.WeaponTransition,
                 token);
 
@@ -514,7 +514,7 @@ namespace _App
         private void CancelActiveAction()
         {
             EndAttackExecution();
-            _animation.Release();
+            _animation.Cancel();
             CancellationTokenSource cancellation = _actionCancellation;
             if (cancellation == null)
             {
@@ -595,7 +595,7 @@ namespace _App
 
             IsHitWindowOpen = open;
             if (open && _attackExecution.IsActive &&
-                CurrentWeapon is not EWeaponType.None and not EWeaponType.Unarmed)
+                CurrentWeapon != EWeaponType.None)
             {
                 _weaponRig.OpenHitbox(_attackExecution);
             }

@@ -47,26 +47,6 @@ namespace ModularAnimation
         }
     }
 
-    public readonly struct AnimationStateId : IEquatable<AnimationStateId>
-    {
-        public static AnimationStateId None => default;
-
-        public int Hash { get; }
-
-        public bool IsValid => Hash != 0;
-
-        public AnimationStateId(int hash)
-        {
-            Hash = hash;
-        }
-
-        public bool Equals(AnimationStateId other) => Hash == other.Hash;
-        public override bool Equals(object obj) => obj is AnimationStateId other && Equals(other);
-        public override int GetHashCode() => Hash;
-        public static bool operator ==(AnimationStateId left, AnimationStateId right) => left.Equals(right);
-        public static bool operator !=(AnimationStateId left, AnimationStateId right) => !left.Equals(right);
-    }
-
     public readonly struct AnimationSlotId : IEquatable<AnimationSlotId>
     {
         public static AnimationSlotId None => default;
@@ -94,44 +74,61 @@ namespace ModularAnimation
         public static bool operator !=(AnimationSlotId left, AnimationSlotId right) => !left.Equals(right);
     }
 
-    public readonly struct AnimationLayerId : IEquatable<AnimationLayerId>
+    public readonly struct AnimationActionId : IEquatable<AnimationActionId>
     {
-        public static AnimationLayerId Base => new AnimationLayerId(0);
+        public static AnimationActionId None => default;
 
-        public int Index { get; }
+        public int Value { get; }
+        public bool IsValid => Value > 0;
 
-        public AnimationLayerId(int index)
+        public AnimationActionId(int value)
         {
-            if (index < 0)
+            if (value < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(index));
+                throw new ArgumentOutOfRangeException(nameof(value));
             }
 
-            Index = index;
+            Value = value;
         }
 
-        public bool Equals(AnimationLayerId other) => Index == other.Index;
-        public override bool Equals(object obj) => obj is AnimationLayerId other && Equals(other);
-        public override int GetHashCode() => Index;
-        public static bool operator ==(AnimationLayerId left, AnimationLayerId right) => left.Equals(right);
-        public static bool operator !=(AnimationLayerId left, AnimationLayerId right) => !left.Equals(right);
+        public bool Equals(AnimationActionId other) => Value == other.Value;
+        public override bool Equals(object obj) => obj is AnimationActionId other && Equals(other);
+        public override int GetHashCode() => Value;
+        public static bool operator ==(AnimationActionId left, AnimationActionId right) => left.Equals(right);
+        public static bool operator !=(AnimationActionId left, AnimationActionId right) => !left.Equals(right);
+    }
+
+    public readonly struct AnimationActionRequest
+    {
+        public AnimationActionId Action { get; }
+        public int Variant { get; }
+        public float ExpectedDuration { get; }
+
+        public bool IsValid => Action.IsValid && ExpectedDuration > 0.0f;
+
+        public AnimationActionRequest(
+            AnimationActionId action,
+            int variant,
+            float expectedDuration)
+        {
+            Action = action;
+            Variant = variant;
+            ExpectedDuration = Math.Max(0.0f, expectedDuration);
+        }
     }
 
     public readonly struct AnimationPlayback
     {
         public static AnimationPlayback Invalid => default;
 
-        public AnimationStateId State { get; }
-        public AnimationLayerId Layer { get; }
+        public int Sequence { get; }
         public float Duration { get; }
+        public bool IsValid => Sequence != 0;
 
-        public bool IsValid => State.IsValid;
-
-        public AnimationPlayback(AnimationStateId state, AnimationLayerId layer, float duration)
+        public AnimationPlayback(int sequence, float duration)
         {
-            State = state;
-            Layer = layer;
-            Duration = duration > 0.0f ? duration : 0.0f;
+            Sequence = sequence;
+            Duration = Math.Max(0.0f, duration);
         }
     }
 
@@ -141,7 +138,6 @@ namespace ModularAnimation
 
         public int Sequence { get; }
         public float Duration { get; }
-
         public bool IsValid => Sequence != 0;
 
         public AnimationActionPlayback(int sequence, float duration)
@@ -151,43 +147,13 @@ namespace ModularAnimation
         }
     }
 
-    public readonly struct AnimationStateBinding
-    {
-        public AnimationStateId State { get; }
-        public AnimationLayerId Layer { get; }
-        public float TransitionSeconds { get; }
-        public float ExpectedDuration { get; }
-
-        public bool IsValid => State.IsValid;
-
-        public AnimationStateBinding(
-            AnimationStateId state,
-            AnimationLayerId layer,
-            float transitionSeconds,
-            float expectedDuration)
-        {
-            State = state;
-            Layer = layer;
-            TransitionSeconds = Math.Max(0.0f, transitionSeconds);
-            ExpectedDuration = Math.Max(0.0f, expectedDuration);
-        }
-    }
-
-    public interface IAnimationStateCatalog
-    {
-        bool TryResolve(AnimationSlotId slot, out AnimationStateBinding binding);
-    }
-
     public interface ICharacterAnimationDriver
     {
         void ApplyLocomotion(in CharacterLocomotionFrame frame, float deltaTime);
-        AnimationPlayback CrossFade(
-            AnimationStateId state,
-            AnimationLayerId layer,
-            float transitionSeconds,
-            float expectedDuration = 0.0f);
+        AnimationActionPlayback PlayAction(in AnimationActionRequest request);
+        void CancelAction();
         void SetPlaybackSpeed(float speed);
-        void RefreshBindings();
+        void Reset();
     }
 
     public interface ICharacterLookAnimationDriver

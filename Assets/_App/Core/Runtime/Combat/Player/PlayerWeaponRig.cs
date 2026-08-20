@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _App
@@ -8,25 +9,30 @@ namespace _App
         private readonly Transform _weaponHand;
         private readonly Transform _weaponTransform;
         private readonly Weapon _weapon;
+        private readonly Weapon[] _unarmedHitboxes;
         private readonly ICombatHitResolver _hitResolver;
+        private EWeaponType _weaponType = EWeaponType.Unarmed;
 
         public PlayerWeaponRig(
             Transform weaponHolder,
             Transform weaponHand,
             Transform weaponTransform,
             Weapon weapon,
+            Weapon[] unarmedHitboxes,
             ICombatHitResolver hitResolver)
         {
             _weaponHolder = weaponHolder;
             _weaponHand = weaponHand;
             _weaponTransform = weaponTransform;
             _weapon = weapon;
+            _unarmedHitboxes = unarmedHitboxes ?? Array.Empty<Weapon>();
             _hitResolver = hitResolver;
         }
 
         public void ApplyWeapon(EWeaponType weaponType)
         {
             CloseHitbox();
+            _weaponType = weaponType;
             if (_weaponTransform == null)
             {
                 return;
@@ -49,12 +55,26 @@ namespace _App
 
         public void OpenHitbox(CombatAttackExecution execution)
         {
+            if (_weaponType == EWeaponType.Unarmed)
+            {
+                for (int i = 0; i < _unarmedHitboxes.Length; i++)
+                {
+                    _unarmedHitboxes[i]?.EnableHitbox(execution, _hitResolver);
+                }
+
+                return;
+            }
+
             _weapon?.EnableHitbox(execution, _hitResolver);
         }
 
         public void CloseHitbox()
         {
             _weapon?.DisableHitbox();
+            for (int i = 0; i < _unarmedHitboxes.Length; i++)
+            {
+                _unarmedHitboxes[i]?.DisableHitbox();
+            }
         }
     }
 }

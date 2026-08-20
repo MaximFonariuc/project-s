@@ -1,5 +1,4 @@
 using System;
-using ModularAnimation.Unity;
 using UnityEngine;
 
 namespace _App
@@ -11,8 +10,6 @@ namespace _App
         public NormalizedActionWindow Window { get; }
         public bool OverridePlanarVelocity { get; }
         public float PlanarDistance { get; }
-        public AnimationMotionTrajectory Trajectory { get; }
-        public float TrajectoryScale { get; }
         public CharacterActionVerticalMode VerticalMode { get; }
         public float VerticalVelocity { get; }
         public float VerticalImpulse { get; }
@@ -21,8 +18,7 @@ namespace _App
         public float TargetStoppingDistance { get; }
         public bool HasTranslation =>
             Window.IsEnabled &&
-            ((Trajectory != null && Trajectory.HasPlanarTranslation) ||
-             OverridePlanarVelocity ||
+            (OverridePlanarVelocity ||
              VerticalMode != CharacterActionVerticalMode.PreserveVelocity ||
              !Mathf.Approximately(VerticalImpulse, 0.0f));
         public bool IsEnabled => Window.IsEnabled && (HasTranslation || FaceTarget);
@@ -31,8 +27,6 @@ namespace _App
             NormalizedActionWindow window,
             bool overridePlanarVelocity,
             float planarDistance,
-            AnimationMotionTrajectory trajectory,
-            float trajectoryScale,
             CharacterActionVerticalMode verticalMode,
             float verticalVelocity,
             float verticalImpulse,
@@ -50,21 +44,14 @@ namespace _App
                 throw new ArgumentOutOfRangeException(nameof(planarDistance));
             }
 
-            if (trajectoryScale < 0.0f)
-            {
-                throw new ArgumentOutOfRangeException(nameof(trajectoryScale));
-            }
-
             if (targetStoppingDistance < 0.0f)
             {
                 throw new ArgumentOutOfRangeException(nameof(targetStoppingDistance));
             }
 
             Window = window;
-            Trajectory = trajectory != null && trajectory.HasPlanarTranslation ? trajectory : null;
-            TrajectoryScale = Trajectory != null ? trajectoryScale : 0.0f;
-            OverridePlanarVelocity = overridePlanarVelocity || Trajectory != null;
-            PlanarDistance = OverridePlanarVelocity && Trajectory == null ? planarDistance : 0.0f;
+            OverridePlanarVelocity = overridePlanarVelocity;
+            PlanarDistance = OverridePlanarVelocity ? planarDistance : 0.0f;
             VerticalMode = verticalMode;
             VerticalVelocity = verticalMode != CharacterActionVerticalMode.PreserveVelocity
                 ? verticalVelocity

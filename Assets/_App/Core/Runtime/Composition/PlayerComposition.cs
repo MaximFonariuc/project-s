@@ -19,10 +19,10 @@ namespace _App
                 !player.TryGetComponent(out Health health) ||
                 player.CharacterFeatures == null ||
                 player.PlayerAnimator == null ||
-                player.AnimationProfile == null)
+                player.PlayerAnimator.runtimeAnimatorController == null)
             {
                 throw new InvalidOperationException(
-                    "Player requires Character, Health, CharacterFeatureSet, Animator and animation profile references.");
+                    "Player requires Character, Health, CharacterFeatureSet and a configured Animator Controller.");
             }
 
             player.CharacterFeatures.ValidateConfiguration();
@@ -36,20 +36,11 @@ namespace _App
                 .As<IDamageImmunityTarget>()
                 .As<IPlayerTraversalActor>();
 
-            MecanimAnimationGraphConfiguration animationConfiguration =
-                player.AnimationProfile.CreateConfiguration(player.PlayerAnimator);
-            builder.RegisterInstance(animationConfiguration)
-                .AsSelf()
-                .As<IAnimationStateCatalog>();
             builder.Register(
-                    _ => new MecanimCharacterAnimationDriver(
-                        player.PlayerAnimator,
-                        animationConfiguration),
+                    _ => new MecanimCharacterAnimationDriver(player.PlayerAnimator),
                     Lifetime.Scoped)
                 .AsSelf()
-                .As<ICharacterAnimationDriver>()
-                .As<IAnimationClipActionDriver>();
-            builder.Register<AnimationClipActionArbiter>(Lifetime.Scoped);
+                .As<ModularAnimation.ICharacterAnimationDriver>();
             builder.Register<PlayerAnimationCoordinator>(Lifetime.Scoped);
             builder.RegisterInstance(NullCharacterLookAnimationDriver.Instance)
                 .As<ICharacterLookAnimationDriver>();

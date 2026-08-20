@@ -1,79 +1,38 @@
 # Player combat presentation
 
-This tree adapts confirmed Project S combat actions to animation presentation.
-It does not decide whether an attack is legal, when damage is applied or when a
-cancel window opens.
-
-## Class diagram
+This tree translates an accepted combat action into a semantic Animator action.
+It does not decide action legality, damage or cancel timing.
 
 ```mermaid
 classDiagram
-    class PlayerCombatController {
-        +TryExecute(command) bool
-        +InterruptAttack()
-    }
+    class PlayerCombatController
     class IPlayerCombatAnimation {
         <<interface>>
-        +ApplyLoadout(character, weapon)
         +TryPlayComboStep(index, playback) bool
-        +TryPlayNamedAnimation(id, playback) bool
-        +TryPlayWeaponTransition(weapon, draw, playback) bool
+        +Cancel()
         +Release()
     }
     class PlayerCombatAnimationAdapter
-    class AnimationsData {
-        <<ScriptableObject library>>
-    }
-    class CombatAnimationSet {
-        <<ScriptableObject loadout>>
-        +ControllerOverrides
-        +ComboActions
-        +TryGetNamedAction(id, presentation) bool
-        +TryGetWeaponTransition(draw, presentation) bool
-    }
-    class CharacterAnimationActionPresentation {
-        +Clip
-        +BlendOutSeconds
-        +CreateRequest() AnimationClipActionRequest
-    }
-    class PlayerAnimationCoordinator {
-        +TryPlayAction(source, request, blendOut, lease) bool
-    }
-    class AnimationClipActionArbiter
-    class CombatActionExecutor
+    class PlayerAnimationCoordinator
+    class AnimationActionRequest
+    class PlayerWeaponRig
+    class Weapon
 
     PlayerCombatController --> IPlayerCombatAnimation
-    PlayerCombatController --> CombatActionExecutor
     IPlayerCombatAnimation <|.. PlayerCombatAnimationAdapter
-    PlayerCombatAnimationAdapter --> AnimationsData
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
-    PlayerAnimationCoordinator --> AnimationClipActionArbiter
-    AnimationsData --> CombatAnimationSet
-    CombatAnimationSet --> CharacterAnimationActionPresentation
+    PlayerCombatAnimationAdapter --> AnimationActionRequest
+    PlayerCombatController --> PlayerWeaponRig
+    PlayerWeaponRig --> Weapon
 ```
 
-## Dependencies and ownership
-
-- `PlayerCombatController` and `CombatActionExecutor` own action authority,
-  normalized gameplay windows and interruption.
-- `CombatAnimationSet` is immutable authoring data for one weapon loadout. Clip
-  replacement and blend tuning do not change the combat action graph.
-- `PlayerCombatAnimationAdapter` resolves a presentation and returns only its
-  effective duration. It claims the `Combat` animation channel through
-  `PlayerAnimationCoordinator` and never reads Animator state or clip progress.
-- Combat keeps an `AnimationActionLease`. Consecutive combat clips can crossfade,
-  but a later reaction/death claim invalidates the combat lease. Combat cleanup
-  therefore cannot stop a higher-priority clip.
-- Controller overrides are restricted to continuous loadout locomotion. Finite
-  combo, skill and draw/sheathe clips are played directly and have no Animator
-  placeholder states.
-- AvatarMask is a presentation choice. Animation-derived movement is baked into
-  gameplay trajectory data and consumed through the character motor; this
-  presentation adapter never applies root motion.
-
-## Current authoring
-
-The player animation library references `Unarmed_CombatAnimationSet` and
-`TwoHanded_CombatAnimationSet`. Both contain four combo actions and one named
-`skill.special` action. The two-handed set additionally contains explicit draw
-and sheathe actions plus nine continuous locomotion overrides.
+- The current adapter exposes one unarmed combo step and maps it to semantic
+  action `LightAttack`.
+- The Animator Controller maps that semantic action to
+  `HMGT_BasicCombo_01`; gameplay code has no clip reference.
+- `PlayerWeaponRig` enables two hand hitboxes only during the confirmed hit
+  window. `Weapon` reports collision candidates to `CombatHitResolver`.
+- `Cancel()` sends an explicit Animator cancel trigger when gameplay interrupts
+  an action. Normal completion lets the controller use its authored exit
+  transition.
+- Weapon transitions, named skills, air attacks and combo chains are deferred.

@@ -1,5 +1,4 @@
 using System;
-using ModularAnimation.Unity;
 using UnityEngine;
 
 namespace _App
@@ -11,13 +10,8 @@ namespace _App
         private readonly bool _canEverDodge;
         private readonly float _impulse;
         private readonly float _duration;
-        private readonly AnimationMotionTrajectory _forwardTrajectory;
-        private readonly AnimationMotionTrajectory _backwardTrajectory;
-        private readonly float _trajectoryScale;
 
         private float _elapsed;
-        private Vector3 _motionForward;
-        private AnimationMotionTrajectory _activeTrajectory;
         private bool _requestedBackwards;
         private bool _requestPending;
         private bool _exitPending;
@@ -39,9 +33,6 @@ namespace _App
             _canEverDodge = settings.IsEnabled;
             _impulse = settings.Impulse;
             _duration = settings.Duration;
-            _forwardTrajectory = settings.ForwardMotionTrajectory;
-            _backwardTrajectory = settings.BackwardMotionTrajectory;
-            _trajectoryScale = settings.MotionTrajectoryScale;
         }
 
         public void Enable()
@@ -141,24 +132,7 @@ namespace _App
             Vector3 planarDirection = Vector3.ProjectOnPlane(
                 dodgeDirection,
                 _character.GetUpVector()).normalized;
-            _motionForward = _requestedBackwards
-                ? Vector3.ProjectOnPlane(
-                    _character.GetForwardVector(),
-                    _character.GetUpVector()).normalized
-                : planarDirection;
-            _activeTrajectory = _requestedBackwards
-                ? _backwardTrajectory
-                : _forwardTrajectory;
-
-            if (_activeTrajectory != null && _activeTrajectory.HasPlanarTranslation)
-            {
-                Vector3 up = _character.GetUpVector();
-                _character.SetVelocity(Vector3.Project(_character.GetVelocity(), up));
-            }
-            else
-            {
-                _character.SetVelocity(planarDirection * _impulse);
-            }
+            _character.SetVelocity(planarDirection * _impulse);
         }
 
         private void OnCustomMovementModeUpdated(float deltaTime)
@@ -169,16 +143,7 @@ namespace _App
             }
 
             _character.SetMovementDirection(Vector3.zero);
-            float previousNormalizedTime = Mathf.Clamp01(_elapsed / _duration);
             _elapsed = Mathf.Min(_elapsed + deltaTime, _duration);
-
-            if (_activeTrajectory != null && _activeTrajectory.HasPlanarTranslation)
-            {
-                ApplyTrajectoryVelocity(
-                    previousNormalizedTime,
-                    Mathf.Clamp01(_elapsed / _duration),
-                    deltaTime);
-            }
 
             if (_elapsed >= _duration)
             {
@@ -192,8 +157,6 @@ namespace _App
             Vector3 verticalVelocity = Vector3.Project(_character.GetVelocity(), up);
             _character.SetVelocity(verticalVelocity);
             _elapsed = 0.0f;
-            _motionForward = Vector3.zero;
-            _activeTrajectory = null;
             _requestedBackwards = false;
             _requestPending = false;
             _exitPending = false;
@@ -201,24 +164,5 @@ namespace _App
                 _character.IsGrounded() ? EMovementMode.Walking : EMovementMode.Falling);
         }
 
-        private void ApplyTrajectoryVelocity(
-            float previousNormalizedTime,
-            float normalizedTime,
-            float deltaTime)
-        {
-            Vector3 localDisplacement =
-                (_activeTrajectory.EvaluatePosition(normalizedTime) -
-                 _activeTrajectory.EvaluatePosition(previousNormalizedTime)) *
-                _trajectoryScale;
-            Vector3 up = _character.GetUpVector();
-            Vector3 right = Vector3.Cross(up, _motionForward).normalized;
-            Vector3 planarVelocity = Vector3.ProjectOnPlane(
-                    right * localDisplacement.x +
-                    _motionForward * localDisplacement.z,
-                    up) /
-                Mathf.Max(deltaTime, 0.0001f);
-            Vector3 verticalVelocity = Vector3.Project(_character.GetVelocity(), up);
-            _character.SetVelocity(planarVelocity + verticalVelocity);
-        }
     }
 }

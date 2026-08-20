@@ -1,5 +1,4 @@
 using System;
-using ModularAnimation.Unity;
 using ModularStateMachine.VContainerIntegration;
 using VContainer;
 
@@ -11,13 +10,6 @@ namespace _App
             this IContainerBuilder builder,
             ThirdPersonController player)
         {
-            if (player.CombatAnimations == null)
-            {
-                throw new InvalidOperationException("Player combat requires an AnimationsData reference.");
-            }
-
-            player.CombatAnimations.ValidateConfiguration();
-
             PlayerCombatActionProfile actionProfile = player.CombatActionProfile;
             CombatInputBufferSettings inputBufferSettings = actionProfile != null
                 ? actionProfile.CreateInputBufferSettings()
@@ -39,8 +31,7 @@ namespace _App
                 .As<ICombatHitEvents>();
             builder.Register<IPlayerCombatAnimation>(
                 resolver => new PlayerCombatAnimationAdapter(
-                    resolver.Resolve<PlayerAnimationCoordinator>(),
-                    player.CombatAnimations),
+                    resolver.Resolve<PlayerAnimationCoordinator>()),
                 Lifetime.Scoped);
             builder.Register(
                 _ => actionProfile != null
@@ -56,6 +47,7 @@ namespace _App
                     player.WeaponTransform != null
                         ? player.WeaponTransform.GetComponent<Weapon>()
                         : null,
+                    player.UnarmedHitboxes,
                     resolver.Resolve<ICombatHitResolver>()),
                 Lifetime.Scoped);
 
