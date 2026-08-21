@@ -18,7 +18,7 @@ namespace _App
         public static readonly AnimationActionId Dodge = new AnimationActionId(1);
         public static readonly AnimationActionId LightAttack = new AnimationActionId(2);
 
-        public const float DodgeDuration = 0.48f;
+        public const float DodgeDuration = 0.78f;
         public const float LightAttackDuration = 1.30f;
 
         public static bool TryCreate(

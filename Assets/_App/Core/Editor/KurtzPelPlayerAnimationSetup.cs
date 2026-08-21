@@ -11,8 +11,8 @@ namespace _App.Editor.Animation
         private const string RootFolder =
             "Assets/_Game/Animations/Reference/KurtzPel/MaleComplete";
         private const string MovementPack = RootFolder + "/Movement/KurtzPel_Male_ENFJ.fbx";
-        private const string CommonPack = RootFolder + "/Movement/KurtzPel_Common_Ninja.fbx";
-        private const string CombatPack = RootFolder + "/Combat/KurtzPel_BlazingFist.fbx";
+        private const string ProcessedFolder =
+            "Assets/_Game/Animations/Character/Processed/KurtzPel";
         private const string PlayerPrefabPath =
             "Assets/_Game/Prefabs/Character/Player.prefab";
         private const string CombatProfilePath =
@@ -22,7 +22,7 @@ namespace _App.Editor.Animation
         private const string DodgeSettingsPath =
             "Assets/_Game/Settings/Character/AbillityData/Abilities/DodgeAbilityData.asset";
 
-        private const float DodgeDurationSeconds = 0.48f;
+        private const float DodgeDurationSeconds = 0.78f;
         private const float AttackDurationSeconds = 1.3f;
 
         [MenuItem("Tools/Animation/KurtzPel/Build Player Animator and Prefab")]
@@ -35,13 +35,13 @@ namespace _App.Editor.Animation
                 LoadClip(MovementPack, "HM_ENFJ_Walk"),
                 LoadClip(MovementPack, "HM_ENFJ_Run"),
                 LoadClip(MovementPack, "HM_ENFJ_Run_Fast"),
-                LoadClip(MovementPack, "HM_ENFJ_Air_Start"),
-                LoadClip(MovementPack, "HM_ENFJ_Air_JumpUp"),
-                LoadClip(MovementPack, "HM_ENFJ_Air_JumpDown"),
-                LoadClip(MovementPack, "HM_ENFJ_Air_JumpLanding"),
-                LoadClip(MovementPack, "HM_ENFJ_Dash"),
-                LoadClip(CommonPack, "CC_C_Rage_Avoid"),
-                LoadClip(CombatPack, "HMGT_BasicCombo_01"));
+                LoadClip(ProcessedFolder + "/HM_ENFJ_Air_Start.fbx", "HM_ENFJ_Air_Start"),
+                LoadClip(ProcessedFolder + "/HM_ENFJ_Air_JumpUp.fbx", "HM_ENFJ_Air_JumpUp"),
+                LoadClip(ProcessedFolder + "/HM_ENFJ_Air_JumpDown.fbx", "HM_ENFJ_Air_JumpDown"),
+                LoadClip(ProcessedFolder + "/HM_ENFJ_Air_JumpLanding.fbx", "HM_ENFJ_Air_JumpLanding"),
+                LoadClip(ProcessedFolder + "/HM_ENFJ_Dash.fbx", "HM_ENFJ_Dash"),
+                LoadClip(ProcessedFolder + "/CC_C_Rage_Avoid.fbx", "CC_C_Rage_Avoid"),
+                LoadClip(ProcessedFolder + "/HMGT_BasicCombo_01.fbx", "HMGT_BasicCombo_01"));
 
             ConfigureCombatProfile();
             ConfigureFeatureAssets();

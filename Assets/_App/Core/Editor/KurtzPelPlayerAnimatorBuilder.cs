@@ -18,16 +18,32 @@ namespace _App.Editor.Animation
         private const float RunReferenceSpeed = 5.0f;
         private const float SprintReferenceSpeed = 10.0f;
 
-        private const float LocomotionBlendSeconds = 0.12f;
-        private const float JumpBlendSeconds = 0.045f;
-        private const float LandingMoveBlendSeconds = 0.10f;
-        private const float LandingIdleBlendSeconds = 0.12f;
-        private const float ActionEntryBlendSeconds = 0.055f;
-        private const float ActionExitBlendSeconds = 0.08f;
-        private const float AttackExitBlendSeconds = 0.12f;
-        private const float DodgeDurationSeconds = 0.48f;
-        private const float DodgeExitTime = 0.75f;
-        private const float AttackExitTime = 0.88f;
+        private const float LocomotionBlendSeconds = 0.16f;
+        private const float JumpEntryBlendSeconds = 0.08f;
+        private const float AirborneBlendSeconds = 0.10f;
+        private const float GroundedBlendSeconds = 0.12f;
+        private const float LandingMoveBlendSeconds = 0.18f;
+        private const float LandingIdleBlendSeconds = 0.18f;
+        private const float DodgeEntryBlendSeconds = 0.14f;
+        private const float AttackEntryBlendSeconds = 0.18f;
+        private const float ActionExitBlendSeconds = 0.16f;
+        private const float AttackExitBlendSeconds = 0.18f;
+        private const float ActionCancelBlendSeconds = 0.14f;
+        private const float ActionAirborneBlendSeconds = 0.12f;
+        private const float DodgeDurationSeconds = 0.78f;
+        private const float DodgeExitTime = 0.78f;
+        private const float AttackExitTime = 0.86f;
+
+        // Destination phases were selected by full-rig pose sampling. They keep
+        // the outgoing support leg and torso closer to the destination cycle.
+        private const float LandingLocomotionOffset = 0.781f;
+        private const float LandingIdleOffset = 0.344f;
+        private const float DodgeForwardLocomotionOffset = 0.195f;
+        private const float DodgeForwardIdleOffset = 0.047f;
+        private const float DodgeBackwardLocomotionOffset = 0.617f;
+        private const float DodgeBackwardIdleOffset = 0.852f;
+        private const float AttackLocomotionOffset = 0.195f;
+        private const float AttackIdleOffset = 0.578f;
 
         public static AnimatorController CreateOrValidate(
             AnimationClip idle,
@@ -168,7 +184,7 @@ namespace _App.Editor.Animation
             AnimatorStateTransition finishAnticipation = AddImmediateTransition(
                 jumpStart,
                 jumpRise,
-                JumpBlendSeconds,
+                JumpEntryBlendSeconds,
                 TransitionInterruptionSource.Destination);
             finishAnticipation.AddCondition(
                 AnimatorConditionMode.IfNot,
@@ -178,21 +194,25 @@ namespace _App.Editor.Animation
             AnimatorStateTransition reachApex = AddImmediateTransition(
                 jumpRise,
                 fall,
-                0.08f,
+                AirborneBlendSeconds,
                 TransitionInterruptionSource.Destination);
+            // The UMotion-authored Fall clip now starts from the sampled apex
+            // pose, so it must enter at frame zero.
+            reachApex.offset = 0f;
             reachApex.AddCondition(
                 AnimatorConditionMode.Less,
                 0f,
                 MecanimCharacterParameters.VerticalSpeed);
 
-            AddGroundedTransition(jumpRise, landing, 0.07f);
-            AddGroundedTransition(fall, landing, 0.08f);
+            AddGroundedTransition(jumpRise, landing, GroundedBlendSeconds);
+            AddGroundedTransition(fall, landing, GroundedBlendSeconds);
 
             AnimatorStateTransition landToMove = AddExitTransition(
                 landing,
                 locomotion,
-                0.20f,
-                LandingMoveBlendSeconds);
+                0.45f,
+                LandingMoveBlendSeconds,
+                LandingLocomotionOffset);
             landToMove.AddCondition(
                 AnimatorConditionMode.Greater,
                 MoveEnterSpeed,
@@ -201,8 +221,9 @@ namespace _App.Editor.Animation
             AnimatorStateTransition landToIdle = AddExitTransition(
                 landing,
                 idle,
-                0.55f,
-                LandingIdleBlendSeconds);
+                0.78f,
+                LandingIdleBlendSeconds,
+                LandingIdleOffset);
             landToIdle.AddCondition(
                 AnimatorConditionMode.Less,
                 MoveEnterSpeed,
@@ -220,13 +241,37 @@ namespace _App.Editor.Animation
             AnimatorState dodgeBackward,
             AnimatorState lightAttack)
         {
-            AddActionEntry(root, dodgeForward, 1, 0);
-            AddActionEntry(root, dodgeBackward, 1, 1);
-            AddActionEntry(root, lightAttack, 2, null);
+            AddActionEntry(root, dodgeForward, 1, 0, DodgeEntryBlendSeconds);
+            AddActionEntry(root, dodgeBackward, 1, 1, DodgeEntryBlendSeconds);
+            AddActionEntry(root, lightAttack, 2, null, AttackEntryBlendSeconds);
 
-            ConfigureActionExit(dodgeForward, idle, locomotion, fall, DodgeExitTime, ActionExitBlendSeconds);
-            ConfigureActionExit(dodgeBackward, idle, locomotion, fall, DodgeExitTime, ActionExitBlendSeconds);
-            ConfigureActionExit(lightAttack, idle, locomotion, fall, AttackExitTime, AttackExitBlendSeconds);
+            ConfigureActionExit(
+                dodgeForward,
+                idle,
+                locomotion,
+                fall,
+                DodgeExitTime,
+                ActionExitBlendSeconds,
+                DodgeForwardLocomotionOffset,
+                DodgeForwardIdleOffset);
+            ConfigureActionExit(
+                dodgeBackward,
+                idle,
+                locomotion,
+                fall,
+                DodgeExitTime,
+                ActionExitBlendSeconds,
+                DodgeBackwardLocomotionOffset,
+                DodgeBackwardIdleOffset);
+            ConfigureActionExit(
+                lightAttack,
+                idle,
+                locomotion,
+                fall,
+                AttackExitTime,
+                AttackExitBlendSeconds,
+                AttackLocomotionOffset,
+                AttackIdleOffset);
         }
 
         private static void ConfigureActionExit(
@@ -235,20 +280,38 @@ namespace _App.Editor.Animation
             AnimatorState locomotion,
             AnimatorState fall,
             float exitTime,
-            float duration)
+            float duration,
+            float locomotionOffset,
+            float idleOffset)
         {
             AnimatorStateTransition airborne = AddImmediateTransition(
                 action,
                 fall,
-                0.05f,
+                ActionAirborneBlendSeconds,
                 TransitionInterruptionSource.Destination);
             airborne.AddCondition(
                 AnimatorConditionMode.IfNot,
                 0f,
                 MecanimCharacterParameters.Grounded);
 
-            AddSpeedPartitionedExit(action, idle, locomotion, exitTime, duration, false);
-            AddSpeedPartitionedExit(action, idle, locomotion, 0f, 0.055f, true);
+            AddSpeedPartitionedExit(
+                action,
+                idle,
+                locomotion,
+                exitTime,
+                duration,
+                false,
+                locomotionOffset,
+                idleOffset);
+            AddSpeedPartitionedExit(
+                action,
+                idle,
+                locomotion,
+                0f,
+                ActionCancelBlendSeconds,
+                true,
+                0f,
+                0f);
         }
 
         private static void AddSpeedPartitionedExit(
@@ -257,11 +320,13 @@ namespace _App.Editor.Animation
             AnimatorState locomotion,
             float exitTime,
             float duration,
-            bool cancel)
+            bool cancel,
+            float locomotionOffset,
+            float idleOffset)
         {
             AnimatorStateTransition toLocomotion = cancel
                 ? AddImmediateTransition(source, locomotion, duration, TransitionInterruptionSource.Destination)
-                : AddExitTransition(source, locomotion, exitTime, duration);
+                : AddExitTransition(source, locomotion, exitTime, duration, locomotionOffset);
             toLocomotion.AddCondition(
                 AnimatorConditionMode.Greater,
                 MoveEnterSpeed,
@@ -276,7 +341,7 @@ namespace _App.Editor.Animation
 
             AnimatorStateTransition toIdle = cancel
                 ? AddImmediateTransition(source, idle, duration, TransitionInterruptionSource.Destination)
-                : AddExitTransition(source, idle, exitTime, duration);
+                : AddExitTransition(source, idle, exitTime, duration, idleOffset);
             toIdle.AddCondition(
                 AnimatorConditionMode.Less,
                 MoveEnterSpeed,
@@ -295,7 +360,7 @@ namespace _App.Editor.Animation
             AnimatorStateTransition transition = AddImmediateTransition(
                 source,
                 jumpStart,
-                JumpBlendSeconds,
+                JumpEntryBlendSeconds,
                 TransitionInterruptionSource.Destination);
             transition.AddCondition(
                 AnimatorConditionMode.If,
@@ -311,7 +376,7 @@ namespace _App.Editor.Animation
             AnimatorStateTransition rising = AddImmediateTransition(
                 source,
                 jumpRise,
-                JumpBlendSeconds,
+                JumpEntryBlendSeconds,
                 TransitionInterruptionSource.Destination);
             rising.AddCondition(
                 AnimatorConditionMode.IfNot,
@@ -325,7 +390,7 @@ namespace _App.Editor.Animation
             AnimatorStateTransition falling = AddImmediateTransition(
                 source,
                 fall,
-                0.08f,
+                AirborneBlendSeconds,
                 TransitionInterruptionSource.Destination);
             falling.AddCondition(
                 AnimatorConditionMode.IfNot,
@@ -357,12 +422,13 @@ namespace _App.Editor.Animation
             AnimatorStateMachine root,
             AnimatorState destination,
             int actionId,
-            int? variant)
+            int? variant,
+            float blendSeconds)
         {
             AnimatorStateTransition transition = root.AddAnyStateTransition(destination);
             ConfigureImmediateTransition(
                 transition,
-                ActionEntryBlendSeconds,
+                blendSeconds,
                 TransitionInterruptionSource.None);
             transition.canTransitionToSelf = false;
             transition.AddCondition(
@@ -397,14 +463,15 @@ namespace _App.Editor.Animation
             AnimatorState source,
             AnimatorState destination,
             float exitTime,
-            float duration)
+            float duration,
+            float destinationOffset = 0f)
         {
             AnimatorStateTransition transition = source.AddTransition(destination);
             transition.hasExitTime = true;
             transition.exitTime = exitTime;
             transition.hasFixedDuration = true;
             transition.duration = duration;
-            transition.offset = 0f;
+            transition.offset = destinationOffset;
             transition.interruptionSource = TransitionInterruptionSource.Destination;
             transition.orderedInterruption = true;
             transition.canTransitionToSelf = false;

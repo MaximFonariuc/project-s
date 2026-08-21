@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canEverDodge: 1
   _dodgeImpulse: 6
-  _dodgeDuration: 0.48
+  _dodgeDuration: 0.78

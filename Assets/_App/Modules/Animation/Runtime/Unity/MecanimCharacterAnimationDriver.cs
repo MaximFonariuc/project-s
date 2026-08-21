@@ -34,7 +34,11 @@ namespace ModularAnimation.Unity
     /// </summary>
     public sealed class MecanimCharacterAnimationDriver : ICharacterAnimationDriver, IDisposable
     {
-        private const float SpeedDampSeconds = 0.06f;
+        // Presentation may lag behind the motor slightly. A shorter value made an
+        // abrupt 5 -> 0 speed change jump across most of the walk/run blend in one
+        // rendered frame, producing a visible pose pop even though the state
+        // transition itself was blended.
+        private const float SpeedDampSeconds = 0.18f;
         private const float DirectionDampSeconds = 0.08f;
         private const float VerticalDampSeconds = 0.04f;
         private const float DirectionEpsilon = 0.0001f;
