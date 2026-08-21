@@ -37,7 +37,7 @@ namespace _App
                 .As<IPlayerTraversalActor>();
 
             builder.Register(
-                    _ => new MecanimCharacterAnimationDriver(player.PlayerAnimator),
+                    _ => new XControllerCharacterAnimationDriver(player.PlayerAnimator),
                     Lifetime.Scoped)
                 .AsSelf()
                 .As<ModularAnimation.ICharacterAnimationDriver>();
