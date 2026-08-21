@@ -10,6 +10,9 @@ wired into the Project S Player by the dedicated controller/prefab setup tool.
 
 - `Model/KurtzPel_MaleReference.fbx` — untextured male reference body with the
   original 86-bone skeleton.
+- `Model/Weapons/` — 20 rigged reference FBXs covering 16 KurtzPel weapon
+  classes. Left/right gauntlets, dual swords, Assassin Blades, and the
+  sword/shield pair remain separate for hand attachment and animation checks.
 - `Movement/` — 336 locomotion and character-state clips: common ninja motion,
   directional movement and all eight male personality variants.
 - `Reactions/KurtzPel_Male_Reactions.fbx` — 26 hit, blow and stand reactions.
@@ -27,9 +30,12 @@ or substituted.
 
 ## Unity import
 
-The FBXs use a shared Generic Avatar copied from the reference model. Obvious
-wait/run/walk/loop clips are marked as looping; attack, start, end and landing
-clips preserve their non-looping form. Runtime root motion is disabled.
+The animation FBXs use a shared Generic Avatar copied from the reference model
+and are baked to a common 60 FPS timeline with source duration preserved.
+Obvious wait/run/walk/loop clips are marked as looping; attack, start, end and
+landing clips preserve their non-looping form. Runtime root motion is disabled.
+Weapon FBXs retain their own Generic rigs and import without animation or
+materials so they can be used as clean attachment/reference meshes.
 
 Reconfigure or validate the import through:
 
@@ -48,8 +54,21 @@ and regenerate its Generic body colliders through:
 
 `Tools > Animation > KurtzPel > Build Player Animator and Prefab`
 
+The builder creates `PlayerKurtzPel.controller` only when it is absent. Once
+created, the controller remains an ordinary Animator asset: later manual graph
+edits are validated and preserved rather than regenerated over.
+
+Run the deterministic 437-clip pose/timing/contact audit through:
+
+`Tools > Animation > KurtzPel > Run Full Quality Audit`
+
 See `Docs/Animation/KurtzPelAnimationAudit.md` for the full validation boundary,
-timing correction and selected runtime motions.
+timing bake and selected runtime motions.
+
+The pack remains Generic while it shares the exact KurtzPel skeleton. A valid
+Humanoid conversion has been verified separately; migration is deferred until
+the production Humanoid character is available so retargeting can be evaluated
+against the real target instead of altering this reference pack prematurely.
 
 ## Usage restriction
 

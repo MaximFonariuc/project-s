@@ -1,15 +1,17 @@
-# Project S — Player Animation Presentation
+# Project S — Player animation presentation
 
 ## Boundary
 
 Player animation displays confirmed gameplay state. Locomotion, dodge
-eligibility, combat timing, hit windows and damage remain in gameplay code.
-The Animator Controller owns only motions, blend trees and visual transitions.
+eligibility, combat timing, hit windows, damage and translation remain in
+gameplay code. The Animator Controller owns motion selection, Blend Trees and
+visual crossfades.
 
 ```mermaid
 classDiagram
     class PlayerLocomotionController {
         +Snapshot PlayerLocomotionSnapshot
+        +DodgeAccepted event
     }
     class PlayerLocomotionAnimationAdapter
     class PlayerCharacterAnimationPresenter
@@ -26,56 +28,87 @@ classDiagram
         +CancelAction()
     }
     class MecanimCharacterAnimationDriver
-    class AnimatorController
+    class PlayerKurtzPelController
     class CharacterMotor
     class CombatActionExecutor
 
     PlayerLocomotionController --> PlayerLocomotionAnimationAdapter
     PlayerLocomotionAnimationAdapter --> PlayerCharacterAnimationPresenter
-    PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator : dodge
+    PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator : accepted dodge
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
     ICharacterAnimationDriver <|.. MecanimCharacterAnimationDriver
-    MecanimCharacterAnimationDriver --> AnimatorController : parameters
+    MecanimCharacterAnimationDriver --> PlayerKurtzPelController : parameters
     PlayerLocomotionController --> CharacterMotor
     CombatActionExecutor --> CharacterMotor
 ```
 
-## Ownership
+## Ownership and update flow
 
 - `PlayerLocomotionController` owns `Idle / Run / Jump / Fall / Dodge` gameplay
   state and publishes an immutable snapshot.
-- `PlayerCharacterAnimationPresenter` maps that snapshot to a backend-neutral
+- `PlayerCharacterAnimationPresenter` converts that snapshot to a rig-neutral
   locomotion frame.
 - `PlayerAnimationCoordinator` arbitrates finite action priority:
   `Death > Reaction > Traversal > Combat > Locomotion`.
-- `MecanimCharacterAnimationDriver` is the only runtime writer of the Animator
-  parameters. It caches hashes, validates the controller contract and never
-  selects a clip.
-- `XController.controller` contains the recovered historical state graph and
-  fixed-duration
-  transitions. It can be replaced by a controller with the same parameter and
-  semantic action contract.
+- `MecanimCharacterAnimationDriver` is the only parameter writer. It validates
+  the controller contract, caches parameter hashes and never selects a clip.
+- `PlayerKurtzPel.controller` is the single-layer visual graph. It can be edited
+  directly in Animator; the setup tool validates rather than overwrites an
+  existing asset.
 - `CombatActionDefinition.DurationSeconds` owns gameplay action duration. No
-  combat rule reads an animation clip length or Animator normalized time.
-- Root motion is disabled. Dodge and attack translation go through
-  `CharacterMotor` and the normal collision sweep.
+  combat rule reads clip length or Animator normalized time.
+- Root motion is disabled. Dodge and attack movement go through
+  `CharacterMotor`, including normal collision sweeps and grounding.
 
-## Current content
+## Transition model
 
-The Player uses the KurtzPel 86-bone Generic Avatar. The controller currently
-contains grounded locomotion, jump/fall/landing, forward/backward dodge and one
-grounded unarmed light attack. Swimming and ladder animation are deferred.
+The controller avoids one large idle/walk/run/sprint Blend Tree. Idle is a
+separate state; locomotion contains only the three cyclic moving clips.
 
-Grounded locomotion uses the coherent ENFJ set with a genuine walk cycle. The
-historical `MovementType` Blend Tree uses `0/1/2/3` for
-idle/walk/run/sprint and the runtime driver damps gait changes over `0.33`
-seconds. The
-KurtzPel visual is rotated `-90` degrees around Y at the presentation boundary
-to align its authored `+X` forward with gameplay `+Z`; the physics root is not
-rotated.
+```mermaid
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Locomotion: PlanarSpeed > 0.14
+    Locomotion --> Idle: PlanarSpeed < 0.10
+    Idle --> JumpStart: JumpStarting
+    Locomotion --> JumpStart: JumpStarting
+    JumpStart --> JumpRise: anticipation finished
+    JumpRise --> Fall: VerticalSpeed < 0
+    Fall --> Landing: Grounded
+    Landing --> Idle
+    Landing --> Locomotion
+    Idle --> Dodge: Action 1
+    Locomotion --> Dodge: Action 1
+    Idle --> LightAttack1: Action 2
+    Locomotion --> LightAttack1: Action 2
+```
 
-Humanoid migration is content work: replace the Avatar and motions while
-preserving the controller parameters and semantic action IDs. Gameplay code and
-the motor remain unchanged.
+The locomotion Blend Tree uses the measured physical thresholds
+`Walk=3`, `Run=5`, `Sprint=10 m/s`. Walk is the reference contact phase;
+measured offsets `Run=0.32` and `Sprint=0.47` align the selected cycles. Short
+crossfades (`0.12 s` locomotion, `0.055 s` action entry) keep the controller
+responsive while avoiding pose cuts.
+
+Jump anticipation is gameplay-owned (`0.12 s`). The Animator shows Jump Start
+during that interval, then uses vertical velocity and grounding for rise, fall
+and landing. A missing/short clip cannot change jump physics.
+
+## Current content and validation
+
+The Player uses the KurtzPel Generic Avatar and selected ENFJ locomotion set,
+forward/back dodge and the first Blazing Fist light attack. The visual child is
+rotated `-90` degrees around Y to convert authored `+X` forward to gameplay
+`+Z`; the physics root remains unrotated.
+
+The runtime path was exercised in `PrototypeArena` through the real Input
+System:
+
+- keyboard move produced `Locomotion`, `PlanarSpeed=5` and motor displacement;
+- jump entered the gameplay-owned `Jump Start` phase;
+- light attack entered `Light Attack 1` through the combat command path;
+- gamepad dodge entered `Dodge Forward` and moved through the motor.
+
+Humanoid migration remains content-only. The production Avatar, clips and
+controller motions can be replaced while preserving all gameplay contracts.

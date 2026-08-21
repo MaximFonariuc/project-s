@@ -13,6 +13,7 @@ namespace _App
     {
         private const float MoveThresholdSqr = 0.0001f;
         private const float AscendingThreshold = 0.05f;
+        private const float JumpStartupSeconds = 0.12f;
 
         private readonly IPlayerInput _input;
         private readonly ICharacterMotor _motor;
@@ -26,6 +27,7 @@ namespace _App
         private PlayerLocomotionSnapshot _snapshot = PlayerLocomotionSnapshot.Invalid;
         private bool _walkHeld;
         private bool _sprintHeld;
+        private bool _jumpHeld;
         private bool _enabled;
 
         public event Action DodgeAccepted;
@@ -83,7 +85,9 @@ namespace _App
 
             _walkHeld = false;
             _sprintHeld = false;
+            _jumpHeld = false;
             _movementIntent = PlayerMovementIntent.Unrestricted;
+            CancelJumpStartup();
             _motor.ReleaseJump();
             _actions.StopGliding();
             SetSpeedMode(PlayerSpeedMode.Run);
@@ -112,6 +116,7 @@ namespace _App
                 return;
             }
 
+            UpdateJumpStartup(deltaTime);
             RefreshMovementDirections();
             PlayerLocomotionStateId stateId = ResolveState();
             if (_stateMachine.IsRunning)
@@ -299,6 +304,7 @@ namespace _App
                 Vector3.Dot(velocity, up),
                 planarVelocity.magnitude / maxSpeed,
                 _motor.IsGrounded,
+                _runtime.JumpStarting,
                 _motor.IsCrouched,
                 stateId == PlayerLocomotionStateId.Dodge && _runtime.DodgeBackwards);
         }
@@ -330,7 +336,15 @@ namespace _App
             switch (phase)
             {
                 case InputSignalPhase.Started when _movementIntent.AllowJump && !_motor.IsDodging:
-                    _motor.PressJump();
+                    _jumpHeld = true;
+                    if (_motor.IsGrounded && !_motor.IsSwimming && !_motor.IsCrouched)
+                    {
+                        BeginJumpStartup();
+                    }
+                    else
+                    {
+                        _motor.PressJump(false);
+                    }
                     break;
 
                 case InputSignalPhase.Performed when _movementIntent.AllowJump && !_motor.IsSwimming && !_motor.IsDodging:
@@ -338,10 +352,55 @@ namespace _App
                     break;
 
                 case InputSignalPhase.Canceled:
+                    _jumpHeld = false;
                     _actions.StopGliding();
-                    _motor.ReleaseJump();
+                    if (!_runtime.JumpStarting)
+                    {
+                        _motor.ReleaseJump();
+                    }
                     break;
             }
+        }
+
+        private void BeginJumpStartup()
+        {
+            if (_runtime.JumpStarting)
+            {
+                return;
+            }
+
+            _runtime.JumpStarting = true;
+            _runtime.JumpStartupTimeRemaining = JumpStartupSeconds;
+        }
+
+        private void UpdateJumpStartup(float deltaTime)
+        {
+            if (!_runtime.JumpStarting)
+            {
+                return;
+            }
+
+            if (!_movementIntent.AllowJump || _motor.IsDodging || _motor.IsSwimming || _motor.IsCrouched)
+            {
+                CancelJumpStartup();
+                return;
+            }
+
+            _runtime.JumpStartupTimeRemaining -= Mathf.Max(0.0f, deltaTime);
+            if (_runtime.JumpStartupTimeRemaining > 0.0f)
+            {
+                return;
+            }
+
+            bool releaseAfterSimulation = !_jumpHeld;
+            CancelJumpStartup();
+            _motor.PressJump(releaseAfterSimulation);
+        }
+
+        private void CancelJumpStartup()
+        {
+            _runtime.JumpStarting = false;
+            _runtime.JumpStartupTimeRemaining = 0.0f;
         }
 
         private void OnDodgeRequested()

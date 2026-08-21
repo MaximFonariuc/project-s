@@ -36,7 +36,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_C_Rage_Avoid
       internalID: 3771494346245971104
       firstFrame: 0
-      lastFrame: 25
+      lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -65,7 +65,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_C_Rage_Avoid_Air_Air
       internalID: -2199567158274161864
       firstFrame: 0
-      lastFrame: 9
+      lastFrame: 17
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -94,7 +94,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_C_Rage_Avoid_Landing
       internalID: 842737771109909931
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -123,7 +123,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Air_Landing
       internalID: 137887209423669008
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -152,7 +152,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Air_Landing_Fast
       internalID: -7896334397044868578
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 119
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -181,7 +181,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Combat_Wait
       internalID: -7403395550811556613
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 119
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -210,15 +210,15 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_CombatWait_Wait
       internalID: -8418955749070149025
       firstFrame: 0
-      lastFrame: 32
+      lastFrame: 63
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -239,7 +239,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run
       internalID: -4079759160320292069
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -268,7 +268,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run_125
       internalID: 6401461346136066806
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -297,7 +297,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run_50
       internalID: -2873548087471677973
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 61
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -326,7 +326,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run_Fast
       internalID: -8136103471453348444
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 15
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -355,7 +355,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run_Fast_266
       internalID: 4189015098090260356
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 6
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -384,7 +384,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run_Fast_L
       internalID: -2635267699592268979
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 15
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -413,7 +413,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run_Fast_L_266
       internalID: 7882363742713934630
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 6
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -442,7 +442,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run_Fast_R
       internalID: -8997969852357901513
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 15
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -471,7 +471,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run_Fast_R_266
       internalID: -5858359153773743493
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 6
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -500,7 +500,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run_L
       internalID: 8139727788702469089
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -529,7 +529,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run_L_125
       internalID: -882319507665840643
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -558,7 +558,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run_L_50
       internalID: 4994241592054704901
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 61
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -587,7 +587,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run_R
       internalID: -7607914969066936071
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -616,7 +616,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run_R_125
       internalID: 4452928069530263838
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -645,7 +645,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Run_R_50
       internalID: 6807245056425256077
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 61
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -674,7 +674,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_RunEnd
       internalID: 3261133900917886529
       firstFrame: 0
-      lastFrame: 23
+      lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -703,7 +703,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_RunEnd_Fast
       internalID: -1883861168665689297
       firstFrame: 0
-      lastFrame: 40
+      lastFrame: 79
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -732,7 +732,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Start
       internalID: 3236636395011755045
       firstFrame: 0
-      lastFrame: 150
+      lastFrame: 299
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -761,7 +761,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Wait
       internalID: -3150234505084400199
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 119
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -790,7 +790,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|CC_Ninja_Wait_Habit
       internalID: -4287839861871709791
       firstFrame: 0
-      lastFrame: 220
+      lastFrame: 439
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -834,7 +834,7 @@ ModelImporter:
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
-    bakeAxisConversion: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 1
     skinWeightsMode: 0
     maxBonesPerVertex: 4

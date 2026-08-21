@@ -389,7 +389,7 @@ BlazingFist,GT_CM_C_Skill_BerserkerRush_Loop,19,63.3333,GT/Male/GT_CM_C_Skill_Be
 BlazingFist,GT_CM_C_Skill_BerserkerRush_Start,40,61.5385,GT/Male/GT_CM_C_Skill_BerserkerRush_Start.psa
 BlazingFist,GT_CM_C_Skill_GhostChase,55,30.5556,GT/Male/GT_CM_C_Skill_GhostChase.psa
 BlazingFist,GT_CM_C_Skill_HellPunch_End,92,60.6593,GT/Male/GT_CM_C_Skill_HellPunch_End.psa
-BlazingFist,GT_CM_C_Skill_HellPunch_Ready_Stop,2,30.0,GT/Male/GT_CM_C_Skill_HellPunch_Ready_Stop.psa
+BlazingFist,GT_CM_C_Skill_HellPunch_Ready_Stop,1,30.0,GT/Male/GT_CM_C_Skill_HellPunch_Ready_Stop.psa
 BlazingFist,GT_CM_C_Skill_HellPunch_Start,64,60.9524,GT/Male/GT_CM_C_Skill_HellPunch_Start.psa
 BlazingFist,GT_CM_C_Skill_HellPunch_Walk_B_B,37,30.8333,GT/Male/GT_CM_C_Skill_HellPunch_Walk_B_B.psa
 BlazingFist,GT_CM_C_Skill_HellPunch_Walk_B_R,37,30.8333,GT/Male/GT_CM_C_Skill_HellPunch_Walk_B_R.psa

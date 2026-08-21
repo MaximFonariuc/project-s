@@ -7,8 +7,6 @@ namespace _App.Editor.Animation
 {
     internal sealed class KurtzPelReferenceAnimationPreviewWindow : EditorWindow
     {
-        private const float KurtzPelVisualYaw = -90.0f;
-
         private const string RootFolder =
             "Assets/_Game/Animations/Reference/KurtzPel/MaleComplete";
 
@@ -289,7 +287,6 @@ namespace _App.Editor.Animation
             }
 
             _target = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
-            _target.transform.rotation = Quaternion.Euler(0.0f, KurtzPelVisualYaw, 0.0f);
             Undo.RegisterCreatedObjectUndo(_target, "Spawn KurtzPel reference target");
             Selection.activeGameObject = _target;
             SceneView.lastActiveSceneView?.FrameSelected();

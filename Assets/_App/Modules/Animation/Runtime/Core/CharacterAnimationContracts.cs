@@ -25,6 +25,7 @@ namespace ModularAnimation
         public float VerticalSpeed { get; }
         public float NormalizedSpeed { get; }
         public bool IsGrounded { get; }
+        public bool IsJumpStarting { get; }
         public CharacterGait Gait { get; }
         public CharacterLocomotionMode Mode { get; }
 
@@ -34,6 +35,7 @@ namespace ModularAnimation
             float verticalSpeed,
             float normalizedSpeed,
             bool isGrounded,
+            bool isJumpStarting,
             CharacterGait gait,
             CharacterLocomotionMode mode)
         {
@@ -42,6 +44,7 @@ namespace ModularAnimation
             VerticalSpeed = verticalSpeed;
             NormalizedSpeed = normalizedSpeed;
             IsGrounded = isGrounded;
+            IsJumpStarting = isJumpStarting;
             Gait = gait;
             Mode = mode;
         }

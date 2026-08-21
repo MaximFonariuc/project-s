@@ -18,6 +18,7 @@ namespace _App
         private float _pendingActionVerticalImpulse;
         private bool _overrideVerticalVelocityOnImpulse;
         private bool _hasActionMotion;
+        private bool _releaseJumpAfterSimulation;
 
         public bool IsGrounded => _character.IsGrounded();
         public bool IsFalling => _character.IsFalling();
@@ -81,13 +82,15 @@ namespace _App
             _character.SetRotation(Quaternion.LookRotation(planarDirection.normalized, Up));
         }
 
-        public void PressJump()
+        public void PressJump(bool releaseAfterSimulation)
         {
+            _releaseJumpAfterSimulation = releaseAfterSimulation;
             _character.Jump();
         }
 
         public void ReleaseJump()
         {
+            _releaseJumpAfterSimulation = false;
             _character.StopJumping();
         }
 
@@ -151,11 +154,18 @@ namespace _App
         public void Dispose()
         {
             ClearActionMotion();
+            _releaseJumpAfterSimulation = false;
             _character.AfterSimulationUpdated -= OnAfterSimulationUpdated;
         }
 
         private void OnAfterSimulationUpdated(float deltaTime)
         {
+            if (_releaseJumpAfterSimulation)
+            {
+                _releaseJumpAfterSimulation = false;
+                _character.StopJumping();
+            }
+
             bool hasPendingVerticalImpulse =
                 !Mathf.Approximately(_pendingActionVerticalImpulse, 0.0f);
             if (!_hasActionMotion &&

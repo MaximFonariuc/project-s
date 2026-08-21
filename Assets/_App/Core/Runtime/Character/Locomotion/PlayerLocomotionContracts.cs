@@ -43,6 +43,7 @@ namespace _App
         public float VerticalSpeed { get; }
         public float NormalizedSpeed { get; }
         public bool IsGrounded { get; }
+        public bool IsJumpStarting { get; }
         public bool IsCrouched { get; }
         public bool DodgeBackwards { get; }
 
@@ -57,6 +58,7 @@ namespace _App
             float verticalSpeed,
             float normalizedSpeed,
             bool isGrounded,
+            bool isJumpStarting,
             bool isCrouched,
             bool dodgeBackwards)
         {
@@ -71,6 +73,7 @@ namespace _App
             VerticalSpeed = verticalSpeed;
             NormalizedSpeed = Mathf.Clamp01(normalizedSpeed);
             IsGrounded = isGrounded;
+            IsJumpStarting = isJumpStarting;
             IsCrouched = isCrouched;
             DodgeBackwards = dodgeBackwards;
         }
@@ -118,7 +121,7 @@ namespace _App
         void SetMovementDirection(Vector3 worldDirection);
         void FaceDirection(Vector3 worldDirection, float deltaTime);
         void SnapFacingDirection(Vector3 worldDirection);
-        void PressJump();
+        void PressJump(bool releaseAfterSimulation);
         void ReleaseJump();
         void SetSpeedMode(PlayerSpeedMode speedMode);
         bool TryInvertGravity();

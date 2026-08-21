@@ -36,7 +36,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Air_Jump
       internalID: -2042045398607557024
       firstFrame: 0
-      lastFrame: 32
+      lastFrame: 63
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -65,7 +65,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Air_Jump_Fast
       internalID: 2292009539643808647
       firstFrame: 0
-      lastFrame: 32
+      lastFrame: 63
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -94,7 +94,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Air_JumpDown
       internalID: -3421030931339160820
       firstFrame: 0
-      lastFrame: 32
+      lastFrame: 63
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -123,7 +123,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Air_JumpDown_Fast
       internalID: 7856303966436533556
       firstFrame: 0
-      lastFrame: 32
+      lastFrame: 63
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -152,7 +152,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Air_JumpLanding
       internalID: 5722331795582015049
       firstFrame: 0
-      lastFrame: 29
+      lastFrame: 57
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -181,7 +181,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Air_JumpLanding_Fast
       internalID: -1728196293899951454
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 119
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -210,7 +210,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Air_JumpUp
       internalID: -6695098697942964509
       firstFrame: 0
-      lastFrame: 32
+      lastFrame: 63
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -239,7 +239,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Air_JumpUp_Fast
       internalID: -930286286426844779
       firstFrame: 0
-      lastFrame: 32
+      lastFrame: 63
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -268,7 +268,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Air_Start
       internalID: 7382677264800321401
       firstFrame: 0
-      lastFrame: 4
+      lastFrame: 7
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -297,7 +297,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Combat_Wait
       internalID: 6956147626767608673
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 119
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -326,7 +326,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Dash
       internalID: -6614811818153824944
       firstFrame: 0
-      lastFrame: 23
+      lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -413,7 +413,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run
       internalID: -7932772281683019457
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -442,7 +442,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_125
       internalID: 5629481779423890468
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -471,7 +471,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_400
       internalID: -818849003373005443
       firstFrame: 0
-      lastFrame: 9
+      lastFrame: 4
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -500,7 +500,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_50
       internalID: 1792804472600950942
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 61
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -529,7 +529,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_Fast
       internalID: -1293448029873667768
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 15
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -558,7 +558,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_Fast_266
       internalID: -8751795182043924155
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 6
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -587,7 +587,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_Fast_L
       internalID: 7628441083583258243
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 15
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -616,7 +616,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_Fast_L_266
       internalID: 6388241991397384773
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 6
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -645,7 +645,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_Fast_R
       internalID: -7386539075777505567
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 15
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -674,7 +674,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_Fast_R_266
       internalID: 4288303164626966135
       firstFrame: 0
-      lastFrame: 8
+      lastFrame: 6
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -703,7 +703,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_L
       internalID: -7468605391793063786
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -732,7 +732,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_L_125
       internalID: 7714303646183904768
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -761,7 +761,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_L_50
       internalID: 2613943674889591410
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 61
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -790,7 +790,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_R
       internalID: 2211558171895238290
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -819,7 +819,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_R_125
       internalID: -7824840622695741584
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -848,7 +848,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Run_R_50
       internalID: 3547818907837150868
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 61
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -877,7 +877,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_RunEnd
       internalID: 3382615968512836603
       firstFrame: 0
-      lastFrame: 23
+      lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -906,7 +906,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_RunEnd_Fast
       internalID: -6711355750857373056
       firstFrame: 0
-      lastFrame: 40
+      lastFrame: 79
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -993,7 +993,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Start
       internalID: -4589306609699228536
       firstFrame: 0
-      lastFrame: 150
+      lastFrame: 299
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1109,7 +1109,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Tired_Walk_25
       internalID: 6346317070211337667
       firstFrame: 0
-      lastFrame: 25
+      lastFrame: 193
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1138,7 +1138,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Tired_Walk_50
       internalID: -6335696421848761992
       firstFrame: 0
-      lastFrame: 25
+      lastFrame: 97
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1167,7 +1167,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Wait
       internalID: -267175397763420480
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 119
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1196,7 +1196,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Wait_Habit
       internalID: 9212384546794725475
       firstFrame: 0
-      lastFrame: 195
+      lastFrame: 389
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1225,7 +1225,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Walk
       internalID: -1896899275014692377
       firstFrame: 0
-      lastFrame: 36
+      lastFrame: 71
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1254,7 +1254,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Walk_400
       internalID: -4494309986715038880
       firstFrame: 0
-      lastFrame: 36
+      lastFrame: 18
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1283,7 +1283,7 @@ ModelImporter:
       takeName: KurtzPel_MaleReference|HM_ENFJ_Walk_50
       internalID: -1107012486545998412
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 117
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1356,7 +1356,7 @@ ModelImporter:
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
-    bakeAxisConversion: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 1
     skinWeightsMode: 0
     maxBonesPerVertex: 4

@@ -15,6 +15,7 @@ namespace _App.Editor.Animation
 
         private const string ModelPath =
             RootFolder + "/Model/KurtzPel_MaleReference.fbx";
+        private const float ExportFrameRate = 60f;
 
         private const string PreviewFolder = RootFolder + "/Preview";
         private const string ManifestPath = RootFolder + "/KurtzPel_AnimationManifest.csv";
@@ -35,6 +36,29 @@ namespace _App.Editor.Animation
                 [RootFolder + "/Misc/KurtzPel_Male_Misc.fbx"] = 4,
                 [RootFolder + "/Combat/KurtzPel_BlazingFist.fbx"] = 71
             };
+        private static readonly string[] WeaponModels =
+        {
+            RootFolder + "/Model/Weapons/TwoHandedSword.fbx",
+            RootFolder + "/Model/Weapons/LongBow.fbx",
+            RootFolder + "/Model/Weapons/LongStaff.fbx",
+            RootFolder + "/Model/Weapons/Gauntlet_Right.fbx",
+            RootFolder + "/Model/Weapons/Gauntlet_Left.fbx",
+            RootFolder + "/Model/Weapons/DualSword_Left.fbx",
+            RootFolder + "/Model/Weapons/DualSword_Right.fbx",
+            RootFolder + "/Model/Weapons/GiantHammer.fbx",
+            RootFolder + "/Model/Weapons/ElementalBurster.fbx",
+            RootFolder + "/Model/Weapons/AssassinBlade_Left.fbx",
+            RootFolder + "/Model/Weapons/AssassinBlade_Right.fbx",
+            RootFolder + "/Model/Weapons/SoulScythe.fbx",
+            RootFolder + "/Model/Weapons/SwordShield_Sword.fbx",
+            RootFolder + "/Model/Weapons/SwordShield_Shield.fbx",
+            RootFolder + "/Model/Weapons/Orb.fbx",
+            RootFolder + "/Model/Weapons/Crescent.fbx",
+            RootFolder + "/Model/Weapons/Gun.fbx",
+            RootFolder + "/Model/Weapons/Karma14.fbx",
+            RootFolder + "/Model/Weapons/Karma15.fbx",
+            RootFolder + "/Model/Weapons/Karma16.fbx"
+        };
 
         [MenuItem("Tools/Animation/KurtzPel/Configure Reference Pack")]
         public static void ConfigureReferencePack()
@@ -46,6 +70,10 @@ namespace _App.Editor.Animation
             {
                 ConfigureAnimationPack(packPath, sourceAvatar);
             }
+            foreach (string weaponPath in WeaponModels)
+            {
+                ConfigureWeaponModel(weaponPath);
+            }
 
             CreateReferenceCharacterPrefab(sourceAvatar);
             int clipCount = ValidateImportedAssets();
@@ -53,7 +81,8 @@ namespace _App.Editor.Animation
 
             Debug.Log(
                 $"[KurtzPel Animation Import] Valid 86-bone reference model, " +
-                $"{AnimationPacks.Count} animation FBXs and {clipCount} clips configured. " +
+                $"{AnimationPacks.Count} animation FBXs, {clipCount} clips and " +
+                $"{WeaponModels.Length} weapon models configured. " +
                 "Existing Player, scenes and Animator Controllers were not changed.");
         }
 
@@ -101,6 +130,17 @@ namespace _App.Editor.Animation
             importer.SaveAndReimport();
         }
 
+        private static void ConfigureWeaponModel(string weaponPath)
+        {
+            ModelImporter importer = RequireImporter(weaponPath);
+            ConfigureSharedSettings(importer);
+            importer.importAnimation = false;
+            importer.animationType = ModelImporterAnimationType.Generic;
+            importer.avatarSetup = ModelImporterAvatarSetup.CreateFromThisModel;
+            importer.sourceAvatar = null;
+            importer.SaveAndReimport();
+        }
+
         private static void ConfigureSharedSettings(ModelImporter importer)
         {
             importer.materialImportMode = ModelImporterMaterialImportMode.None;
@@ -111,7 +151,7 @@ namespace _App.Editor.Animation
             importer.importConstraints = false;
             importer.preserveHierarchy = true;
             importer.optimizeGameObjects = false;
-            importer.bakeAxisConversion = true;
+            importer.bakeAxisConversion = false;
         }
 
         private static string NormalizeTakeName(string takeName)
@@ -124,6 +164,16 @@ namespace _App.Editor.Animation
 
         private static bool IsObviousLoop(string clipName)
         {
+            // This is a transition from combat idle back to the normal wait
+            // pose, not a stationary loop. Treating it as a loop creates a
+            // 26-degree start/end pose discontinuity.
+            if (clipName.Equals(
+                    "CC_Ninja_CombatWait_Wait",
+                    StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
             if (clipName.Contains("_Loop", StringComparison.OrdinalIgnoreCase))
             {
                 return true;
@@ -277,13 +327,23 @@ namespace _App.Editor.Animation
                             $"Imported KurtzPel clip is absent from the source manifest: {clip.name}");
                     }
 
-                    float sourceSpeed = entry.FrameRate / Mathf.Max(1f, clip.frameRate);
-                    float correctedDuration = clip.length / sourceSpeed;
-                    if (!float.IsFinite(sourceSpeed) || sourceSpeed <= 0f ||
-                        !float.IsFinite(correctedDuration) || correctedDuration <= 0f)
+                    if (!Mathf.Approximately(clip.frameRate, ExportFrameRate))
                     {
                         throw new InvalidOperationException(
-                            $"KurtzPel clip has invalid timing metadata: {clip.name}");
+                            $"KurtzPel clip '{clip.name}' imported at {clip.frameRate} FPS " +
+                            $"instead of the baked {ExportFrameRate} FPS.");
+                    }
+
+                    float expectedDuration = entry.Frames > 1
+                        ? (entry.Frames - 1f) / entry.FrameRate
+                        : 1f / ExportFrameRate;
+                    float timingTolerance = 1f / ExportFrameRate + 0.002f;
+                    if (!float.IsFinite(expectedDuration) || expectedDuration <= 0f ||
+                        Mathf.Abs(clip.length - expectedDuration) > timingTolerance)
+                    {
+                        throw new InvalidOperationException(
+                            $"KurtzPel clip '{clip.name}' has length {clip.length:F4}s; " +
+                            $"source timing expects {expectedDuration:F4}s (±{timingTolerance:F4}s).");
                     }
                 }
 
@@ -294,6 +354,26 @@ namespace _App.Editor.Animation
             {
                 throw new InvalidOperationException(
                     $"Unexpected total KurtzPel clip count: {totalClipCount}");
+            }
+
+            foreach (string weaponPath in WeaponModels)
+            {
+                GameObject weapon = AssetDatabase.LoadAssetAtPath<GameObject>(weaponPath);
+                if (weapon == null ||
+                    weapon.GetComponentsInChildren<SkinnedMeshRenderer>(true).Length == 0)
+                {
+                    throw new InvalidOperationException(
+                        $"KurtzPel weapon contains no skinned mesh renderer: {weaponPath}");
+                }
+
+                Avatar weaponAvatar = AssetDatabase.LoadAllAssetsAtPath(weaponPath)
+                    .OfType<Avatar>()
+                    .FirstOrDefault();
+                if (weaponAvatar == null || !weaponAvatar.isValid)
+                {
+                    throw new InvalidOperationException(
+                        $"KurtzPel weapon has no valid Generic Avatar: {weaponPath}");
+                }
             }
 
             string missingClip = manifest.Keys.FirstOrDefault(name => !uniqueClipNames.Contains(name));

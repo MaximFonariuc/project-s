@@ -1,88 +1,113 @@
 # KurtzPel animation audit and runtime selection
 
-## Structural audit result
+## Complete audit boundary
 
-The imported pack contains 437 uniquely named Generic clips in 13 FBX packs:
+The imported reference pack contains 437 uniquely named Generic clips in 13
+FBX packs:
 
 | Group | Clips | Runtime status |
 | --- | ---: | --- |
-| Movement and character states | 336 | audited; selected subset used |
-| Reactions | 26 | audited; deferred |
-| Miscellaneous | 4 | audited; not gameplay runtime content |
-| Blazing Fist combat | 71 | audited; first light attack selected |
+| Movement and character states | 336 | fully measured; selected subset used |
+| Reactions | 26 | fully measured; runtime mapping deferred |
+| Miscellaneous | 4 | fully measured; not runtime gameplay content |
+| Blazing Fist combat | 71 | fully measured; first light attack selected |
 
-`KurtzPel_AnimationManifest.csv` is the row-level catalog for every clip. It
-records group, exact clip name, source frame count, source frame rate and source
-path. `KurtzPelReferenceAnimationImporter` cross-checks all 437 manifest rows
-against all imported clips, verifies unique names, non-empty animation curves
-and valid timing metadata, and fails if either side contains an unmatched clip.
+Two independent checks are available:
 
-This is a structural import audit, not proof that every clip is suitable for a
-particular gameplay state. Runtime selection additionally checks the semantic
-motion, source forward axis and visual result on the reference rig.
+- `KurtzPelReferenceAnimationImporter` cross-checks all clips against
+  `KurtzPel_AnimationManifest.csv`, validates unique names, timing metadata,
+  curves, shared Avatar and importer policy.
+- `KurtzPelAnimationQualityAudit` samples every clip at 32 normalized positions
+  on the shared rig and records length, FPS, loop policy, curve/transform count,
+  authored root/motion curves, start/end pose RMS, root/pelvis travel and foot
+  contact phases.
 
-## Timing correction
+Run the second check through
+`Tools > Animation > KurtzPel > Run Full Quality Audit`. Its complete row-level
+output is `KurtzPelAnimationQuality.csv`; the generated summary is
+`KurtzPelAnimationQuality.md`.
 
-Unity currently imports the converted FBX clips at 24 FPS, while their source
-frame rates range from roughly 30 to more than 60 FPS for the chosen set.
-Playing the raw imported motions at state speed `1` therefore produces visibly
-slow animation.
+## Measured result
 
-The controller generator applies:
+- Total clips: `437`.
+- Clips with authored root/motion curves: `0`.
+- Clips requiring review flags: `18`.
+- Loop-pose discontinuities after importer correction: `0`.
 
-```text
-state or blend-child speed = source FPS / imported clip FPS
-```
+The remaining flags are not import failures:
 
-Dodge is the deliberate exception: its state speed is fitted to the motor-owned
-0.48 second dodge window. Combat gameplay uses its own 1.30 second action
-duration and never reads a clip length as a rule.
+- 15 directional/special walk clips have ambiguous contact phases under a
+  simple minimum-foot-height heuristic. None is used by the current forward
+  locomotion tree.
+- `CM_C_Recovery` and `CC_Eltheca_Intro` are deliberately long clips.
+- `GT_CM_C_Skill_HellPunch_Ready_Stop` is a deliberate one-frame hold pose.
+
+The audit initially detected `CC_Ninja_CombatWait_Wait` as a discontinuous
+loop. Its name ends in `Wait` but the motion is finite, so the importer now
+classifies this exact clip as non-looping. Reimport removed the false loop
+without editing source curves.
+
+## Timing and transition correction
+
+All source PSA sequences are resampled to a common 60 FPS timeline before the
+group FBXs are written. Source duration is preserved within one sample.
+
+The selected locomotion clips have different natural contact phases:
+
+| Clip | Left contact | Right contact | Controller cycle offset |
+| --- | ---: | ---: | ---: |
+| `HM_ENFJ_Walk` | 0.1875 | 0.6875 | 0.00 |
+| `HM_ENFJ_Run` | 0.5000 | 0.03125 | 0.32 |
+| `HM_ENFJ_Run_Fast` | 0.65625 | 0.1875 | 0.47 |
+
+`PlayerKurtzPel.controller` uses those offsets and keeps Idle outside the
+moving Blend Tree. This prevents both arbitrary locomotion entry phase and the
+visible foot-contact jump that occurred when the three cycles were blended
+without phase alignment.
+
+Dodge is the deliberate speed exception: state speed is fitted to the
+motor-owned `0.48 s` window. Combat duration remains gameplay data and never
+depends on clip length.
 
 ## Selected runtime clips
 
-| State | Clip | Source group | Notes |
-| --- | --- | --- | --- |
-| Idle | `HM_ENFJ_Wait` | Male ENFJ | looping |
-| Walk | `HM_ENFJ_Walk` | Male ENFJ | genuine walk cycle; not a slowed run |
-| Run | `HM_ENFJ_Run` | Male ENFJ | looping |
-| Sprint | `HM_ENFJ_Run_Fast` | Male ENFJ | looping |
-| Jump ascent | `HM_ENFJ_Air_JumpUp` | Male ENFJ | motor vertical velocity selects transition |
-| Fall | `HM_ENFJ_Air_JumpDown` | Male ENFJ | held until grounding |
-| Landing | `HM_ENFJ_Air_JumpLanding` | Male ENFJ | finite exit transition |
-| Forward dodge | `HM_ENFJ_Dash` | Male ENFJ | motor owns displacement |
-| Backward dodge | `CC_C_Rage_Avoid` | Common Ninja | semantic variant `1` |
-| Unarmed light | `HMGT_BasicCombo_01` | Blazing Fist | first grounded attack only |
+| State | Clip | Source group |
+| --- | --- | --- |
+| Idle | `HM_ENFJ_Wait` | Male ENFJ |
+| Walk | `HM_ENFJ_Walk` | Male ENFJ |
+| Run | `HM_ENFJ_Run` | Male ENFJ |
+| Sprint | `HM_ENFJ_Run_Fast` | Male ENFJ |
+| Jump anticipation/rise | `HM_ENFJ_Air_JumpUp` | Male ENFJ |
+| Fall | `HM_ENFJ_Air_JumpDown` | Male ENFJ |
+| Landing | `HM_ENFJ_Air_JumpLanding` | Male ENFJ |
+| Forward dodge | `HM_ENFJ_Dash` | Male ENFJ |
+| Backward dodge | `CC_C_Rage_Avoid` | Common Ninja |
+| Unarmed light 1 | `HMGT_BasicCombo_01` | Blazing Fist |
 
-No swimming or ladder clip is mapped. Those presentation states are deferred
-and traversal remains unavailable when its animation slot is unsupported.
+Swimming and ladder traversal are intentionally unmapped.
 
-## Runtime dependency flow
+## UMotion and source-edit policy
 
-```mermaid
-flowchart LR
-    Input["Input snapshot"] --> Gameplay["Locomotion / Combat state"]
-    Gameplay --> Motor["CharacterMotor"]
-    Gameplay --> Adapter["Animation adapters"]
-    Adapter --> Driver["MecanimCharacterAnimationDriver"]
-    Driver --> Params["Animator parameters"]
-    Params --> Controller["XController.controller (recovered graph)"]
-    Controller --> Pose["Generic character pose"]
-    Motor --> Physics["Collision-resolved movement"]
-```
+UMotion is available for genuinely defective source curves, contact correction
+that cannot be solved by phase alignment, or authored additive/weapon layers.
+It is not used as an automatic destructive post-process. The current selected
+clips have valid timing, complete transform curves and no loop discontinuity;
+their observed problems were controller structure, phase alignment and one
+incorrect importer loop classification. Those were fixed at the responsible
+boundaries, so no duplicate edited clips were created.
 
-The Animator never applies root motion to the Player transform. This keeps
-animation smoothing independent from authoritative movement and permits a later
-Humanoid content migration without changing gameplay contracts.
+Any future UMotion correction must retain the untouched reference clip, write a
+separate derived production clip and document exactly which transforms/frames
+changed.
 
-KurtzPel authored character motion faces local `+X`. The visual adapter applies
-a constant `-90` degree yaw so the animated body faces Unity/gameplay `+Z`; the
-Player motor and physics root remain unrotated. `MovementType` is the damped
-presentation gait: idle `0`, walk `1`, run `2`, sprint `3`. It is smoothed over
-`0.33` seconds before the recovered locomotion Blend Tree evaluates it.
+## Generic versus Humanoid
 
-## Extension order
+The current reference model and all clips share the same Generic skeleton, so
+Generic preserves exact poses and extra weapon/twist bones. A temporary import
+probe produced a valid Humanoid Avatar with 52 mapped human bones, confirming
+that later migration is viable.
 
-Combo steps, air combat and reactions should be added only after the current
-movement/dodge/single-hit flow has been tuned in Play Mode. Each new action must
-add a semantic action ID or variant, an Animator state/transition, and a gameplay
-timeline duration. Swimming and ladder animation are separate later work.
+Conversion should occur with the real production Humanoid model, not before.
+The runtime animation contract is rig-independent, so that migration replaces
+content without changing input, gameplay state, combat timelines or motor
+authority.

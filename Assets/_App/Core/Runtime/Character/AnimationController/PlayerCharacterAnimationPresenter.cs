@@ -20,6 +20,7 @@ namespace _App
                 snapshot.VerticalSpeed,
                 snapshot.NormalizedSpeed,
                 snapshot.IsGrounded,
+                snapshot.IsJumpStarting,
                 ResolveGait(snapshot.SpeedMode),
                 ResolveMode(snapshot.Mode));
 

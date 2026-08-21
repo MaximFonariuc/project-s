@@ -1,13 +1,14 @@
 # Animation module
 
-`ModularAnimation` is a small presentation boundary between gameplay and a
-Unity Animator Controller. Gameplay owns movement, action eligibility, combat
-timelines, cancel windows and damage. The Animator Controller owns clips,
-blend trees and visual transitions.
+`ModularAnimation` is the rig-independent presentation boundary between
+gameplay and a conventional Unity Animator Controller. Gameplay owns movement,
+action eligibility, combat timelines, cancel windows, damage and
+collision-resolved translation. The Animator owns clips, blend trees and pose
+crossfades only.
 
-No ScriptableObject animation graph, Playables graph or animation-derived
-movement trajectory is used. The module supports both Generic and Humanoid
-Avatars as long as the assigned clips are compatible with that Avatar.
+The module does not contain Project S assets, clip names or a ScriptableObject
+animation graph. Both Generic and Humanoid Avatars are supported when the
+assigned controller and clips are compatible with the Avatar.
 
 ## Class tree and dependencies
 
@@ -62,8 +63,8 @@ Dependency direction:
 ProjectS.Core.Runtime -> ModularAnimation.Unity -> ModularAnimation.Core
 ```
 
-The module assemblies do not reference `_App/Core` or `_Game`. The Animator
-Controller and content selection belong to Project S authoring.
+The module assemblies do not reference `_App/Core` or `_Game`. Clip selection,
+transition tuning and the Animator Controller asset belong to Project S.
 
 ## Runtime ownership
 
@@ -71,71 +72,86 @@ Controller and content selection belong to Project S authoring.
 flowchart LR
     I["Semantic input"] --> G["Gameplay state machines"]
     G --> M["Character motor"]
-    G --> P["Animation presenters"]
+    G --> P["Animation adapters"]
     P --> D["Mecanim driver"]
     D --> A["Animator parameters"]
     A --> C["Animator Controller"]
-    C --> V["Pose only"]
+    C --> V["Pose and crossfades"]
     M --> W["Collision-resolved world movement"]
 ```
 
 - `MecanimCharacterAnimationDriver` is the only runtime writer of Animator
   parameters.
-- Locomotion is a continuous frame: normalized planar speed, vertical speed,
-  grounded flag, gait and locomotion mode.
-- Finite actions are semantic IDs plus a variant. The controller maps them to
-  states through ordinary transitions.
+- Locomotion is continuous. The driver does not convert speed into a discrete
+  idle/walk/run enum.
+- Finite actions use semantic action IDs and variants. Project S maps those
+  values to ordinary Animator transitions.
 - `PlayerAnimationCoordinator` arbitrates action priority
-  (`Death > Reaction > Traversal > Combat > Locomotion`) but never chooses a
+  (`Death > Reaction > Traversal > Combat > Locomotion`) without choosing a
   clip.
-- `Animator.applyRootMotion` is always disabled. Dodge and combat translation
-  go through `CharacterMotor`, so collisions and grounding cannot be bypassed
-  by presentation.
-- Combat duration belongs to `CombatActionDefinition`; it is not inferred from
-  an animation clip.
+- `Animator.applyRootMotion` is disabled. Dodge and combat translation pass
+  through `CharacterMotor` and its collision/grounding rules.
+- Combat duration belongs to gameplay authoring data; it is never inferred from
+  clip length or Animator normalized time.
 
 ## Animator contract
 
-The conventional controller must define these parameters:
+Every compatible controller defines these parameters:
 
 | Parameter | Type | Meaning |
 | --- | --- | --- |
-| `MovementType` | Float | damped idle/walk/run/sprint value (`0..3`) |
-| `MovementDirection` | Float | normalized local forward direction |
-| `FallingDuration` | Float | vertical motor velocity (historical controller name) |
-| `OnGround` | Bool | confirmed motor grounding |
-| `Action` | Trigger | start a semantic finite action |
+| `PlanarSpeed` | Float | actual local planar speed in metres per second |
+| `NormalizedSpeed` | Float | actual speed divided by the active gameplay maximum |
+| `MoveX` | Float | normalized local lateral direction |
+| `MoveY` | Float | normalized local forward direction |
+| `VerticalSpeed` | Float | signed motor velocity along the character up axis |
+| `Grounded` | Bool | confirmed motor grounding |
+| `LocomotionPlaybackRate` | Float | optional locomotion state speed multiplier |
+| `JumpStarting` | Bool | gameplay-owned jump anticipation window |
+| `Action` | Trigger | starts a semantic finite action |
 | `ActionId` | Int | action family |
-| `ActionVariant` | Int | direction or content variant |
-| `CancelAction` | Trigger | return from an interruptible action |
+| `ActionVariant` | Int | direction/content variant |
+| `CancelAction` | Trigger | requests an interruptible action exit |
 
-The current Project S controller maps action `1` to forward/backward dodge and
-action `2` to the first unarmed light attack. New combo steps will extend this
-semantic mapping and the Animator graph together.
+`PlanarSpeed` and `NormalizedSpeed` are damped over `0.06 s`; direction over
+`0.08 s`; vertical velocity over `0.04 s`. These short presentation filters do
+not delay gameplay state or motor response.
 
-## Current scope
+The old `MovementType`, `MovementDirection`, `FallingDuration` and `OnGround`
+names remain constants only for imported/reference controllers. They are not
+written by the Project S player driver.
 
-The recovered `XController` graph contains:
+## Project S controller policy
 
-- idle/walk/run/sprint 1D locomotion blend tree;
-- jump ascent, fall and landing states;
-- forward and backward dodge;
-- one grounded unarmed light attack;
-- its original locomotion/jump/landing transition graph;
-- `0.25` second action crossfades and explicit cancel transitions.
+`PlayerKurtzPel.controller` is a normal, editable Animator Controller with one
+layer and Write Defaults disabled on every state. Its builder creates it only
+when it is missing; later manual Animator edits are validated and preserved.
 
-The driver deliberately retains the historical `0.33` second damping of
-`MovementType`. This is the smoothing boundary between motor gait changes and
-the idle/walk/run/sprint Blend Tree; gameplay remains authoritative.
+- Idle is separate from the locomotion Blend Tree so movement never starts at
+  an arbitrary shared phase.
+- The locomotion tree contains only compatible cyclic walk/run/sprint clips and
+  uses physical thresholds `3 / 5 / 10 m/s`.
+- Idle/move use `0.10 / 0.14 m/s` hysteresis and `0.12 s` crossfades.
+- Walk is the phase reference. Run and sprint cycle offsets align their first
+  measured foot contacts to it.
+- Jump anticipation, rise, fall and landing are separate states driven by
+  gameplay grounding/velocity rather than clip completion alone.
+- Action entry is `0.055 s`; dodge exit is `0.08 s`; attack exit is `0.12 s`.
+  Dodge playback speed is fitted to the motor-owned `0.48 s` dodge window.
 
-Swimming and ladder traversal animation are intentionally not implemented yet.
-Their locomotion enum values remain reserved so adding presentation later does
-not change the motor or public animation contract.
+The current semantic map uses action `1` for forward/backward dodge and action
+`2` for the first unarmed light attack. Combo expansion adds ordinary Animator
+states/transitions and gameplay timelines; it does not add another animation
+graph abstraction.
 
 ## Generic and Humanoid
 
-The runtime contract is rig-independent. Today the Player prefab uses the
-KurtzPel Generic Avatar and its 86-bone hierarchy. A later Humanoid migration
-replaces the Avatar, clips and controller motions while preserving the same
-parameters and semantic action IDs. Gameplay, input, combat timelines and the
-motor do not change.
+The Player currently uses the KurtzPel Generic Avatar because the model and all
+437 clips share the exact source skeleton, including weapon/twist bones. A
+temporary Humanoid import probe produced a valid Human Avatar with 52 mapped
+human bones, so later migration is feasible.
+
+Migration should happen when the production Humanoid character exists. Doing it
+now would add retargeting differences without providing a runtime benefit. The
+module contracts, gameplay state machines, motor and semantic action IDs remain
+unchanged during that content migration.
