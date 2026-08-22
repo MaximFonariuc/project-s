@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using ModularAnimation;
 using UnityEngine;
 
@@ -7,7 +6,8 @@ namespace _App
 {
     /// <summary>
     /// Adapts Project S semantic animation commands to the historical XController contract.
-    /// The controller owns its blend trees and transitions; gameplay remains the state owner.
+    /// The controller owns its clips, blend trees and exit transitions; this adapter owns
+    /// the semantic entry crossfades. Gameplay remains the authoritative state owner.
     /// </summary>
     internal sealed class XControllerCharacterAnimationDriver :
         ICharacterAnimationDriver,
@@ -20,10 +20,11 @@ namespace _App
         private const string HeadLookLayerName = "HeadLook";
         private const float GaitDampSeconds = 0.33f;
         private const float DirectionDampSeconds = 0.12f;
-        private const float VerticalDampSeconds = 0.10f;
         private const float DirectionEpsilon = 0.0001f;
-        private const float MinimumActionSpeed = 0.25f;
-        private const float MaximumActionSpeed = 3.0f;
+        private const float DodgeCrossFadeSeconds = 0.10f;
+        private const float AttackCrossFadeSeconds = 0.12f;
+        private const float WeaponCrossFadeSeconds = 0.15f;
+        private const float ActionCancelCrossFadeSeconds = 0.12f;
 
         private const int DodgeActionId = 1;
         private const int LightAttackActionId = 2;
@@ -33,19 +34,12 @@ namespace _App
         private static readonly int OnGroundHash = Animator.StringToHash("OnGround");
         private static readonly int MovementDirectionHash = Animator.StringToHash("MovementDirection");
         private static readonly int MovementTypeHash = Animator.StringToHash("MovementType");
-        private static readonly int MoveXHash = Animator.StringToHash("MoveX");
-        private static readonly int MoveYHash = Animator.StringToHash("MoveY");
         private static readonly int FallingDurationHash = Animator.StringToHash("FallingDuration");
         private static readonly int SpeedMultiplierHash = Animator.StringToHash("SpeedMultiplier");
         private static readonly int BodyLookXHash = Animator.StringToHash("BodyLookX");
         private static readonly int BodyLookYHash = Animator.StringToHash("BodyLookY");
         private static readonly int HeadLookXHash = Animator.StringToHash("HeadLookX");
         private static readonly int HeadLookYHash = Animator.StringToHash("HeadLookY");
-        private static readonly int ActionHash = Animator.StringToHash("Action");
-        private static readonly int ActionIdHash = Animator.StringToHash("ActionId");
-        private static readonly int ActionVariantHash = Animator.StringToHash("ActionVariant");
-        private static readonly int ActionSpeedHash = Animator.StringToHash("ActionSpeed");
-        private static readonly int CancelActionHash = Animator.StringToHash("CancelAction");
 
         private static readonly int MoveStateHash = Animator.StringToHash(
             "Base Layer.Locomotion.Move");
@@ -67,13 +61,6 @@ namespace _App
             Animator.StringToHash("Base Layer.Reaction.Airborne"),
             Animator.StringToHash("Base Layer.Reaction.Dead")
         };
-        private static readonly string[] ReactionClipNames =
-        {
-            "ReactionHitStun",
-            "ReactionKnockdown",
-            "ReactionAirborne",
-            "ReactionDeath"
-        };
         private static readonly int WeaponSheatheStateHash = Animator.StringToHash(
             "SwitchWeapon Layer.TwoHanded_Sheathe");
         private static readonly int WeaponUnsheatheStateHash = Animator.StringToHash(
@@ -81,11 +68,10 @@ namespace _App
 
         private readonly Animator _animator;
         private readonly int _switchWeaponLayerIndex;
-        private readonly Dictionary<string, float> _clipDurations =
-            new Dictionary<string, float>(StringComparer.Ordinal);
 
-        private RuntimeAnimatorController _cachedClipController;
         private int _nextSequence;
+        private float _lastAirborneVerticalSpeed;
+        private bool _wasGrounded = true;
         private bool _lookSuppressed;
         private bool _disposed;
 
@@ -132,9 +118,7 @@ namespace _App
                 ? (float)frame.Gait
                 : 0.0f;
             float movementDirection = ResolveMovementDirection(frame, planarSpeed);
-            float inversePlanarSpeed = planarSpeed > DirectionEpsilon
-                ? 1.0f / planarSpeed
-                : 0.0f;
+            float fallingVelocity = ResolveFallingVelocity(frame);
 
             _animator.SetFloat(
                 MovementTypeHash,
@@ -146,44 +130,32 @@ namespace _App
                 movementDirection,
                 DirectionDampSeconds,
                 safeDeltaTime);
-            _animator.SetFloat(
-                MoveXHash,
-                frame.LateralSpeed * inversePlanarSpeed,
-                DirectionDampSeconds,
-                safeDeltaTime);
-            _animator.SetFloat(
-                MoveYHash,
-                frame.ForwardSpeed * inversePlanarSpeed,
-                DirectionDampSeconds,
-                safeDeltaTime);
-            _animator.SetFloat(
-                FallingDurationHash,
-                frame.IsGrounded ? 0.0f : frame.VerticalSpeed,
-                VerticalDampSeconds,
-                safeDeltaTime);
+            // This value drives transition direction and landing thresholds;
+            // damping would delay the jump/fall sign change and soften impacts.
+            _animator.SetFloat(FallingDurationHash, fallingVelocity);
             _animator.SetBool(OnGroundHash, frame.IsGrounded);
+            _wasGrounded = frame.IsGrounded;
         }
 
         public AnimationActionPlayback PlayAction(in AnimationActionRequest request)
         {
             ThrowIfDisposed();
             if (!request.IsValid ||
-                !TryResolveActionState(request, out _, out _, out string clipName))
+                !TryResolveActionState(
+                    request,
+                    out int layerIndex,
+                    out int stateHash,
+                    out float crossFadeSeconds))
             {
                 return AnimationActionPlayback.Invalid;
             }
 
-            // The state hash is resolved only to validate the controller contract.
-            // Animator conditions own visual state selection and crossfade timing.
-            _animator.ResetTrigger(CancelActionHash);
             _lookSuppressed = request.Action.Value == ReactionActionId;
-            _animator.SetInteger(ActionIdHash, request.Action.Value);
-            _animator.SetInteger(ActionVariantHash, request.Variant);
-            _animator.SetFloat(
-                ActionSpeedHash,
-                ResolveActionSpeed(clipName, request.ExpectedDuration));
-            _animator.ResetTrigger(ActionHash);
-            _animator.SetTrigger(ActionHash);
+            _animator.CrossFadeInFixedTime(
+                stateHash,
+                crossFadeSeconds,
+                layerIndex,
+                0.0f);
 
             _nextSequence++;
             if (_nextSequence == 0)
@@ -201,8 +173,15 @@ namespace _App
                 return;
             }
 
-            _animator.ResetTrigger(ActionHash);
-            _animator.SetTrigger(CancelActionHash);
+            if (_animator.HasState(BaseLayerIndex, MoveStateHash))
+            {
+                _animator.CrossFadeInFixedTime(
+                    MoveStateHash,
+                    ActionCancelCrossFadeSeconds,
+                    BaseLayerIndex,
+                    0.0f);
+            }
+
             _lookSuppressed = false;
         }
 
@@ -224,21 +203,16 @@ namespace _App
 
             _animator.SetFloat(MovementTypeHash, 0.0f);
             _animator.SetFloat(MovementDirectionHash, 0.0f);
-            _animator.SetFloat(MoveXHash, 0.0f);
-            _animator.SetFloat(MoveYHash, 0.0f);
             _animator.SetFloat(FallingDurationHash, 0.0f);
             _animator.SetFloat(SpeedMultiplierHash, 1.0f);
             _animator.SetFloat(BodyLookXHash, 0.0f);
             _animator.SetFloat(BodyLookYHash, 0.0f);
             _animator.SetFloat(HeadLookXHash, 0.0f);
             _animator.SetFloat(HeadLookYHash, 0.0f);
-            _animator.ResetTrigger(ActionHash);
-            _animator.ResetTrigger(CancelActionHash);
-            _animator.SetInteger(ActionIdHash, 0);
-            _animator.SetInteger(ActionVariantHash, 0);
-            _animator.SetFloat(ActionSpeedHash, 1.0f);
             _animator.SetBool(OnGroundHash, true);
             _animator.speed = 1.0f;
+            _lastAirborneVerticalSpeed = 0.0f;
+            _wasGrounded = true;
             _lookSuppressed = false;
         }
 
@@ -262,15 +236,28 @@ namespace _App
                 return 0.0f;
             }
 
-            float directionSign = frame.ForwardSpeed < -DirectionEpsilon ? -1.0f : 1.0f;
-            return Mathf.Clamp01(frame.NormalizedSpeed) * directionSign;
+            return frame.ForwardSpeed < -DirectionEpsilon ? -1.0f : 1.0f;
+        }
+
+        private float ResolveFallingVelocity(in CharacterLocomotionFrame frame)
+        {
+            if (!frame.IsGrounded)
+            {
+                _lastAirborneVerticalSpeed = frame.VerticalSpeed;
+                return frame.VerticalSpeed;
+            }
+
+            // XController chooses a landing state from FallingDuration on the
+            // same update that OnGround becomes true. Preserve the final airborne
+            // velocity for that update instead of erasing the landing severity.
+            return _wasGrounded ? 0.0f : _lastAirborneVerticalSpeed;
         }
 
         private bool TryResolveActionState(
             in AnimationActionRequest request,
             out int layerIndex,
             out int stateHash,
-            out string clipName)
+            out float crossFadeSeconds)
         {
             layerIndex = BaseLayerIndex;
             switch (request.Action.Value)
@@ -278,13 +265,13 @@ namespace _App
                 case DodgeActionId:
                     bool backward = request.Variant == 1;
                     stateHash = backward ? RollBackwardStateHash : RollForwardStateHash;
-                    clipName = backward ? "DodgeBackward" : "DodgeForward";
+                    crossFadeSeconds = DodgeCrossFadeSeconds;
                     break;
 
                 case LightAttackActionId when request.Variant >= 0 &&
                                               request.Variant < LightAttackStateHashes.Length:
                     stateHash = LightAttackStateHashes[request.Variant];
-                    clipName = $"BaseAttack{request.Variant + 1}";
+                    crossFadeSeconds = AttackCrossFadeSeconds;
                     break;
 
                 case WeaponTransitionActionId when request.Variant is 0 or 1:
@@ -292,68 +279,23 @@ namespace _App
                     stateHash = request.Variant == 1
                         ? WeaponUnsheatheStateHash
                         : WeaponSheatheStateHash;
-                    clipName = request.Variant == 1
-                        ? "WeaponUnsheath"
-                        : "WeaponSheath";
+                    crossFadeSeconds = WeaponCrossFadeSeconds;
                     break;
 
                 case ReactionActionId when request.Variant >= 0 &&
                                            request.Variant < ReactionStateHashes.Length:
                     stateHash = ReactionStateHashes[request.Variant];
-                    clipName = ReactionClipNames[request.Variant];
+                    crossFadeSeconds = AttackCrossFadeSeconds;
                     break;
 
                 default:
                     layerIndex = -1;
                     stateHash = 0;
-                    clipName = string.Empty;
+                    crossFadeSeconds = 0.0f;
                     return false;
             }
 
             return layerIndex >= 0 && _animator.HasState(layerIndex, stateHash);
-        }
-
-        private float ResolveActionSpeed(string clipName, float expectedDuration)
-        {
-            if (string.IsNullOrEmpty(clipName) || expectedDuration <= 0.0f)
-            {
-                return 1.0f;
-            }
-
-            RefreshClipDurations();
-            return _clipDurations.TryGetValue(clipName, out float clipDuration) &&
-                   clipDuration > 0.0f
-                ? Mathf.Clamp(
-                    clipDuration / expectedDuration,
-                    MinimumActionSpeed,
-                    MaximumActionSpeed)
-                : 1.0f;
-        }
-
-        private void RefreshClipDurations()
-        {
-            RuntimeAnimatorController controller = _animator.runtimeAnimatorController;
-            if (controller == _cachedClipController)
-            {
-                return;
-            }
-
-            _clipDurations.Clear();
-            _cachedClipController = controller;
-            if (controller == null)
-            {
-                return;
-            }
-
-            AnimationClip[] clips = controller.animationClips;
-            for (int i = 0; i < clips.Length; i++)
-            {
-                AnimationClip clip = clips[i];
-                if (clip != null && !_clipDurations.ContainsKey(clip.name))
-                {
-                    _clipDurations.Add(clip.name, clip.length);
-                }
-            }
         }
 
         private void ValidateAnimator()
@@ -382,14 +324,6 @@ namespace _App
                 AnimatorControllerParameterType.Float,
                 "MovementType");
             RequireParameter(
-                MoveXHash,
-                AnimatorControllerParameterType.Float,
-                "MoveX");
-            RequireParameter(
-                MoveYHash,
-                AnimatorControllerParameterType.Float,
-                "MoveY");
-            RequireParameter(
                 FallingDurationHash,
                 AnimatorControllerParameterType.Float,
                 "FallingDuration");
@@ -413,27 +347,6 @@ namespace _App
                 HeadLookYHash,
                 AnimatorControllerParameterType.Float,
                 "HeadLookY");
-            RequireParameter(
-                ActionHash,
-                AnimatorControllerParameterType.Trigger,
-                "Action");
-            RequireParameter(
-                ActionIdHash,
-                AnimatorControllerParameterType.Int,
-                "ActionId");
-            RequireParameter(
-                ActionVariantHash,
-                AnimatorControllerParameterType.Int,
-                "ActionVariant");
-            RequireParameter(
-                ActionSpeedHash,
-                AnimatorControllerParameterType.Float,
-                "ActionSpeed");
-            RequireParameter(
-                CancelActionHash,
-                AnimatorControllerParameterType.Trigger,
-                "CancelAction");
-
             RequireLayer(BodyLookLayerName);
             RequireLayer(HeadLookLayerName);
             RequireLayer(SwitchWeaponLayerName);
@@ -441,11 +354,12 @@ namespace _App
             RequireState(MoveStateHash, "Base Layer.Locomotion.Move");
             RequireState(RollForwardStateHash, "Base Layer.Locomotion.Roll.RollFront");
             RequireState(RollBackwardStateHash, "Base Layer.Locomotion.Roll.RollBack");
-            RequireState(LightAttackStateHashes[0], "Base Layer.Attack.BaseAttack1");
-            RequireState(ReactionStateHashes[0], "Base Layer.Reaction.HitStun");
-            RequireState(ReactionStateHashes[1], "Base Layer.Reaction.Knockdown");
-            RequireState(ReactionStateHashes[2], "Base Layer.Reaction.Airborne");
-            RequireState(ReactionStateHashes[3], "Base Layer.Reaction.Dead");
+            for (int i = 0; i < LightAttackStateHashes.Length; i++)
+            {
+                RequireState(
+                    LightAttackStateHashes[i],
+                    $"Base Layer.Attack.BaseAttack{i + 1}");
+            }
             RequireState(
                 _switchWeaponLayerIndex,
                 WeaponSheatheStateHash,

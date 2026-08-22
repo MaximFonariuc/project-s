@@ -110,8 +110,10 @@ namespace _App
 
                 if (binding.Controller == null)
                 {
-                    throw new InvalidOperationException(
-                        $"Weapon '{binding.WeaponType}' has no Animator Override Controller.");
+                    // The list is optional authoring data. A removed override may
+                    // leave an empty serialized slot behind; unsupported weapons
+                    // still fail explicitly if Apply is called for them.
+                    continue;
                 }
 
                 RuntimeAnimatorController bindingBase = ResolveBaseController(
