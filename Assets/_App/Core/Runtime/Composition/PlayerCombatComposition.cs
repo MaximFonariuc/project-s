@@ -31,7 +31,8 @@ namespace _App
                 .As<ICombatHitEvents>();
             builder.Register<IPlayerCombatAnimation>(
                 resolver => new PlayerCombatAnimationAdapter(
-                    resolver.Resolve<PlayerAnimationCoordinator>()),
+                    resolver.Resolve<PlayerAnimationCoordinator>(),
+                    resolver.Resolve<PlayerAnimatorLoadout>()),
                 Lifetime.Scoped);
             builder.Register(
                 _ => actionProfile != null

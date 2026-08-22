@@ -16,6 +16,9 @@ classDiagram
     class PlayerLocomotionAnimationAdapter
     class PlayerCharacterAnimationPresenter
     class PlayerCombatAnimationAdapter
+    class PlayerAnimatorLoadout {
+        +Apply(weaponType)
+    }
     class PlayerAnimationCoordinator {
         +TryPlayAction(source, request, playback) bool
         +Cancel(source)
@@ -34,6 +37,7 @@ classDiagram
     class XControllerCharacterAnimationDriver
     class PlayerCameraAnimationAdapter
     class XController
+    class TwoHandedOverride
     class CharacterMotor
     class CombatActionExecutor
 
@@ -41,12 +45,16 @@ classDiagram
     PlayerLocomotionAnimationAdapter --> PlayerCharacterAnimationPresenter
     PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator : accepted dodge
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
+    PlayerCombatAnimationAdapter --> PlayerAnimatorLoadout
     PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
     PlayerCameraAnimationAdapter --> ICharacterLookAnimationDriver
     ICharacterAnimationDriver <|.. XControllerCharacterAnimationDriver
     ICharacterLookAnimationDriver <|.. XControllerCharacterAnimationDriver
     XControllerCharacterAnimationDriver --> XController : validated contract
+    PlayerAnimatorLoadout --> XController : base graph
+    PlayerAnimatorLoadout --> TwoHandedOverride : clip table
+    TwoHandedOverride --> XController : override base
     PlayerLocomotionController --> CharacterMotor
     CombatActionExecutor --> CharacterMotor
 ```
@@ -83,6 +91,8 @@ The current action contract is:
 | Dodge | 1 | 0 | `Locomotion/Roll/RollFront` |
 | Dodge | 1 | 1 | `Locomotion/Roll/RollBack` |
 | Light attack | 2 | 0...3 | `Attack/BaseAttack1...4` |
+| Sheathe two-handed | 3 | 0 | `SwitchWeapon Layer/TwoHanded_Sheathe` |
+| Draw two-handed | 3 | 1 | `SwitchWeapon Layer/TwoHanded_Unsheathe` |
 
 The controller consumes its historical `MovementType`, `MovementDirection`,
 `FallingDuration`, `OnGround` and `SpeedMultiplier` parameters. `BodyLookX/Y`
@@ -96,6 +106,24 @@ Every weapon uses an `AnimatorOverrideController` whose base controller is
 `XController`. Layers, parameters, state machines and state names therefore
 remain identical; only animation clips are replaced.
 
+`PlayerAnimatorLoadout` owns runtime controller selection. It validates all
+configured overrides during scene composition and rejects a missing controller,
+duplicate weapon binding, or an override built on another base graph. `Unarmed`
+uses `XController` directly; `TwoHanded` uses
+`Overrides/TwoHanded.overrideController`.
+
+Draw selects the incoming animation loadout before its transition starts, but
+the gameplay weapon and rig change only at normalized commit time `0.50`.
+Sheathe keeps the outgoing loadout until the clip finishes, changes gameplay
+state at the same commit point, and returns to the base controller at completion.
+Cancellation restores the loadout for the weapon that actually reached commit.
+
+Weapon transitions run for `1.00 s`, matching the current draw/sheathe clips.
+Their Animator states start returning to `Waiting` at normalized time `0.90`
+through a `0.10 s` fixed-duration blend. The combat executor advances once per
+rendered frame with `UniTask.NextFrame`, so a single `Time.deltaTime` cannot be
+counted multiple times.
+
 The source motions assigned to `RollFront`, `RollBack` and `BaseAttack1...4`
 are unique override slots. Do not reuse one source clip for two semantically
 different states because a single override would then replace both usages.
@@ -104,8 +132,9 @@ Unity technically keys the override by the source clip asset.
 
 ## Current content
 
-The Player prefab references the restored `XController.controller`. The
-UMotion-authored runtime exports and generated KurtzPel controller were removed;
-the extracted KurtzPel source pack remains available only as a local reference.
-The production Avatar, clips and controller motions can be replaced while
-preserving the gameplay contracts above.
+The Player prefab references `XController.controller` as its unarmed base and
+contains one explicit `TwoHanded` override binding. The current override replaces
+16 slots: idle, forward/back walk, run and sprint, forward/back roll, skill,
+four base attacks, draw and sheathe. Jump, fall, landing and look-layer clips
+remain inherited from the base controller. Additional weapon styles extend the
+serialized binding list without changing gameplay or Animator state names.

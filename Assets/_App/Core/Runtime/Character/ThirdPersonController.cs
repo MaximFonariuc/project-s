@@ -38,6 +38,7 @@ namespace _App
 
         [Header("AnimationController")]
         [SerializeField] private Animator _animator;
+        [SerializeField] private PlayerAnimationOverrideBinding[] _animationOverrides;
         [SerializeField] private Weapon[] _unarmedHitboxes;
 
         [Header("WeaponHolder")] 
@@ -49,6 +50,7 @@ namespace _App
 
         internal CharacterFeatureSet CharacterFeatures => _characterFeatures;
         internal Animator PlayerAnimator => _animator;
+        internal PlayerAnimationOverrideBinding[] AnimationOverrides => _animationOverrides;
         internal Weapon[] UnarmedHitboxes => _unarmedHitboxes;
         internal ECharacterType CharacterType => _characterType;
         internal PlayerCombatActionProfile CombatActionProfile => _combatActionProfile;

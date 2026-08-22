@@ -17,9 +17,11 @@ namespace _App
     {
         public static readonly AnimationActionId Dodge = new AnimationActionId(1);
         public static readonly AnimationActionId LightAttack = new AnimationActionId(2);
+        public static readonly AnimationActionId WeaponTransition = new AnimationActionId(3);
 
         public const float DodgeDuration = 0.78f;
         public const float LightAttackDuration = 1.30f;
+        public const float WeaponTransitionDuration = 1.00f;
 
         public static bool TryCreate(
             AnimationSlotId slot,

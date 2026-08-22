@@ -14,6 +14,7 @@ namespace _App
         IDisposable
     {
         private const int BaseLayerIndex = 0;
+        private const string SwitchWeaponLayerName = "SwitchWeapon Layer";
         private const string BodyLookLayerName = "BodyLook";
         private const string HeadLookLayerName = "HeadLook";
         private const float GaitDampSeconds = 0.33f;
@@ -23,6 +24,7 @@ namespace _App
 
         private const int DodgeActionId = 1;
         private const int LightAttackActionId = 2;
+        private const int WeaponTransitionActionId = 3;
 
         private static readonly int OnGroundHash = Animator.StringToHash("OnGround");
         private static readonly int MovementDirectionHash = Animator.StringToHash("MovementDirection");
@@ -51,8 +53,13 @@ namespace _App
             Animator.StringToHash("Base Layer.Attack.BaseAttack3"),
             Animator.StringToHash("Base Layer.Attack.BaseAttack4")
         };
+        private static readonly int WeaponSheatheStateHash = Animator.StringToHash(
+            "SwitchWeapon Layer.TwoHanded_Sheathe");
+        private static readonly int WeaponUnsheatheStateHash = Animator.StringToHash(
+            "SwitchWeapon Layer.TwoHanded_Unsheathe");
 
         private readonly Animator _animator;
+        private readonly int _switchWeaponLayerIndex;
         private int _nextSequence;
         private bool _disposed;
 
@@ -61,6 +68,7 @@ namespace _App
             _animator = animator != null
                 ? animator
                 : throw new ArgumentNullException(nameof(animator));
+            _switchWeaponLayerIndex = _animator.GetLayerIndex(SwitchWeaponLayerName);
 
             ValidateAnimator();
             _animator.applyRootMotion = false;
@@ -116,7 +124,7 @@ namespace _App
         public AnimationActionPlayback PlayAction(in AnimationActionRequest request)
         {
             ThrowIfDisposed();
-            if (!request.IsValid || !TryResolveActionState(request, out _))
+            if (!request.IsValid || !TryResolveActionState(request, out _, out _))
             {
                 return AnimationActionPlayback.Invalid;
             }
@@ -207,8 +215,10 @@ namespace _App
 
         private bool TryResolveActionState(
             in AnimationActionRequest request,
+            out int layerIndex,
             out int stateHash)
         {
+            layerIndex = BaseLayerIndex;
             switch (request.Action.Value)
             {
                 case DodgeActionId:
@@ -222,12 +232,20 @@ namespace _App
                     stateHash = LightAttackStateHashes[request.Variant];
                     break;
 
+                case WeaponTransitionActionId when request.Variant is 0 or 1:
+                    layerIndex = _switchWeaponLayerIndex;
+                    stateHash = request.Variant == 1
+                        ? WeaponUnsheatheStateHash
+                        : WeaponSheatheStateHash;
+                    break;
+
                 default:
+                    layerIndex = -1;
                     stateHash = 0;
                     return false;
             }
 
-            return _animator.HasState(BaseLayerIndex, stateHash);
+            return layerIndex >= 0 && _animator.HasState(layerIndex, stateHash);
         }
 
         private void ValidateAnimator()
@@ -298,11 +316,20 @@ namespace _App
 
             RequireLayer(BodyLookLayerName);
             RequireLayer(HeadLookLayerName);
+            RequireLayer(SwitchWeaponLayerName);
 
             RequireState(MoveStateHash, "Base Layer.Locomotion.Move");
             RequireState(RollForwardStateHash, "Base Layer.Locomotion.Roll.RollFront");
             RequireState(RollBackwardStateHash, "Base Layer.Locomotion.Roll.RollBack");
             RequireState(LightAttackStateHashes[0], "Base Layer.Attack.BaseAttack1");
+            RequireState(
+                _switchWeaponLayerIndex,
+                WeaponSheatheStateHash,
+                "SwitchWeapon Layer.TwoHanded_Sheathe");
+            RequireState(
+                _switchWeaponLayerIndex,
+                WeaponUnsheatheStateHash,
+                "SwitchWeapon Layer.TwoHanded_Unsheathe");
         }
 
         private void RequireParameter(
@@ -327,7 +354,12 @@ namespace _App
 
         private void RequireState(int stateHash, string stateName)
         {
-            if (!_animator.HasState(BaseLayerIndex, stateHash))
+            RequireState(BaseLayerIndex, stateHash, stateName);
+        }
+
+        private void RequireState(int layerIndex, int stateHash, string stateName)
+        {
+            if (layerIndex < 0 || !_animator.HasState(layerIndex, stateHash))
             {
                 throw new InvalidOperationException(
                     $"Animator Controller on '{_animator.name}' is missing required state '{stateName}'.");

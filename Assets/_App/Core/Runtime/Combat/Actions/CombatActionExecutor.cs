@@ -68,7 +68,10 @@ namespace _App
                         return CombatActionRunResult.Completed;
                     }
 
-                    await UniTask.Yield(cancellationToken);
+                    // Yield can resume again in the same rendered frame. Since the
+                    // executor advances by Time.deltaTime, that would count one
+                    // frame more than once and desynchronize gameplay from clips.
+                    await UniTask.NextFrame(cancellationToken);
                     Advance(executionId, Mathf.Max(0.0f, _clock.DeltaTime));
                 }
             }

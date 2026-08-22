@@ -41,6 +41,11 @@ namespace _App
                 .AsSelf()
                 .As<ModularAnimation.ICharacterAnimationDriver>()
                 .As<ICharacterLookAnimationDriver>();
+            builder.Register(
+                _ => new PlayerAnimatorLoadout(
+                    player.PlayerAnimator,
+                    player.AnimationOverrides),
+                Lifetime.Scoped);
             builder.Register<PlayerAnimationCoordinator>(Lifetime.Scoped);
             builder.Register<PlayerCharacterAnimationPresenter>(Lifetime.Scoped);
             builder.Register(

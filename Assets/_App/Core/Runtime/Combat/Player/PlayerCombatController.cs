@@ -120,7 +120,7 @@ namespace _App
             }
 
             _animation.ApplyLoadout(_characterType, CurrentWeapon);
-            _weaponRig.ApplyWeapon(CurrentWeapon);
+            CommitWeapon(CurrentWeapon);
 
             _stateMachine.StateChanged += OnStateChanged;
             if (!_stateMachine.IsRunning)
@@ -367,23 +367,40 @@ namespace _App
             EWeaponType resultingWeapon,
             CancellationToken token)
         {
-            if (!_animation.TryPlayWeaponTransition(
-                    animationWeapon,
-                    draw,
-                    out AnimationActionPlayback playback))
+            // Draw belongs to the incoming loadout, while sheathe belongs to the
+            // currently equipped one. The weapon itself is still committed only
+            // at the gameplay-owned commit point below.
+            if (draw)
             {
-                return false;
+                _animation.ApplyLoadout(_characterType, animationWeapon);
             }
 
-            _pendingWeapon = resultingWeapon;
-            _weaponApplied = false;
-            CombatActionRunResult result = await ExecuteObservedActionAsync(
-                _weaponTransitionAction.Definition,
-                _weaponTransitionAction.Definition.DurationSeconds,
-                ActionObservationMode.WeaponTransition,
-                token);
+            try
+            {
+                if (!_animation.TryPlayWeaponTransition(
+                        animationWeapon,
+                        draw,
+                        out AnimationActionPlayback playback))
+                {
+                    return false;
+                }
 
-            return result == CombatActionRunResult.Completed && _weaponApplied;
+                _pendingWeapon = resultingWeapon;
+                _weaponApplied = false;
+                CombatActionRunResult result = await ExecuteObservedActionAsync(
+                    _weaponTransitionAction.Definition,
+                    _weaponTransitionAction.Definition.DurationSeconds,
+                    ActionObservationMode.WeaponTransition,
+                    token);
+
+                return result == CombatActionRunResult.Completed && _weaponApplied;
+            }
+            finally
+            {
+                // Keep the source loadout for the full sheathe clip. On cancel,
+                // restore whichever weapon actually reached its commit point.
+                _animation.ApplyLoadout(_characterType, CurrentWeapon);
+            }
         }
 
         private async UniTask<CombatActionRunResult> ExecuteObservedActionAsync(
@@ -434,7 +451,7 @@ namespace _App
                 case ActionObservationMode.WeaponTransition:
                     if (frame.CommitReached)
                     {
-                        ApplyWeapon(_pendingWeapon);
+                        CommitWeapon(_pendingWeapon);
                         _weaponApplied = true;
                     }
                     break;
@@ -562,9 +579,8 @@ namespace _App
             }
         }
 
-        private void ApplyWeapon(EWeaponType weaponType)
+        private void CommitWeapon(EWeaponType weaponType)
         {
-            _animation.ApplyLoadout(_characterType, weaponType);
             _weaponRig.ApplyWeapon(weaponType);
             if (CurrentWeapon == weaponType)
             {

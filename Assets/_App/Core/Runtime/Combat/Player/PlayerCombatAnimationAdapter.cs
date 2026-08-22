@@ -6,20 +6,25 @@ namespace _App
     internal sealed class PlayerCombatAnimationAdapter : IPlayerCombatAnimation
     {
         private readonly PlayerAnimationCoordinator _animation;
+        private readonly PlayerAnimatorLoadout _loadout;
 
         private EWeaponType _weaponType;
         private bool _disposed;
 
         public int ComboCount => _weaponType == EWeaponType.Unarmed ? 1 : 0;
 
-        public PlayerCombatAnimationAdapter(PlayerAnimationCoordinator animation)
+        public PlayerCombatAnimationAdapter(
+            PlayerAnimationCoordinator animation,
+            PlayerAnimatorLoadout loadout)
         {
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
+            _loadout = loadout ?? throw new ArgumentNullException(nameof(loadout));
         }
 
         public void ApplyLoadout(ECharacterType characterType, EWeaponType weaponType)
         {
             ThrowIfDisposed();
+            _loadout.Apply(weaponType);
             _weaponType = weaponType;
         }
 
@@ -67,8 +72,21 @@ namespace _App
             bool draw,
             out AnimationActionPlayback playback)
         {
-            playback = default;
-            return false;
+            ThrowIfDisposed();
+            if (weaponType != EWeaponType.TwoHanded)
+            {
+                playback = default;
+                return false;
+            }
+
+            var request = new AnimationActionRequest(
+                PlayerAnimatorActions.WeaponTransition,
+                draw ? 1 : 0,
+                PlayerAnimatorActions.WeaponTransitionDuration);
+            return _animation.TryPlayAction(
+                PlayerAnimationSource.Combat,
+                in request,
+                out playback);
         }
 
         public void Release()
