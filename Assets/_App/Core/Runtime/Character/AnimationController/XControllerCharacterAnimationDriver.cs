@@ -19,7 +19,6 @@ namespace _App
         private const float GaitDampSeconds = 0.33f;
         private const float DirectionDampSeconds = 0.10f;
         private const float VerticalDampSeconds = 0.10f;
-        private const float ActionTransitionSeconds = 0.10f;
         private const float DirectionEpsilon = 0.0001f;
 
         private const int DodgeActionId = 1;
@@ -34,6 +33,10 @@ namespace _App
         private static readonly int BodyLookYHash = Animator.StringToHash("BodyLookY");
         private static readonly int HeadLookXHash = Animator.StringToHash("HeadLookX");
         private static readonly int HeadLookYHash = Animator.StringToHash("HeadLookY");
+        private static readonly int ActionHash = Animator.StringToHash("Action");
+        private static readonly int ActionIdHash = Animator.StringToHash("ActionId");
+        private static readonly int ActionVariantHash = Animator.StringToHash("ActionVariant");
+        private static readonly int CancelActionHash = Animator.StringToHash("CancelAction");
 
         private static readonly int MoveStateHash = Animator.StringToHash(
             "Base Layer.Locomotion.Move");
@@ -113,15 +116,18 @@ namespace _App
         public AnimationActionPlayback PlayAction(in AnimationActionRequest request)
         {
             ThrowIfDisposed();
-            if (!request.IsValid || !TryResolveActionState(request, out int stateHash))
+            if (!request.IsValid || !TryResolveActionState(request, out _))
             {
                 return AnimationActionPlayback.Invalid;
             }
 
-            _animator.CrossFadeInFixedTime(
-                stateHash,
-                ActionTransitionSeconds,
-                BaseLayerIndex);
+            // The state hash is resolved only to validate the controller contract.
+            // Animator conditions own visual state selection and crossfade timing.
+            _animator.ResetTrigger(CancelActionHash);
+            _animator.SetInteger(ActionIdHash, request.Action.Value);
+            _animator.SetInteger(ActionVariantHash, request.Variant);
+            _animator.ResetTrigger(ActionHash);
+            _animator.SetTrigger(ActionHash);
 
             _nextSequence++;
             if (_nextSequence == 0)
@@ -139,10 +145,8 @@ namespace _App
                 return;
             }
 
-            _animator.CrossFadeInFixedTime(
-                MoveStateHash,
-                ActionTransitionSeconds,
-                BaseLayerIndex);
+            _animator.ResetTrigger(ActionHash);
+            _animator.SetTrigger(CancelActionHash);
         }
 
         public void SetPlaybackSpeed(float speed)
@@ -169,6 +173,10 @@ namespace _App
             _animator.SetFloat(BodyLookYHash, 0.0f);
             _animator.SetFloat(HeadLookXHash, 0.0f);
             _animator.SetFloat(HeadLookYHash, 0.0f);
+            _animator.ResetTrigger(ActionHash);
+            _animator.ResetTrigger(CancelActionHash);
+            _animator.SetInteger(ActionIdHash, 0);
+            _animator.SetInteger(ActionVariantHash, 0);
             _animator.SetBool(OnGroundHash, true);
             _animator.speed = 1.0f;
         }
@@ -271,6 +279,22 @@ namespace _App
                 HeadLookYHash,
                 AnimatorControllerParameterType.Float,
                 "HeadLookY");
+            RequireParameter(
+                ActionHash,
+                AnimatorControllerParameterType.Trigger,
+                "Action");
+            RequireParameter(
+                ActionIdHash,
+                AnimatorControllerParameterType.Int,
+                "ActionId");
+            RequireParameter(
+                ActionVariantHash,
+                AnimatorControllerParameterType.Int,
+                "ActionVariant");
+            RequireParameter(
+                CancelActionHash,
+                AnimatorControllerParameterType.Trigger,
+                "CancelAction");
 
             RequireLayer(BodyLookLayerName);
             RequireLayer(HeadLookLayerName);

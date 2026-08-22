@@ -27,8 +27,13 @@ classDiagram
         +PlayAction(request) AnimationActionPlayback
         +CancelAction()
     }
-    class MecanimCharacterAnimationDriver
-    class PlayerKurtzPelController
+    class ICharacterLookAnimationDriver {
+        <<module interface>>
+        +SetLook(horizontal, vertical)
+    }
+    class XControllerCharacterAnimationDriver
+    class PlayerCameraAnimationAdapter
+    class XController
     class CharacterMotor
     class CombatActionExecutor
 
@@ -38,8 +43,10 @@ classDiagram
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
-    ICharacterAnimationDriver <|.. MecanimCharacterAnimationDriver
-    MecanimCharacterAnimationDriver --> PlayerKurtzPelController : parameters
+    PlayerCameraAnimationAdapter --> ICharacterLookAnimationDriver
+    ICharacterAnimationDriver <|.. XControllerCharacterAnimationDriver
+    ICharacterLookAnimationDriver <|.. XControllerCharacterAnimationDriver
+    XControllerCharacterAnimationDriver --> XController : validated contract
     PlayerLocomotionController --> CharacterMotor
     CombatActionExecutor --> CharacterMotor
 ```
@@ -52,11 +59,10 @@ classDiagram
   locomotion frame.
 - `PlayerAnimationCoordinator` arbitrates finite action priority:
   `Death > Reaction > Traversal > Combat > Locomotion`.
-- `MecanimCharacterAnimationDriver` is the only parameter writer. It validates
-  the controller contract, caches parameter hashes and never selects a clip.
-- `PlayerKurtzPel.controller` is the single-layer visual graph. It can be edited
-  directly in Animator; the setup tool validates rather than overwrites an
-  existing asset.
+- `XControllerCharacterAnimationDriver` is the only parameter writer. The same
+  scoped instance presents locomotion, finite actions and body/head look.
+- `XController.controller` is the manually authored visual graph. No editor
+  setup tool creates or rewrites its states, motions, Blend Trees or transitions.
 - `CombatActionDefinition.DurationSeconds` owns gameplay action duration. No
   combat rule reads clip length or Animator normalized time.
 - Root motion is disabled. Dodge and attack movement go through
@@ -64,51 +70,42 @@ classDiagram
 
 ## Transition model
 
-The controller avoids one large idle/walk/run/sprint Blend Tree. Idle is a
-separate state; locomotion contains only the three cyclic moving clips.
+Transitions are content authored in Animator. Runtime code supplies the
+semantic `Action` trigger together with `ActionId` and `ActionVariant` and never
+calls `Animator.CrossFade` to choose a finite-action state. `CancelAction`
+returns supported dodge and attack states to `Move` through explicit `0.10 s`
+fixed-time transitions.
 
-```mermaid
-stateDiagram-v2
-    [*] --> Idle
-    Idle --> Locomotion: PlanarSpeed > 0.14
-    Locomotion --> Idle: PlanarSpeed < 0.10
-    Idle --> JumpStart: JumpStarting
-    Locomotion --> JumpStart: JumpStarting
-    JumpStart --> JumpRise: anticipation finished
-    JumpRise --> Fall: VerticalSpeed < 0
-    Fall --> Landing: Grounded
-    Landing --> Idle
-    Landing --> Locomotion
-    Idle --> Dodge: Action 1
-    Locomotion --> Dodge: Action 1
-    Idle --> LightAttack1: Action 2
-    Locomotion --> LightAttack1: Action 2
-```
+The current action contract is:
 
-The locomotion Blend Tree uses the measured physical thresholds
-`Walk=3`, `Run=5`, `Sprint=10 m/s`. Walk is the reference contact phase;
-measured offsets `Run=0.32` and `Sprint=0.47` align the selected cycles. Short
-crossfades (`0.12 s` locomotion, `0.055 s` action entry) keep the controller
-responsive while avoiding pose cuts.
+| Action | Id | Variant | State |
+| --- | ---: | ---: | --- |
+| Dodge | 1 | 0 | `Locomotion/Roll/RollFront` |
+| Dodge | 1 | 1 | `Locomotion/Roll/RollBack` |
+| Light attack | 2 | 0...3 | `Attack/BaseAttack1...4` |
 
-Jump anticipation is gameplay-owned (`0.12 s`). The Animator shows Jump Start
-during that interval, then uses vertical velocity and grounding for rise, fall
-and landing. A missing/short clip cannot change jump physics.
+The controller consumes its historical `MovementType`, `MovementDirection`,
+`FallingDuration`, `OnGround` and `SpeedMultiplier` parameters. `BodyLookX/Y`
+and `HeadLookX/Y` drive the additive `BodyLook` and `HeadLook` layers from the
+camera/targeting presentation path. Jump anticipation remains gameplay-owned
+regardless of the current animation graph.
 
-## Current content and validation
+## Weapon override contract
 
-The Player uses the KurtzPel Generic Avatar and selected ENFJ locomotion set,
-forward/back dodge and the first Blazing Fist light attack. The visual child is
-rotated `-90` degrees around Y to convert authored `+X` forward to gameplay
-`+Z`; the physics root remains unrotated.
+Every weapon uses an `AnimatorOverrideController` whose base controller is
+`XController`. Layers, parameters, state machines and state names therefore
+remain identical; only animation clips are replaced.
 
-The runtime path was exercised in `PrototypeArena` through the real Input
-System:
+The source motions assigned to `RollFront`, `RollBack` and `BaseAttack1...4`
+are unique override slots. Do not reuse one source clip for two semantically
+different states because a single override would then replace both usages.
+Replacement clip names follow the same slot names for readability, although
+Unity technically keys the override by the source clip asset.
 
-- keyboard move produced `Locomotion`, `PlanarSpeed=5` and motor displacement;
-- jump entered the gameplay-owned `Jump Start` phase;
-- light attack entered `Light Attack 1` through the combat command path;
-- gamepad dodge entered `Dodge Forward` and moved through the motor.
+## Current content
 
-Humanoid migration remains content-only. The production Avatar, clips and
-controller motions can be replaced while preserving all gameplay contracts.
+The Player prefab references the restored `XController.controller`. The
+UMotion-authored runtime exports and generated KurtzPel controller were removed;
+the extracted KurtzPel source pack remains available only as a local reference.
+The production Avatar, clips and controller motions can be replaced while
+preserving the gameplay contracts above.
