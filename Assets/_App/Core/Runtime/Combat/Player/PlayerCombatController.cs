@@ -350,7 +350,10 @@ namespace _App
             return presentation.Kind switch
             {
                 PlayerCombatPresentationKind.ComboStep =>
-                    _animation.TryPlayComboStep(presentation.ComboIndex, out playback),
+                    _animation.TryPlayComboStep(
+                        presentation.ComboIndex,
+                        action.Definition.DurationSeconds,
+                        out playback),
                 PlayerCombatPresentationKind.NamedAnimation =>
                     _animation.TryPlayNamedAnimation(
                         _characterType,

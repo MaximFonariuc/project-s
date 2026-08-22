@@ -53,7 +53,7 @@ classDiagram
     }
     class PlayerCombatActionProfile {
         <<ScriptableObject authoring>>
-        +CreateActionGraph(comboCount)
+        +CreateActionGraph()
     }
     class PlayerCombatController {
         <<runtime owner>>
@@ -102,15 +102,17 @@ ScriptableObject хранит только authoring data. Очередь input,
 
 `Assets/_Game/Settings/Combat/Player/PlayerCombatActionProfile.asset` назначен на
 `Assets/_Game/Prefabs/Character/Player.prefab` и является штатным authoring-профилем игрока.
-Он содержит четыре наземных и четыре воздушных combo actions, отдельные ground/air
-варианты `skill.special`, environment-specific entries и переходы через chain/cancel windows.
+Он содержит четыре последовательных наземных combo actions, один ground entry и
+три перехода `0 → 1 → 2 → 3` через chain windows. Воздушные actions и named skills
+пока не входят в штатный профиль.
 
-Input buffer настроен на четыре команды, отбрасывает действие с наименьшим приоритетом
-при переполнении и отдаёт приоритет `skill.special`. Planar и vertical combat motion
-описываются в action definition и исполняются через character motor с разрешением
-столкновений. Текущие timings, damage и distances являются стартовыми tuning values;
-ground/air ветки временно используют имеющиеся четыре combo clips и не привязывают
-gameplay graph к финальному набору анимаций.
+Input buffer настроен на четыре команды и при переполнении отбрасывает действие с
+наименьшим приоритетом. Все текущие `attack.light` команды имеют default priority;
+named priority overrides пока не настроены. Planar и vertical combat motion описываются
+в action definition и исполняются через character motor с разрешением столкновений.
+Текущие timings, damage и distances являются стартовыми tuning values. Gameplay graph
+не хранит ссылки на клипы: animation adapter передаёт combo index и ожидаемую
+длительность в общий Animator contract.
 
 ## Зависимости
 

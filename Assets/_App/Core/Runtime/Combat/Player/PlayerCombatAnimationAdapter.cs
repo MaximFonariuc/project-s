@@ -5,13 +5,15 @@ namespace _App
 {
     internal sealed class PlayerCombatAnimationAdapter : IPlayerCombatAnimation
     {
+        private const int SupportedComboCount = 4;
+
         private readonly PlayerAnimationCoordinator _animation;
         private readonly PlayerAnimatorLoadout _loadout;
 
         private EWeaponType _weaponType;
         private bool _disposed;
 
-        public int ComboCount => _weaponType == EWeaponType.Unarmed ? 1 : 0;
+        public int ComboCount => SupportedComboCount;
 
         public PlayerCombatAnimationAdapter(
             PlayerAnimationCoordinator animation,
@@ -38,10 +40,13 @@ namespace _App
 
         public bool TryPlayComboStep(
             int comboIndex,
+            float expectedDuration,
             out AnimationActionPlayback playback)
         {
             ThrowIfDisposed();
-            if (_weaponType != EWeaponType.Unarmed || comboIndex != 0)
+            if (comboIndex < 0 ||
+                comboIndex >= SupportedComboCount ||
+                expectedDuration <= 0.0f)
             {
                 playback = default;
                 return false;
@@ -49,8 +54,8 @@ namespace _App
 
             var request = new AnimationActionRequest(
                 PlayerAnimatorActions.LightAttack,
-                0,
-                PlayerAnimatorActions.LightAttackDuration);
+                comboIndex,
+                expectedDuration);
             return _animation.TryPlayAction(
                 PlayerAnimationSource.Combat,
                 in request,

@@ -100,6 +100,15 @@ and `HeadLookX/Y` drive the additive `BodyLook` and `HeadLook` layers from the
 camera/targeting presentation path. Jump anticipation remains gameplay-owned
 regardless of the current animation graph.
 
+`ActionSpeed` is a presentation-only parameter enabled on `BaseAttack1...4`.
+`CombatActionDefinition.DurationSeconds` is passed as the expected duration of
+the semantic request. The driver caches clip lengths for the currently assigned
+Runtime Animator Controller and calculates `clip length / expected duration`.
+Consequently a base clip and its weapon override can have different source
+lengths while their hit, chain, cancel and completion windows remain on one
+gameplay-owned timeline. Controller reassignment invalidates this cache; no clip
+lookup or allocation is performed per frame.
+
 ## Weapon override contract
 
 Every weapon uses an `AnimatorOverrideController` whose base controller is
@@ -138,3 +147,9 @@ contains one explicit `TwoHanded` override binding. The current override replace
 four base attacks, draw and sheathe. Jump, fall, landing and look-layer clips
 remain inherited from the base controller. Additional weapon styles extend the
 serialized binding list without changing gameplay or Animator state names.
+
+The four attack states use `0.10 s` Any State entry blends. Their natural exit
+starts at normalized time `0.90` and blends to locomotion for `0.10 s`; an
+explicit `CancelAction` transition uses the same fixed blend. A new combo step
+interrupts the current attack only after gameplay accepts its buffered command
+inside the configured chain window.

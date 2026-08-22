@@ -6,6 +6,24 @@
 
 Combat не управляет motor напрямую. Он выдаёт только `PlayerMovementIntent`, который читает locomotion.
 
+## Текущая ground combo
+
+Одна команда `attack.light` входит в `combo.ground.0`. Следующие команды сначала
+попадают в `CombatInputBuffer` и могут перейти только `0 → 1 → 2 → 3` внутри
+`ChainWindow` текущего action. У четвёртого action перехода обратно к первому
+нет: новая цепочка начинается только отдельным вводом после возврата в `Ready`.
+
+| Step | Duration | Hitbox | Chain | Cancel | Damage | Motor distance |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0 | 1.20 s | 0.28–0.50 | 0.50–0.76 | 0.58–0.90 | 10 | 0.55 m |
+| 1 | 1.40 s | 0.30–0.50 | 0.52–0.78 | 0.60–0.90 | 12 | 0.75 m |
+| 2 | 1.50 s | 0.35–0.55 | 0.56–0.82 | 0.64–0.92 | 15 | 0.70 m |
+| 3 | 1.90 s | 0.24–0.40 | disabled | 0.72–0.94 | 24 | 0.90 m |
+
+Это стартовые tuning values для текущего набора клипов. Damage/hitbox/movement
+остаются gameplay data и не вычисляются из Animator. Presentation получает лишь
+ожидаемую длительность action и подстраивает скорость активного override-клипа.
+
 ## Дерево классов и зависимости
 
 ```mermaid
@@ -114,6 +132,10 @@ sequenceDiagram
     Combat->>Graph: resolve buffered transition
     Combat->>Machine: Recovery -> Executing(next action)
 ```
+
+Для combo presentation вызов содержит `ComboIndex` и
+`CombatActionDefinition.DurationSeconds`. Это не переносит authority в Animator:
+длительность нужна ему только для визуальной нормализации `ActionSpeed`.
 
 Hitbox открывается только по `CombatActionFrame` и закрывается при completion, cancellation, interruption и disable. Каждое фактически запущенное action получает отдельный `CombatAttackExecution`, поэтому повторные hurtbox одной цели фильтруются на уровне атаки, а не оружия. Weapon transition применяет loadout только после commit point. Cooldown хранится по `PlayerCombatActionId`; animation lookup использует отдельный `PlayerCombatAnimationId`.
 

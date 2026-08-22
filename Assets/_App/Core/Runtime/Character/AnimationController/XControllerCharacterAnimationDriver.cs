@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ModularAnimation;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ namespace _App
         private const float DirectionDampSeconds = 0.10f;
         private const float VerticalDampSeconds = 0.10f;
         private const float DirectionEpsilon = 0.0001f;
+        private const float MinimumActionSpeed = 0.25f;
+        private const float MaximumActionSpeed = 3.0f;
 
         private const int DodgeActionId = 1;
         private const int LightAttackActionId = 2;
@@ -38,6 +41,7 @@ namespace _App
         private static readonly int ActionHash = Animator.StringToHash("Action");
         private static readonly int ActionIdHash = Animator.StringToHash("ActionId");
         private static readonly int ActionVariantHash = Animator.StringToHash("ActionVariant");
+        private static readonly int ActionSpeedHash = Animator.StringToHash("ActionSpeed");
         private static readonly int CancelActionHash = Animator.StringToHash("CancelAction");
 
         private static readonly int MoveStateHash = Animator.StringToHash(
@@ -60,6 +64,10 @@ namespace _App
 
         private readonly Animator _animator;
         private readonly int _switchWeaponLayerIndex;
+        private readonly Dictionary<string, float> _clipDurations =
+            new Dictionary<string, float>(StringComparer.Ordinal);
+
+        private RuntimeAnimatorController _cachedClipController;
         private int _nextSequence;
         private bool _disposed;
 
@@ -124,7 +132,8 @@ namespace _App
         public AnimationActionPlayback PlayAction(in AnimationActionRequest request)
         {
             ThrowIfDisposed();
-            if (!request.IsValid || !TryResolveActionState(request, out _, out _))
+            if (!request.IsValid ||
+                !TryResolveActionState(request, out _, out _, out string clipName))
             {
                 return AnimationActionPlayback.Invalid;
             }
@@ -134,6 +143,9 @@ namespace _App
             _animator.ResetTrigger(CancelActionHash);
             _animator.SetInteger(ActionIdHash, request.Action.Value);
             _animator.SetInteger(ActionVariantHash, request.Variant);
+            _animator.SetFloat(
+                ActionSpeedHash,
+                ResolveActionSpeed(clipName, request.ExpectedDuration));
             _animator.ResetTrigger(ActionHash);
             _animator.SetTrigger(ActionHash);
 
@@ -185,6 +197,7 @@ namespace _App
             _animator.ResetTrigger(CancelActionHash);
             _animator.SetInteger(ActionIdHash, 0);
             _animator.SetInteger(ActionVariantHash, 0);
+            _animator.SetFloat(ActionSpeedHash, 1.0f);
             _animator.SetBool(OnGroundHash, true);
             _animator.speed = 1.0f;
         }
@@ -216,20 +229,22 @@ namespace _App
         private bool TryResolveActionState(
             in AnimationActionRequest request,
             out int layerIndex,
-            out int stateHash)
+            out int stateHash,
+            out string clipName)
         {
             layerIndex = BaseLayerIndex;
             switch (request.Action.Value)
             {
                 case DodgeActionId:
-                    stateHash = request.Variant == 1
-                        ? RollBackwardStateHash
-                        : RollForwardStateHash;
+                    bool backward = request.Variant == 1;
+                    stateHash = backward ? RollBackwardStateHash : RollForwardStateHash;
+                    clipName = backward ? "RollBack" : "RollFront";
                     break;
 
                 case LightAttackActionId when request.Variant >= 0 &&
                                               request.Variant < LightAttackStateHashes.Length:
                     stateHash = LightAttackStateHashes[request.Variant];
+                    clipName = $"BaseAttack{request.Variant + 1}";
                     break;
 
                 case WeaponTransitionActionId when request.Variant is 0 or 1:
@@ -237,15 +252,62 @@ namespace _App
                     stateHash = request.Variant == 1
                         ? WeaponUnsheatheStateHash
                         : WeaponSheatheStateHash;
+                    clipName = request.Variant == 1
+                        ? "WeaponUnsheath"
+                        : "WeaponSheath";
                     break;
 
                 default:
                     layerIndex = -1;
                     stateHash = 0;
+                    clipName = string.Empty;
                     return false;
             }
 
             return layerIndex >= 0 && _animator.HasState(layerIndex, stateHash);
+        }
+
+        private float ResolveActionSpeed(string clipName, float expectedDuration)
+        {
+            if (string.IsNullOrEmpty(clipName) || expectedDuration <= 0.0f)
+            {
+                return 1.0f;
+            }
+
+            RefreshClipDurations();
+            return _clipDurations.TryGetValue(clipName, out float clipDuration) &&
+                   clipDuration > 0.0f
+                ? Mathf.Clamp(
+                    clipDuration / expectedDuration,
+                    MinimumActionSpeed,
+                    MaximumActionSpeed)
+                : 1.0f;
+        }
+
+        private void RefreshClipDurations()
+        {
+            RuntimeAnimatorController controller = _animator.runtimeAnimatorController;
+            if (controller == _cachedClipController)
+            {
+                return;
+            }
+
+            _clipDurations.Clear();
+            _cachedClipController = controller;
+            if (controller == null)
+            {
+                return;
+            }
+
+            AnimationClip[] clips = controller.animationClips;
+            for (int i = 0; i < clips.Length; i++)
+            {
+                AnimationClip clip = clips[i];
+                if (clip != null && !_clipDurations.ContainsKey(clip.name))
+                {
+                    _clipDurations.Add(clip.name, clip.length);
+                }
+            }
         }
 
         private void ValidateAnimator()
@@ -309,6 +371,10 @@ namespace _App
                 ActionVariantHash,
                 AnimatorControllerParameterType.Int,
                 "ActionVariant");
+            RequireParameter(
+                ActionSpeedHash,
+                AnimatorControllerParameterType.Float,
+                "ActionSpeed");
             RequireParameter(
                 CancelActionHash,
                 AnimatorControllerParameterType.Trigger,

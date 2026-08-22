@@ -20,7 +20,6 @@ namespace _App
         public static readonly AnimationActionId WeaponTransition = new AnimationActionId(3);
 
         public const float DodgeDuration = 0.78f;
-        public const float LightAttackDuration = 1.30f;
         public const float WeaponTransitionDuration = 1.00f;
 
         public static bool TryCreate(

@@ -43,7 +43,10 @@ namespace _App
             ECharacterType characterType,
             EWeaponType weaponType,
             PlayerCombatAnimationId animationId);
-        bool TryPlayComboStep(int comboIndex, out AnimationActionPlayback playback);
+        bool TryPlayComboStep(
+            int comboIndex,
+            float expectedDuration,
+            out AnimationActionPlayback playback);
         bool TryPlayNamedAnimation(
             ECharacterType characterType,
             EWeaponType weaponType,

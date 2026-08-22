@@ -8,7 +8,7 @@ classDiagram
     class PlayerCombatController
     class IPlayerCombatAnimation {
         <<interface>>
-        +TryPlayComboStep(index, playback) bool
+        +TryPlayComboStep(index, expectedDuration, playback) bool
         +Cancel()
         +Release()
     }
@@ -26,13 +26,17 @@ classDiagram
     PlayerWeaponRig --> Weapon
 ```
 
-- The current adapter exposes one unarmed combo step and maps it to semantic
-  action `LightAttack`.
-- The Animator Controller maps that semantic action to
-  `HMGT_BasicCombo_01`; gameplay code has no clip reference.
+- The adapter exposes four combo steps for every compatible animation loadout
+  and maps them to semantic action `LightAttack`, variants `0...3`.
+- The Animator Controller maps those variants to `BaseAttack1...4`; gameplay
+  code has no clip reference.
+- Gameplay passes the action duration to presentation. The Animator driver
+  derives the local `ActionSpeed` from the active base/override clip, so both
+  controller types finish on the same normalized gameplay timeline.
 - `PlayerWeaponRig` enables two hand hitboxes only during the confirmed hit
   window. `Weapon` reports collision candidates to `CombatHitResolver`.
 - `Cancel()` sends an explicit Animator cancel trigger when gameplay interrupts
   an action. Normal completion lets the controller use its authored exit
   transition.
-- Weapon transitions, named skills, air attacks and combo chains are deferred.
+- Weapon transitions and the ground light combo are implemented. Named skills,
+  heavy branches and air attacks remain deferred.
