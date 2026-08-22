@@ -1,3 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 *.fbx filter=lfs diff=lfs merge=lfs -text
+"Assets/_Game/Settings/Character/UIMotion - Animations/NEW.asset" filter=lfs diff=lfs merge=lfs -text
