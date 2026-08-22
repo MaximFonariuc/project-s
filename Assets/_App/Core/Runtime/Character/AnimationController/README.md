@@ -38,6 +38,8 @@ classDiagram
   the existing clips, state hierarchy and exit transitions are unchanged.
 - Cancellation is explicit. Release only drops source ownership and does not
   force a state change after normal completion.
+- Weapon-specific Animator Override Controllers are optional. A loadout without
+  an override keeps the base `XController` and its existing clip table.
 - Reaction, death and traversal slots are optional today. Requests whose states
   are absent from the current controller return an invalid playback instead of
   breaking composition.

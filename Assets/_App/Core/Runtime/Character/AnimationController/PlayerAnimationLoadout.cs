@@ -52,8 +52,10 @@ namespace _App
                          weaponType,
                          out AnimatorOverrideController animationOverride))
             {
-                throw new InvalidOperationException(
-                    $"Player has no animation override configured for weapon '{weaponType}'.");
+                // An override is optional. The restored XController already owns
+                // the common locomotion, combat and weapon transition clips, so
+                // unsupported loadouts keep using its base clip table.
+                targetController = _baseController;
             }
             else
             {
