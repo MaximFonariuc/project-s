@@ -179,16 +179,33 @@ sequenceDiagram
 
 Player prefab использует явный
 `Assets/_Game/Settings/Combat/Player/PlayerCharacterReactionProfile.asset` с теми
-же стартовыми gameplay timings. Animation mapping пока намеренно пуст: текущий
-Animator Controller не содержит hit-stun/knockdown/airborne reaction states.
-Профиль будет дополнен вместе с реальными reaction clips, без изменения runtime
-state machine и damage pipeline.
+же стартовыми gameplay timings, кроме увеличенного до `0.4s` hit-stun.
+`XController` содержит четыре стабильных presentation-слота:
+`Reaction/HitStun`, `Reaction/Knockdown`, `Reaction/Airborne` и
+`Reaction/Dead`. Первые три пока используют независимые Humanoid prototype
+assets на основе одного доступного hit motion; это осознанный fallback, а не
+заявленная направленная вариативность.
+Унаследованные vendor events `PlayTakeDamage`, `PlayKilled` и
+`TurnKickColliderOff` из prototype clips удалены: они не имеют receiver на
+нашей модели и не должны управлять damage, death или collider lifecycle.
 
-Когда финальные клипы появятся, profile связывает пару `ReactionId + State` с backend-neutral animation state. Пустой `ReactionId` является fallback для состояния. `CharacterReactionAnimationAdapter` отправляет приоритетный request в `PlayerAnimationCoordinator`; он не завершает gameplay reaction по длине клипа и не меняет state machine. После возврата в `Stable` adapter освобождает request, а coordinator восстанавливает наиболее приоритетный оставшийся presentation state.
+Пара `ReactionId + State` формирует backend-neutral animation slot. Пустой
+`ReactionId` является fallback для состояния. `CharacterReactionAnimationAdapter`
+отправляет приоритетный request в `PlayerAnimationCoordinator`; controller
+выбирает state через `ActionId = 4`, но reaction clips всегда воспроизводятся
+на естественной скорости. Gameplay duration остаётся authoritative и отменяет
+presentation при возврате в `Stable`, не ускоряя исходный клип до 2-3x.
+
+Финальный prototype-шаг `combo.ground.3` использует `ReactionId = hit.heavy`
+и knockback `6.5`, поэтому на стоящей цели пересекает текущий threshold `6`
+и подтверждает путь `Stable/HitStun -> Knockdown`. Предыдущие шаги остаются
+`hit.light`.
 
 ## Lifecycle и границы
 
 - `PlayerReactionComposition` создаёт settings, poise, state machine, motor/presentation ports и controller в gameplay scope. Reaction composition не зависит от Player Combat или Traversal.
+- `CharacterReactionStateMachineFactory` задаёт ту же topology для player scope и standalone actor; `CharacterReactionHost` использует её в тренировочном prefab без второго набора reaction rules.
+- `CombatTrainingTarget` адаптирует физику через `RigidbodyCharacterImpactMotor`; это prefab-local composition, а не новый global service.
 - `Enable` подписывает `Health`, запускает state machine и синхронизируется с текущим alive/dead состоянием.
 - `Disable` симметрично снимает подписки, останавливает machine, сбрасывает runtime state и presentation.
 - `PlayerActorController` подписывается до запуска reaction state machine. Любой non-stable state синхронно прерывает Combat и Traversal и блокирует locomotion intent; `Stable` восстанавливает актуальный combat movement intent.

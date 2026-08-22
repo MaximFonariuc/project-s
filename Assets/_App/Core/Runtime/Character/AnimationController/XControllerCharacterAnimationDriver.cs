@@ -166,7 +166,9 @@ namespace _App
             _animator.SetInteger(ActionVariantHash, request.Variant);
             _animator.SetFloat(
                 ActionSpeedHash,
-                ResolveActionSpeed(clipName, request.ExpectedDuration));
+                request.Action.Value == ReactionActionId
+                    ? 1.0f
+                    : ResolveActionSpeed(clipName, request.ExpectedDuration));
             _animator.ResetTrigger(ActionHash);
             _animator.SetTrigger(ActionHash);
 

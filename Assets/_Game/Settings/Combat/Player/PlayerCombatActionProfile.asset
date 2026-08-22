@@ -232,8 +232,8 @@ MonoBehaviour:
       _invulnerabilityEnd: 0
       _damage: 24
       _staggerDamage: 20
-      _knockback: 1.2
-      _reactionId: hit.light
+      _knockback: 6.5
+      _reactionId: hit.heavy
       _hitStopDuration: 0.08
       _hitStopTimeScale: 0
       _durationSeconds: 1.9

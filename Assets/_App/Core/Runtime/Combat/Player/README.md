@@ -30,6 +30,8 @@ classDiagram
   and maps them to semantic action `LightAttack`, variants `0...3`.
 - The Animator Controller maps those variants to `BaseAttack1...4`; gameplay
   code has no clip reference.
+- The fourth prototype step is the current heavy finisher: its confirmed hit
+  requests `hit.heavy` and crosses the reaction profile's knockdown threshold.
 - Gameplay passes the action duration to presentation. The Animator driver
   derives the local `ActionSpeed` from the active base/override clip, so both
   controller types finish on the same normalized gameplay timeline.

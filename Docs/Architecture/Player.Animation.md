@@ -113,8 +113,11 @@ lengths while their hit, chain, cancel and completion windows remain on one
 gameplay-owned timeline. Controller reassignment invalidates this cache; no clip
 lookup or allocation is performed per frame.
 
-Reaction actions use the same `ActionSpeed` contract. Gameplay reaction state
-and duration remain authoritative; the reaction clip is presentation only.
+Reaction and death actions keep `ActionSpeed = 1`. Gameplay reaction state
+and duration remain authoritative and cancel presentation when their window
+ends, but a short hit-stun no longer compresses the source clip to fit the
+gameplay duration. This preserves the authored impact pose and avoids the
+unnatural 2-3x playback speed seen with prototype reaction clips.
 Body/head look parameters are neutralized while a reaction or death action owns
 the finite-action lane, preventing additive aiming poses from deforming the hit
 motion. They resume after the reaction controller returns to `Stable`.
