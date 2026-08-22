@@ -18,9 +18,14 @@ namespace _App
         public static readonly AnimationActionId Dodge = new AnimationActionId(1);
         public static readonly AnimationActionId LightAttack = new AnimationActionId(2);
         public static readonly AnimationActionId WeaponTransition = new AnimationActionId(3);
+        public static readonly AnimationActionId Reaction = new AnimationActionId(4);
 
         public const float DodgeDuration = 0.78f;
         public const float WeaponTransitionDuration = 1.00f;
+        public const float HitStunDuration = 0.40f;
+        public const float KnockdownDuration = 0.80f;
+        public const float AirborneReactionDuration = 0.45f;
+        public const float DeathDuration = 2.40f;
 
         public static bool TryCreate(
             AnimationSlotId slot,
@@ -38,8 +43,42 @@ namespace _App
                 return true;
             }
 
+            if (IsReactionSlot(slot, CharacterReactionStateId.HitStun))
+            {
+                request = new AnimationActionRequest(Reaction, 0, HitStunDuration);
+                return true;
+            }
+
+            if (IsReactionSlot(slot, CharacterReactionStateId.Knockdown))
+            {
+                request = new AnimationActionRequest(Reaction, 1, KnockdownDuration);
+                return true;
+            }
+
+            if (IsReactionSlot(slot, CharacterReactionStateId.Airborne))
+            {
+                request = new AnimationActionRequest(Reaction, 2, AirborneReactionDuration);
+                return true;
+            }
+
+            if (IsReactionSlot(slot, CharacterReactionStateId.Dead))
+            {
+                request = new AnimationActionRequest(Reaction, 3, DeathDuration);
+                return true;
+            }
+
             request = default;
             return false;
+        }
+
+        private static bool IsReactionSlot(
+            AnimationSlotId slot,
+            CharacterReactionStateId state)
+        {
+            string value = slot.Value;
+            string prefix = PlayerAnimationSlots.Reaction(state).Value;
+            return string.Equals(value, prefix, StringComparison.Ordinal) ||
+                   value?.StartsWith(prefix + ".", StringComparison.Ordinal) == true;
         }
     }
 

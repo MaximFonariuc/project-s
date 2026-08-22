@@ -28,6 +28,7 @@ namespace _App
         private const int DodgeActionId = 1;
         private const int LightAttackActionId = 2;
         private const int WeaponTransitionActionId = 3;
+        private const int ReactionActionId = 4;
 
         private static readonly int OnGroundHash = Animator.StringToHash("OnGround");
         private static readonly int MovementDirectionHash = Animator.StringToHash("MovementDirection");
@@ -57,6 +58,20 @@ namespace _App
             Animator.StringToHash("Base Layer.Attack.BaseAttack3"),
             Animator.StringToHash("Base Layer.Attack.BaseAttack4")
         };
+        private static readonly int[] ReactionStateHashes =
+        {
+            Animator.StringToHash("Base Layer.Reaction.HitStun"),
+            Animator.StringToHash("Base Layer.Reaction.Knockdown"),
+            Animator.StringToHash("Base Layer.Reaction.Airborne"),
+            Animator.StringToHash("Base Layer.Reaction.Dead")
+        };
+        private static readonly string[] ReactionClipNames =
+        {
+            "ReactionHitStun",
+            "ReactionKnockdown",
+            "ReactionAirborne",
+            "ReactionDeath"
+        };
         private static readonly int WeaponSheatheStateHash = Animator.StringToHash(
             "SwitchWeapon Layer.TwoHanded_Sheathe");
         private static readonly int WeaponUnsheatheStateHash = Animator.StringToHash(
@@ -69,6 +84,7 @@ namespace _App
 
         private RuntimeAnimatorController _cachedClipController;
         private int _nextSequence;
+        private bool _lookSuppressed;
         private bool _disposed;
 
         public XControllerCharacterAnimationDriver(Animator animator)
@@ -86,8 +102,12 @@ namespace _App
         {
             ThrowIfDisposed();
 
-            float safeHorizontal = Mathf.Clamp(horizontal, -1.0f, 1.0f);
-            float safeVertical = Mathf.Clamp(vertical, -1.0f, 1.0f);
+            float safeHorizontal = _lookSuppressed
+                ? 0.0f
+                : Mathf.Clamp(horizontal, -1.0f, 1.0f);
+            float safeVertical = _lookSuppressed
+                ? 0.0f
+                : Mathf.Clamp(vertical, -1.0f, 1.0f);
 
             // XController was authored with complementary additive body and head
             // poses. Both layers consume the same semantic look direction while
@@ -141,6 +161,7 @@ namespace _App
             // The state hash is resolved only to validate the controller contract.
             // Animator conditions own visual state selection and crossfade timing.
             _animator.ResetTrigger(CancelActionHash);
+            _lookSuppressed = request.Action.Value == ReactionActionId;
             _animator.SetInteger(ActionIdHash, request.Action.Value);
             _animator.SetInteger(ActionVariantHash, request.Variant);
             _animator.SetFloat(
@@ -167,6 +188,7 @@ namespace _App
 
             _animator.ResetTrigger(ActionHash);
             _animator.SetTrigger(CancelActionHash);
+            _lookSuppressed = false;
         }
 
         public void SetPlaybackSpeed(float speed)
@@ -200,6 +222,7 @@ namespace _App
             _animator.SetFloat(ActionSpeedHash, 1.0f);
             _animator.SetBool(OnGroundHash, true);
             _animator.speed = 1.0f;
+            _lookSuppressed = false;
         }
 
         public void Dispose()
@@ -255,6 +278,12 @@ namespace _App
                     clipName = request.Variant == 1
                         ? "WeaponUnsheath"
                         : "WeaponSheath";
+                    break;
+
+                case ReactionActionId when request.Variant >= 0 &&
+                                           request.Variant < ReactionStateHashes.Length:
+                    stateHash = ReactionStateHashes[request.Variant];
+                    clipName = ReactionClipNames[request.Variant];
                     break;
 
                 default:
@@ -388,6 +417,10 @@ namespace _App
             RequireState(RollForwardStateHash, "Base Layer.Locomotion.Roll.RollFront");
             RequireState(RollBackwardStateHash, "Base Layer.Locomotion.Roll.RollBack");
             RequireState(LightAttackStateHashes[0], "Base Layer.Attack.BaseAttack1");
+            RequireState(ReactionStateHashes[0], "Base Layer.Reaction.HitStun");
+            RequireState(ReactionStateHashes[1], "Base Layer.Reaction.Knockdown");
+            RequireState(ReactionStateHashes[2], "Base Layer.Reaction.Airborne");
+            RequireState(ReactionStateHashes[3], "Base Layer.Reaction.Dead");
             RequireState(
                 _switchWeaponLayerIndex,
                 WeaponSheatheStateHash,

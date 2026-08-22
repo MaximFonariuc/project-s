@@ -93,6 +93,10 @@ The current action contract is:
 | Light attack | 2 | 0...3 | `Attack/BaseAttack1...4` |
 | Sheathe two-handed | 3 | 0 | `SwitchWeapon Layer/TwoHanded_Sheathe` |
 | Draw two-handed | 3 | 1 | `SwitchWeapon Layer/TwoHanded_Unsheathe` |
+| Reaction | 4 | 0 | `Reaction/HitStun` |
+| Reaction | 4 | 1 | `Reaction/Knockdown` |
+| Reaction | 4 | 2 | `Reaction/Airborne` |
+| Death | 4 | 3 | `Reaction/Dead` |
 
 The controller consumes its historical `MovementType`, `MovementDirection`,
 `FallingDuration`, `OnGround` and `SpeedMultiplier` parameters. `BodyLookX/Y`
@@ -108,6 +112,12 @@ Consequently a base clip and its weapon override can have different source
 lengths while their hit, chain, cancel and completion windows remain on one
 gameplay-owned timeline. Controller reassignment invalidates this cache; no clip
 lookup or allocation is performed per frame.
+
+Reaction actions use the same `ActionSpeed` contract. Gameplay reaction state
+and duration remain authoritative; the reaction clip is presentation only.
+Body/head look parameters are neutralized while a reaction or death action owns
+the finite-action lane, preventing additive aiming poses from deforming the hit
+motion. They resume after the reaction controller returns to `Stable`.
 
 ## Weapon override contract
 

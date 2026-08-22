@@ -1,5 +1,5 @@
 using System;
-using ModularStateMachine.VContainerIntegration;
+using ModularStateMachine;
 using VContainer;
 
 namespace _App
@@ -26,32 +26,9 @@ namespace _App
                 resolver => new CharacterReactionAnimationAdapter(
                     resolver.Resolve<PlayerAnimationCoordinator>()),
                 Lifetime.Scoped);
-            builder.RegisterStateMachine<CharacterReactionStateId>(Lifetime.Scoped)
-                .State<CharacterStableState>(CharacterReactionStateId.Stable, Lifetime.Scoped)
-                .State<CharacterHitStunState>(CharacterReactionStateId.HitStun, Lifetime.Scoped)
-                .State<CharacterKnockdownState>(CharacterReactionStateId.Knockdown, Lifetime.Scoped)
-                .State<CharacterAirborneReactionState>(CharacterReactionStateId.Airborne, Lifetime.Scoped)
-                .State<CharacterDeadState>(CharacterReactionStateId.Dead, Lifetime.Scoped)
-                .Transition(CharacterReactionStateId.Stable, CharacterReactionStateId.HitStun)
-                .Transition(CharacterReactionStateId.Stable, CharacterReactionStateId.Knockdown)
-                .Transition(CharacterReactionStateId.Stable, CharacterReactionStateId.Airborne)
-                .Transition(CharacterReactionStateId.Stable, CharacterReactionStateId.Dead)
-                .Transition(CharacterReactionStateId.HitStun, CharacterReactionStateId.Stable)
-                .Transition(CharacterReactionStateId.HitStun, CharacterReactionStateId.HitStun)
-                .Transition(CharacterReactionStateId.HitStun, CharacterReactionStateId.Knockdown)
-                .Transition(CharacterReactionStateId.HitStun, CharacterReactionStateId.Airborne)
-                .Transition(CharacterReactionStateId.HitStun, CharacterReactionStateId.Dead)
-                .Transition(CharacterReactionStateId.Knockdown, CharacterReactionStateId.Stable)
-                .Transition(CharacterReactionStateId.Knockdown, CharacterReactionStateId.HitStun)
-                .Transition(CharacterReactionStateId.Knockdown, CharacterReactionStateId.Knockdown)
-                .Transition(CharacterReactionStateId.Knockdown, CharacterReactionStateId.Airborne)
-                .Transition(CharacterReactionStateId.Knockdown, CharacterReactionStateId.Dead)
-                .Transition(CharacterReactionStateId.Airborne, CharacterReactionStateId.Stable)
-                .Transition(CharacterReactionStateId.Airborne, CharacterReactionStateId.HitStun)
-                .Transition(CharacterReactionStateId.Airborne, CharacterReactionStateId.Knockdown)
-                .Transition(CharacterReactionStateId.Airborne, CharacterReactionStateId.Airborne)
-                .Transition(CharacterReactionStateId.Airborne, CharacterReactionStateId.Dead)
-                .Transition(CharacterReactionStateId.Dead, CharacterReactionStateId.Stable);
+            builder.Register<IStateMachine<CharacterReactionStateId>>(
+                _ => CharacterReactionStateMachineFactory.Create(),
+                Lifetime.Scoped);
 
             builder.Register<CharacterReactionController>(Lifetime.Scoped)
                 .AsSelf()

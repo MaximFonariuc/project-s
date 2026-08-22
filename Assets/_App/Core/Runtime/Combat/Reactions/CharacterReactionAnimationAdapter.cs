@@ -26,7 +26,7 @@ namespace _App
                 ? PlayerAnimationSlots.Reaction(snapshot.Hit.ReactionId, snapshot.State)
                 : PlayerAnimationSlots.Reaction(snapshot.State);
 
-            _animation.CrossFade(source, slot);
+            _animation.CrossFade(source, slot, snapshot.RemainingDuration);
         }
 
         public void Reset()
