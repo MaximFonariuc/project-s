@@ -19,7 +19,7 @@ namespace _App
         private const string BodyLookLayerName = "BodyLook";
         private const string HeadLookLayerName = "HeadLook";
         private const float GaitDampSeconds = 0.33f;
-        private const float DirectionDampSeconds = 0.10f;
+        private const float DirectionDampSeconds = 0.12f;
         private const float VerticalDampSeconds = 0.10f;
         private const float DirectionEpsilon = 0.0001f;
         private const float MinimumActionSpeed = 0.25f;
@@ -33,6 +33,8 @@ namespace _App
         private static readonly int OnGroundHash = Animator.StringToHash("OnGround");
         private static readonly int MovementDirectionHash = Animator.StringToHash("MovementDirection");
         private static readonly int MovementTypeHash = Animator.StringToHash("MovementType");
+        private static readonly int MoveXHash = Animator.StringToHash("MoveX");
+        private static readonly int MoveYHash = Animator.StringToHash("MoveY");
         private static readonly int FallingDurationHash = Animator.StringToHash("FallingDuration");
         private static readonly int SpeedMultiplierHash = Animator.StringToHash("SpeedMultiplier");
         private static readonly int BodyLookXHash = Animator.StringToHash("BodyLookX");
@@ -130,6 +132,9 @@ namespace _App
                 ? (float)frame.Gait
                 : 0.0f;
             float movementDirection = ResolveMovementDirection(frame, planarSpeed);
+            float inversePlanarSpeed = planarSpeed > DirectionEpsilon
+                ? 1.0f / planarSpeed
+                : 0.0f;
 
             _animator.SetFloat(
                 MovementTypeHash,
@@ -139,6 +144,16 @@ namespace _App
             _animator.SetFloat(
                 MovementDirectionHash,
                 movementDirection,
+                DirectionDampSeconds,
+                safeDeltaTime);
+            _animator.SetFloat(
+                MoveXHash,
+                frame.LateralSpeed * inversePlanarSpeed,
+                DirectionDampSeconds,
+                safeDeltaTime);
+            _animator.SetFloat(
+                MoveYHash,
+                frame.ForwardSpeed * inversePlanarSpeed,
                 DirectionDampSeconds,
                 safeDeltaTime);
             _animator.SetFloat(
@@ -166,9 +181,7 @@ namespace _App
             _animator.SetInteger(ActionVariantHash, request.Variant);
             _animator.SetFloat(
                 ActionSpeedHash,
-                request.Action.Value == ReactionActionId
-                    ? 1.0f
-                    : ResolveActionSpeed(clipName, request.ExpectedDuration));
+                ResolveActionSpeed(clipName, request.ExpectedDuration));
             _animator.ResetTrigger(ActionHash);
             _animator.SetTrigger(ActionHash);
 
@@ -211,6 +224,8 @@ namespace _App
 
             _animator.SetFloat(MovementTypeHash, 0.0f);
             _animator.SetFloat(MovementDirectionHash, 0.0f);
+            _animator.SetFloat(MoveXHash, 0.0f);
+            _animator.SetFloat(MoveYHash, 0.0f);
             _animator.SetFloat(FallingDurationHash, 0.0f);
             _animator.SetFloat(SpeedMultiplierHash, 1.0f);
             _animator.SetFloat(BodyLookXHash, 0.0f);
@@ -263,7 +278,7 @@ namespace _App
                 case DodgeActionId:
                     bool backward = request.Variant == 1;
                     stateHash = backward ? RollBackwardStateHash : RollForwardStateHash;
-                    clipName = backward ? "RollBack" : "RollFront";
+                    clipName = backward ? "DodgeBackward" : "DodgeForward";
                     break;
 
                 case LightAttackActionId when request.Variant >= 0 &&
@@ -366,6 +381,14 @@ namespace _App
                 MovementTypeHash,
                 AnimatorControllerParameterType.Float,
                 "MovementType");
+            RequireParameter(
+                MoveXHash,
+                AnimatorControllerParameterType.Float,
+                "MoveX");
+            RequireParameter(
+                MoveYHash,
+                AnimatorControllerParameterType.Float,
+                "MoveY");
             RequireParameter(
                 FallingDurationHash,
                 AnimatorControllerParameterType.Float,
