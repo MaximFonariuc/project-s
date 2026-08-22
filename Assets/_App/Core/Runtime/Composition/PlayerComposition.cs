@@ -1,6 +1,5 @@
 using System;
 using ModularAnimation;
-using ModularAnimation.Unity;
 using VContainer;
 using VContainer.Unity;
 
@@ -40,10 +39,9 @@ namespace _App
                     _ => new XControllerCharacterAnimationDriver(player.PlayerAnimator),
                     Lifetime.Scoped)
                 .AsSelf()
-                .As<ModularAnimation.ICharacterAnimationDriver>();
-            builder.Register<PlayerAnimationCoordinator>(Lifetime.Scoped);
-            builder.RegisterInstance(NullCharacterLookAnimationDriver.Instance)
+                .As<ModularAnimation.ICharacterAnimationDriver>()
                 .As<ICharacterLookAnimationDriver>();
+            builder.Register<PlayerAnimationCoordinator>(Lifetime.Scoped);
             builder.Register<PlayerCharacterAnimationPresenter>(Lifetime.Scoped);
             builder.Register(
                 resolver => new CharacterMovementPolicies(

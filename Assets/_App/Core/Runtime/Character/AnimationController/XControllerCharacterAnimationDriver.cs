@@ -8,9 +8,14 @@ namespace _App
     /// Adapts Project S semantic animation commands to the historical XController contract.
     /// The controller owns its blend trees and transitions; gameplay remains the state owner.
     /// </summary>
-    internal sealed class XControllerCharacterAnimationDriver : ICharacterAnimationDriver, IDisposable
+    internal sealed class XControllerCharacterAnimationDriver :
+        ICharacterAnimationDriver,
+        ICharacterLookAnimationDriver,
+        IDisposable
     {
         private const int BaseLayerIndex = 0;
+        private const string BodyLookLayerName = "BodyLook";
+        private const string HeadLookLayerName = "HeadLook";
         private const float GaitDampSeconds = 0.33f;
         private const float DirectionDampSeconds = 0.10f;
         private const float VerticalDampSeconds = 0.10f;
@@ -25,6 +30,10 @@ namespace _App
         private static readonly int MovementTypeHash = Animator.StringToHash("MovementType");
         private static readonly int FallingDurationHash = Animator.StringToHash("FallingDuration");
         private static readonly int SpeedMultiplierHash = Animator.StringToHash("SpeedMultiplier");
+        private static readonly int BodyLookXHash = Animator.StringToHash("BodyLookX");
+        private static readonly int BodyLookYHash = Animator.StringToHash("BodyLookY");
+        private static readonly int HeadLookXHash = Animator.StringToHash("HeadLookX");
+        private static readonly int HeadLookYHash = Animator.StringToHash("HeadLookY");
 
         private static readonly int MoveStateHash = Animator.StringToHash(
             "Base Layer.Locomotion.Move");
@@ -52,6 +61,22 @@ namespace _App
 
             ValidateAnimator();
             _animator.applyRootMotion = false;
+        }
+
+        public void SetLook(float horizontal, float vertical)
+        {
+            ThrowIfDisposed();
+
+            float safeHorizontal = Mathf.Clamp(horizontal, -1.0f, 1.0f);
+            float safeVertical = Mathf.Clamp(vertical, -1.0f, 1.0f);
+
+            // XController was authored with complementary additive body and head
+            // poses. Both layers consume the same semantic look direction while
+            // their clips decide which Humanoid muscles they affect.
+            _animator.SetFloat(BodyLookXHash, safeHorizontal);
+            _animator.SetFloat(BodyLookYHash, safeVertical);
+            _animator.SetFloat(HeadLookXHash, safeHorizontal);
+            _animator.SetFloat(HeadLookYHash, safeVertical);
         }
 
         public void ApplyLocomotion(in CharacterLocomotionFrame frame, float deltaTime)
@@ -140,6 +165,10 @@ namespace _App
             _animator.SetFloat(MovementDirectionHash, 0.0f);
             _animator.SetFloat(FallingDurationHash, 0.0f);
             _animator.SetFloat(SpeedMultiplierHash, 1.0f);
+            _animator.SetFloat(BodyLookXHash, 0.0f);
+            _animator.SetFloat(BodyLookYHash, 0.0f);
+            _animator.SetFloat(HeadLookXHash, 0.0f);
+            _animator.SetFloat(HeadLookYHash, 0.0f);
             _animator.SetBool(OnGroundHash, true);
             _animator.speed = 1.0f;
         }
@@ -226,6 +255,25 @@ namespace _App
                 SpeedMultiplierHash,
                 AnimatorControllerParameterType.Float,
                 "SpeedMultiplier");
+            RequireParameter(
+                BodyLookXHash,
+                AnimatorControllerParameterType.Float,
+                "BodyLookX");
+            RequireParameter(
+                BodyLookYHash,
+                AnimatorControllerParameterType.Float,
+                "BodyLookY");
+            RequireParameter(
+                HeadLookXHash,
+                AnimatorControllerParameterType.Float,
+                "HeadLookX");
+            RequireParameter(
+                HeadLookYHash,
+                AnimatorControllerParameterType.Float,
+                "HeadLookY");
+
+            RequireLayer(BodyLookLayerName);
+            RequireLayer(HeadLookLayerName);
 
             RequireState(MoveStateHash, "Base Layer.Locomotion.Move");
             RequireState(RollForwardStateHash, "Base Layer.Locomotion.Roll.RollFront");
@@ -259,6 +307,15 @@ namespace _App
             {
                 throw new InvalidOperationException(
                     $"Animator Controller on '{_animator.name}' is missing required state '{stateName}'.");
+            }
+        }
+
+        private void RequireLayer(string layerName)
+        {
+            if (_animator.GetLayerIndex(layerName) < 0)
+            {
+                throw new InvalidOperationException(
+                    $"Animator Controller on '{_animator.name}' is missing required layer '{layerName}'.");
             }
         }
 
