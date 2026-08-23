@@ -77,3 +77,7 @@ UMotionData
 
 # Local source archives used for future Elden Ring animation conversion.
 /Elden/
+
+# Local animation source libraries. Runtime-ready imports belong in Assets/_Game.
+/Reference/Elden/
+/Reference/Frank/
