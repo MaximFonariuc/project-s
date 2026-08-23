@@ -28,6 +28,7 @@ namespace _App.Editor.Animation
             XControllerAnimationContract.Attack2StatePath,
             XControllerAnimationContract.Attack3StatePath,
             XControllerAnimationContract.Attack4StatePath,
+            XControllerAnimationContract.SpecialAttackStatePath,
             XControllerAnimationContract.HitStunStatePath,
             XControllerAnimationContract.HitStunBackStatePath,
             XControllerAnimationContract.HitStunLeftStatePath,
@@ -48,7 +49,8 @@ namespace _App.Editor.Animation
             XControllerAnimationContract.Attack1StatePath,
             XControllerAnimationContract.Attack2StatePath,
             XControllerAnimationContract.Attack3StatePath,
-            XControllerAnimationContract.Attack4StatePath
+            XControllerAnimationContract.Attack4StatePath,
+            XControllerAnimationContract.SpecialAttackStatePath
         };
 
         [MenuItem(MenuPath)]

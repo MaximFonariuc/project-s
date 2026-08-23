@@ -51,6 +51,7 @@ namespace _App
         public const string Attack2StatePath = "Base Layer.Attack.BaseAttack2";
         public const string Attack3StatePath = "Base Layer.Attack.BaseAttack3";
         public const string Attack4StatePath = "Base Layer.Attack.BaseAttack4";
+        public const string SpecialAttackStatePath = "Base Layer.Attack.Skill";
         public const string AirAttack1StatePath = "Base Layer.Attack.AirAttack1";
         public const string AirAttack2StatePath = "Base Layer.Attack.AirAttack2";
         public const string AirAttack3StatePath = "Base Layer.Attack.AirAttack3";
@@ -120,6 +121,7 @@ namespace _App
                     Attack2StatePath,
                     Attack3StatePath,
                     Attack4StatePath,
+                    SpecialAttackStatePath,
                     AirAttack1StatePath,
                     AirAttack2StatePath,
                     AirAttack3StatePath,

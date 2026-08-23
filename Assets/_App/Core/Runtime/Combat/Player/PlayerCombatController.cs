@@ -365,6 +365,7 @@ namespace _App
                         _characterType,
                         CurrentWeapon,
                         presentation.AnimationId,
+                        action.Definition.DurationSeconds,
                         out playback),
                 _ => FailPlayback(out playback)
             };

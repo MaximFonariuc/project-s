@@ -11,7 +11,6 @@ namespace _App
         private readonly PlayerAnimationCoordinator _animation;
         private readonly PlayerAnimatorLoadout _loadout;
 
-        private EWeaponType _weaponType;
         private bool _disposed;
 
         public int ComboCount => SupportedComboCount;
@@ -29,7 +28,6 @@ namespace _App
         {
             ThrowIfDisposed();
             _loadout.Apply(weaponType);
-            _weaponType = weaponType;
         }
 
         public bool HasNamedAnimation(
@@ -37,7 +35,8 @@ namespace _App
             EWeaponType weaponType,
             PlayerCombatAnimationId animationId)
         {
-            return false;
+            ThrowIfDisposed();
+            return animationId == PlayerCombatAnimationIds.Special;
         }
 
         public bool TryPlayComboStep(
@@ -68,10 +67,25 @@ namespace _App
             ECharacterType characterType,
             EWeaponType weaponType,
             PlayerCombatAnimationId animationId,
+            float expectedDuration,
             out AnimationActionPlayback playback)
         {
-            playback = default;
-            return false;
+            ThrowIfDisposed();
+            if (animationId != PlayerCombatAnimationIds.Special ||
+                expectedDuration <= 0.0f)
+            {
+                playback = default;
+                return false;
+            }
+
+            var request = new AnimationActionRequest(
+                PlayerAnimatorActions.SpecialAttack,
+                0,
+                expectedDuration);
+            return _animation.TryPlayAction(
+                PlayerAnimationSource.Combat,
+                in request,
+                out playback);
         }
 
         public bool TryPlayAirComboStep(

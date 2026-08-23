@@ -103,14 +103,17 @@ ScriptableObject хранит только authoring data. Очередь input,
 
 `Assets/_Game/Settings/Combat/Player/PlayerCombatActionProfile.asset` назначен на
 `Assets/_Game/Prefabs/Character/Player.prefab` и является штатным authoring-профилем игрока.
-Он содержит две environment-specific ветки одной команды `attack.light`:
+Он содержит две environment-specific ветки команды `attack.light` и одну
+named action:
 
 - четыре наземных actions `combo.ground.0 → 1 → 2 → 3`;
-- три воздушных actions `combo.air.0 → 1 → 2`.
+- три воздушных actions `combo.air.0 → 1 → 2`;
+- наземную `skill.special`, доступную отдельным entry и из cancel window любого
+  наземного light-combo step; её cancel window возвращает в `combo.ground.0`.
 
 Grounded и Airborne entries не конфликтуют: `PlayerCombatActionGraph` выбирает
-ветку по подтверждённому movement mode персонажа. Named skills пока не входят в
-штатный профиль.
+ветку по подтверждённому movement mode персонажа. Поэтому `skill.special`
+отклоняется в воздухе без проверки Animator или устройства ввода.
 
 Input buffer настроен на четыре команды и при переполнении отбрасывает действие с
 наименьшим приоритетом. Все текущие `attack.light` команды имеют default priority;
@@ -119,8 +122,10 @@ named priority overrides пока не настроены. Planar и vertical co
 Текущие timings, damage и distances являются стартовыми tuning values. Воздушная
 ветка ограничивает падение до `-1.5 m/s` только внутри combat-motion window; после
 окна gravity снова полностью принадлежит character motor. Gameplay graph не хранит
-ссылки на клипы: animation adapter передаёт ground/air combo index и ожидаемую
-длительность в общий Animator contract.
+ссылки на клипы: animation adapter передаёт ground/air combo index либо
+`PlayerCombatAnimationId` и ожидаемую длительность в общий Animator contract.
+Текущий `skill.special` отображается существующим состоянием
+`Base Layer.Attack.Skill`; hit/cancel/cooldown остаются gameplay-authoring data.
 
 ## Зависимости
 

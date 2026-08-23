@@ -56,6 +56,7 @@ namespace _App
             ECharacterType characterType,
             EWeaponType weaponType,
             PlayerCombatAnimationId animationId,
+            float expectedDuration,
             out AnimationActionPlayback playback);
         bool TryPlayWeaponTransition(
             EWeaponType weaponType,

@@ -10,6 +10,8 @@ classDiagram
         <<interface>>
         +TryPlayComboStep(index, expectedDuration, playback) bool
         +TryPlayAirComboStep(index, expectedDuration, playback) bool
+        +HasNamedAnimation(animationId) bool
+        +TryPlayNamedAnimation(animationId, expectedDuration, playback) bool
         +Cancel()
         +Release()
     }
@@ -33,6 +35,9 @@ classDiagram
   code has no clip reference.
 - The adapter exposes a separate three-step air track and maps it to semantic
   action `AirAttack`, variants `0...2`, then to `AirAttack1...3`.
+- The named `skill.special` presentation maps to semantic action
+  `SpecialAttack`, variant `0`, then to the existing `Attack/Skill` state. Its
+  legality, hit window, cancel window and cooldown remain graph-owned.
 - The fourth prototype step is the current heavy finisher: its confirmed hit
   requests `hit.heavy` and crosses the reaction profile's knockdown threshold.
 - Gameplay passes the expected duration as presentation metadata, but the
@@ -43,5 +48,6 @@ classDiagram
 - `Cancel()` asks the XController adapter to crossfade to locomotion when
   gameplay interrupts an action. Normal completion lets the controller use its
   authored exit transition.
-- Weapon transitions plus ground and air light combos are implemented. Named
-  skills and heavy-input branches remain deferred.
+- Weapon transitions, ground/air light combos and the first grounded named
+  special are implemented. Additional named skills and a separate heavy-input
+  branch remain deferred.

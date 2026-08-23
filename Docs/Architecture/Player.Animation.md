@@ -113,6 +113,7 @@ The current action contract is:
 | Dodge | 1 | 1 | `Locomotion/Roll/RollBack` |
 | Light attack | 2 | 0...3 | `Attack/BaseAttack1...4` |
 | Air light attack | 5 | 0...2 | `Attack/AirAttack1...3` |
+| Grounded named special | 6 | 0 | `Attack/Skill` |
 | Sheathe two-handed | 3 | 0 | `SwitchWeapon Layer/TwoHanded_Sheathe` |
 | Draw two-handed | 3 | 1 | `SwitchWeapon Layer/TwoHanded_Unsheathe` |
 | Hit reaction (front/fallback) | 4 | 0 | `Reaction/HitStun` |
@@ -194,8 +195,8 @@ through a `0.10 s` fixed-duration blend. The combat executor advances once per
 rendered frame with `UniTask.NextFrame`, so a single `Time.deltaTime` cannot be
 counted multiple times.
 
-The source motions assigned to `RollFront`, `RollBack`, `BaseAttack1...4` and
-`AirAttack1...3`
+The source motions assigned to `RollFront`, `RollBack`, `BaseAttack1...4`,
+`AirAttack1...3` and `Skill`
 are unique override slots. Do not reuse one source clip for two semantically
 different states because a single override would then replace both usages.
 Replacement clip names follow the same slot names for readability, although
@@ -209,11 +210,12 @@ the same clip table through the explicit fallback. Additional weapon styles can
 extend the serialized binding list without changing gameplay or Animator state
 names after a compatible override asset exists.
 
-The four ground and three air attack states are entered by the Project S adapter with a `0.12 s`
-fixed-time crossfade. Their natural exits remain authored in XController; an
-explicit gameplay cancellation uses a `0.12 s` crossfade back to locomotion. A
-new combo step interrupts the current attack only after gameplay accepts its
-buffered command inside the configured chain window.
+The four ground attacks, three air attacks and grounded `Skill` state are entered
+by the Project S adapter with a `0.12 s` fixed-time crossfade. Their natural exits
+remain authored in XController; an explicit gameplay cancellation uses a
+`0.12 s` crossfade back to locomotion. A new combo step or named special interrupts
+the current attack only after gameplay accepts its buffered command inside the
+configured chain/cancel window.
 
 `AirAttack1...3` use standalone Humanoid `.anim` derivatives created from the
 Frank dual-sword zero-height source. The Frank catalog and all derived slots use
@@ -233,7 +235,8 @@ replaceable content slots, not final reaction directionality.
 `XControllerAnimationContract` is the shared source of required layer,
 parameter and state names for runtime validation and editor tooling. The
 read-only command `Tools/Animation/Validate XController Contract` checks the
-controller, compatible Humanoid motions, finite-state exit ownership, base and
+controller (including the named `Attack/Skill` slot), compatible Humanoid motions,
+finite-state exit ownership, base and
 override-controller compatibility, and the Player/training-target prefabs. It
 reports mismatches but never creates or rewrites Animator states, transitions,
 Blend Trees, clips or prefab bindings.

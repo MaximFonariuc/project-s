@@ -401,11 +401,61 @@ MonoBehaviour:
       _overrideVerticalVelocityOnImpulse: 1
       _faceCombatTarget: 1
       _targetStoppingDistance: 0.8
+  - _id: skill.special
+    _environment: 1
+    _presentation: 1
+    _comboIndex: 0
+    _animationId: skill.special
+    _action:
+      _useHitboxWindow: 1
+      _hitboxStart: 0.24
+      _hitboxEnd: 0.62
+      _useChainWindow: 0
+      _chainStart: 0
+      _chainEnd: 0
+      _useCancelWindow: 1
+      _cancelStart: 0.72
+      _cancelEnd: 0.92
+      _useMovementConstraintWindow: 1
+      _movementConstraintStart: 0
+      _movementConstraintEnd: 0.82
+      _useInvulnerabilityWindow: 0
+      _invulnerabilityStart: 0
+      _invulnerabilityEnd: 0
+      _damage: 28
+      _staggerDamage: 24
+      _knockback: 4
+      _reactionId: hit.heavy
+      _hitStopDuration: 0.08
+      _hitStopTimeScale: 0
+      _durationSeconds: 1.45
+      _recoveryStart: 0.76
+      _completionTime: 0.96
+      _hasCommit: 0
+      _commitTime: 0.5
+      _cooldown: 0.75
+      _translationScale: 0.08
+      _allowJump: 0
+      _allowDodge: 1
+      _faceMoveDirection: 1
+      _useCombatMotion: 1
+      _combatMotionStart: 0
+      _combatMotionEnd: 0.38
+      _overridePlanarVelocity: 1
+      _combatMotionDistance: 0.75
+      _verticalMotionMode: 0
+      _combatVerticalVelocity: 0
+      _combatVerticalImpulse: 0
+      _overrideVerticalVelocityOnImpulse: 1
+      _faceCombatTarget: 1
+      _targetStoppingDistance: 0.8
   _entries:
   - _commandId: attack.light
     _targetActionId: combo.ground.0
   - _commandId: attack.light
     _targetActionId: combo.air.0
+  - _commandId: skill.special
+    _targetActionId: skill.special
   _transitions:
   - _sourceActionId: combo.ground.0
     _commandId: attack.light
@@ -427,3 +477,23 @@ MonoBehaviour:
     _commandId: attack.light
     _targetActionId: combo.air.2
     _window: 0
+  - _sourceActionId: combo.ground.0
+    _commandId: skill.special
+    _targetActionId: skill.special
+    _window: 1
+  - _sourceActionId: combo.ground.1
+    _commandId: skill.special
+    _targetActionId: skill.special
+    _window: 1
+  - _sourceActionId: combo.ground.2
+    _commandId: skill.special
+    _targetActionId: skill.special
+    _window: 1
+  - _sourceActionId: combo.ground.3
+    _commandId: skill.special
+    _targetActionId: skill.special
+    _window: 1
+  - _sourceActionId: skill.special
+    _commandId: attack.light
+    _targetActionId: combo.ground.0
+    _window: 1
