@@ -7,14 +7,14 @@
 Сейчас система поддерживает:
 
 - накопление `StaggerDamage`, задержку и скорость восстановления poise;
-- `Stable`, `HitStun`, `Knockdown`, `Airborne` и `Dead`;
+- `Stable`, `HitStun`, `Knockdown`, `GetUp`, `Airborne` и `Dead`;
 - повторное попадание во время активной реакции;
 - блокировку новых player actions и прерывание текущей атаки, смены оружия или traversal через player actor root;
 - направленный knockback через `ICharacterImpactMotor`;
 - возврат из временной реакции и явное восстановление после `Health.RestoreFull()`;
 - опциональное отображение состояний через `PlayerAnimationCoordinator` и backend-neutral animation driver.
 
-Hit stop не входит в reaction state machine и имеет отдельного time-scale owner, описанного в `Docs/Architecture/Combat.HitStop.md`. Invulnerability frames, get-up phase, ragdoll и финальные reaction clips пока не входят в этот блок.
+Hit stop не входит в reaction state machine и имеет отдельного time-scale owner, описанного в `Docs/Architecture/Combat.HitStop.md`. Invulnerability frames, ragdoll и финальные направленные reaction clips пока не входят в этот блок.
 
 ## Дерево классов и зависимости
 
@@ -53,6 +53,7 @@ classDiagram
     class CharacterStableState
     class CharacterHitStunState
     class CharacterKnockdownState
+    class CharacterGetUpState
     class CharacterAirborneReactionState
     class CharacterDeadState
     class ICharacterImpactMotor {
@@ -98,6 +99,7 @@ classDiagram
     IStateMachine~CharacterReactionStateId~ *-- CharacterStableState
     IStateMachine~CharacterReactionStateId~ *-- CharacterHitStunState
     IStateMachine~CharacterReactionStateId~ *-- CharacterKnockdownState
+    IStateMachine~CharacterReactionStateId~ *-- CharacterGetUpState
     IStateMachine~CharacterReactionStateId~ *-- CharacterAirborneReactionState
     IStateMachine~CharacterReactionStateId~ *-- CharacterDeadState
     CharacterMotor ..|> ICharacterImpactMotor
@@ -125,15 +127,20 @@ stateDiagram-v2
     Knockdown --> HitStun: repeated hit
     Knockdown --> Knockdown: repeated heavy hit
     Knockdown --> Airborne: leaves ground
+    Knockdown --> GetUp: downed duration elapsed
+    GetUp --> HitStun: repeated hit
+    GetUp --> Knockdown: repeated heavy hit
+    GetUp --> Airborne: leaves ground
+    GetUp --> Stable: get-up duration elapsed
     Airborne --> HitStun: grounded repeated hit
     Airborne --> Knockdown: grounded heavy hit
     Airborne --> Airborne: repeated air hit
     HitStun --> Stable: duration elapsed
-    Knockdown --> Stable: duration elapsed
     Airborne --> Stable: duration elapsed
     Stable --> Dead: Health.Died
     HitStun --> Dead: Health.Died
     Knockdown --> Dead: Health.Died
+    GetUp --> Dead: Health.Died
     Airborne --> Dead: Health.Died
     Dead --> Stable: Health.Revived
 ```
@@ -175,22 +182,27 @@ sequenceDiagram
 
 ## Authoring и presentation
 
-`CharacterReactionProfile` опционален. При отсутствии asset используются безопасные prototype defaults: poise `10`, hit-stun `0.25s`, knockdown `0.8s`, airborne `0.45s`. Ни одного Animator state система в таком режиме не требует.
+`CharacterReactionProfile` опционален. При отсутствии asset используются
+безопасные prototype defaults: poise `10`, hit-stun `0.25s`, knockdown `0.8s`,
+get-up `1.833s`, airborne `0.45s`. Ни одного Animator state gameplay-система
+самостоятельно не выбирает.
 
 Player prefab использует явный
 `Assets/_Game/Settings/Combat/Player/PlayerCharacterReactionProfile.asset` с теми
 же стартовыми gameplay timings, кроме увеличенного до `0.4s` hit-stun.
-`XController` содержит четыре стабильных presentation-слота:
+`XController` содержит пять обязательных presentation-слотов:
 `Reaction/HitStun`, `Reaction/Knockdown`, `Reaction/Airborne` и
-`Reaction/Dead`. Сейчас они ссылаются на Humanoid prototype motions одного
-Knight-набора: обычную и усиленную `LightHit`, `Fall` и `Death`. Исходные FBX
-не изменены и не содержат gameplay events. Это временные визуальные слоты, а не
-финальная направленная вариативность, get-up или ragdoll.
+`Reaction/Dead`, а также `Reaction/GetUp`. Сейчас они ссылаются на Humanoid
+prototype motions одного Knight-набора: обычную и усиленную `LightHit`, `Fall`,
+`Death` и `Revive`. Исходные FBX не изменены и не содержат gameplay events.
+Это временные визуальные слоты, а не финальная направленная вариативность или
+ragdoll.
 
 Внутри Animator у этих состояний нет параметрических входов и самостоятельных
 gameplay-переходов. Подтверждённую реакцию запускает единственный animation
-driver, временные реакции явно отменяются при возврате state machine в
-`Stable`, а `Dead` удерживает последний кадр до подтверждённого revive.
+driver. После `Knockdown` gameplay state machine явно запускает `GetUp`, а после
+его завершения отменяет presentation при возврате в `Stable`. `Dead` удерживает
+последний кадр до подтверждённого revive.
 
 Пара `ReactionId + State` формирует backend-neutral animation slot. Пустой
 `ReactionId` является fallback для состояния. `CharacterReactionAnimationAdapter`
@@ -201,8 +213,9 @@ presentation при возврате в `Stable`, не ускоряя исход
 
 Финальный prototype-шаг `combo.ground.3` использует `ReactionId = hit.heavy`
 и knockback `6.5`, поэтому на стоящей цели пересекает текущий threshold `6`
-и подтверждает путь `Stable/HitStun -> Knockdown`. Предыдущие шаги остаются
-`hit.light`.
+и подтверждает путь `Stable/HitStun -> Knockdown -> GetUp -> Stable`.
+Предыдущие шаги остаются `hit.light`. Повторное попадание во время `GetUp`
+прерывает вставание и повторно выбирает реакцию по обычным правилам.
 
 ## Lifecycle и границы
 

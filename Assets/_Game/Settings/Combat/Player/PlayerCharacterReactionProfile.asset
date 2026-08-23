@@ -17,5 +17,6 @@ MonoBehaviour:
   _poiseRecoveryPerSecond: 10
   _hitStunDuration: 0.4
   _knockdownDuration: 0.8
+  _getUpDuration: 1.8333334
   _airborneDuration: 0.45
   _knockdownThreshold: 6

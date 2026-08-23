@@ -111,7 +111,7 @@ state paths через `CrossFadeInFixedTime`.
 - `Base Layer.Locomotion.Move`;
 - `Base Layer.Locomotion.Roll.RollFront` и `RollBack`;
 - `Base Layer.Attack.BaseAttack1...4`;
-- `Base Layer.Reaction.HitStun`, `Knockdown`, `Airborne`, `Dead`;
+- `Base Layer.Reaction.HitStun`, `Knockdown`, `GetUp`, `Airborne`, `Dead`;
 - `SwitchWeapon Layer.Waiting`, `TwoHanded_Sheathe`,
   `TwoHanded_Unsheathe`.
 
@@ -129,7 +129,9 @@ stateDiagram-v2
     Attack --> Attack: accepted combo branch
     Roll --> Move: authored exit
     Attack --> Move: authored exit
-    Reaction --> Move: gameplay cancel after reaction window
+    Reaction --> GetUp: knockdown window elapsed
+    GetUp --> Move: get-up window elapsed / gameplay cancel
+    Reaction --> Move: short reaction window elapsed / gameplay cancel
     Reaction --> Dead: confirmed death
     Dead --> Dead: hold until gameplay revival policy
 ```
@@ -141,7 +143,8 @@ stateDiagram-v2
 - Interruption вызывает `CancelAction`: Base Layer возвращается в `Move`,
   weapon layer — в `Waiting`.
 - Reaction states не имеют собственных выходов. Recovery/death authority
-  принадлежит gameplay reaction state machine; она явно завершает presentation.
+  принадлежит gameplay reaction state machine: `Knockdown` явно сменяется на
+  `GetUp`, а завершение GetUp возвращает presentation в locomotion.
 - `BodyLook` и `HeadLook` получают camera-relative yaw/pitch через отдельный
   look adapter. Dodge/reaction подавляют look, attacks и weapon transitions
   используют ограниченный tracking.
@@ -181,7 +184,7 @@ parameters и state names не копируются. Если override для we
 - обязательных layers, blending modes, mask, parameters и state paths;
 - наличия motions и их Humanoid/legacy compatibility;
 - authored exits у roll/attack и gameplay-owned exits у reactions;
-- non-loop policy для hit-stun, knockdown и death;
+- non-loop policy для hit-stun, knockdown, get-up и death;
 - совместимости AnimatorOverrideController с базовым XController;
 - Humanoid Avatar, controller и отключённого root motion в Player и training
   target prefabs;
@@ -193,6 +196,6 @@ Validator ничего не генерирует и не исправляет а
 ## Отложенные блоки
 
 Swimming, ladder, ledge, wall-climb, parkour, directional hit reactions и
-полноценный knockdown/get-up остаются отдельными content/gameplay задачами. Они
-не добавляются в базовый controller до появления соответствующей gameplay
-семантики и проверенного набора клипов.
+расширенная knockdown/ragdoll-модель остаются отдельными content/gameplay
+задачами. Они не добавляются в базовый controller до появления соответствующей
+gameplay-семантики и проверенного набора клипов.

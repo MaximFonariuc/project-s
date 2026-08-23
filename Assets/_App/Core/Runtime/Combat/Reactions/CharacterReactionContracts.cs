@@ -5,11 +5,12 @@ namespace _App
 {
     public enum CharacterReactionStateId
     {
-        Stable,
-        HitStun,
-        Knockdown,
-        Airborne,
-        Dead
+        Stable = 0,
+        HitStun = 1,
+        Knockdown = 2,
+        Airborne = 3,
+        Dead = 4,
+        GetUp = 5
     }
 
     public readonly struct CharacterReactionSnapshot

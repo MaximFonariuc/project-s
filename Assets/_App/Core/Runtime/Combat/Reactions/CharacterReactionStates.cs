@@ -40,6 +40,10 @@ namespace _App
     {
     }
 
+    internal sealed class CharacterGetUpState : CharacterTimedReactionState
+    {
+    }
+
     internal sealed class CharacterDeadState : IState<CombatHitResult>
     {
         public CombatHitResult LethalHit { get; private set; }

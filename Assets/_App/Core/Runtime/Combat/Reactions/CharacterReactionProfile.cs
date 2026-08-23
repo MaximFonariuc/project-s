@@ -16,6 +16,7 @@ namespace _App
         [Header("Reaction Timing")]
         [SerializeField, Min(0.01f)] private float _hitStunDuration = 0.25f;
         [SerializeField, Min(0.01f)] private float _knockdownDuration = 0.8f;
+        [SerializeField, Min(0.01f)] private float _getUpDuration = 1.8333334f;
         [SerializeField, Min(0.01f)] private float _airborneDuration = 0.45f;
         [SerializeField, Min(0.01f)] private float _knockdownThreshold = 6.0f;
 
@@ -27,6 +28,7 @@ namespace _App
                 _poiseRecoveryPerSecond,
                 _hitStunDuration,
                 _knockdownDuration,
+                _getUpDuration,
                 _airborneDuration,
                 _knockdownThreshold);
         }
@@ -39,6 +41,7 @@ namespace _App
         public float PoiseRecoveryPerSecond { get; }
         public float HitStunDuration { get; }
         public float KnockdownDuration { get; }
+        public float GetUpDuration { get; }
         public float AirborneDuration { get; }
         public float KnockdownThreshold { get; }
 
@@ -48,6 +51,7 @@ namespace _App
             float poiseRecoveryPerSecond,
             float hitStunDuration,
             float knockdownDuration,
+            float getUpDuration,
             float airborneDuration,
             float knockdownThreshold)
         {
@@ -58,6 +62,7 @@ namespace _App
                 nameof(poiseRecoveryPerSecond));
             HitStunDuration = RequirePositive(hitStunDuration, nameof(hitStunDuration));
             KnockdownDuration = RequirePositive(knockdownDuration, nameof(knockdownDuration));
+            GetUpDuration = RequirePositive(getUpDuration, nameof(getUpDuration));
             AirborneDuration = RequirePositive(airborneDuration, nameof(airborneDuration));
             KnockdownThreshold = RequirePositive(knockdownThreshold, nameof(knockdownThreshold));
         }
@@ -70,6 +75,7 @@ namespace _App
                 10.0f,
                 0.25f,
                 0.8f,
+                1.8333334f,
                 0.45f,
                 6.0f);
         }

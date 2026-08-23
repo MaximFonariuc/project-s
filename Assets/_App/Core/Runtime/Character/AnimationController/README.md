@@ -50,7 +50,7 @@ classDiagram
 - Targeting supplies local yaw/pitch degrees through `CharacterLookFrame`.
   XController splits that request into slower limited body motion and faster
   residual head motion, with action- and airborne-specific attenuation.
-- Reaction and death use the required `Reaction/HitStun`, `Knockdown`,
+- Reaction and death use the required `Reaction/HitStun`, `Knockdown`, `GetUp`,
   `Airborne` and `Dead` states. Traversal remains optional: requests whose state
   is absent return an invalid playback instead of breaking composition.
 - `XControllerAnimationContract` is the single runtime source of required

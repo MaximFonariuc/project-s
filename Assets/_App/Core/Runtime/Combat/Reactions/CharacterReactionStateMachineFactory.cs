@@ -15,7 +15,7 @@ namespace _App
             new(CharacterReactionStateId.HitStun, CharacterReactionStateId.Knockdown),
             new(CharacterReactionStateId.HitStun, CharacterReactionStateId.Airborne),
             new(CharacterReactionStateId.HitStun, CharacterReactionStateId.Dead),
-            new(CharacterReactionStateId.Knockdown, CharacterReactionStateId.Stable),
+            new(CharacterReactionStateId.Knockdown, CharacterReactionStateId.GetUp),
             new(CharacterReactionStateId.Knockdown, CharacterReactionStateId.HitStun),
             new(CharacterReactionStateId.Knockdown, CharacterReactionStateId.Knockdown),
             new(CharacterReactionStateId.Knockdown, CharacterReactionStateId.Airborne),
@@ -25,6 +25,11 @@ namespace _App
             new(CharacterReactionStateId.Airborne, CharacterReactionStateId.Knockdown),
             new(CharacterReactionStateId.Airborne, CharacterReactionStateId.Airborne),
             new(CharacterReactionStateId.Airborne, CharacterReactionStateId.Dead),
+            new(CharacterReactionStateId.GetUp, CharacterReactionStateId.Stable),
+            new(CharacterReactionStateId.GetUp, CharacterReactionStateId.HitStun),
+            new(CharacterReactionStateId.GetUp, CharacterReactionStateId.Knockdown),
+            new(CharacterReactionStateId.GetUp, CharacterReactionStateId.Airborne),
+            new(CharacterReactionStateId.GetUp, CharacterReactionStateId.Dead),
             new(CharacterReactionStateId.Dead, CharacterReactionStateId.Stable)
         };
 
@@ -44,6 +49,9 @@ namespace _App
                 StateRegistration<CharacterReactionStateId>.Create(
                     CharacterReactionStateId.Airborne,
                     new CharacterAirborneReactionState()),
+                StateRegistration<CharacterReactionStateId>.Create(
+                    CharacterReactionStateId.GetUp,
+                    new CharacterGetUpState()),
                 StateRegistration<CharacterReactionStateId>.Create(
                     CharacterReactionStateId.Dead,
                     new CharacterDeadState())

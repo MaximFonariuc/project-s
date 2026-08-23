@@ -24,6 +24,7 @@ namespace _App
         public const float WeaponTransitionDuration = 1.00f;
         public const float HitStunDuration = 0.40f;
         public const float KnockdownDuration = 0.80f;
+        public const float GetUpDuration = 1.8333334f;
         public const float AirborneReactionDuration = 0.45f;
         public const float DeathDuration = 2.40f;
 
@@ -64,6 +65,12 @@ namespace _App
             if (IsReactionSlot(slot, CharacterReactionStateId.Dead))
             {
                 request = new AnimationActionRequest(Reaction, 3, DeathDuration);
+                return true;
+            }
+
+            if (IsReactionSlot(slot, CharacterReactionStateId.GetUp))
+            {
+                request = new AnimationActionRequest(Reaction, 4, GetUpDuration);
                 return true;
             }
 

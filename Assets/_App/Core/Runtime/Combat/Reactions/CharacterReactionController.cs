@@ -120,10 +120,10 @@ namespace _App
                 return;
             }
 
-            _remainingDuration = Mathf.Max(0.0f, _remainingDuration - Mathf.Max(0.0f, deltaTime));
+            _remainingDuration -= Mathf.Max(0.0f, deltaTime);
             if (_remainingDuration <= 0.0f)
             {
-                ReturnToStable();
+                AdvanceTimedReaction(-_remainingDuration);
             }
         }
 
@@ -248,6 +248,37 @@ namespace _App
             _remainingDuration = 0.0f;
             _stateMachine.ChangeState<CharacterStableState>();
             _presentation.Reset();
+        }
+
+        private void AdvanceTimedReaction(float elapsedPastEnd)
+        {
+            if (_stateMachine.CurrentStateId == CharacterReactionStateId.Knockdown)
+            {
+                EnterGetUp(elapsedPastEnd);
+                return;
+            }
+
+            ReturnToStable();
+        }
+
+        private void EnterGetUp(float elapsedBeforeEntry)
+        {
+            _remainingDuration = Mathf.Max(
+                0.0f,
+                _settings.GetUpDuration - Mathf.Max(0.0f, elapsedBeforeEntry));
+            var context = new CharacterReactionContext(
+                in _lastHit,
+                _settings.GetUpDuration);
+            _stateMachine.ChangeState<CharacterGetUpState, CharacterReactionContext>(context);
+
+            if (_remainingDuration <= 0.0f)
+            {
+                ReturnToStable();
+                return;
+            }
+
+            CharacterReactionSnapshot snapshot = CreateSnapshot();
+            _presentation.Present(in snapshot);
         }
 
         private void ApplyKnockback(in CombatHitResult hit)

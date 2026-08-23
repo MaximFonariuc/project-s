@@ -56,6 +56,7 @@ namespace _App
         public const string AirborneReactionStatePath =
             "Base Layer.Reaction.Airborne";
         public const string DeadStatePath = "Base Layer.Reaction.Dead";
+        public const string GetUpStatePath = "Base Layer.Reaction.GetUp";
         public const string WeaponWaitingStatePath =
             "SwitchWeapon Layer.Waiting";
         public const string WeaponSheatheStatePath =
@@ -110,7 +111,8 @@ namespace _App
                     HitStunStatePath,
                     KnockdownStatePath,
                     AirborneReactionStatePath,
-                    DeadStatePath
+                    DeadStatePath,
+                    GetUpStatePath
                 });
 
         private static readonly IReadOnlyList<string> LightAttackStates =
@@ -130,7 +132,8 @@ namespace _App
                     HitStunStatePath,
                     KnockdownStatePath,
                     AirborneReactionStatePath,
-                    DeadStatePath
+                    DeadStatePath,
+                    GetUpStatePath
                 });
 
         private static readonly IReadOnlyList<string> SwitchWeaponStates =

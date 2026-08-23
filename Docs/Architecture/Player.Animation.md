@@ -118,6 +118,7 @@ The current action contract is:
 | Reaction | 4 | 1 | `Reaction/Knockdown` |
 | Reaction | 4 | 2 | `Reaction/Airborne` |
 | Death | 4 | 3 | `Reaction/Dead` |
+| Get up | 4 | 4 | `Reaction/GetUp` |
 
 The controller consumes its historical `MovementType`, `MovementDirection`,
 `FallingDuration`, `OnGround` and `SpeedMultiplier` parameters. `BodyLookX/Y`
@@ -148,12 +149,13 @@ Body/head look parameters are neutralized while a reaction or death action owns
 the finite-action lane, preventing additive aiming poses from deforming the hit
 motion. They resume after the reaction controller returns to `Stable`.
 
-`Reaction` is a dedicated Base Layer sub-state machine. Its four states have no
+`Reaction` is a dedicated Base Layer sub-state machine. Its five states have no
 parameter-driven entry and no gameplay transitions: the driver enters the
-accepted state directly, while reaction gameplay explicitly cancels the three
-timed states back to `Locomotion/Move`. `Dead` holds its final frame until the
-health owner confirms revival. This keeps damage, recovery and death authority
-outside Mecanim while retaining visible, replaceable Animator slots.
+accepted state directly. Reaction gameplay changes `Knockdown` to `GetUp`, then
+explicitly cancels GetUp back to `Locomotion/Move`; short hit-stun and airborne
+reactions cancel directly to Move. `Dead` holds its final frame until the health
+owner confirms revival. This keeps damage, recovery and death authority outside
+Mecanim while retaining visible, replaceable Animator slots.
 
 ## Weapon override contract
 
@@ -200,9 +202,9 @@ new combo step interrupts the current attack only after gameplay accepts its
 buffered command inside the configured chain window.
 
 The current reaction states use Humanoid proxy motions from one coherent Knight
-set: `LightHit`, the alternate `LightHit`, `Fall` and `Death`. These clips are
-referenced without modifying their imported FBX files. They are replaceable
-content slots, not final reaction directionality or a get-up implementation.
+set: `LightHit`, the alternate `LightHit`, `Fall`, `Death` and `Revive`. These
+clips are referenced without modifying their imported FBX files. They are
+replaceable content slots, not final reaction directionality.
 
 ## Contract validation
 
