@@ -156,7 +156,7 @@ controller asset.
 
 ## Generic and Humanoid
 
-The current Player scene uses a valid Humanoid Avatar from the CLazy T-pose
-source. The reusable module still accepts either Generic or Humanoid animation
-backends; the Project S `XController` adapter intentionally validates Humanoid
-because the restored controller clips are authored for that retargeting path.
+The current Player scene uses a valid Humanoid Avatar. The reusable module still
+accepts either Generic or Humanoid animation backends; the Project S
+`XController` adapter intentionally validates Humanoid because the restored
+controller clips are authored for that retargeting path.

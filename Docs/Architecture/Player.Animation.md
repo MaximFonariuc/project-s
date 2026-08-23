@@ -39,10 +39,15 @@ classDiagram
         +YawDegrees
         +PitchDegrees
     }
+    class XControllerAnimationContract {
+        +RequiredParameters
+        +RequiredBaseLayerStatePaths
+        +RequiredSwitchWeaponStatePaths
+    }
     class XControllerCharacterAnimationDriver
+    class XControllerContractValidator
     class PlayerCameraAnimationAdapter
     class XController
-    class TwoHandedOverride
     class CharacterMotor
     class CombatActionExecutor
 
@@ -57,10 +62,11 @@ classDiagram
     ICharacterLookAnimationDriver --> CharacterLookFrame
     ICharacterAnimationDriver <|.. XControllerCharacterAnimationDriver
     ICharacterLookAnimationDriver <|.. XControllerCharacterAnimationDriver
+    XControllerCharacterAnimationDriver --> XControllerAnimationContract
     XControllerCharacterAnimationDriver --> XController : validated contract
+    XControllerContractValidator --> XControllerAnimationContract
+    XControllerContractValidator --> XController : read-only validation
     PlayerAnimatorLoadout --> XController : base graph
-    PlayerAnimatorLoadout --> TwoHandedOverride : clip table
-    TwoHandedOverride --> XController : override base
     PlayerLocomotionController --> CharacterMotor
     CombatActionExecutor --> CharacterMotor
 ```
@@ -133,11 +139,11 @@ Animator normalized time and does not stretch a clip automatically. Weapon
 overrides therefore need clips authored for the same semantic timing until an
 explicit per-action playback-rate contract is introduced.
 
-Reaction and death actions keep `ActionSpeed = 1`. Gameplay reaction state
-and duration remain authoritative and cancel presentation when their window
-ends, but a short hit-stun no longer compresses the source clip to fit the
+Reaction and death actions keep authored playback speed `1`. Gameplay reaction
+state and duration remain authoritative and cancel presentation when their
+window ends, but a short hit-stun does not compress the source clip to fit the
 gameplay duration. This preserves the authored impact pose and avoids the
-unnatural 2-3x playback speed seen with prototype reaction clips.
+unnatural accelerated playback seen with prototype reaction clips.
 Body/head look parameters are neutralized while a reaction or death action owns
 the finite-action lane, preventing additive aiming poses from deforming the hit
 motion. They resume after the reaction controller returns to `Stable`.
@@ -151,15 +157,15 @@ outside Mecanim while retaining visible, replaceable Animator slots.
 
 ## Weapon override contract
 
-Every weapon uses an `AnimatorOverrideController` whose base controller is
-`XController`. Layers, parameters, state machines and state names therefore
-remain identical; only animation clips are replaced.
+An equipped weapon may use an `AnimatorOverrideController` whose base controller
+is `XController`. Layers, parameters, state machines and state names therefore
+remain identical; only animation clips are replaced. A missing weapon-specific
+override intentionally falls back to the base controller.
 
 `PlayerAnimatorLoadout` owns runtime controller selection. It validates all
 configured overrides during scene composition and rejects a missing controller,
 duplicate weapon binding, or an override built on another base graph. `Unarmed`
-uses `XController` directly; `TwoHanded` uses
-`Overrides/TwoHanded.overrideController`.
+and every weapon without a configured override use `XController` directly.
 
 Draw selects the incoming animation loadout before its transition starts, but
 the gameplay weapon and rig change only at normalized commit time `0.50`.
@@ -181,12 +187,11 @@ Unity technically keys the override by the source clip asset.
 
 ## Current content
 
-The Player prefab references `XController.controller` as its unarmed base and
-contains one explicit `TwoHanded` override binding. The current override replaces
-16 slots: idle, forward/back walk, run and sprint, forward/back roll, skill,
-four base attacks, draw and sheathe. Jump, fall, landing and look-layer clips
-remain inherited from the base controller. Additional weapon styles extend the
-serialized binding list without changing gameplay or Animator state names.
+The Player prefab references `XController.controller` as its base and currently
+contains no weapon-specific override binding. Two-handed gameplay therefore uses
+the same clip table through the explicit fallback. Additional weapon styles can
+extend the serialized binding list without changing gameplay or Animator state
+names after a compatible override asset exists.
 
 The four attack states are entered by the Project S adapter with a `0.12 s`
 fixed-time crossfade. Their natural exits remain authored in XController; an
@@ -198,3 +203,13 @@ The current reaction states use Humanoid proxy motions from one coherent Knight
 set: `LightHit`, the alternate `LightHit`, `Fall` and `Death`. These clips are
 referenced without modifying their imported FBX files. They are replaceable
 content slots, not final reaction directionality or a get-up implementation.
+
+## Contract validation
+
+`XControllerAnimationContract` is the shared source of required layer,
+parameter and state names for runtime validation and editor tooling. The
+read-only command `Tools/Animation/Validate XController Contract` checks the
+controller, compatible Humanoid motions, finite-state exit ownership, base and
+override-controller compatibility, and the Player/training-target prefabs. It
+reports mismatches but never creates or rewrites Animator states, transitions,
+Blend Trees, clips or prefab bindings.

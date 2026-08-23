@@ -2,144 +2,197 @@
 
 ## Назначение
 
-`XController.controller` остаётся обычным Mecanim Animator Controller и отвечает
-только за presentation: выбор поз, blend trees и визуальное смешивание состояний.
-Gameplay-состояние принадлежит locomotion/combat/reaction-коду и передаётся в
-Animator через один адаптер `XControllerCharacterAnimationDriver`.
+`XController.controller` — единый вручную редактируемый Mecanim-граф персонажа
+Project S. Он отвечает за выбор motion, Blend Trees, слои и визуальные
+переходы. Locomotion, допустимость действий, combat/reaction timeline, cancel
+windows, damage и collision-safe перемещение остаются в gameplay-коде.
 
-В качестве общего Humanoid-набора используется курированный поднабор
-`CLazyRunnerActionAnimPack`. Исходные vendor-FBX не подключаются к контроллеру
-напрямую: 44 нужных клипа извлечены в самостоятельные `.anim` с явными loop
-settings.
+Runtime не создаёт и не перестраивает Animator Controller. Единственный
+Project-S-specific writer — `XControllerCharacterAnimationDriver`; он переводит
+семантические кадры и действия модуля `ModularAnimation` в контракт XController.
 
 ```text
 Assets/_Game/Animations/Character/
 ├── 1. Controllers/
 │   └── XController.controller
-└── 2. Basic/CLazyCore/
-    ├── Locomotion/       # idle + walk/run/sprint, восемь направлений
-    ├── Airborne/         # jump start, rise, fall, landing
-    ├── Actions/          # четыре направления dodge
-    ├── Combat/Unarmed/   # BaseAttack1..4
-    └── Reactions/        # подготовленные reaction/death/recovery candidates
+├── 2. Basic/                 # locomotion, jump, roll и базовые attacks
+└── Knight/                   # текущие proxy reaction/death motions
+
+Assets/_Game/Animations/Masks/
+└── SwitchMask.mask
 ```
 
-## Зависимости
+## Дерево классов и зависимости
 
 ```mermaid
 classDiagram
-    class PlayerCharacterAnimationPresenter
-    class PlayerCombatAnimationAdapter
-    class PlayerAnimationCoordinator
-    class ICharacterAnimationDriver
-    class ICharacterLookAnimationDriver
-    class XControllerCharacterAnimationDriver
-    class PlayerAnimatorLoadout
+    namespace AnimationModule {
+        class ICharacterAnimationDriver
+        class ICharacterLookAnimationDriver
+        class CharacterLocomotionFrame
+        class AnimationActionRequest
+    }
+
+    namespace ProjectSRuntime {
+        class PlayerCharacterAnimationPresenter
+        class PlayerAnimationCoordinator
+        class PlayerCameraAnimationAdapter
+        class XControllerCharacterAnimationDriver
+        class XControllerAnimationContract
+        class PlayerAnimatorLoadout
+    }
+
+    namespace ProjectSEditor {
+        class XControllerContractValidator
+    }
+
     class Animator
     class XController
-    class AnimatorOverrideController
+    class PlayerPrefab
+    class TrainingTargetPrefab
 
-    PlayerCharacterAnimationPresenter --> PlayerAnimationCoordinator
-    PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
+    PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
-    XControllerCharacterAnimationDriver ..|> ICharacterAnimationDriver
-    XControllerCharacterAnimationDriver ..|> ICharacterLookAnimationDriver
+    PlayerCameraAnimationAdapter --> ICharacterLookAnimationDriver
+    ICharacterAnimationDriver <|.. XControllerCharacterAnimationDriver
+    ICharacterLookAnimationDriver <|.. XControllerCharacterAnimationDriver
+    XControllerCharacterAnimationDriver --> XControllerAnimationContract
     XControllerCharacterAnimationDriver --> Animator
     Animator --> XController
     PlayerAnimatorLoadout --> Animator
-    PlayerAnimatorLoadout --> AnimatorOverrideController
-    AnimatorOverrideController --> XController
+    XControllerContractValidator --> XControllerAnimationContract
+    XControllerContractValidator --> XController : read-only inspection
+    XControllerContractValidator --> PlayerPrefab : read-only inspection
+    XControllerContractValidator --> TrainingTargetPrefab : read-only inspection
 ```
 
-- `_App/Modules/Animation` объявляет семантические кадры и команды.
-- `_App/Core` адаптирует их к контракту конкретного `XController`.
-- Animator не читает input, не определяет damage/cancel windows и не перемещает
-  motor самостоятельно.
-- `PlayerAnimatorLoadout` меняет только таблицу клипов через
-  `AnimatorOverrideController`; граф и параметры остаются общими.
+Направление first-party dependencies сохраняется:
 
-## Locomotion graph
+```text
+ProjectS.Core.Runtime -> ModularAnimation.Unity -> ModularAnimation.Core
+ProjectS.Core.Editor  -> ProjectS.Core.Runtime
+```
+
+`ModularAnimation` не знает о XController, клипах и assets Project S.
+`XControllerAnimationContract` находится в Core, потому что описывает конкретный
+контент игры. Editor validator использует этот же runtime-контракт, но runtime
+assembly не ссылается на editor assembly.
+
+## Контракт XController
+
+Обязательные слои:
+
+| Layer | Mode | Назначение |
+| --- | --- | --- |
+| `Base Layer` | Override | locomotion, roll, attacks, reactions |
+| `SwitchWeapon Layer` | Override + Avatar Mask | draw/sheathe presentation |
+| `BodyLook` | Additive | ограниченный поворот корпуса |
+| `HeadLook` | Additive | остаточный поворот головы |
+
+Обязательные параметры:
+
+| Parameter | Type | Owner / назначение |
+| --- | --- | --- |
+| `OnGround` | Bool | подтверждённый grounded state motor |
+| `MovementDirection` | Float | signed forward/backward presentation |
+| `MovementType` | Float | idle/walk/run/sprint gait |
+| `FallingDuration` | Float | signed vertical velocity для airborne graph |
+| `SpeedMultiplier` | Float | общий presentation playback speed |
+| `BodyLookX`, `BodyLookY` | Float | additive body pose |
+| `HeadLookX`, `HeadLookY` | Float | additive head pose |
+
+Параметры `MoveX`, `MoveY`, `Action`, `ActionId`, `ActionVariant` и
+`CancelAction` относятся к универсальному optional Mecanim backend, но не входят
+в текущий XController. Принятые finite actions входят напрямую в стабильные
+state paths через `CrossFadeInFixedTime`.
+
+Обязательные semantic state slots:
+
+- `Base Layer.Locomotion.Move`;
+- `Base Layer.Locomotion.Roll.RollFront` и `RollBack`;
+- `Base Layer.Attack.BaseAttack1...4`;
+- `Base Layer.Reaction.HitStun`, `Knockdown`, `Airborne`, `Dead`;
+- `SwitchWeapon Layer.Waiting`, `TwoHanded_Sheathe`,
+  `TwoHanded_Unsheathe`.
+
+Все имена объявлены один раз в `XControllerAnimationContract`. Driver и editor
+validator не поддерживают собственные копии строк.
+
+## Runtime flow и переходы
 
 ```mermaid
 stateDiagram-v2
     [*] --> Move
-    Move --> JumpStart: !OnGround && vertical > 0
-    Move --> Fall: !OnGround && vertical < 0
-    JumpStart --> Fall: takeoff завершён
-    Fall --> Landing: OnGround
-    Landing --> Move: landing завершён / движение
-    Move --> Dodge: ActionId = Dodge
-    Dodge --> Move: action завершён / cancel
-    Move --> Attack: ActionId = LightAttack
-    Attack --> Move: action завершён / cancel
+    Move --> Roll: accepted dodge / direct crossfade
+    Move --> Attack: accepted combat action / direct crossfade
+    Move --> Reaction: confirmed hit / direct crossfade
+    Attack --> Attack: accepted combo branch
+    Roll --> Move: authored exit
+    Attack --> Move: authored exit
+    Reaction --> Move: gameplay cancel after reaction window
+    Reaction --> Dead: confirmed death
+    Dead --> Dead: hold until gameplay revival policy
 ```
 
-Состояние `Move` содержит верхний 1D blend по `MovementType`:
+- Locomotion parameters обновляются непрерывно и сглаживаются только на уровне
+  presentation: gait `0.33 s`, direction `0.12 s`.
+- Dodge и attacks входят с fixed-time crossfade `0.12 s`.
+- Штатное завершение не форсирует переход: controller доигрывает authored exit.
+- Interruption вызывает `CancelAction`: Base Layer возвращается в `Move`,
+  weapon layer — в `Waiting`.
+- Reaction states не имеют собственных выходов. Recovery/death authority
+  принадлежит gameplay reaction state machine; она явно завершает presentation.
+- `BodyLook` и `HeadLook` получают camera-relative yaw/pitch через отдельный
+  look adapter. Dodge/reaction подавляют look, attacks и weapon transitions
+  используют ограниченный tracking.
 
-- `0` — общий Idle;
-- `1` — Walk 8-Way;
-- `2` — Run 8-Way;
-- `3` — Sprint 8-Way.
+## Timing и root motion
 
-Каждый gait использует `Simple Directional 2D` по `MoveX/MoveY` с центром и
-восемью направлениями. Вектор нормализуется и демпфируется в единственном
-driver. Старые `MovementDirection`, `MovementType`, `FallingDuration` и
-`OnGround` сохранены, потому что существующие jump/landing transitions на них
-опираются.
+`CombatActionDefinition.DurationSeconds` и reaction durations определяют
+gameplay timeline. Текущий driver не растягивает клипы до этой длительности и
+не читает Animator normalized time как источник gameplay state. По умолчанию
+actions воспроизводятся с authored speed `1`.
 
-## Контракт параметров
+Политика перемещения — motor-owned motion:
 
-| Параметр | Owner | Назначение |
-|---|---|---|
-| `MoveX`, `MoveY` | locomotion presentation driver | локальное направление движения |
-| `MovementType` | locomotion presentation driver | idle/walk/run/sprint |
-| `MovementDirection` | locomotion presentation driver | legacy forward/back transition contract |
-| `FallingDuration` | locomotion presentation driver | вертикальная скорость для airborne graph |
-| `OnGround` | locomotion presentation driver | подтверждённый grounded state |
-| `Action`, `ActionId`, `ActionVariant` | animation coordinator/driver | семантический action request |
-| `ActionSpeed` | animation driver | согласование длины клипа с gameplay duration |
-| `CancelAction` | animation coordinator/driver | явный выход из action state |
-| `BodyLookX/Y`, `HeadLookX/Y` | look driver | additive BodyLook/HeadLook layers |
-
-## Переходы и root motion
-
-- Idle/walk/run/sprint смешиваются внутри одного state, без резких state jumps.
-- Направление демпфируется `0.12 s`, gait — `0.33 s`.
-- Вход в dodge/attack смешивается `0.12 s`.
-- Обычный выход из dodge происходит после `82%` клипа с blend `0.18 s`.
-- Обычный выход из атаки происходит после `88%` клипа с blend `0.16 s`.
-- Landing начинает штатный выход после `78%`; движение не обрывает его раньше
-  `45%`.
-
-Текущая политика — motor-owned motion: `Animator.applyRootMotion = false`.
-Locomotion, dodge и combat movement проходят через collision-safe motor/intents.
-Root-варианты, смещавшие Humanoid skeleton относительно capsule, исключены из
-интегрированного набора и заменены in-place источниками.
+- `Animator.applyRootMotion = false` на Player и training target;
+- driver повторно фиксирует это при композиции;
+- locomotion, dodge и combat movement проходят через `CharacterMotor`, его
+  sweeps, grounding и collision response;
+- root motion можно вводить позднее только как явный movement intent с одним
+  owner, а не параллельно motor translation.
 
 ## Weapon overrides
 
-Общие locomotion, jump, dodge и reactions не меняются вместе с оружием.
-Оружейный `AnimatorOverrideController` должен переопределять стабильные combat
-slots (`BaseAttack1`...`BaseAttack4`, а затем дополнительные именованные slots),
-не копируя Animator graph. Слои `BodyLook` и `HeadLook` остаются общими.
+`AnimatorOverrideController` является опциональной таблицей замены motion для
+оружия. Его base controller обязан разрешаться в `XController`; граф, layers,
+parameters и state names не копируются. Если override для weapon type не задан,
+`PlayerAnimatorLoadout` оставляет базовый XController.
 
-## Отложенный traversal
+В текущем Player prefab override bindings отсутствуют. Это корректное состояние:
+двуручное оружие временно использует базовые motions. Новый binding добавляется
+только вместе с существующим совместимым override asset.
 
-Ladder-клипы уже присутствуют в
-`Assets/_Game/Animations/Shared/External/Amplify/Traversal`, а semantic slots —
-в существующем traversal-коде. Они намеренно не смешаны с CLazy wall-run и не
-подключены в этой итерации. Ladder, ledge, wall-climb и swimming должны получить
-отдельный traversal graph после стабилизации привязки персонажа к геометрии.
+## Editor validation
 
-## Выполненная проверка
+Команда `Tools/Animation/Validate XController Contract` выполняет read-only
+проверку:
 
-- все 44 клипа — валидные Humanoid clips: 29 loops и 15 one-shots;
-- `XControllerCharacterAnimationDriver` успешно валидирует Avatar, layers,
-  states и новые параметры на `Player.prefab`;
-- Animator evaluation подтвердил `Move`, `Jump`, `DodgeForward` и
-  `BaseAttack1` transitions;
-- визуальный прогон idle-to-run и attack не выявил T-pose или сломанного
-  retargeting;
-- измеренное смещение visual root для интегрированных backward run, forward
-  sprint и forward dodge — `0 m`;
-- после изменений Unity Console не содержит errors и warnings.
+- обязательных layers, blending modes, mask, parameters и state paths;
+- наличия motions и их Humanoid/legacy compatibility;
+- authored exits у roll/attack и gameplay-owned exits у reactions;
+- non-loop policy для hit-stun, knockdown и death;
+- совместимости AnimatorOverrideController с базовым XController;
+- Humanoid Avatar, controller и отключённого root motion в Player и training
+  target prefabs;
+- отсутствующих/дублирующихся weapon override bindings.
+
+Validator ничего не генерирует и не исправляет автоматически. После текущей
+синхронизации результат: `PASS — 0 error(s), 0 warning(s)`.
+
+## Отложенные блоки
+
+Swimming, ladder, ledge, wall-climb, parkour, directional hit reactions и
+полноценный knockdown/get-up остаются отдельными content/gameplay задачами. Они
+не добавляются в базовый controller до появления соответствующей gameplay
+семантики и проверенного набора клипов.

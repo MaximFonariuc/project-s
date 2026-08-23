@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ModularAnimation;
 using UnityEngine;
 
@@ -14,10 +15,6 @@ namespace _App
         ICharacterLookAnimationDriver,
         IDisposable
     {
-        private const int BaseLayerIndex = 0;
-        private const string SwitchWeaponLayerName = "SwitchWeapon Layer";
-        private const string BodyLookLayerName = "BodyLook";
-        private const string HeadLookLayerName = "HeadLook";
         private const float GaitDampSeconds = 0.33f;
         private const float DirectionDampSeconds = 0.12f;
         private const float DirectionEpsilon = 0.0001f;
@@ -49,42 +46,41 @@ namespace _App
         private const int WeaponTransitionActionId = 3;
         private const int ReactionActionId = 4;
 
-        private static readonly int OnGroundHash = Animator.StringToHash("OnGround");
-        private static readonly int MovementDirectionHash = Animator.StringToHash("MovementDirection");
-        private static readonly int MovementTypeHash = Animator.StringToHash("MovementType");
-        private static readonly int FallingDurationHash = Animator.StringToHash("FallingDuration");
-        private static readonly int SpeedMultiplierHash = Animator.StringToHash("SpeedMultiplier");
-        private static readonly int BodyLookXHash = Animator.StringToHash("BodyLookX");
-        private static readonly int BodyLookYHash = Animator.StringToHash("BodyLookY");
-        private static readonly int HeadLookXHash = Animator.StringToHash("HeadLookX");
-        private static readonly int HeadLookYHash = Animator.StringToHash("HeadLookY");
+        private static readonly int OnGroundHash = Animator.StringToHash(
+            XControllerAnimationContract.OnGroundParameterName);
+        private static readonly int MovementDirectionHash = Animator.StringToHash(
+            XControllerAnimationContract.MovementDirectionParameterName);
+        private static readonly int MovementTypeHash = Animator.StringToHash(
+            XControllerAnimationContract.MovementTypeParameterName);
+        private static readonly int FallingDurationHash = Animator.StringToHash(
+            XControllerAnimationContract.FallingDurationParameterName);
+        private static readonly int SpeedMultiplierHash = Animator.StringToHash(
+            XControllerAnimationContract.SpeedMultiplierParameterName);
+        private static readonly int BodyLookXHash = Animator.StringToHash(
+            XControllerAnimationContract.BodyLookXParameterName);
+        private static readonly int BodyLookYHash = Animator.StringToHash(
+            XControllerAnimationContract.BodyLookYParameterName);
+        private static readonly int HeadLookXHash = Animator.StringToHash(
+            XControllerAnimationContract.HeadLookXParameterName);
+        private static readonly int HeadLookYHash = Animator.StringToHash(
+            XControllerAnimationContract.HeadLookYParameterName);
 
         private static readonly int MoveStateHash = Animator.StringToHash(
-            "Base Layer.Locomotion.Move");
+            XControllerAnimationContract.MoveStatePath);
         private static readonly int RollForwardStateHash = Animator.StringToHash(
-            "Base Layer.Locomotion.Roll.RollFront");
+            XControllerAnimationContract.RollForwardStatePath);
         private static readonly int RollBackwardStateHash = Animator.StringToHash(
-            "Base Layer.Locomotion.Roll.RollBack");
-        private static readonly int[] LightAttackStateHashes =
-        {
-            Animator.StringToHash("Base Layer.Attack.BaseAttack1"),
-            Animator.StringToHash("Base Layer.Attack.BaseAttack2"),
-            Animator.StringToHash("Base Layer.Attack.BaseAttack3"),
-            Animator.StringToHash("Base Layer.Attack.BaseAttack4")
-        };
-        private static readonly int[] ReactionStateHashes =
-        {
-            Animator.StringToHash("Base Layer.Reaction.HitStun"),
-            Animator.StringToHash("Base Layer.Reaction.Knockdown"),
-            Animator.StringToHash("Base Layer.Reaction.Airborne"),
-            Animator.StringToHash("Base Layer.Reaction.Dead")
-        };
+            XControllerAnimationContract.RollBackwardStatePath);
+        private static readonly int[] LightAttackStateHashes = CreateStateHashes(
+            XControllerAnimationContract.LightAttackStatePaths);
+        private static readonly int[] ReactionStateHashes = CreateStateHashes(
+            XControllerAnimationContract.ReactionStatePaths);
         private static readonly int WeaponSheatheStateHash = Animator.StringToHash(
-            "SwitchWeapon Layer.TwoHanded_Sheathe");
+            XControllerAnimationContract.WeaponSheatheStatePath);
         private static readonly int WeaponUnsheatheStateHash = Animator.StringToHash(
-            "SwitchWeapon Layer.TwoHanded_Unsheathe");
+            XControllerAnimationContract.WeaponUnsheatheStatePath);
         private static readonly int WeaponWaitingStateHash = Animator.StringToHash(
-            "SwitchWeapon Layer.Waiting");
+            XControllerAnimationContract.WeaponWaitingStatePath);
 
         private readonly Animator _animator;
         private readonly int _switchWeaponLayerIndex;
@@ -107,7 +103,8 @@ namespace _App
             _animator = animator != null
                 ? animator
                 : throw new ArgumentNullException(nameof(animator));
-            _switchWeaponLayerIndex = _animator.GetLayerIndex(SwitchWeaponLayerName);
+            _switchWeaponLayerIndex = _animator.GetLayerIndex(
+                XControllerAnimationContract.SwitchWeaponLayerName);
 
             ValidateAnimator();
             _animator.applyRootMotion = false;
@@ -228,12 +225,14 @@ namespace _App
                     _switchWeaponLayerIndex,
                     0.0f);
             }
-            else if (_animator.HasState(BaseLayerIndex, MoveStateHash))
+            else if (_animator.HasState(
+                         XControllerAnimationContract.BaseLayerIndex,
+                         MoveStateHash))
             {
                 _animator.CrossFadeInFixedTime(
                     MoveStateHash,
                     ActionCancelCrossFadeSeconds,
-                    BaseLayerIndex,
+                    XControllerAnimationContract.BaseLayerIndex,
                     0.0f);
             }
 
@@ -388,7 +387,7 @@ namespace _App
             out int stateHash,
             out float crossFadeSeconds)
         {
-            layerIndex = BaseLayerIndex;
+            layerIndex = XControllerAnimationContract.BaseLayerIndex;
             switch (request.Action.Value)
             {
                 case DodgeActionId:
@@ -443,78 +442,41 @@ namespace _App
                     $"Animator '{_animator.name}' requires XController.");
             }
 
-            RequireParameter(OnGroundHash, AnimatorControllerParameterType.Bool, "OnGround");
-            RequireParameter(
-                MovementDirectionHash,
-                AnimatorControllerParameterType.Float,
-                "MovementDirection");
-            RequireParameter(
-                MovementTypeHash,
-                AnimatorControllerParameterType.Float,
-                "MovementType");
-            RequireParameter(
-                FallingDurationHash,
-                AnimatorControllerParameterType.Float,
-                "FallingDuration");
-            RequireParameter(
-                SpeedMultiplierHash,
-                AnimatorControllerParameterType.Float,
-                "SpeedMultiplier");
-            RequireParameter(
-                BodyLookXHash,
-                AnimatorControllerParameterType.Float,
-                "BodyLookX");
-            RequireParameter(
-                BodyLookYHash,
-                AnimatorControllerParameterType.Float,
-                "BodyLookY");
-            RequireParameter(
-                HeadLookXHash,
-                AnimatorControllerParameterType.Float,
-                "HeadLookX");
-            RequireParameter(
-                HeadLookYHash,
-                AnimatorControllerParameterType.Float,
-                "HeadLookY");
-            RequireLayer(BodyLookLayerName);
-            RequireLayer(HeadLookLayerName);
-            RequireLayer(SwitchWeaponLayerName);
+            IReadOnlyList<XControllerParameterRequirement> parameters =
+                XControllerAnimationContract.RequiredParameters;
+            for (int i = 0; i < parameters.Count; i++)
+            {
+                XControllerParameterRequirement requirement = parameters[i];
+                RequireParameter(
+                    Animator.StringToHash(requirement.Name),
+                    requirement.Type,
+                    requirement.Name);
+            }
 
-            RequireState(MoveStateHash, "Base Layer.Locomotion.Move");
-            RequireState(RollForwardStateHash, "Base Layer.Locomotion.Roll.RollFront");
-            RequireState(RollBackwardStateHash, "Base Layer.Locomotion.Roll.RollBack");
-            for (int i = 0; i < LightAttackStateHashes.Length; i++)
+            RequireLayer(XControllerAnimationContract.BodyLookLayerName);
+            RequireLayer(XControllerAnimationContract.HeadLookLayerName);
+            RequireLayer(XControllerAnimationContract.SwitchWeaponLayerName);
+
+            IReadOnlyList<string> baseStates =
+                XControllerAnimationContract.RequiredBaseLayerStatePaths;
+            for (int i = 0; i < baseStates.Count; i++)
             {
+                string statePath = baseStates[i];
                 RequireState(
-                    LightAttackStateHashes[i],
-                    $"Base Layer.Attack.BaseAttack{i + 1}");
+                    Animator.StringToHash(statePath),
+                    statePath);
             }
-            for (int i = 0; i < ReactionStateHashes.Length; i++)
+
+            IReadOnlyList<string> switchWeaponStates =
+                XControllerAnimationContract.RequiredSwitchWeaponStatePaths;
+            for (int i = 0; i < switchWeaponStates.Count; i++)
             {
-                string stateName = i switch
-                {
-                    0 => "HitStun",
-                    1 => "Knockdown",
-                    2 => "Airborne",
-                    3 => "Dead",
-                    _ => throw new ArgumentOutOfRangeException(nameof(i), i, null)
-                };
+                string statePath = switchWeaponStates[i];
                 RequireState(
-                    ReactionStateHashes[i],
-                    $"Base Layer.Reaction.{stateName}");
+                    _switchWeaponLayerIndex,
+                    Animator.StringToHash(statePath),
+                    statePath);
             }
-            RequireState(
-                _switchWeaponLayerIndex,
-                WeaponSheatheStateHash,
-                "SwitchWeapon Layer.TwoHanded_Sheathe");
-            RequireState(
-                _switchWeaponLayerIndex,
-                WeaponUnsheatheStateHash,
-                "SwitchWeapon Layer.TwoHanded_Unsheathe");
-            RequireState(
-                _switchWeaponLayerIndex,
-                WeaponWaitingStateHash,
-                "SwitchWeapon Layer.Waiting");
         }
 
         private void RequireParameter(
@@ -539,7 +501,10 @@ namespace _App
 
         private void RequireState(int stateHash, string stateName)
         {
-            RequireState(BaseLayerIndex, stateHash, stateName);
+            RequireState(
+                XControllerAnimationContract.BaseLayerIndex,
+                stateHash,
+                stateName);
         }
 
         private void RequireState(int layerIndex, int stateHash, string stateName)
@@ -571,6 +536,17 @@ namespace _App
             {
                 throw new InvalidOperationException("The Animator owner has been destroyed.");
             }
+        }
+
+        private static int[] CreateStateHashes(IReadOnlyList<string> statePaths)
+        {
+            var hashes = new int[statePaths.Count];
+            for (int i = 0; i < statePaths.Count; i++)
+            {
+                hashes[i] = Animator.StringToHash(statePaths[i]);
+            }
+
+            return hashes;
         }
     }
 }

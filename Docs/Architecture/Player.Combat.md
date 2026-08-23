@@ -135,7 +135,9 @@ sequenceDiagram
 
 Для combo presentation вызов содержит `ComboIndex` и
 `CombatActionDefinition.DurationSeconds`. Это не переносит authority в Animator:
-длительность нужна ему только для визуальной нормализации `ActionSpeed`.
+длительность остаётся метаданными ожидаемого playback. Текущий XController
+воспроизводит authored clip speed и не выводит gameplay timeline из normalized
+time Animator.
 
 Hitbox открывается только по `CombatActionFrame` и закрывается при completion, cancellation, interruption и disable. Каждое фактически запущенное action получает отдельный `CombatAttackExecution`, поэтому повторные hurtbox одной цели фильтруются на уровне атаки, а не оружия. Weapon transition применяет loadout только после commit point. Cooldown хранится по `PlayerCombatActionId`; animation lookup использует отдельный `PlayerCombatAnimationId`.
 

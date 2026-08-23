@@ -468,9 +468,7 @@ MonoBehaviour:
   _combatActionProfile: {fileID: 11400000, guid: 9fed6dc9c6a443d429c2bb4fa917b674, type: 2}
   _reactionProfile: {fileID: 11400000, guid: c842a637289f9e843bc9cd45c2ee569d, type: 2}
   _animator: {fileID: 7171206776534285674}
-  _animationOverrides:
-  - _weaponType: 2
-    _controller: {fileID: 22100000, guid: df1b3f49cda5fa54e9fd95efa3bc06c1, type: 2}
+  _animationOverrides: []
   _unarmedHitboxes:
   - {fileID: 6465409639916462472}
   - {fileID: 7252946858662463397}

@@ -32,13 +32,13 @@ classDiagram
   code has no clip reference.
 - The fourth prototype step is the current heavy finisher: its confirmed hit
   requests `hit.heavy` and crosses the reaction profile's knockdown threshold.
-- Gameplay passes the action duration to presentation. The Animator driver
-  derives the local `ActionSpeed` from the active base/override clip, so both
-  controller types finish on the same normalized gameplay timeline.
+- Gameplay passes the expected duration as presentation metadata, but the
+  current XController adapter keeps the authored clip speed. Gameplay timing
+  and Animator normalized time are intentionally independent.
 - `PlayerWeaponRig` enables two hand hitboxes only during the confirmed hit
   window. `Weapon` reports collision candidates to `CombatHitResolver`.
-- `Cancel()` sends an explicit Animator cancel trigger when gameplay interrupts
-  an action. Normal completion lets the controller use its authored exit
-  transition.
+- `Cancel()` asks the XController adapter to crossfade to locomotion when
+  gameplay interrupts an action. Normal completion lets the controller use its
+  authored exit transition.
 - Weapon transitions and the ground light combo are implemented. Named skills,
   heavy branches and air attacks remain deferred.
