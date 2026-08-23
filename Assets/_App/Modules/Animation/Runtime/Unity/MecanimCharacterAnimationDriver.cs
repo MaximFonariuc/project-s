@@ -179,6 +179,19 @@ namespace ModularAnimation.Unity
             return new AnimationActionPlayback(_nextSequence, request.ExpectedDuration);
         }
 
+        public void CompleteAction()
+        {
+            if (_disposed || _animator == null)
+            {
+                return;
+            }
+
+            ResetTrigger(ActionHash);
+            ResetTrigger(CancelActionHash);
+            SetInteger(ActionIdHash, 0);
+            SetInteger(ActionVariantHash, 0);
+        }
+
         public void CancelAction()
         {
             if (_disposed || _animator == null)

@@ -33,6 +33,10 @@ classDiagram
 ```
 
 - The coordinator owns finite-action priority, action source and playback speed.
+- Normal completion and interruption are distinct: `ReleaseAll` calls the
+  driver's non-disruptive `CompleteAction`, while `Cancel` requests a visual
+  exit. This keeps action-scoped look policy and layer ownership bounded by the
+  gameplay lifecycle.
 - It does not own clips, Animator states, transitions or blend durations.
 - Dodge uses action ID `1` with forward/backward variants. The first light
   attack uses action ID `2`.

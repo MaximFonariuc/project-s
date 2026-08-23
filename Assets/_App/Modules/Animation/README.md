@@ -19,6 +19,7 @@ classDiagram
             <<interface>>
             +ApplyLocomotion(frame, deltaTime)
             +PlayAction(request) AnimationActionPlayback
+            +CompleteAction()
             +CancelAction()
             +SetPlaybackSpeed(speed)
             +Reset()
@@ -34,6 +35,7 @@ classDiagram
             -Animator animator
             +ApplyLocomotion(frame, deltaTime)
             +PlayAction(request) AnimationActionPlayback
+            +CompleteAction()
             +CancelAction()
         }
         class MecanimCharacterParameters
@@ -87,6 +89,9 @@ flowchart LR
 - Finite actions use semantic action IDs and variants. The Project S adapter
   maps them onto the authored controller contract; gameplay does not know
   state names or clips.
+- Finite actions have an explicit presentation lifecycle. `CompleteAction`
+  releases transient presentation policy after normal gameplay completion;
+  `CancelAction` additionally requests an interrupted visual exit.
 - `PlayerAnimationCoordinator` arbitrates action priority
   (`Death > Reaction > Traversal > Combat > Locomotion`) without choosing a
   clip.

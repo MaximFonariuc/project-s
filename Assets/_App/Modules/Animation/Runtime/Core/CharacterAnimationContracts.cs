@@ -166,6 +166,7 @@ namespace ModularAnimation
     {
         void ApplyLocomotion(in CharacterLocomotionFrame frame, float deltaTime);
         AnimationActionPlayback PlayAction(in AnimationActionRequest request);
+        void CompleteAction();
         void CancelAction();
         void SetPlaybackSpeed(float speed);
         void Reset();

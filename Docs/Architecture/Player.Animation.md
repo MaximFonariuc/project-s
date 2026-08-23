@@ -28,6 +28,7 @@ classDiagram
         <<module interface>>
         +ApplyLocomotion(frame, deltaTime)
         +PlayAction(request) AnimationActionPlayback
+        +CompleteAction()
         +CancelAction()
     }
     class ICharacterLookAnimationDriver {
@@ -72,6 +73,9 @@ classDiagram
   locomotion frame.
 - `PlayerAnimationCoordinator` arbitrates finite action priority:
   `Death > Reaction > Traversal > Combat > Locomotion`.
+- Normal completion calls `CompleteAction` and only releases transient
+  presentation policy. Interruption calls `CancelAction` and requests an
+  explicit visual exit from the active Animator layer.
 - `XControllerCharacterAnimationDriver` is the only parameter writer. The same
   scoped instance presents locomotion, finite actions and body/head look.
 - `PlayerCameraAnimationAdapter` supplies a rig-independent yaw/pitch request in
@@ -86,11 +90,14 @@ classDiagram
 
 ## Transition model
 
-Transitions are content authored in Animator. Runtime code supplies the
-semantic `Action` trigger together with `ActionId` and `ActionVariant` and never
-calls `Animator.CrossFade` to choose a finite-action state. `CancelAction`
-returns supported dodge and attack states to `Move` through explicit `0.10 s`
-fixed-time transitions.
+Transitions out of finite states remain content-authored in Animator. The
+restored XController has no semantic action parameters or entry transitions,
+so the Project S adapter maps an accepted semantic request to a known state and
+enters it with `CrossFadeInFixedTime`. Gameplay still owns acceptance, timing
+and cancellation; it never selects a clip. `CancelAction` returns base-layer
+dodge/attack/reaction actions to `Move` and weapon-layer actions to `Waiting`.
+`CompleteAction` does not force a transition and lets the controller finish its
+authored exit.
 
 The current action contract is:
 
@@ -119,14 +126,12 @@ body twist and retains only a reduced head response. Dodge and reaction poses
 fully suppress look, while attacks and weapon transitions retain reduced
 tracking so additive layers do not deform authored action silhouettes.
 
-`ActionSpeed` is a presentation-only parameter enabled on `BaseAttack1...4`.
-`CombatActionDefinition.DurationSeconds` is passed as the expected duration of
-the semantic request. The driver caches clip lengths for the currently assigned
-Runtime Animator Controller and calculates `clip length / expected duration`.
-Consequently a base clip and its weapon override can have different source
-lengths while their hit, chain, cancel and completion windows remain on one
-gameplay-owned timeline. Controller reassignment invalidates this cache; no clip
-lookup or allocation is performed per frame.
+`CombatActionDefinition.DurationSeconds` remains the gameplay timeline for hit,
+chain, cancel and completion windows. The restored XController currently plays
+its authored clips at their native speed; it does not infer gameplay timing from
+Animator normalized time and does not stretch a clip automatically. Weapon
+overrides therefore need clips authored for the same semantic timing until an
+explicit per-action playback-rate contract is introduced.
 
 Reaction and death actions keep `ActionSpeed = 1`. Gameplay reaction state
 and duration remain authoritative and cancel presentation when their window
@@ -176,8 +181,8 @@ four base attacks, draw and sheathe. Jump, fall, landing and look-layer clips
 remain inherited from the base controller. Additional weapon styles extend the
 serialized binding list without changing gameplay or Animator state names.
 
-The four attack states use `0.10 s` Any State entry blends. Their natural exit
-starts at normalized time `0.90` and blends to locomotion for `0.10 s`; an
-explicit `CancelAction` transition uses the same fixed blend. A new combo step
-interrupts the current attack only after gameplay accepts its buffered command
-inside the configured chain window.
+The four attack states are entered by the Project S adapter with a `0.12 s`
+fixed-time crossfade. Their natural exits remain authored in XController; an
+explicit gameplay cancellation uses a `0.12 s` crossfade back to locomotion. A
+new combo step interrupts the current attack only after gameplay accepts its
+buffered command inside the configured chain window.

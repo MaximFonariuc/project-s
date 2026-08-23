@@ -175,6 +175,7 @@ namespace _App
             if (_actionOwner == source)
             {
                 _actionOwner = null;
+                _driver.CompleteAction();
                 _driver.SetPlaybackSpeed(1.0f);
             }
 

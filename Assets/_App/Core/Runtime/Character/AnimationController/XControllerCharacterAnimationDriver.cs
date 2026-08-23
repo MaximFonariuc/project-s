@@ -83,6 +83,8 @@ namespace _App
             "SwitchWeapon Layer.TwoHanded_Sheathe");
         private static readonly int WeaponUnsheatheStateHash = Animator.StringToHash(
             "SwitchWeapon Layer.TwoHanded_Unsheathe");
+        private static readonly int WeaponWaitingStateHash = Animator.StringToHash(
+            "SwitchWeapon Layer.Waiting");
 
         private readonly Animator _animator;
         private readonly int _switchWeaponLayerIndex;
@@ -95,11 +97,9 @@ namespace _App
         private float _headLookY;
         private float _actionBodyLookWeight = 1.0f;
         private float _actionHeadLookWeight = 1.0f;
-        private int _lookActionLayerIndex = -1;
-        private int _lookActionStateHash;
+        private int _actionLayerIndex = -1;
         private bool _wasGrounded = true;
         private bool _isGrounded = true;
-        private bool _lookActionStateObserved;
         private bool _disposed;
 
         public XControllerCharacterAnimationDriver(Animator animator)
@@ -116,8 +116,6 @@ namespace _App
         public void ApplyLook(in CharacterLookFrame frame, float deltaTime)
         {
             ThrowIfDisposed();
-
-            RefreshActionLookPolicy();
 
             float bodyWeight = _actionBodyLookWeight *
                                (_isGrounded ? 1.0f : AirborneBodyLookWeight);
@@ -194,7 +192,7 @@ namespace _App
                 crossFadeSeconds,
                 layerIndex,
                 0.0f);
-            SetActionLookPolicy(request.Action.Value, layerIndex, stateHash);
+            SetActionPresentationPolicy(request.Action.Value, layerIndex);
 
             _nextSequence++;
             if (_nextSequence == 0)
@@ -205,6 +203,16 @@ namespace _App
             return new AnimationActionPlayback(_nextSequence, request.ExpectedDuration);
         }
 
+        public void CompleteAction()
+        {
+            if (_disposed || _animator == null)
+            {
+                return;
+            }
+
+            ClearActionPresentationPolicy();
+        }
+
         public void CancelAction()
         {
             if (_disposed || _animator == null)
@@ -212,7 +220,15 @@ namespace _App
                 return;
             }
 
-            if (_animator.HasState(BaseLayerIndex, MoveStateHash))
+            if (_actionLayerIndex == _switchWeaponLayerIndex)
+            {
+                _animator.CrossFadeInFixedTime(
+                    WeaponWaitingStateHash,
+                    ActionCancelCrossFadeSeconds,
+                    _switchWeaponLayerIndex,
+                    0.0f);
+            }
+            else if (_animator.HasState(BaseLayerIndex, MoveStateHash))
             {
                 _animator.CrossFadeInFixedTime(
                     MoveStateHash,
@@ -221,7 +237,7 @@ namespace _App
                     0.0f);
             }
 
-            ClearActionLookPolicy();
+            ClearActionPresentationPolicy();
         }
 
         public void SetPlaybackSpeed(float speed)
@@ -257,7 +273,7 @@ namespace _App
             _headLookY = 0.0f;
             _wasGrounded = true;
             _isGrounded = true;
-            ClearActionLookPolicy();
+            ClearActionPresentationPolicy();
         }
 
         public void Dispose()
@@ -324,7 +340,7 @@ namespace _App
             return Mathf.Lerp(current, target, interpolation);
         }
 
-        private void SetActionLookPolicy(int actionId, int layerIndex, int stateHash)
+        private void SetActionPresentationPolicy(int actionId, int layerIndex)
         {
             _actionBodyLookWeight = actionId switch
             {
@@ -342,45 +358,14 @@ namespace _App
                 ReactionActionId => 0.0f,
                 _ => 1.0f
             };
-            _lookActionLayerIndex = layerIndex;
-            _lookActionStateHash = stateHash;
-            _lookActionStateObserved = false;
+            _actionLayerIndex = layerIndex;
         }
 
-        private void RefreshActionLookPolicy()
-        {
-            if (_lookActionLayerIndex < 0 || _lookActionStateHash == 0)
-            {
-                return;
-            }
-
-            bool stateActive =
-                _animator.GetCurrentAnimatorStateInfo(_lookActionLayerIndex).fullPathHash ==
-                _lookActionStateHash;
-            if (_animator.IsInTransition(_lookActionLayerIndex))
-            {
-                stateActive |=
-                    _animator.GetNextAnimatorStateInfo(_lookActionLayerIndex).fullPathHash ==
-                    _lookActionStateHash;
-            }
-
-            if (stateActive)
-            {
-                _lookActionStateObserved = true;
-            }
-            else if (_lookActionStateObserved)
-            {
-                ClearActionLookPolicy();
-            }
-        }
-
-        private void ClearActionLookPolicy()
+        private void ClearActionPresentationPolicy()
         {
             _actionBodyLookWeight = 1.0f;
             _actionHeadLookWeight = 1.0f;
-            _lookActionLayerIndex = -1;
-            _lookActionStateHash = 0;
-            _lookActionStateObserved = false;
+            _actionLayerIndex = -1;
         }
 
         private float ResolveFallingVelocity(in CharacterLocomotionFrame frame)
@@ -512,6 +497,10 @@ namespace _App
                 _switchWeaponLayerIndex,
                 WeaponUnsheatheStateHash,
                 "SwitchWeapon Layer.TwoHanded_Unsheathe");
+            RequireState(
+                _switchWeaponLayerIndex,
+                WeaponWaitingStateHash,
+                "SwitchWeapon Layer.Waiting");
         }
 
         private void RequireParameter(
