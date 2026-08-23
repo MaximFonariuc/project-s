@@ -51,13 +51,14 @@ classDiagram
 - Reaction and death slots keep their authored playback speed. Gameplay still
   owns the reaction duration and cancels presentation on return to `Stable`;
   short hit-stun windows never accelerate the source clip.
-- The current reaction assets are Humanoid prototype clips. Hit-stun,
-  knockdown and airborne use independent override slots cloned from the current
-  Paladin hit motion; death has its own death motion. They may be replaced
-  independently without changing state or gameplay code.
-- Vendor-specific `PlayTakeDamage`, `PlayKilled` and
-  `TurnKickColliderOff` Animation Events were removed from these clones.
-  Damage, death and collision ownership remain in gameplay code.
+- The current reaction states reference Humanoid proxy motions from one Knight
+  set: normal and alternate `LightHit`, `Fall`, and `Death`. The imported FBX
+  clips are not modified and contain no gameplay Animation Events. They remain
+  replaceable content slots; damage, death and collision ownership stay in
+  gameplay code.
+- Timed reaction states have no Animator-owned gameplay transitions. Their
+  authoritative state completion cancels presentation back to locomotion;
+  `Dead` holds its final frame until revive.
 - `CombatTrainingTarget.prefab` duplicates the Player visual and generated body
   hurtboxes, but removes player input, locomotion, combat and weapon ownership.
   It adds `CombatTarget`, `CharacterReactionHost` and

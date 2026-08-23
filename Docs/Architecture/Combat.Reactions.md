@@ -182,12 +182,15 @@ Player prefab использует явный
 же стартовыми gameplay timings, кроме увеличенного до `0.4s` hit-stun.
 `XController` содержит четыре стабильных presentation-слота:
 `Reaction/HitStun`, `Reaction/Knockdown`, `Reaction/Airborne` и
-`Reaction/Dead`. Первые три пока используют независимые Humanoid prototype
-assets на основе одного доступного hit motion; это осознанный fallback, а не
-заявленная направленная вариативность.
-Унаследованные vendor events `PlayTakeDamage`, `PlayKilled` и
-`TurnKickColliderOff` из prototype clips удалены: они не имеют receiver на
-нашей модели и не должны управлять damage, death или collider lifecycle.
+`Reaction/Dead`. Сейчас они ссылаются на Humanoid prototype motions одного
+Knight-набора: обычную и усиленную `LightHit`, `Fall` и `Death`. Исходные FBX
+не изменены и не содержат gameplay events. Это временные визуальные слоты, а не
+финальная направленная вариативность, get-up или ragdoll.
+
+Внутри Animator у этих состояний нет параметрических входов и самостоятельных
+gameplay-переходов. Подтверждённую реакцию запускает единственный animation
+driver, временные реакции явно отменяются при возврате state machine в
+`Stable`, а `Dead` удерживает последний кадр до подтверждённого revive.
 
 Пара `ReactionId + State` формирует backend-neutral animation slot. Пустой
 `ReactionId` является fallback для состояния. `CharacterReactionAnimationAdapter`

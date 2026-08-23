@@ -489,6 +489,20 @@ namespace _App
                     LightAttackStateHashes[i],
                     $"Base Layer.Attack.BaseAttack{i + 1}");
             }
+            for (int i = 0; i < ReactionStateHashes.Length; i++)
+            {
+                string stateName = i switch
+                {
+                    0 => "HitStun",
+                    1 => "Knockdown",
+                    2 => "Airborne",
+                    3 => "Dead",
+                    _ => throw new ArgumentOutOfRangeException(nameof(i), i, null)
+                };
+                RequireState(
+                    ReactionStateHashes[i],
+                    $"Base Layer.Reaction.{stateName}");
+            }
             RequireState(
                 _switchWeaponLayerIndex,
                 WeaponSheatheStateHash,
