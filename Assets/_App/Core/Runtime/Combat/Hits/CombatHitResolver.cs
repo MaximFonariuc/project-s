@@ -25,7 +25,7 @@ namespace _App
             int damage = definition.Damage > 0
                 ? Mathf.Max(1, Mathf.RoundToInt(definition.Damage * target.DamageMultiplier))
                 : 0;
-            if (damage <= 0 || !execution.TryRegisterTarget(target.TargetId))
+            if (damage <= 0 || !execution.CanHitTarget(target.TargetId))
             {
                 return false;
             }
@@ -53,6 +53,7 @@ namespace _App
                 return false;
             }
 
+            execution.RegisterConfirmedTarget(target.TargetId);
             HitResolved?.Invoke(result);
             return true;
         }

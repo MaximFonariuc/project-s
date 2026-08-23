@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _App
@@ -26,7 +27,7 @@ namespace _App
     public interface IDamageImmunityTarget
     {
         bool IsDamageImmune { get; }
-        void SetDamageImmune(bool immune);
+        IDisposable AcquireDamageImmunity();
     }
 
     public interface IPlayerTraversalActor

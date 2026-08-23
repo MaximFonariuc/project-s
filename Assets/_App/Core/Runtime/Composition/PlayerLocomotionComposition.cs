@@ -28,6 +28,7 @@ namespace _App
                 resolver => new PlayerLocomotionActions(
                     resolver.Resolve<Character>(),
                     resolver.Resolve<ICharacterMotor>(),
+                    resolver.Resolve<IDamageImmunityTarget>(),
                     features),
                 Lifetime.Scoped);
             builder.Register<IPlayerMovementReference, CameraRelativeMovementReference>(Lifetime.Scoped);

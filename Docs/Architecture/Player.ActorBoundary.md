@@ -35,6 +35,11 @@ classDiagram
         <<traversal state port>>
         +IsClimbing bool
     }
+    class IDamageImmunityTarget {
+        <<shared command port>>
+        +IsDamageImmune bool
+        +AcquireDamageImmunity() IDisposable
+    }
     class PlayerActorAdapter {
         <<legacy adapter>>
     }
@@ -46,6 +51,11 @@ classDiagram
         +IsFalling() bool
         +IsClimbing() bool
         +SetRotationMode(mode)
+    }
+    class Health {
+        <<temporary vitality owner>>
+        +IsDamageImmune bool
+        +AcquireDamageImmunity() IDisposable
     }
     class PlayerCameraController
     class PlayerCameraAnimationAdapter
@@ -76,8 +86,10 @@ classDiagram
     IPlayerActorTransform <|.. PlayerActorAdapter
     IPlayerTargetingActor <|.. PlayerActorAdapter
     IPlayerCombatActor <|.. PlayerActorAdapter
+    IDamageImmunityTarget <|.. PlayerActorAdapter
     IPlayerTraversalActor <|.. PlayerActorAdapter
     PlayerActorAdapter --> Character
+    PlayerActorAdapter --> Health : immunity lease
     PlayerCameraController --> IPlayerActorTransform
     PlayerCameraAnimationAdapter --> IPlayerActorTransform
     PlayerTargetingController --> IPlayerTargetingActor
@@ -100,10 +112,12 @@ flowchart LR
     Camera["Camera feature"] --> TransformPort["IPlayerActorTransform"]
     Targeting["Targeting feature"] --> TargetingPort["IPlayerTargetingActor"]
     Combat["Combat feature"] --> CombatPort["IPlayerCombatActor"]
+    DodgeAndCombat["Dodge / Combat windows"] --> ImmunityPort["IDamageImmunityTarget"]
     Traversal["Traversal feature"] --> TraversalPort["IPlayerTraversalActor"]
     TransformPort --> Adapter["PlayerActorAdapter"]
     TargetingPort --> Adapter
     CombatPort --> Adapter
+    ImmunityPort --> Adapter
     TraversalPort --> Adapter
     Adapter --> Legacy["Character"]
     Legacy --> Movement["CharacterMovement"]
@@ -113,7 +127,7 @@ flowchart LR
 - Targeting может временно менять только rotation policy, сохраняя и восстанавливая предыдущее значение.
 - Combat видит только разрешение атаки, falling state и rotation mode; он не получает motor API.
 - Traversal читает только climbing state; interaction physics и simulation pause проходят через отдельные adapters.
-- `PlayerActorAdapter` регистрируется один раз на gameplay scope и публикуется под четырьмя consumer-specific портами. Service locator и runtime search не используются.
+- `PlayerActorAdapter` регистрируется один раз на gameplay scope и публикуется под consumer-specific портами, включая общий lease-based damage-immunity gate для Combat и Dodge. Service locator и runtime search не используются.
 - `PlayerActorController` не заменяет feature controllers и не дублирует их state: он фиксирует lifecycle, порядок межfeature-вызовов и реакцию на их подтверждённые события. Non-stable reaction прерывает Combat/Traversal и немедленно блокирует locomotion intent; сами reaction/combat/traversal states остаются у своих владельцев. При dispose scope coordinator симметрично отключает весь player flow.
 
 ## Граница абстракции

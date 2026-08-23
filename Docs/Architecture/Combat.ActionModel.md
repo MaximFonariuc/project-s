@@ -83,6 +83,7 @@ classDiagram
 - `PlayerCombatAnimationId` выбирает named animation slot (`skill.special`) и не определяет gameplay transition.
 - `PlayerCombatPresentation` сообщает animation adapter, как отобразить уже выбранное действие: combo index либо named `PlayerCombatAnimationId`.
 - `CombatActionDefinition` хранит immutable timeline и impact: hitbox, damage, stagger, knockback, reaction id, chain/cancel, recovery, movement, invulnerability, commit, completion и cooldown.
+- `CombatActionExecutor` удерживает отдельный damage-immunity lease только внутри authored invulnerability window. Он не восстанавливает сохранённый boolean, поэтому не может снять иммунитет, которым одновременно владеет dodge или другой gameplay flow.
 
 Одна команда может иметь несколько entry/transition rules, если целевые actions принадлежат непересекающимся environment masks. Поэтому `attack.light` может выбирать отдельные наземную и воздушную ветки без проверки платформы или устройства в gameplay-коде. Неоднозначные правила с пересекающимися masks отклоняются при построении graph.
 

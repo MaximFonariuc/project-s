@@ -21,6 +21,7 @@ namespace _App
         public PlayerLocomotionActions(
             Character character,
             ICharacterMotor motor,
+            IDamageImmunityTarget damageImmunity,
             CharacterFeatureSet features)
         {
             if (character == null)
@@ -38,10 +39,19 @@ namespace _App
                 throw new ArgumentNullException(nameof(features));
             }
 
+            if (damageImmunity == null)
+            {
+                throw new ArgumentNullException(nameof(damageImmunity));
+            }
+
             DodgeSettings dodgeSettings = features.GetEnabled<DodgeSettings>();
             if (dodgeSettings != null)
             {
-                _dodge = new PlayerDodgeAction(character, motor, dodgeSettings);
+                _dodge = new PlayerDodgeAction(
+                    character,
+                    motor,
+                    damageImmunity,
+                    dodgeSettings);
             }
 
             GlideSettings glideSettings = features.GetEnabled<GlideSettings>();

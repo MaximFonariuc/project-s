@@ -88,12 +88,13 @@ classDiagram
 
 ## Миграция prototype Health
 
-До реализации нового vertical slice `Health` остаётся рабочим владельцем hit points и событий `Damaged / Died / Revived`. Существующая документация Combat описывает фактическое состояние проекта, а не финальный stats API.
+До реализации нового vertical slice `Health` остаётся рабочим владельцем hit points, событий `Damaged / Died / Revived` и счётчика активных immunity leases. Lease-модель нужна уже сейчас для безопасного пересечения dodge/combat windows, но не превращает `Health` в контейнер будущих статов. Существующая документация Combat описывает фактическое состояние проекта, а не финальный stats API.
 
 При замене `Health` зависимости должны разделиться по назначению:
 
 - `CombatTarget` и другие read-only consumers получают только будущий `IActorLifeState`;
 - `CombatHitResolver` работает через damage command boundary;
+- `IDamageImmunityTarget` перенаправляется на узкий damage-acceptance gate новой модели без изменения Dodge и Combat Action Executor;
 - reactions подписываются на подтверждённые локальные damage/life events;
 - UI и animation получают read-only resource snapshots;
 - старый `Health` удаляется только после миграции всех consumers и проверки death/revive lifecycle.

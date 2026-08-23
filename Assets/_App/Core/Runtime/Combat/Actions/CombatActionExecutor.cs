@@ -13,7 +13,7 @@ namespace _App
 
         private CombatActionDefinition _definition;
         private CombatActionFrame _currentFrame;
-        private bool _previousDamageImmunity;
+        private IDisposable _damageImmunityLease;
         private float _duration;
         private float _elapsed;
         private int _nextExecutionId;
@@ -94,7 +94,6 @@ namespace _App
             _definition = definition;
             _duration = duration;
             _elapsed = 0.0f;
-            _previousDamageImmunity = _damageImmunity.IsDamageImmune;
 
             int executionId = ++_nextExecutionId;
             if (executionId == 0)
@@ -148,7 +147,7 @@ namespace _App
                 return;
             }
 
-            _damageImmunity.SetDamageImmune(_previousDamageImmunity);
+            ReleaseDamageImmunity();
             _motion.End();
             _definition = default;
             _currentFrame = default;
@@ -159,11 +158,19 @@ namespace _App
 
         private void ApplyDamageImmunity(bool immune)
         {
-            bool expected = _previousDamageImmunity || immune;
-            if (_damageImmunity.IsDamageImmune != expected)
+            if (immune)
             {
-                _damageImmunity.SetDamageImmune(expected);
+                _damageImmunityLease ??= _damageImmunity.AcquireDamageImmunity();
+                return;
             }
+
+            ReleaseDamageImmunity();
+        }
+
+        private void ReleaseDamageImmunity()
+        {
+            _damageImmunityLease?.Dispose();
+            _damageImmunityLease = null;
         }
     }
 }

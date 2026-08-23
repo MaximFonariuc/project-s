@@ -78,7 +78,25 @@ classDiagram
         +Disable()
     }
     class PlayerDodgeAction
+    class DodgeSettings {
+        <<ScriptableObject authoring>>
+        +Duration float
+        +InvulnerabilityStart float
+        +InvulnerabilityEnd float
+    }
     class PlayerGlideAction
+    class IDamageImmunityTarget {
+        <<shared damage gate port>>
+        +IsDamageImmune bool
+        +AcquireDamageImmunity() IDisposable
+    }
+    class PlayerActorAdapter {
+        <<damage gate adapter>>
+    }
+    class Health {
+        <<temporary vitality owner>>
+        +AcquireDamageImmunity() IDisposable
+    }
     class PlayerLocomotionSettings {
         +WalkSpeed float
         +RunSpeed float
@@ -146,6 +164,10 @@ classDiagram
     IPlayerLocomotionActions <|.. PlayerLocomotionActions
     PlayerLocomotionActions o-- PlayerDodgeAction
     PlayerLocomotionActions o-- PlayerGlideAction
+    PlayerDodgeAction --> DodgeSettings : snapshots values
+    PlayerDodgeAction --> IDamageImmunityTarget : owns window lease
+    IDamageImmunityTarget <|.. PlayerActorAdapter
+    PlayerActorAdapter --> Health : delegates
     CharacterMotor --> Character
     CharacterMotor --> PlayerLocomotionSettings
     Character --> CharacterMovement
@@ -192,6 +214,20 @@ stateDiagram-v2
 
 `Walk` и `Sprint` являются взаимоисключающими speed modes, а не отдельными locomotion states. Единственный runtime-owner скорости — `CharacterMotor`. При composition значения `WalkSpeedSettings` и `SprintSpeedSettings` один раз переводятся в immutable `PlayerLocomotionSettings`; motor не знает об authoring-каталоге.
 
+## Dodge и i-frames
+
+Физическое состояние dodge остаётся у `PlayerDodgeAction`, а не у Animator.
+После подтверждённого входа в custom movement mode action вычисляет normalized
+gameplay time и удерживает lease неуязвимости только внутри окна из
+`DodgeSettings`. Текущий Player asset использует окно `0.08...0.58`; при
+длительности `0.78s` это примерно `0.06...0.45s`. Startup и recovery остаются
+уязвимыми, а изменение длины animation clip не меняет gameplay timing.
+
+`IDamageImmunityTarget` выдаёт `IDisposable` lease вместо записи общего boolean.
+Поэтому пересекающиеся окна dodge и combat action независимы: завершение одного
+owner не снимает иммунитет второго. `Disable`, внешний выход из dodge и обычное
+завершение движения освобождают lease идемпотентно.
+
 ## Locomotion snapshot
 
 `PlayerLocomotionController` один раз за frame собирает immutable `PlayerLocomotionSnapshot` после подтверждения motor state и выполнения state-machine tick. Snapshot содержит фактическую velocity, локальные forward/lateral/vertical компоненты, normalized speed, gait, locomotion mode и подтверждённое состояние `Idle / Run / Jump / Fall / Dodge`.
@@ -210,6 +246,7 @@ flowchart LR
     CameraBasis["IPlayerMovementReference"] --> Controller
     Controller --> Machine["Locomotion State Machine"]
     Controller --> Actions["IPlayerLocomotionActions"]
+    Actions -->|"dodge immunity lease"| Immunity["IDamageImmunityTarget"]
     Machine --> MotorPort["ICharacterMotor"]
     Motor["CharacterMotor"] -.implements.-> MotorPort
     Motor --> Character
@@ -224,7 +261,7 @@ flowchart LR
 - Camera участвует только как basis для camera-relative направления через отдельный adapter; locomotion не зависит от Cinemachine API.
 - Traversal запрашивает инверсию gravity через `IPlayerLocomotionCommands` и меняет camera orientation только после подтверждения команды.
 - `PlayerActorController` немедленно передаёт `PlayerMovementIntent.Locked` при non-stable reaction и удерживает ограничения во время traversal. Поэтому jump/dodge callbacks не проходят между межfeature transition и следующим locomotion tick.
-- Animation получает подтверждённое состояние. Продолжительность dodge задаётся gameplay-конфигурацией, а не длиной animation clip.
+- Animation получает подтверждённое состояние. Продолжительность dodge и окно i-frames задаются gameplay-конфигурацией, а не длиной animation clip.
 - Glide и dodge проходят через `IPlayerLocomotionActions`. Их runtime-state принадлежит `PlayerGlideAction` и `PlayerDodgeAction`; общий ability runtime отсутствует.
 - `Character` симулируется с `Time.fixedDeltaTime`; presentation обновляется в frame `Update`.
 
@@ -232,7 +269,7 @@ flowchart LR
 
 `PlayerLocomotionComposition`, вызванный единственным `GameLifetimeScope`, регистрирует один scoped-набор motor/controller/runtime/state machine для активного Player. `ThirdPersonController` остаётся Unity-host для serialized references, а межfeature-порядком владеет scoped `PlayerActorController`; Combat, Traversal и Camera используют отдельные controllers.
 
-`PlayerLocomotionController.Enable` только подписывает semantic input. Первый motor snapshot и запуск state machine происходят в первом `Tick`, после завершения `Awake` Unity-компонентов. `Disable` симметрично снимает callbacks, освобождает jump/glide, сбрасывает speed mode и останавливает state machine.
+`PlayerLocomotionController.Enable` только подписывает semantic input. Первый motor snapshot и запуск state machine происходят в первом `Tick`, после завершения `Awake` Unity-компонентов. `Disable` симметрично снимает callbacks, освобождает jump/glide/dodge immunity, сбрасывает speed mode и останавливает state machine.
 
 ## Текущая граница
 

@@ -7,10 +7,15 @@ namespace _App
     {
         private readonly Character _character;
         private readonly ICharacterMotor _motor;
+        private readonly IDamageImmunityTarget _damageImmunity;
         private readonly bool _canEverDodge;
+        private readonly bool _hasInvulnerability;
         private readonly float _impulse;
         private readonly float _duration;
+        private readonly float _invulnerabilityStart;
+        private readonly float _invulnerabilityEnd;
 
+        private IDisposable _damageImmunityLease;
         private float _elapsed;
         private bool _requestedBackwards;
         private bool _requestPending;
@@ -20,10 +25,13 @@ namespace _App
         public PlayerDodgeAction(
             Character character,
             ICharacterMotor motor,
+            IDamageImmunityTarget damageImmunity,
             DodgeSettings settings)
         {
             _character = character ?? throw new ArgumentNullException(nameof(character));
             _motor = motor ?? throw new ArgumentNullException(nameof(motor));
+            _damageImmunity = damageImmunity ??
+                throw new ArgumentNullException(nameof(damageImmunity));
 
             if (settings == null)
             {
@@ -33,6 +41,9 @@ namespace _App
             _canEverDodge = settings.IsEnabled;
             _impulse = settings.Impulse;
             _duration = settings.Duration;
+            _hasInvulnerability = settings.HasInvulnerability;
+            _invulnerabilityStart = settings.InvulnerabilityStart;
+            _invulnerabilityEnd = settings.InvulnerabilityEnd;
         }
 
         public void Enable()
@@ -57,6 +68,7 @@ namespace _App
             _character.BeforeSimulationUpdated -= OnBeforeSimulationUpdated;
             _character.CustomMovementModeUpdated -= OnCustomMovementModeUpdated;
             _requestPending = false;
+            ReleaseDamageImmunity();
 
             if (_character.IsDodging())
             {
@@ -100,6 +112,11 @@ namespace _App
 
         private void OnBeforeSimulationUpdated(float deltaTime)
         {
+            if (!_character.IsDodging())
+            {
+                ReleaseDamageImmunity();
+            }
+
             if (_exitPending && _character.IsDodging())
             {
                 ExitDodge();
@@ -121,6 +138,7 @@ namespace _App
         private void EnterDodge()
         {
             _elapsed = 0.0f;
+            ReleaseDamageImmunity();
             _character.SetMovementMode(EMovementMode.Custom, (int)ECustomMovementMode.Dodging);
 
             Vector3 dodgeDirection = _character.GetMovementDirection();
@@ -133,6 +151,7 @@ namespace _App
                 dodgeDirection,
                 _character.GetUpVector()).normalized;
             _character.SetVelocity(planarDirection * _impulse);
+            UpdateDamageImmunity();
         }
 
         private void OnCustomMovementModeUpdated(float deltaTime)
@@ -144,6 +163,7 @@ namespace _App
 
             _character.SetMovementDirection(Vector3.zero);
             _elapsed = Mathf.Min(_elapsed + deltaTime, _duration);
+            UpdateDamageImmunity();
 
             if (_elapsed >= _duration)
             {
@@ -153,6 +173,7 @@ namespace _App
 
         private void ExitDodge()
         {
+            ReleaseDamageImmunity();
             Vector3 up = _character.GetUpVector();
             Vector3 verticalVelocity = Vector3.Project(_character.GetVelocity(), up);
             _character.SetVelocity(verticalVelocity);
@@ -162,6 +183,27 @@ namespace _App
             _exitPending = false;
             _character.SetMovementMode(
                 _character.IsGrounded() ? EMovementMode.Walking : EMovementMode.Falling);
+        }
+
+        private void UpdateDamageImmunity()
+        {
+            float normalizedTime = Mathf.Clamp01(_elapsed / _duration);
+            bool shouldBeImmune = _hasInvulnerability &&
+                                  normalizedTime >= _invulnerabilityStart &&
+                                  normalizedTime < _invulnerabilityEnd;
+            if (shouldBeImmune)
+            {
+                _damageImmunityLease ??= _damageImmunity.AcquireDamageImmunity();
+                return;
+            }
+
+            ReleaseDamageImmunity();
+        }
+
+        private void ReleaseDamageImmunity()
+        {
+            _damageImmunityLease?.Dispose();
+            _damageImmunityLease = null;
         }
 
     }

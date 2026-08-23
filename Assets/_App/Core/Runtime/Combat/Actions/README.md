@@ -19,6 +19,7 @@ classDiagram
     class CombatActionExecutor
     class CombatActionFrame
     class CombatMotionController
+    class IDamageImmunityTarget
     class ICharacterActionMotionMotor
     class CharacterMotor
 
@@ -27,6 +28,7 @@ classDiagram
     CombatActionExecutor --> CombatActionDefinition
     CombatActionExecutor --> CombatActionFrame
     CombatActionExecutor --> CombatMotionController
+    CombatActionExecutor --> IDamageImmunityTarget : window lease
     CombatMotionController --> ICharacterActionMotionMotor
     ICharacterActionMotionMotor <|.. CharacterMotor
 ```
@@ -35,6 +37,8 @@ classDiagram
   recovery, invulnerability and motion windows are evaluated against it.
 - `CombatActionExecutor` owns elapsed time and cleanup. It does not read
   Animator state or clip length.
+- Each invulnerability window owns a disposable lease. Overlapping combat and
+  dodge windows compose without one action clearing another owner's immunity.
 - `CombatMotionController` creates collision-safe velocity intents from an
   authored distance and normalized window. Animation-derived trajectory assets
   are not used.

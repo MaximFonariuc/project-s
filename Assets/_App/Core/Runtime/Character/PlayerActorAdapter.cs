@@ -37,9 +37,9 @@ namespace _App
             _character.SetRotationMode(rotationMode);
         }
 
-        public void SetDamageImmune(bool immune)
+        public IDisposable AcquireDamageImmunity()
         {
-            _health.SetDamageImmune(immune);
+            return _health.AcquireDamageImmunity();
         }
     }
 }

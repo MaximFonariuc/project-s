@@ -33,5 +33,10 @@ classDiagram
   rising edge of dodge and releases ownership on exit.
 - Dodge displacement is motor-owned impulse/duration movement; Animator root
   motion is disabled.
+- Dodge invulnerability is a normalized gameplay window from `DodgeSettings`.
+  `PlayerDodgeAction` owns a disposable immunity lease and releases it on the
+  authored window end, interruption, disable and normal dodge completion.
+- Damage immunity uses shared leases, so a dodge window and an overlapping
+  combat-action window cannot clear each other's ownership.
 - Swimming and climbing enum values remain reserved, but no corresponding
   animation states are implemented yet.

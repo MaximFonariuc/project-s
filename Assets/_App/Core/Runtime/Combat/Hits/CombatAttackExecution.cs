@@ -37,9 +37,19 @@ namespace _App
             _hitTargets.Clear();
         }
 
-        public bool TryRegisterTarget(int targetId)
+        public bool CanHitTarget(int targetId)
         {
-            return IsActive && targetId != SourceRootId && _hitTargets.Add(targetId);
+            return IsActive &&
+                   targetId != SourceRootId &&
+                   !_hitTargets.Contains(targetId);
+        }
+
+        public void RegisterConfirmedTarget(int targetId)
+        {
+            if (CanHitTarget(targetId))
+            {
+                _hitTargets.Add(targetId);
+            }
         }
 
         public void End()

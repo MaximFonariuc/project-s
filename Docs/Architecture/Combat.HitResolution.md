@@ -33,7 +33,8 @@ classDiagram
         +ActionId PlayerCombatActionId
         +IsActive bool
         +Begin(...)
-        +TryRegisterTarget(targetId) bool
+        +CanHitTarget(targetId) bool
+        +RegisterConfirmedTarget(targetId)
         +End()
     }
     class Weapon {
@@ -123,19 +124,20 @@ sequenceDiagram
     Combat->>Weapon: EnableHitbox(execution, resolver)
     Weapon->>Hurtbox: physics overlap
     Weapon->>Resolver: TryResolve(candidate)
-    Resolver->>Execution: TryRegisterTarget(actor root id)
+    Resolver->>Execution: CanHitTarget(actor root id)
     Resolver->>Resolver: scale damage by zone multiplier
     Resolver->>Hurtbox: TryApplyHit(result)
     Hurtbox->>Health: TryApplyHit(result)
     Health-->>Resolver: accepted / rejected
     alt accepted
+        Resolver->>Execution: RegisterConfirmedTarget(actor root id)
         Resolver-->>Events: HitResolved(result)
     end
     Combat->>Weapon: DisableHitbox()
     Combat->>Execution: End()
 ```
 
-`Health.Damaged`, `Health.Died` и глобальный для gameplay scope `ICombatHitEvents.HitResolved` получают один и тот же immutable result. Событие resolver означает подтверждённое попадание; overlap, иммунитет или уже поражённая в этом execution цель событие не создают.
+`Health.Damaged`, `Health.Died` и глобальный для gameplay scope `ICombatHitEvents.HitResolved` получают один и тот же immutable result. Событие resolver означает подтверждённое попадание; overlap, иммунитет или уже поражённая в этом execution цель событие не создают. Actor добавляется в множество execution только после принятого damage: overlap во время i-frame не «съедает» удар навсегда и может быть повторно проверен, пока hitbox остаётся открытым.
 
 ## Ownership и зависимости
 
@@ -153,7 +155,7 @@ Health.Damaged -> target-local reaction / incoming hit stop
 - `Weapon` принадлежит scene/prefab и знает только Physics, активный execution и resolver. Он не хранит damage, cooldown, combo или reaction rules.
 - `Hurtbox` предоставляет zone metadata и путь к владельцу здоровья. Он не вычисляет итог атаки.
 - Movement capsule не является `Hurtbox`: попадания принимает только compound body rig, поэтому физический порядок overlap не подменяет выбранную зону тела.
-- `Health` — единственный owner текущего здоровья и immunity check.
+- `Health` — единственный owner текущего здоровья и подсчёта активных immunity leases. Lease очищается идемпотентно; отключение Health инвалидирует старые leases.
 - `CombatHitResolver` имеет scoped lifecycle и регистрируется только в `PlayerCombatComposition`. Публичный read-port `ICombatHitEvents` не разрешает внешним системам создавать попадания.
 
 ## Расширение
