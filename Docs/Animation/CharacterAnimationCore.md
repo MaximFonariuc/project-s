@@ -111,8 +111,8 @@ state paths через `CrossFadeInFixedTime`.
 - `Base Layer.Locomotion.Move`;
 - `Base Layer.Locomotion.Roll.RollFront` и `RollBack`;
 - `Base Layer.Attack.BaseAttack1...4`;
-- `Base Layer.Reaction.HitStun`, `Knockdown`, `GetUp`, `Airborne`, `Dead_1`,
-  `Dead_2`;
+- `Base Layer.Reaction.HitStun`, `HitStun_Back`, `HitStun_Left`,
+  `HitStun_Right`, `Knockdown`, `GetUp`, `Airborne`, `Dead_1`, `Dead_2`;
 - `SwitchWeapon Layer.Waiting`, `TwoHanded_Sheathe`,
   `TwoHanded_Unsheathe`.
 

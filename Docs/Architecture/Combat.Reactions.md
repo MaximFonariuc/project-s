@@ -11,10 +11,11 @@
 - повторное попадание во время активной реакции;
 - блокировку новых player actions и прерывание текущей атаки, смены оружия или traversal через player actor root;
 - направленный knockback через `ICharacterImpactMotor`;
+- стабильное направление источника удара (`Front`, `Back`, `Left`, `Right`) в reaction snapshot;
 - возврат из временной реакции и явное восстановление после `Health.RestoreFull()`;
 - опциональное отображение состояний через `PlayerAnimationCoordinator` и backend-neutral animation driver.
 
-Hit stop не входит в reaction state machine и имеет отдельного time-scale owner, описанного в `Docs/Architecture/Combat.HitStop.md`. Invulnerability frames, ragdoll и финальные направленные reaction clips пока не входят в этот блок.
+Hit stop не входит в reaction state machine и имеет отдельного time-scale owner, описанного в `Docs/Architecture/Combat.HitStop.md`. Invulnerability frames, ragdoll и финальные production reaction clips пока не входят в этот блок.
 
 ## Дерево классов и зависимости
 
@@ -44,6 +45,13 @@ classDiagram
         +ReactionStarted event
         +Snapshot CharacterReactionSnapshot
     }
+    class CharacterReactionSnapshot {
+        <<immutable value>>
+        +State CharacterReactionStateId
+        +Direction CharacterReactionDirection
+        +Hit CombatHitResult
+        +RemainingDuration float
+    }
     class CharacterPoise {
         +ApplyStagger(amount) bool
         +Tick(deltaTime)
@@ -60,6 +68,7 @@ classDiagram
         <<restricted movement port>>
         +IsGrounded bool
         +Up Vector3
+        +Forward Vector3
         +ApplyKnockback(worldVelocity)
     }
     class CharacterMotor {
@@ -91,6 +100,8 @@ classDiagram
     }
 
     CharacterReactionController ..|> ICharacterReactionState
+    ICharacterReactionState --> CharacterReactionSnapshot : exposes
+    CharacterReactionController --> CharacterReactionSnapshot : creates
     CharacterReactionController --> Health : target-local events
     CharacterReactionController --> CharacterPoise
     CharacterReactionController --> IStateMachine~CharacterReactionStateId~
@@ -190,12 +201,13 @@ get-up `1.833s`, airborne `0.45s`. Ни одного Animator state gameplay-с�
 Player prefab использует явный
 `Assets/_Game/Settings/Combat/Player/PlayerCharacterReactionProfile.asset` с теми
 же стартовыми gameplay timings, кроме увеличенного до `0.4s` hit-stun.
-`XController` содержит шесть обязательных presentation-слотов:
-`Reaction/HitStun`, `Reaction/Knockdown`, `Reaction/Airborne`,
+`XController` содержит девять обязательных presentation-слотов:
+`Reaction/HitStun`, `Reaction/HitStun_Back`, `Reaction/HitStun_Left`,
+`Reaction/HitStun_Right`, `Reaction/Knockdown`, `Reaction/Airborne`,
 `Reaction/Dead_1`, `Reaction/Dead_2` и `Reaction/GetUp`. Сейчас они ссылаются
 на Humanoid prototype motions. Исходные FBX не изменены и не содержат gameplay
-events. Это временные визуальные слоты, а не финальная направленная
-вариативность или ragdoll.
+events. Это временный визуальный набор; его клипы можно заменить без изменения
+gameplay-контракта.
 
 Внутри Animator у этих состояний нет параметрических входов и самостоятельных
 gameplay-переходов. Подтверждённую реакцию запускает единственный animation
@@ -205,12 +217,20 @@ driver. После `Knockdown` gameplay state machine явно запускае�
 fallback `Dead_1`; оба состояния удерживают последний кадр до подтверждённого
 revive.
 
-Пара `ReactionId + State` формирует backend-neutral animation slot. Пустой
-`ReactionId` является fallback для состояния. `CharacterReactionAnimationAdapter`
-отправляет приоритетный request в `PlayerAnimationCoordinator`; controller
-выбирает state через `ActionId = 4`, но reaction clips всегда воспроизводятся
-на естественной скорости. Gameplay duration остаётся authoritative и отменяет
-presentation при возврате в `Stable`, не ускоряя исходный клип до 2-3x.
+`CharacterReactionController` вычисляет направление один раз из подтверждённого
+импульса и ориентации цели. Название описывает сторону источника относительно
+цели: импульс назад означает `Front`, вправо — `Left`. Значение сохраняется в
+`CharacterReactionSnapshot` и не меняется, если персонаж повернулся во время
+реакции. Сейчас направление выбирает отдельный клип только для `HitStun`;
+остальные reaction states используют общий fallback.
+
+Комбинация `ReactionId + State + Direction` формирует backend-neutral animation
+slot. Пустой `ReactionId` и `Direction.None` являются fallback.
+`CharacterReactionAnimationAdapter` отправляет приоритетный request в
+`PlayerAnimationCoordinator`; controller выбирает state через `ActionId = 4`,
+но reaction clips всегда воспроизводятся на естественной скорости. Gameplay
+duration остаётся authoritative и отменяет presentation при возврате в
+`Stable`, не ускоряя исходный клип до 2-3x.
 
 Финальный prototype-шаг `combo.ground.3` использует `ReactionId = hit.heavy`
 и knockback `6.5`, поэтому на стоящей цели пересекает текущий threshold `6`

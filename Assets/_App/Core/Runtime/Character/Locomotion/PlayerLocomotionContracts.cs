@@ -131,6 +131,7 @@ namespace _App
     {
         bool IsGrounded { get; }
         Vector3 Up { get; }
+        Vector3 Forward { get; }
 
         void ApplyKnockback(Vector3 worldVelocity);
     }

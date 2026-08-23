@@ -22,9 +22,12 @@ namespace _App
             PlayerAnimationSource source = snapshot.State == CharacterReactionStateId.Dead
                 ? PlayerAnimationSource.Death
                 : PlayerAnimationSource.Reaction;
-            AnimationSlotId slot = snapshot.Hit.ReactionId.IsValid
-                ? PlayerAnimationSlots.Reaction(snapshot.Hit.ReactionId, snapshot.State)
-                : PlayerAnimationSlots.Reaction(snapshot.State);
+            AnimationSlotId slot = snapshot.State == CharacterReactionStateId.HitStun
+                ? PlayerAnimationSlots.Reaction(
+                    snapshot.Hit.ReactionId,
+                    snapshot.State,
+                    snapshot.Direction)
+                : PlayerAnimationSlots.Reaction(snapshot.Hit.ReactionId, snapshot.State);
 
             _animation.CrossFade(source, slot, snapshot.RemainingDuration);
         }

@@ -114,12 +114,15 @@ The current action contract is:
 | Light attack | 2 | 0...3 | `Attack/BaseAttack1...4` |
 | Sheathe two-handed | 3 | 0 | `SwitchWeapon Layer/TwoHanded_Sheathe` |
 | Draw two-handed | 3 | 1 | `SwitchWeapon Layer/TwoHanded_Unsheathe` |
-| Reaction | 4 | 0 | `Reaction/HitStun` |
+| Hit reaction (front/fallback) | 4 | 0 | `Reaction/HitStun` |
 | Reaction | 4 | 1 | `Reaction/Knockdown` |
 | Reaction | 4 | 2 | `Reaction/Airborne` |
 | Death (default/light) | 4 | 3 | `Reaction/Dead_1` |
 | Get up | 4 | 4 | `Reaction/GetUp` |
 | Death (heavy) | 4 | 5 | `Reaction/Dead_2` |
+| Hit reaction (source behind) | 4 | 6 | `Reaction/HitStun_Back` |
+| Hit reaction (source left) | 4 | 7 | `Reaction/HitStun_Left` |
+| Hit reaction (source right) | 4 | 8 | `Reaction/HitStun_Right` |
 
 The controller consumes its historical `MovementType`, `MovementDirection`,
 `FallingDuration`, `OnGround` and `SpeedMultiplier` parameters. `BodyLookX/Y`
@@ -150,7 +153,7 @@ Body/head look parameters are neutralized while a reaction or death action owns
 the finite-action lane, preventing additive aiming poses from deforming the hit
 motion. They resume after the reaction controller returns to `Stable`.
 
-`Reaction` is a dedicated Base Layer sub-state machine. Its six states have no
+`Reaction` is a dedicated Base Layer sub-state machine. Its nine states have no
 parameter-driven entry and no gameplay transitions: the driver enters the
 accepted state directly. Reaction gameplay changes `Knockdown` to `GetUp`, then
 explicitly cancels GetUp back to `Locomotion/Move`; short hit-stun and airborne
@@ -158,6 +161,13 @@ reactions cancel directly to Move. `Dead_1` is the fallback death and
 `Dead_2` is selected for `hit.heavy`; both hold their final frame until the
 health owner confirms revival. This keeps damage, recovery and death authority
 outside Mecanim while retaining visible, replaceable Animator slots.
+
+Hit-stun direction is captured by gameplay when the hit is confirmed and means
+the source side relative to the target (`Front`, `Back`, `Left`, `Right`). The
+snapshot remains stable if the actor rotates during playback. Front and missing
+direction use the original `HitStun`; the other sides use variants `6...8`.
+Current motions are prototype content slots and may be replaced independently
+without changing reaction state ownership or the animation-driver contract.
 
 ## Weapon override contract
 

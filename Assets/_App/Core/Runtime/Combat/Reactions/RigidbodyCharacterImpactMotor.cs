@@ -19,6 +19,7 @@ namespace _App
                 QueryTriggerInteraction.Ignore);
 
         public Vector3 Up => transform.up;
+        public Vector3 Forward => transform.forward;
 
         private void Awake()
         {

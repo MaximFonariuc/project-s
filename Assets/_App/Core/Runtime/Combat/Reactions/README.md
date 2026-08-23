@@ -33,7 +33,8 @@ classDiagram
 ```
 
 - `CharacterReactionController` owns stable, hit-stun, knockdown, get-up,
-  airborne and dead gameplay states, their timers and poise.
+  airborne and dead gameplay states, their timers, poise and the source-side
+  direction captured when a hit is confirmed.
 - `CharacterReactionAnimationAdapter` may request a semantic reaction slot but
   never changes reaction gameplay state.
 - Reaction and death outrank combat and locomotion in
@@ -45,17 +46,23 @@ classDiagram
 - `CharacterReactionHost` is a local composition root for scene/prefab actors
   that do not yet have their own VContainer scope. It does not duplicate poise,
   timers or transition rules.
-- `XController` maps semantic action id `4` to six required slots:
-  `Reaction/HitStun`, `Reaction/Knockdown`, `Reaction/Airborne`,
+- `XController` maps semantic action id `4` to nine required slots:
+  `Reaction/HitStun`, `Reaction/HitStun_Back`, `Reaction/HitStun_Left`,
+  `Reaction/HitStun_Right`, `Reaction/Knockdown`, `Reaction/Airborne`,
   `Reaction/Dead_1`, `Reaction/Dead_2` and `Reaction/GetUp`. Weapon override
   controllers inherit the slots.
+- Direction names describe the source side relative to the target. Gameplay
+  computes that value once from the confirmed impulse and target orientation;
+  rotation during the reaction does not select a different clip. Only hit-stun
+  is directional today; other reaction states retain their common fallback.
 - Death selection uses the existing semantic `ReactionId`: `hit.heavy` selects
   `Dead_2`; missing, light and unknown ids fall back to `Dead_1`.
 - Reaction and death slots keep their authored playback speed. Gameplay still
   owns the reaction duration and cancels presentation on return to `Stable`;
   short hit-stun windows never accelerate the source clip.
-- The current reaction states reference Humanoid proxy motions from one Knight
-  set: normal and alternate `LightHit`, `Fall`, `Death`, and `Revive`. The
+- The current reaction states reference Humanoid proxy motions from the Knight
+  and CLazy sets. Left/right use the same `LightHit` clip with Animator mirroring,
+  while front/back use normal/alternate `LightHit` slots. The
   imported FBX clips are not modified and contain no gameplay Animation Events.
   They remain replaceable content slots; damage, death and collision ownership
   stay in gameplay code.

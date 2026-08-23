@@ -29,6 +29,9 @@ namespace _App.Editor.Animation
             XControllerAnimationContract.Attack3StatePath,
             XControllerAnimationContract.Attack4StatePath,
             XControllerAnimationContract.HitStunStatePath,
+            XControllerAnimationContract.HitStunBackStatePath,
+            XControllerAnimationContract.HitStunLeftStatePath,
+            XControllerAnimationContract.HitStunRightStatePath,
             XControllerAnimationContract.KnockdownStatePath,
             XControllerAnimationContract.AirborneReactionStatePath,
             XControllerAnimationContract.DeadPrimaryStatePath,
@@ -346,7 +349,7 @@ namespace _App.Editor.Animation
                 CollectClips(state.motion, clips);
                 foreach (AnimationClip clip in clips)
                 {
-                    if ((path == XControllerAnimationContract.HitStunStatePath ||
+                    if ((XControllerAnimationContract.HitStunStatePaths.Contains(path) ||
                          path == XControllerAnimationContract.KnockdownStatePath ||
                          path == XControllerAnimationContract.DeadPrimaryStatePath ||
                          path == XControllerAnimationContract.DeadHeavyStatePath ||

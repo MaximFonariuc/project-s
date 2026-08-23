@@ -54,5 +54,21 @@ namespace _App
             reactionId.IsValid
                 ? new AnimationSlotId($"Reaction.{state}.{reactionId.Value}")
                 : Reaction(state);
+
+        public static AnimationSlotId Reaction(
+            CombatReactionId reactionId,
+            CharacterReactionStateId state,
+            CharacterReactionDirection direction)
+        {
+            if (direction == CharacterReactionDirection.None)
+            {
+                return Reaction(reactionId, state);
+            }
+
+            string directionalSlot = $"Reaction.{state}.{direction}";
+            return reactionId.IsValid
+                ? new AnimationSlotId($"{directionalSlot}.{reactionId.Value}")
+                : new AnimationSlotId(directionalSlot);
+        }
     }
 }

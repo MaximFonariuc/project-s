@@ -44,6 +44,33 @@ namespace _App
                 return true;
             }
 
+            if (IsDirectionalReactionSlot(
+                    slot,
+                    CharacterReactionStateId.HitStun,
+                    CharacterReactionDirection.Back))
+            {
+                request = new AnimationActionRequest(Reaction, 6, HitStunDuration);
+                return true;
+            }
+
+            if (IsDirectionalReactionSlot(
+                    slot,
+                    CharacterReactionStateId.HitStun,
+                    CharacterReactionDirection.Left))
+            {
+                request = new AnimationActionRequest(Reaction, 7, HitStunDuration);
+                return true;
+            }
+
+            if (IsDirectionalReactionSlot(
+                    slot,
+                    CharacterReactionStateId.HitStun,
+                    CharacterReactionDirection.Right))
+            {
+                request = new AnimationActionRequest(Reaction, 8, HitStunDuration);
+                return true;
+            }
+
             if (IsReactionSlot(slot, CharacterReactionStateId.HitStun))
             {
                 request = new AnimationActionRequest(Reaction, 0, HitStunDuration);
@@ -90,6 +117,17 @@ namespace _App
         {
             string value = slot.Value;
             string prefix = PlayerAnimationSlots.Reaction(state).Value;
+            return string.Equals(value, prefix, StringComparison.Ordinal) ||
+                   value?.StartsWith(prefix + ".", StringComparison.Ordinal) == true;
+        }
+
+        private static bool IsDirectionalReactionSlot(
+            AnimationSlotId slot,
+            CharacterReactionStateId state,
+            CharacterReactionDirection direction)
+        {
+            string value = slot.Value;
+            string prefix = $"{PlayerAnimationSlots.Reaction(state).Value}.{direction}";
             return string.Equals(value, prefix, StringComparison.Ordinal) ||
                    value?.StartsWith(prefix + ".", StringComparison.Ordinal) == true;
         }

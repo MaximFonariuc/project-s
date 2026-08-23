@@ -52,6 +52,12 @@ namespace _App
         public const string Attack3StatePath = "Base Layer.Attack.BaseAttack3";
         public const string Attack4StatePath = "Base Layer.Attack.BaseAttack4";
         public const string HitStunStatePath = "Base Layer.Reaction.HitStun";
+        public const string HitStunBackStatePath =
+            "Base Layer.Reaction.HitStun_Back";
+        public const string HitStunLeftStatePath =
+            "Base Layer.Reaction.HitStun_Left";
+        public const string HitStunRightStatePath =
+            "Base Layer.Reaction.HitStun_Right";
         public const string KnockdownStatePath = "Base Layer.Reaction.Knockdown";
         public const string AirborneReactionStatePath =
             "Base Layer.Reaction.Airborne";
@@ -116,7 +122,10 @@ namespace _App
                     AirborneReactionStatePath,
                     DeadPrimaryStatePath,
                     DeadHeavyStatePath,
-                    GetUpStatePath
+                    GetUpStatePath,
+                    HitStunBackStatePath,
+                    HitStunLeftStatePath,
+                    HitStunRightStatePath
                 });
 
         private static readonly IReadOnlyList<string> LightAttackStates =
@@ -138,7 +147,20 @@ namespace _App
                     AirborneReactionStatePath,
                     DeadPrimaryStatePath,
                     GetUpStatePath,
-                    DeadHeavyStatePath
+                    DeadHeavyStatePath,
+                    HitStunBackStatePath,
+                    HitStunLeftStatePath,
+                    HitStunRightStatePath
+                });
+
+        private static readonly IReadOnlyList<string> HitStunStates =
+            Array.AsReadOnly(
+                new[]
+                {
+                    HitStunStatePath,
+                    HitStunBackStatePath,
+                    HitStunLeftStatePath,
+                    HitStunRightStatePath
                 });
 
         private static readonly IReadOnlyList<string> SwitchWeaponStates =
@@ -161,6 +183,9 @@ namespace _App
 
         public static IReadOnlyList<string> ReactionStatePaths =>
             ReactionStates;
+
+        public static IReadOnlyList<string> HitStunStatePaths =>
+            HitStunStates;
 
         public static IReadOnlyList<string> RequiredSwitchWeaponStatePaths =>
             SwitchWeaponStates;

@@ -13,12 +13,22 @@ namespace _App
         GetUp = 5
     }
 
+    public enum CharacterReactionDirection
+    {
+        None = 0,
+        Front = 1,
+        Back = 2,
+        Left = 3,
+        Right = 4
+    }
+
     public readonly struct CharacterReactionSnapshot
     {
         public static CharacterReactionSnapshot Invalid => default;
 
         public bool IsValid { get; }
         public CharacterReactionStateId State { get; }
+        public CharacterReactionDirection Direction { get; }
         public CombatHitResult Hit { get; }
         public float CurrentPoise { get; }
         public float MaxPoise { get; }
@@ -27,6 +37,7 @@ namespace _App
 
         internal CharacterReactionSnapshot(
             CharacterReactionStateId state,
+            CharacterReactionDirection direction,
             in CombatHitResult hit,
             float currentPoise,
             float maxPoise,
@@ -34,6 +45,7 @@ namespace _App
         {
             IsValid = true;
             State = state;
+            Direction = direction;
             Hit = hit;
             CurrentPoise = Mathf.Max(0.0f, currentPoise);
             MaxPoise = Mathf.Max(0.0f, maxPoise);

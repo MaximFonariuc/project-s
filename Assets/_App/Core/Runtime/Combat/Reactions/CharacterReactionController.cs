@@ -18,6 +18,7 @@ namespace _App
         private readonly CharacterReactionSettings _settings;
 
         private CombatHitResult _lastHit;
+        private CharacterReactionDirection _reactionDirection;
         private float _remainingDuration;
         private bool _enabled;
 
@@ -63,6 +64,7 @@ namespace _App
             _stateMachine.StateChanged += OnStateChanged;
             _poise.RestoreFull();
             _lastHit = default;
+            _reactionDirection = CharacterReactionDirection.None;
             _remainingDuration = 0.0f;
             _enabled = true;
 
@@ -96,6 +98,7 @@ namespace _App
 
             _poise.RestoreFull();
             _lastHit = default;
+            _reactionDirection = CharacterReactionDirection.None;
             _remainingDuration = 0.0f;
             _presentation.Reset();
             _enabled = false;
@@ -180,6 +183,10 @@ namespace _App
 
             _poise.Deplete();
             _lastHit = hit;
+            _reactionDirection = ResolveDirection(
+                hit.Direction,
+                _impactMotor.Up,
+                _impactMotor.Forward);
             _remainingDuration = 0.0f;
             _stateMachine.ChangeState<CharacterDeadState, CombatHitResult>(hit);
             ApplyKnockback(in hit);
@@ -198,6 +205,7 @@ namespace _App
 
             _poise.RestoreFull();
             _lastHit = default;
+            _reactionDirection = CharacterReactionDirection.None;
             _remainingDuration = 0.0f;
             if (_stateMachine.CurrentStateId != CharacterReactionStateId.Stable)
             {
@@ -213,6 +221,10 @@ namespace _App
             float duration)
         {
             _lastHit = hit;
+            _reactionDirection = ResolveDirection(
+                hit.Direction,
+                _impactMotor.Up,
+                _impactMotor.Forward);
             _remainingDuration = duration;
             var context = new CharacterReactionContext(in hit, duration);
 
@@ -245,6 +257,7 @@ namespace _App
             }
 
             _lastHit = default;
+            _reactionDirection = CharacterReactionDirection.None;
             _remainingDuration = 0.0f;
             _stateMachine.ChangeState<CharacterStableState>();
             _presentation.Reset();
@@ -305,11 +318,61 @@ namespace _App
             return _stateMachine.CurrentStateId is CharacterReactionStateId state
                 ? new CharacterReactionSnapshot(
                     state,
+                    _reactionDirection,
                     in _lastHit,
                     _poise.Current,
                     _poise.Max,
                     _remainingDuration)
                 : CharacterReactionSnapshot.Invalid;
+        }
+
+        internal static CharacterReactionDirection ResolveDirection(
+            Vector3 worldImpulseDirection,
+            Vector3 characterUp,
+            Vector3 characterForward)
+        {
+            Vector3 up = characterUp;
+            if (up.sqrMagnitude <= DirectionThresholdSqr)
+            {
+                up = Vector3.up;
+            }
+            else
+            {
+                up.Normalize();
+            }
+
+            Vector3 impulseDirection = Vector3.ProjectOnPlane(worldImpulseDirection, up);
+            if (impulseDirection.sqrMagnitude <= DirectionThresholdSqr)
+            {
+                return CharacterReactionDirection.Front;
+            }
+
+            Vector3 forward = Vector3.ProjectOnPlane(characterForward, up);
+            if (forward.sqrMagnitude <= DirectionThresholdSqr)
+            {
+                forward = Vector3.ProjectOnPlane(Vector3.forward, up);
+                if (forward.sqrMagnitude <= DirectionThresholdSqr)
+                {
+                    forward = Vector3.ProjectOnPlane(Vector3.right, up);
+                }
+            }
+
+            impulseDirection.Normalize();
+            forward.Normalize();
+            Vector3 right = Vector3.Cross(up, forward).normalized;
+            float forwardDot = Vector3.Dot(impulseDirection, forward);
+            float rightDot = Vector3.Dot(impulseDirection, right);
+
+            if (Mathf.Abs(forwardDot) >= Mathf.Abs(rightDot))
+            {
+                return forwardDot >= 0.0f
+                    ? CharacterReactionDirection.Back
+                    : CharacterReactionDirection.Front;
+            }
+
+            return rightDot >= 0.0f
+                ? CharacterReactionDirection.Left
+                : CharacterReactionDirection.Right;
         }
 
         private void OnStateChanged(
