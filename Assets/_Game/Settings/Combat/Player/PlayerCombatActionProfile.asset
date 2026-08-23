@@ -257,9 +257,155 @@ MonoBehaviour:
       _overrideVerticalVelocityOnImpulse: 1
       _faceCombatTarget: 1
       _targetStoppingDistance: 0.8
+  - _id: combo.air.0
+    _environment: 2
+    _presentation: 2
+    _comboIndex: 0
+    _animationId: skill.special
+    _action:
+      _useHitboxWindow: 1
+      _hitboxStart: 0.12
+      _hitboxEnd: 0.31
+      _useChainWindow: 1
+      _chainStart: 0.32
+      _chainEnd: 0.46
+      _useCancelWindow: 1
+      _cancelStart: 0.5
+      _cancelEnd: 0.84
+      _useMovementConstraintWindow: 1
+      _movementConstraintStart: 0
+      _movementConstraintEnd: 0.72
+      _useInvulnerabilityWindow: 0
+      _invulnerabilityStart: 0
+      _invulnerabilityEnd: 0
+      _damage: 10
+      _staggerDamage: 8
+      _knockback: 0.25
+      _reactionId: hit.light
+      _hitStopDuration: 0.055
+      _hitStopTimeScale: 0
+      _durationSeconds: 1.5833334
+      _recoveryStart: 0.68
+      _completionTime: 0.9
+      _hasCommit: 0
+      _commitTime: 0.5
+      _cooldown: 0
+      _translationScale: 0.12
+      _allowJump: 0
+      _allowDodge: 0
+      _faceMoveDirection: 1
+      _useCombatMotion: 1
+      _combatMotionStart: 0
+      _combatMotionEnd: 0.58
+      _overridePlanarVelocity: 1
+      _combatMotionDistance: 0.35
+      _verticalMotionMode: 2
+      _combatVerticalVelocity: -1.5
+      _combatVerticalImpulse: 0
+      _overrideVerticalVelocityOnImpulse: 1
+      _faceCombatTarget: 1
+      _targetStoppingDistance: 0.8
+  - _id: combo.air.1
+    _environment: 2
+    _presentation: 2
+    _comboIndex: 1
+    _animationId: skill.special
+    _action:
+      _useHitboxWindow: 1
+      _hitboxStart: 0.1
+      _hitboxEnd: 0.32
+      _useChainWindow: 1
+      _chainStart: 0.33
+      _chainEnd: 0.46
+      _useCancelWindow: 1
+      _cancelStart: 0.5
+      _cancelEnd: 0.84
+      _useMovementConstraintWindow: 1
+      _movementConstraintStart: 0
+      _movementConstraintEnd: 0.72
+      _useInvulnerabilityWindow: 0
+      _invulnerabilityStart: 0
+      _invulnerabilityEnd: 0
+      _damage: 12
+      _staggerDamage: 10
+      _knockback: 0.35
+      _reactionId: hit.light
+      _hitStopDuration: 0.055
+      _hitStopTimeScale: 0
+      _durationSeconds: 1.5
+      _recoveryStart: 0.68
+      _completionTime: 0.9
+      _hasCommit: 0
+      _commitTime: 0.5
+      _cooldown: 0
+      _translationScale: 0.12
+      _allowJump: 0
+      _allowDodge: 0
+      _faceMoveDirection: 1
+      _useCombatMotion: 1
+      _combatMotionStart: 0
+      _combatMotionEnd: 0.58
+      _overridePlanarVelocity: 1
+      _combatMotionDistance: 0.35
+      _verticalMotionMode: 2
+      _combatVerticalVelocity: -1.5
+      _combatVerticalImpulse: 0
+      _overrideVerticalVelocityOnImpulse: 1
+      _faceCombatTarget: 1
+      _targetStoppingDistance: 0.8
+  - _id: combo.air.2
+    _environment: 2
+    _presentation: 2
+    _comboIndex: 2
+    _animationId: skill.special
+    _action:
+      _useHitboxWindow: 1
+      _hitboxStart: 0.11
+      _hitboxEnd: 0.35
+      _useChainWindow: 0
+      _chainStart: 0
+      _chainEnd: 0
+      _useCancelWindow: 1
+      _cancelStart: 0.62
+      _cancelEnd: 0.9
+      _useMovementConstraintWindow: 1
+      _movementConstraintStart: 0
+      _movementConstraintEnd: 0.78
+      _useInvulnerabilityWindow: 0
+      _invulnerabilityStart: 0
+      _invulnerabilityEnd: 0
+      _damage: 22
+      _staggerDamage: 20
+      _knockback: 5
+      _reactionId: hit.heavy
+      _hitStopDuration: 0.08
+      _hitStopTimeScale: 0
+      _durationSeconds: 1.9166667
+      _recoveryStart: 0.76
+      _completionTime: 0.94
+      _hasCommit: 0
+      _commitTime: 0.5
+      _cooldown: 0
+      _translationScale: 0.12
+      _allowJump: 0
+      _allowDodge: 0
+      _faceMoveDirection: 1
+      _useCombatMotion: 1
+      _combatMotionStart: 0
+      _combatMotionEnd: 0.55
+      _overridePlanarVelocity: 1
+      _combatMotionDistance: 0.45
+      _verticalMotionMode: 2
+      _combatVerticalVelocity: -1.5
+      _combatVerticalImpulse: 0
+      _overrideVerticalVelocityOnImpulse: 1
+      _faceCombatTarget: 1
+      _targetStoppingDistance: 0.8
   _entries:
   - _commandId: attack.light
     _targetActionId: combo.ground.0
+  - _commandId: attack.light
+    _targetActionId: combo.air.0
   _transitions:
   - _sourceActionId: combo.ground.0
     _commandId: attack.light
@@ -272,4 +418,12 @@ MonoBehaviour:
   - _sourceActionId: combo.ground.2
     _commandId: attack.light
     _targetActionId: combo.ground.3
+    _window: 0
+  - _sourceActionId: combo.air.0
+    _commandId: attack.light
+    _targetActionId: combo.air.1
+    _window: 0
+  - _sourceActionId: combo.air.1
+    _commandId: attack.light
+    _targetActionId: combo.air.2
     _window: 0

@@ -51,6 +51,9 @@ namespace _App
         public const string Attack2StatePath = "Base Layer.Attack.BaseAttack2";
         public const string Attack3StatePath = "Base Layer.Attack.BaseAttack3";
         public const string Attack4StatePath = "Base Layer.Attack.BaseAttack4";
+        public const string AirAttack1StatePath = "Base Layer.Attack.AirAttack1";
+        public const string AirAttack2StatePath = "Base Layer.Attack.AirAttack2";
+        public const string AirAttack3StatePath = "Base Layer.Attack.AirAttack3";
         public const string HitStunStatePath = "Base Layer.Reaction.HitStun";
         public const string HitStunBackStatePath =
             "Base Layer.Reaction.HitStun_Back";
@@ -117,6 +120,9 @@ namespace _App
                     Attack2StatePath,
                     Attack3StatePath,
                     Attack4StatePath,
+                    AirAttack1StatePath,
+                    AirAttack2StatePath,
+                    AirAttack3StatePath,
                     HitStunStatePath,
                     KnockdownStatePath,
                     AirborneReactionStatePath,
@@ -153,6 +159,15 @@ namespace _App
                     HitStunRightStatePath
                 });
 
+        private static readonly IReadOnlyList<string> AirAttackStates =
+            Array.AsReadOnly(
+                new[]
+                {
+                    AirAttack1StatePath,
+                    AirAttack2StatePath,
+                    AirAttack3StatePath
+                });
+
         private static readonly IReadOnlyList<string> HitStunStates =
             Array.AsReadOnly(
                 new[]
@@ -180,6 +195,9 @@ namespace _App
 
         public static IReadOnlyList<string> LightAttackStatePaths =>
             LightAttackStates;
+
+        public static IReadOnlyList<string> AirAttackStatePaths =>
+            AirAttackStates;
 
         public static IReadOnlyList<string> ReactionStatePaths =>
             ReactionStates;

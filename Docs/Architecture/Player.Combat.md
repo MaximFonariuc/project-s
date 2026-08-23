@@ -6,7 +6,9 @@
 
 Combat не управляет motor напрямую. Он выдаёт только `PlayerMovementIntent`, который читает locomotion.
 
-## Текущая ground combo
+## Текущие combo branches
+
+### Ground
 
 Одна команда `attack.light` входит в `combo.ground.0`. Следующие команды сначала
 попадают в `CombatInputBuffer` и могут перейти только `0 → 1 → 2 → 3` внутри
@@ -23,6 +25,23 @@ Combat не управляет motor напрямую. Он выдаёт тол�
 Это стартовые tuning values для текущего набора клипов. Damage/hitbox/movement
 остаются gameplay data и не вычисляются из Animator. Presentation получает лишь
 ожидаемую длительность action и подстраивает скорость активного override-клипа.
+
+### Air
+
+Во время `Falling` та же команда `attack.light` входит в `combo.air.0` и может
+продолжиться только `0 → 1 → 2`. Воздушный finisher завершает цепочку.
+
+| Step | Duration | Hitbox | Chain | Cancel | Damage | Motor distance |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0 | 1.583 s | 0.12–0.31 | 0.32–0.46 | 0.50–0.84 | 10 | 0.35 m |
+| 1 | 1.500 s | 0.10–0.32 | 0.33–0.46 | 0.50–0.84 | 12 | 0.35 m |
+| 2 | 1.917 s | 0.11–0.35 | disabled | 0.62–0.90 | 22 | 0.45 m |
+
+Начало chain windows выбрано по измеренному pose seam retargeted clips, а не по
+произвольному общему значению. `MinimumVelocity(-1.5 m/s)` создаёт ограниченный
+air hang только до `0.58 / 0.58 / 0.55` normalized time, не выключая gravity на
+весь action. Planar и vertical displacement по-прежнему исполняет motor; Animator
+root motion отключён.
 
 ## Дерево классов и зависимости
 
@@ -133,7 +152,8 @@ sequenceDiagram
     Combat->>Machine: Recovery -> Executing(next action)
 ```
 
-Для combo presentation вызов содержит `ComboIndex` и
+Для ground/air combo presentation вызов содержит отдельный semantic track,
+`ComboIndex` и
 `CombatActionDefinition.DurationSeconds`. Это не переносит authority в Animator:
 длительность остаётся метаданными ожидаемого playback. Текущий XController
 воспроизводит authored clip speed и не выводит gameplay timeline из normalized
@@ -151,4 +171,7 @@ Gameplay timeline использует scaled delta time, поэтому executi
 - Animator, graph authoring и input buffer не являются владельцами combat phase.
 - Входящая реакция не входит в combat state machine. `PlayerActorController` прерывает executing/recovery/weapon-switch action по подтверждённому reaction state, а `PlayerCombatController` читает только `ICharacterReactionState.BlocksActions`, чтобы не принять новый action во время hit-stun/knockdown/airborne/death. Владельцем этих состояний остаётся `CharacterReactionController`.
 
-Текущий `IPlayerCombatActor.CanAttack` сохраняет проверенное наземное ограничение. Graph уже поддерживает `Grounded/Airborne`, но включение воздушных атак требует отдельного изменения actor gate и реальных air clips, а не скрытого обхода текущей locomotion policy.
+`IPlayerCombatActor.CanAttack` допускает только обычные walking/falling movement
+modes и по-прежнему блокирует crouch и dodge. Поэтому воздушная ветка доступна
+после реального перехода locomotion в `Falling`, а climbing/custom modes не обходят
+actor gate.

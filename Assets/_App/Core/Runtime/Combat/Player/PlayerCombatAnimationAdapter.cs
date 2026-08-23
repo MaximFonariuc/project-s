@@ -6,6 +6,7 @@ namespace _App
     internal sealed class PlayerCombatAnimationAdapter : IPlayerCombatAnimation
     {
         private const int SupportedComboCount = 4;
+        private const int SupportedAirComboCount = 3;
 
         private readonly PlayerAnimationCoordinator _animation;
         private readonly PlayerAnimatorLoadout _loadout;
@@ -14,6 +15,7 @@ namespace _App
         private bool _disposed;
 
         public int ComboCount => SupportedComboCount;
+        public int AirComboCount => SupportedAirComboCount;
 
         public PlayerCombatAnimationAdapter(
             PlayerAnimationCoordinator animation,
@@ -70,6 +72,30 @@ namespace _App
         {
             playback = default;
             return false;
+        }
+
+        public bool TryPlayAirComboStep(
+            int comboIndex,
+            float expectedDuration,
+            out AnimationActionPlayback playback)
+        {
+            ThrowIfDisposed();
+            if (comboIndex < 0 ||
+                comboIndex >= SupportedAirComboCount ||
+                expectedDuration <= 0.0f)
+            {
+                playback = default;
+                return false;
+            }
+
+            var request = new AnimationActionRequest(
+                PlayerAnimatorActions.AirAttack,
+                comboIndex,
+                expectedDuration);
+            return _animation.TryPlayAction(
+                PlayerAnimationSource.Combat,
+                in request,
+                out playback);
         }
 
         public bool TryPlayWeaponTransition(

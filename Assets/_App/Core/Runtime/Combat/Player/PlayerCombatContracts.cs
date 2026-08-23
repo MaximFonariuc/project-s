@@ -37,6 +37,7 @@ namespace _App
     internal interface IPlayerCombatAnimation : IDisposable
     {
         int ComboCount { get; }
+        int AirComboCount { get; }
 
         void ApplyLoadout(ECharacterType characterType, EWeaponType weaponType);
         bool HasNamedAnimation(
@@ -44,6 +45,10 @@ namespace _App
             EWeaponType weaponType,
             PlayerCombatAnimationId animationId);
         bool TryPlayComboStep(
+            int comboIndex,
+            float expectedDuration,
+            out AnimationActionPlayback playback);
+        bool TryPlayAirComboStep(
             int comboIndex,
             float expectedDuration,
             out AnimationActionPlayback playback);

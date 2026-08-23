@@ -309,7 +309,8 @@ namespace _App
                     BeginAttackExecution(action);
                     EnterExecuting(action);
                     SetComboIndex(
-                        action.Presentation.Kind == PlayerCombatPresentationKind.ComboStep
+                        action.Presentation.Kind is PlayerCombatPresentationKind.ComboStep or
+                            PlayerCombatPresentationKind.AirComboStep
                             ? action.Presentation.ComboIndex
                             : 0);
 
@@ -351,6 +352,11 @@ namespace _App
             {
                 PlayerCombatPresentationKind.ComboStep =>
                     _animation.TryPlayComboStep(
+                        presentation.ComboIndex,
+                        action.Definition.DurationSeconds,
+                        out playback),
+                PlayerCombatPresentationKind.AirComboStep =>
+                    _animation.TryPlayAirComboStep(
                         presentation.ComboIndex,
                         action.Definition.DurationSeconds,
                         out playback),
@@ -489,6 +495,8 @@ namespace _App
             {
                 PlayerCombatPresentationKind.ComboStep =>
                     presentation.ComboIndex < _animation.ComboCount,
+                PlayerCombatPresentationKind.AirComboStep =>
+                    presentation.ComboIndex < _animation.AirComboCount,
                 PlayerCombatPresentationKind.NamedAnimation =>
                     _animation.HasNamedAnimation(
                         _characterType,

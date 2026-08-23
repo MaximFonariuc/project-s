@@ -9,6 +9,7 @@ classDiagram
     class IPlayerCombatAnimation {
         <<interface>>
         +TryPlayComboStep(index, expectedDuration, playback) bool
+        +TryPlayAirComboStep(index, expectedDuration, playback) bool
         +Cancel()
         +Release()
     }
@@ -30,6 +31,8 @@ classDiagram
   and maps them to semantic action `LightAttack`, variants `0...3`.
 - The Animator Controller maps those variants to `BaseAttack1...4`; gameplay
   code has no clip reference.
+- The adapter exposes a separate three-step air track and maps it to semantic
+  action `AirAttack`, variants `0...2`, then to `AirAttack1...3`.
 - The fourth prototype step is the current heavy finisher: its confirmed hit
   requests `hit.heavy` and crosses the reaction profile's knockdown threshold.
 - Gameplay passes the expected duration as presentation metadata, but the
@@ -40,5 +43,5 @@ classDiagram
 - `Cancel()` asks the XController adapter to crossfade to locomotion when
   gameplay interrupts an action. Normal completion lets the controller use its
   authored exit transition.
-- Weapon transitions and the ground light combo are implemented. Named skills,
-  heavy branches and air attacks remain deferred.
+- Weapon transitions plus ground and air light combos are implemented. Named
+  skills and heavy-input branches remain deferred.

@@ -103,16 +103,23 @@ ScriptableObject хранит только authoring data. Очередь input,
 
 `Assets/_Game/Settings/Combat/Player/PlayerCombatActionProfile.asset` назначен на
 `Assets/_Game/Prefabs/Character/Player.prefab` и является штатным authoring-профилем игрока.
-Он содержит четыре последовательных наземных combo actions, один ground entry и
-три перехода `0 → 1 → 2 → 3` через chain windows. Воздушные actions и named skills
-пока не входят в штатный профиль.
+Он содержит две environment-specific ветки одной команды `attack.light`:
+
+- четыре наземных actions `combo.ground.0 → 1 → 2 → 3`;
+- три воздушных actions `combo.air.0 → 1 → 2`.
+
+Grounded и Airborne entries не конфликтуют: `PlayerCombatActionGraph` выбирает
+ветку по подтверждённому movement mode персонажа. Named skills пока не входят в
+штатный профиль.
 
 Input buffer настроен на четыре команды и при переполнении отбрасывает действие с
 наименьшим приоритетом. Все текущие `attack.light` команды имеют default priority;
 named priority overrides пока не настроены. Planar и vertical combat motion описываются
 в action definition и исполняются через character motor с разрешением столкновений.
-Текущие timings, damage и distances являются стартовыми tuning values. Gameplay graph
-не хранит ссылки на клипы: animation adapter передаёт combo index и ожидаемую
+Текущие timings, damage и distances являются стартовыми tuning values. Воздушная
+ветка ограничивает падение до `-1.5 m/s` только внутри combat-motion window; после
+окна gravity снова полностью принадлежит character motor. Gameplay graph не хранит
+ссылки на клипы: animation adapter передаёт ground/air combo index и ожидаемую
 длительность в общий Animator contract.
 
 ## Зависимости

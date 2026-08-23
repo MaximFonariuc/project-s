@@ -111,6 +111,8 @@ namespace _App
             {
                 PlayerCombatPresentationKind.ComboStep =>
                     PlayerCombatPresentation.Combo(_comboIndex),
+                PlayerCombatPresentationKind.AirComboStep =>
+                    PlayerCombatPresentation.AirCombo(_comboIndex),
                 PlayerCombatPresentationKind.NamedAnimation =>
                     PlayerCombatPresentation.Named(
                         new PlayerCombatAnimationId(_animationId)),

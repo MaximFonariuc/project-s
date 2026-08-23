@@ -155,7 +155,8 @@ namespace _App
     public enum PlayerCombatPresentationKind
     {
         ComboStep,
-        NamedAnimation
+        NamedAnimation,
+        AirComboStep
     }
 
     public enum PlayerCombatTransitionWindow
@@ -189,6 +190,19 @@ namespace _App
 
             return new PlayerCombatPresentation(
                 PlayerCombatPresentationKind.ComboStep,
+                comboIndex,
+                default);
+        }
+
+        public static PlayerCombatPresentation AirCombo(int comboIndex)
+        {
+            if (comboIndex < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(comboIndex));
+            }
+
+            return new PlayerCombatPresentation(
+                PlayerCombatPresentationKind.AirComboStep,
                 comboIndex,
                 default);
         }

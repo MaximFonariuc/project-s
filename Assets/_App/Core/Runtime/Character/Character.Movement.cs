@@ -68,7 +68,7 @@ namespace _App
 
         public virtual bool CanAttack()
         {
-            return IsWalking() && !IsFalling() && !IsCrouched() && !IsDodging();
+            return (IsWalking() || IsFalling()) && !IsCrouched() && !IsDodging();
         }
 
         public virtual bool IsWalking()

@@ -45,6 +45,7 @@ namespace _App
         private const int LightAttackActionId = 2;
         private const int WeaponTransitionActionId = 3;
         private const int ReactionActionId = 4;
+        private const int AirAttackActionId = 5;
 
         private static readonly int OnGroundHash = Animator.StringToHash(
             XControllerAnimationContract.OnGroundParameterName);
@@ -75,6 +76,8 @@ namespace _App
             XControllerAnimationContract.LightAttackStatePaths);
         private static readonly int[] ReactionStateHashes = CreateStateHashes(
             XControllerAnimationContract.ReactionStatePaths);
+        private static readonly int[] AirAttackStateHashes = CreateStateHashes(
+            XControllerAnimationContract.AirAttackStatePaths);
         private static readonly int WeaponSheatheStateHash = Animator.StringToHash(
             XControllerAnimationContract.WeaponSheatheStatePath);
         private static readonly int WeaponUnsheatheStateHash = Animator.StringToHash(
@@ -345,6 +348,7 @@ namespace _App
             {
                 DodgeActionId => 0.0f,
                 LightAttackActionId => AttackBodyLookWeight,
+                AirAttackActionId => AttackBodyLookWeight,
                 WeaponTransitionActionId => WeaponBodyLookWeight,
                 ReactionActionId => 0.0f,
                 _ => 1.0f
@@ -353,6 +357,7 @@ namespace _App
             {
                 DodgeActionId => 0.0f,
                 LightAttackActionId => AttackHeadLookWeight,
+                AirAttackActionId => AttackHeadLookWeight,
                 WeaponTransitionActionId => WeaponHeadLookWeight,
                 ReactionActionId => 0.0f,
                 _ => 1.0f
@@ -399,6 +404,12 @@ namespace _App
                 case LightAttackActionId when request.Variant >= 0 &&
                                               request.Variant < LightAttackStateHashes.Length:
                     stateHash = LightAttackStateHashes[request.Variant];
+                    crossFadeSeconds = AttackCrossFadeSeconds;
+                    break;
+
+                case AirAttackActionId when request.Variant >= 0 &&
+                                            request.Variant < AirAttackStateHashes.Length:
+                    stateHash = AirAttackStateHashes[request.Variant];
                     crossFadeSeconds = AttackCrossFadeSeconds;
                     break;
 

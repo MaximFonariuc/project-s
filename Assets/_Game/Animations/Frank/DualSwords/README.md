@@ -2,34 +2,35 @@
 
 Source: `Reference/Frank/Frank_Dual_Sword`.
 
-This directory contains the high-fidelity Unity port of the dual-sword animation
-set. The master assets intentionally use a **Generic** rig. Frank has 94 bones,
-including animated weapon, segmented-sword and secondary chains that Unity
-discards when the same FBX is imported directly as Humanoid.
+This directory contains the Unity port of the dual-sword animation set. The
+entire pack uses one **Humanoid** contract. `FrankDualRigAvatar` is the validated
+shared Avatar; every animation FBX imports as Humanoid with `Copy From Other
+Avatar`, so retargeting does not depend on a separately generated mapping per
+clip.
 
 ## Contents
 
-- `Rig/FrankDualRig.fbx` — stable reference rig and shared Generic Avatar;
+- `Rig/FrankDualRig.fbx` — stable reference rig and shared Humanoid Avatar;
 - `Animations/InPlace` — 54 clips intended for motor-driven displacement;
 - `Animations/RootMotion` — 94 clips with authored root displacement;
 - `FrankDualSwordAnimationCatalog.json` — frame count, duration and measured
   root delta for every clip.
 
-All clips are sampled at 60 FPS and retain the complete 94-bone hierarchy.
-Unity imports them through the Avatar from `FrankDualRig.fbx`. In-place and
-root-motion FBXs remain separate so gameplay can select its movement policy
-without modifying the source animation.
+All clips are sampled at 60 FPS and import through the Avatar from
+`FrankDualRig.fbx`. In-place and root-motion FBXs remain separate so gameplay
+can select its movement policy without modifying the source animation.
 
 `InPlace` means planar displacement is removed by the source pack. Some air
 clips still contain authored vertical displacement; their `ZeroHeight`
 variants remove it as well.
 
-## Humanoid retargeting
+## Runtime slots
 
-Do not change these master FBXs to Humanoid. Create derived retargeted clips for
-Humanoid characters and keep weapon/secondary animation as an explicit
-additional pass. This preserves the original source and avoids silently losing
-the custom sword curves.
+Stable Animator slots may use derived `.anim` assets with gameplay-facing names
+such as `AirAttack1`. Those assets remain Humanoid and can be replaced by an
+Animator Override Controller without exposing Frank filenames to gameplay code.
+Weapon and secondary-bone animation still require an explicit presentation pass
+when the target character does not contain the corresponding source bones.
 
 ## Mesh status
 
