@@ -190,19 +190,20 @@ get-up `1.833s`, airborne `0.45s`. Ни одного Animator state gameplay-с�
 Player prefab использует явный
 `Assets/_Game/Settings/Combat/Player/PlayerCharacterReactionProfile.asset` с теми
 же стартовыми gameplay timings, кроме увеличенного до `0.4s` hit-stun.
-`XController` содержит пять обязательных presentation-слотов:
-`Reaction/HitStun`, `Reaction/Knockdown`, `Reaction/Airborne` и
-`Reaction/Dead`, а также `Reaction/GetUp`. Сейчас они ссылаются на Humanoid
-prototype motions одного Knight-набора: обычную и усиленную `LightHit`, `Fall`,
-`Death` и `Revive`. Исходные FBX не изменены и не содержат gameplay events.
-Это временные визуальные слоты, а не финальная направленная вариативность или
-ragdoll.
+`XController` содержит шесть обязательных presentation-слотов:
+`Reaction/HitStun`, `Reaction/Knockdown`, `Reaction/Airborne`,
+`Reaction/Dead_1`, `Reaction/Dead_2` и `Reaction/GetUp`. Сейчас они ссылаются
+на Humanoid prototype motions. Исходные FBX не изменены и не содержат gameplay
+events. Это временные визуальные слоты, а не финальная направленная
+вариативность или ragdoll.
 
 Внутри Animator у этих состояний нет параметрических входов и самостоятельных
 gameplay-переходов. Подтверждённую реакцию запускает единственный animation
 driver. После `Knockdown` gameplay state machine явно запускает `GetUp`, а после
-его завершения отменяет presentation при возврате в `Stable`. `Dead` удерживает
-последний кадр до подтверждённого revive.
+его завершения отменяет presentation при возврате в `Stable`. Для смерти
+`hit.heavy` выбирает `Dead_2`, остальные и неизвестные reaction id используют
+fallback `Dead_1`; оба состояния удерживают последний кадр до подтверждённого
+revive.
 
 Пара `ReactionId + State` формирует backend-neutral animation slot. Пустой
 `ReactionId` является fallback для состояния. `CharacterReactionAnimationAdapter`

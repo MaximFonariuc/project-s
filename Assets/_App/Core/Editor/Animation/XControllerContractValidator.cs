@@ -31,7 +31,8 @@ namespace _App.Editor.Animation
             XControllerAnimationContract.HitStunStatePath,
             XControllerAnimationContract.KnockdownStatePath,
             XControllerAnimationContract.AirborneReactionStatePath,
-            XControllerAnimationContract.DeadStatePath,
+            XControllerAnimationContract.DeadPrimaryStatePath,
+            XControllerAnimationContract.DeadHeavyStatePath,
             XControllerAnimationContract.GetUpStatePath,
             XControllerAnimationContract.WeaponSheatheStatePath,
             XControllerAnimationContract.WeaponUnsheatheStatePath
@@ -347,7 +348,8 @@ namespace _App.Editor.Animation
                 {
                     if ((path == XControllerAnimationContract.HitStunStatePath ||
                          path == XControllerAnimationContract.KnockdownStatePath ||
-                         path == XControllerAnimationContract.DeadStatePath ||
+                         path == XControllerAnimationContract.DeadPrimaryStatePath ||
+                         path == XControllerAnimationContract.DeadHeavyStatePath ||
                          path == XControllerAnimationContract.GetUpStatePath) &&
                         clip.isLooping)
                     {

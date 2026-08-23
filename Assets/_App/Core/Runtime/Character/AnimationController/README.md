@@ -51,8 +51,8 @@ classDiagram
   XController splits that request into slower limited body motion and faster
   residual head motion, with action- and airborne-specific attenuation.
 - Reaction and death use the required `Reaction/HitStun`, `Knockdown`, `GetUp`,
-  `Airborne` and `Dead` states. Traversal remains optional: requests whose state
-  is absent return an invalid playback instead of breaking composition.
+  `Airborne`, `Dead_1` and `Dead_2` states. Traversal remains optional: requests
+  whose state is absent return an invalid playback instead of breaking composition.
 - `XControllerAnimationContract` is the single runtime source of required
   parameter, layer and state names. The editor validator consumes the same
   contract, preventing duplicated strings from drifting apart.

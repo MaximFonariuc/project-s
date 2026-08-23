@@ -117,8 +117,9 @@ The current action contract is:
 | Reaction | 4 | 0 | `Reaction/HitStun` |
 | Reaction | 4 | 1 | `Reaction/Knockdown` |
 | Reaction | 4 | 2 | `Reaction/Airborne` |
-| Death | 4 | 3 | `Reaction/Dead` |
+| Death (default/light) | 4 | 3 | `Reaction/Dead_1` |
 | Get up | 4 | 4 | `Reaction/GetUp` |
+| Death (heavy) | 4 | 5 | `Reaction/Dead_2` |
 
 The controller consumes its historical `MovementType`, `MovementDirection`,
 `FallingDuration`, `OnGround` and `SpeedMultiplier` parameters. `BodyLookX/Y`
@@ -149,13 +150,14 @@ Body/head look parameters are neutralized while a reaction or death action owns
 the finite-action lane, preventing additive aiming poses from deforming the hit
 motion. They resume after the reaction controller returns to `Stable`.
 
-`Reaction` is a dedicated Base Layer sub-state machine. Its five states have no
+`Reaction` is a dedicated Base Layer sub-state machine. Its six states have no
 parameter-driven entry and no gameplay transitions: the driver enters the
 accepted state directly. Reaction gameplay changes `Knockdown` to `GetUp`, then
 explicitly cancels GetUp back to `Locomotion/Move`; short hit-stun and airborne
-reactions cancel directly to Move. `Dead` holds its final frame until the health
-owner confirms revival. This keeps damage, recovery and death authority outside
-Mecanim while retaining visible, replaceable Animator slots.
+reactions cancel directly to Move. `Dead_1` is the fallback death and
+`Dead_2` is selected for `hit.heavy`; both hold their final frame until the
+health owner confirms revival. This keeps damage, recovery and death authority
+outside Mecanim while retaining visible, replaceable Animator slots.
 
 ## Weapon override contract
 

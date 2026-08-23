@@ -40,6 +40,10 @@ namespace _App
             new AnimationSlotId("Traversal.Ladder.Descend");
         public static readonly AnimationSlotId LadderIdle =
             new AnimationSlotId("Traversal.Ladder.Idle");
+        public static readonly AnimationSlotId HeavyDeath =
+            Reaction(
+                new CombatReactionId("hit.heavy"),
+                CharacterReactionStateId.Dead);
 
         public static AnimationSlotId Reaction(CharacterReactionStateId state) =>
             new AnimationSlotId($"Reaction.{state}");

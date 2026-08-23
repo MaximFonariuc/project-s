@@ -62,6 +62,12 @@ namespace _App
                 return true;
             }
 
+            if (slot == PlayerAnimationSlots.HeavyDeath)
+            {
+                request = new AnimationActionRequest(Reaction, 5, DeathDuration);
+                return true;
+            }
+
             if (IsReactionSlot(slot, CharacterReactionStateId.Dead))
             {
                 request = new AnimationActionRequest(Reaction, 3, DeathDuration);

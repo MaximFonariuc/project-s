@@ -45,10 +45,12 @@ classDiagram
 - `CharacterReactionHost` is a local composition root for scene/prefab actors
   that do not yet have their own VContainer scope. It does not duplicate poise,
   timers or transition rules.
-- `XController` maps semantic action id `4` to five required slots:
-  `Reaction/HitStun`, `Reaction/Knockdown`, `Reaction/Airborne` and
-  `Reaction/Dead`, plus `Reaction/GetUp`. Weapon override controllers inherit
-  the slots.
+- `XController` maps semantic action id `4` to six required slots:
+  `Reaction/HitStun`, `Reaction/Knockdown`, `Reaction/Airborne`,
+  `Reaction/Dead_1`, `Reaction/Dead_2` and `Reaction/GetUp`. Weapon override
+  controllers inherit the slots.
+- Death selection uses the existing semantic `ReactionId`: `hit.heavy` selects
+  `Dead_2`; missing, light and unknown ids fall back to `Dead_1`.
 - Reaction and death slots keep their authored playback speed. Gameplay still
   owns the reaction duration and cancels presentation on return to `Stable`;
   short hit-stun windows never accelerate the source clip.
@@ -59,7 +61,7 @@ classDiagram
   stay in gameplay code.
 - Timed reaction states have no Animator-owned gameplay transitions. Knockdown
   completion explicitly enters `GetUp`; get-up completion cancels presentation
-  back to locomotion. `Dead` holds its final frame until revive.
+  back to locomotion. Both death states hold their final frame until revive.
 - `CombatTrainingTarget.prefab` duplicates the Player visual and generated body
   hurtboxes, but removes player input, locomotion, combat and weapon ownership.
   It adds `CombatTarget`, `CharacterReactionHost` and
