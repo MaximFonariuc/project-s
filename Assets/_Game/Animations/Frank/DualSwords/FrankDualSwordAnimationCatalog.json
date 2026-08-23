@@ -1,0 +1,1783 @@
+{
+  "rig": "FrankDualRig",
+  "bone_count": 94,
+  "clip_count": 148,
+  "clips": [
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_1_IP",
+      "category": "InPlace",
+      "frames": 96,
+      "fps": 60,
+      "duration_seconds": 1.5833333333333333,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        -254.30099
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_1_ZeroHeight_IP",
+      "category": "InPlace",
+      "frames": 96,
+      "fps": 60,
+      "duration_seconds": 1.5833333333333333,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_2_IP",
+      "category": "InPlace",
+      "frames": 91,
+      "fps": 60,
+      "duration_seconds": 1.5,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        -254.30099
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_2_ZeroHeight_IP",
+      "category": "InPlace",
+      "frames": 91,
+      "fps": 60,
+      "duration_seconds": 1.5,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_3_IP",
+      "category": "InPlace",
+      "frames": 116,
+      "fps": 60,
+      "duration_seconds": 1.9166666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        -254.30099
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_3_ZeroHeight_IP",
+      "category": "InPlace",
+      "frames": 116,
+      "fps": 60,
+      "duration_seconds": 1.9166666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_All_IP",
+      "category": "InPlace",
+      "frames": 214,
+      "fps": 60,
+      "duration_seconds": 3.55,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_Start_IP",
+      "category": "InPlace",
+      "frames": 86,
+      "fps": 60,
+      "duration_seconds": 1.4166666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        53.93037
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_Start_ZeroHeight_IP",
+      "category": "InPlace",
+      "frames": 86,
+      "fps": 60,
+      "duration_seconds": 1.4166666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo01_1_IP",
+      "category": "InPlace",
+      "frames": 77,
+      "fps": 60,
+      "duration_seconds": 1.2666666666666666,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo01_2_IP",
+      "category": "InPlace",
+      "frames": 61,
+      "fps": 60,
+      "duration_seconds": 1.0,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo01_3_IP",
+      "category": "InPlace",
+      "frames": 65,
+      "fps": 60,
+      "duration_seconds": 1.0666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo01_All_IP",
+      "category": "InPlace",
+      "frames": 156,
+      "fps": 60,
+      "duration_seconds": 2.5833333333333335,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo02_1_IP",
+      "category": "InPlace",
+      "frames": 61,
+      "fps": 60,
+      "duration_seconds": 1.0,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo02_2_IP",
+      "category": "InPlace",
+      "frames": 59,
+      "fps": 60,
+      "duration_seconds": 0.9666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo02_3_IP",
+      "category": "InPlace",
+      "frames": 81,
+      "fps": 60,
+      "duration_seconds": 1.3333333333333333,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo02_All_IP",
+      "category": "InPlace",
+      "frames": 136,
+      "fps": 60,
+      "duration_seconds": 2.25,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo03_1_IP",
+      "category": "InPlace",
+      "frames": 64,
+      "fps": 60,
+      "duration_seconds": 1.05,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo03_2_IP",
+      "category": "InPlace",
+      "frames": 73,
+      "fps": 60,
+      "duration_seconds": 1.2,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo03_3_IP",
+      "category": "InPlace",
+      "frames": 107,
+      "fps": 60,
+      "duration_seconds": 1.7666666666666666,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo03_All_IP",
+      "category": "InPlace",
+      "frames": 174,
+      "fps": 60,
+      "duration_seconds": 2.8833333333333333,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo04_1_IP",
+      "category": "InPlace",
+      "frames": 111,
+      "fps": 60,
+      "duration_seconds": 1.8333333333333333,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo04_2_IP",
+      "category": "InPlace",
+      "frames": 105,
+      "fps": 60,
+      "duration_seconds": 1.7333333333333334,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo04_3_IP",
+      "category": "InPlace",
+      "frames": 71,
+      "fps": 60,
+      "duration_seconds": 1.1666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        -301.97305
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo04_All_IP",
+      "category": "InPlace",
+      "frames": 211,
+      "fps": 60,
+      "duration_seconds": 3.5,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo05_1_IP",
+      "category": "InPlace",
+      "frames": 65,
+      "fps": 60,
+      "duration_seconds": 1.0666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo05_2_IP",
+      "category": "InPlace",
+      "frames": 107,
+      "fps": 60,
+      "duration_seconds": 1.7666666666666666,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo05_3_IP",
+      "category": "InPlace",
+      "frames": 106,
+      "fps": 60,
+      "duration_seconds": 1.75,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        -239.81715
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo05_4_IP",
+      "category": "InPlace",
+      "frames": 123,
+      "fps": 60,
+      "duration_seconds": 2.033333333333333,
+      "root_delta_cm": [
+        -0.0,
+        0.0,
+        -377.63763
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo05_All_IP",
+      "category": "InPlace",
+      "frames": 271,
+      "fps": 60,
+      "duration_seconds": 4.5,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo06_1_IP",
+      "category": "InPlace",
+      "frames": 71,
+      "fps": 60,
+      "duration_seconds": 1.1666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo06_2_IP",
+      "category": "InPlace",
+      "frames": 71,
+      "fps": 60,
+      "duration_seconds": 1.1666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo06_3_IP",
+      "category": "InPlace",
+      "frames": 57,
+      "fps": 60,
+      "duration_seconds": 0.9333333333333333,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo06_4_IP",
+      "category": "InPlace",
+      "frames": 112,
+      "fps": 60,
+      "duration_seconds": 1.85,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo06_All_IP",
+      "category": "InPlace",
+      "frames": 206,
+      "fps": 60,
+      "duration_seconds": 3.4166666666666665,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo07_1_IP",
+      "category": "InPlace",
+      "frames": 57,
+      "fps": 60,
+      "duration_seconds": 0.9333333333333333,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo07_2_IP",
+      "category": "InPlace",
+      "frames": 54,
+      "fps": 60,
+      "duration_seconds": 0.8833333333333333,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo07_3_IP",
+      "category": "InPlace",
+      "frames": 84,
+      "fps": 60,
+      "duration_seconds": 1.3833333333333333,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo07_4_IP",
+      "category": "InPlace",
+      "frames": 108,
+      "fps": 60,
+      "duration_seconds": 1.7833333333333334,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo07_All_IP",
+      "category": "InPlace",
+      "frames": 201,
+      "fps": 60,
+      "duration_seconds": 3.3333333333333335,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Evade_B_IP",
+      "category": "InPlace",
+      "frames": 46,
+      "fps": 60,
+      "duration_seconds": 0.75,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Evade_F_IP",
+      "category": "InPlace",
+      "frames": 46,
+      "fps": 60,
+      "duration_seconds": 0.75,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Evade_L_IP",
+      "category": "InPlace",
+      "frames": 46,
+      "fps": 60,
+      "duration_seconds": 0.75,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Evade_R_IP",
+      "category": "InPlace",
+      "frames": 46,
+      "fps": 60,
+      "duration_seconds": 0.75,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Hit_Knockback_IP",
+      "category": "InPlace",
+      "frames": 61,
+      "fps": 60,
+      "duration_seconds": 1.0,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Hit_Knockdown_IP",
+      "category": "InPlace",
+      "frames": 76,
+      "fps": 60,
+      "duration_seconds": 1.25,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Skill01_WhirlWind_IP",
+      "category": "InPlace",
+      "frames": 121,
+      "fps": 60,
+      "duration_seconds": 2.0,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Skill02_Rolling_IP",
+      "category": "InPlace",
+      "frames": 149,
+      "fps": 60,
+      "duration_seconds": 2.466666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Skill03_PowerAttack_IP",
+      "category": "InPlace",
+      "frames": 117,
+      "fps": 60,
+      "duration_seconds": 1.9333333333333333,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Skill04_InfinitySlash_IP",
+      "category": "InPlace",
+      "frames": 149,
+      "fps": 60,
+      "duration_seconds": 2.466666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Step_B_IP",
+      "category": "InPlace",
+      "frames": 31,
+      "fps": 60,
+      "duration_seconds": 0.5,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Step_F_IP",
+      "category": "InPlace",
+      "frames": 31,
+      "fps": 60,
+      "duration_seconds": 0.5,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Step_L_IP",
+      "category": "InPlace",
+      "frames": 31,
+      "fps": 60,
+      "duration_seconds": 0.5,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Step_R_IP",
+      "category": "InPlace",
+      "frames": 31,
+      "fps": 60,
+      "duration_seconds": 0.5,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_4Way_Walk_B",
+      "category": "RootMotion",
+      "frames": 51,
+      "fps": 60,
+      "duration_seconds": 0.8333333333333334,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_4Way_Walk_F",
+      "category": "RootMotion",
+      "frames": 51,
+      "fps": 60,
+      "duration_seconds": 0.8333333333333334,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_4Way_Walk_L",
+      "category": "RootMotion",
+      "frames": 51,
+      "fps": 60,
+      "duration_seconds": 0.8333333333333334,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_4Way_Walk_R",
+      "category": "RootMotion",
+      "frames": 51,
+      "fps": 60,
+      "duration_seconds": 0.8333333333333334,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_8Way_Run_B",
+      "category": "RootMotion",
+      "frames": 47,
+      "fps": 60,
+      "duration_seconds": 0.7666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_8Way_Run_BL",
+      "category": "RootMotion",
+      "frames": 47,
+      "fps": 60,
+      "duration_seconds": 0.7666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_8Way_Run_BR",
+      "category": "RootMotion",
+      "frames": 47,
+      "fps": 60,
+      "duration_seconds": 0.7666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_8Way_Run_F",
+      "category": "RootMotion",
+      "frames": 47,
+      "fps": 60,
+      "duration_seconds": 0.7666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_8Way_Run_FL",
+      "category": "RootMotion",
+      "frames": 47,
+      "fps": 60,
+      "duration_seconds": 0.7666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_8Way_Run_FR",
+      "category": "RootMotion",
+      "frames": 47,
+      "fps": 60,
+      "duration_seconds": 0.7666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_8Way_Run_L",
+      "category": "RootMotion",
+      "frames": 47,
+      "fps": 60,
+      "duration_seconds": 0.7666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_8Way_Run_R",
+      "category": "RootMotion",
+      "frames": 47,
+      "fps": 60,
+      "duration_seconds": 0.7666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_1",
+      "category": "RootMotion",
+      "frames": 96,
+      "fps": 60,
+      "duration_seconds": 1.5833333333333333,
+      "root_delta_cm": [
+        -0.0,
+        12.64166,
+        -254.30099
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_1_ZeroHeight",
+      "category": "RootMotion",
+      "frames": 96,
+      "fps": 60,
+      "duration_seconds": 1.5833333333333333,
+      "root_delta_cm": [
+        -0.0,
+        12.64166,
+        -0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_2",
+      "category": "RootMotion",
+      "frames": 91,
+      "fps": 60,
+      "duration_seconds": 1.5,
+      "root_delta_cm": [
+        -0.0,
+        12.64166,
+        -254.30099
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_2_ZeroHeight",
+      "category": "RootMotion",
+      "frames": 91,
+      "fps": 60,
+      "duration_seconds": 1.5,
+      "root_delta_cm": [
+        -0.0,
+        12.64166,
+        -0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_3",
+      "category": "RootMotion",
+      "frames": 116,
+      "fps": 60,
+      "duration_seconds": 1.9166666666666667,
+      "root_delta_cm": [
+        -0.0,
+        12.64166,
+        -254.30099
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_3_ZeroHeight",
+      "category": "RootMotion",
+      "frames": 116,
+      "fps": 60,
+      "duration_seconds": 1.9166666666666667,
+      "root_delta_cm": [
+        -0.0,
+        12.64166,
+        -0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_All",
+      "category": "RootMotion",
+      "frames": 214,
+      "fps": 60,
+      "duration_seconds": 3.55,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_Start",
+      "category": "RootMotion",
+      "frames": 86,
+      "fps": 60,
+      "duration_seconds": 1.4166666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        53.93037
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_Start_ZeroHeight",
+      "category": "RootMotion",
+      "frames": 86,
+      "fps": 60,
+      "duration_seconds": 1.4166666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Block",
+      "category": "RootMotion",
+      "frames": 31,
+      "fps": 60,
+      "duration_seconds": 0.5,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo01_1",
+      "category": "RootMotion",
+      "frames": 77,
+      "fps": 60,
+      "duration_seconds": 1.2666666666666666,
+      "root_delta_cm": [
+        -0.0,
+        -71.48627,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo01_2",
+      "category": "RootMotion",
+      "frames": 61,
+      "fps": 60,
+      "duration_seconds": 1.0,
+      "root_delta_cm": [
+        0.0,
+        -152.34827,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo01_3",
+      "category": "RootMotion",
+      "frames": 65,
+      "fps": 60,
+      "duration_seconds": 1.0666666666666667,
+      "root_delta_cm": [
+        0.0,
+        -145.56805,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo01_4",
+      "category": "RootMotion",
+      "frames": 64,
+      "fps": 60,
+      "duration_seconds": 1.05,
+      "root_delta_cm": [
+        0.0,
+        -205.23389,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo01_All",
+      "category": "RootMotion",
+      "frames": 156,
+      "fps": 60,
+      "duration_seconds": 2.5833333333333335,
+      "root_delta_cm": [
+        0.0,
+        -535.76794,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo02_1",
+      "category": "RootMotion",
+      "frames": 61,
+      "fps": 60,
+      "duration_seconds": 1.0,
+      "root_delta_cm": [
+        0.0,
+        -43.01392,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo02_2",
+      "category": "RootMotion",
+      "frames": 59,
+      "fps": 60,
+      "duration_seconds": 0.9666666666666667,
+      "root_delta_cm": [
+        -0.0,
+        73.53955,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo02_3",
+      "category": "RootMotion",
+      "frames": 81,
+      "fps": 60,
+      "duration_seconds": 1.3333333333333333,
+      "root_delta_cm": [
+        0.0,
+        -30.52356,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo02_All",
+      "category": "RootMotion",
+      "frames": 136,
+      "fps": 60,
+      "duration_seconds": 2.25,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo03_1",
+      "category": "RootMotion",
+      "frames": 64,
+      "fps": 60,
+      "duration_seconds": 1.05,
+      "root_delta_cm": [
+        0.0,
+        -33.34662,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo03_2",
+      "category": "RootMotion",
+      "frames": 73,
+      "fps": 60,
+      "duration_seconds": 1.2,
+      "root_delta_cm": [
+        0.0,
+        -64.10199,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo03_3",
+      "category": "RootMotion",
+      "frames": 107,
+      "fps": 60,
+      "duration_seconds": 1.7666666666666666,
+      "root_delta_cm": [
+        0.0,
+        84.22345,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo03_All",
+      "category": "RootMotion",
+      "frames": 174,
+      "fps": 60,
+      "duration_seconds": 2.8833333333333333,
+      "root_delta_cm": [
+        0.0,
+        -56.96057,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo04_1",
+      "category": "RootMotion",
+      "frames": 111,
+      "fps": 60,
+      "duration_seconds": 1.8333333333333333,
+      "root_delta_cm": [
+        -0.0,
+        103.97631,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo04_2",
+      "category": "RootMotion",
+      "frames": 105,
+      "fps": 60,
+      "duration_seconds": 1.7333333333333334,
+      "root_delta_cm": [
+        0.0,
+        121.00335,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo04_3",
+      "category": "RootMotion",
+      "frames": 71,
+      "fps": 60,
+      "duration_seconds": 1.1666666666666667,
+      "root_delta_cm": [
+        0.0,
+        -398.27496,
+        -301.97305
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo04_All",
+      "category": "RootMotion",
+      "frames": 211,
+      "fps": 60,
+      "duration_seconds": 3.5,
+      "root_delta_cm": [
+        -0.0,
+        -305.1253,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo05_1",
+      "category": "RootMotion",
+      "frames": 65,
+      "fps": 60,
+      "duration_seconds": 1.0666666666666667,
+      "root_delta_cm": [
+        0.0,
+        -38.22381,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo05_2",
+      "category": "RootMotion",
+      "frames": 107,
+      "fps": 60,
+      "duration_seconds": 1.7666666666666666,
+      "root_delta_cm": [
+        0.0,
+        29.99316,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo05_3",
+      "category": "RootMotion",
+      "frames": 106,
+      "fps": 60,
+      "duration_seconds": 1.75,
+      "root_delta_cm": [
+        0.0,
+        -23.26294,
+        -239.81715
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo05_4",
+      "category": "RootMotion",
+      "frames": 123,
+      "fps": 60,
+      "duration_seconds": 2.033333333333333,
+      "root_delta_cm": [
+        0.0,
+        -152.41724,
+        -377.63763
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo05_All",
+      "category": "RootMotion",
+      "frames": 271,
+      "fps": 60,
+      "duration_seconds": 4.5,
+      "root_delta_cm": [
+        -0.0,
+        -297.37515,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo06_1",
+      "category": "RootMotion",
+      "frames": 71,
+      "fps": 60,
+      "duration_seconds": 1.1666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo06_2",
+      "category": "RootMotion",
+      "frames": 71,
+      "fps": 60,
+      "duration_seconds": 1.1666666666666667,
+      "root_delta_cm": [
+        0.0,
+        19.46817,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo06_3",
+      "category": "RootMotion",
+      "frames": 57,
+      "fps": 60,
+      "duration_seconds": 0.9333333333333333,
+      "root_delta_cm": [
+        -0.0,
+        -203.87646,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo06_4",
+      "category": "RootMotion",
+      "frames": 112,
+      "fps": 60,
+      "duration_seconds": 1.85,
+      "root_delta_cm": [
+        0.0,
+        -528.28137,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo06_All",
+      "category": "RootMotion",
+      "frames": 206,
+      "fps": 60,
+      "duration_seconds": 3.4166666666666665,
+      "root_delta_cm": [
+        0.0,
+        -667.96027,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo07_1",
+      "category": "RootMotion",
+      "frames": 57,
+      "fps": 60,
+      "duration_seconds": 0.9333333333333333,
+      "root_delta_cm": [
+        0.0,
+        -117.24426,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo07_2",
+      "category": "RootMotion",
+      "frames": 54,
+      "fps": 60,
+      "duration_seconds": 0.8833333333333333,
+      "root_delta_cm": [
+        -0.0,
+        -38.41922,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo07_3",
+      "category": "RootMotion",
+      "frames": 84,
+      "fps": 60,
+      "duration_seconds": 1.3833333333333333,
+      "root_delta_cm": [
+        -0.0,
+        -109.82236,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo07_4",
+      "category": "RootMotion",
+      "frames": 108,
+      "fps": 60,
+      "duration_seconds": 1.7833333333333334,
+      "root_delta_cm": [
+        0.0,
+        -437.36346,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Combo07_All",
+      "category": "RootMotion",
+      "frames": 201,
+      "fps": 60,
+      "duration_seconds": 3.3333333333333335,
+      "root_delta_cm": [
+        0.0,
+        -707.10632,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Die",
+      "category": "RootMotion",
+      "frames": 68,
+      "fps": 60,
+      "duration_seconds": 1.1166666666666667,
+      "root_delta_cm": [
+        0.0,
+        142.08899,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Draw",
+      "category": "RootMotion",
+      "frames": 61,
+      "fps": 60,
+      "duration_seconds": 1.0,
+      "root_delta_cm": [
+        -0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Evade_B",
+      "category": "RootMotion",
+      "frames": 46,
+      "fps": 60,
+      "duration_seconds": 0.75,
+      "root_delta_cm": [
+        0.0,
+        300.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Evade_F",
+      "category": "RootMotion",
+      "frames": 46,
+      "fps": 60,
+      "duration_seconds": 0.75,
+      "root_delta_cm": [
+        -0.0,
+        -350.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Evade_L",
+      "category": "RootMotion",
+      "frames": 46,
+      "fps": 60,
+      "duration_seconds": 0.75,
+      "root_delta_cm": [
+        300.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Evade_R",
+      "category": "RootMotion",
+      "frames": 46,
+      "fps": 60,
+      "duration_seconds": 0.75,
+      "root_delta_cm": [
+        -300.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Getup",
+      "category": "RootMotion",
+      "frames": 69,
+      "fps": 60,
+      "duration_seconds": 1.1333333333333333,
+      "root_delta_cm": [
+        -0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Guard",
+      "category": "RootMotion",
+      "frames": 71,
+      "fps": 60,
+      "duration_seconds": 1.1666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Hit01",
+      "category": "RootMotion",
+      "frames": 41,
+      "fps": 60,
+      "duration_seconds": 0.6666666666666666,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Hit02",
+      "category": "RootMotion",
+      "frames": 41,
+      "fps": 60,
+      "duration_seconds": 0.6666666666666666,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Hit03",
+      "category": "RootMotion",
+      "frames": 47,
+      "fps": 60,
+      "duration_seconds": 0.7666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Hit_Knockback",
+      "category": "RootMotion",
+      "frames": 61,
+      "fps": 60,
+      "duration_seconds": 1.0,
+      "root_delta_cm": [
+        0.0,
+        130.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Hit_Knockdown",
+      "category": "RootMotion",
+      "frames": 76,
+      "fps": 60,
+      "duration_seconds": 1.25,
+      "root_delta_cm": [
+        -4.67932,
+        322.76437,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Hit_Knockdown_Loop",
+      "category": "RootMotion",
+      "frames": 81,
+      "fps": 60,
+      "duration_seconds": 1.3333333333333333,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Idle",
+      "category": "RootMotion",
+      "frames": 241,
+      "fps": 60,
+      "duration_seconds": 4.0,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Jump_01",
+      "category": "RootMotion",
+      "frames": 61,
+      "fps": 60,
+      "duration_seconds": 1.0,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Jump_02",
+      "category": "RootMotion",
+      "frames": 61,
+      "fps": 60,
+      "duration_seconds": 1.0,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Jump_ZeroHeight",
+      "category": "RootMotion",
+      "frames": 61,
+      "fps": 60,
+      "duration_seconds": 1.0,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Putup",
+      "category": "RootMotion",
+      "frames": 61,
+      "fps": 60,
+      "duration_seconds": 1.0,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Run01",
+      "category": "RootMotion",
+      "frames": 41,
+      "fps": 60,
+      "duration_seconds": 0.6666666666666666,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Run01_Velocity_UE4",
+      "category": "RootMotion",
+      "frames": 41,
+      "fps": 60,
+      "duration_seconds": 0.6666666666666666,
+      "root_delta_cm": [
+        0.0,
+        -406.518,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Run02",
+      "category": "RootMotion",
+      "frames": 41,
+      "fps": 60,
+      "duration_seconds": 0.6666666666666666,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Run02_Velocity_UE4",
+      "category": "RootMotion",
+      "frames": 41,
+      "fps": 60,
+      "duration_seconds": 0.6666666666666666,
+      "root_delta_cm": [
+        0.0,
+        -406.518,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Run03_Faster",
+      "category": "RootMotion",
+      "frames": 31,
+      "fps": 60,
+      "duration_seconds": 0.5,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Run03_Faster_Velocity_UE4",
+      "category": "RootMotion",
+      "frames": 31,
+      "fps": 60,
+      "duration_seconds": 0.5,
+      "root_delta_cm": [
+        0.0,
+        -437.37317,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Skill01_WhirlWind",
+      "category": "RootMotion",
+      "frames": 121,
+      "fps": 60,
+      "duration_seconds": 2.0,
+      "root_delta_cm": [
+        0.0,
+        -661.89105,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Skill02_Rolling",
+      "category": "RootMotion",
+      "frames": 149,
+      "fps": 60,
+      "duration_seconds": 2.466666666666667,
+      "root_delta_cm": [
+        0.0,
+        -753.57269,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Skill03_PowerAttack",
+      "category": "RootMotion",
+      "frames": 117,
+      "fps": 60,
+      "duration_seconds": 1.9333333333333333,
+      "root_delta_cm": [
+        -0.0,
+        -174.33276,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Skill04_InfinitySlash",
+      "category": "RootMotion",
+      "frames": 149,
+      "fps": 60,
+      "duration_seconds": 2.466666666666667,
+      "root_delta_cm": [
+        0.0,
+        -78.41119,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Step_B",
+      "category": "RootMotion",
+      "frames": 31,
+      "fps": 60,
+      "duration_seconds": 0.5,
+      "root_delta_cm": [
+        0.0,
+        150.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Step_F",
+      "category": "RootMotion",
+      "frames": 31,
+      "fps": 60,
+      "duration_seconds": 0.5,
+      "root_delta_cm": [
+        0.0,
+        -200.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Step_L",
+      "category": "RootMotion",
+      "frames": 31,
+      "fps": 60,
+      "duration_seconds": 0.5,
+      "root_delta_cm": [
+        150.00002,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Step_R",
+      "category": "RootMotion",
+      "frames": 31,
+      "fps": 60,
+      "duration_seconds": 0.5,
+      "root_delta_cm": [
+        -149.99998,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Unequip_Run_Velocity_UE4",
+      "category": "RootMotion",
+      "frames": 41,
+      "fps": 60,
+      "duration_seconds": 0.6666666666666666,
+      "root_delta_cm": [
+        0.0,
+        -406.518,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Walk",
+      "category": "RootMotion",
+      "frames": 71,
+      "fps": 60,
+      "duration_seconds": 1.1666666666666667,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Walk_faster",
+      "category": "RootMotion",
+      "frames": 61,
+      "fps": 60,
+      "duration_seconds": 1.0,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Walk_Faster_Velocity_UE4",
+      "category": "RootMotion",
+      "frames": 61,
+      "fps": 60,
+      "duration_seconds": 1.0,
+      "root_delta_cm": [
+        0.0,
+        -200.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Dual_Walk_Velocity_UE4",
+      "category": "RootMotion",
+      "frames": 71,
+      "fps": 60,
+      "duration_seconds": 1.1666666666666667,
+      "root_delta_cm": [
+        0.0,
+        -200.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Idle",
+      "category": "RootMotion",
+      "frames": 301,
+      "fps": 60,
+      "duration_seconds": 5.0,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Frank_RPG_Run",
+      "category": "RootMotion",
+      "frames": 41,
+      "fps": 60,
+      "duration_seconds": 0.6666666666666666,
+      "root_delta_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}
