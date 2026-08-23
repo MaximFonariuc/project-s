@@ -50,6 +50,18 @@ namespace ModularAnimation
         }
     }
 
+    public readonly struct CharacterLookFrame
+    {
+        public float YawDegrees { get; }
+        public float PitchDegrees { get; }
+
+        public CharacterLookFrame(float yawDegrees, float pitchDegrees)
+        {
+            YawDegrees = yawDegrees;
+            PitchDegrees = pitchDegrees;
+        }
+    }
+
     public readonly struct AnimationSlotId : IEquatable<AnimationSlotId>
     {
         public static AnimationSlotId None => default;
@@ -161,6 +173,6 @@ namespace ModularAnimation
 
     public interface ICharacterLookAnimationDriver
     {
-        void SetLook(float horizontal, float vertical);
+        void ApplyLook(in CharacterLookFrame frame, float deltaTime);
     }
 }

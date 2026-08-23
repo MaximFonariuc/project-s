@@ -32,7 +32,11 @@ classDiagram
     }
     class ICharacterLookAnimationDriver {
         <<module interface>>
-        +SetLook(horizontal, vertical)
+        +ApplyLook(frame, deltaTime)
+    }
+    class CharacterLookFrame {
+        +YawDegrees
+        +PitchDegrees
     }
     class XControllerCharacterAnimationDriver
     class PlayerCameraAnimationAdapter
@@ -49,6 +53,7 @@ classDiagram
     PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
     PlayerCameraAnimationAdapter --> ICharacterLookAnimationDriver
+    ICharacterLookAnimationDriver --> CharacterLookFrame
     ICharacterAnimationDriver <|.. XControllerCharacterAnimationDriver
     ICharacterLookAnimationDriver <|.. XControllerCharacterAnimationDriver
     XControllerCharacterAnimationDriver --> XController : validated contract
@@ -69,6 +74,9 @@ classDiagram
   `Death > Reaction > Traversal > Combat > Locomotion`.
 - `XControllerCharacterAnimationDriver` is the only parameter writer. The same
   scoped instance presents locomotion, finite actions and body/head look.
+- `PlayerCameraAnimationAdapter` supplies a rig-independent yaw/pitch request in
+  character-local degrees. The XController adapter owns pose calibration,
+  body/head distribution and presentation smoothing.
 - `XController.controller` is the manually authored visual graph. No editor
   setup tool creates or rewrites its states, motions, Blend Trees or transitions.
 - `CombatActionDefinition.DurationSeconds` owns gameplay action duration. No
@@ -103,6 +111,13 @@ The controller consumes its historical `MovementType`, `MovementDirection`,
 and `HeadLookX/Y` drive the additive `BodyLook` and `HeadLook` layers from the
 camera/targeting presentation path. Jump anticipation remains gameplay-owned
 regardless of the current animation graph.
+
+The body receives a smaller share of the requested angle and follows it more
+slowly; the head receives the remaining angle and reacts faster. Losing a
+target smoothly returns both channels to neutral. Airborne locomotion removes
+body twist and retains only a reduced head response. Dodge and reaction poses
+fully suppress look, while attacks and weapon transitions retain reduced
+tracking so additive layers do not deform authored action silhouettes.
 
 `ActionSpeed` is a presentation-only parameter enabled on `BaseAttack1...4`.
 `CombatActionDefinition.DurationSeconds` is passed as the expected duration of

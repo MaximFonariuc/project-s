@@ -9,7 +9,7 @@ namespace ModularAnimation.Unity
         {
         }
 
-        public void SetLook(float horizontal, float vertical)
+        public void ApplyLook(in CharacterLookFrame frame, float deltaTime)
         {
         }
     }

@@ -60,16 +60,15 @@ The selected locomotion clips have different natural contact phases:
 | `HM_ENFJ_Run` | 0.5000 | 0.03125 | 0.32 |
 | `HM_ENFJ_Run_Fast` | 0.65625 | 0.1875 | 0.47 |
 
-`PlayerKurtzPel.controller` uses those offsets and keeps Idle outside the
-moving Blend Tree. This prevents both arbitrary locomotion entry phase and the
-visible foot-contact jump that occurred when the three cycles were blended
-without phase alignment.
+These offsets are retained only as reference measurements. They are not applied
+to `XController.controller`; controller states and Blend Trees are now authored
+manually.
 
 Dodge is the deliberate speed exception: state speed is fitted to the
 motor-owned `0.48 s` window. Combat duration remains gameplay data and never
 depends on clip length.
 
-## Selected runtime clips
+## Evaluated reference clips
 
 | State | Clip | Source group |
 | --- | --- | --- |
@@ -88,17 +87,11 @@ Swimming and ladder traversal are intentionally unmapped.
 
 ## UMotion and source-edit policy
 
-UMotion is available for genuinely defective source curves, contact correction
-that cannot be solved by phase alignment, or authored additive/weapon layers.
-It is not used as an automatic destructive post-process. The current selected
-clips have valid timing, complete transform curves and no loop discontinuity;
-their observed problems were controller structure, phase alignment and one
-incorrect importer loop classification. Those were fixed at the responsible
-boundaries, so no duplicate edited clips were created.
-
-Any future UMotion correction must retain the untouched reference clip, write a
-separate derived production clip and document exactly which transforms/frames
-changed.
+The previous UMotion project, its seven derived FBX exports and generated
+Animator Controller were removed. UMotion remains installed as an editor tool,
+but it is not part of the current runtime path. Any future correction must keep
+the source clip untouched and be introduced as an explicit, separately reviewed
+content change.
 
 ## Generic versus Humanoid
 

@@ -18,6 +18,8 @@ classDiagram
         +ReleaseAll(source)
     }
     class ICharacterAnimationDriver
+    class ICharacterLookAnimationDriver
+    class CharacterLookFrame
     class PlayerLocomotionAnimationAdapter
     class PlayerCombatAnimationAdapter
     class CharacterReactionAnimationAdapter
@@ -27,6 +29,7 @@ classDiagram
     CharacterReactionAnimationAdapter --> PlayerAnimationCoordinator
     PlayerAnimationCoordinator --> PlayerAnimatorActions
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
+    ICharacterLookAnimationDriver --> CharacterLookFrame
 ```
 
 - The coordinator owns finite-action priority, action source and playback speed.
@@ -40,6 +43,9 @@ classDiagram
   force a state change after normal completion.
 - Weapon-specific Animator Override Controllers are optional. A loadout without
   an override keeps the base `XController` and its existing clip table.
+- Targeting supplies local yaw/pitch degrees through `CharacterLookFrame`.
+  XController splits that request into slower limited body motion and faster
+  residual head motion, with action- and airborne-specific attenuation.
 - Reaction, death and traversal slots are optional today. Requests whose states
   are absent from the current controller return an invalid playback instead of
   breaking composition.

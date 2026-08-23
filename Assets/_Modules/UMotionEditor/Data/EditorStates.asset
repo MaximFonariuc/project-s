@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GeneralStates:
     LoadedProjectGUID:
-      valueInternal: 178424e25f30ec64d9d0de728c5f427f
+      valueInternal: 72805c15e60b48a418833905b6d9db1d
     RecentlyOpenedProjectPath:
-      valueInternal: Assets\Settings\Character\UIMotion - Animations
+      valueInternal: Assets\_Game\Settings\Character\UIMotion - Animations
     RecentlyOpenedProjectGUIDsList:
-    - valueInternal: 178424e25f30ec64d9d0de728c5f427f
-    - valueInternal: d5ed2730d7fb47342bcf712b7fa5eeae
     - valueInternal: 72805c15e60b48a418833905b6d9db1d
+    - valueInternal: d5ed2730d7fb47342bcf712b7fa5eeae
+    - valueInternal: 178424e25f30ec64d9d0de728c5f427f

@@ -14,12 +14,13 @@ namespace ModularAnimation.Unity
         public const string Grounded = "Grounded";
         public const string LocomotionPlaybackRate = "LocomotionPlaybackRate";
 
-        // Kept as compatibility names for imported/reference controllers. The
-        // Project S player controller no longer uses them as locomotion input.
+        // Historical XController contract. The driver writes both this contract
+        // and the semantic contract above when matching parameters are present.
         public const string MovementType = "MovementType";
         public const string MovementDirection = "MovementDirection";
         public const string FallingDuration = "FallingDuration";
         public const string OnGround = "OnGround";
+        public const string SpeedMultiplier = "SpeedMultiplier";
         public const string JumpStarting = "JumpStarting";
         public const string Action = "Action";
         public const string ActionId = "ActionId";
@@ -39,6 +40,7 @@ namespace ModularAnimation.Unity
         // rendered frame, producing a visible pose pop even though the state
         // transition itself was blended.
         private const float SpeedDampSeconds = 0.18f;
+        private const float LegacyGaitDampSeconds = 0.33f;
         private const float DirectionDampSeconds = 0.08f;
         private const float VerticalDampSeconds = 0.04f;
         private const float DirectionEpsilon = 0.0001f;
@@ -58,6 +60,17 @@ namespace ModularAnimation.Unity
         private static readonly int LocomotionPlaybackRateHash = Animator.StringToHash(
             MecanimCharacterParameters.LocomotionPlaybackRate);
 
+        private static readonly int MovementTypeHash = Animator.StringToHash(
+            MecanimCharacterParameters.MovementType);
+        private static readonly int MovementDirectionHash = Animator.StringToHash(
+            MecanimCharacterParameters.MovementDirection);
+        private static readonly int FallingDurationHash = Animator.StringToHash(
+            MecanimCharacterParameters.FallingDuration);
+        private static readonly int OnGroundHash = Animator.StringToHash(
+            MecanimCharacterParameters.OnGround);
+        private static readonly int SpeedMultiplierHash = Animator.StringToHash(
+            MecanimCharacterParameters.SpeedMultiplier);
+
         private static readonly int JumpStartingHash = Animator.StringToHash(
             MecanimCharacterParameters.JumpStarting);
         private static readonly int ActionHash = Animator.StringToHash(
@@ -70,6 +83,7 @@ namespace ModularAnimation.Unity
             MecanimCharacterParameters.CancelAction);
 
         private readonly Animator _animator;
+        private readonly IReadOnlyDictionary<int, AnimatorControllerParameterType> _parameters;
         private int _nextSequence;
         private bool _disposed;
 
@@ -81,7 +95,7 @@ namespace ModularAnimation.Unity
                 ? animator
                 : throw new ArgumentNullException(nameof(animator));
 
-            ValidateAnimator();
+            _parameters = ReadParameters();
             _animator.applyRootMotion = false;
         }
 
@@ -97,34 +111,49 @@ namespace ModularAnimation.Unity
                 ? 1.0f / planarMagnitude
                 : 0.0f;
 
-            _animator.SetFloat(
+            SetFloat(
                 PlanarSpeedHash,
                 planarMagnitude,
                 SpeedDampSeconds,
                 safeDeltaTime);
-            _animator.SetFloat(
+            SetFloat(
                 NormalizedSpeedHash,
                 frame.NormalizedSpeed,
                 SpeedDampSeconds,
                 safeDeltaTime);
-            _animator.SetFloat(
+            SetFloat(
                 MoveXHash,
                 frame.LateralSpeed * inverseMagnitude,
                 DirectionDampSeconds,
                 safeDeltaTime);
-            _animator.SetFloat(
+            SetFloat(
                 MoveYHash,
                 frame.ForwardSpeed * inverseMagnitude,
                 DirectionDampSeconds,
                 safeDeltaTime);
-            _animator.SetFloat(
+            SetFloat(
                 VerticalSpeedHash,
                 frame.VerticalSpeed,
                 VerticalDampSeconds,
                 safeDeltaTime);
-            _animator.SetFloat(LocomotionPlaybackRateHash, 1.0f);
-            _animator.SetBool(GroundedHash, frame.IsGrounded);
-            _animator.SetBool(JumpStartingHash, frame.IsJumpStarting);
+            SetFloat(LocomotionPlaybackRateHash, 1.0f);
+            SetBool(GroundedHash, frame.IsGrounded);
+            SetBool(JumpStartingHash, frame.IsJumpStarting);
+
+            float movementDirection = Mathf.Abs(frame.ForwardSpeed) > DirectionEpsilon
+                ? Mathf.Clamp(frame.NormalizedSpeed * Mathf.Sign(frame.ForwardSpeed), -1.0f, 1.0f)
+                : 0.0f;
+            float movementType = planarMagnitude > DirectionEpsilon
+                ? (float)frame.Gait
+                : 0.0f;
+            SetFloat(MovementTypeHash, movementType, LegacyGaitDampSeconds, safeDeltaTime);
+            SetFloat(MovementDirectionHash, movementDirection, DirectionDampSeconds, safeDeltaTime);
+            SetFloat(
+                FallingDurationHash,
+                frame.IsGrounded ? 0.0f : frame.VerticalSpeed,
+                VerticalDampSeconds,
+                safeDeltaTime);
+            SetBool(OnGroundHash, frame.IsGrounded);
         }
 
         public AnimationActionPlayback PlayAction(in AnimationActionRequest request)
@@ -135,11 +164,11 @@ namespace ModularAnimation.Unity
                 return AnimationActionPlayback.Invalid;
             }
 
-            _animator.ResetTrigger(CancelActionHash);
-            _animator.SetInteger(ActionIdHash, request.Action.Value);
-            _animator.SetInteger(ActionVariantHash, request.Variant);
-            _animator.ResetTrigger(ActionHash);
-            _animator.SetTrigger(ActionHash);
+            ResetTrigger(CancelActionHash);
+            SetInteger(ActionIdHash, request.Action.Value);
+            SetInteger(ActionVariantHash, request.Variant);
+            ResetTrigger(ActionHash);
+            SetTrigger(ActionHash);
 
             _nextSequence++;
             if (_nextSequence == 0)
@@ -157,14 +186,16 @@ namespace ModularAnimation.Unity
                 return;
             }
 
-            _animator.ResetTrigger(ActionHash);
-            _animator.SetTrigger(CancelActionHash);
+            ResetTrigger(ActionHash);
+            SetTrigger(CancelActionHash);
         }
 
         public void SetPlaybackSpeed(float speed)
         {
             ThrowIfDisposed();
-            _animator.speed = Mathf.Max(0.0f, speed);
+            float safeSpeed = Mathf.Max(0.0f, speed);
+            _animator.speed = safeSpeed;
+            SetFloat(SpeedMultiplierHash, safeSpeed);
         }
 
         public void Reset()
@@ -174,18 +205,23 @@ namespace ModularAnimation.Unity
                 return;
             }
 
-            _animator.ResetTrigger(ActionHash);
-            _animator.ResetTrigger(CancelActionHash);
-            _animator.SetFloat(PlanarSpeedHash, 0.0f);
-            _animator.SetFloat(NormalizedSpeedHash, 0.0f);
-            _animator.SetFloat(MoveXHash, 0.0f);
-            _animator.SetFloat(MoveYHash, 0.0f);
-            _animator.SetFloat(VerticalSpeedHash, 0.0f);
-            _animator.SetFloat(LocomotionPlaybackRateHash, 1.0f);
-            _animator.SetBool(GroundedHash, true);
-            _animator.SetBool(JumpStartingHash, false);
-            _animator.SetInteger(ActionIdHash, 0);
-            _animator.SetInteger(ActionVariantHash, 0);
+            ResetTrigger(ActionHash);
+            ResetTrigger(CancelActionHash);
+            SetFloat(PlanarSpeedHash, 0.0f);
+            SetFloat(NormalizedSpeedHash, 0.0f);
+            SetFloat(MoveXHash, 0.0f);
+            SetFloat(MoveYHash, 0.0f);
+            SetFloat(VerticalSpeedHash, 0.0f);
+            SetFloat(LocomotionPlaybackRateHash, 1.0f);
+            SetBool(GroundedHash, true);
+            SetBool(JumpStartingHash, false);
+            SetInteger(ActionIdHash, 0);
+            SetInteger(ActionVariantHash, 0);
+            SetFloat(MovementTypeHash, 0.0f);
+            SetFloat(MovementDirectionHash, 0.0f);
+            SetFloat(FallingDurationHash, 0.0f);
+            SetBool(OnGroundHash, true);
+            SetFloat(SpeedMultiplierHash, 1.0f);
             _animator.speed = 1.0f;
         }
 
@@ -200,7 +236,7 @@ namespace ModularAnimation.Unity
             _disposed = true;
         }
 
-        private void ValidateAnimator()
+        private IReadOnlyDictionary<int, AnimatorControllerParameterType> ReadParameters()
         {
             if (_animator.avatar == null || !_animator.avatar.isValid)
             {
@@ -220,38 +256,61 @@ namespace ModularAnimation.Unity
             {
                 parameters[configured[i].nameHash] = configured[i].type;
             }
-
-            RequireParameter(parameters, PlanarSpeedHash, AnimatorControllerParameterType.Float);
-            RequireParameter(parameters, NormalizedSpeedHash, AnimatorControllerParameterType.Float);
-            RequireParameter(parameters, MoveXHash, AnimatorControllerParameterType.Float);
-            RequireParameter(parameters, MoveYHash, AnimatorControllerParameterType.Float);
-            RequireParameter(parameters, VerticalSpeedHash, AnimatorControllerParameterType.Float);
-            RequireParameter(parameters, GroundedHash, AnimatorControllerParameterType.Bool);
-            RequireParameter(
-                parameters,
-                LocomotionPlaybackRateHash,
-                AnimatorControllerParameterType.Float);
-            RequireParameter(parameters, JumpStartingHash, AnimatorControllerParameterType.Bool);
-            RequireParameter(parameters, ActionHash, AnimatorControllerParameterType.Trigger);
-            RequireParameter(parameters, ActionIdHash, AnimatorControllerParameterType.Int);
-            RequireParameter(parameters, ActionVariantHash, AnimatorControllerParameterType.Int);
-            RequireParameter(parameters, CancelActionHash, AnimatorControllerParameterType.Trigger);
+            return parameters;
         }
 
-        private void RequireParameter(
-            IReadOnlyDictionary<int, AnimatorControllerParameterType> parameters,
-            int parameterHash,
-            AnimatorControllerParameterType expectedType)
+        private bool HasParameter(int parameterHash, AnimatorControllerParameterType expectedType)
         {
-            if (parameters.TryGetValue(parameterHash, out AnimatorControllerParameterType actualType) &&
-                actualType == expectedType)
-            {
-                return;
-            }
+            return _parameters.TryGetValue(parameterHash, out AnimatorControllerParameterType actualType) &&
+                   actualType == expectedType;
+        }
 
-            throw new InvalidOperationException(
-                $"Animator Controller on '{_animator.name}' is missing a required " +
-                $"{expectedType} parameter (hash {parameterHash}). Rebuild the controller through its editor setup tool.");
+        private void SetFloat(int parameterHash, float value)
+        {
+            if (HasParameter(parameterHash, AnimatorControllerParameterType.Float))
+            {
+                _animator.SetFloat(parameterHash, value);
+            }
+        }
+
+        private void SetFloat(int parameterHash, float value, float dampTime, float deltaTime)
+        {
+            if (HasParameter(parameterHash, AnimatorControllerParameterType.Float))
+            {
+                _animator.SetFloat(parameterHash, value, dampTime, deltaTime);
+            }
+        }
+
+        private void SetBool(int parameterHash, bool value)
+        {
+            if (HasParameter(parameterHash, AnimatorControllerParameterType.Bool))
+            {
+                _animator.SetBool(parameterHash, value);
+            }
+        }
+
+        private void SetInteger(int parameterHash, int value)
+        {
+            if (HasParameter(parameterHash, AnimatorControllerParameterType.Int))
+            {
+                _animator.SetInteger(parameterHash, value);
+            }
+        }
+
+        private void SetTrigger(int parameterHash)
+        {
+            if (HasParameter(parameterHash, AnimatorControllerParameterType.Trigger))
+            {
+                _animator.SetTrigger(parameterHash);
+            }
+        }
+
+        private void ResetTrigger(int parameterHash)
+        {
+            if (HasParameter(parameterHash, AnimatorControllerParameterType.Trigger))
+            {
+                _animator.ResetTrigger(parameterHash);
+            }
         }
 
         private void ThrowIfDisposed()

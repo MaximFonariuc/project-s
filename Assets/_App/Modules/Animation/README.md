@@ -82,10 +82,11 @@ flowchart LR
 
 - `MecanimCharacterAnimationDriver` is the only runtime writer of Animator
   parameters.
-- Locomotion is continuous. The driver does not convert speed into a discrete
-  idle/walk/run enum.
-- Finite actions use semantic action IDs and variants. Project S maps those
-  values to ordinary Animator transitions.
+- Locomotion remains continuous in gameplay. The driver also projects it onto
+  the historical `XController` gait values for backward compatibility.
+- Finite actions use semantic action IDs and variants. The Project S adapter
+  maps them onto the authored controller contract; gameplay does not know
+  state names or clips.
 - `PlayerAnimationCoordinator` arbitrates action priority
   (`Death > Reaction > Traversal > Combat > Locomotion`) without choosing a
   clip.
@@ -96,7 +97,23 @@ flowchart LR
 
 ## Animator contract
 
-Every compatible controller defines these parameters:
+Animator parameters are optional runtime outputs. The driver caches the
+parameters present when it is created and writes only names whose types match;
+missing parameters do not stop gameplay. This lets the controller graph,
+states and transitions be authored incrementally without an editor generator.
+
+The restored `XController.controller` uses the historical contract:
+
+| Parameter | Type | Meaning |
+| --- | --- | --- |
+| `MovementType` | Float | `0` idle, `1` walk, `2` run, `3` sprint |
+| `MovementDirection` | Float | signed normalized speed: backward `-1`, idle `0`, forward `1` |
+| `FallingDuration` | Float | signed vertical velocity while airborne, otherwise `0` |
+| `OnGround` | Bool | confirmed motor grounding |
+| `SpeedMultiplier` | Float | presentation playback speed |
+
+The driver also exposes a more detailed semantic contract for states and Blend
+Trees added manually later:
 
 | Parameter | Type | Meaning |
 | --- | --- | --- |
@@ -118,70 +135,23 @@ Every compatible controller defines these parameters:
 abrupt motor stop from crossing the walk/run blend in a single rendered frame.
 These presentation filters do not delay gameplay state or motor response.
 
-The old `MovementType`, `MovementDirection`, `FallingDuration` and `OnGround`
-names remain constants only for imported/reference controllers. They are not
-written by the Project S player driver.
-
 ## Project S controller policy
 
-`PlayerKurtzPel.controller` is a normal, editable Animator Controller with one
-layer and Write Defaults disabled on every state. Its builder creates it only
-when it is missing; later manual Animator edits are validated and preserved.
+`XController.controller` is an ordinary manually authored Animator Controller.
+Runtime code never creates states, assigns clips, edits Blend Trees or installs
+transitions. The Player prefab only assigns this controller and disables root
+motion.
 
-- Idle is separate from the locomotion Blend Tree so movement never starts at
-  an arbitrary shared phase.
-- The locomotion tree contains only compatible cyclic walk/run/sprint clips and
-  uses physical thresholds `3 / 5 / 10 m/s`.
-- Idle/move use `0.10 / 0.14 m/s` hysteresis and `0.16 s` crossfades.
-- Walk is the phase reference. Run and sprint cycle offsets align their first
-  measured foot contacts to it.
-- Jump anticipation, rise, fall and landing are separate states driven by
-  gameplay grounding/velocity rather than clip completion alone.
-- The seven finite player clips are non-destructive binary FBX exports from
-  `KurtzPel_Player_Seamless.asset`. Their boundary keys provide authored
-  anticipation and recovery poses while the imported reference FBX files stay
-  unchanged. The generated FBX importers keep animation compression disabled;
-  UMotion owns the intentional key reduction and the runtime files remain
-  compact without Unity applying a second lossy pass.
-- Dodge entry is `0.14 s`; attack entry is `0.18 s`; dodge exit is `0.16 s`;
-  attack exit is `0.18 s`. Each finite-action return uses a sampled destination
-  phase instead of restarting locomotion or idle at frame zero.
-- Dodge playback speed is fitted to the motor-owned `0.78 s` window, allowing
-  both source clips to play at approximately their authored rate.
-
-The current semantic map uses action `1` for forward/backward dodge and action
-`2` for the first unarmed light attack. Combo expansion adds ordinary Animator
-states/transitions and gameplay timelines; it does not add another animation
-graph abstraction.
-
-## KurtzPel authoring windows
-
-`Assets/_Game/Animations/Character/UMotion/KurtzPel_Player_Seamless.asset` is
-the editable source for the current finite player clips. Source package FBX
-files are references only and are never overwritten.
-
-| Clip | Authored range | Purpose |
-| --- | --- | --- |
-| `HM_ENFJ_Air_Start` | frames `0-7` | idle-compatible anticipation ending at the original rise pose |
-| `HM_ENFJ_Air_JumpUp` | unchanged | preserves the source ascent |
-| `HM_ENFJ_Air_JumpDown` | frames `0-8` | begins at the sampled ascent apex and blends back to the source fall |
-| `HM_ENFJ_Air_JumpLanding` | frames `45-57` | completes recovery at the sampled idle phase |
-| `HM_ENFJ_Dash` | frames `0-8`, `33-45` | locomotion-compatible entry and forward-dodge recovery |
-| `CC_C_Rage_Avoid` | frames `0-8`, `37-49` | locomotion-compatible entry and backward-dodge recovery |
-| `HMGT_BasicCombo_01` | frames `0-11`, `66-80` | neutral anticipation and locomotion-compatible attack recovery |
-
-UMotion exports one binary Generic FBX per clip with `0.0001` position,
-rotation and scale reduction thresholds. Unity importer compression stays off,
-so re-exporting is deterministic and does not stack two reduction passes.
+The restored controller has no `Action`, `ActionId`, `ActionVariant` or
+`CancelAction` parameters and no entry transitions into its existing Roll and
+Attack sub-state machines. `XControllerCharacterAnimationDriver` therefore
+crossfades semantic dodge and light-attack requests into those already-authored
+states. Their clips, hierarchy and exit transitions remain owned by the
+controller asset.
 
 ## Generic and Humanoid
 
-The Player currently uses the KurtzPel Generic Avatar because the model and all
-437 clips share the exact source skeleton, including weapon/twist bones. A
-temporary Humanoid import probe produced a valid Human Avatar with 52 mapped
-human bones, so later migration is feasible.
-
-Migration should happen when the production Humanoid character exists. Doing it
-now would add retargeting differences without providing a runtime benefit. The
-module contracts, gameplay state machines, motor and semantic action IDs remain
-unchanged during that content migration.
+The current Player scene uses a valid Humanoid Avatar from the CLazy T-pose
+source. The reusable module still accepts either Generic or Humanoid animation
+backends; the Project S `XController` adapter intentionally validates Humanoid
+because the restored controller clips are authored for that retargeting path.
