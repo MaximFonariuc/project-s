@@ -47,6 +47,7 @@ namespace _App
         private const int ReactionActionId = 4;
         private const int AirAttackActionId = 5;
         private const int SpecialAttackActionId = 6;
+        private const int HeavyAttackActionId = 7;
 
         private static readonly int OnGroundHash = Animator.StringToHash(
             XControllerAnimationContract.OnGroundParameterName);
@@ -81,6 +82,8 @@ namespace _App
             XControllerAnimationContract.AirAttackStatePaths);
         private static readonly int SpecialAttackStateHash = Animator.StringToHash(
             XControllerAnimationContract.SpecialAttackStatePath);
+        private static readonly int HeavyAttackStateHash = Animator.StringToHash(
+            XControllerAnimationContract.HeavyAttackStatePath);
         private static readonly int WeaponSheatheStateHash = Animator.StringToHash(
             XControllerAnimationContract.WeaponSheatheStatePath);
         private static readonly int WeaponUnsheatheStateHash = Animator.StringToHash(
@@ -353,6 +356,7 @@ namespace _App
                 LightAttackActionId => AttackBodyLookWeight,
                 AirAttackActionId => AttackBodyLookWeight,
                 SpecialAttackActionId => AttackBodyLookWeight,
+                HeavyAttackActionId => AttackBodyLookWeight,
                 WeaponTransitionActionId => WeaponBodyLookWeight,
                 ReactionActionId => 0.0f,
                 _ => 1.0f
@@ -363,6 +367,7 @@ namespace _App
                 LightAttackActionId => AttackHeadLookWeight,
                 AirAttackActionId => AttackHeadLookWeight,
                 SpecialAttackActionId => AttackHeadLookWeight,
+                HeavyAttackActionId => AttackHeadLookWeight,
                 WeaponTransitionActionId => WeaponHeadLookWeight,
                 ReactionActionId => 0.0f,
                 _ => 1.0f
@@ -420,6 +425,11 @@ namespace _App
 
                 case SpecialAttackActionId when request.Variant == 0:
                     stateHash = SpecialAttackStateHash;
+                    crossFadeSeconds = AttackCrossFadeSeconds;
+                    break;
+
+                case HeavyAttackActionId when request.Variant == 0:
+                    stateHash = HeavyAttackStateHash;
                     crossFadeSeconds = AttackCrossFadeSeconds;
                     break;
 

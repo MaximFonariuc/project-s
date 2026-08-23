@@ -30,6 +30,8 @@ classDiagram
         +PlayerMap
         +Move
         +Attack
+        +HeavyAttack
+        +SpecialAttack
         +Dodge
         +TargetSwitch
         +SkillBoneCrash
@@ -79,6 +81,9 @@ flowchart LR
 - `GameLifetimeScope` — единственное место, где встречаются VContainer, Unity source и project asset.
 - UI prompts могут подписаться на `ActiveDeviceChanged`, не выполняя device polling.
 - `TargetSwitch` передаёт нормализованную семантическую ось: `Z/C` для keyboard, `rightStick/x` для gamepad и `stick/x` для joystick. Gameplay не знает, какое устройство создало направление.
+- Light attack использует `ЛКМ / X`, heavy attack — `ПКМ / RT`, а
+  `skill.special` — `3 / D-pad Down`. Adapter переводит все три действия в
+  разные `PlayerCombatCommandId`; gameplay не сравнивает control path.
 
 ## От чего отказались
 

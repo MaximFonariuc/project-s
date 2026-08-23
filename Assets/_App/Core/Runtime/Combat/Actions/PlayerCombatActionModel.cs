@@ -47,6 +47,7 @@ namespace _App
     public static class PlayerCombatCommandIds
     {
         public static readonly PlayerCombatCommandId LightAttack = new PlayerCombatCommandId("attack.light");
+        public static readonly PlayerCombatCommandId HeavyAttack = new PlayerCombatCommandId("attack.heavy");
         public static readonly PlayerCombatCommandId BoneCrash = new PlayerCombatCommandId("skill.bone-crash");
         public static readonly PlayerCombatCommandId FlashStance = new PlayerCombatCommandId("skill.flash-stance");
         public static readonly PlayerCombatCommandId Special = new PlayerCombatCommandId("skill.special");
@@ -139,6 +140,8 @@ namespace _App
 
     public static class PlayerCombatAnimationIds
     {
+        public static readonly PlayerCombatAnimationId HeavyAttack =
+            new PlayerCombatAnimationId("attack.heavy");
         public static readonly PlayerCombatAnimationId Special =
             new PlayerCombatAnimationId("skill.special");
     }

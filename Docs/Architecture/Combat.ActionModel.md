@@ -78,9 +78,9 @@ classDiagram
 
 ## Команда, действие и presentation
 
-- `PlayerCombatCommandId` отвечает на вопрос «что запросил игрок»: `attack.light`, `skill.special` и будущие `attack.heavy`, `launcher`, `item.use`.
+- `PlayerCombatCommandId` отвечает на вопрос «что запросил игрок»: `attack.light`, `attack.heavy`, `skill.special` и будущие `launcher`, `item.use`.
 - `PlayerCombatActionId` идентифицирует узел moveset: `combo.0`, `combo.1`, `air.combo.0`.
-- `PlayerCombatAnimationId` выбирает named animation slot (`skill.special`) и не определяет gameplay transition.
+- `PlayerCombatAnimationId` выбирает named animation slot (`attack.heavy`, `skill.special`) и не определяет gameplay transition.
 - `PlayerCombatPresentation` сообщает animation adapter, как отобразить уже выбранное действие: combo index либо named `PlayerCombatAnimationId`.
 - `CombatActionDefinition` хранит immutable timeline и impact: hitbox, damage, stagger, knockback, reaction id, chain/cancel, recovery, movement, invulnerability, commit, completion и cooldown.
 - `CombatActionExecutor` удерживает отдельный damage-immunity lease только внутри authored invulnerability window. Он не восстанавливает сохранённый boolean, поэтому не может снять иммунитет, которым одновременно владеет dodge или другой gameplay flow.
@@ -106,14 +106,16 @@ ScriptableObject хранит только authoring data. Очередь input,
 Он содержит две environment-specific ветки команды `attack.light` и одну
 named action:
 
-- четыре наземных actions `combo.ground.0 → 1 → 2 → 3`;
+- три наземных actions `combo.ground.0 → 1 → 2`;
 - три воздушных actions `combo.air.0 → 1 → 2`;
+- самостоятельную наземную `attack.heavy`, доступную entry и из cancel window
+  любого наземного light-combo step;
 - наземную `skill.special`, доступную отдельным entry и из cancel window любого
   наземного light-combo step; её cancel window возвращает в `combo.ground.0`.
 
 Grounded и Airborne entries не конфликтуют: `PlayerCombatActionGraph` выбирает
-ветку по подтверждённому movement mode персонажа. Поэтому `skill.special`
-отклоняется в воздухе без проверки Animator или устройства ввода.
+ветку по подтверждённому movement mode персонажа. Поэтому `attack.heavy` и
+`skill.special` отклоняются в воздухе без проверки Animator или устройства ввода.
 
 Input buffer настроен на четыре команды и при переполнении отбрасывает действие с
 наименьшим приоритетом. Все текущие `attack.light` команды имеют default priority;
@@ -124,8 +126,10 @@ named priority overrides пока не настроены. Planar и vertical co
 окна gravity снова полностью принадлежит character motor. Gameplay graph не хранит
 ссылки на клипы: animation adapter передаёт ground/air combo index либо
 `PlayerCombatAnimationId` и ожидаемую длительность в общий Animator contract.
-Текущий `skill.special` отображается существующим состоянием
-`Base Layer.Attack.Skill`; hit/cancel/cooldown остаются gameplay-authoring data.
+Текущий `attack.heavy` отображается существующим `BaseAttack4`, а
+`skill.special` — `Base Layer.Attack.Skill`; hit/cancel/cooldown остаются
+gameplay-authoring data. Heavy и special могут переходить друг в друга только
+через собственные cancel windows.
 
 ## Зависимости
 

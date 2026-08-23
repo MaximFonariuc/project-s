@@ -12,6 +12,7 @@ classDiagram
         +LightAttack AnimationActionId
         +AirAttack AnimationActionId
         +SpecialAttack AnimationActionId
+        +HeavyAttack AnimationActionId
     }
     class PlayerAnimationCoordinator {
         +TryPlayAction(source, request, playback) bool
@@ -41,13 +42,15 @@ classDiagram
   gameplay lifecycle.
 - It does not own clips, Animator states, transitions or blend durations.
 - Dodge uses action ID `1` with forward/backward variants. Ground light attacks
-  use action ID `2`; air light attacks use action ID `5` and variants `0...2`;
-  the named grounded special uses action ID `6`, variant `0`.
+  use action ID `2` and variants `0...2`; air light attacks use action ID `5`
+  and variants `0...2`; the named grounded special uses action ID `6`, variant
+  `0`; the named grounded heavy uses action ID `7`, variant `0`.
 - The restored `XController` has no semantic action parameters. The adapter
   enters its existing Roll and Attack states with short fixed-time crossfades;
   the existing clips, state hierarchy and exit transitions are unchanged.
-  `SpecialAttack` resolves to the existing `Attack/Skill` state rather than
-  creating a second controller branch.
+  `SpecialAttack` resolves to the existing `Attack/Skill` state and
+  `HeavyAttack` resolves to `Attack/BaseAttack4`, without creating controller
+  branches.
 - Cancellation is explicit. Release only drops source ownership and does not
   force a state change after normal completion.
 - Weapon-specific Animator Override Controllers are optional. A loadout without

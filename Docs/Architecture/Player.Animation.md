@@ -111,9 +111,10 @@ The current action contract is:
 | --- | ---: | ---: | --- |
 | Dodge | 1 | 0 | `Locomotion/Roll/RollFront` |
 | Dodge | 1 | 1 | `Locomotion/Roll/RollBack` |
-| Light attack | 2 | 0...3 | `Attack/BaseAttack1...4` |
+| Light attack | 2 | 0...2 | `Attack/BaseAttack1...3` |
 | Air light attack | 5 | 0...2 | `Attack/AirAttack1...3` |
 | Grounded named special | 6 | 0 | `Attack/Skill` |
+| Grounded heavy attack | 7 | 0 | `Attack/BaseAttack4` |
 | Sheathe two-handed | 3 | 0 | `SwitchWeapon Layer/TwoHanded_Sheathe` |
 | Draw two-handed | 3 | 1 | `SwitchWeapon Layer/TwoHanded_Unsheathe` |
 | Hit reaction (front/fallback) | 4 | 0 | `Reaction/HitStun` |
@@ -195,8 +196,8 @@ through a `0.10 s` fixed-duration blend. The combat executor advances once per
 rendered frame with `UniTask.NextFrame`, so a single `Time.deltaTime` cannot be
 counted multiple times.
 
-The source motions assigned to `RollFront`, `RollBack`, `BaseAttack1...4`,
-`AirAttack1...3` and `Skill`
+The source motions assigned to `RollFront`, `RollBack`, `BaseAttack1...3`,
+`BaseAttack4`, `AirAttack1...3` and `Skill`
 are unique override slots. Do not reuse one source clip for two semantically
 different states because a single override would then replace both usages.
 Replacement clip names follow the same slot names for readability, although
@@ -210,7 +211,8 @@ the same clip table through the explicit fallback. Additional weapon styles can
 extend the serialized binding list without changing gameplay or Animator state
 names after a compatible override asset exists.
 
-The four ground attacks, three air attacks and grounded `Skill` state are entered
+The three-step ground light combo, standalone grounded `BaseAttack4` heavy,
+three air attacks and grounded `Skill` state are entered
 by the Project S adapter with a `0.12 s` fixed-time crossfade. Their natural exits
 remain authored in XController; an explicit gameplay cancellation uses a
 `0.12 s` crossfade back to locomotion. A new combo step or named special interrupts

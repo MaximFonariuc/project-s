@@ -304,6 +304,31 @@ namespace _App
             };
         }
 
+        internal static CombatActionAuthoring CreatePrototypeHeavy()
+        {
+            return new CombatActionAuthoring
+            {
+                _useChainWindow = false,
+                _hitboxStart = 0.24f,
+                _hitboxEnd = 0.45f,
+                _cancelStart = 0.72f,
+                _cancelEnd = 0.94f,
+                _damage = 24,
+                _staggerDamage = 20.0f,
+                _knockback = 6.5f,
+                _reactionId = "hit.heavy",
+                _hitStopDuration = 0.08f,
+                _durationSeconds = 1.32f,
+                _recoveryStart = 0.80f,
+                _completionTime = 0.98f,
+                _translationScale = 0.08f,
+                _useCombatMotion = true,
+                _combatMotionEnd = 0.48f,
+                _overridePlanarVelocity = true,
+                _combatMotionDistance = 0.9f
+            };
+        }
+
         internal static CombatActionAuthoring CreatePrototypeWeaponTransition()
         {
             return new CombatActionAuthoring

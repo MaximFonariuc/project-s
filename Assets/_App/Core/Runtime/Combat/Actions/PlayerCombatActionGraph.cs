@@ -145,21 +145,35 @@ namespace _App
                     PlayerCombatTransitionWindow.Chain));
             }
 
+            var heavyAction = new PlayerCombatAction(
+                new PlayerCombatActionId("attack.heavy"),
+                PlayerCombatEnvironment.Grounded,
+                PlayerCombatPresentation.Named(PlayerCombatAnimationIds.HeavyAttack),
+                CombatActionAuthoring.CreatePrototypeHeavy().Build());
             var specialAction = new PlayerCombatAction(
                 new PlayerCombatActionId("skill.special"),
                 PlayerCombatEnvironment.Grounded,
                 PlayerCombatPresentation.Named(PlayerCombatAnimationIds.Special),
                 CombatActionAuthoring.CreatePrototypeSkill().Build());
+            actions.Add(heavyAction);
             actions.Add(specialAction);
             var namedActions = new List<KeyValuePair<PlayerCombatCommandId, PlayerCombatAction>>
             {
                 new KeyValuePair<PlayerCombatCommandId, PlayerCombatAction>(
+                    PlayerCombatCommandIds.HeavyAttack,
+                    heavyAction),
+                new KeyValuePair<PlayerCombatCommandId, PlayerCombatAction>(
                     PlayerCombatCommandIds.Special,
                     specialAction)
             };
-            entries.Add(new PlayerCombatEntryRule(
-                PlayerCombatCommandIds.Special,
-                specialAction.Id));
+            for (int i = 0; i < namedActions.Count; i++)
+            {
+                KeyValuePair<PlayerCombatCommandId, PlayerCombatAction> namedAction =
+                    namedActions[i];
+                entries.Add(new PlayerCombatEntryRule(
+                    namedAction.Key,
+                    namedAction.Value.Id));
+            }
 
             for (int i = 0; i < comboActions.Count; i++)
             {
@@ -190,6 +204,11 @@ namespace _App
                 for (int targetIndex = 0; targetIndex < namedActions.Count; targetIndex++)
                 {
                     KeyValuePair<PlayerCombatCommandId, PlayerCombatAction> target = namedActions[targetIndex];
+                    if (source.Id == target.Value.Id)
+                    {
+                        continue;
+                    }
+
                     transitions.Add(new PlayerCombatTransitionRule(
                         source.Id,
                         target.Key,

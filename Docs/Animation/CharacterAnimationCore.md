@@ -110,7 +110,9 @@ state paths через `CrossFadeInFixedTime`.
 
 - `Base Layer.Locomotion.Move`;
 - `Base Layer.Locomotion.Roll.RollFront` и `RollBack`;
-- `Base Layer.Attack.BaseAttack1...4`;
+- `Base Layer.Attack.BaseAttack1...3` для light combo;
+- `Base Layer.Attack.BaseAttack4` для самостоятельной heavy attack;
+- `Base Layer.Attack.Skill` для самостоятельной special action;
 - `Base Layer.Reaction.HitStun`, `HitStun_Back`, `HitStun_Left`,
   `HitStun_Right`, `Knockdown`, `GetUp`, `Airborne`, `Dead_1`, `Dead_2`;
 - `SwitchWeapon Layer.Waiting`, `TwoHanded_Sheathe`,

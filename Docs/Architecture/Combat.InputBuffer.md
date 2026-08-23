@@ -56,7 +56,7 @@ Buffer хранит команду, timestamp, expiration, priority и duplicate
 
 ## Конфигурация
 
-`CombatInputBufferAuthoring` задаёт capacity, overflow, selection, lifetime, priority и duplicate rules. Override адресуется строковым semantic command id (`attack.light`, `skill.special`). Добавление новой команды не требует изменения generic `InputBuffer<TAction>`.
+`CombatInputBufferAuthoring` задаёт capacity, overflow, selection, lifetime, priority и duplicate rules. Override адресуется строковым semantic command id (`attack.light`, `attack.heavy`, `skill.special`). Добавление новой команды не требует изменения generic `InputBuffer<TAction>`.
 
 Ориентиры для playtest, не жёсткие пресеты:
 

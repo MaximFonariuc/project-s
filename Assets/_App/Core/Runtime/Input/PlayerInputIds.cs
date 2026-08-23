@@ -15,6 +15,8 @@ namespace _App
             InputActionId.Parse("98493329-ff99-4095-8e99-7661388f993a");
         public static readonly InputActionId Attack =
             InputActionId.Parse("6c2ab1b8-8984-453a-af3d-a3c78ae1679a");
+        public static readonly InputActionId HeavyAttack =
+            InputActionId.Parse("94ebb6d3-4374-46e5-87f4-6bf34e2f7107");
         public static readonly InputActionId Interact =
             InputActionId.Parse("852140f2-7766-474d-8707-702459ba45f3");
         public static readonly InputActionId Walk =

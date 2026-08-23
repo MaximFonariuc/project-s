@@ -73,5 +73,5 @@ classDiagram
   hurtboxes, but removes player input, locomotion, combat and weapon ownership.
   It adds `CombatTarget`, `CharacterReactionHost` and
   `RigidbodyCharacterImpactMotor` for end-to-end hit validation.
-- The fourth prototype ground-combo action is authored as `hit.heavy` with
-  enough knockback to enter `Knockdown`; earlier combo steps remain light.
+- The standalone grounded `attack.heavy` action is authored as `hit.heavy` with
+  enough knockback to enter `Knockdown`; all three light-combo steps remain light.

@@ -232,10 +232,10 @@ slot. Пустой `ReactionId` и `Direction.None` являются fallback.
 duration остаётся authoritative и отменяет presentation при возврате в
 `Stable`, не ускоряя исходный клип до 2-3x.
 
-Финальный prototype-шаг `combo.ground.3` использует `ReactionId = hit.heavy`
+Самостоятельная action `attack.heavy` использует `ReactionId = hit.heavy`
 и knockback `6.5`, поэтому на стоящей цели пересекает текущий threshold `6`
 и подтверждает путь `Stable/HitStun -> Knockdown -> GetUp -> Stable`.
-Предыдущие шаги остаются `hit.light`. Повторное попадание во время `GetUp`
+Три light-combo шага остаются `hit.light`. Повторное попадание во время `GetUp`
 прерывает вставание и повторно выбирает реакцию по обычным правилам.
 
 ## Lifecycle и границы

@@ -160,10 +160,10 @@ sequenceDiagram
 time Animator.
 
 Для named presentation controller передаёт отдельный `PlayerCombatAnimationId`
-и ту же ожидаемую gameplay-длительность. Первый штатный слот `skill.special`
-разрешается только для Grounded environment и отображается существующим
-`Attack/Skill`; ПКМ и правый trigger уже выдают одну semantic command независимо
-от control scheme.
+и ту же ожидаемую gameplay-длительность. Наземный `attack.heavy` отображается
+существующим `Attack/BaseAttack4`, а `skill.special` — `Attack/Skill`. ПКМ/RT
+выдают semantic command тяжёлой атаки; клавиша `3`/D-pad Down — special,
+независимо от control scheme.
 
 Hitbox открывается только по `CombatActionFrame` и закрывается при completion, cancellation, interruption и disable. Каждое фактически запущенное action получает отдельный `CombatAttackExecution`, поэтому повторные hurtbox одной цели фильтруются на уровне атаки, а не оружия. Weapon transition применяет loadout только после commit point. Cooldown хранится по `PlayerCombatActionId`; animation lookup использует отдельный `PlayerCombatAnimationId`.
 

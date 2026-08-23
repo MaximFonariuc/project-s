@@ -5,7 +5,7 @@ namespace _App
 {
     internal sealed class PlayerCombatAnimationAdapter : IPlayerCombatAnimation
     {
-        private const int SupportedComboCount = 4;
+        private const int SupportedComboCount = 3;
         private const int SupportedAirComboCount = 3;
 
         private readonly PlayerAnimationCoordinator _animation;
@@ -36,7 +36,7 @@ namespace _App
             PlayerCombatAnimationId animationId)
         {
             ThrowIfDisposed();
-            return animationId == PlayerCombatAnimationIds.Special;
+            return TryResolveNamedAction(animationId, out _);
         }
 
         public bool TryPlayComboStep(
@@ -71,7 +71,7 @@ namespace _App
             out AnimationActionPlayback playback)
         {
             ThrowIfDisposed();
-            if (animationId != PlayerCombatAnimationIds.Special ||
+            if (!TryResolveNamedAction(animationId, out AnimationActionId action) ||
                 expectedDuration <= 0.0f)
             {
                 playback = default;
@@ -79,7 +79,7 @@ namespace _App
             }
 
             var request = new AnimationActionRequest(
-                PlayerAnimatorActions.SpecialAttack,
+                action,
                 0,
                 expectedDuration);
             return _animation.TryPlayAction(
@@ -168,6 +168,26 @@ namespace _App
             {
                 throw new ObjectDisposedException(nameof(PlayerCombatAnimationAdapter));
             }
+        }
+
+        private static bool TryResolveNamedAction(
+            PlayerCombatAnimationId animationId,
+            out AnimationActionId action)
+        {
+            if (animationId == PlayerCombatAnimationIds.HeavyAttack)
+            {
+                action = PlayerAnimatorActions.HeavyAttack;
+                return true;
+            }
+
+            if (animationId == PlayerCombatAnimationIds.Special)
+            {
+                action = PlayerAnimatorActions.SpecialAttack;
+                return true;
+            }
+
+            action = default;
+            return false;
         }
     }
 }

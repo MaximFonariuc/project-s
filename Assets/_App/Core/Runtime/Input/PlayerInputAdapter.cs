@@ -126,6 +126,10 @@ namespace _App
             {
                 CombatActionRequested?.Invoke(PlayerCombatCommandIds.LightAttack);
             }
+            else if (action == PlayerInputIds.HeavyAttack)
+            {
+                CombatActionRequested?.Invoke(PlayerCombatCommandIds.HeavyAttack);
+            }
             else if (action == PlayerInputIds.Interact)
             {
                 InteractRequested?.Invoke();
