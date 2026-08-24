@@ -35,7 +35,8 @@ namespace _App
         private readonly IStateMachine<PlayerCombatPhase> _stateMachine;
         private readonly ICombatClock _clock;
         private readonly ECharacterType _characterType;
-        private readonly InputBufferEntryPredicate<PlayerCombatCommandId> _bufferedActionPredicate;
+        private readonly InputBufferEntryPredicate<PlayerCombatCommandId> _bufferedTransitionPredicate;
+        private readonly InputBufferEntryPredicate<PlayerCombatCommandId> _bufferedEntryPredicate;
         private readonly Dictionary<PlayerCombatActionId, float> _lastActionUseTime =
             new Dictionary<PlayerCombatActionId, float>();
         private readonly CombatAttackExecution _attackExecution = new CombatAttackExecution();
@@ -109,7 +110,8 @@ namespace _App
             _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
             _clock = clock ?? throw new ArgumentNullException(nameof(clock));
             _characterType = characterType;
-            _bufferedActionPredicate = CanAcceptBufferedAction;
+            _bufferedTransitionPredicate = CanAcceptBufferedTransition;
+            _bufferedEntryPredicate = CanAcceptBufferedEntry;
         }
 
         public void Enable()
@@ -161,8 +163,8 @@ namespace _App
 
         public bool TryExecute(PlayerCombatCommandId commandId)
         {
-            if (!_enabled || _reactionState.BlocksActions || string.IsNullOrEmpty(commandId.Value) ||
-                !_actor.CanAttack ||
+            if (!_enabled || string.IsNullOrEmpty(commandId.Value) ||
+                !CanEnterCombatAction() ||
                 Phase == PlayerCombatPhase.WeaponSwitch)
             {
                 return false;
@@ -328,6 +330,10 @@ namespace _App
                     SetHitWindow(false);
                     EndAttackExecution();
                     action = _acceptedBufferedAction;
+                    if (action == null)
+                    {
+                        TryConsumeBufferedEntry(out action);
+                    }
                 }
             }
             catch (OperationCanceledException)
@@ -444,7 +450,7 @@ namespace _App
 
                     _observedFrame = frame;
                     if (!_inputBuffer.TryConsume(
-                            _bufferedActionPredicate,
+                            _bufferedTransitionPredicate,
                             out PlayerCombatCommandId commandId) ||
                         !_actionGraph.TryResolveTransition(
                             _currentAction,
@@ -470,16 +476,52 @@ namespace _App
             return CombatActionDirective.Continue;
         }
 
-        private bool CanAcceptBufferedAction(
+        private bool CanAcceptBufferedTransition(
             in InputBufferEntry<PlayerCombatCommandId> entry)
         {
-            return _actionGraph.TryResolveTransition(
+            return CanEnterCombatAction() &&
+                   _actionGraph.TryResolveTransition(
                        _currentAction,
                        entry.Action,
                        GetEnvironment(),
                        in _observedFrame,
                        out PlayerCombatAction target) &&
                    CanUseAction(target);
+        }
+
+        private bool CanAcceptBufferedEntry(
+            in InputBufferEntry<PlayerCombatCommandId> entry)
+        {
+            return CanEnterCombatAction() &&
+                   _actionGraph.TryResolveEntry(
+                       entry.Action,
+                       GetEnvironment(),
+                       out PlayerCombatAction target) &&
+                   CanUseAction(target);
+        }
+
+        private bool TryConsumeBufferedEntry(out PlayerCombatAction action)
+        {
+            if (CanEnterCombatAction() &&
+                _inputBuffer.TryConsume(
+                    _bufferedEntryPredicate,
+                    out PlayerCombatCommandId commandId) &&
+                _actionGraph.TryResolveEntry(
+                    commandId,
+                    GetEnvironment(),
+                    out action) &&
+                CanUseAction(action))
+            {
+                return true;
+            }
+
+            action = null;
+            return false;
+        }
+
+        private bool CanEnterCombatAction()
+        {
+            return !_reactionState.BlocksActions && _actor.CanAttack;
         }
 
         private bool CanUseAction(PlayerCombatAction action)

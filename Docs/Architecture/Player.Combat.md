@@ -11,16 +11,20 @@ Combat не управляет motor напрямую. Он выдаёт тол�
 ### Ground
 
 Одна команда `attack.light` входит в `combo.ground.0`. Следующие команды сначала
-попадают в `CombatInputBuffer` и могут перейти только `0 → 1 → 2 → 3` внутри
-`ChainWindow` текущего action. У четвёртого action перехода обратно к первому
-нет: новая цепочка начинается только отдельным вводом после возврата в `Ready`.
+попадают в `CombatInputBuffer` и могут перейти только `0 → 1 → 2` внутри
+`ChainWindow` текущего action. После третьего action chain transition отсутствует:
+новая цепочка начинается только отдельным вводом, который остаётся жив на
+completion boundary.
 
 | Step | Duration | Hitbox | Chain | Cancel | Damage | Motor distance |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | 0 | 1.20 s | 0.28–0.50 | 0.50–0.76 | 0.58–0.90 | 10 | 0.55 m |
 | 1 | 1.40 s | 0.30–0.50 | 0.52–0.78 | 0.60–0.90 | 12 | 0.75 m |
-| 2 | 1.50 s | 0.35–0.55 | 0.56–0.82 | 0.64–0.92 | 15 | 0.70 m |
-| 3 | 1.90 s | 0.24–0.40 | disabled | 0.72–0.94 | 24 | 0.90 m |
+| 2 | 1.50 s | 0.35–0.55 | disabled | 0.64–0.92 | 15 | 0.70 m |
+
+`attack.heavy` не является четвёртым combo step. Это самостоятельная наземная
+action с duration `1.32 s`, hitbox `0.24–0.45`, damage `24` и motor distance
+`0.90 m`; она отображается через существующий `BaseAttack4` slot.
 
 Это стартовые tuning values для текущего набора клипов. Damage/hitbox/movement
 остаются gameplay data и не вычисляются из Animator. Presentation получает лишь
@@ -151,6 +155,12 @@ sequenceDiagram
     Combat->>Graph: resolve buffered transition
     Combat->>Machine: Recovery -> Executing(next action)
 ```
+
+Сначала buffered command проверяется как transition текущего action. Если его
+окно не открылось, но команда не истекла к завершению timeline, controller
+проверяет её как новый graph entry в актуальном environment. Так recovery input
+не теряется, при этом недопустимый ground/air action и cooldown по-прежнему
+отсекаются gameplay graph до запуска presentation.
 
 Для ground/air combo presentation вызов содержит отдельный semantic track,
 `ComboIndex` и

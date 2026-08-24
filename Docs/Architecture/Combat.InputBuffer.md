@@ -15,7 +15,8 @@ classDiagram
     }
     class PlayerCombatController {
         +TryExecute(commandId) bool
-        -CanAcceptBufferedAction(entry) bool
+        -CanAcceptBufferedTransition(entry) bool
+        -CanAcceptBufferedEntry(entry) bool
     }
     class CombatInputBuffer {
         +Store(commandId) bool
@@ -54,6 +55,12 @@ Buffer хранит команду, timestamp, expiration, priority и duplicate
 
 Только прошедшая все проверки команда атомарно удаляется из очереди. Expiration использует unscaled time, поэтому ввод сохраняет предсказуемый lifetime во время hit stop. Cooldown actions использует scaled gameplay time.
 
+На completion boundary команда, которая не стала transition, но всё ещё жива,
+повторно проверяется через entry rules графа для актуального Grounded/Airborne
+environment. Это сохраняет поздний recovery input для следующей допустимой
+цепочки. Неподдерживаемая presentation, активный cooldown и несовместимый
+environment по-прежнему не позволяют потребить команду.
+
 ## Конфигурация
 
 `CombatInputBufferAuthoring` задаёт capacity, overflow, selection, lifetime, priority и duplicate rules. Override адресуется строковым semantic command id (`attack.light`, `attack.heavy`, `skill.special`). Добавление новой команды не требует изменения generic `InputBuffer<TAction>`.
@@ -66,4 +73,8 @@ Buffer хранит команду, timestamp, expiration, priority и duplicate
 | Souls-like | 1–2 | NewestFirst | 0.10–0.25 s |
 | Action RPG | 2–4 | HighestPriorityThenOldest | 0.15–0.35 s |
 
-Очередь очищается при disable, interruption и завершении action pipeline. Dodge пока остаётся отдельным locomotion event и прерывает combat; перенос dodge/item/jump в единый action graph выполняется только когда для них появятся реальные общие cancel rules.
+Очередь очищается при disable, interruption и завершении всего action pipeline.
+Внутри pipeline она сохраняется между завершившимся action и новым action,
+принятым через transition либо completion entry handoff. Dodge пока остаётся
+отдельным locomotion event и прерывает combat; перенос dodge/item/jump в единый
+action graph выполняется только когда для них появятся реальные общие cancel rules.

@@ -44,6 +44,10 @@ classDiagram
 - Gameplay passes the expected duration as presentation metadata, but the
   current XController adapter keeps the authored clip speed. Gameplay timing
   and Animator normalized time are intentionally independent.
+- A command that is still alive in the input buffer at action completion is
+  resolved again through the graph's entry rules. This lets a late recovery
+  input start the next valid ground/air action instead of being cleared merely
+  because it missed the previous action's chain or cancel window.
 - `PlayerWeaponRig` enables two hand hitboxes only during the confirmed hit
   window. `Weapon` reports collision candidates to `CombatHitResolver`.
 - `Cancel()` asks the XController adapter to crossfade to locomotion when
