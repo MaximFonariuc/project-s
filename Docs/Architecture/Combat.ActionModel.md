@@ -118,8 +118,9 @@ Grounded и Airborne entries не конфликтуют: `PlayerCombatActionGra
 `skill.special` отклоняются в воздухе без проверки Animator или устройства ввода.
 
 Input buffer настроен на четыре команды и при переполнении отбрасывает действие с
-наименьшим приоритетом. Все текущие `attack.light` команды имеют default priority;
-named priority overrides пока не настроены. Planar и vertical combat motion описываются
+наименьшим приоритетом. `attack.light` использует default priority `0`,
+`attack.heavy` — `10`, `skill.special` — `20`; named commands обновляют одну
+совпавшую запись вместо накопления дублей. Planar и vertical combat motion описываются
 в action definition и исполняются через character motor с разрешением столкновений.
 Текущие timings, damage и distances являются стартовыми tuning values. Воздушная
 ветка ограничивает падение до `-1.5 m/s` только внутри combat-motion window; после

@@ -63,7 +63,17 @@ MonoBehaviour:
       _lifetime: 0.35
       _priority: 0
       _duplicatePolicy: 0
-    _actionOverrides: []
+    _actionOverrides:
+    - _commandId: attack.heavy
+      _rule:
+        _lifetime: 0.35
+        _priority: 10
+        _duplicatePolicy: 2
+    - _commandId: skill.special
+      _rule:
+        _lifetime: 0.35
+        _priority: 20
+        _duplicatePolicy: 2
   _actions:
   - _id: combo.ground.0
     _environment: 1
@@ -78,7 +88,7 @@ MonoBehaviour:
       _chainStart: 0.5
       _chainEnd: 0.76
       _useCancelWindow: 1
-      _cancelStart: 0.58
+      _cancelStart: 0.5
       _cancelEnd: 0.9
       _useMovementConstraintWindow: 1
       _movementConstraintStart: 0
@@ -126,7 +136,7 @@ MonoBehaviour:
       _chainStart: 0.52
       _chainEnd: 0.78
       _useCancelWindow: 1
-      _cancelStart: 0.6
+      _cancelStart: 0.52
       _cancelEnd: 0.9
       _useMovementConstraintWindow: 1
       _movementConstraintStart: 0

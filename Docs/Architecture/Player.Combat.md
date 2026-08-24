@@ -18,13 +18,18 @@ completion boundary.
 
 | Step | Duration | Hitbox | Chain | Cancel | Damage | Motor distance |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0 | 1.20 s | 0.28–0.50 | 0.50–0.76 | 0.58–0.90 | 10 | 0.55 m |
-| 1 | 1.40 s | 0.30–0.50 | 0.52–0.78 | 0.60–0.90 | 12 | 0.75 m |
+| 0 | 1.20 s | 0.28–0.50 | 0.50–0.76 | 0.50–0.90 | 10 | 0.55 m |
+| 1 | 1.40 s | 0.30–0.50 | 0.52–0.78 | 0.52–0.90 | 12 | 0.75 m |
 | 2 | 1.50 s | 0.35–0.55 | disabled | 0.64–0.92 | 15 | 0.70 m |
 
 `attack.heavy` не является четвёртым combo step. Это самостоятельная наземная
 action с duration `1.32 s`, hitbox `0.24–0.45`, damage `24` и motor distance
 `0.90 m`; она отображается через существующий `BaseAttack4` slot.
+
+На первых двух light steps `CancelWindow` начинается одновременно с
+`ChainWindow`. Поэтому, если light и named action уже находятся в buffer,
+настроенный priority выбирает осознанный heavy/special вместо автоматического
+перехода к следующему light step. Окончание окон остаётся независимым.
 
 Это стартовые tuning values для текущего набора клипов. Damage/hitbox/movement
 остаются gameplay data и не вычисляются из Animator. Presentation получает лишь

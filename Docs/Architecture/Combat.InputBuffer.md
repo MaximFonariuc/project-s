@@ -65,6 +65,20 @@ environment по-прежнему не позволяют потребить к�
 
 `CombatInputBufferAuthoring` задаёт capacity, overflow, selection, lifetime, priority и duplicate rules. Override адресуется строковым semantic command id (`attack.light`, `attack.heavy`, `skill.special`). Добавление новой команды не требует изменения generic `InputBuffer<TAction>`.
 
+Текущий slasher profile использует capacity `4`, `DropLowestPriority` и
+`HighestPriorityThenOldest`. Default light input имеет priority `0` и допускает
+несколько последовательных записей для combo. `attack.heavy` имеет priority
+`10`, `skill.special` — `20`; обе named-команды используют `RefreshMatching`,
+поэтому повторное нажатие продлевает одну pending command, но не программирует
+несколько будущих heavy/special actions. Приоритет влияет только на выбор среди
+одновременно допустимых buffered commands и не обходит graph transition,
+environment, presentation или cooldown gates.
+
+У первых двух ground light actions начало `CancelWindow` выровнено с началом
+`ChainWindow`. Благодаря этому light и named commands становятся кандидатами в
+одном frame, и priority policy действительно разрешает их конфликт, а не
+проигрывает более позднему открытию cancel window.
+
 Ориентиры для playtest, не жёсткие пресеты:
 
 | Форма боя | Capacity | Selection | Типичный lifetime |
