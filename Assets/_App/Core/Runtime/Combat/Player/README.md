@@ -52,6 +52,9 @@ classDiagram
   controller closes its hitbox, releases combat motion and crossfades the
   Animator back to locomotion instead of letting an aerial clip finish on the
   ground. Actions valid in both environments are not affected.
+- A confirmed launcher target is carried through the non-damaging air chase
+  into the air combo. Direct airborne entries fall back to the current lock-on;
+  independent buffered entries clear the carried target.
 - `PlayerWeaponRig` enables two hand hitboxes only during the confirmed hit
   window. `Weapon` reports collision candidates to `CombatHitResolver`.
 - `Cancel()` asks the XController adapter to crossfade to locomotion when

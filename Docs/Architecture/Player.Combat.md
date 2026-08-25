@@ -46,9 +46,13 @@ launcher доступен только из cancel window `combo.ground.0` ил�
 Повторный `attack.light` в chain window попавшего launcher запускает
 `movement.air-chase`. Action поднимает игрока одноразовым motor impulse
 `6.2 m/s`, движется к actor root именно последней подтверждённой цели и не
-подменяет lock-on. Ещё один `attack.light` внутри chase переводит граф в
-`combo.air.0`; при отсутствии ввода chase завершается обычным airborne
-locomotion. Промах на любом hit-confirm этапе не открывает следующий переход.
+подменяет lock-on. Во время bounded motion window chase измеряет фактическое
+вертикальное движение цели, держит игрока на `0.15 m` ниже и ограничивает
+коррекцию скоростью `8 m/s`. Ещё один `attack.light` внутри chase переводит граф
+в `combo.air.0`; launcher target переносится через безударный chase и остаётся
+приоритетной motion-целью air combo. При отсутствии ввода chase завершается
+обычным airborne locomotion. Промах на любом hit-confirm этапе не открывает
+следующий переход.
 
 ### Air
 

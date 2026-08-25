@@ -238,6 +238,15 @@ namespace _App
             CombatMotionTargetSource.LockOnTarget;
         [SerializeField, Min(0.0f)] private float _targetStoppingDistance = 0.8f;
 
+        [Header("Combat Target Height")]
+        [Tooltip("Matches target vertical motion during this bounded combat motion window.")]
+        [SerializeField] private bool _trackTargetHeight;
+        [Tooltip("Desired actor height relative to the target. Negative values keep the actor below it.")]
+        [SerializeField] private float _targetHeightOffset;
+        [SerializeField, Min(0.0f)] private float _targetHeightTolerance = 0.1f;
+        [SerializeField, Min(0.01f)] private float _targetHeightCorrectionSpeed = 6.0f;
+        [SerializeField, Min(0.01f)] private float _maxTargetVerticalSpeed = 8.0f;
+
         internal CombatActionDefinition Build()
         {
             return new CombatActionDefinition(
@@ -285,7 +294,12 @@ namespace _App
                         _overrideVerticalVelocityOnImpulse,
                         _faceCombatTarget,
                         _combatMotionTargetSource,
-                        _targetStoppingDistance)
+                        _targetStoppingDistance,
+                        _trackTargetHeight,
+                        _targetHeightOffset,
+                        _targetHeightTolerance,
+                        _targetHeightCorrectionSpeed,
+                        _maxTargetVerticalSpeed)
                     : CombatMotionDefinition.Disabled);
         }
 

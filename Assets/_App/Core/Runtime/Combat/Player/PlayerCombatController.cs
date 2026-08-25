@@ -344,7 +344,9 @@ namespace _App
                     }
 
                     PlayerCombatAction acceptedAction = _acceptedBufferedAction;
-                    Transform nextMotionTarget = ResolveNextMotionTarget(acceptedAction);
+                    Transform nextMotionTarget = ResolveNextMotionTarget(
+                        acceptedAction,
+                        previousConfirmedHitTarget);
                     SetHitWindow(false);
                     EndAttackExecution();
                     action = acceptedAction;
@@ -586,17 +588,18 @@ namespace _App
             };
         }
 
-        private Transform ResolveNextMotionTarget(PlayerCombatAction nextAction)
+        private Transform ResolveNextMotionTarget(
+            PlayerCombatAction nextAction,
+            Transform carriedTarget)
         {
             if (nextAction == null ||
-                nextAction.Definition.Motion.TargetSource !=
-                CombatMotionTargetSource.PreviousConfirmedHit)
+                !nextAction.Definition.Motion.UsesPreviousConfirmedHitTarget)
             {
                 return null;
             }
 
             GameObject target = _actionOutcome.LastConfirmedTarget;
-            return target != null ? target.transform : null;
+            return target != null ? target.transform : carriedTarget;
         }
 
         private PlayerCombatEnvironment GetEnvironment()

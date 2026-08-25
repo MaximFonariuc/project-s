@@ -57,6 +57,11 @@ MonoBehaviour:
     _faceCombatTarget: 0
     _combatMotionTargetSource: 0
     _targetStoppingDistance: 0.8
+    _trackTargetHeight: 0
+    _targetHeightOffset: 0
+    _targetHeightTolerance: 0.1
+    _targetHeightCorrectionSpeed: 6
+    _maxTargetVerticalSpeed: 8
   _inputBuffer:
     _capacity: 4
     _overflowPolicy: 2
@@ -132,6 +137,11 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
       _targetStoppingDistance: 0.8
+      _trackTargetHeight: 0
+      _targetHeightOffset: 0
+      _targetHeightTolerance: 0.1
+      _targetHeightCorrectionSpeed: 6
+      _maxTargetVerticalSpeed: 8
   - _id: combo.ground.1
     _environment: 1
     _presentation: 0
@@ -182,6 +192,11 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
       _targetStoppingDistance: 0.8
+      _trackTargetHeight: 0
+      _targetHeightOffset: 0
+      _targetHeightTolerance: 0.1
+      _targetHeightCorrectionSpeed: 6
+      _maxTargetVerticalSpeed: 8
   - _id: combo.ground.2
     _environment: 1
     _presentation: 0
@@ -232,6 +247,11 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
       _targetStoppingDistance: 0.8
+      _trackTargetHeight: 0
+      _targetHeightOffset: 0
+      _targetHeightTolerance: 0.1
+      _targetHeightCorrectionSpeed: 6
+      _maxTargetVerticalSpeed: 8
   - _id: combo.air.0
     _environment: 2
     _presentation: 2
@@ -280,8 +300,13 @@ MonoBehaviour:
       _combatVerticalImpulse: 0
       _overrideVerticalVelocityOnImpulse: 1
       _faceCombatTarget: 1
-      _combatMotionTargetSource: 0
+      _combatMotionTargetSource: 2
       _targetStoppingDistance: 0.8
+      _trackTargetHeight: 0
+      _targetHeightOffset: 0
+      _targetHeightTolerance: 0.1
+      _targetHeightCorrectionSpeed: 6
+      _maxTargetVerticalSpeed: 8
   - _id: combo.air.1
     _environment: 2
     _presentation: 2
@@ -330,8 +355,13 @@ MonoBehaviour:
       _combatVerticalImpulse: 0
       _overrideVerticalVelocityOnImpulse: 1
       _faceCombatTarget: 1
-      _combatMotionTargetSource: 0
+      _combatMotionTargetSource: 2
       _targetStoppingDistance: 0.8
+      _trackTargetHeight: 0
+      _targetHeightOffset: 0
+      _targetHeightTolerance: 0.1
+      _targetHeightCorrectionSpeed: 6
+      _maxTargetVerticalSpeed: 8
   - _id: combo.air.2
     _environment: 2
     _presentation: 2
@@ -380,8 +410,13 @@ MonoBehaviour:
       _combatVerticalImpulse: 0
       _overrideVerticalVelocityOnImpulse: 1
       _faceCombatTarget: 1
-      _combatMotionTargetSource: 0
+      _combatMotionTargetSource: 2
       _targetStoppingDistance: 0.8
+      _trackTargetHeight: 0
+      _targetHeightOffset: 0
+      _targetHeightTolerance: 0.1
+      _targetHeightCorrectionSpeed: 6
+      _maxTargetVerticalSpeed: 8
   - _id: skill.special
     _environment: 1
     _presentation: 1
@@ -432,6 +467,11 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
       _targetStoppingDistance: 0.8
+      _trackTargetHeight: 0
+      _targetHeightOffset: 0
+      _targetHeightTolerance: 0.1
+      _targetHeightCorrectionSpeed: 6
+      _maxTargetVerticalSpeed: 8
   - _id: attack.heavy
     _environment: 1
     _presentation: 1
@@ -482,6 +522,11 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
       _targetStoppingDistance: 0.8
+      _trackTargetHeight: 0
+      _targetHeightOffset: 0
+      _targetHeightTolerance: 0.1
+      _targetHeightCorrectionSpeed: 6
+      _maxTargetVerticalSpeed: 8
   - _id: attack.launcher
     _environment: 1
     _presentation: 1
@@ -532,6 +577,11 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
       _targetStoppingDistance: 0.75
+      _trackTargetHeight: 0
+      _targetHeightOffset: 0
+      _targetHeightTolerance: 0.1
+      _targetHeightCorrectionSpeed: 6
+      _maxTargetVerticalSpeed: 8
   - _id: movement.air-chase
     _environment: 1
     _presentation: 1
@@ -582,6 +632,11 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 1
       _targetStoppingDistance: 0.65
+      _trackTargetHeight: 1
+      _targetHeightOffset: -0.15
+      _targetHeightTolerance: 0.12
+      _targetHeightCorrectionSpeed: 6
+      _maxTargetVerticalSpeed: 8
   _entries:
   - _commandId: attack.light
     _targetActionId: combo.ground.0

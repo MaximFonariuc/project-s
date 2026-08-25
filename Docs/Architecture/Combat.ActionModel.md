@@ -161,7 +161,8 @@ named action:
   combo.air.0`. У `attack.launcher` нет entry rule: команда `attack.launcher`
   принимается только в cancel window попавшего light action. Переход из launcher
   также требует его подтверждённого попадания; air chase затем принимает новый
-  `attack.light` в chain window.
+  `attack.light` в chain window и переносит launcher target в воздушную combo как
+  приоритетный motion-context, не меняя глобальный lock-on.
 
 Grounded и Airborne entries не конфликтуют: `PlayerCombatActionGraph` выбирает
 ветку по подтверждённому movement mode персонажа. Поэтому `attack.heavy` и

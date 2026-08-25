@@ -6,6 +6,7 @@ Combat Motion управляет перемещением владельца в�
 
 - независимо управляет планарной скоростью, вертикальной скоростью и одноразовым вертикальным импульсом в нормализованном окне action timeline;
 - при включённой опции направляет движение и поворот к текущей lock-on цели;
+- для явно настроенного chase-action согласует вертикальную скорость с движущейся целью и ограниченно исправляет разницу высот;
 - передаёт результат в character motor, который применяет его внутри fixed-step до collision-resolved `CharacterMovement.Move`.
 
 Обычный input locomotion продолжает формировать `PlayerMovementIntent`. В активном motion window combat action может заменить планарную скорость либо сохранить её, а также сохранить, заменить или ограничить снизу вертикальную скорость. Gravity продолжает рассчитываться `Character`, после чего action policy применяется в одном fixed-step adapter. Grounding, slopes и collision response остаются собственностью `Character`/`CharacterMovement`.
@@ -27,6 +28,11 @@ classDiagram
         +CombatVerticalImpulse float
         +FaceCombatTarget bool
         +TargetStoppingDistance float
+        +TrackTargetHeight bool
+        +TargetHeightOffset float
+        +TargetHeightTolerance float
+        +TargetHeightCorrectionSpeed float
+        +MaxTargetVerticalSpeed float
     }
     class CombatActionDefinition {
         <<immutable action data>>
@@ -44,6 +50,11 @@ classDiagram
         +FaceTarget bool
         +TargetSource CombatMotionTargetSource
         +TargetStoppingDistance float
+        +TrackTargetHeight bool
+        +TargetHeightOffset float
+        +TargetHeightTolerance float
+        +TargetHeightCorrectionSpeed float
+        +MaxTargetVerticalSpeed float
     }
     class CombatActionExecutor {
         +ExecuteAsync(definition, duration, previousConfirmedHitTarget)
@@ -126,6 +137,7 @@ sequenceDiagram
     loop scaled action timeline
         Action->>Motion: Advance(normalizedTime)
         Motion->>Target: read current lock-on state
+        Motion->>Motion: sample target vertical speed / height error
         opt first frame inside window
             Motion->>Motor: QueueActionVerticalImpulse(velocity, override)
         end
@@ -154,13 +166,24 @@ Timeline использует scaled `ICombatClock`: во время hit stop о
   `PreviousConfirmedHit` принимает actor root из outcome предыдущего execution и
   используется air chase, не меняя состояние targeting. Если выбранная ссылка
   отсутствует или уничтожена, движение безопасно продолжает текущий forward.
-- `Target Stopping Distance` останавливает поступательное движение рядом с lock-on целью, но позволяет продолжить разворот к ней.
+- `PreviousConfirmedHitOrLockOnTarget` сначала использует цель, перенесённую из
+  предыдущего execution, а при её отсутствии — текущий lock-on. Launcher target
+  сохраняется через безударный air chase и остаётся motion-context воздушной
+  combo; отдельным глобальным target state это не становится.
+- `Target Stopping Distance` останавливает поступательное движение рядом с выбранной motion-целью, но позволяет продолжить разворот к ней.
+- `Track Target Height` включается только для action, которому действительно
+  нужен vertical chase. После первого sample controller оценивает вертикальную
+  скорость target и добавляет пропорциональную коррекцию height error. Итоговая
+  скорость ограничивается `Max Target Vertical Speed`; tolerance подавляет
+  мелкую дрожь, а signed offset позволяет держать игрока чуть ниже цели.
 - Окно motion обязано завершаться не позже `Completion Time`.
 - Translational root motion (`Translation`, `Full`) нельзя объединять с planar override, vertical policy или vertical impulse одного action.
 - Rotational root motion (`Rotation`, `Full`) нельзя объединять с `Face Combat Target` одного action.
 - Новые vertical-поля имеют безопасные defaults: `PreserveVelocity` и impulse `0`. Prototype combo сохраняет окно `0.0–0.3` и планарную дистанцию `0.75`; prototype skill — `1.0`; weapon transition не использует combat motion.
-- Текущий player profile использует vertical impulse в `movement.air-chase`, а
-  воздушные combo actions — `MinimumVelocity(-1.5 m/s)` для ограниченного air hang.
+- Текущий player profile использует vertical impulse и bounded height tracking
+  в `movement.air-chase`. Воздушные combo actions сохраняют launcher target для
+  planar/facing assist и используют `MinimumVelocity(-1.5 m/s)` для
+  ограниченного air hang.
 
 ## Lifecycle и отказоустойчивость
 
@@ -168,6 +191,8 @@ Timeline использует scaled `ICombatClock`: во время hit stop о
 - `Abort`, interruption, cancellation и disable игрока всегда вызывают `CombatMotionController.End`.
 - Вертикальный impulse сначала ставится в очередь `CharacterMotor` и потребляется один раз только внутри fixed-step. Cancellation/disable до этого шага очищает очередь и не оставляет отложенный launch.
 - `CharacterMotor.Dispose` очищает intent, pending impulse и снимает fixed-step subscription.
+- Завершение action очищает carried target и target-height samples, поэтому
+  следующая независимая атака не наследует старую цель или скорость.
 - Пустая или потерянная цель безопасно заменяется текущим forward персонажа.
 - Scene, prefab, Animator Controller и animation clips для этой границы не изменяются.
 
