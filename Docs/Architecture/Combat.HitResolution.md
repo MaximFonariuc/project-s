@@ -132,6 +132,7 @@ sequenceDiagram
     alt accepted
         Resolver->>Execution: RegisterConfirmedTarget(actor root id)
         Resolver-->>Events: HitResolved(result)
+        Events-->>Combat: record matching execution outcome
     end
     Combat->>Weapon: DisableHitbox()
     Combat->>Execution: End()
@@ -146,11 +147,12 @@ CombatActionAuthoring -> CombatActionDefinition -> CombatHitDefinition
 PlayerCombatController -> CombatAttackExecution -> IPlayerWeaponRig
 Weapon -> ICombatHitResolver -> ICombatHitTarget
 Hurtbox -> BodyColliderRig -> Health
-ICombatHitEvents -> hit stop / future VFX / audio adapters
+ICombatHitEvents -> PlayerCombatController outcome / hit stop / future VFX / audio adapters
 Health.Damaged -> target-local reaction / incoming hit stop
 ```
 
 - `PlayerCombatController` владеет lifecycle execution: новый id на каждое фактически запущенное action, завершение при completion, chain transition, interruption, cancellation и disable.
+- `PlayerCombatController` принимает через `ICombatHitEvents` только result с совпадающими execution/action ids; этот outcome используется graph conditions и не изменяет результат damage resolution.
 - `CombatAttackExecution` владеет множеством уже поражённых actor root. Оно не находится в `Weapon`, поэтому смена collider или несколько зон тела не меняют правило одного попадания.
 - `Weapon` принадлежит scene/prefab и знает только Physics, активный execution и resolver. Он не хранит damage, cooldown, combo или reaction rules.
 - `Hurtbox` предоставляет zone metadata и путь к владельцу здоровья. Он не вычисляет итог атаки.
@@ -164,6 +166,6 @@ Health.Damaged -> target-local reaction / incoming hit stop
 - Projectile или area attack могут иметь собственный physics adapter и отдельный `CombatAttackExecution`, не меняя `Health` и `Hurtbox`.
 - Stagger/poise consumer читает `StaggerDamage` и `ReactionId` из подтверждённого result.
 - Knockback consumer интерпретирует `Knockback` вместе с нормализованным `Direction`, но применяет движение через предназначенный motor intent.
-- Исходящий hit stop подписывается на `ICombatHitEvents`, входящий — на target-local `Health.Damaged`. Future VFX, audio и camera adapters также потребляют подтверждённый result и не участвуют в расчёте damage.
+- Исходящий hit stop и outcome текущего player action подписываются на `ICombatHitEvents`, входящий hit stop — на target-local `Health.Damaged`. Future VFX, audio и camera adapters также потребляют подтверждённый result и не участвуют в расчёте damage.
 
 Система остаётся в `_App/Core`: `PlayerCombatActionId`, damage rules и ожидаемые reactions являются правилами Project S. Извлечение в `_App/Modules` возможно только после второго реального consumer и стабилизации game-agnostic контракта.

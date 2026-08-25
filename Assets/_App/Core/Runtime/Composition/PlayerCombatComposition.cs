@@ -78,6 +78,7 @@ namespace _App
                         resolver.Resolve<IPlayerLocomotionEvents>(),
                         resolver.Resolve<IPlayerCombatAnimation>(),
                         resolver.Resolve<IPlayerWeaponRig>(),
+                        resolver.Resolve<ICombatHitEvents>(),
                         resolver.Resolve<CombatInputBuffer>(),
                         resolver.Resolve<CombatActionExecutor>(),
                         resolver.Resolve<PlayerCombatActionGraph>(),

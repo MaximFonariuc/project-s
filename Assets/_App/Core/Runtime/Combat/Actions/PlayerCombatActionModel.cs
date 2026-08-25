@@ -168,6 +168,13 @@ namespace _App
         Cancel
     }
 
+    public enum PlayerCombatTransitionCondition
+    {
+        Any,
+        OnHit,
+        OnWhiff
+    }
+
     internal readonly struct PlayerCombatPresentation
     {
         public PlayerCombatPresentationKind Kind { get; }

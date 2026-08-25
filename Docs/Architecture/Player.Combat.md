@@ -84,6 +84,12 @@ classDiagram
     }
     class PlayerCombatInterruptedState
     class PlayerCombatActionGraph
+    class CombatActionOutcome {
+        +ExecutionId AttackExecutionId
+        +ActionId PlayerCombatActionId
+        +ConfirmedHitCount int
+        +HasConfirmedHit bool
+    }
     class CombatActionExecutor
     class CombatInputBuffer
     class IPlayerCombatAnimation
@@ -93,6 +99,9 @@ classDiagram
         +BlocksActions bool
     }
     class ICombatClock
+    class ICombatHitEvents {
+        +HitResolved(CombatHitResult)
+    }
     class PlayerCombatComposition {
         <<VContainer composition root>>
     }
@@ -101,6 +110,8 @@ classDiagram
     IPlayerCombatState <|.. PlayerCombatController
     PlayerCombatController --> IStateMachine~PlayerCombatPhase~
     PlayerCombatController --> PlayerCombatActionGraph
+    PlayerCombatController *-- CombatActionOutcome
+    PlayerCombatController --> ICombatHitEvents : confirmed outgoing hits
     PlayerCombatController --> CombatActionExecutor
     PlayerCombatController --> CombatInputBuffer
     PlayerCombatController --> IPlayerCombatAnimation
@@ -147,6 +158,7 @@ sequenceDiagram
     participant Graph as PlayerCombatActionGraph
     participant Machine as Combat StateMachine
     participant Executor as CombatActionExecutor
+    participant Hits as ICombatHitEvents
     participant View as Animation / Weapon adapters
 
     Input->>Combat: CombatActionRequested(command)
@@ -155,6 +167,8 @@ sequenceDiagram
     Combat->>View: play presentation
     Combat->>Machine: Ready -> Executing(action)
     Combat->>Executor: ExecuteAsync(definition)
+    Hits-->>Combat: HitResolved(matching execution)
+    Combat->>Combat: update CombatActionOutcome
     Executor-->>Combat: CombatActionFrame
     Combat->>Machine: Executing -> Recovery(action)
     Combat->>Graph: resolve buffered transition
@@ -166,6 +180,13 @@ sequenceDiagram
 проверяет её как новый graph entry в актуальном environment. Так recovery input
 не теряется, при этом недопустимый ground/air action и cooldown по-прежнему
 отсекаются gameplay graph до запуска presentation.
+
+Каждый transition может дополнительно требовать `Any`, `OnHit` или `OnWhiff`.
+`OnHit` читает только подтверждённый `CombatHitResult` текущих execution/action ids.
+`OnWhiff` становится определённым лишь после закрытия hitbox-window, поэтому ранний
+buffered input не может принять отсутствие ещё не завершившегося попадания за промах.
+Текущий профиль использует `Any`; outcome-условия являются готовой границей для
+будущих hit-confirm веток и не меняют существующие combo transitions автоматически.
 
 Для ground/air combo presentation вызов содержит отдельный semantic track,
 `ComboIndex` и
@@ -180,14 +201,14 @@ time Animator.
 выдают semantic command тяжёлой атаки; клавиша `3`/D-pad Down — special,
 независимо от control scheme.
 
-Hitbox открывается только по `CombatActionFrame` и закрывается при completion, cancellation, interruption и disable. Каждое фактически запущенное action получает отдельный `CombatAttackExecution`, поэтому повторные hurtbox одной цели фильтруются на уровне атаки, а не оружия. Weapon transition применяет loadout только после commit point. Cooldown хранится по `PlayerCombatActionId`; animation lookup использует отдельный `PlayerCombatAnimationId`.
+Hitbox открывается только по `CombatActionFrame` и закрывается при completion, cancellation, interruption и disable. Каждое фактически запущенное action получает отдельный `CombatAttackExecution`, поэтому повторные hurtbox одной цели фильтруются на уровне атаки, а не оружия. Параллельный `CombatActionOutcome` хранит только подтверждённый результат этого execution и сбрасывается на той же lifecycle-границе. Weapon transition применяет loadout только после commit point. Cooldown хранится по `PlayerCombatActionId`; animation lookup использует отдельный `PlayerCombatAnimationId`.
 
 Gameplay timeline использует scaled delta time, поэтому execution, hitbox/cancel windows, обычный Animator и character physics замораживаются во время hit stop. Input buffer намеренно использует unscaled clock: команды продолжают приниматься и истекают в реальном времени. Полная time policy описана в `Docs/Architecture/Combat.HitStop.md`.
 
 ## Lifecycle
 
-- `Enable` запускает state machine в `Ready` и симметрично подписывает semantic input, dodge и state events.
-- `Disable` отменяет UniTask action, aborts executor, очищает buffer, закрывает hitbox, снимает callbacks и останавливает state machine.
+- `Enable` запускает state machine в `Ready` и симметрично подписывает semantic input, dodge, state и outgoing hit events.
+- `Disable` отменяет UniTask action, aborts executor, очищает buffer и outcome, закрывает hitbox, снимает callbacks и останавливает state machine.
 - State machine и её states создаются scoped-регистрациями VContainer в `PlayerCombatComposition`; controller не вызывает `Resolve` и не владеет container.
 - Animator, graph authoring и input buffer не являются владельцами combat phase.
 - Входящая реакция не входит в combat state machine. `PlayerActorController` прерывает executing/recovery/weapon-switch action по подтверждённому reaction state, а `PlayerCombatController` читает только `ICharacterReactionState.BlocksActions`, чтобы не принять новый action во время hit-stun/knockdown/airborne/death. Владельцем этих состояний остаётся `CharacterReactionController`.

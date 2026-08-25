@@ -23,17 +23,20 @@ namespace _App
         public PlayerCombatCommandId CommandId { get; }
         public PlayerCombatActionId TargetActionId { get; }
         public PlayerCombatTransitionWindow Window { get; }
+        public PlayerCombatTransitionCondition Condition { get; }
 
         public PlayerCombatTransitionRule(
             PlayerCombatActionId sourceActionId,
             PlayerCombatCommandId commandId,
             PlayerCombatActionId targetActionId,
-            PlayerCombatTransitionWindow window)
+            PlayerCombatTransitionWindow window,
+            PlayerCombatTransitionCondition condition = PlayerCombatTransitionCondition.Any)
         {
             SourceActionId = sourceActionId;
             CommandId = commandId;
             TargetActionId = targetActionId;
             Window = window;
+            Condition = condition;
         }
     }
 
@@ -81,6 +84,7 @@ namespace _App
             PlayerCombatCommandId commandId,
             PlayerCombatEnvironment environment,
             in CombatActionFrame frame,
+            CombatActionOutcome outcome,
             out PlayerCombatAction action)
         {
             if (source != null &&
@@ -92,6 +96,11 @@ namespace _App
                 {
                     PlayerCombatTransitionRule transition = candidates[i];
                     if (IsWindowOpen(transition.Window, in frame) &&
+                        IsConditionSatisfied(
+                            transition.Condition,
+                            source.Definition.HitboxWindow,
+                            in frame,
+                            outcome) &&
                         _actions.TryGetValue(transition.TargetActionId, out action) &&
                         action.Supports(environment))
                     {
@@ -232,6 +241,33 @@ namespace _App
             };
         }
 
+        private static bool IsConditionSatisfied(
+            PlayerCombatTransitionCondition condition,
+            in NormalizedActionWindow hitboxWindow,
+            in CombatActionFrame frame,
+            CombatActionOutcome outcome)
+        {
+            return condition switch
+            {
+                PlayerCombatTransitionCondition.Any => true,
+                PlayerCombatTransitionCondition.OnHit =>
+                    outcome != null && outcome.IsTracking && outcome.HasConfirmedHit,
+                PlayerCombatTransitionCondition.OnWhiff =>
+                    outcome != null &&
+                    outcome.IsTracking &&
+                    !outcome.HasConfirmedHit &&
+                    HasHitboxResolved(in hitboxWindow, in frame),
+                _ => false
+            };
+        }
+
+        private static bool HasHitboxResolved(
+            in NormalizedActionWindow hitboxWindow,
+            in CombatActionFrame frame)
+        {
+            return !hitboxWindow.IsEnabled || frame.NormalizedTime > hitboxWindow.End;
+        }
+
         private static Dictionary<PlayerCombatActionId, PlayerCombatAction> BuildActions(
             IEnumerable<PlayerCombatAction> actions)
         {
@@ -319,6 +355,8 @@ namespace _App
                         nameof(transitions));
                 }
 
+                ValidateTransitionCondition(transition, actions);
+
                 var key = new TransitionKey(transition.SourceActionId, transition.CommandId);
                 if (!lookup.TryGetValue(key, out List<PlayerCombatTransitionRule> candidates))
                 {
@@ -329,7 +367,10 @@ namespace _App
                 var targetIds = new List<PlayerCombatActionId>(candidates.Count);
                 for (int i = 0; i < candidates.Count; i++)
                 {
-                    targetIds.Add(candidates[i].TargetActionId);
+                    if (ConditionsCanOverlap(candidates[i].Condition, transition.Condition))
+                    {
+                        targetIds.Add(candidates[i].TargetActionId);
+                    }
                 }
 
                 EnsureEnvironmentDoesNotOverlap(
@@ -342,6 +383,51 @@ namespace _App
             }
 
             return lookup;
+        }
+
+        private static void ValidateTransitionCondition(
+            in PlayerCombatTransitionRule transition,
+            IReadOnlyDictionary<PlayerCombatActionId, PlayerCombatAction> actions)
+        {
+            PlayerCombatAction source = actions[transition.SourceActionId];
+            NormalizedActionWindow hitboxWindow = source.Definition.HitboxWindow;
+            if (transition.Condition == PlayerCombatTransitionCondition.OnHit &&
+                !hitboxWindow.IsEnabled)
+            {
+                throw new ArgumentException(
+                    $"Combat transition from '{transition.SourceActionId}' requires a hit, " +
+                    "but its source action has no hitbox window.",
+                    "transitions");
+            }
+
+            if (transition.Condition != PlayerCombatTransitionCondition.OnWhiff ||
+                !hitboxWindow.IsEnabled)
+            {
+                return;
+            }
+
+            NormalizedActionWindow transitionWindow = transition.Window switch
+            {
+                PlayerCombatTransitionWindow.Chain => source.Definition.ChainWindow,
+                PlayerCombatTransitionWindow.Cancel => source.Definition.CancelWindow,
+                _ => NormalizedActionWindow.Disabled
+            };
+            if (transitionWindow.IsEnabled && transitionWindow.End <= hitboxWindow.End)
+            {
+                throw new ArgumentException(
+                    $"Combat transition from '{transition.SourceActionId}' requires a whiff, " +
+                    $"but its {transition.Window} window closes before the hitbox is resolved.",
+                    "transitions");
+            }
+        }
+
+        private static bool ConditionsCanOverlap(
+            PlayerCombatTransitionCondition left,
+            PlayerCombatTransitionCondition right)
+        {
+            return left == PlayerCombatTransitionCondition.Any ||
+                   right == PlayerCombatTransitionCondition.Any ||
+                   left == right;
         }
 
         private static void EnsureEnvironmentDoesNotOverlap(

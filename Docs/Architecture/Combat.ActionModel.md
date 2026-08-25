@@ -40,6 +40,13 @@ classDiagram
         +CommandId PlayerCombatCommandId
         +TargetActionId PlayerCombatActionId
         +Window PlayerCombatTransitionWindow
+        +Condition PlayerCombatTransitionCondition
+    }
+    class CombatActionOutcome {
+        +ExecutionId AttackExecutionId
+        +ActionId PlayerCombatActionId
+        +ConfirmedHitCount int
+        +HasConfirmedHit bool
     }
     class CombatActionDefinition {
         +HitboxWindow
@@ -62,6 +69,10 @@ classDiagram
         <<semantic input port>>
         +CombatActionRequested
     }
+    class ICombatHitEvents {
+        <<confirmed gameplay events>>
+        +HitResolved(CombatHitResult)
+    }
 
     PlayerCombatActionGraph *-- PlayerCombatAction
     PlayerCombatActionGraph *-- PlayerCombatEntryRule
@@ -71,6 +82,8 @@ classDiagram
     PlayerCombatAction --> CombatActionDefinition
     PlayerCombatEntryRule --> PlayerCombatCommandId
     PlayerCombatTransitionRule --> PlayerCombatCommandId
+    PlayerCombatController *-- CombatActionOutcome
+    ICombatHitEvents --> PlayerCombatController : matching execution only
     PlayerCombatActionProfile ..> PlayerCombatActionGraph : builds
     IPlayerInput --> PlayerCombatController : command
     PlayerCombatController --> PlayerCombatActionGraph : resolves
@@ -87,6 +100,32 @@ classDiagram
 
 Одна команда может иметь несколько entry/transition rules, если целевые actions принадлежат непересекающимся environment masks. Поэтому `attack.light` может выбирать отдельные наземную и воздушную ветки без проверки платформы или устройства в gameplay-коде. Неоднозначные правила с пересекающимися masks отклоняются при построении graph.
 
+## Результат action и условия перехода
+
+`CombatActionOutcome` — runtime-состояние только текущего action execution. Controller
+начинает его вместе с `CombatAttackExecution`, принимает исключительно
+`CombatHitResult` с совпадающими `AttackExecutionId` и `PlayerCombatActionId` и
+сбрасывает outcome при completion, interruption, disable и перед следующим action.
+Animator и Animation Events не могут подтвердить попадание.
+
+`PlayerCombatTransitionCondition` задаёт дополнительное условие graph transition:
+
+- `Any` сохраняет прежнее поведение и является serialization-safe значением по умолчанию;
+- `OnHit` открывается после первого подтверждённого попадания текущего execution;
+- `OnWhiff` открывается только после полного закрытия authored hitbox-window, если
+  подтверждённых попаданий не было.
+
+Graph отклоняет `OnHit` для source action без hitbox-window и `OnWhiff`, если
+выбранный chain/cancel window успевает закрыться до разрешения результата промаха.
+Два перехода одной команды могут перекрывать environment только тогда, когда их
+условия взаимоисключающие (`OnHit` и `OnWhiff`); `Any` пересекается с обоими и
+поэтому не скрывает более конкретное правило порядком элементов в списке.
+
+Условие относится именно к переходу текущего action. Если команда не прошла
+transition condition, но дожила в buffer до completion и имеет отдельное entry rule,
+она по-прежнему может начаться как новое самостоятельное action. Для команды,
+которая должна существовать только как hit-confirm branch, entry rule не создаётся.
+
 ## Authoring и prototype fallback
 
 `PlayerCombatActionProfile` содержит только graph authoring: actions, entries и transitions. Параллельного legacy catalog больше нет. Пока profile не назначен, composition создаёт небольшой prototype graph:
@@ -98,6 +137,8 @@ classDiagram
 - prototype создаёт ограниченный запас combo nodes, а animation adapter определяет реально доступное число через `ComboCount`; поэтому graph строится до `Enable/ApplyLoadout`, не теряет будущие steps и безопасно поддерживает skill-only loadout.
 
 ScriptableObject хранит только authoring data. Очередь input, текущая action, cooldown timestamps и progress timeline принадлежат scoped runtime objects.
+Существующие transitions после добавления outcome-условий остаются `Any`, поэтому
+serialized profile не требует migration и не меняет текущий moveset без явного tuning.
 
 ### Текущая конфигурация Player
 
@@ -139,6 +180,7 @@ gameplay-authoring data. Heavy и special могут переходить дру
 ```text
 PlayerInputAdapter -> PlayerCombatCommandId
 PlayerCombatController -> PlayerCombatActionGraph
+PlayerCombatController -> ICombatHitEvents
 PlayerCombatActionGraph -> CombatActionDefinition
 PlayerCombatActionProfile -> PlayerCombatActionGraph (build only)
 ```
@@ -148,6 +190,7 @@ PlayerCombatActionProfile -> PlayerCombatActionGraph (build only)
 ```text
 PlayerCombatActionGraph -> Unity Input System / Animator / Character / Cinemachine
 PlayerCombatActionProfile -> runtime progress
+CombatActionOutcome -> Animator / Animation Events
 _App/Modules -> Project S combat ids or graph
 ```
 

@@ -28,6 +28,7 @@ namespace _App
         private readonly IPlayerLocomotionEvents _locomotionEvents;
         private readonly IPlayerCombatAnimation _animation;
         private readonly IPlayerWeaponRig _weaponRig;
+        private readonly ICombatHitEvents _outgoingHits;
         private readonly CombatInputBuffer _inputBuffer;
         private readonly CombatActionExecutor _actionExecutor;
         private readonly PlayerCombatActionGraph _actionGraph;
@@ -40,6 +41,7 @@ namespace _App
         private readonly Dictionary<PlayerCombatActionId, float> _lastActionUseTime =
             new Dictionary<PlayerCombatActionId, float>();
         private readonly CombatAttackExecution _attackExecution = new CombatAttackExecution();
+        private readonly CombatActionOutcome _actionOutcome = new CombatActionOutcome();
 
         private CancellationTokenSource _actionCancellation;
         private ulong _nextAttackExecutionId;
@@ -88,6 +90,7 @@ namespace _App
             IPlayerLocomotionEvents locomotionEvents,
             IPlayerCombatAnimation animation,
             IPlayerWeaponRig weaponRig,
+            ICombatHitEvents outgoingHits,
             CombatInputBuffer inputBuffer,
             CombatActionExecutor actionExecutor,
             PlayerCombatActionGraph actionGraph,
@@ -102,6 +105,7 @@ namespace _App
             _locomotionEvents = locomotionEvents ?? throw new ArgumentNullException(nameof(locomotionEvents));
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _weaponRig = weaponRig ?? throw new ArgumentNullException(nameof(weaponRig));
+            _outgoingHits = outgoingHits ?? throw new ArgumentNullException(nameof(outgoingHits));
             _inputBuffer = inputBuffer ?? throw new ArgumentNullException(nameof(inputBuffer));
             _actionExecutor = actionExecutor ?? throw new ArgumentNullException(nameof(actionExecutor));
             _actionGraph = actionGraph ?? throw new ArgumentNullException(nameof(actionGraph));
@@ -133,6 +137,7 @@ namespace _App
             _input.CombatActionRequested += OnCombatActionRequested;
             _input.SwitchCombatStateRequested += OnSwitchWeaponRequested;
             _locomotionEvents.DodgeAccepted += OnDodgeAccepted;
+            _outgoingHits.HitResolved += OnOutgoingHitResolved;
             _enabled = true;
         }
 
@@ -146,6 +151,7 @@ namespace _App
             _input.CombatActionRequested -= OnCombatActionRequested;
             _input.SwitchCombatStateRequested -= OnSwitchWeaponRequested;
             _locomotionEvents.DodgeAccepted -= OnDodgeAccepted;
+            _outgoingHits.HitResolved -= OnOutgoingHitResolved;
             _stateMachine.StateChanged -= OnStateChanged;
             _enabled = false;
 
@@ -457,6 +463,7 @@ namespace _App
                             commandId,
                             GetEnvironment(),
                             in _observedFrame,
+                            _actionOutcome,
                             out _acceptedBufferedAction))
                     {
                         return CombatActionDirective.Continue;
@@ -485,6 +492,7 @@ namespace _App
                        entry.Action,
                        GetEnvironment(),
                        in _observedFrame,
+                       _actionOutcome,
                        out PlayerCombatAction target) &&
                    CanUseAction(target);
         }
@@ -612,12 +620,14 @@ namespace _App
                 action.Id,
                 action.Definition.HitDefinition,
                 _actor.Root.gameObject);
+            _actionOutcome.Begin(_attackExecution.Id, action.Id);
         }
 
         private void EndAttackExecution()
         {
             _weaponRig.CloseHitbox();
             _attackExecution.End();
+            _actionOutcome.End();
         }
 
         private void EnterExecuting(PlayerCombatAction action)
@@ -695,6 +705,11 @@ namespace _App
         private void OnDodgeAccepted()
         {
             InterruptAttack();
+        }
+
+        private void OnOutgoingHitResolved(CombatHitResult hit)
+        {
+            _actionOutcome.TryRecord(in hit);
         }
 
         private static bool FailPlayback(out AnimationActionPlayback playback)

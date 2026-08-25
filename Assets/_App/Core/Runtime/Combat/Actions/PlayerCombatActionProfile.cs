@@ -149,6 +149,8 @@ namespace _App
         [SerializeField] private string _targetActionId = "combo.1";
         [SerializeField] private PlayerCombatTransitionWindow _window =
             PlayerCombatTransitionWindow.Chain;
+        [SerializeField] private PlayerCombatTransitionCondition _condition =
+            PlayerCombatTransitionCondition.Any;
 
         internal PlayerCombatTransitionRule Build()
         {
@@ -156,7 +158,8 @@ namespace _App
                 new PlayerCombatActionId(_sourceActionId),
                 new PlayerCombatCommandId(_commandId),
                 new PlayerCombatActionId(_targetActionId),
-                _window);
+                _window,
+                _condition);
         }
     }
 
