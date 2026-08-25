@@ -45,8 +45,8 @@ classDiagram
 - `CharacterMotor` and `CharacterMovement` remain the only authorities for
   position, collision, slopes and grounding.
 - The current profile contains independent grounded and airborne
-  `attack.light` branches plus grounded named `attack.heavy` and
-  `skill.special` actions. Environment-specific entries share semantic commands
-  without device checks.
+  `attack.light` branches, grounded named `attack.heavy` and `skill.special`
+  actions, and a hit-confirmed `attack.launcher -> movement.air-chase` route.
+  Environment-specific entries share semantic commands without device checks.
 - Air actions use motor-owned `MinimumVelocity` and planar intents for a bounded
   air hang. Animator root motion never becomes position authority.

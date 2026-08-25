@@ -51,6 +51,7 @@ namespace _App
         private PlayerCombatAction _acceptedBufferedAction;
         private EWeaponType _pendingWeapon;
         private bool _weaponApplied;
+        private bool _landingInterrupted;
         private bool _enabled;
 
         public event Action<PlayerCombatPhase> PhaseChanged;
@@ -315,6 +316,7 @@ namespace _App
 
                     _currentAction = action;
                     _acceptedBufferedAction = null;
+                    _landingInterrupted = false;
                     BeginAttackExecution(action);
                     EnterExecuting(action);
                     SetComboIndex(
@@ -329,6 +331,12 @@ namespace _App
                         previousConfirmedHitTarget,
                         ActionObservationMode.CombatAction,
                         cancellation.Token);
+
+                    if (_landingInterrupted)
+                    {
+                        _animation.Cancel();
+                        break;
+                    }
 
                     if (action.Definition.Cooldown > 0.0f)
                     {
@@ -457,6 +465,14 @@ namespace _App
 
         CombatActionDirective ICombatActionObserver.Observe(in CombatActionFrame frame)
         {
+            if (_observationMode == ActionObservationMode.CombatAction &&
+                ShouldInterruptAirborneActionOnLanding())
+            {
+                _landingInterrupted = true;
+                SetHitWindow(false);
+                return CombatActionDirective.Interrupt;
+            }
+
             SetHitWindow(frame.IsHitboxOpen);
             switch (_observationMode)
             {
@@ -590,6 +606,14 @@ namespace _App
                 : PlayerCombatEnvironment.Grounded;
         }
 
+        private bool ShouldInterruptAirborneActionOnLanding()
+        {
+            return _currentAction != null &&
+                   _currentAction.Supports(PlayerCombatEnvironment.Airborne) &&
+                   !_currentAction.Supports(PlayerCombatEnvironment.Grounded) &&
+                   GetEnvironment() == PlayerCombatEnvironment.Grounded;
+        }
+
         private CancellationTokenSource BeginAction()
         {
             CancelActiveAction();
@@ -609,6 +633,7 @@ namespace _App
             _inputBuffer.Clear();
             _currentAction = null;
             _acceptedBufferedAction = null;
+            _landingInterrupted = false;
             SetHitWindow(false);
             EndAttackExecution();
             SetComboIndex(0);
@@ -620,6 +645,7 @@ namespace _App
         {
             EndAttackExecution();
             _animation.Cancel();
+            _landingInterrupted = false;
             CancellationTokenSource cancellation = _actionCancellation;
             if (cancellation == null)
             {

@@ -48,11 +48,15 @@ classDiagram
   resolved again through the graph's entry rules. This lets a late recovery
   input start the next valid ground/air action instead of being cleared merely
   because it missed the previous action's chain or cancel window.
+- An airborne-only action is interrupted as soon as the actor lands. The
+  controller closes its hitbox, releases combat motion and crossfades the
+  Animator back to locomotion instead of letting an aerial clip finish on the
+  ground. Actions valid in both environments are not affected.
 - `PlayerWeaponRig` enables two hand hitboxes only during the confirmed hit
   window. `Weapon` reports collision candidates to `CombatHitResolver`.
 - `Cancel()` asks the XController adapter to crossfade to locomotion when
   gameplay interrupts an action. Normal completion lets the controller use its
   authored exit transition.
-- Weapon transitions, three-step ground/air light combos, a grounded heavy and
-  the first grounded named special are implemented. Launcher and additional
-  named skills remain deferred.
+- Weapon transitions, three-step ground/air light combos, a grounded heavy,
+  the first grounded named special and the launcher-to-air-chase route are
+  implemented. Additional named skills remain deferred.

@@ -155,6 +155,8 @@ stateDiagram-v2
     Executing --> Interrupted: dodge/interruption
     Recovery --> Interrupted: dodge/interruption
     Interrupted --> Ready
+    Executing --> Ready: airborne action lands
+    Recovery --> Ready: airborne action lands
     Executing --> Ready: action completed / failed
     Recovery --> Ready: action completed / failed
     Ready --> WeaponSwitch: switch accepted
@@ -225,6 +227,10 @@ Gameplay timeline использует scaled delta time, поэтому executi
 
 - `Enable` запускает state machine в `Ready` и симметрично подписывает semantic input, dodge, state и outgoing hit events.
 - `Disable` отменяет UniTask action, aborts executor, очищает buffer и outcome, закрывает hitbox, снимает callbacks и останавливает state machine.
+- Airborne-only action проверяет актуальный environment на каждом frame timeline.
+  Приземление имеет приоритет над buffered transition: controller закрывает
+  hitbox, завершает motion, отменяет combat presentation и возвращается в
+  `Ready`. Action с environment `Any` эту границу не наследует.
 - State machine и её states создаются scoped-регистрациями VContainer в `PlayerCombatComposition`; controller не вызывает `Resolve` и не владеет container.
 - Animator, graph authoring и input buffer не являются владельцами combat phase.
 - Входящая реакция не входит в combat state machine. `PlayerActorController` прерывает executing/recovery/weapon-switch action по подтверждённому reaction state, а `PlayerCombatController` читает только `ICharacterReactionState.BlocksActions`, чтобы не принять новый action во время hit-stun/knockdown/airborne/death. Владельцем этих состояний остаётся `CharacterReactionController`.
