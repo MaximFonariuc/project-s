@@ -121,6 +121,7 @@ namespace _App
         public int Damage { get; }
         public float StaggerDamage { get; }
         public float Knockback { get; }
+        public float VerticalKnockback { get; }
         public CombatReactionId ReactionId { get; }
         public CombatHitStop HitStop { get; }
 
@@ -128,6 +129,7 @@ namespace _App
             int damage,
             float staggerDamage,
             float knockback,
+            float verticalKnockback,
             CombatReactionId reactionId,
             CombatHitStop hitStop)
         {
@@ -146,9 +148,15 @@ namespace _App
                 throw new ArgumentOutOfRangeException(nameof(knockback));
             }
 
+            if (verticalKnockback < 0.0f)
+            {
+                throw new ArgumentOutOfRangeException(nameof(verticalKnockback));
+            }
+
             Damage = damage;
             StaggerDamage = staggerDamage;
             Knockback = knockback;
+            VerticalKnockback = verticalKnockback;
             ReactionId = reactionId;
             HitStop = hitStop;
         }
@@ -161,6 +169,7 @@ namespace _App
         public int Damage { get; }
         public float StaggerDamage { get; }
         public float Knockback { get; }
+        public float VerticalKnockback { get; }
         public CombatReactionId ReactionId { get; }
         public CombatHitStop HitStop { get; }
         public Vector3 Point { get; }
@@ -175,6 +184,7 @@ namespace _App
             int damage,
             float staggerDamage,
             float knockback,
+            float verticalKnockback,
             CombatReactionId reactionId,
             CombatHitStop hitStop,
             Vector3 point,
@@ -188,6 +198,7 @@ namespace _App
             Damage = damage;
             StaggerDamage = staggerDamage;
             Knockback = knockback;
+            VerticalKnockback = verticalKnockback;
             ReactionId = reactionId;
             HitStop = hitStop;
             Point = point;

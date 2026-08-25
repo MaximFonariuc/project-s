@@ -25,6 +25,7 @@ classDiagram
         +Damage int
         +StaggerDamage float
         +Knockback float
+        +VerticalKnockback float
         +ReactionId CombatReactionId
         +HitStop CombatHitStop
     }
@@ -81,6 +82,7 @@ classDiagram
         +Damage int
         +StaggerDamage float
         +Knockback float
+        +VerticalKnockback float
         +ReactionId CombatReactionId
         +HitStop CombatHitStop
         +Point Vector3
@@ -165,7 +167,10 @@ Health.Damaged -> target-local reaction / incoming hit stop
 - Новый тип оружия должен давать `CombatHitCandidate` тому же resolver; правила damage остаются в action profile.
 - Projectile или area attack могут иметь собственный physics adapter и отдельный `CombatAttackExecution`, не меняя `Health` и `Hurtbox`.
 - Stagger/poise consumer читает `StaggerDamage` и `ReactionId` из подтверждённого result.
-- Knockback consumer интерпретирует `Knockback` вместе с нормализованным `Direction`, но применяет движение через предназначенный motor intent.
+- Knockback consumer интерпретирует `Knockback` как направленную составляющую,
+  а `VerticalKnockback` как отдельную скорость вдоль `ICharacterImpactMotor.Up`.
+  Разделение не заставляет resolver или weapon угадывать вертикаль из геометрии
+  overlap; обе составляющие применяются одним target-local motor impact.
 - Исходящий hit stop и outcome текущего player action подписываются на `ICombatHitEvents`, входящий hit stop — на target-local `Health.Damaged`. Future VFX, audio и camera adapters также потребляют подтверждённый result и не участвуют в расчёте damage.
 
 Система остаётся в `_App/Core`: `PlayerCombatActionId`, damage rules и ожидаемые reactions являются правилами Project S. Извлечение в `_App/Modules` возможно только после второго реального consumer и стабилизации game-agnostic контракта.

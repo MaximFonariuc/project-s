@@ -35,6 +35,21 @@ action с duration `1.32 s`, hitbox `0.24–0.45`, damage `24` и motor distance
 остаются gameplay data и не вычисляются из Animator. Presentation получает лишь
 ожидаемую длительность action и подстраивает скорость активного override-клипа.
 
+### Launcher и air chase
+
+Кнопка `1 / LB` публикует `attack.launcher`. Это не самостоятельный entry:
+launcher доступен только из cancel window `combo.ground.0` или
+`combo.ground.1` после подтверждённого попадания. Он наносит `14` damage,
+передаёт цели горизонтальную скорость `0.35 m/s` и отдельную вертикальную
+скорость `6.5 m/s`. Target-local reaction немедленно входит в `Airborne`.
+
+Повторный `attack.light` в chain window попавшего launcher запускает
+`movement.air-chase`. Action поднимает игрока одноразовым motor impulse
+`6.2 m/s`, движется к actor root именно последней подтверждённой цели и не
+подменяет lock-on. Ещё один `attack.light` внутри chase переводит граф в
+`combo.air.0`; при отсутствии ввода chase завершается обычным airborne
+locomotion. Промах на любом hit-confirm этапе не открывает следующий переход.
+
 ### Air
 
 Во время `Falling` та же команда `attack.light` входит в `combo.air.0` и может
@@ -89,6 +104,7 @@ classDiagram
         +ActionId PlayerCombatActionId
         +ConfirmedHitCount int
         +HasConfirmedHit bool
+        +LastConfirmedTarget GameObject
     }
     class CombatActionExecutor
     class CombatInputBuffer

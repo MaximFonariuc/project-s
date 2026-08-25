@@ -146,9 +146,9 @@ namespace _App
             {
                 CursorRequested?.Invoke();
             }
-            else if (action == PlayerInputIds.SkillBoneCrash)
+            else if (action == PlayerInputIds.Launcher)
             {
-                CombatActionRequested?.Invoke(PlayerCombatCommandIds.BoneCrash);
+                CombatActionRequested?.Invoke(PlayerCombatCommandIds.Launcher);
             }
             else if (action == PlayerInputIds.SkillFlashStance)
             {

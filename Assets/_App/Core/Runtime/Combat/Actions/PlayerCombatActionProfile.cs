@@ -196,6 +196,7 @@ namespace _App
         [SerializeField, Min(0)] private int _damage = 10;
         [SerializeField, Min(0.0f)] private float _staggerDamage = 10.0f;
         [SerializeField, Min(0.0f)] private float _knockback;
+        [SerializeField, Min(0.0f)] private float _verticalKnockback;
         [SerializeField] private string _reactionId = "hit.light";
         [SerializeField, Min(0.0f)] private float _hitStopDuration = 0.06f;
         [SerializeField, Range(0.0f, 1.0f)] private float _hitStopTimeScale;
@@ -233,6 +234,8 @@ namespace _App
 
         [Header("Combat Target Motion")]
         [SerializeField] private bool _faceCombatTarget = true;
+        [SerializeField] private CombatMotionTargetSource _combatMotionTargetSource =
+            CombatMotionTargetSource.LockOnTarget;
         [SerializeField, Min(0.0f)] private float _targetStoppingDistance = 0.8f;
 
         internal CombatActionDefinition Build()
@@ -253,6 +256,7 @@ namespace _App
                     _damage,
                     _staggerDamage,
                     _knockback,
+                    _verticalKnockback,
                     string.IsNullOrWhiteSpace(_reactionId)
                         ? CombatReactionId.None
                         : new CombatReactionId(_reactionId),
@@ -280,6 +284,7 @@ namespace _App
                         _combatVerticalImpulse,
                         _overrideVerticalVelocityOnImpulse,
                         _faceCombatTarget,
+                        _combatMotionTargetSource,
                         _targetStoppingDistance)
                     : CombatMotionDefinition.Disabled);
         }

@@ -3,6 +3,12 @@ using UnityEngine;
 
 namespace _App
 {
+    internal enum CombatMotionTargetSource
+    {
+        LockOnTarget = 0,
+        PreviousConfirmedHit = 1
+    }
+
     internal readonly struct CombatMotionDefinition
     {
         public static CombatMotionDefinition Disabled => default;
@@ -15,6 +21,7 @@ namespace _App
         public float VerticalImpulse { get; }
         public bool OverrideVerticalVelocityOnImpulse { get; }
         public bool FaceTarget { get; }
+        public CombatMotionTargetSource TargetSource { get; }
         public float TargetStoppingDistance { get; }
         public bool HasTranslation =>
             Window.IsEnabled &&
@@ -32,6 +39,7 @@ namespace _App
             float verticalImpulse,
             bool overrideVerticalVelocityOnImpulse,
             bool faceTarget,
+            CombatMotionTargetSource targetSource,
             float targetStoppingDistance)
         {
             if (!window.IsEnabled)
@@ -59,6 +67,7 @@ namespace _App
             VerticalImpulse = verticalImpulse;
             OverrideVerticalVelocityOnImpulse = overrideVerticalVelocityOnImpulse;
             FaceTarget = faceTarget;
+            TargetSource = targetSource;
             TargetStoppingDistance = targetStoppingDistance;
         }
     }

@@ -147,7 +147,7 @@ stateDiagram-v2
     Airborne --> Knockdown: grounded heavy hit
     Airborne --> Airborne: repeated air hit
     HitStun --> Stable: duration elapsed
-    Airborne --> Stable: duration elapsed
+    Airborne --> Stable: minimum duration elapsed and grounded
     Stable --> Dead: Health.Died
     HitStun --> Dead: Health.Died
     Knockdown --> Dead: Health.Died
@@ -156,7 +156,12 @@ stateDiagram-v2
     Dead --> Stable: Health.Revived
 ```
 
-Ненулевой knockback принудительно создаёт реакцию даже до полного расхода poise. На земле направление проецируется на плоскость персонажа; вертикальная составляющая текущей скорости сохраняется. Порог сильного импульса выбирает `Knockdown`. Если motor сообщает airborne, приоритет имеет `Airborne`.
+Ненулевой planar или vertical knockback принудительно создаёт реакцию даже до
+полного расхода poise. `VerticalKnockback` немедленно выбирает `Airborne` и
+применяется вдоль локального `Up`; направленный `Knockback` остаётся отдельной
+составляющей. Airborne выдерживает минимальную authored duration, но не
+возвращается в `Stable`, пока motor не подтвердит приземление. На земле сильный
+planar impulse по-прежнему выбирает `Knockdown`.
 
 ## Поток подтверждённого попадания
 
@@ -180,7 +185,7 @@ sequenceDiagram
         Reaction-->>Actor: StateChanged(non-stable)
         Actor->>Combat: InterruptAttack()
         Actor->>Traversal: Interrupt()
-        Reaction->>Motor: ApplyKnockback(direction * force)
+        Reaction->>Motor: ApplyKnockback(planar + up * vertical)
         Reaction->>View: Present(snapshot)
     end
     opt lethal result

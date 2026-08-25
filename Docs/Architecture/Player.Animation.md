@@ -115,6 +115,8 @@ The current action contract is:
 | Air light attack | 5 | 0...2 | `Attack/AirAttack1...3` |
 | Grounded named special | 6 | 0 | `Attack/Skill` |
 | Grounded heavy attack | 7 | 0 | `Attack/BaseAttack4` |
+| Launcher | 8 | 0 | `Attack/BaseAttack3` |
+| Air chase | 9 | 0 | `Locomotion/Jump/Jump/JumpRunning` |
 | Sheathe two-handed | 3 | 0 | `SwitchWeapon Layer/TwoHanded_Sheathe` |
 | Draw two-handed | 3 | 1 | `SwitchWeapon Layer/TwoHanded_Unsheathe` |
 | Hit reaction (front/fallback) | 4 | 0 | `Reaction/HitStun` |

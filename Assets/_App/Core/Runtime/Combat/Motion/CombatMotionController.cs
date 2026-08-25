@@ -11,6 +11,7 @@ namespace _App
         private readonly IPlayerTargetingState _targeting;
 
         private CombatMotionDefinition _definition;
+        private Transform _previousConfirmedHitTarget;
         private float _planarSpeed;
         private bool _verticalImpulseApplied;
         private bool _isActive;
@@ -23,7 +24,10 @@ namespace _App
             _targeting = targeting ?? throw new ArgumentNullException(nameof(targeting));
         }
 
-        public void Begin(CombatMotionDefinition definition, float actionDuration)
+        public void Begin(
+            CombatMotionDefinition definition,
+            float actionDuration,
+            Transform previousConfirmedHitTarget)
         {
             End();
             if (!definition.IsEnabled)
@@ -37,6 +41,7 @@ namespace _App
             }
 
             _definition = definition;
+            _previousConfirmedHitTarget = previousConfirmedHitTarget;
             float motionDuration = actionDuration * (definition.Window.End - definition.Window.Start);
             _planarSpeed = definition.OverridePlanarVelocity && motionDuration > 0.0f
                 ? definition.PlanarDistance / motionDuration
@@ -90,6 +95,7 @@ namespace _App
         {
             _motor.ClearActionMotion();
             _definition = default;
+            _previousConfirmedHitTarget = null;
             _planarSpeed = 0.0f;
             _verticalImpulseApplied = false;
             _isActive = false;
@@ -115,15 +121,39 @@ namespace _App
 
         private bool TryGetTargetDirection(out Vector3 direction, out float distance)
         {
-            if (!_definition.FaceTarget || !_targeting.IsTargetLocked || _targeting.CurrentTarget == null)
+            if (!_definition.FaceTarget)
             {
                 direction = default;
                 distance = 0.0f;
                 return false;
             }
 
+            Vector3 aimPosition;
+            if (_definition.TargetSource == CombatMotionTargetSource.PreviousConfirmedHit)
+            {
+                if (_previousConfirmedHitTarget == null)
+                {
+                    direction = default;
+                    distance = 0.0f;
+                    return false;
+                }
+
+                aimPosition = _previousConfirmedHitTarget.position;
+            }
+            else
+            {
+                if (!_targeting.IsTargetLocked || _targeting.CurrentTarget == null)
+                {
+                    direction = default;
+                    distance = 0.0f;
+                    return false;
+                }
+
+                aimPosition = _targeting.AimPosition;
+            }
+
             Vector3 offset = Vector3.ProjectOnPlane(
-                _targeting.AimPosition - _motor.Position,
+                aimPosition - _motor.Position,
                 _motor.Up);
             distance = offset.magnitude;
             if (distance <= DirectionEpsilon)

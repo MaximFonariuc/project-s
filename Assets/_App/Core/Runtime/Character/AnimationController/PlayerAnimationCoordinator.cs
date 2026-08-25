@@ -22,6 +22,8 @@ namespace _App
         public static readonly AnimationActionId AirAttack = new AnimationActionId(5);
         public static readonly AnimationActionId SpecialAttack = new AnimationActionId(6);
         public static readonly AnimationActionId HeavyAttack = new AnimationActionId(7);
+        public static readonly AnimationActionId Launcher = new AnimationActionId(8);
+        public static readonly AnimationActionId AirChase = new AnimationActionId(9);
 
         public const float DodgeDuration = 0.78f;
         public const float WeaponTransitionDuration = 1.00f;

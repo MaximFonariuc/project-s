@@ -186,6 +186,18 @@ namespace _App
                 return true;
             }
 
+            if (animationId == PlayerCombatAnimationIds.Launcher)
+            {
+                action = PlayerAnimatorActions.Launcher;
+                return true;
+            }
+
+            if (animationId == PlayerCombatAnimationIds.AirChase)
+            {
+                action = PlayerAnimatorActions.AirChase;
+                return true;
+            }
+
             action = default;
             return false;
         }

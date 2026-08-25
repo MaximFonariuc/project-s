@@ -48,7 +48,7 @@ namespace _App
     {
         public static readonly PlayerCombatCommandId LightAttack = new PlayerCombatCommandId("attack.light");
         public static readonly PlayerCombatCommandId HeavyAttack = new PlayerCombatCommandId("attack.heavy");
-        public static readonly PlayerCombatCommandId BoneCrash = new PlayerCombatCommandId("skill.bone-crash");
+        public static readonly PlayerCombatCommandId Launcher = new PlayerCombatCommandId("attack.launcher");
         public static readonly PlayerCombatCommandId FlashStance = new PlayerCombatCommandId("skill.flash-stance");
         public static readonly PlayerCombatCommandId Special = new PlayerCombatCommandId("skill.special");
 
@@ -144,6 +144,10 @@ namespace _App
             new PlayerCombatAnimationId("attack.heavy");
         public static readonly PlayerCombatAnimationId Special =
             new PlayerCombatAnimationId("skill.special");
+        public static readonly PlayerCombatAnimationId Launcher =
+            new PlayerCombatAnimationId("attack.launcher");
+        public static readonly PlayerCombatAnimationId AirChase =
+            new PlayerCombatAnimationId("movement.air-chase");
     }
 
     [Flags]

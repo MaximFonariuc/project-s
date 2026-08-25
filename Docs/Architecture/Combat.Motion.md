@@ -42,14 +42,15 @@ classDiagram
         +VerticalVelocity float
         +VerticalImpulse float
         +FaceTarget bool
+        +TargetSource CombatMotionTargetSource
         +TargetStoppingDistance float
     }
     class CombatActionExecutor {
-        +ExecuteAsync(definition, duration)
+        +ExecuteAsync(definition, duration, previousConfirmedHitTarget)
         +Abort()
     }
     class CombatMotionController {
-        +Begin(definition, actionDuration)
+        +Begin(definition, actionDuration, previousConfirmedHitTarget)
         +Advance(normalizedTime)
         +End()
     }
@@ -149,13 +150,17 @@ Timeline использует scaled `ICombatClock`: во время hit stop о
 - `MinimumVelocity` вычисляет `max(current, configured)`: значение `0` сохраняет существующий подъём, но не позволяет начать падение; отрицательное значение, например `-2`, создаёт ограниченное медленное падение.
 - `Combat Vertical Impulse` — знаковая одноразовая скорость на первом fixed-step окна. Положительное значение запускает персонажа вверх, отрицательное поддерживает slam вниз. `Override Vertical Velocity On Impulse` выбирает замену текущей вертикальной скорости либо сложение с ней.
 - Положительная итоговая vertical velocity на земле использует существующий character jump boundary: motor снимает ground constraint и переводит movement mode в `Falling`, поэтому подъём не теряется при ground projection.
-- `Face Combat Target` использует только подтверждённую lock-on цель. Без цели сохраняется движение вперёд по направлению персонажа.
+- `CombatMotionTargetSource.LockOnTarget` использует подтверждённую lock-on цель.
+  `PreviousConfirmedHit` принимает actor root из outcome предыдущего execution и
+  используется air chase, не меняя состояние targeting. Если выбранная ссылка
+  отсутствует или уничтожена, движение безопасно продолжает текущий forward.
 - `Target Stopping Distance` останавливает поступательное движение рядом с lock-on целью, но позволяет продолжить разворот к ней.
 - Окно motion обязано завершаться не позже `Completion Time`.
 - Translational root motion (`Translation`, `Full`) нельзя объединять с planar override, vertical policy или vertical impulse одного action.
 - Rotational root motion (`Rotation`, `Full`) нельзя объединять с `Face Combat Target` одного action.
 - Новые vertical-поля имеют безопасные defaults: `PreserveVelocity` и impulse `0`. Prototype combo сохраняет окно `0.0–0.3` и планарную дистанцию `0.75`; prototype skill — `1.0`; weapon transition не использует combat motion.
-- Финальные воздушные actions и clips намеренно не создаются: текущий prototype graph содержит только `Grounded` actions. Любой authoring action с environment `Airborne` уже может использовать launch, suspension и controlled fall через эту же модель.
+- Текущий player profile использует vertical impulse в `movement.air-chase`, а
+  воздушные combo actions — `MinimumVelocity(-1.5 m/s)` для ограниченного air hang.
 
 ## Lifecycle и отказоустойчивость
 

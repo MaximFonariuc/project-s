@@ -38,6 +38,7 @@ namespace _App
         public async UniTask<CombatActionRunResult> ExecuteAsync(
             CombatActionDefinition definition,
             float duration,
+            Transform previousConfirmedHitTarget,
             ICombatActionObserver observer,
             CancellationToken cancellationToken)
         {
@@ -51,7 +52,7 @@ namespace _App
                 throw new ArgumentOutOfRangeException(nameof(duration));
             }
 
-            int executionId = Begin(definition, duration);
+            int executionId = Begin(definition, duration, previousConfirmedHitTarget);
             try
             {
                 while (true)
@@ -89,7 +90,10 @@ namespace _App
             }
         }
 
-        private int Begin(CombatActionDefinition definition, float duration)
+        private int Begin(
+            CombatActionDefinition definition,
+            float duration,
+            Transform previousConfirmedHitTarget)
         {
             _definition = definition;
             _duration = duration;
@@ -103,7 +107,7 @@ namespace _App
 
             _activeExecutionId = executionId;
             _currentFrame = CreateFrame(-1.0f, 0.0f);
-            _motion.Begin(definition.Motion, duration);
+            _motion.Begin(definition.Motion, duration, previousConfirmedHitTarget);
             ApplyDamageImmunity(_currentFrame.IsInvulnerable);
             return executionId;
         }

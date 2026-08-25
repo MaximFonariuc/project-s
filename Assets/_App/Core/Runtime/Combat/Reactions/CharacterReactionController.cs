@@ -145,12 +145,13 @@ namespace _App
             }
 
             bool poiseBroken = _poise.ApplyStagger(hit.StaggerDamage);
-            if (!poiseBroken && hit.Knockback <= 0.0f)
+            bool hasImpact = hit.Knockback > 0.0f || hit.VerticalKnockback > 0.0f;
+            if (!poiseBroken && !hasImpact)
             {
                 return;
             }
 
-            if (!_impactMotor.IsGrounded)
+            if (hit.VerticalKnockback > 0.0f || !_impactMotor.IsGrounded)
             {
                 EnterTimedReaction(
                     CharacterReactionStateId.Airborne,
@@ -265,6 +266,13 @@ namespace _App
 
         private void AdvanceTimedReaction(float elapsedPastEnd)
         {
+            if (_stateMachine.CurrentStateId == CharacterReactionStateId.Airborne &&
+                !_impactMotor.IsGrounded)
+            {
+                _remainingDuration = 0.0f;
+                return;
+            }
+
             if (_stateMachine.CurrentStateId == CharacterReactionStateId.Knockdown)
             {
                 EnterGetUp(elapsedPastEnd);
@@ -296,20 +304,35 @@ namespace _App
 
         private void ApplyKnockback(in CombatHitResult hit)
         {
-            if (hit.Knockback <= 0.0f || hit.Direction.sqrMagnitude <= DirectionThresholdSqr)
+            Vector3 velocity = Vector3.zero;
+            if (hit.Knockback > 0.0f && hit.Direction.sqrMagnitude > DirectionThresholdSqr)
             {
-                return;
+                Vector3 direction = hit.Direction;
+                if (_impactMotor.IsGrounded || hit.VerticalKnockback > 0.0f)
+                {
+                    direction = Vector3.ProjectOnPlane(direction, _impactMotor.Up);
+                }
+
+                if (direction.sqrMagnitude > DirectionThresholdSqr)
+                {
+                    velocity = direction.normalized * hit.Knockback;
+                }
             }
 
-            Vector3 direction = hit.Direction;
-            if (_impactMotor.IsGrounded)
+            if (hit.VerticalKnockback > 0.0f)
             {
-                direction = Vector3.ProjectOnPlane(direction, _impactMotor.Up);
+                Vector3 up = _impactMotor.Up;
+                if (up.sqrMagnitude <= DirectionThresholdSqr)
+                {
+                    up = Vector3.up;
+                }
+
+                velocity += up.normalized * hit.VerticalKnockback;
             }
 
-            if (direction.sqrMagnitude > DirectionThresholdSqr)
+            if (velocity.sqrMagnitude > DirectionThresholdSqr)
             {
-                _impactMotor.ApplyKnockback(direction.normalized * hit.Knockback);
+                _impactMotor.ApplyKnockback(velocity);
             }
         }
 

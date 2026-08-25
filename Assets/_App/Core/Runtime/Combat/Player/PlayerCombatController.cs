@@ -305,6 +305,7 @@ namespace _App
             try
             {
                 PlayerCombatAction action = initialAction;
+                Transform previousConfirmedHitTarget = null;
                 while (action != null && CanUseAction(action))
                 {
                     if (!TryPlayAction(action, out _))
@@ -325,6 +326,7 @@ namespace _App
                     await ExecuteObservedActionAsync(
                         action.Definition,
                         action.Definition.DurationSeconds,
+                        previousConfirmedHitTarget,
                         ActionObservationMode.CombatAction,
                         cancellation.Token);
 
@@ -333,12 +335,16 @@ namespace _App
                         _lastActionUseTime[action.Id] = _clock.ScaledTime;
                     }
 
+                    PlayerCombatAction acceptedAction = _acceptedBufferedAction;
+                    Transform nextMotionTarget = ResolveNextMotionTarget(acceptedAction);
                     SetHitWindow(false);
                     EndAttackExecution();
-                    action = _acceptedBufferedAction;
+                    action = acceptedAction;
+                    previousConfirmedHitTarget = nextMotionTarget;
                     if (action == null)
                     {
                         TryConsumeBufferedEntry(out action);
+                        previousConfirmedHitTarget = null;
                     }
                 }
             }
@@ -412,6 +418,7 @@ namespace _App
                 CombatActionRunResult result = await ExecuteObservedActionAsync(
                     _weaponTransitionAction.Definition,
                     _weaponTransitionAction.Definition.DurationSeconds,
+                    null,
                     ActionObservationMode.WeaponTransition,
                     token);
 
@@ -428,13 +435,19 @@ namespace _App
         private async UniTask<CombatActionRunResult> ExecuteObservedActionAsync(
             CombatActionDefinition definition,
             float duration,
+            Transform previousConfirmedHitTarget,
             ActionObservationMode observationMode,
             CancellationToken token)
         {
             _observationMode = observationMode;
             try
             {
-                return await _actionExecutor.ExecuteAsync(definition, duration, this, token);
+                return await _actionExecutor.ExecuteAsync(
+                    definition,
+                    duration,
+                    previousConfirmedHitTarget,
+                    this,
+                    token);
             }
             finally
             {
@@ -555,6 +568,19 @@ namespace _App
                         presentation.AnimationId),
                 _ => false
             };
+        }
+
+        private Transform ResolveNextMotionTarget(PlayerCombatAction nextAction)
+        {
+            if (nextAction == null ||
+                nextAction.Definition.Motion.TargetSource !=
+                CombatMotionTargetSource.PreviousConfirmedHit)
+            {
+                return null;
+            }
+
+            GameObject target = _actionOutcome.LastConfirmedTarget;
+            return target != null ? target.transform : null;
         }
 
         private PlayerCombatEnvironment GetEnvironment()

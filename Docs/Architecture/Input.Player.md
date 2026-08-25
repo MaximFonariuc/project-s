@@ -34,7 +34,7 @@ classDiagram
         +SpecialAttack
         +Dodge
         +TargetSwitch
-        +SkillBoneCrash
+        +Launcher
         +SkillFlashStance
     }
     class PlayerCombatCommandId {
@@ -84,6 +84,9 @@ flowchart LR
 - Light attack использует `ЛКМ / X`, heavy attack — `ПКМ / RT`, а
   `skill.special` — `3 / D-pad Down`. Adapter переводит все три действия в
   разные `PlayerCombatCommandId`; gameplay не сравнивает control path.
+- Launcher использует существующий binding `1 / LB` и публикует
+  `attack.launcher`. В `.inputactions` его authoring name пока остаётся legacy
+  `SkillBoneCrash`, но gameplay опирается на стабильный GUID и не знает это имя.
 
 ## От чего отказались
 

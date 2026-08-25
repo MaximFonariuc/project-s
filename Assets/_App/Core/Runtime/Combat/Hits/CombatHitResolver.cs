@@ -39,6 +39,7 @@ namespace _App
                 damage,
                 definition.StaggerDamage,
                 definition.Knockback,
+                definition.VerticalKnockback,
                 definition.ReactionId,
                 definition.HitStop,
                 candidate.Point,

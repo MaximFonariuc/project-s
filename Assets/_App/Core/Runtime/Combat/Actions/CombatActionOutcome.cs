@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace _App
 {
@@ -7,6 +8,7 @@ namespace _App
         public AttackExecutionId ExecutionId { get; private set; }
         public PlayerCombatActionId ActionId { get; private set; }
         public int ConfirmedHitCount { get; private set; }
+        public GameObject LastConfirmedTarget { get; private set; }
         public bool IsTracking => ExecutionId.IsValid;
         public bool HasConfirmedHit => ConfirmedHitCount > 0;
 
@@ -31,6 +33,7 @@ namespace _App
             ExecutionId = executionId;
             ActionId = actionId;
             ConfirmedHitCount = 0;
+            LastConfirmedTarget = null;
         }
 
         public bool TryRecord(in CombatHitResult hit)
@@ -43,6 +46,7 @@ namespace _App
             }
 
             ConfirmedHitCount++;
+            LastConfirmedTarget = hit.Target;
             return true;
         }
 
@@ -51,6 +55,7 @@ namespace _App
             ExecutionId = default;
             ActionId = default;
             ConfirmedHitCount = 0;
+            LastConfirmedTarget = null;
         }
     }
 }
