@@ -27,4 +27,14 @@ namespace _App
         bool SwitchTarget(int direction);
         void ClearTarget();
     }
+
+    public interface IPlayerCombatTargetingQuery
+    {
+        bool TryGetAttackAssistTarget(
+            Vector3 origin,
+            Vector3 forward,
+            float maxDistance,
+            float maxAngle,
+            out ICombatTarget target);
+    }
 }

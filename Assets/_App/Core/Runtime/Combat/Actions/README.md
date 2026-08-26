@@ -21,6 +21,7 @@ classDiagram
     class CombatMotionController
     class IDamageImmunityTarget
     class ICharacterActionMotionMotor
+    class IPlayerCombatTargetingQuery
     class CharacterMotor
 
     PlayerCombatActionProfile --> PlayerCombatActionGraph
@@ -30,6 +31,7 @@ classDiagram
     CombatActionExecutor --> CombatMotionController
     CombatActionExecutor --> IDamageImmunityTarget : window lease
     CombatMotionController --> ICharacterActionMotionMotor
+    CombatMotionController --> IPlayerCombatTargetingQuery : one query per action
     ICharacterActionMotionMotor <|.. CharacterMotor
 ```
 
@@ -50,7 +52,8 @@ classDiagram
   dodge windows compose without one action clearing another owner's immunity.
 - `CombatMotionController` creates collision-safe velocity intents from an
   authored distance and normalized window. Animation-derived trajectory assets
-  are not used.
+  are not used. Ground attacks may acquire one soft-assist target inside an
+  authored cone; this does not mutate hard lock-on or camera state.
 - `CharacterMotor` and `CharacterMovement` remain the only authorities for
   position, collision, slopes and grounding.
 - The current profile contains independent grounded and airborne

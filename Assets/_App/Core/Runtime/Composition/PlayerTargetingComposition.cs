@@ -9,7 +9,8 @@ namespace _App
             builder.Register<PlayerTargetingController>(Lifetime.Scoped)
                 .AsSelf()
                 .As<IPlayerTargetingState>()
-                .As<IPlayerTargetingCommands>();
+                .As<IPlayerTargetingCommands>()
+                .As<IPlayerCombatTargetingQuery>();
         }
     }
 }

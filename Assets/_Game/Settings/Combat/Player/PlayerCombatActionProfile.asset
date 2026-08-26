@@ -57,6 +57,9 @@ MonoBehaviour:
     _faceCombatTarget: 0
     _combatMotionTargetSource: 0
     _targetStoppingDistance: 0.8
+    _allowTargetAssist: 0
+    _targetAssistDistance: 5
+    _targetAssistAngle: 55
     _trackTargetHeight: 0
     _targetHeightOffset: 0
     _targetHeightTolerance: 0.1
@@ -137,6 +140,9 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
       _targetStoppingDistance: 0.8
+      _allowTargetAssist: 1
+      _targetAssistDistance: 4.5
+      _targetAssistAngle: 50
       _trackTargetHeight: 0
       _targetHeightOffset: 0
       _targetHeightTolerance: 0.1
@@ -192,6 +198,9 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
       _targetStoppingDistance: 0.8
+      _allowTargetAssist: 1
+      _targetAssistDistance: 4.5
+      _targetAssistAngle: 50
       _trackTargetHeight: 0
       _targetHeightOffset: 0
       _targetHeightTolerance: 0.1
@@ -247,6 +256,9 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
       _targetStoppingDistance: 0.8
+      _allowTargetAssist: 1
+      _targetAssistDistance: 4.5
+      _targetAssistAngle: 50
       _trackTargetHeight: 0
       _targetHeightOffset: 0
       _targetHeightTolerance: 0.1
@@ -302,6 +314,9 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 2
       _targetStoppingDistance: 0.8
+      _allowTargetAssist: 0
+      _targetAssistDistance: 5
+      _targetAssistAngle: 55
       _trackTargetHeight: 0
       _targetHeightOffset: 0
       _targetHeightTolerance: 0.1
@@ -357,6 +372,9 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 2
       _targetStoppingDistance: 0.8
+      _allowTargetAssist: 0
+      _targetAssistDistance: 5
+      _targetAssistAngle: 55
       _trackTargetHeight: 0
       _targetHeightOffset: 0
       _targetHeightTolerance: 0.1
@@ -412,6 +430,9 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 2
       _targetStoppingDistance: 0.8
+      _allowTargetAssist: 0
+      _targetAssistDistance: 5
+      _targetAssistAngle: 55
       _trackTargetHeight: 0
       _targetHeightOffset: 0
       _targetHeightTolerance: 0.1
@@ -467,6 +488,9 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
       _targetStoppingDistance: 0.8
+      _allowTargetAssist: 1
+      _targetAssistDistance: 4.5
+      _targetAssistAngle: 50
       _trackTargetHeight: 0
       _targetHeightOffset: 0
       _targetHeightTolerance: 0.1
@@ -522,6 +546,9 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
       _targetStoppingDistance: 0.8
+      _allowTargetAssist: 1
+      _targetAssistDistance: 4.5
+      _targetAssistAngle: 50
       _trackTargetHeight: 0
       _targetHeightOffset: 0
       _targetHeightTolerance: 0.1
@@ -577,6 +604,9 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
       _targetStoppingDistance: 0.75
+      _allowTargetAssist: 1
+      _targetAssistDistance: 4.5
+      _targetAssistAngle: 50
       _trackTargetHeight: 0
       _targetHeightOffset: 0
       _targetHeightTolerance: 0.1
@@ -632,6 +662,9 @@ MonoBehaviour:
       _faceCombatTarget: 1
       _combatMotionTargetSource: 1
       _targetStoppingDistance: 0.65
+      _allowTargetAssist: 0
+      _targetAssistDistance: 5
+      _targetAssistAngle: 55
       _trackTargetHeight: 1
       _targetHeightOffset: -0.15
       _targetHeightTolerance: 0.12
@@ -651,74 +684,74 @@ MonoBehaviour:
     _commandId: attack.light
     _targetActionId: combo.ground.1
     _window: 0
+    _condition: 0
     _useAcceptanceWindow: 0
     _acceptanceStart: 0.5
     _acceptanceEnd: 0.75
-    _condition: 0
   - _sourceActionId: combo.ground.1
     _commandId: attack.light
     _targetActionId: combo.ground.2
     _window: 0
+    _condition: 0
     _useAcceptanceWindow: 0
     _acceptanceStart: 0.5
     _acceptanceEnd: 0.75
-    _condition: 0
   - _sourceActionId: combo.air.0
     _commandId: attack.light
     _targetActionId: combo.air.1
     _window: 0
+    _condition: 0
     _useAcceptanceWindow: 0
     _acceptanceStart: 0.5
     _acceptanceEnd: 0.75
-    _condition: 0
   - _sourceActionId: combo.air.1
     _commandId: attack.light
     _targetActionId: combo.air.2
     _window: 0
+    _condition: 0
     _useAcceptanceWindow: 0
     _acceptanceStart: 0.5
     _acceptanceEnd: 0.75
-    _condition: 0
   - _sourceActionId: combo.ground.0
     _commandId: skill.special
     _targetActionId: skill.special
     _window: 1
+    _condition: 0
     _useAcceptanceWindow: 0
     _acceptanceStart: 0.5
     _acceptanceEnd: 0.75
-    _condition: 0
   - _sourceActionId: combo.ground.1
     _commandId: skill.special
     _targetActionId: skill.special
     _window: 1
+    _condition: 0
     _useAcceptanceWindow: 0
     _acceptanceStart: 0.5
     _acceptanceEnd: 0.75
-    _condition: 0
   - _sourceActionId: combo.ground.2
     _commandId: skill.special
     _targetActionId: skill.special
     _window: 1
+    _condition: 0
     _useAcceptanceWindow: 0
     _acceptanceStart: 0.5
     _acceptanceEnd: 0.75
-    _condition: 0
   - _sourceActionId: skill.special
     _commandId: attack.light
     _targetActionId: combo.ground.0
     _window: 1
+    _condition: 0
     _useAcceptanceWindow: 0
     _acceptanceStart: 0.5
     _acceptanceEnd: 0.75
-    _condition: 0
   - _sourceActionId: combo.ground.0
     _commandId: attack.heavy
     _targetActionId: attack.heavy
     _window: 1
+    _condition: 0
     _useAcceptanceWindow: 1
     _acceptanceStart: 0.44
     _acceptanceEnd: 0.6
-    _condition: 0
   - _sourceActionId: combo.ground.1
     _commandId: attack.heavy
     _targetActionId: attack.heavy
@@ -731,55 +764,55 @@ MonoBehaviour:
     _commandId: attack.light
     _targetActionId: combo.ground.0
     _window: 1
+    _condition: 0
     _useAcceptanceWindow: 0
     _acceptanceStart: 0.5
     _acceptanceEnd: 0.75
-    _condition: 0
   - _sourceActionId: attack.heavy
     _commandId: skill.special
     _targetActionId: skill.special
     _window: 1
+    _condition: 0
     _useAcceptanceWindow: 0
     _acceptanceStart: 0.5
     _acceptanceEnd: 0.75
-    _condition: 0
   - _sourceActionId: skill.special
     _commandId: attack.heavy
     _targetActionId: attack.heavy
     _window: 1
+    _condition: 0
     _useAcceptanceWindow: 0
     _acceptanceStart: 0.5
     _acceptanceEnd: 0.75
-    _condition: 0
   - _sourceActionId: combo.ground.0
     _commandId: attack.launcher
     _targetActionId: attack.launcher
     _window: 1
+    _condition: 1
     _useAcceptanceWindow: 1
     _acceptanceStart: 0.44
     _acceptanceEnd: 0.7
-    _condition: 1
   - _sourceActionId: combo.ground.1
     _commandId: attack.launcher
     _targetActionId: attack.launcher
     _window: 1
+    _condition: 1
     _useAcceptanceWindow: 1
     _acceptanceStart: 0.36
     _acceptanceEnd: 0.66
-    _condition: 1
   - _sourceActionId: attack.launcher
     _commandId: attack.light
     _targetActionId: movement.air-chase
     _window: 0
+    _condition: 1
     _useAcceptanceWindow: 0
     _acceptanceStart: 0.5
     _acceptanceEnd: 0.75
-    _condition: 1
   - _sourceActionId: movement.air-chase
     _commandId: attack.light
     _targetActionId: combo.air.0
     _window: 0
+    _condition: 0
     _useAcceptanceWindow: 0
     _acceptanceStart: 0.5
     _acceptanceEnd: 0.75
-    _condition: 0

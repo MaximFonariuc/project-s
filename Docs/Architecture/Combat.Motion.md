@@ -50,6 +50,9 @@ classDiagram
         +FaceTarget bool
         +TargetSource CombatMotionTargetSource
         +TargetStoppingDistance float
+        +AllowTargetAssist bool
+        +TargetAssistDistance float
+        +TargetAssistAngle float
         +TrackTargetHeight bool
         +TargetHeightOffset float
         +TargetHeightTolerance float
@@ -70,6 +73,10 @@ classDiagram
         +IsTargetLocked bool
         +CurrentTarget Transform
         +AimPosition Vector3
+    }
+    class IPlayerCombatTargetingQuery {
+        <<query port>>
+        +TryGetAttackAssistTarget(origin, forward, maxDistance, maxAngle, target) bool
     }
     class ICharacterActionMotionMotor {
         <<character port>>
@@ -109,7 +116,8 @@ classDiagram
     CombatActionAuthoring ..> CombatMotionDefinition : builds
     CombatActionDefinition *-- CombatMotionDefinition
     CombatActionExecutor --> CombatMotionController : timeline lifecycle
-    CombatMotionController --> IPlayerTargetingState : optional target assist
+    CombatMotionController --> IPlayerTargetingState : hard lock state
+    CombatMotionController --> IPlayerCombatTargetingQuery : one-shot soft assist
     CombatMotionController --> ICharacterActionMotionMotor : semantic motion request
     CharacterMotor ..|> ICharacterActionMotionMotor
     ICharacterActionMotionMotor ..> CharacterActionMotionIntent
@@ -129,11 +137,15 @@ sequenceDiagram
     participant Action as CombatActionExecutor
     participant Motion as CombatMotionController
     participant Target as IPlayerTargetingState
+    participant Assist as IPlayerCombatTargetingQuery
     participant Motor as CharacterMotor
     participant Character
     participant Physics as CharacterMovement
 
     Action->>Motion: Begin(definition, animationDuration)
+    opt no carried target and no hard lock
+        Motion->>Assist: select once inside bounded cone
+    end
     loop scaled action timeline
         Action->>Motion: Advance(normalizedTime)
         Motion->>Target: read current lock-on state
@@ -171,6 +183,7 @@ Timeline использует scaled `ICombatClock`: во время hit stop о
   сохраняется через безударный air chase и остаётся motion-context воздушной
   combo; отдельным глобальным target state это не становится.
 - `Target Stopping Distance` останавливает поступательное движение рядом с выбранной motion-целью, но позволяет продолжить разворот к ней.
+- `Allow Target Assist` разрешает одноразовый soft selection при старте action, только если нет carried target и hard lock. `Target Assist Distance/Angle` задают ограниченный сектор. Выбранная ссылка живёт только до завершения action, не меняет camera lock и не запускает physics query на каждом кадре.
 - `Track Target Height` включается только для action, которому действительно
   нужен vertical chase. После первого sample controller оценивает вертикальную
   скорость target и добавляет пропорциональную коррекцию height error. Итоговая
@@ -195,7 +208,7 @@ Timeline использует scaled `ICombatClock`: во время hit stop о
 - `CharacterMotor.Dispose` очищает intent, pending impulse и снимает fixed-step subscription.
 - Завершение action очищает carried target и target-height samples, поэтому
   следующая независимая атака не наследует старую цель или скорость.
-- Пустая или потерянная цель безопасно заменяется текущим forward персонажа.
+- Пустая или потерянная hard/assist цель безопасно заменяется текущим forward персонажа. Уничтоженная либо ставшая недоступной assist-цель не удерживается.
 - Scene, prefab, Animator Controller и animation clips для этой границы не изменяются.
 
 ## Почему это остаётся в Core

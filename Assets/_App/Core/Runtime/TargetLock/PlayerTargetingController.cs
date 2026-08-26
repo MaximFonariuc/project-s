@@ -7,6 +7,7 @@ namespace _App
     public sealed class PlayerTargetingController :
         IPlayerTargetingState,
         IPlayerTargetingCommands,
+        IPlayerCombatTargetingQuery,
         IDisposable
     {
         public const float MaxLockDistance = 25.0f;
@@ -179,6 +180,77 @@ namespace _App
             TargetChanged?.Invoke(null);
         }
 
+        public bool TryGetAttackAssistTarget(
+            Vector3 origin,
+            Vector3 forward,
+            float maxDistance,
+            float maxAngle,
+            out ICombatTarget target)
+        {
+            target = null;
+            if (maxDistance <= 0.0f || maxAngle <= 0.0f)
+            {
+                return false;
+            }
+
+            Vector3 up = _actor.Root.up;
+            Vector3 planarForward = Vector3.ProjectOnPlane(forward, up);
+            if (planarForward.sqrMagnitude <= 0.0001f)
+            {
+                return false;
+            }
+
+            planarForward.Normalize();
+            int hits = OverlapTargets(origin, maxDistance);
+            if (hits == 0)
+            {
+                return false;
+            }
+
+            _visitedTargets.Clear();
+            float bestScore = float.MaxValue;
+            for (int i = 0; i < hits; i++)
+            {
+                Collider candidateCollider = _overlapBuffer[i];
+                _overlapBuffer[i] = null;
+                if (candidateCollider == null ||
+                    !TryResolveTarget(candidateCollider, out ICombatTarget candidateTarget))
+                {
+                    continue;
+                }
+
+                if (!_visitedTargets.Add(candidateTarget.TargetId))
+                {
+                    continue;
+                }
+
+                Vector3 offset = candidateTarget.AimPosition - origin;
+                Vector3 planarOffset = Vector3.ProjectOnPlane(offset, up);
+                float distance = planarOffset.magnitude;
+                if (distance <= 0.0001f || distance > maxDistance)
+                {
+                    continue;
+                }
+
+                float angle = Vector3.Angle(planarForward, planarOffset / distance);
+                if (angle > maxAngle)
+                {
+                    continue;
+                }
+
+                float score = angle / maxAngle + distance / maxDistance * 0.35f;
+                if (score >= bestScore)
+                {
+                    continue;
+                }
+
+                bestScore = score;
+                target = candidateTarget;
+            }
+
+            return target != null && target.TargetRoot != null;
+        }
+
         public void Dispose()
         {
             Disable();
@@ -219,7 +291,7 @@ namespace _App
         {
             selectedTarget = null;
 
-            int hits = OverlapTargets();
+            int hits = OverlapTargets(_actor.Position, MaxLockDistance);
             if (hits == 0)
             {
                 return false;
@@ -291,13 +363,13 @@ namespace _App
             return selectedTarget != null && selectedTarget.TargetRoot != null;
         }
 
-        private int OverlapTargets()
+        private int OverlapTargets(Vector3 origin, float radius)
         {
             while (true)
             {
                 int hits = Physics.OverlapSphereNonAlloc(
-                    _actor.Position,
-                    MaxLockDistance,
+                    origin,
+                    radius,
                     _overlapBuffer,
                     _targetMask,
                     QueryTriggerInteraction.Ignore);

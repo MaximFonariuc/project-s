@@ -9,9 +9,12 @@ namespace _App
 
         private readonly ICharacterActionMotionMotor _motor;
         private readonly IPlayerTargetingState _targeting;
+        private readonly IPlayerCombatTargetingQuery _targetingQuery;
 
         private CombatMotionDefinition _definition;
         private Transform _previousConfirmedHitTarget;
+        private ICombatTarget _assistedTarget;
+        private UnityEngine.Object _assistedTargetObject;
         private Transform _sampledHeightTarget;
         private float _actionDuration;
         private float _planarSpeed;
@@ -23,10 +26,12 @@ namespace _App
 
         public CombatMotionController(
             ICharacterActionMotionMotor motor,
-            IPlayerTargetingState targeting)
+            IPlayerTargetingState targeting,
+            IPlayerCombatTargetingQuery targetingQuery)
         {
             _motor = motor ?? throw new ArgumentNullException(nameof(motor));
             _targeting = targeting ?? throw new ArgumentNullException(nameof(targeting));
+            _targetingQuery = targetingQuery ?? throw new ArgumentNullException(nameof(targetingQuery));
         }
 
         public void Begin(
@@ -54,6 +59,7 @@ namespace _App
                 : 0.0f;
             _verticalImpulseApplied = false;
             _isActive = true;
+            AcquireAssistedTarget();
             Advance(0.0f);
         }
 
@@ -116,6 +122,8 @@ namespace _App
             _motor.ClearActionMotion();
             _definition = default;
             _previousConfirmedHitTarget = null;
+            _assistedTarget = null;
+            _assistedTargetObject = null;
             _sampledHeightTarget = null;
             _actionDuration = 0.0f;
             _planarSpeed = 0.0f;
@@ -203,7 +211,9 @@ namespace _App
             out float distance,
             out float height)
         {
-            if (!_definition.FaceTarget && !_definition.TrackTargetHeight)
+            if (!_definition.FaceTarget &&
+                !_definition.TrackTargetHeight &&
+                !_definition.OverridePlanarVelocity)
             {
                 target = null;
                 direction = default;
@@ -219,28 +229,29 @@ namespace _App
                 target = _previousConfirmedHitTarget;
                 aimPosition = _previousConfirmedHitTarget.position;
             }
+            else if (_definition.AllowsTargetFallback)
+            {
+                if (_targeting.IsTargetLocked && _targeting.CurrentTarget != null)
+                {
+                    target = _targeting.CurrentTarget;
+                    aimPosition = _targeting.AimPosition;
+                }
+                else if (_assistedTargetObject != null &&
+                         _assistedTarget != null &&
+                         _assistedTarget.IsTargetable &&
+                         _assistedTarget.TargetRoot != null)
+                {
+                    target = _assistedTarget.TargetRoot;
+                    aimPosition = _assistedTarget.AimPosition;
+                }
+                else
+                {
+                    return FailTarget(out target, out direction, out distance, out height);
+                }
+            }
             else
             {
-                if (_definition.TargetSource == CombatMotionTargetSource.PreviousConfirmedHit)
-                {
-                    target = null;
-                    direction = default;
-                    distance = 0.0f;
-                    height = 0.0f;
-                    return false;
-                }
-
-                if (!_targeting.IsTargetLocked || _targeting.CurrentTarget == null)
-                {
-                    target = null;
-                    direction = default;
-                    distance = 0.0f;
-                    height = 0.0f;
-                    return false;
-                }
-
-                target = _targeting.CurrentTarget;
-                aimPosition = _targeting.AimPosition;
+                return FailTarget(out target, out direction, out distance, out height);
             }
 
             Vector3 offset = aimPosition - _motor.Position;
@@ -251,6 +262,45 @@ namespace _App
                 : Vector3.zero;
             height = Vector3.Dot(offset, _motor.Up);
             return true;
+        }
+
+        private void AcquireAssistedTarget()
+        {
+            if (!_definition.AllowTargetAssist ||
+                !_definition.AllowsTargetFallback ||
+                _previousConfirmedHitTarget != null ||
+                _targeting.IsTargetLocked ||
+                !_targetingQuery.TryGetAttackAssistTarget(
+                    _motor.Position,
+                    _motor.Forward,
+                    _definition.TargetAssistDistance,
+                    _definition.TargetAssistAngle,
+                    out ICombatTarget target))
+            {
+                return;
+            }
+
+            UnityEngine.Object targetObject = target as UnityEngine.Object;
+            if (targetObject == null || target.TargetRoot == null)
+            {
+                return;
+            }
+
+            _assistedTarget = target;
+            _assistedTargetObject = targetObject;
+        }
+
+        private static bool FailTarget(
+            out Transform target,
+            out Vector3 direction,
+            out float distance,
+            out float height)
+        {
+            target = null;
+            direction = default;
+            distance = 0.0f;
+            height = 0.0f;
+            return false;
         }
 
         private Vector3 GetPlanarDirection(Vector3 worldDirection)

@@ -2,7 +2,7 @@
 
 ## Ответственность
 
-`PlayerTargetingController` владеет lock-on state, выбором и переключением цели. Он получает семантические команды ввода, выполняет ограниченный physics query, меняет rotation policy игрока и публикует read-only targeting state для камеры и combat.
+`PlayerTargetingController` владеет lock-on state, выбором и переключением цели. Он получает семантические команды ввода, выполняет ограниченный physics query, меняет rotation policy игрока и публикует read-only targeting state для камеры. Тот же bounded selection backend предоставляет combat отдельный stateless query для soft assist, не превращая выбранную им цель в lock-on.
 
 `CombatTarget` — явная authoring-граница цели. Он определяет корень actor, точку прицеливания и доступность цели. Случайный collider на слое `Enemy` без `CombatTarget` целью не является.
 
@@ -27,6 +27,10 @@ classDiagram
         +IsTargetLocked bool
         +CurrentTarget Transform
         +AimPosition Vector3
+    }
+    class IPlayerCombatTargetingQuery {
+        <<stateless query port>>
+        +TryGetAttackAssistTarget(origin, forward, maxDistance, maxAngle, target) bool
     }
     class ICombatTarget {
         <<target port>>
@@ -78,6 +82,7 @@ classDiagram
 
     IPlayerTargetingCommands <|.. PlayerTargetingController
     IPlayerTargetingState <|.. PlayerTargetingController
+    IPlayerCombatTargetingQuery <|.. PlayerTargetingController
     ICombatTarget <|.. CombatTarget
     CombatTarget --> Health : temporary availability
     PlayerTargetingController --> IPlayerInput
@@ -100,6 +105,8 @@ classDiagram
 - использует `AimPosition`, а не положение случайного limb collider;
 - при первичном захвате выбирает actor ближе к направлению камеры;
 - при переключении выбирает ближайшую цель слева или справа от текущей.
+
+Soft attack assist использует тот же deduplication и availability filter, но получает origin/forward и ограничители от конкретного action. Он выбирает одну цель только при старте атаки по нормализованной сумме углового и дистанционного score. Query не меняет `CurrentTarget`, rotation mode и camera state; hard lock остаётся более сильным источником цели.
 
 Если `CombatTarget` отключён, уничтожен, его `Health` больше не жив или actor вышел за `MaxLockDistance`, controller снимает lock и восстанавливает прежний rotation mode игрока.
 
@@ -128,11 +135,13 @@ flowchart LR
     Health["Health.IsAlive"] --> CombatTarget["CombatTarget"]
     CombatTarget --> Target
     Targeting --> State["IPlayerTargetingState"]
+    Targeting --> Query["IPlayerCombatTargetingQuery"]
     State --> Camera["PlayerCameraController"]
-    State -.-> Combat["Combat consumers"]
+    State -.-> Combat["CombatMotionController"]
+    Query --> Combat
 ```
 
-Targeting зависит от read-only camera orientation и узкой actor boundary. Камера и combat получают только `IPlayerTargetingState`. `CombatTarget` адаптирует Unity hierarchy и опциональный `Health` к контракту цели, поэтому selection больше не зависит от concrete `Character`, enemy AI или body-collider implementation.
+Targeting зависит от read-only camera orientation и узкой actor boundary. Камера получает `IPlayerTargetingState`, а combat — state для hard lock и отдельный `IPlayerCombatTargetingQuery` для one-shot assist. `CombatTarget` адаптирует Unity hierarchy и опциональный `Health` к контракту цели, поэтому selection больше не зависит от concrete `Character`, enemy AI или body-collider implementation.
 
 Concrete-ссылка `CombatTarget -> Health` считается временным техническим долгом prototype flow. При реализации `Character Stats and Resources` она заменяется узким read-only life-state port; `ICombatTarget` и алгоритм выбора цели при этом меняться не должны.
 

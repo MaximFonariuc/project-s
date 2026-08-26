@@ -268,6 +268,10 @@ namespace _App
         [SerializeField] private CombatMotionTargetSource _combatMotionTargetSource =
             CombatMotionTargetSource.LockOnTarget;
         [SerializeField, Min(0.0f)] private float _targetStoppingDistance = 0.8f;
+        [Tooltip("Selects one nearby target when the action starts if hard lock-on is inactive.")]
+        [SerializeField] private bool _allowTargetAssist;
+        [SerializeField, Min(0.01f)] private float _targetAssistDistance = 5.0f;
+        [SerializeField, Range(0.01f, 180.0f)] private float _targetAssistAngle = 55.0f;
 
         [Header("Combat Target Height")]
         [Tooltip("Matches target vertical motion during this bounded combat motion window.")]
@@ -326,6 +330,9 @@ namespace _App
                         _faceCombatTarget,
                         _combatMotionTargetSource,
                         _targetStoppingDistance,
+                        _allowTargetAssist,
+                        _targetAssistDistance,
+                        _targetAssistAngle,
                         _trackTargetHeight,
                         _targetHeightOffset,
                         _targetHeightTolerance,
