@@ -236,6 +236,9 @@ Gameplay timeline использует scaled delta time, поэтому executi
 
 - `Enable` запускает state machine в `Ready` и симметрично подписывает semantic input, dodge, state и outgoing hit events.
 - `Disable` отменяет UniTask action, aborts executor, очищает buffer и outcome, закрывает hitbox, снимает callbacks и останавливает state machine.
+- Ошибка во время запуска action откатывает частично начатый execution через тот
+  же `Abort` boundary: damage-immunity lease освобождается, combat motion
+  очищается, а executor снова допускает следующее действие.
 - Airborne-only action проверяет актуальный environment на каждом frame timeline.
   Приземление имеет приоритет над buffered transition: controller закрывает
   hitbox, завершает motion, отменяет combat presentation и возвращается в

@@ -37,6 +37,9 @@ classDiagram
   recovery, invulnerability and motion windows are evaluated against it.
 - `CombatActionExecutor` owns elapsed time and cleanup. It does not read
   Animator state or clip length.
+- Startup is transactional: if a motion or immunity adapter fails while an
+  execution is beginning, `Abort` rolls the partial state back and leaves no
+  stale motion intent or active execution id.
 - Each invulnerability window owns a disposable lease. Overlapping combat and
   dodge windows compose without one action clearing another owner's immunity.
 - `CombatMotionController` creates collision-safe velocity intents from an

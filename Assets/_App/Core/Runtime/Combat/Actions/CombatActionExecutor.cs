@@ -52,9 +52,10 @@ namespace _App
                 throw new ArgumentOutOfRangeException(nameof(duration));
             }
 
-            int executionId = Begin(definition, duration, previousConfirmedHitTarget);
+            int executionId = 0;
             try
             {
+                executionId = Begin(definition, duration, previousConfirmedHitTarget);
                 while (true)
                 {
                     cancellationToken.ThrowIfCancellationRequested();
@@ -78,7 +79,17 @@ namespace _App
             }
             finally
             {
-                Finish(executionId);
+                if (executionId != 0)
+                {
+                    Finish(executionId);
+                }
+                else
+                {
+                    // Begin marks the executor active before it configures the
+                    // motion adapter. Roll back that partial initialization if
+                    // any adapter rejects the action during startup.
+                    Abort();
+                }
             }
         }
 
