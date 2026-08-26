@@ -115,7 +115,7 @@ The current action contract is:
 | Air light attack | 5 | 0...2 | `Attack/AirAttack1...3` |
 | Grounded named special | 6 | 0 | `Attack/Skill` |
 | Grounded heavy attack | 7 | 0 | `Attack/BaseAttack4` |
-| Launcher | 8 | 0 | `Attack/BaseAttack3` |
+| Launcher | 8 | 0 | `Attack/Launcher` |
 | Air chase | 9 | 0 | `Locomotion/Jump/Jump/JumpRunning` |
 | Sheathe two-handed | 3 | 0 | `SwitchWeapon Layer/TwoHanded_Sheathe` |
 | Draw two-handed | 3 | 1 | `SwitchWeapon Layer/TwoHanded_Unsheathe` |
@@ -199,7 +199,7 @@ rendered frame with `UniTask.NextFrame`, so a single `Time.deltaTime` cannot be
 counted multiple times.
 
 The source motions assigned to `RollFront`, `RollBack`, `BaseAttack1...3`,
-`BaseAttack4`, `AirAttack1...3` and `Skill`
+`BaseAttack4`, `Launcher`, `AirAttack1...3` and `Skill`
 are unique override slots. Do not reuse one source clip for two semantically
 different states because a single override would then replace both usages.
 Replacement clip names follow the same slot names for readability, although
@@ -207,14 +207,16 @@ Unity technically keys the override by the source clip asset.
 
 ## Current content
 
-The Player prefab references `XController.controller` as its base and currently
-contains no weapon-specific override binding. Two-handed gameplay therefore uses
-the same clip table through the explicit fallback. Additional weapon styles can
-extend the serialized binding list without changing gameplay or Animator state
-names after a compatible override asset exists.
+The Player prefab references `XController.controller` as its base, starts with
+`DualHand`, and binds that weapon type to `DualSwords.overrideController`.
+Unsupported weapon types still use the base clip table through the explicit
+fallback. Additional weapon styles extend the serialized binding list without
+changing gameplay or Animator state names after a compatible override asset
+exists.
 
-The three-step ground light combo, standalone grounded `BaseAttack4` heavy,
-three air attacks and grounded `Skill` state are entered
+The DualSwords three-step ground light combo, standalone grounded
+`BaseAttack4` heavy, dedicated `Launcher`, three air attacks and grounded
+`Skill` state are entered
 by the Project S adapter with a `0.12 s` fixed-time crossfade. Their natural exits
 remain authored in XController; an explicit gameplay cancellation uses a
 `0.12 s` crossfade back to locomotion. A new combo step or named special interrupts

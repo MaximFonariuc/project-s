@@ -115,6 +115,39 @@ classDiagram
 мешает обычному rapid-input продолжению. Hold-, directional- и lock-on-specific
 команды добавляются только когда для них выбраны клипы и подтверждена польза в
 combat UX.
+## DualSwords vertical slice
+
+`DualSwords.overrideController` использует `XController` как неизменяемый base
+graph и заменяет только уникальные Humanoid motion slots. Общая locomotion и
+реакции не зависят от оружия.
+
+| Presentation slot | Frank Humanoid clip | Gameplay role |
+| --- | --- | --- |
+| `BaseAttack1` | `Frank_RPG_Dual_Combo01_1_IP` | Light 1 |
+| `BaseAttack2` | `Frank_RPG_Dual_Combo01_2_IP` | Light 2 |
+| `BaseAttack3` | `Frank_RPG_Dual_Combo01_3_IP` | Light 3 |
+| `BaseAttack4` | `Frank_RPG_Dual_Skill03_PowerAttack_IP` | Heavy finisher |
+| `Launcher` | `Frank_RPG_Dual_Air_Combo_Start_ZeroHeight_IP` | hit-confirm launcher |
+| `AirAttack1...3` | `Frank_RPG_Dual_Air_Combo_1...3_ZeroHeight_IP` | aerial chain |
+| `Skill` | `Frank_RPG_Dual_Skill01_WhirlWind_IP` | weapon special |
+| `RollFront/Back` | `Frank_RPG_Dual_Evade_F/B_IP` | dodge presentation |
+
+Профиль использует длительности исходных 60 FPS клипов. Hitbox windows сверены
+с пиками скорости обеих кистей на общем Frank Humanoid rig: Light 1 — около
+`0.36`, Light 2 — `0.27`, Light 3 — `0.23`, Heavy — `0.48`, Launcher — `0.36`
+normalized time. Поэтому hitbox, chain и cancel windows принадлежат gameplay
+профилю, но соответствуют видимым фазам конкретного moveset.
+
+Все выбранные combat и dodge клипы — `InPlace`. `Animator.applyRootMotion`
+остаётся выключенным: translation, air chase и target correction выполняются
+через `CharacterMotor` и проходят обычные collision sweeps. Draw/Putup также не
+передают root delta в gameplay.
+
+Player стартует с `EWeaponType.DualHand`; привязанный override выбирается
+`PlayerAnimatorLoadout`. Пока финальный prefab двух мечей не создан,
+`PlayerWeaponRig` использует существующие hand hitboxes как явный prototype
+fallback, поэтому визуальный loadout не отключает подтверждение попаданий.
+
 
 ## Animation boundary
 

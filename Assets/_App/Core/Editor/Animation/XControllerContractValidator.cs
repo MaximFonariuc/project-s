@@ -27,6 +27,7 @@ namespace _App.Editor.Animation
             XControllerAnimationContract.Attack1StatePath,
             XControllerAnimationContract.Attack2StatePath,
             XControllerAnimationContract.Attack3StatePath,
+            XControllerAnimationContract.LauncherStatePath,
             XControllerAnimationContract.HeavyAttackStatePath,
             XControllerAnimationContract.SpecialAttackStatePath,
             XControllerAnimationContract.HitStunStatePath,
@@ -49,6 +50,7 @@ namespace _App.Editor.Animation
             XControllerAnimationContract.Attack1StatePath,
             XControllerAnimationContract.Attack2StatePath,
             XControllerAnimationContract.Attack3StatePath,
+            XControllerAnimationContract.LauncherStatePath,
             XControllerAnimationContract.HeavyAttackStatePath,
             XControllerAnimationContract.SpecialAttackStatePath
         };

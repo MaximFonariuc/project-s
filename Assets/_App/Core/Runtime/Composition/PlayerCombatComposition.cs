@@ -85,7 +85,8 @@ namespace _App
                         resolver.Resolve<PlayerWeaponTransitionAction>(),
                         resolver.Resolve<ModularStateMachine.IStateMachine<PlayerCombatPhase>>(),
                         resolver.Resolve<ICombatClock>(),
-                        player.CharacterType),
+                        player.CharacterType,
+                        player.StartingWeapon),
                     Lifetime.Scoped)
                 .AsSelf()
                 .As<IPlayerCombatCommands>()

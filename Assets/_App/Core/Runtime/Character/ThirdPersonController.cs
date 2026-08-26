@@ -31,6 +31,7 @@ namespace _App
         [SerializeField] private CharacterFeatureSet _characterFeatures;
 
         [Header("CombatController")]
+        [SerializeField] private EWeaponType _startingWeapon = EWeaponType.DualHand;
         [SerializeField] private PlayerCombatActionProfile _combatActionProfile;
 
         [Header("Combat Reactions")]
@@ -53,6 +54,7 @@ namespace _App
         internal PlayerAnimationOverrideBinding[] AnimationOverrides => _animationOverrides;
         internal Weapon[] UnarmedHitboxes => _unarmedHitboxes;
         internal ECharacterType CharacterType => _characterType;
+        internal EWeaponType StartingWeapon => _startingWeapon;
         internal PlayerCombatActionProfile CombatActionProfile => _combatActionProfile;
         internal CharacterReactionProfile ReactionProfile => _reactionProfile;
         internal Transform WeaponHolder => _weaponHolder;

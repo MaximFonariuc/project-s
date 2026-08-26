@@ -55,7 +55,11 @@ namespace _App
 
         public void OpenHitbox(CombatAttackExecution execution)
         {
-            if (_weaponType == EWeaponType.Unarmed)
+            // The animation-first combat prototype does not yet own final weapon
+            // prefabs. Keep the verified hand hitboxes active until a concrete
+            // weapon rig is authored, so selecting a visual loadout cannot make
+            // combat silently stop producing hit candidates.
+            if (_weaponType == EWeaponType.Unarmed || _weapon == null)
             {
                 for (int i = 0; i < _unarmedHitboxes.Length; i++)
                 {

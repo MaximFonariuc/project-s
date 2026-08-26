@@ -35,6 +35,7 @@ namespace _App
         private readonly PlayerWeaponTransitionAction _weaponTransitionAction;
         private readonly IStateMachine<PlayerCombatPhase> _stateMachine;
         private readonly ICombatClock _clock;
+        private readonly EWeaponType _preferredWeapon;
         private readonly ECharacterType _characterType;
         private readonly InputBufferEntryPredicate<PlayerCombatCommandId> _bufferedTransitionPredicate;
         private readonly InputBufferEntryPredicate<PlayerCombatCommandId> _bufferedEntryPredicate;
@@ -61,7 +62,7 @@ namespace _App
 
         public PlayerCombatPhase Phase =>
             _stateMachine.CurrentStateId ?? PlayerCombatPhase.Ready;
-        public EWeaponType CurrentWeapon { get; private set; } = EWeaponType.Unarmed;
+        public EWeaponType CurrentWeapon { get; private set; }
         public int ComboIndex { get; private set; }
         public bool IsHitWindowOpen { get; private set; }
 
@@ -98,7 +99,8 @@ namespace _App
             PlayerWeaponTransitionAction weaponTransitionAction,
             IStateMachine<PlayerCombatPhase> stateMachine,
             ICombatClock clock,
-            ECharacterType characterType)
+            ECharacterType characterType,
+            EWeaponType startingWeapon)
         {
             _input = input ?? throw new ArgumentNullException(nameof(input));
             _actor = actor ?? throw new ArgumentNullException(nameof(actor));
@@ -114,6 +116,10 @@ namespace _App
                 throw new ArgumentNullException(nameof(weaponTransitionAction));
             _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
             _clock = clock ?? throw new ArgumentNullException(nameof(clock));
+            _preferredWeapon = startingWeapon == EWeaponType.None
+                ? EWeaponType.Unarmed
+                : startingWeapon;
+            CurrentWeapon = _preferredWeapon;
             _characterType = characterType;
             _bufferedTransitionPredicate = CanAcceptBufferedTransition;
             _bufferedEntryPredicate = CanAcceptBufferedEntry;
@@ -754,7 +760,7 @@ namespace _App
 
         private void OnSwitchWeaponRequested()
         {
-            ToggleWeaponAsync(EWeaponType.TwoHanded).Forget();
+            ToggleWeaponAsync(_preferredWeapon).Forget();
         }
 
         private void OnDodgeAccepted()

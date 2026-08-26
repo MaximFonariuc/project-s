@@ -118,7 +118,7 @@ namespace _App
             out AnimationActionPlayback playback)
         {
             ThrowIfDisposed();
-            if (weaponType != EWeaponType.TwoHanded)
+            if (weaponType is not EWeaponType.TwoHanded and not EWeaponType.DualHand)
             {
                 playback = default;
                 return false;
