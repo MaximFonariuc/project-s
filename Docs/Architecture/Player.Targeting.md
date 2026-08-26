@@ -102,11 +102,14 @@ classDiagram
 - отклоняет disabled, destroyed и недоступные цели;
 - сводит составные colliders к одному actor через `TargetId`;
 - отбрасывает actor вне view cone;
+- отклоняет actor, если первый non-trigger ray hit принадлежит препятствию или другой цели;
 - использует `AimPosition`, а не положение случайного limb collider;
 - при первичном захвате выбирает actor ближе к направлению камеры;
 - при переключении выбирает ближайшую цель слева или справа от текущей.
 
-Soft attack assist использует тот же deduplication и availability filter, но получает origin/forward и ограничители от конкретного action. Он выбирает одну цель только при старте атаки по нормализованной сумме углового и дистанционного score. Query не меняет `CurrentTarget`, rotation mode и camera state; hard lock остаётся более сильным источником цели.
+Soft attack assist использует тот же deduplication, availability и line-of-sight filter, но получает origin/forward и ограничители от конкретного action. Он выбирает одну цель только при старте атаки по нормализованной сумме углового и дистанционного score. Query не меняет `CurrentTarget`, rotation mode и camera state; hard lock остаётся более сильным источником цели.
+
+Visibility ray исключает physics layer `Player`, игнорирует triggers и принимает цель, только если ближайший hit разрешается в тот же `TargetId`. Для hard-lock acquisition origin берётся из `ICameraOrientation.Position`; для attack assist — из позиции actor со смещением вверх. Проверка выполняется при выборе, а не каждый кадр удержания lock: потеря цели за препятствием позже потребует отдельной grace-time policy, чтобы камера не дёргалась на кратких перекрытиях.
 
 Если `CombatTarget` отключён, уничтожен, его `Health` больше не жив или actor вышел за `MaxLockDistance`, controller снимает lock и восстанавливает прежний rotation mode игрока.
 
@@ -129,7 +132,7 @@ Collider цели должен находиться на physics layer `Enemy`. 
 flowchart LR
     Input["Semantic lock-on input"] --> Targeting["PlayerTargetingController"]
     CameraView["ICameraOrientation"] --> Targeting
-    Physics["Enemy layer query"] --> Targeting
+    Physics["Enemy overlap + visibility ray"] --> Targeting
     Actor["IPlayerTargetingActor"] --> Targeting
     Target["ICombatTarget"] --> Targeting
     Health["Health.IsAlive"] --> CombatTarget["CombatTarget"]

@@ -22,6 +22,7 @@ namespace _App
         private readonly IPlayerTargetingActor _actor;
         private readonly ICameraOrientation _camera;
         private readonly LayerMask _targetMask;
+        private readonly int _visibilityMask;
         private readonly HashSet<int> _visitedTargets = new HashSet<int>();
 
         private Collider[] _overlapBuffer = new Collider[InitialBufferSize];
@@ -54,6 +55,7 @@ namespace _App
             _actor = actor ?? throw new ArgumentNullException(nameof(actor));
             _camera = camera ?? throw new ArgumentNullException(nameof(camera));
             _targetMask = LayerMask.GetMask("Enemy");
+            _visibilityMask = Physics.DefaultRaycastLayers & ~LayerMask.GetMask("Player");
 
             if (_targetMask.value == 0)
             {
@@ -233,7 +235,8 @@ namespace _App
                 }
 
                 float angle = Vector3.Angle(planarForward, planarOffset / distance);
-                if (angle > maxAngle)
+                if (angle > maxAngle ||
+                    !HasLineOfSight(origin + up, candidateTarget))
                 {
                     continue;
                 }
@@ -329,7 +332,8 @@ namespace _App
                 }
 
                 float viewAngle = Vector3.Angle(_camera.Forward, viewDirection / distance);
-                if (viewAngle > MaxViewAngle)
+                if (viewAngle > MaxViewAngle ||
+                    !HasLineOfSight(_camera.Position, candidateTarget))
                 {
                     continue;
                 }
@@ -392,6 +396,26 @@ namespace _App
                    target.IsTargetable &&
                    target.TargetRoot != null &&
                    target.TargetRoot != _actor.Root;
+        }
+
+        private bool HasLineOfSight(Vector3 origin, ICombatTarget target)
+        {
+            Vector3 offset = target.AimPosition - origin;
+            float distance = offset.magnitude;
+            if (distance <= 0.0001f ||
+                !Physics.Raycast(
+                    origin,
+                    offset / distance,
+                    out RaycastHit hit,
+                    distance,
+                    _visibilityMask,
+                    QueryTriggerInteraction.Ignore))
+            {
+                return true;
+            }
+
+            return TryResolveTarget(hit.collider, out ICombatTarget visibleTarget) &&
+                   visibleTarget.TargetId == target.TargetId;
         }
 
         private float HorizontalViewPosition(Vector3 worldPosition)
