@@ -69,6 +69,9 @@ classDiagram
 - Timed reaction states have no Animator-owned gameplay transitions. Knockdown
   completion explicitly enters `GetUp`; get-up completion cancels presentation
   back to locomotion. Both death states hold their final frame until revive.
+- Vertical impact is signed: positive speed launches along actor up, while
+  negative speed drives an airborne actor down. A downward impact becomes
+  `Knockdown` only when the motor confirms landing and is not applied twice.
 - `CombatTrainingTarget.prefab` duplicates the Player visual and generated body
   hurtboxes, but removes player input, locomotion, combat and weapon ownership.
   It adds `CombatTarget`, `CharacterReactionHost` and

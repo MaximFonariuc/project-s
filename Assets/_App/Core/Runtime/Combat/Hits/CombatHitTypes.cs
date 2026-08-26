@@ -148,11 +148,6 @@ namespace _App
                 throw new ArgumentOutOfRangeException(nameof(knockback));
             }
 
-            if (verticalKnockback < 0.0f)
-            {
-                throw new ArgumentOutOfRangeException(nameof(verticalKnockback));
-            }
-
             Damage = damage;
             StaggerDamage = staggerDamage;
             Knockback = knockback;

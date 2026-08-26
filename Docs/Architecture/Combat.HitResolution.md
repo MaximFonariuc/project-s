@@ -168,7 +168,9 @@ Health.Damaged -> target-local reaction / incoming hit stop
 - Projectile или area attack могут иметь собственный physics adapter и отдельный `CombatAttackExecution`, не меняя `Health` и `Hurtbox`.
 - Stagger/poise consumer читает `StaggerDamage` и `ReactionId` из подтверждённого result.
 - Knockback consumer интерпретирует `Knockback` как направленную составляющую,
-  а `VerticalKnockback` как отдельную скорость вдоль `ICharacterImpactMotor.Up`.
+  а `VerticalKnockback` как знаковую скорость вдоль
+  `ICharacterImpactMotor.Up`: положительное значение запускает цель вверх,
+  отрицательное выполняет slam вниз.
   Разделение не заставляет resolver или weapon угадывать вертикаль из геометрии
   overlap; обе составляющие применяются одним target-local motor impact.
 - Исходящий hit stop и outcome текущего player action подписываются на `ICombatHitEvents`, входящий hit stop — на target-local `Health.Damaged`. Future VFX, audio и camera adapters также потребляют подтверждённый result и не участвуют в расчёте damage.

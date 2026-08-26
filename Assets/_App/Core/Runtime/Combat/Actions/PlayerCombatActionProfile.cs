@@ -196,7 +196,9 @@ namespace _App
         [SerializeField, Min(0)] private int _damage = 10;
         [SerializeField, Min(0.0f)] private float _staggerDamage = 10.0f;
         [SerializeField, Min(0.0f)] private float _knockback;
-        [SerializeField, Min(0.0f)] private float _verticalKnockback;
+        [Tooltip(
+            "Signed vertical impact speed. Positive launches the target; negative slams it down.")]
+        [SerializeField] private float _verticalKnockback;
         [SerializeField] private string _reactionId = "hit.light";
         [SerializeField, Min(0.0f)] private float _hitStopDuration = 0.06f;
         [SerializeField, Range(0.0f, 1.0f)] private float _hitStopTimeScale;

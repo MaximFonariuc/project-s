@@ -385,8 +385,8 @@ MonoBehaviour:
       _invulnerabilityEnd: 0
       _damage: 22
       _staggerDamage: 20
-      _knockback: 5
-      _verticalKnockback: 0
+      _knockback: 0.35
+      _verticalKnockback: -12
       _reactionId: hit.heavy
       _hitStopDuration: 0.08
       _hitStopTimeScale: 0
@@ -405,8 +405,8 @@ MonoBehaviour:
       _combatMotionEnd: 0.55
       _overridePlanarVelocity: 1
       _combatMotionDistance: 0.45
-      _verticalMotionMode: 2
-      _combatVerticalVelocity: -1.5
+      _verticalMotionMode: 1
+      _combatVerticalVelocity: -9
       _combatVerticalImpulse: 0
       _overrideVerticalVelocityOnImpulse: 1
       _faceCombatTarget: 1

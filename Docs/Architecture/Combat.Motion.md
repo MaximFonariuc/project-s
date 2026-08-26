@@ -181,9 +181,11 @@ Timeline использует scaled `ICombatClock`: во время hit stop о
 - Rotational root motion (`Rotation`, `Full`) нельзя объединять с `Face Combat Target` одного action.
 - Новые vertical-поля имеют безопасные defaults: `PreserveVelocity` и impulse `0`. Prototype combo сохраняет окно `0.0–0.3` и планарную дистанцию `0.75`; prototype skill — `1.0`; weapon transition не использует combat motion.
 - Текущий player profile использует vertical impulse и bounded height tracking
-  в `movement.air-chase`. Воздушные combo actions сохраняют launcher target для
-  planar/facing assist и используют `MinimumVelocity(-1.5 m/s)` для
-  ограниченного air hang.
+  в `movement.air-chase`. Первые два воздушных combo actions сохраняют launcher
+  target для planar/facing assist и используют `MinimumVelocity(-1.5 m/s)` для
+  ограниченного air hang. `combo.air.2` намеренно меняет policy на
+  `OverrideVelocity(-9 m/s)`: это контролируемый dive до столкновения, после
+  которого существующая airborne-action landing boundary очищает motion.
 
 ## Lifecycle и отказоустойчивость
 

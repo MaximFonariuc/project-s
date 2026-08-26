@@ -66,10 +66,15 @@ launcher доступен только из cancel window `combo.ground.0` ил�
 | 2 | 1.917 s | 0.11–0.35 | disabled | 0.62–0.90 | 22 | 0.45 m |
 
 Начало chain windows выбрано по измеренному pose seam retargeted clips, а не по
-произвольному общему значению. `MinimumVelocity(-1.5 m/s)` создаёт ограниченный
-air hang только до `0.58 / 0.58 / 0.55` normalized time, не выключая gravity на
-весь action. Planar и vertical displacement по-прежнему исполняет motor; Animator
-root motion отключён.
+произвольному общему значению. Steps `0` и `1` используют
+`MinimumVelocity(-1.5 m/s)` для ограниченного air hang до `0.58` normalized
+time. Finisher `combo.air.2` вместо hang задаёт контролируемый dive игрока
+`OverrideVelocity(-9 m/s)` и цели signed impact `VerticalKnockback(-12 m/s)`.
+Его planar knockback ограничен `0.35 m/s`, поэтому цель вбивается вниз, а не
+вылетает из contact pair. После подтверждённого приземления цель проходит
+`Airborne → Knockdown → GetUp`; приземление игрока завершает airborne action и
+возвращает locomotion authority. Planar и vertical displacement по-прежнему
+исполняет motor; Animator root motion отключён.
 
 ## Дерево классов и зависимости
 

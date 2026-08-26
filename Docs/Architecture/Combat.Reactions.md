@@ -144,7 +144,7 @@ stateDiagram-v2
     GetUp --> Airborne: leaves ground
     GetUp --> Stable: get-up duration elapsed
     Airborne --> HitStun: grounded repeated hit
-    Airborne --> Knockdown: grounded heavy hit
+    Airborne --> Knockdown: downward slam lands / grounded heavy hit
     Airborne --> Airborne: repeated air hit
     HitStun --> Stable: duration elapsed
     Airborne --> Stable: minimum duration elapsed and grounded
@@ -157,11 +157,13 @@ stateDiagram-v2
 ```
 
 Ненулевой planar или vertical knockback принудительно создаёт реакцию даже до
-полного расхода poise. `VerticalKnockback` немедленно выбирает `Airborne` и
-применяется вдоль локального `Up`; направленный `Knockback` остаётся отдельной
-составляющей. Airborne выдерживает минимальную authored duration, но не
-возвращается в `Stable`, пока motor не подтвердит приземление. На земле сильный
-planar impulse по-прежнему выбирает `Knockdown`.
+полного расхода poise. Положительный `VerticalKnockback` запускает цель вверх;
+отрицательный направляет её вниз вдоль локального `Up`. Уже воздушная цель
+остаётся в `Airborne` до подтверждённого motor-приземления. Если последний
+вертикальный impact был отрицательным, приземление переводит её в
+`Knockdown → GetUp` без повторного применения knockback. Отрицательный impact
+по уже стоящей на земле цели сразу выбирает `Knockdown`; сильный planar impulse
+сохраняет прежнее правило.
 
 ## Поток подтверждённого попадания
 

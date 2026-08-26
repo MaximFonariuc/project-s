@@ -9,6 +9,7 @@ namespace _App
         IDisposable
     {
         private const float DirectionThresholdSqr = 0.0001f;
+        private const float ImpactThreshold = 0.0001f;
 
         private readonly Health _health;
         private readonly CharacterPoise _poise;
@@ -145,18 +146,30 @@ namespace _App
             }
 
             bool poiseBroken = _poise.ApplyStagger(hit.StaggerDamage);
-            bool hasImpact = hit.Knockback > 0.0f || hit.VerticalKnockback > 0.0f;
+            bool hasVerticalImpact =
+                Mathf.Abs(hit.VerticalKnockback) > ImpactThreshold;
+            bool hasImpact = hit.Knockback > 0.0f || hasVerticalImpact;
             if (!poiseBroken && !hasImpact)
             {
                 return;
             }
 
-            if (hit.VerticalKnockback > 0.0f || !_impactMotor.IsGrounded)
+            if (!_impactMotor.IsGrounded ||
+                hit.VerticalKnockback > ImpactThreshold)
             {
                 EnterTimedReaction(
                     CharacterReactionStateId.Airborne,
                     in hit,
                     _settings.AirborneDuration);
+                return;
+            }
+
+            if (hit.VerticalKnockback < -ImpactThreshold)
+            {
+                EnterTimedReaction(
+                    CharacterReactionStateId.Knockdown,
+                    in hit,
+                    _settings.KnockdownDuration);
                 return;
             }
 
@@ -266,11 +279,19 @@ namespace _App
 
         private void AdvanceTimedReaction(float elapsedPastEnd)
         {
-            if (_stateMachine.CurrentStateId == CharacterReactionStateId.Airborne &&
-                !_impactMotor.IsGrounded)
+            if (_stateMachine.CurrentStateId == CharacterReactionStateId.Airborne)
             {
-                _remainingDuration = 0.0f;
-                return;
+                if (!_impactMotor.IsGrounded)
+                {
+                    _remainingDuration = 0.0f;
+                    return;
+                }
+
+                if (_lastHit.VerticalKnockback < -ImpactThreshold)
+                {
+                    EnterLandingKnockdown();
+                    return;
+                }
             }
 
             if (_stateMachine.CurrentStateId == CharacterReactionStateId.Knockdown)
@@ -302,13 +323,29 @@ namespace _App
             _presentation.Present(in snapshot);
         }
 
+        private void EnterLandingKnockdown()
+        {
+            _remainingDuration = _settings.KnockdownDuration;
+            var context = new CharacterReactionContext(
+                in _lastHit,
+                _settings.KnockdownDuration);
+            _stateMachine.ChangeState<
+                CharacterKnockdownState,
+                CharacterReactionContext>(context);
+
+            CharacterReactionSnapshot snapshot = CreateSnapshot();
+            _presentation.Present(in snapshot);
+            ReactionStarted?.Invoke(snapshot);
+        }
+
         private void ApplyKnockback(in CombatHitResult hit)
         {
             Vector3 velocity = Vector3.zero;
             if (hit.Knockback > 0.0f && hit.Direction.sqrMagnitude > DirectionThresholdSqr)
             {
                 Vector3 direction = hit.Direction;
-                if (_impactMotor.IsGrounded || hit.VerticalKnockback > 0.0f)
+                if (_impactMotor.IsGrounded ||
+                    Mathf.Abs(hit.VerticalKnockback) > ImpactThreshold)
                 {
                     direction = Vector3.ProjectOnPlane(direction, _impactMotor.Up);
                 }
@@ -319,7 +356,7 @@ namespace _App
                 }
             }
 
-            if (hit.VerticalKnockback > 0.0f)
+            if (Mathf.Abs(hit.VerticalKnockback) > ImpactThreshold)
             {
                 Vector3 up = _impactMotor.Up;
                 if (up.sqrMagnitude <= DirectionThresholdSqr)
