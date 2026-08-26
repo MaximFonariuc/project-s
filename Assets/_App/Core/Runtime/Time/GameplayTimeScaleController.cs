@@ -8,14 +8,39 @@ namespace _App
         IGameplayTimeScaleState,
         IDisposable
     {
+        private const int RequestCapacity = 32;
+
+        private struct ActiveRequest
+        {
+            public float RemainingTime;
+            public float Scale;
+
+            public bool IsActive => RemainingTime > 0.0f;
+
+            public void Set(in GameplayTimeScaleRequest request)
+            {
+                RemainingTime = request.Duration;
+                Scale = request.Scale;
+            }
+
+            public void Clear()
+            {
+                RemainingTime = 0.0f;
+                Scale = 1.0f;
+            }
+        }
+
         private readonly ITimeScaleBackend _backend;
+        private readonly ActiveRequest[] _requests = new ActiveRequest[RequestCapacity];
 
         private float _baselineScale = 1.0f;
-        private float _requestScale = 1.0f;
+        private float _effectiveRequestScale = 1.0f;
         private float _remainingUnscaledTime;
+        private int _activeRequestCount;
+        private bool _reportedSaturation;
         private bool _enabled;
 
-        public bool IsActive => _enabled && _remainingUnscaledTime > 0.0f;
+        public bool IsActive => _enabled && _activeRequestCount > 0;
         public float CurrentScale => _backend.TimeScale;
         public float RemainingUnscaledTime => _remainingUnscaledTime;
 
@@ -32,8 +57,7 @@ namespace _App
             }
 
             _baselineScale = Mathf.Max(0.0f, _backend.TimeScale);
-            _requestScale = 1.0f;
-            _remainingUnscaledTime = 0.0f;
+            ClearRequests();
             _enabled = true;
         }
 
@@ -56,12 +80,31 @@ namespace _App
                     "Gameplay time scale controller must be enabled before accepting requests.");
             }
 
-            bool wasActive = IsActive;
-            _remainingUnscaledTime = Mathf.Max(_remainingUnscaledTime, request.Duration);
-            _requestScale = wasActive
-                ? Mathf.Min(_requestScale, request.Scale)
-                : request.Scale;
-            _backend.TimeScale = _baselineScale * _requestScale;
+            int slot = FindAvailableSlot();
+            if (slot < 0)
+            {
+                slot = FindShortestRequest();
+                if (!_reportedSaturation)
+                {
+                    Debug.LogWarning(
+                        $"Gameplay time scale request capacity ({RequestCapacity}) was saturated. " +
+                        "The shortest requests will be conservatively merged.");
+                    _reportedSaturation = true;
+                }
+
+                ActiveRequest existing = _requests[slot];
+                _requests[slot].RemainingTime = Mathf.Max(
+                    existing.RemainingTime,
+                    request.Duration);
+                _requests[slot].Scale = Mathf.Min(existing.Scale, request.Scale);
+            }
+            else
+            {
+                _requests[slot].Set(in request);
+                _activeRequestCount++;
+            }
+
+            ApplyEffectiveScale();
         }
 
         public void Tick(float unscaledDeltaTime)
@@ -71,13 +114,26 @@ namespace _App
                 return;
             }
 
-            _remainingUnscaledTime = Mathf.Max(
-                0.0f,
-                _remainingUnscaledTime - unscaledDeltaTime);
-            if (_remainingUnscaledTime <= 0.0f)
+            for (int i = 0; i < _requests.Length; i++)
             {
-                RestoreBaseline();
+                if (!_requests[i].IsActive)
+                {
+                    continue;
+                }
+
+                _requests[i].RemainingTime = Mathf.Max(
+                    0.0f,
+                    _requests[i].RemainingTime - unscaledDeltaTime);
+                if (_requests[i].IsActive)
+                {
+                    continue;
+                }
+
+                _requests[i].Clear();
+                _activeRequestCount--;
             }
+
+            ApplyEffectiveScale();
         }
 
         public void Dispose()
@@ -88,8 +144,71 @@ namespace _App
         private void RestoreBaseline()
         {
             _backend.TimeScale = _baselineScale;
-            _requestScale = 1.0f;
+            ClearRequests();
+        }
+
+        private int FindAvailableSlot()
+        {
+            for (int i = 0; i < _requests.Length; i++)
+            {
+                if (!_requests[i].IsActive)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        private int FindShortestRequest()
+        {
+            int shortestIndex = 0;
+            float shortestTime = _requests[0].RemainingTime;
+            for (int i = 1; i < _requests.Length; i++)
+            {
+                if (_requests[i].RemainingTime >= shortestTime)
+                {
+                    continue;
+                }
+
+                shortestIndex = i;
+                shortestTime = _requests[i].RemainingTime;
+            }
+
+            return shortestIndex;
+        }
+
+        private void ApplyEffectiveScale()
+        {
+            float scale = 1.0f;
+            float remainingTime = 0.0f;
+            for (int i = 0; i < _requests.Length; i++)
+            {
+                if (!_requests[i].IsActive)
+                {
+                    continue;
+                }
+
+                scale = Mathf.Min(scale, _requests[i].Scale);
+                remainingTime = Mathf.Max(remainingTime, _requests[i].RemainingTime);
+            }
+
+            _effectiveRequestScale = scale;
+            _remainingUnscaledTime = remainingTime;
+            _backend.TimeScale = _baselineScale * _effectiveRequestScale;
+        }
+
+        private void ClearRequests()
+        {
+            for (int i = 0; i < _requests.Length; i++)
+            {
+                _requests[i].Clear();
+            }
+
+            _effectiveRequestScale = 1.0f;
             _remainingUnscaledTime = 0.0f;
+            _activeRequestCount = 0;
+            _reportedSaturation = false;
         }
     }
 }

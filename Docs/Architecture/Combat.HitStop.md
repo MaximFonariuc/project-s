@@ -9,7 +9,7 @@
 - hit stop возникает только после принятого `Health` попадания;
 - один и тот же путь работает для удара игрока и входящего урона игроку;
 - duration измеряется unscaled time и завершается даже при `Time.timeScale == 0`;
-- повторные запросы продлевают оставшееся время и сохраняют самый сильный freeze;
+- overlapping запросы сохраняют собственные duration/scale и корректно ослабевают по мере истечения;
 - исходный scale гарантированно восстанавливается при завершении, disable, dispose или выгрузке gameplay scope;
 - прямые записи в `Time.timeScale` из Combat, Animation, Camera и VFX не требуются.
 
@@ -73,6 +73,11 @@ classDiagram
         +Tick(unscaledDeltaTime)
         +Request(request)
     }
+    class ActiveRequest {
+        <<bounded runtime slot>>
+        +RemainingTime float
+        +Scale float
+    }
     class ITimeScaleBackend {
         <<Unity API port>>
         +TimeScale float
@@ -95,6 +100,7 @@ classDiagram
     GameplayTimeScaleController ..|> IGameplayTimeScaleRequests
     GameplayTimeScaleController ..|> IGameplayTimeScaleState
     GameplayTimeScaleController --> ITimeScaleBackend
+    GameplayTimeScaleController *-- ActiveRequest : fixed capacity 32
     UnityTimeScaleBackend ..|> ITimeScaleBackend
     PlayerActorController --> CombatHitStopController : lifecycle
     PlayerActorController --> GameplayTimeScaleController : lifecycle / unscaled tick
@@ -133,14 +139,16 @@ sequenceDiagram
 
 ## Агрегация запросов
 
-`GameplayTimeScaleController` поддерживает один агрегированный request:
+`GameplayTimeScaleController` хранит до 32 независимых активных request в заранее выделенных slots:
 
-- remaining duration становится максимумом текущего и нового duration;
-- request scale становится минимумом текущего и нового scale;
+- каждый request уменьшает собственный remaining duration по unscaled clock;
+- effective scale в текущем кадре равен минимуму scale ещё живых request;
+- `RemainingUnscaledTime` показывает максимальное оставшееся время среди них;
 - `0` означает полный freeze, `0.5` — половинную скорость, `1` — отсутствие замедления;
-- завершение агрегированного окна единожды восстанавливает scale, захваченный при `Enable`.
+- когда сильный короткий freeze истёк, более длинный слабый slow продолжает работу со своим scale;
+- после последнего request восстанавливается scale, захваченный при `Enable`.
 
-Такая политика детерминирована, не создаёт коллекций в hot path и подходит для коротких overlapping hits. Она намеренно не моделирует последовательный стек slow-motion эффектов. Если появятся cutscene/menu/ability time domains с разными приоритетами, они должны расширить единого owner, а не писать в `Time.timeScale` параллельно.
+Массив создаётся вместе с controller, но `Request` и `Tick` не создают коллекций. Если одновременно живы более 32 эффектов, controller один раз сообщает saturation и консервативно объединяет новый request с самым коротким: берёт больший duration и меньший scale. Обычный combat flow до этой ветки не доходит. Если появятся cutscene/menu/ability time domains с разными приоритетами, они должны расширить единого owner, а не писать в `Time.timeScale` параллельно.
 
 ## Time policy
 
