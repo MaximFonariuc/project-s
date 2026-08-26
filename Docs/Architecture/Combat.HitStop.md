@@ -8,6 +8,7 @@
 
 - hit stop возникает только после принятого `Health` попадания;
 - один и тот же путь работает для удара игрока и входящего урона игроку;
+- global hit stream фильтруется по source игрока, поэтому входящий hit не создаёт второй request после `Health.Damaged`;
 - duration измеряется unscaled time и завершается даже при `Time.timeScale == 0`;
 - overlapping запросы сохраняют собственные duration/scale и корректно ослабевают по мере истечения;
 - исходный scale гарантированно восстанавливается при завершении, disable, dispose или выгрузке gameplay scope;
@@ -53,6 +54,10 @@ classDiagram
         +Enable()
         +Disable()
     }
+    class IPlayerCombatActor {
+        <<local actor identity>>
+        +Root Transform
+    }
     class IGameplayTimeScaleRequests {
         <<request port>>
         +Request(request)
@@ -95,6 +100,7 @@ classDiagram
     CombatHitResult *-- CombatHitStop
     CombatHitStopController --> ICombatHitEvents : outgoing confirmed hit
     CombatHitStopController --> Health : incoming confirmed hit
+    CombatHitStopController --> IPlayerCombatActor : filters outgoing source
     CombatHitStopController --> IGameplayTimeScaleRequests
     CombatHitStopController ..> GameplayTimeScaleRequest : creates
     GameplayTimeScaleController ..|> IGameplayTimeScaleRequests
@@ -124,8 +130,11 @@ sequenceDiagram
     Health-->>Resolver: accepted
     alt outgoing player hit
         Resolver-->>Stop: ICombatHitEvents.HitResolved(result)
+        Stop->>Stop: source belongs to local actor
     else incoming player hit
         Health-->>Stop: Damaged(result)
+        Resolver-->>Stop: global HitResolved(result)
+        Stop->>Stop: reject foreign source duplicate
     end
     Stop->>Time: Request(duration, scale)
     Time->>Unity: Time.timeScale = baseline * scale
@@ -175,6 +184,7 @@ sequenceDiagram
 
 - `GameplayTimeScaleController.Enable` захватывает baseline scale; `Disable` и `Dispose` всегда его восстанавливают.
 - `CombatHitStopController.Enable/Disable` симметрично управляет двумя target-specific subscriptions.
+- `ICombatHitEvents` является global resolver stream, поэтому его callback принимает только result, чей `Source` равен local actor root либо является его дочерним объектом. Входящий hit приходит через local `Health.Damaged` ровно один раз.
 - VContainer registrations находятся только в `PlayerHitStopComposition`; runtime-код не вызывает `Resolve`.
 - `PlayerActorController` запускает time owner до gameplay consumers и отключает его последним.
 - `UnityTimeScaleBackend` — единственная реализация, которая обращается к `UnityEngine.Time.timeScale`.
