@@ -85,6 +85,24 @@ namespace _App
                 ? _inputBuffer.Build()
                 : CombatInputBufferSettings.CreatePrototypeDefaults();
         }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            try
+            {
+                CreateActionGraph();
+                CreateWeaponTransitionDefinition();
+                CreateInputBufferSettings();
+            }
+            catch (Exception exception)
+            {
+                Debug.LogError(
+                    $"Combat action profile '{name}' is invalid: {exception.Message}",
+                    this);
+            }
+        }
+#endif
     }
 
     [Serializable]

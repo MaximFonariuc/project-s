@@ -93,10 +93,31 @@ namespace _App
 
     public static class CombatReactionIds
     {
+        private const float VerticalImpactThreshold = 0.0001f;
+
         public static readonly CombatReactionId Light = new CombatReactionId("hit.light");
         public static readonly CombatReactionId Heavy = new CombatReactionId("hit.heavy");
         public static readonly CombatReactionId Launcher = new CombatReactionId("hit.launcher");
         public static readonly CombatReactionId Slam = new CombatReactionId("hit.slam");
+
+        internal static void ValidateVerticalImpact(
+            CombatReactionId reactionId,
+            float verticalKnockback)
+        {
+            if (reactionId == Launcher && verticalKnockback <= VerticalImpactThreshold)
+            {
+                throw new ArgumentException(
+                    $"Reaction '{Launcher}' requires positive vertical knockback.",
+                    nameof(verticalKnockback));
+            }
+
+            if (reactionId == Slam && verticalKnockback >= -VerticalImpactThreshold)
+            {
+                throw new ArgumentException(
+                    $"Reaction '{Slam}' requires negative vertical knockback.",
+                    nameof(verticalKnockback));
+            }
+        }
     }
 
     public readonly struct CombatHitStop
@@ -155,6 +176,8 @@ namespace _App
             {
                 throw new ArgumentOutOfRangeException(nameof(knockback));
             }
+
+            CombatReactionIds.ValidateVerticalImpact(reactionId, verticalKnockback);
 
             Damage = damage;
             StaggerDamage = staggerDamage;

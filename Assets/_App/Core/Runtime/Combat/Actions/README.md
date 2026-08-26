@@ -40,6 +40,12 @@ classDiagram
 - Startup is transactional: if a motion or immunity adapter fails while an
   execution is beginning, `Abort` rolls the partial state back and leaves no
   stale motion intent or active execution id.
+- `PlayerCombatActionProfile.OnValidate` builds the complete immutable graph in
+  the Editor, so duplicate ids, invalid transitions, timelines and impact data
+  fail at authoring time instead of first appearing during gameplay composition.
+- Standard `hit.launcher` and `hit.slam` ids validate the sign of vertical
+  knockback. Custom reaction ids remain open and are classified by the target
+  reaction system at runtime.
 - Each invulnerability window owns a disposable lease. Overlapping combat and
   dodge windows compose without one action clearing another owner's immunity.
 - `CombatMotionController` creates collision-safe velocity intents from an
