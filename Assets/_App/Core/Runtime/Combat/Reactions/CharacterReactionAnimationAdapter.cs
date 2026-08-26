@@ -24,10 +24,10 @@ namespace _App
                 : PlayerAnimationSource.Reaction;
             AnimationSlotId slot = snapshot.State == CharacterReactionStateId.HitStun
                 ? PlayerAnimationSlots.Reaction(
-                    snapshot.Hit.ReactionId,
+                    snapshot.Kind,
                     snapshot.State,
                     snapshot.Direction)
-                : PlayerAnimationSlots.Reaction(snapshot.Hit.ReactionId, snapshot.State);
+                : PlayerAnimationSlots.Reaction(snapshot.Kind, snapshot.State);
 
             _animation.CrossFade(source, slot, snapshot.RemainingDuration);
         }

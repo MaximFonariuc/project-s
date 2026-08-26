@@ -42,32 +42,32 @@ namespace _App
             new AnimationSlotId("Traversal.Ladder.Idle");
         public static readonly AnimationSlotId HeavyDeath =
             Reaction(
-                new CombatReactionId("hit.heavy"),
+                CharacterReactionKind.Heavy,
                 CharacterReactionStateId.Dead);
 
         public static AnimationSlotId Reaction(CharacterReactionStateId state) =>
             new AnimationSlotId($"Reaction.{state}");
 
         public static AnimationSlotId Reaction(
-            CombatReactionId reactionId,
+            CharacterReactionKind kind,
             CharacterReactionStateId state) =>
-            reactionId.IsValid
-                ? new AnimationSlotId($"Reaction.{state}.{reactionId.Value}")
+            kind != CharacterReactionKind.None
+                ? new AnimationSlotId($"Reaction.{state}.{kind}")
                 : Reaction(state);
 
         public static AnimationSlotId Reaction(
-            CombatReactionId reactionId,
+            CharacterReactionKind kind,
             CharacterReactionStateId state,
             CharacterReactionDirection direction)
         {
             if (direction == CharacterReactionDirection.None)
             {
-                return Reaction(reactionId, state);
+                return Reaction(kind, state);
             }
 
             string directionalSlot = $"Reaction.{state}.{direction}";
-            return reactionId.IsValid
-                ? new AnimationSlotId($"{directionalSlot}.{reactionId.Value}")
+            return kind != CharacterReactionKind.None
+                ? new AnimationSlotId($"{directionalSlot}.{kind}")
                 : new AnimationSlotId(directionalSlot);
         }
     }

@@ -91,6 +91,14 @@ namespace _App
         }
     }
 
+    public static class CombatReactionIds
+    {
+        public static readonly CombatReactionId Light = new CombatReactionId("hit.light");
+        public static readonly CombatReactionId Heavy = new CombatReactionId("hit.heavy");
+        public static readonly CombatReactionId Launcher = new CombatReactionId("hit.launcher");
+        public static readonly CombatReactionId Slam = new CombatReactionId("hit.slam");
+    }
+
     public readonly struct CombatHitStop
     {
         public static CombatHitStop Disabled => default;

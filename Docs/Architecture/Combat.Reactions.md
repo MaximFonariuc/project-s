@@ -9,6 +9,7 @@
 - накопление `StaggerDamage`, задержку и скорость восстановления poise;
 - `Stable`, `HitStun`, `Knockdown`, `GetUp`, `Airborne` и `Dead`;
 - повторное попадание во время активной реакции;
+- семантический тип реакции (`Light`, `Heavy`, `Launcher`, `Slam`), нормализованный из authoring id;
 - блокировку новых player actions и прерывание текущей атаки, смены оружия или traversal через player actor root;
 - направленный knockback через `ICharacterImpactMotor`;
 - стабильное направление источника удара (`Front`, `Back`, `Left`, `Right`) в reaction snapshot;
@@ -48,6 +49,7 @@ classDiagram
     class CharacterReactionSnapshot {
         <<immutable value>>
         +State CharacterReactionStateId
+        +Kind CharacterReactionKind
         +Direction CharacterReactionDirection
         +Hit CombatHitResult
         +RemainingDuration float
@@ -220,7 +222,7 @@ gameplay-контракта.
 gameplay-переходов. Подтверждённую реакцию запускает единственный animation
 driver. После `Knockdown` gameplay state machine явно запускает `GetUp`, а после
 его завершения отменяет presentation при возврате в `Stable`. Для смерти
-`hit.heavy` выбирает `Dead_2`, остальные и неизвестные reaction id используют
+semantic kind `Heavy` выбирает `Dead_2`, остальные kinds используют
 fallback `Dead_1`; оба состояния удерживают последний кадр до подтверждённого
 revive.
 
@@ -231,8 +233,12 @@ revive.
 реакции. Сейчас направление выбирает отдельный клип только для `HitStun`;
 остальные reaction states используют общий fallback.
 
-Комбинация `ReactionId + State + Direction` формирует backend-neutral animation
-slot. Пустой `ReactionId` и `Direction.None` являются fallback.
+Открытый authoring `CombatReactionId` нормализуется controller в закрытый
+`CharacterReactionKind`: известные `hit.light`, `hit.heavy`, `hit.launcher` и
+`hit.slam` имеют явное соответствие, неизвестные id получают безопасный fallback
+по знаку vertical impact и величине planar knockback. Комбинация
+`Kind + State + Direction` формирует backend-neutral animation slot.
+`Kind.None` и `Direction.None` остаются presentation fallback.
 `CharacterReactionAnimationAdapter` отправляет приоритетный request в
 `PlayerAnimationCoordinator`; controller выбирает state через `ActionId = 4`,
 но reaction clips всегда воспроизводятся на естественной скорости. Gameplay
@@ -244,6 +250,10 @@ duration остаётся authoritative и отменяет presentation при 
 и подтверждает путь `Stable/HitStun -> Knockdown -> GetUp -> Stable`.
 Три light-combo шага остаются `hit.light`. Повторное попадание во время `GetUp`
 прерывает вставание и повторно выбирает реакцию по обычным правилам.
+Air finisher `combo.air.2` использует `hit.slam`, поэтому его отрицательный
+vertical impact сохраняет тип `Slam` в snapshot до подтверждённого приземления.
+Структура и motions текущего `XController` этим изменением не затрагиваются:
+новые semantic slots пока используют существующие reaction fallbacks.
 
 ## Lifecycle и границы
 

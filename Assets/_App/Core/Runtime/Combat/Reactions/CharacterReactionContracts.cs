@@ -22,12 +22,22 @@ namespace _App
         Right = 4
     }
 
+    public enum CharacterReactionKind
+    {
+        None = 0,
+        Light = 1,
+        Heavy = 2,
+        Launcher = 3,
+        Slam = 4
+    }
+
     public readonly struct CharacterReactionSnapshot
     {
         public static CharacterReactionSnapshot Invalid => default;
 
         public bool IsValid { get; }
         public CharacterReactionStateId State { get; }
+        public CharacterReactionKind Kind { get; }
         public CharacterReactionDirection Direction { get; }
         public CombatHitResult Hit { get; }
         public float CurrentPoise { get; }
@@ -37,6 +47,7 @@ namespace _App
 
         internal CharacterReactionSnapshot(
             CharacterReactionStateId state,
+            CharacterReactionKind kind,
             CharacterReactionDirection direction,
             in CombatHitResult hit,
             float currentPoise,
@@ -45,6 +56,7 @@ namespace _App
         {
             IsValid = true;
             State = state;
+            Kind = kind;
             Direction = direction;
             Hit = hit;
             CurrentPoise = Mathf.Max(0.0f, currentPoise);

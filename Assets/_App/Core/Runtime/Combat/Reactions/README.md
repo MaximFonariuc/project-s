@@ -5,6 +5,11 @@ Reaction gameplay and animation presentation have separate owners.
 ```mermaid
 classDiagram
     class CharacterReactionController
+    class CharacterReactionSnapshot {
+        +Kind CharacterReactionKind
+        +State CharacterReactionStateId
+        +Direction CharacterReactionDirection
+    }
     class CharacterPoise
     class CharacterReactionStateMachineFactory
     class CharacterReactionProfile {
@@ -21,6 +26,7 @@ classDiagram
     class XController
 
     CharacterReactionStateMachineFactory --> CharacterReactionController : supplies machine
+    CharacterReactionController --> CharacterReactionSnapshot : creates
     CharacterReactionController --> CharacterPoise
     CharacterReactionController --> CharacterReactionProfile
     CharacterReactionController --> ICharacterImpactMotor
@@ -34,7 +40,8 @@ classDiagram
 
 - `CharacterReactionController` owns stable, hit-stun, knockdown, get-up,
   airborne and dead gameplay states, their timers, poise and the source-side
-  direction captured when a hit is confirmed.
+  direction captured when a hit is confirmed. It also normalizes the open
+  authoring reaction id into `Light`, `Heavy`, `Launcher` or `Slam` once per hit.
 - `CharacterReactionAnimationAdapter` may request a semantic reaction slot but
   never changes reaction gameplay state.
 - Reaction and death outrank combat and locomotion in
@@ -55,8 +62,11 @@ classDiagram
   computes that value once from the confirmed impulse and target orientation;
   rotation during the reaction does not select a different clip. Only hit-stun
   is directional today; other reaction states retain their common fallback.
-- Death selection uses the existing semantic `ReactionId`: `hit.heavy` selects
-  `Dead_2`; missing, light and unknown ids fall back to `Dead_1`.
+- Known ids (`hit.light`, `hit.heavy`, `hit.launcher`, `hit.slam`) map explicitly
+  to a closed runtime kind. Unknown ids fall back from signed vertical impact and
+  planar knockback, so gameplay and presentation do not branch on arbitrary strings.
+- Death selection uses the normalized kind: `Heavy` selects `Dead_2`; other
+  kinds fall back to `Dead_1`.
 - Reaction and death slots keep their authored playback speed. Gameplay still
   owns the reaction duration and cancels presentation on return to `Stable`;
   short hit-stun windows never accelerate the source clip.
@@ -78,3 +88,5 @@ classDiagram
   `RigidbodyCharacterImpactMotor` for end-to-end hit validation.
 - The standalone grounded `attack.heavy` action is authored as `hit.heavy` with
   enough knockback to enter `Knockdown`; all three light-combo steps remain light.
+  The `combo.air.2` finisher is authored as `hit.slam` and retains `Slam` while
+  its negative vertical impact drives the target toward grounded knockdown.

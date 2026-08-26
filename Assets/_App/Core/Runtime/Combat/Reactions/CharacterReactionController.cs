@@ -19,6 +19,7 @@ namespace _App
         private readonly CharacterReactionSettings _settings;
 
         private CombatHitResult _lastHit;
+        private CharacterReactionKind _reactionKind;
         private CharacterReactionDirection _reactionDirection;
         private float _remainingDuration;
         private bool _enabled;
@@ -27,7 +28,7 @@ namespace _App
         public event Action<CharacterReactionSnapshot> ReactionStarted;
 
         public CharacterReactionStateId? CurrentState => _stateMachine.CurrentStateId;
-        public CharacterReactionSnapshot Snapshot => CreateSnapshot();
+        public CharacterReactionSnapshot Snapshot => CurrentSnapshot;
         public float CurrentPoise => _poise.Current;
         public float MaxPoise => _poise.Max;
         public bool BlocksActions =>
@@ -65,6 +66,7 @@ namespace _App
             _stateMachine.StateChanged += OnStateChanged;
             _poise.RestoreFull();
             _lastHit = default;
+            _reactionKind = CharacterReactionKind.None;
             _reactionDirection = CharacterReactionDirection.None;
             _remainingDuration = 0.0f;
             _enabled = true;
@@ -99,6 +101,7 @@ namespace _App
 
             _poise.RestoreFull();
             _lastHit = default;
+            _reactionKind = CharacterReactionKind.None;
             _reactionDirection = CharacterReactionDirection.None;
             _remainingDuration = 0.0f;
             _presentation.Reset();
@@ -197,6 +200,7 @@ namespace _App
 
             _poise.Deplete();
             _lastHit = hit;
+            _reactionKind = ResolveKind(in hit);
             _reactionDirection = ResolveDirection(
                 hit.Direction,
                 _impactMotor.Up,
@@ -205,7 +209,7 @@ namespace _App
             _stateMachine.ChangeState<CharacterDeadState, CombatHitResult>(hit);
             ApplyKnockback(in hit);
 
-            CharacterReactionSnapshot snapshot = CreateSnapshot();
+            CharacterReactionSnapshot snapshot = CurrentSnapshot;
             _presentation.Present(in snapshot);
             ReactionStarted?.Invoke(snapshot);
         }
@@ -219,6 +223,7 @@ namespace _App
 
             _poise.RestoreFull();
             _lastHit = default;
+            _reactionKind = CharacterReactionKind.None;
             _reactionDirection = CharacterReactionDirection.None;
             _remainingDuration = 0.0f;
             if (_stateMachine.CurrentStateId != CharacterReactionStateId.Stable)
@@ -235,6 +240,7 @@ namespace _App
             float duration)
         {
             _lastHit = hit;
+            _reactionKind = ResolveKind(in hit);
             _reactionDirection = ResolveDirection(
                 hit.Direction,
                 _impactMotor.Up,
@@ -258,7 +264,7 @@ namespace _App
             }
 
             ApplyKnockback(in hit);
-            CharacterReactionSnapshot snapshot = CreateSnapshot();
+            CharacterReactionSnapshot snapshot = CurrentSnapshot;
             _presentation.Present(in snapshot);
             ReactionStarted?.Invoke(snapshot);
         }
@@ -271,6 +277,7 @@ namespace _App
             }
 
             _lastHit = default;
+            _reactionKind = CharacterReactionKind.None;
             _reactionDirection = CharacterReactionDirection.None;
             _remainingDuration = 0.0f;
             _stateMachine.ChangeState<CharacterStableState>();
@@ -319,7 +326,7 @@ namespace _App
                 return;
             }
 
-            CharacterReactionSnapshot snapshot = CreateSnapshot();
+            CharacterReactionSnapshot snapshot = CurrentSnapshot;
             _presentation.Present(in snapshot);
         }
 
@@ -333,7 +340,7 @@ namespace _App
                 CharacterKnockdownState,
                 CharacterReactionContext>(context);
 
-            CharacterReactionSnapshot snapshot = CreateSnapshot();
+            CharacterReactionSnapshot snapshot = CurrentSnapshot;
             _presentation.Present(in snapshot);
             ReactionStarted?.Invoke(snapshot);
         }
@@ -373,17 +380,54 @@ namespace _App
             }
         }
 
-        private CharacterReactionSnapshot CreateSnapshot()
-        {
-            return _stateMachine.CurrentStateId is CharacterReactionStateId state
+        private CharacterReactionSnapshot CurrentSnapshot =>
+            _stateMachine.CurrentStateId is CharacterReactionStateId state
                 ? new CharacterReactionSnapshot(
                     state,
+                    _reactionKind,
                     _reactionDirection,
                     in _lastHit,
                     _poise.Current,
                     _poise.Max,
                     _remainingDuration)
                 : CharacterReactionSnapshot.Invalid;
+
+        private CharacterReactionKind ResolveKind(in CombatHitResult hit)
+        {
+            CombatReactionId reactionId = hit.ReactionId;
+            if (reactionId == CombatReactionIds.Light)
+            {
+                return CharacterReactionKind.Light;
+            }
+
+            if (reactionId == CombatReactionIds.Heavy)
+            {
+                return CharacterReactionKind.Heavy;
+            }
+
+            if (reactionId == CombatReactionIds.Launcher)
+            {
+                return CharacterReactionKind.Launcher;
+            }
+
+            if (reactionId == CombatReactionIds.Slam)
+            {
+                return CharacterReactionKind.Slam;
+            }
+
+            if (hit.VerticalKnockback > ImpactThreshold)
+            {
+                return CharacterReactionKind.Launcher;
+            }
+
+            if (hit.VerticalKnockback < -ImpactThreshold)
+            {
+                return CharacterReactionKind.Slam;
+            }
+
+            return hit.Knockback >= _settings.KnockdownThreshold
+                ? CharacterReactionKind.Heavy
+                : CharacterReactionKind.Light;
         }
 
         internal static CharacterReactionDirection ResolveDirection(
