@@ -40,26 +40,18 @@ namespace _App
         [Header("AnimationController")]
         [SerializeField] private Animator _animator;
         [SerializeField] private PlayerAnimationOverrideBinding[] _animationOverrides;
-        [SerializeField] private Weapon[] _unarmedHitboxes;
-
-        [Header("WeaponHolder")] 
-        [SerializeField] private Transform _weaponHolder;
-        [SerializeField] private Transform _weaponHand;
-        [SerializeField] private Transform _weapon;
+        [SerializeField] private PlayerWeaponLoadout _weaponLoadout;
 
         private PlayerActorController _actorController;
 
         internal CharacterFeatureSet CharacterFeatures => _characterFeatures;
         internal Animator PlayerAnimator => _animator;
         internal PlayerAnimationOverrideBinding[] AnimationOverrides => _animationOverrides;
-        internal Weapon[] UnarmedHitboxes => _unarmedHitboxes;
+        internal PlayerWeaponLoadout WeaponLoadout => _weaponLoadout;
         internal ECharacterType CharacterType => _characterType;
         internal EWeaponType StartingWeapon => _startingWeapon;
         internal PlayerCombatActionProfile CombatActionProfile => _combatActionProfile;
         internal CharacterReactionProfile ReactionProfile => _reactionProfile;
-        internal Transform WeaponHolder => _weaponHolder;
-        internal Transform WeaponHand => _weaponHand;
-        internal Transform WeaponTransform => _weapon;
         internal CinemachineThirdPersonFollow FollowCameraPrefab => _followCamera;
         internal Transform FollowTarget => _followTarget;
         internal PlayerCameraSettings CameraSettings => new PlayerCameraSettings(
@@ -81,11 +73,25 @@ namespace _App
 
         protected virtual void Awake()
         {
+            bool valid = true;
             if (_actorController == null)
             {
                 Debug.LogError(
                     $"{nameof(ThirdPersonController)} requires {nameof(PlayerActorController)} from the composition root.",
                     this);
+                valid = false;
+            }
+
+            if (_weaponLoadout == null || !_weaponLoadout.Supports(_startingWeapon))
+            {
+                Debug.LogError(
+                    $"{nameof(ThirdPersonController)} requires a weapon loadout configured for '{_startingWeapon}'.",
+                    this);
+                valid = false;
+            }
+
+            if (!valid)
+            {
                 enabled = false;
             }
         }

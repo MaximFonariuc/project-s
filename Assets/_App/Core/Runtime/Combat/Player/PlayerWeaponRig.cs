@@ -5,27 +5,21 @@ namespace _App
 {
     internal sealed class PlayerWeaponRig : IPlayerWeaponRig
     {
-        private readonly Transform _weaponHolder;
-        private readonly Transform _weaponHand;
-        private readonly Transform _weaponTransform;
-        private readonly Weapon _weapon;
+        private readonly PlayerWeaponBinding[] _weapons;
         private readonly Weapon[] _unarmedHitboxes;
         private readonly ICombatHitResolver _hitResolver;
         private EWeaponType _weaponType = EWeaponType.Unarmed;
 
         public PlayerWeaponRig(
-            Transform weaponHolder,
-            Transform weaponHand,
-            Transform weaponTransform,
-            Weapon weapon,
-            Weapon[] unarmedHitboxes,
+            PlayerWeaponLoadout loadout,
             ICombatHitResolver hitResolver)
         {
-            _weaponHolder = weaponHolder;
-            _weaponHand = weaponHand;
-            _weaponTransform = weaponTransform;
-            _weapon = weapon;
-            _unarmedHitboxes = unarmedHitboxes ?? Array.Empty<Weapon>();
+            _weapons = loadout != null
+                ? loadout.Weapons
+                : Array.Empty<PlayerWeaponBinding>();
+            _unarmedHitboxes = loadout != null
+                ? loadout.UnarmedHitboxes
+                : Array.Empty<Weapon>();
             _hitResolver = hitResolver;
         }
 
@@ -33,51 +27,68 @@ namespace _App
         {
             CloseHitbox();
             _weaponType = weaponType;
-            if (_weaponTransform == null)
+            for (int i = 0; i < _weapons.Length; i++)
             {
-                return;
-            }
+                PlayerWeaponBinding binding = _weapons[i];
+                if (binding == null)
+                {
+                    continue;
+                }
 
-            bool equipped = weaponType is not EWeaponType.None and not EWeaponType.Unarmed;
-            Transform parent = equipped ? _weaponHand : _weaponHolder;
-            if (parent == null)
-            {
-                Debug.LogError(
-                    $"Player weapon rig has no {(equipped ? "hand" : "holder")} transform.",
-                    _weaponTransform);
-                return;
+                bool equipped = binding.WeaponType == weaponType;
+                bool visible = weaponType != EWeaponType.None &&
+                               (equipped || binding.VisibleWhenUnequipped);
+                binding.Apply(equipped, visible);
             }
-
-            _weaponTransform.SetParent(parent);
-            _weaponTransform.localPosition = Vector3.zero;
-            _weaponTransform.localRotation = Quaternion.identity;
         }
 
         public void OpenHitbox(CombatAttackExecution execution)
         {
-            // The animation-first combat prototype does not yet own final weapon
-            // prefabs. Keep the verified hand hitboxes active until a concrete
-            // weapon rig is authored, so selecting a visual loadout cannot make
-            // combat silently stop producing hit candidates.
-            if (_weaponType == EWeaponType.Unarmed || _weapon == null)
+            if (_weaponType is EWeaponType.None or EWeaponType.Unarmed)
             {
-                for (int i = 0; i < _unarmedHitboxes.Length; i++)
-                {
-                    _unarmedHitboxes[i]?.EnableHitbox(execution, _hitResolver);
-                }
-
+                EnableUnarmedHitboxes(execution);
                 return;
             }
 
-            _weapon?.EnableHitbox(execution, _hitResolver);
+            PlayerWeaponBinding binding = FindBinding(_weaponType);
+            if (binding == null || !binding.EnableHitboxes(execution, _hitResolver))
+            {
+                Debug.LogError($"No hitboxes are configured for weapon '{_weaponType}'.");
+            }
         }
 
         public void CloseHitbox()
         {
-            _weapon?.DisableHitbox();
+            for (int i = 0; i < _weapons.Length; i++)
+            {
+                _weapons[i]?.DisableHitboxes();
+            }
+
             for (int i = 0; i < _unarmedHitboxes.Length; i++)
             {
                 _unarmedHitboxes[i]?.DisableHitbox();
+            }
+        }
+
+        private PlayerWeaponBinding FindBinding(EWeaponType weaponType)
+        {
+            for (int i = 0; i < _weapons.Length; i++)
+            {
+                PlayerWeaponBinding binding = _weapons[i];
+                if (binding != null && binding.WeaponType == weaponType)
+                {
+                    return binding;
+                }
+            }
+
+            return null;
+        }
+
+        private void EnableUnarmedHitboxes(CombatAttackExecution execution)
+        {
+            for (int i = 0; i < _unarmedHitboxes.Length; i++)
+            {
+                _unarmedHitboxes[i]?.EnableHitbox(execution, _hitResolver);
             }
         }
     }

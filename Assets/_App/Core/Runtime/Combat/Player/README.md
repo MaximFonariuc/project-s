@@ -19,6 +19,9 @@ classDiagram
     class PlayerAnimationCoordinator
     class AnimationActionRequest
     class PlayerWeaponRig
+    class PlayerWeaponLoadout
+    class PlayerWeaponBinding
+    class PlayerWeaponAttachment
     class Weapon
 
     PlayerCombatController --> IPlayerCombatAnimation
@@ -26,7 +29,10 @@ classDiagram
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     PlayerCombatAnimationAdapter --> AnimationActionRequest
     PlayerCombatController --> PlayerWeaponRig
-    PlayerWeaponRig --> Weapon
+    PlayerWeaponRig --> PlayerWeaponLoadout
+    PlayerWeaponLoadout *-- PlayerWeaponBinding
+    PlayerWeaponBinding *-- PlayerWeaponAttachment
+    PlayerWeaponAttachment o-- Weapon
 ```
 
 - The adapter exposes three combo steps for every compatible animation loadout
@@ -55,8 +61,10 @@ classDiagram
 - A confirmed launcher target is carried through the non-damaging air chase
   into the air combo. Direct airborne entries fall back to the current lock-on;
   independent buffered entries clear the carried target.
-- `PlayerWeaponRig` enables two hand hitboxes only during the confirmed hit
-  window. `Weapon` reports collision candidates to `CombatHitResolver`.
+- `PlayerWeaponRig` selects one authored weapon binding and enables every
+  attachment hitbox only during the confirmed hit window. Unarmed combat keeps
+  its separate hand hitboxes. `Weapon` reports collision candidates to
+  `CombatHitResolver`.
 - `Cancel()` asks the XController adapter to crossfade to locomotion when
   gameplay interrupts an action. Normal completion lets the controller use its
   authored exit transition.

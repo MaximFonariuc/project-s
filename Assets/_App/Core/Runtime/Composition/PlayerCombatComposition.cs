@@ -42,13 +42,7 @@ namespace _App
                 Lifetime.Scoped);
             builder.Register<IPlayerWeaponRig>(
                 resolver => new PlayerWeaponRig(
-                    player.WeaponHolder,
-                    player.WeaponHand,
-                    player.WeaponTransform,
-                    player.WeaponTransform != null
-                        ? player.WeaponTransform.GetComponent<Weapon>()
-                        : null,
-                    player.UnarmedHitboxes,
+                    player.WeaponLoadout,
                     resolver.Resolve<ICombatHitResolver>()),
                 Lifetime.Scoped);
 
