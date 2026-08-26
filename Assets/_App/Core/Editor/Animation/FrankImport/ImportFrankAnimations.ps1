@@ -20,6 +20,7 @@ $extractRoot = Join-Path $workingRoot 'Extracted'
 $logRoot = Join-Path $workingRoot 'Logs'
 $manifestPath = Join-Path $workingRoot 'frank-blender-manifest.json'
 $conversionReportPath = Join-Path $workingRoot 'frank-conversion-report.json'
+$sourceKeyAuditReportPath = Join-Path $assetRoot 'FrankSourceKeyAuditReport.json'
 $converterPath = Join-Path $ProjectRoot 'Assets/_App/Core/Editor/Animation/FrankImport/convert_psa_to_fbx.py'
 $rigPath = Join-Path $assetRoot 'DualSwords/Rig/FrankDualRig.fbx'
 
@@ -256,6 +257,30 @@ if ($failed.Count -gt 0) {
     throw "$($failed.Count) Frank animations failed conversion. See $conversionReportPath."
 }
 
+$correctedSourceClips = @($conversionReport | Where-Object sourceKeyCorrectionCount -gt 0 | ForEach-Object {
+    [ordered]@{
+        assetPath = $_.assetPath
+        sourceAsset = $_.sourceAsset
+        correctionCount = $_.sourceKeyCorrectionCount
+        corrections = $_.sourceKeyCorrections
+    }
+})
+$sourceKeyAudit = [ordered]@{
+    schemaVersion = 1
+    scannedClipCount = $conversionReport.Count
+    correctedClipCount = $correctedSourceClips.Count
+    correctionCount = ($conversionReport | Measure-Object -Property sourceKeyCorrectionCount -Sum).Sum
+    detection = [ordered]@{
+        minimumIncomingAndOutgoingAngleDegrees = 35
+        maximumNeighborBridgeAngleDegrees = 20
+        coherentClusterMinimumAngleDegrees = 20
+        coherentClusterMaximumNeighborBridgeDegrees = 5
+        policy = 'Only isolated one-frame Humanoid body rotation outliers, coherent multi-bone clusters, and confirmed corrupt body frames are repaired by neighbor quaternion slerp.'
+    }
+    clips = $correctedSourceClips
+}
+$sourceKeyAudit | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $sourceKeyAuditReportPath -Encoding utf8
+
 foreach ($pack in $sourceSets.Pack) {
     $packItems = @($conversionReport | Where-Object pack -eq $pack | ForEach-Object {
         [ordered]@{
@@ -271,6 +296,8 @@ foreach ($pack in $sourceSets.Pack) {
             mappedBones = $_.mappedBones
             bytes = $_.bytes
             warnings = $_.warnings
+            sourceKeyCorrectionCount = $_.sourceKeyCorrectionCount
+            sourceKeyCorrections = $_.sourceKeyCorrections
         }
     })
     $catalog = [ordered]@{

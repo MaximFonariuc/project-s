@@ -9,11 +9,244 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import pathlib
 import sys
 import traceback
 
 import bpy
+from mathutils import Quaternion
+
+
+# A single bad source key is distinguishable from fast authored motion when the
+# pose jumps far away for exactly one frame and both surrounding frames remain
+# close to each other. These conservative limits intentionally leave sustained
+# or ambiguous motion untouched.
+_OUTLIER_JUMP_DEGREES = 35.0
+_OUTLIER_NEIGHBOR_BRIDGE_DEGREES = 20.0
+_COHERENT_OUTLIER_JUMP_DEGREES = 20.0
+_COHERENT_OUTLIER_NEIGHBOR_BRIDGE_DEGREES = 5.0
+_GLOBAL_CORRUPT_FRAME_MIN_CORE_BONES = 3
+_GLOBAL_CORRUPT_FRAME_MIN_RESIDUAL_DEGREES = 5.0
+_HUMANOID_BODY_BONES = frozenset(
+    {
+        "root",
+        "pelvis",
+        "spine_01",
+        "spine_02",
+        "spine_03",
+        "neck_01",
+        "head",
+        "clavicle_l",
+        "upperarm_l",
+        "lowerarm_l",
+        "hand_l",
+        "clavicle_r",
+        "upperarm_r",
+        "lowerarm_r",
+        "hand_r",
+        "thigh_l",
+        "calf_l",
+        "foot_l",
+        "ball_l",
+        "thigh_r",
+        "calf_r",
+        "foot_r",
+        "ball_r",
+    }
+)
+_HUMANOID_FINGER_PREFIXES = (
+    "thumb_",
+    "index_",
+    "middle_",
+    "ring_",
+    "pinky_",
+)
+
+
+def _is_humanoid_body_bone(bone_name: str) -> bool:
+    normalized_name = bone_name.rstrip().lower()
+    return normalized_name in _HUMANOID_BODY_BONES or normalized_name.startswith(
+        _HUMANOID_FINGER_PREFIXES
+    )
+
+
+def _is_humanoid_finger_bone(bone_name: str) -> bool:
+    return bone_name.rstrip().lower().startswith(_HUMANOID_FINGER_PREFIXES)
+
+
+def _normalized_rotation(key) -> Quaternion:
+    components = (
+        float(key.rotation.w),
+        float(key.rotation.x),
+        float(key.rotation.y),
+        float(key.rotation.z),
+    )
+    if not all(math.isfinite(component) for component in components):
+        raise RuntimeError("PSA contains a non-finite rotation quaternion.")
+    rotation = Quaternion(components)
+    if rotation.magnitude <= 1e-8:
+        raise RuntimeError("PSA contains a zero-length rotation quaternion.")
+    rotation.normalize()
+    return rotation
+
+
+def _rotation_angle_degrees(left: Quaternion, right: Quaternion) -> float:
+    angle = math.degrees(left.rotation_difference(right).angle)
+    # q and -q encode the same orientation. mathutils can report the long
+    # representation arc (close to 360 degrees), so always use the physical
+    # shortest rotation before classifying a key as an outlier.
+    return min(angle, abs(360.0 - angle))
+
+
+def _sanitize_sequence_rotation_keys(reader, sequence_name: str):
+    """Replace only unambiguous one-frame body rotation corruption."""
+
+    sequence = reader.sequences[sequence_name]
+    bone_count = len(reader.bones)
+    keys = reader.read_sequence_keys(sequence_name)
+    rotations_by_bone = {}
+    metrics = {}
+    primary_outliers = set()
+    primary_core_outliers_by_frame = {}
+    coherent_outliers_by_frame = {}
+
+    for bone_index, bone in enumerate(reader.bones):
+        bone_name = bone.name.decode("windows-1252").rstrip()
+        if not _is_humanoid_body_bone(bone_name):
+            continue
+
+        rotations = []
+        for frame_index in range(sequence.frame_count):
+            key = keys[frame_index * bone_count + bone_index]
+            location = (
+                float(key.location.x),
+                float(key.location.y),
+                float(key.location.z),
+            )
+            if not all(math.isfinite(component) for component in location):
+                raise RuntimeError(
+                    f"PSA contains a non-finite location key on {bone_name} "
+                    f"at source frame {frame_index}."
+                )
+            rotations.append(_normalized_rotation(key))
+        rotations_by_bone[bone_index] = rotations
+        for frame_index in range(1, sequence.frame_count - 1):
+            previous = rotations[frame_index - 1]
+            current = rotations[frame_index]
+            following = rotations[frame_index + 1]
+            incoming_angle = _rotation_angle_degrees(previous, current)
+            outgoing_angle = _rotation_angle_degrees(current, following)
+            neighbor_angle = _rotation_angle_degrees(previous, following)
+            replacement = previous.slerp(following, 0.5)
+            residual_angle = _rotation_angle_degrees(current, replacement)
+            key_id = (bone_index, frame_index)
+            metrics[key_id] = {
+                "bone": bone_name,
+                "sourceFrame": frame_index,
+                "sourceTime": frame_index / float(sequence.fps),
+                "incomingAngle": incoming_angle,
+                "outgoingAngle": outgoing_angle,
+                "neighborAngle": neighbor_angle,
+                "residualAngle": residual_angle,
+            }
+            if (
+                incoming_angle > _OUTLIER_JUMP_DEGREES
+                and outgoing_angle > _OUTLIER_JUMP_DEGREES
+                and neighbor_angle < _OUTLIER_NEIGHBOR_BRIDGE_DEGREES
+            ):
+                primary_outliers.add(key_id)
+                if not _is_humanoid_finger_bone(bone_name):
+                    primary_core_outliers_by_frame.setdefault(frame_index, []).append(
+                        key_id
+                    )
+            if (
+                incoming_angle > _COHERENT_OUTLIER_JUMP_DEGREES
+                and outgoing_angle > _COHERENT_OUTLIER_JUMP_DEGREES
+                and neighbor_angle < _COHERENT_OUTLIER_NEIGHBOR_BRIDGE_DEGREES
+                and not _is_humanoid_finger_bone(bone_name)
+            ):
+                coherent_outliers_by_frame.setdefault(frame_index, []).append(key_id)
+
+    correction_classifications = {key_id: "isolated-key" for key_id in primary_outliers}
+    global_corrupt_frames = {
+        frame_index
+        for frame_index, key_ids in primary_core_outliers_by_frame.items()
+        if len(key_ids) >= _GLOBAL_CORRUPT_FRAME_MIN_CORE_BONES
+    }
+    for frame_index in global_corrupt_frames:
+        for bone_index in rotations_by_bone:
+            key_id = (bone_index, frame_index)
+            if (
+                key_id in metrics
+                and metrics[key_id]["residualAngle"]
+                > _GLOBAL_CORRUPT_FRAME_MIN_RESIDUAL_DEGREES
+            ):
+                correction_classifications[key_id] = "corrupt-body-frame"
+
+    for frame_index, key_ids in coherent_outliers_by_frame.items():
+        if len(key_ids) < 2:
+            continue
+        for key_id in key_ids:
+            correction_classifications.setdefault(key_id, "coherent-bone-cluster")
+
+    # Detect against the untouched source tracks, then apply all corrections.
+    # This prevents one repair from changing whether a neighboring key passes a
+    # conservative outlier test.
+    corrections = []
+    for (bone_index, frame_index), classification in sorted(
+        correction_classifications.items(), key=lambda item: (item[0][1], item[0][0])
+    ):
+        rotations = rotations_by_bone[bone_index]
+        replacement = rotations[frame_index - 1].slerp(
+            rotations[frame_index + 1], 0.5
+        )
+        key = keys[frame_index * bone_count + bone_index]
+        key.rotation.w = replacement.w
+        key.rotation.x = replacement.x
+        key.rotation.y = replacement.y
+        key.rotation.z = replacement.z
+        corrections.append(
+            {
+                **metrics[(bone_index, frame_index)],
+                "classification": classification,
+            }
+        )
+
+    return keys, corrections
+
+
+class _SanitizedPsaReader:
+    """Narrow adapter that keeps the pinned vendor importer unmodified."""
+
+    def __init__(self, source_reader):
+        self._source_reader = source_reader
+        self._key_cache = {}
+        self.corrections = {}
+
+    @property
+    def bones(self):
+        return self._source_reader.bones
+
+    @property
+    def sequences(self):
+        return self._source_reader.sequences
+
+    @property
+    def has_scale_keys(self):
+        return self._source_reader.has_scale_keys
+
+    def read_sequence_keys(self, sequence_name: str):
+        if sequence_name not in self._key_cache:
+            keys, corrections = _sanitize_sequence_rotation_keys(
+                self._source_reader, sequence_name
+            )
+            self._key_cache[sequence_name] = keys
+            self.corrections[sequence_name] = corrections
+        return self._key_cache[sequence_name]
+
+    def read_sequence_scale_keys(self, sequence_name: str):
+        return self._source_reader.read_sequence_scale_keys(sequence_name)
 
 
 def _parse_arguments() -> argparse.Namespace:
@@ -21,6 +254,8 @@ def _parse_arguments() -> argparse.Namespace:
     argv = argv[argv.index("--") + 1 :] if "--" in argv else []
     parser = argparse.ArgumentParser()
     parser.add_argument("--manifest", required=True)
+    parser.add_argument("--report")
+    parser.add_argument("--only-with-source-key-corrections", action="store_true")
     return parser.parse_args(argv)
 
 
@@ -60,6 +295,29 @@ def _load_armature(rig_path: str):
     for action in list(bpy.data.actions):
         bpy.data.actions.remove(action)
     return armature
+
+
+def _filter_jobs_with_source_key_corrections(jobs: list[dict], PsaReader) -> list[dict]:
+    filtered_jobs = []
+    for index, job in enumerate(jobs, start=1):
+        psa_path = pathlib.Path(job["psa"])
+        with psa_path.open("rb") as stream:
+            reader = _SanitizedPsaReader(PsaReader(stream))
+            sequence_names = list(reader.sequences.keys())
+            if len(sequence_names) != 1:
+                raise RuntimeError(
+                    f"Expected one sequence in {psa_path}, found {sequence_names}"
+                )
+            sequence_name = sequence_names[0]
+            reader.read_sequence_keys(sequence_name)
+            if reader.corrections[sequence_name]:
+                filtered_jobs.append(job)
+        if index % 100 == 0 or index == len(jobs):
+            print(
+                f"FRANK_KEY_AUDIT [{index}/{len(jobs)}] "
+                f"{len(filtered_jobs)} clips require repair"
+            )
+    return filtered_jobs
 
 
 def _select_only(armature) -> None:
@@ -159,7 +417,7 @@ def _convert_job(
         return {**job, "status": "skipped"}
 
     with psa_path.open("rb") as stream:
-        reader = PsaReader(stream)
+        reader = _SanitizedPsaReader(PsaReader(stream))
         sequence_names = list(reader.sequences.keys())
         if len(sequence_names) != 1:
             raise RuntimeError(
@@ -208,6 +466,8 @@ def _convert_job(
             "sourceBones": len(bone_names),
             "mappedBones": mapped_bones,
             "warnings": result.warnings,
+            "sourceKeyCorrectionCount": len(reader.corrections[sequence_name]),
+            "sourceKeyCorrections": reader.corrections[sequence_name],
             "bytes": output_path.stat().st_size,
         }
 
@@ -227,8 +487,18 @@ def main() -> int:
         PsaImportOptions,
         import_psa,
     ) = _load_pipeline(manifest_path)
+    if args.report:
+        manifest["report"] = str(pathlib.Path(args.report).resolve())
+    if args.only_with_source_key_corrections:
+        manifest["jobs"] = _filter_jobs_with_source_key_corrections(
+            manifest["jobs"], PsaReader
+        )
+        print(
+            "FRANK_KEY_AUDIT COMPLETE: "
+            f"{len(manifest['jobs'])} clips contain unambiguous source key outliers."
+        )
     armature = _load_armature(manifest["rigFbx"])
-    if manifest.get("rigOutput"):
+    if manifest.get("rigOutput") and not args.only_with_source_key_corrections:
         _export_rig(armature, pathlib.Path(manifest["rigOutput"]))
     reports = []
 
