@@ -42,6 +42,17 @@ classDiagram
         <<MonoBehaviour / physics adapter>>
         +EnableHitbox(execution, resolver)
         +DisableHitbox()
+        +SampleSweptHitbox()
+    }
+    class WeaponHitboxSweep {
+        <<allocation-free shape sampler>>
+        +Begin()
+        +Sample(consumer) bool
+        +Reset()
+    }
+    class PlayerWeaponLoadout {
+        <<late-frame sweep owner>>
+        -LateUpdate()
     }
     class ICombatHitResolver {
         <<interface>>
@@ -98,6 +109,8 @@ classDiagram
 
     CombatActionDefinition *-- CombatHitDefinition
     CombatAttackExecution --> CombatActionDefinition : snapshots impact
+    PlayerWeaponLoadout --> Weapon : samples active hitboxes
+    Weapon *-- WeaponHitboxSweep
     Weapon --> ICombatHitResolver : reports candidate
     Weapon ..> CombatHitCandidate : creates
     CombatHitCandidate --> ICombatHitTarget
@@ -116,6 +129,7 @@ classDiagram
 sequenceDiagram
     participant Combat as PlayerCombatController
     participant Execution as CombatAttackExecution
+    participant Loadout as PlayerWeaponLoadout
     participant Weapon
     participant Hurtbox
     participant Resolver as CombatHitResolver
@@ -124,7 +138,9 @@ sequenceDiagram
 
     Combat->>Execution: Begin(action id, impact, source)
     Combat->>Weapon: EnableHitbox(execution, resolver)
-    Weapon->>Hurtbox: physics overlap
+    Loadout->>Loadout: LateUpdate / SyncTransforms once
+    Loadout->>Weapon: SampleSweptHitbox()
+    Weapon->>Hurtbox: trigger or interpolated shape overlap
     Weapon->>Resolver: TryResolve(candidate)
     Resolver->>Execution: CanHitTarget(actor root id)
     Resolver->>Resolver: scale damage by zone multiplier
@@ -157,6 +173,16 @@ Health.Damaged -> target-local reaction / incoming hit stop
 - `PlayerCombatController` принимает через `ICombatHitEvents` только result с совпадающими execution/action ids; этот outcome используется graph conditions и не изменяет результат damage resolution.
 - `CombatAttackExecution` владеет множеством уже поражённых actor root. Оно не находится в `Weapon`, поэтому смена collider или несколько зон тела не меняют правило одного попадания.
 - `Weapon` принадлежит scene/prefab и знает только Physics, активный execution и resolver. Он не хранит damage, cooldown, combo или reaction rules.
+- `WeaponHitboxSweep` интерполирует предыдущую и текущую форму
+  `CapsuleCollider`, `SphereCollider` либо `BoxCollider` и выполняет bounded
+  `Physics.*NonAlloc` overlaps. Поэтому быстрый клинок не зависит только от
+  дискретного `OnTriggerEnter` между physics ticks.
+- `PlayerWeaponLoadout` вызывает `Physics.SyncTransforms` один раз за late frame
+  и только пока открыт хотя бы один hitbox, после чего семплирует все активные
+  attachments. Каждый `Weapon` не запускает глобальную синхронизацию отдельно.
+- Physics query имеет явный layer mask. На Player prefab это только слой
+  `Hitbox`; movement capsule, environment и weapon geometry не заполняют overlap
+  buffer. Переполнение bounded buffer выдаёт одно предупреждение за activation.
 - `Hurtbox` предоставляет zone metadata и путь к владельцу здоровья. Он не вычисляет итог атаки.
 - Movement capsule не является `Hurtbox`: попадания принимает только compound body rig, поэтому физический порядок overlap не подменяет выбранную зону тела.
 - `Health` — единственный owner текущего здоровья и подсчёта активных immunity leases. Lease очищается идемпотентно; отключение Health инвалидирует старые leases.

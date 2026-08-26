@@ -63,8 +63,9 @@ classDiagram
   independent buffered entries clear the carried target.
 - `PlayerWeaponRig` selects one authored weapon binding and enables every
   attachment hitbox only during the confirmed hit window. Unarmed combat keeps
-  its separate hand hitboxes. `Weapon` reports collision candidates to
-  `CombatHitResolver`.
+  its separate hand hitboxes. `PlayerWeaponLoadout` samples active shapes once
+  in `LateUpdate`; `Weapon` combines the bounded sweep with trigger callbacks
+  and reports candidates to `CombatHitResolver`.
 - `Cancel()` asks the XController adapter to crossfade to locomotion when
   gameplay interrupts an action. Normal completion lets the controller use its
   authored exit transition.

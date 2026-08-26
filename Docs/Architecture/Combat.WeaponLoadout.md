@@ -2,9 +2,11 @@
 
 ## Граница ответственности
 
-`PlayerWeaponLoadout` — Unity-authoring component на prefab игрока. Он хранит
-ссылки на оружейные объекты, точки крепления, локальные позы и hitbox-компоненты.
-Он не открывает hit window и не решает, какая атака допустима.
+`PlayerWeaponLoadout` — Unity-authoring и late-frame physics adapter на prefab
+игрока. Он хранит ссылки на оружейные объекты, точки крепления, локальные позы
+и hitbox-компоненты. Пока открыт хотя бы один hitbox, component один раз
+синхронизирует Physics transforms и запускает bounded sweep всех активных
+attachments. Он не открывает hit window и не решает, какая атака допустима.
 
 `PlayerWeaponRig` — runtime-владелец текущего визуального loadout. Он получает
 подтверждённый тип оружия от `PlayerCombatController`, переставляет attachments
@@ -29,9 +31,10 @@ classDiagram
         -unarmedHitboxes
     }
     class PlayerWeaponLoadout {
-        <<MonoBehaviour authoring>>
+        <<MonoBehaviour authoring / sampler>>
         -unarmedHitboxes
         -weapons
+        -LateUpdate()
     }
     class PlayerWeaponBinding {
         +WeaponType
@@ -44,11 +47,12 @@ classDiagram
         -hitboxes
     }
     class Weapon {
-        <<trigger adapter>>
+        <<trigger / sweep adapter>>
         -hitbox
         +EnableHitbox(execution, resolver)
         +DisableHitbox()
     }
+    class WeaponHitboxSweep
     class CombatHitResolver
 
     PlayerCombatController --> IPlayerWeaponRig
@@ -57,6 +61,7 @@ classDiagram
     PlayerWeaponLoadout *-- PlayerWeaponBinding
     PlayerWeaponBinding *-- PlayerWeaponAttachment
     PlayerWeaponAttachment o-- Weapon
+    Weapon *-- WeaponHitboxSweep
     Weapon --> CombatHitResolver
 ```
 
@@ -76,6 +81,9 @@ classDiagram
   hitboxes. Неэкипированный binding может оставаться видимым в sheath sockets.
 - Отсутствующий binding или hitbox считается ошибкой authoring, а не поводом
   молча наносить урон кулаками.
+- Player weapon queries используют только слой `Hitbox`. Sweep поддерживает
+  capsule, sphere и box shapes, не создаёт коллекции в кадре и ограничен восемью
+  промежуточными samples на один rendering frame.
 
 ## Текущий DualSwords prototype
 

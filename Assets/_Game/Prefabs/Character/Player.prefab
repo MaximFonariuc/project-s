@@ -1819,6 +1819,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitbox: {fileID: 8841567132796959033}
+  _targetLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  _triggerInteraction: 2
+  _maxSweepSteps: 8
 --- !u!1 &6259878511723785107
 GameObject:
   m_ObjectHideFlags: 0
@@ -2069,6 +2074,11 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier:
   _hitbox: {fileID: 2622462728040635144}
+  _targetLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  _triggerInteraction: 2
+  _maxSweepSteps: 8
 --- !u!1 &6839095307486156204
 GameObject:
   m_ObjectHideFlags: 0
@@ -2519,6 +2529,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitbox: {fileID: 8160228946427930478}
+  _targetLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  _triggerInteraction: 2
+  _maxSweepSteps: 8
 --- !u!1 &8852654604836842645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2622,6 +2637,11 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier:
   _hitbox: {fileID: 7181005981218156373}
+  _targetLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  _triggerInteraction: 2
+  _maxSweepSteps: 8
 --- !u!1 &9182343639657279201
 GameObject:
   m_ObjectHideFlags: 0
