@@ -82,10 +82,6 @@ UMotionData
 /Reference/Elden/
 /Reference/Frank/
 
-# Frank source animation FBXs are generated locally from the licensed UE assets.
-# Catalogs, reports and import tooling stay versioned; the heavy binary library does not.
-/Assets/_Game/Animations/Frank/**/*.fbx
-/Assets/_Game/Animations/Frank/**/*.fbx.meta
-/Assets/_Game/Animations/Frank/*/Animations.meta
-/Assets/_Game/Animations/Frank/*/Animations/**/*.meta
-/Assets/_Game/Animations/Frank/Rig.meta
+# Frank source archives remain local under /Reference/Frank/. Runtime-ready
+# Humanoid FBXs and their import metadata under Assets/_Game/Animations/Frank
+# are versioned through Git LFS so their validated Unity imports are reproducible.

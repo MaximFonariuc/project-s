@@ -24,19 +24,22 @@ namespace _App
         public PlayerCombatActionId TargetActionId { get; }
         public PlayerCombatTransitionWindow Window { get; }
         public PlayerCombatTransitionCondition Condition { get; }
+        public NormalizedActionWindow AcceptanceWindow { get; }
 
         public PlayerCombatTransitionRule(
             PlayerCombatActionId sourceActionId,
             PlayerCombatCommandId commandId,
             PlayerCombatActionId targetActionId,
             PlayerCombatTransitionWindow window,
-            PlayerCombatTransitionCondition condition = PlayerCombatTransitionCondition.Any)
+            PlayerCombatTransitionCondition condition = PlayerCombatTransitionCondition.Any,
+            NormalizedActionWindow acceptanceWindow = default)
         {
             SourceActionId = sourceActionId;
             CommandId = commandId;
             TargetActionId = targetActionId;
             Window = window;
             Condition = condition;
+            AcceptanceWindow = acceptanceWindow;
         }
     }
 
@@ -95,7 +98,7 @@ namespace _App
                 for (int i = 0; i < candidates.Count; i++)
                 {
                     PlayerCombatTransitionRule transition = candidates[i];
-                    if (IsWindowOpen(transition.Window, in frame) &&
+                    if (IsWindowOpen(in transition, in frame) &&
                         IsConditionSatisfied(
                             transition.Condition,
                             source.Definition.HitboxWindow,
@@ -230,15 +233,19 @@ namespace _App
         }
 
         private static bool IsWindowOpen(
-            PlayerCombatTransitionWindow window,
+            in PlayerCombatTransitionRule transition,
             in CombatActionFrame frame)
         {
-            return window switch
+            bool sourceWindowOpen = transition.Window switch
             {
                 PlayerCombatTransitionWindow.Chain => frame.CanChain,
                 PlayerCombatTransitionWindow.Cancel => frame.CanCancel,
                 _ => false
             };
+
+            return sourceWindowOpen &&
+                   (!transition.AcceptanceWindow.IsEnabled ||
+                    transition.AcceptanceWindow.Contains(frame.NormalizedTime));
         }
 
         private static bool IsConditionSatisfied(
@@ -356,6 +363,7 @@ namespace _App
                 }
 
                 ValidateTransitionCondition(transition, actions);
+                ValidateTransitionWindow(transition, actions);
 
                 var key = new TransitionKey(transition.SourceActionId, transition.CommandId);
                 if (!lookup.TryGetValue(key, out List<PlayerCombatTransitionRule> candidates))
@@ -364,21 +372,20 @@ namespace _App
                     lookup.Add(key, candidates);
                 }
 
-                var targetIds = new List<PlayerCombatActionId>(candidates.Count);
                 for (int i = 0; i < candidates.Count; i++)
                 {
-                    if (ConditionsCanOverlap(candidates[i].Condition, transition.Condition))
+                    PlayerCombatTransitionRule candidate = candidates[i];
+                    if (ConditionsCanOverlap(candidate.Condition, transition.Condition) &&
+                        TransitionWindowsOverlap(candidate, transition, actions) &&
+                        (actions[candidate.TargetActionId].Environment &
+                         actions[transition.TargetActionId].Environment) != 0)
                     {
-                        targetIds.Add(candidates[i].TargetActionId);
+                        throw new ArgumentException(
+                            $"Combat transition from '{transition.SourceActionId}' for command " +
+                            $"'{transition.CommandId}' is ambiguous in its environment and timing window.",
+                            nameof(transitions));
                     }
                 }
-
-                EnsureEnvironmentDoesNotOverlap(
-                    targetIds,
-                    transition.TargetActionId,
-                    actions,
-                    $"transition from '{transition.SourceActionId}' for command '{transition.CommandId}'",
-                    nameof(transitions));
                 candidates.Add(transition);
             }
 
@@ -419,6 +426,65 @@ namespace _App
                     $"but its {transition.Window} window closes before the hitbox is resolved.",
                     "transitions");
             }
+        }
+
+        private static void ValidateTransitionWindow(
+            in PlayerCombatTransitionRule transition,
+            IReadOnlyDictionary<PlayerCombatActionId, PlayerCombatAction> actions)
+        {
+            NormalizedActionWindow sourceWindow = GetSourceWindow(
+                transition.Window,
+                actions[transition.SourceActionId].Definition);
+            if (!sourceWindow.IsEnabled)
+            {
+                throw new ArgumentException(
+                    $"Combat transition from '{transition.SourceActionId}' uses a disabled " +
+                    $"{transition.Window} window.",
+                    "transitions");
+            }
+
+            NormalizedActionWindow acceptanceWindow = transition.AcceptanceWindow;
+            if (acceptanceWindow.IsEnabled &&
+                (acceptanceWindow.Start < sourceWindow.Start ||
+                 acceptanceWindow.End > sourceWindow.End))
+            {
+                throw new ArgumentException(
+                    $"Combat transition from '{transition.SourceActionId}' has an acceptance " +
+                    $"window outside its {transition.Window} window.",
+                    "transitions");
+            }
+        }
+
+        private static bool TransitionWindowsOverlap(
+            in PlayerCombatTransitionRule left,
+            in PlayerCombatTransitionRule right,
+            IReadOnlyDictionary<PlayerCombatActionId, PlayerCombatAction> actions)
+        {
+            CombatActionDefinition definition = actions[left.SourceActionId].Definition;
+            NormalizedActionWindow leftWindow = GetEffectiveTransitionWindow(left, definition);
+            NormalizedActionWindow rightWindow = GetEffectiveTransitionWindow(right, definition);
+            return leftWindow.Start <= rightWindow.End && rightWindow.Start <= leftWindow.End;
+        }
+
+        private static NormalizedActionWindow GetEffectiveTransitionWindow(
+            in PlayerCombatTransitionRule transition,
+            in CombatActionDefinition definition)
+        {
+            return transition.AcceptanceWindow.IsEnabled
+                ? transition.AcceptanceWindow
+                : GetSourceWindow(transition.Window, definition);
+        }
+
+        private static NormalizedActionWindow GetSourceWindow(
+            PlayerCombatTransitionWindow window,
+            in CombatActionDefinition definition)
+        {
+            return window switch
+            {
+                PlayerCombatTransitionWindow.Chain => definition.ChainWindow,
+                PlayerCombatTransitionWindow.Cancel => definition.CancelWindow,
+                _ => NormalizedActionWindow.Disabled
+            };
         }
 
         private static bool ConditionsCanOverlap(
