@@ -1,0 +1,2542 @@
+{
+  "schemaVersion": 1,
+  "pack": "TwoHandedKatana",
+  "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
+  "animationType": "Humanoid",
+  "clipCount": 149,
+  "clips": [
+    {
+      "name": "Frank_RPG_Katana_8Way_GuardWalk_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Defense/Frank_RPG_Katana_8Way_GuardWalk_B.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_GuardWalk_B.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 865660,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_GuardWalk_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Defense/Frank_RPG_Katana_8Way_GuardWalk_BL.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_GuardWalk_BL.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 866044,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_GuardWalk_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Defense/Frank_RPG_Katana_8Way_GuardWalk_BR.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_GuardWalk_BR.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 866284,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_GuardWalk_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Defense/Frank_RPG_Katana_8Way_GuardWalk_F.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_GuardWalk_F.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 865692,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_GuardWalk_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Defense/Frank_RPG_Katana_8Way_GuardWalk_FL.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_GuardWalk_FL.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 865532,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_GuardWalk_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Defense/Frank_RPG_Katana_8Way_GuardWalk_FR.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_GuardWalk_FR.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 866188,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_GuardWalk_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Defense/Frank_RPG_Katana_8Way_GuardWalk_L.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_GuardWalk_L.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 865660,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_GuardWalk_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Defense/Frank_RPG_Katana_8Way_GuardWalk_R.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_GuardWalk_R.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 865580,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Run_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Run_B.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Run_B.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 827468,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Run_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Run_BL.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Run_BL.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 827548,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Run_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Run_BR.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Run_BR.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 827548,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Run_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Run_F.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Run_F.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 826748,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Run_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Run_FL.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Run_FL.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 828092,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Run_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Run_FR.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Run_FR.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 826908,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Run_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Run_L.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Run_L.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 827756,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Run_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Run_R.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Run_R.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 827916,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Run_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Run_B.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Run_B.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 825708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Run_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Run_BL.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Run_BL.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 826940,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Run_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Run_BR.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Run_BR.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 826140,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Run_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Run_F.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Run_F.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 826284,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Run_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Run_FL.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Run_FL.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 826268,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Run_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Run_FR.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Run_FR.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 825708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Run_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Run_L.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Run_L.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 825868,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Run_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Run_R.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Run_R.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 825932,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Walk_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Walk_B.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Walk_B.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 862556,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Walk_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Walk_BL.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Walk_BL.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 862652,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Walk_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Walk_BR.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Walk_BR.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 862668,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Walk_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Walk_F.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Walk_F.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 862492,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Walk_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Walk_FL.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Walk_FL.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 862748,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Walk_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Walk_FR.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Walk_FR.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 863100,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Walk_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Walk_L.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Walk_L.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 862412,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_S2_Walk_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_S2_Walk_R.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_S2_Walk_R.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 862556,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Walk_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Walk_B.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Walk_B.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 864588,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Walk_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Walk_BL.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Walk_BL.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 868668,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Walk_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Walk_BR.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Walk_BR.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 869180,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Walk_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Walk_F.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Walk_F.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 866908,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Walk_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Walk_FL.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Walk_FL.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 868604,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Walk_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Walk_FR.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Walk_FR.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 869148,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Walk_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Walk_L.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Walk_L.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 868828,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_8Way_Walk_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_8Way_Walk_R.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_8Way_Walk_R.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 863948,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Block",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Defense/Frank_RPG_Katana_Block.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Block.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Evade_B__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Evasion/Frank_RPG_Katana_Evade_B__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Evade_B__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 49,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 884956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Evade_F__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Evasion/Frank_RPG_Katana_Evade_F__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Evade_F__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 49,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 884060,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Evade_L__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Evasion/Frank_RPG_Katana_Evade_L__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Evade_L__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 49,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 885964,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Evade_R__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Evasion/Frank_RPG_Katana_Evade_R__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Evade_R__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 49,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 885756,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Getup01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Recovery/Frank_RPG_Katana_Getup01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Getup01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Recovery",
+      "frames": 56,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 925484,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Getup02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Recovery/Frank_RPG_Katana_Getup02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Getup02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Recovery",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 899900,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Guard",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Defense/Frank_RPG_Katana_Guard.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Guard.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 987612,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Hit_Knockdown_Loop",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Reactions/Frank_RPG_Katana_Hit_Knockdown_Loop.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Hit_Knockdown_Loop.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1037340,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Hit01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Reactions/Frank_RPG_Katana_Hit01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Hit01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 832620,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Hit02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Reactions/Frank_RPG_Katana_Hit02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Hit02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 833084,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Hit03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Reactions/Frank_RPG_Katana_Hit03.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Hit03.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 871500,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Jump_ZeroHeight",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Air/Frank_RPG_Katana_Jump_ZeroHeight.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Jump_ZeroHeight.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 952860,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Run_Stance2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_Run_Stance2.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Run_Stance2.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 788332,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Run_Stance3",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_Run_Stance3.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Run_Stance3.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 788652,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Run01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_Run01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Run01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 789548,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Run02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_Run02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Run02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 789996,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo01_All__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Attacks/Frank_RPG_Katana_S1_Combo01_All__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_S1_Combo01_All__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 129,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1329276,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo02_All__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Attacks/Frank_RPG_Katana_S1_Combo02_All__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_S1_Combo02_All__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 171,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1567036,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo03_All__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Attacks/Frank_RPG_Katana_S1_Combo03_All__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_S1_Combo03_All__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 201,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1715756,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Skill01__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Skills/Frank_RPG_Katana_S1_Skill01__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_S1_Skill01__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 145,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1404812,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Skill02__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Skills/Frank_RPG_Katana_S1_Skill02__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_S1_Skill02__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 151,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1437340,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Combo01_All__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Attacks/Frank_RPG_Katana_S2_Combo01_All__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_S2_Combo01_All__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 156,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1466236,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Combo02_All__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Attacks/Frank_RPG_Katana_S2_Combo02_All__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_S2_Combo02_All__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 206,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1743596,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Skill01__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Skills/Frank_RPG_Katana_S2_Skill01__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_S2_Skill01__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 206,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1742076,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Skill02__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Skills/Frank_RPG_Katana_S2_Skill02__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_S2_Skill02__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 156,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1461564,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S3_Combo01_All__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Attacks/Frank_RPG_Katana_S3_Combo01_All__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_S3_Combo01_All__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1349916,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S3_Skill01__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Skills/Frank_RPG_Katana_S3_Skill01__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_S3_Skill01__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 126,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1312924,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S3_Skill02__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Skills/Frank_RPG_Katana_S3_Skill02__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_S3_Skill02__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 208,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1765804,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Stance1_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_Stance1_Idle.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Stance1_Idle.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1050460,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Stance2_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_Stance2_Idle.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Stance2_Idle.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1056444,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Stance3_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_Stance3_Idle.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Stance3_Idle.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 936524,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Step_B__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Evasion/Frank_RPG_Katana_Step_B__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Step_B__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Step_F__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Evasion/Frank_RPG_Katana_Step_F__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Step_F__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Step_L__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Evasion/Frank_RPG_Katana_Step_L__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Step_L__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Step_R__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Evasion/Frank_RPG_Katana_Step_R__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Step_R__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Tumbling_B__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Evasion/Frank_RPG_Katana_Tumbling_B__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Tumbling_B__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 898012,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Tumbling_F__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Evasion/Frank_RPG_Katana_Tumbling_F__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Tumbling_F__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 899900,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Tumbling_L__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Evasion/Frank_RPG_Katana_Tumbling_L__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Tumbling_L__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 897868,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Tumbling_R__IP",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Evasion/Frank_RPG_Katana_Tumbling_R__IP.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Tumbling_R__IP.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 899612,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Unequip_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Equipment/Frank_RPG_Katana_Unequip_Idle.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Unequip_Idle.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 301,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 2260188,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Unequip_Run_Faster",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Equipment/Frank_RPG_Katana_Unequip_Run_Faster.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Unequip_Run_Faster.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 27,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 773516,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Unequip_Run",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Equipment/Frank_RPG_Katana_Unequip_Run.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Unequip_Run.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 37,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 801916,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Unequip",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Equipment/Frank_RPG_Katana_Unequip.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Unequip.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 171,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1588220,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Walk_Faster",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_Walk_Faster.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Walk_Faster.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 57,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 923116,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Walk",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Locomotion/Frank_RPG_Katana_Walk.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_IP/Frank_RPG_Katana_Walk.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 65,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 963788,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Die01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Death/Frank_RPG_Katana_Die01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Die01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 56,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 922172,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Die02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Death/Frank_RPG_Katana_Die02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Die02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 897644,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Die03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Death/Frank_RPG_Katana_Die03.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Die03.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 101,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1182284,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Evade_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Evasion/Frank_RPG_Katana_Evade_B.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Evade_B.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 49,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 887916,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Evade_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Evasion/Frank_RPG_Katana_Evade_F.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Evade_F.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 49,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 887820,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Evade_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Evasion/Frank_RPG_Katana_Evade_L.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Evade_L.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 49,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 888476,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Evade_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Evasion/Frank_RPG_Katana_Evade_R.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Evade_R.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 49,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 888044,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Guard_Crash",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Defense/Frank_RPG_Katana_Guard_Crash.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Guard_Crash.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Defense",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Hit_Knockback",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Reactions/Frank_RPG_Katana_Hit_Knockback.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Hit_Knockback.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 55,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 920172,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Hit_Knockdown",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Reactions/Frank_RPG_Katana_Hit_Knockdown.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Hit_Knockdown.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 76,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1046540,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Jump_01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Air/Frank_RPG_Katana_Jump_01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Jump_01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 956108,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Jump_02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Air/Frank_RPG_Katana_Jump_02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Jump_02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 954524,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Attack01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Attack01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Attack01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 76,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1046252,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Attack02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Attack02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Attack02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1065628,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Attack03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Attack03.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Attack03.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1072684,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo01_01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Combo01_01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Combo01_01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 951340,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo01_02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Combo01_02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Combo01_02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 69,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 995884,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo01_03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Combo01_03.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Combo01_03.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 64,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 965820,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo01_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Combo01_All.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Combo01_All.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 129,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1332748,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo02_01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Combo02_01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Combo02_01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 86,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1103964,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo02_02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Combo02_02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Combo02_02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1077084,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo02_03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Combo02_03.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Combo02_03.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 83,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1080636,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo02_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Combo02_All.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Combo02_All.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 171,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1572620,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo03_01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Combo03_01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Combo03_01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 91,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1123212,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo03_02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Combo03_02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Combo03_02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 111,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1230972,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo03_03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Combo03_03.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Combo03_03.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 89,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1111788,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Combo03_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S1_Combo03_All.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Combo03_All.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 201,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1719676,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Skill01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Skills/Frank_RPG_Katana_S1_Skill01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Skill01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 145,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1408924,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S1_Skill02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Skills/Frank_RPG_Katana_S1_Skill02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S1_Skill02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 151,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1440700,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Attack01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S2_Attack01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S2_Attack01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1065644,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Attack02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S2_Attack02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S2_Attack02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 976252,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Attack03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S2_Attack03.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S2_Attack03.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1006220,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Combo01_01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S2_Combo01_01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S2_Combo01_01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 74,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1021532,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Combo01_02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S2_Combo01_02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S2_Combo01_02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1000108,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Combo01_03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S2_Combo01_03.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S2_Combo01_03.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 977340,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Combo01_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S2_Combo01_All.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S2_Combo01_All.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 156,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1470044,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Combo02_01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S2_Combo02_01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S2_Combo02_01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1067820,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Combo02_02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S2_Combo02_02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S2_Combo02_02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 126,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1307740,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Combo02_03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S2_Combo02_03.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S2_Combo02_03.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 107,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1209740,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Combo02_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S2_Combo02_All.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S2_Combo02_All.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 206,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1752828,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Skill01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Skills/Frank_RPG_Katana_S2_Skill01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S2_Skill01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 206,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1756812,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S2_Skill02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Skills/Frank_RPG_Katana_S2_Skill02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S2_Skill02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 156,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1465212,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S3_Attack01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S3_Attack01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S3_Attack01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 56,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 924124,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S3_Attack02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S3_Attack02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S3_Attack02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 56,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 923916,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S3_Attack03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S3_Attack03.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S3_Attack03.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 91,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1130012,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S3_Combo01_01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S3_Combo01_01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S3_Combo01_01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 91,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1132956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S3_Combo01_02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S3_Combo01_02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S3_Combo01_02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 987692,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S3_Combo01_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Attacks/Frank_RPG_Katana_S3_Combo01_All.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S3_Combo01_All.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1354444,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S3_Skill01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Skills/Frank_RPG_Katana_S3_Skill01.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S3_Skill01.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 126,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1317388,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_S3_Skill02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Skills/Frank_RPG_Katana_S3_Skill02.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_S3_Skill02.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 208,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1768828,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Stance1_Equip",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Equipment/Frank_RPG_Katana_Stance1_Equip.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Stance1_Equip.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Equipment",
+      "frames": 101,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1189564,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Stance1_to_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Other/Frank_RPG_Katana_Stance1_to_2.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Stance1_to_2.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Other",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 891516,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Stance1_to_3",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Other/Frank_RPG_Katana_Stance1_to_3.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Stance1_to_3.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Other",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 834876,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Stance2_to_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Other/Frank_RPG_Katana_Stance2_to_1.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Stance2_to_1.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Other",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 891772,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Stance3_to_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Other/Frank_RPG_Katana_Stance3_to_1.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Stance3_to_1.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Other",
+      "frames": 77,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 1057004,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Step_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Evasion/Frank_RPG_Katana_Step_B.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Step_B.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Step_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Evasion/Frank_RPG_Katana_Step_F.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Step_F.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Step_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Evasion/Frank_RPG_Katana_Step_L.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Step_L.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Step_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Evasion/Frank_RPG_Katana_Step_R.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Step_R.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Tumbling_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Evasion/Frank_RPG_Katana_Tumbling_B.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Tumbling_B.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 900092,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Tumbling_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Evasion/Frank_RPG_Katana_Tumbling_F.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Tumbling_F.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 901228,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Tumbling_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Evasion/Frank_RPG_Katana_Tumbling_L.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Tumbling_L.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 899628,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Katana_Tumbling_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Evasion/Frank_RPG_Katana_Tumbling_R.fbx",
+      "sourceAsset": "Frank_2Handed_Katana/Animations/Frank_Katana_RM/Frank_RPG_Katana_Tumbling_R.uasset",
+      "sourceGroup": "Frank_2Handed_Katana\\Animations\\Frank_Katana_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 77,
+      "mappedBones": 70,
+      "bytes": 901068,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    }
+  ]
+}

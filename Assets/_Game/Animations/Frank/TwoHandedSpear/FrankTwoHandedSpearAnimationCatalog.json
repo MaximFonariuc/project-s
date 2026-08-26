@@ -1,0 +1,1437 @@
+{
+  "schemaVersion": 1,
+  "pack": "TwoHandedSpear",
+  "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
+  "animationType": "Humanoid",
+  "clipCount": 84,
+  "clips": [
+    {
+      "name": "Frank_RPG_Spear_8Way_Run_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Run_B.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Run_B.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 827164,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Run_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Run_BL.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Run_BL.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 826252,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Run_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Run_BR.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Run_BR.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 828876,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Run_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Run_F.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Run_F.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 828364,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Run_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Run_FL.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Run_FL.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 828284,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Run_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Run_FR.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Run_FR.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 828284,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Run_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Run_L.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Run_L.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 826972,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Run_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Run_R.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Run_R.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 826796,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Walk_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Walk_B.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Walk_B.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 863836,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Walk_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Walk_BL.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Walk_BL.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 863804,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Walk_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Walk_BR.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Walk_BR.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 869228,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Walk_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Walk_F.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Walk_F.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 868972,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Walk_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Walk_FL.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Walk_FL.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 863116,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Walk_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Walk_FR.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Walk_FR.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 863660,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Walk_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Walk_L.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Walk_L.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 863052,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_8Way_Walk_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_8Way_Walk_R.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_8Way_Walk_R.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 862876,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Block",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Defense/Frank_RPG_Spear_Block.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Block.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Equip_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Equipment/Frank_RPG_Spear_Equip_Idle.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Equip_Idle.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 946428,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Equip_Run01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Equipment/Frank_RPG_Spear_Equip_Run01.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Equip_Run01.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 789692,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Equip_Run02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Equipment/Frank_RPG_Spear_Equip_Run02.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Equip_Run02.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 791532,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Equip",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Equipment/Frank_RPG_Spear_Equip.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Equip.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1014540,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Getup01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Recovery/Frank_RPG_Spear_Getup01.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Getup01.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Recovery",
+      "frames": 56,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 930700,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Getup02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Recovery/Frank_RPG_Spear_Getup02.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Getup02.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Recovery",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 903900,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Guard",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Defense/Frank_RPG_Spear_Guard.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Guard.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 990220,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Hit_Knockdown_Loop",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Reactions/Frank_RPG_Spear_Hit_Knockdown_Loop.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Hit_Knockdown_Loop.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1037964,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Hit01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Reactions/Frank_RPG_Spear_Hit01.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Hit01.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 837356,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Hit02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Reactions/Frank_RPG_Spear_Hit02.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Hit02.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 837276,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Hit03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Reactions/Frank_RPG_Spear_Hit03.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Hit03.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 876684,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Jump_ZeroHeight",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Air/Frank_RPG_Spear_Jump_ZeroHeight.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Jump_ZeroHeight.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 959308,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Unequip_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Equipment/Frank_RPG_Spear_Unequip_Idle.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Unequip_Idle.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 301,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 2258508,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Unequip_Run_Faster",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Equipment/Frank_RPG_Spear_Unequip_Run_Faster.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Unequip_Run_Faster.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Unequip_Run",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Equipment/Frank_RPG_Spear_Unequip_Run.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Unequip_Run.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 37,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 801900,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Unequip",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Equipment/Frank_RPG_Spear_Unequip.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Unequip.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 66,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 986892,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Walk_Faster",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_Walk_Faster.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Walk_Faster.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 57,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 922604,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Walk",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/InPlace/Locomotion/Frank_RPG_Spear_Walk.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_IP/Frank_RPG_Spear_Walk.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 65,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 963324,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Attack01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Attack01.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Attack01.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 890972,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Attack02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Attack02.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Attack02.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 947788,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Attack03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Attack03.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Attack03.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 952012,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Attack04",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Attack04.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Attack04.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 892428,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Attack05",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Attack05.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Attack05.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 76,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1051852,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo01_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo01_1.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo01_1.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1004908,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo01_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo01_2.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo01_2.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 85,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1105580,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo01_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo01_All.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo01_All.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 121,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1299820,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo02_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo02_1.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo02_1.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 56,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 924284,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo02_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo02_2.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo02_2.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 86,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1101132,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo02_3",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo02_3.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo02_3.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 74,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1032460,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo02_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo02_All.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo02_All.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 153,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1464124,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo03_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo03_1.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo03_1.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 97,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1166540,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo03_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo03_2.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo03_2.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 106,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1214028,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo03_3",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo03_3.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo03_3.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 102,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1194620,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo03_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo03_All.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo03_All.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 231,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1904476,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo04_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo04_1.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo04_1.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 953596,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo04_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo04_2.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo04_2.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1007068,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo04_3",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo04_3.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo04_3.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 66,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 976764,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo04_4",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo04_4.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo04_4.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1079244,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo04_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo04_All.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo04_All.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 171,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1589708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo05_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo05_1.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo05_1.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 66,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 975468,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo05_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo05_2.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo05_2.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 111,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1239772,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo05_3",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo05_3.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo05_3.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1006956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Combo05_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Attacks/Frank_RPG_Spear_Combo05_All.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Combo05_All.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 161,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1523884,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Die01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Death/Frank_RPG_Spear_Die01.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Die01.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 56,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 929548,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Die02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Death/Frank_RPG_Spear_Die02.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Die02.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 901324,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Die03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Death/Frank_RPG_Spear_Die03.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Die03.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 57,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 938620,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Die04",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Death/Frank_RPG_Spear_Die04.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Die04.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 962460,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Die05",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Death/Frank_RPG_Spear_Die05.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Die05.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 85,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1108076,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Evade_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Evasion/Frank_RPG_Spear_Evade_B.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Evade_B.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 840460,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Evade_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Evasion/Frank_RPG_Spear_Evade_F.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Evade_F.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 841116,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Evade_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Evasion/Frank_RPG_Spear_Evade_L.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Evade_L.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 839916,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Evade_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Evasion/Frank_RPG_Spear_Evade_R.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Evade_R.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 840316,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Hit_Knockback",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Reactions/Frank_RPG_Spear_Hit_Knockback.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Hit_Knockback.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 55,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 926732,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Hit_Knockdown",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Reactions/Frank_RPG_Spear_Hit_Knockdown.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Hit_Knockdown.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 69,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1002476,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Jump_01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Air/Frank_RPG_Spear_Jump_01.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Jump_01.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 961852,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Jump_02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Air/Frank_RPG_Spear_Jump_02.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Jump_02.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 55,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 926636,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Skill01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Skills/Frank_RPG_Spear_Skill01.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Skill01.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 121,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1292764,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Skill02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Skills/Frank_RPG_Spear_Skill02.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Skill02.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 161,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1529676,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Skill03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Skills/Frank_RPG_Spear_Skill03.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Skill03.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 181,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 1628636,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Step_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Evasion/Frank_RPG_Spear_Step_B.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Step_B.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Step_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Evasion/Frank_RPG_Spear_Step_F.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Step_F.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Step_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Evasion/Frank_RPG_Spear_Step_L.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Step_L.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Step_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Evasion/Frank_RPG_Spear_Step_R.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Step_R.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Tumbling_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Evasion/Frank_RPG_Spear_Tumbling_B.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Tumbling_B.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 904572,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Tumbling_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Evasion/Frank_RPG_Spear_Tumbling_F.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Tumbling_F.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 906732,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Tumbling_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Evasion/Frank_RPG_Spear_Tumbling_L.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Tumbling_L.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 904428,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Spear_Tumbling_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedSpear/Animations/RootMotion/Evasion/Frank_RPG_Spear_Tumbling_R.fbx",
+      "sourceAsset": "Frank_2Handed_Spear/Animations/Frank_Spear_RM/Frank_RPG_Spear_Tumbling_R.uasset",
+      "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 75,
+      "mappedBones": 70,
+      "bytes": 906588,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    }
+  ]
+}

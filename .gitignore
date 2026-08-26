@@ -81,3 +81,11 @@ UMotionData
 # Local animation source libraries. Runtime-ready imports belong in Assets/_Game.
 /Reference/Elden/
 /Reference/Frank/
+
+# Frank source animation FBXs are generated locally from the licensed UE assets.
+# Catalogs, reports and import tooling stay versioned; the heavy binary library does not.
+/Assets/_Game/Animations/Frank/**/*.fbx
+/Assets/_Game/Animations/Frank/**/*.fbx.meta
+/Assets/_Game/Animations/Frank/*/Animations.meta
+/Assets/_Game/Animations/Frank/*/Animations/**/*.meta
+/Assets/_Game/Animations/Frank/Rig.meta

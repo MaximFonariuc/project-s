@@ -1,0 +1,2121 @@
+{
+  "schemaVersion": 1,
+  "pack": "AssassinNinja",
+  "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
+  "animationType": "Humanoid",
+  "clipCount": 132,
+  "clips": [
+    {
+      "name": "Frank_RPG_Assassin_8Way_Run_B",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Run_B.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Run_B.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 826476,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Run_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Run_BL.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Run_BL.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 826604,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Run_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Run_BR.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Run_BR.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 40,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 819132,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Run_F",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Run_F.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Run_F.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 826252,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Run_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Run_FL.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Run_FL.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 827340,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Run_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Run_FR.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Run_FR.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 826156,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Run_L",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Run_L.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Run_L.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 826892,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Run_R",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Run_R.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Run_R.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 826844,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Walk_B",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Walk_B.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Walk_B.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 863932,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Walk_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Walk_BL.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Walk_BL.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 867452,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Walk_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Walk_BR.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Walk_BR.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 867836,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Walk_F",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Walk_F.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Walk_F.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 863708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Walk_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Walk_FL.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Walk_FL.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 867660,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Walk_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Walk_FR.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Walk_FR.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 868172,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Walk_L",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Walk_L.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Walk_L.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 868028,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_8Way_Walk_R",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_8Way_Walk_R.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_8Way_Walk_R.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 863244,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack01_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Attack01_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Attack01_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 866556,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack02_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Attack02_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Attack02_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 45,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 851580,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack03_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Attack03_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Attack03_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 995644,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack04_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Attack04_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Attack04_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 53,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 907100,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack05_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Attack05_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Attack05_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 973372,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack06_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Attack06_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Attack06_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 53,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 904540,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack07_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Attack07_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Attack07_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 943980,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack08_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Attack08_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Attack08_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 91,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1123164,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Block",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Defense/Frank_RPG_Assassin_Block.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Block.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo01_1_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo01_1_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo01_1_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 36,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 793900,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo01_2_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo01_2_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo01_2_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 43,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 838620,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo01_3_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo01_3_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo01_3_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 65,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 962540,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo01_All_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo01_All_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo01_All_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 98,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1156252,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo02_1_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo02_1_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo02_1_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 54,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 907628,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo02_2_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo02_2_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo02_2_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 944092,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo02_3_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo02_3_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo02_3_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 55,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 911052,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo02_All_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo02_All_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo02_All_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1326812,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo03_1_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo03_1_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo03_1_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1063036,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo03_2_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo03_2_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo03_2_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 998332,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo03_3_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo03_3_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo03_3_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 66,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 968940,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo03_All_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo03_All_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo03_All_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 156,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1462076,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo04_1_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo04_1_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo04_1_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 943916,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo04_2_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo04_2_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo04_2_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 53,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 903292,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo04_3_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo04_3_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo04_3_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 101,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1186540,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo04_All_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo04_All_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo04_All_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 166,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1541164,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo05_1_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo05_1_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo05_1_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 45,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 854172,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo05_2_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo05_2_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo05_2_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 56,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 921372,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo05_3_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo05_3_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo05_3_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 69,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 988636,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo05_All_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Attacks/Frank_RPG_Assassin_Combo05_All_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Combo05_All_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 130,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1331548,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Equip_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Equipment/Frank_RPG_Assassin_Equip_Idle.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Equip_Idle.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 241,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1907340,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Equip",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Equipment/Frank_RPG_Assassin_Equip.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Equip.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 955708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Evade_B_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Evasion/Frank_RPG_Assassin_Evade_B_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Evade_B_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 36,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 797404,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Evade_F_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Evasion/Frank_RPG_Assassin_Evade_F_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Evade_F_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 36,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 797756,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Evade_L_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Evasion/Frank_RPG_Assassin_Evade_L_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Evade_L_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 36,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 798252,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Evade_R_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Evasion/Frank_RPG_Assassin_Evade_R_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Evade_R_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 36,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 797532,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Getup01",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Recovery/Frank_RPG_Assassin_Getup01.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Getup01.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Recovery",
+      "frames": 56,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 922220,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Getup02",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Recovery/Frank_RPG_Assassin_Getup02.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Getup02.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Recovery",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 897100,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Guard",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Defense/Frank_RPG_Assassin_Guard.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Guard.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 992428,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Hit_Knockback_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Reactions/Frank_RPG_Assassin_Hit_Knockback_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Hit_Knockback_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 55,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 916652,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Hit_Knockdown_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Reactions/Frank_RPG_Assassin_Hit_Knockdown_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Hit_Knockdown_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 69,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 991052,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Hit_Knockdown_Loop",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Reactions/Frank_RPG_Assassin_Hit_Knockdown_Loop.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Hit_Knockdown_Loop.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1038828,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Hit01",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Reactions/Frank_RPG_Assassin_Hit01.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Hit01.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 830860,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Hit02",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Reactions/Frank_RPG_Assassin_Hit02.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Hit02.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 830556,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Hit03",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Reactions/Frank_RPG_Assassin_Hit03.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Hit03.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 868124,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Jump_ZeroHeight",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Air/Frank_RPG_Assassin_Jump_ZeroHeight.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Jump_ZeroHeight.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 950892,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Run01",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_Run01.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Run01.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 789756,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Run02",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_Run02.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Run02.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 788892,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Skill01_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Skills/Frank_RPG_Assassin_Skill01_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Skill01_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1061548,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Skill02_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Skills/Frank_RPG_Assassin_Skill02_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Skill02_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 116,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1246716,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Skill03_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Skills/Frank_RPG_Assassin_Skill03_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Skill03_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 126,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1311676,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Skill04_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Skills/Frank_RPG_Assassin_Skill04_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Skill04_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 171,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1557420,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Step_B_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Evasion/Frank_RPG_Assassin_Step_B_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Step_B_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Step_F_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Evasion/Frank_RPG_Assassin_Step_F_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Step_F_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Step_L_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Evasion/Frank_RPG_Assassin_Step_L_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Step_L_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Step_R_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Evasion/Frank_RPG_Assassin_Step_R_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Step_R_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Tumbling_B_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Evasion/Frank_RPG_Assassin_Tumbling_B_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Tumbling_B_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 890780,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Tumbling_F_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Evasion/Frank_RPG_Assassin_Tumbling_F_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Tumbling_F_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 833676,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Tumbling_L_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Evasion/Frank_RPG_Assassin_Tumbling_L_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Tumbling_L_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 828348,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Tumbling_R_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Evasion/Frank_RPG_Assassin_Tumbling_R_IP.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Tumbling_R_IP.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 826540,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Unequip_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Equipment/Frank_RPG_Assassin_Unequip_Idle.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Unequip_Idle.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1068172,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Unequip_Run_Faster",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Equipment/Frank_RPG_Assassin_Unequip_Run_Faster.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Unequip_Run_Faster.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 27,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 773516,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Unequip_Run",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Equipment/Frank_RPG_Assassin_Unequip_Run.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Unequip_Run.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 37,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 801596,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Unequip",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Equipment/Frank_RPG_Assassin_Unequip.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Unequip.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 875836,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Walk_Faster",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_Walk_Faster.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Walk_Faster.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 57,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 922476,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Walk",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Locomotion/Frank_RPG_Assassin_Walk.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_IP/Frank_RPG_Assassin_Walk.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 65,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 962620,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack01",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Attack01.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Attack01.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 868028,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack02",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Attack02.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Attack02.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 45,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 852556,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack03",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Attack03.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Attack03.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 996972,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack04",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Attack04.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Attack04.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 53,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 907244,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack05",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Attack05.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Attack05.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 974572,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack06",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Attack06.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Attack06.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 53,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 905516,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack07",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Attack07.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Attack07.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 945132,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Attack08",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Attack08.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Attack08.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 91,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1125932,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo01_1",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo01_1.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo01_1.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 36,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 794684,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo01_2",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo01_2.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo01_2.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 43,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 839564,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo01_3",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo01_3.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo01_3.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 65,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 963932,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo01_All",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo01_All.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo01_All.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 98,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1160572,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo02_1",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo02_1.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo02_1.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 54,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 908428,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo02_2",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo02_2.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo02_2.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 944652,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo02_3",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo02_3.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo02_3.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 55,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 912940,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo02_All",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo02_All.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo02_All.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1331020,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo03_1",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo03_1.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo03_1.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1064652,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo03_2",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo03_2.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo03_2.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 999244,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo03_3",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo03_3.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo03_3.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 66,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 970524,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo03_All",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo03_All.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo03_All.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 156,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1468412,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo04_1",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo04_1.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo04_1.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 945084,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo04_2",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo04_2.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo04_2.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 53,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 904092,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo04_3",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo04_3.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo04_3.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 101,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1187292,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo04_All",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo04_All.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo04_All.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 166,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1544380,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo05_1",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo05_1.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo05_1.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 45,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 854732,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo05_2",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo05_2.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo05_2.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 56,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 921964,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo05_3",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo05_3.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo05_3.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 69,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 988300,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Combo05_All",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Attacks/Frank_RPG_Assassin_Combo05_All.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Combo05_All.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 130,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1333132,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Die01",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Death/Frank_RPG_Assassin_Die01.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Die01.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 56,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 922844,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Die02",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Death/Frank_RPG_Assassin_Die02.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Die02.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 896092,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Evade_B",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Evasion/Frank_RPG_Assassin_Evade_B.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Evade_B.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 36,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 799708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Evade_F",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Evasion/Frank_RPG_Assassin_Evade_F.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Evade_F.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 36,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 800348,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Evade_L",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Evasion/Frank_RPG_Assassin_Evade_L.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Evade_L.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 36,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 800172,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Evade_R",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Evasion/Frank_RPG_Assassin_Evade_R.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Evade_R.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 36,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 799436,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Hit_Knockback",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Reactions/Frank_RPG_Assassin_Hit_Knockback.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Hit_Knockback.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 55,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 917500,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Hit_Knockdown",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Reactions/Frank_RPG_Assassin_Hit_Knockdown.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Hit_Knockdown.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 69,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 995100,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Jump_01",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Air/Frank_RPG_Assassin_Jump_01.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Jump_01.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 953692,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Jump_02",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Air/Frank_RPG_Assassin_Jump_02.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Jump_02.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 55,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 918716,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Skill01",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Skills/Frank_RPG_Assassin_Skill01.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Skill01.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1066812,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Skill02",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Skills/Frank_RPG_Assassin_Skill02.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Skill02.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 116,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1249356,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Skill03",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Skills/Frank_RPG_Assassin_Skill03.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Skill03.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 126,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1313772,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Skill04",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Skills/Frank_RPG_Assassin_Skill04.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Skill04.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 171,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1561948,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Skill05",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Skills/Frank_RPG_Assassin_Skill05.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Skill05.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 198,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 1711452,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Step_B",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Evasion/Frank_RPG_Assassin_Step_B.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Step_B.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Step_F",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Evasion/Frank_RPG_Assassin_Step_F.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Step_F.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Step_L",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Evasion/Frank_RPG_Assassin_Step_L.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Step_L.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Step_R",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Evasion/Frank_RPG_Assassin_Step_R.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Step_R.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 26,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 764956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Tumbling_B",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Evasion/Frank_RPG_Assassin_Tumbling_B.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Tumbling_B.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 893116,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Tumbling_F",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Evasion/Frank_RPG_Assassin_Tumbling_F.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Tumbling_F.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 834620,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Tumbling_L",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Evasion/Frank_RPG_Assassin_Tumbling_L.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Tumbling_L.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 829612,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Assassin_Tumbling_R",
+      "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Evasion/Frank_RPG_Assassin_Tumbling_R.fbx",
+      "sourceAsset": "Frank_Assassin_Ninja/Animations/Frank_Assassin_RM/Frank_RPG_Assassin_Tumbling_R.uasset",
+      "sourceGroup": "Frank_Assassin_Ninja\\Animations\\Frank_Assassin_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 88,
+      "mappedBones": 78,
+      "bytes": 827516,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
+      ]
+    }
+  ]
+}

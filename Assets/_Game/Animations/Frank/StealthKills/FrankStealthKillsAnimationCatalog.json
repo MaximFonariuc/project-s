@@ -1,0 +1,823 @@
+{
+  "schemaVersion": 1,
+  "pack": "StealthKills",
+  "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
+  "animationType": "Humanoid",
+  "clipCount": 53,
+  "clips": [
+    {
+      "name": "Frank_Stealth_Kill_Air_Loop",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Air_Loop.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Air_Loop.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Behind_01",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Behind_01.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Behind_01.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 141,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1399036,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Behind_02",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Behind_02.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Behind_02.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 201,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1726220,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Behind_03",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Behind_03.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Behind_03.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 251,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1988572,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Behind_04",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Behind_04.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Behind_04.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 196,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1697916,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Behind_05",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Behind_05.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Behind_05.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 91,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1134316,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Behind_06",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Behind_06.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Behind_06.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 191,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1671916,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Behind_07",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Behind_07.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Behind_07.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 191,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1683372,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Behind_08",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Behind_08.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Behind_08.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 141,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1404572,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Front_01",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Front_01.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Front_01.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 181,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1630940,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Front_02",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Front_02.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Front_02.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 171,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1583084,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Front_03",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Front_03.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Front_03.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 161,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1506988,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Front_04",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Front_04.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Front_04.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 151,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1451612,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Ledge_01",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Ledge_01.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Ledge_01.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1344396,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Ledge_02",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Ledge_02.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Ledge_02.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 161,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1521260,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Ledge_Climb",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Ledge_Climb.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Ledge_Climb.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 116,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1274508,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Top_01",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Top_01.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Top_01.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1339676,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Top_02",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Top_02.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Top_02.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 104,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1201356,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Top_03",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Top_03.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill/Frank_Stealth_Kill_Top_03.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill",
+      "motion": "RootMotion",
+      "category": "Attacker",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 1343036,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Behind_01",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Behind_01.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Behind_01.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 141,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1389484,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Behind_02",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Behind_02.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Behind_02.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 201,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1720508,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Behind_03",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Behind_03.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Behind_03.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 251,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1992780,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Behind_04",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Behind_04.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Behind_04.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 196,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1675868,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Behind_05",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Behind_05.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Behind_05.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 91,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1122604,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Behind_06",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Behind_06.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Behind_06.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 191,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1664796,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Behind_07",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Behind_07.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Behind_07.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 191,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1659676,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Behind_08",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Behind_08.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Behind_08.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 141,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1401276,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Front_01",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Front_01.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Front_01.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 181,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1620412,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Front_02",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Front_02.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Front_02.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 171,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1536972,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Front_03",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Front_03.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Front_03.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 161,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1501404,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Front_04",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Front_04.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Front_04.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 151,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1442028,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Ledge_01",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Ledge_01.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Ledge_01.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1343036,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Ledge_02",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Ledge_02.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Ledge_02.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 161,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1513228,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Top_01",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Top_01.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Top_01.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1320540,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Top_02",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Top_02.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Top_02.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 104,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1176988,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Hit_Top_03",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Top_03.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Kill_Hit/Frank_Stealth_Kill_Hit_Top_03.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Kill_Hit",
+      "motion": "RootMotion",
+      "category": "Victim",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 68,
+      "mappedBones": 68,
+      "bytes": 1320988,
+      "warnings": []
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/InPlace/Movement/Frank_Stealth_Kill_Sneak_Idle.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Idle.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "InPlace",
+      "category": "Movement",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 933276,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Run_B",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Run_B.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Run_B.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 787916,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Run_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Run_BL.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Run_BL.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 788300,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Run_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Run_BR.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Run_BR.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 788396,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Run_F",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Run_F.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Run_F.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 787868,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Run_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Run_FL.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Run_FL.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 788668,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Run_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Run_FR.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Run_FR.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 788076,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Run_L",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Run_L.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Run_L.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 787724,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Run_R",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Run_R.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Run_R.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 787740,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Walk_B",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Walk_B.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Walk_B.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 886892,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Walk_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Walk_BL.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Walk_BL.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 888252,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Walk_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Walk_BR.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Walk_BR.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 887692,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Walk_F",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Walk_F.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Walk_F.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 887004,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Walk_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Walk_FL.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Walk_FL.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 887404,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Walk_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Walk_FR.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Walk_FR.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 888220,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Walk_L",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Walk_L.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Walk_L.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 887308,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_Stealth_Kill_Sneak_Walk_R",
+      "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Walk_R.fbx",
+      "sourceAsset": "Frank_Stealth_Kill/Animations/Stealth_Move/Frank_Stealth_Kill_Sneak_Walk_R.uasset",
+      "sourceGroup": "Frank_Stealth_Kill\\Animations\\Stealth_Move",
+      "motion": "RootMotion",
+      "category": "Movement",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 70,
+      "mappedBones": 68,
+      "bytes": 888012,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
+      ]
+    }
+  ]
+}

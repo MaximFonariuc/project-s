@@ -1,0 +1,1577 @@
+{
+  "schemaVersion": 1,
+  "pack": "TwoHandedAxe",
+  "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
+  "animationType": "Humanoid",
+  "clipCount": 98,
+  "clips": [
+    {
+      "name": "Frank_RPG_2Hand_8Way_Run_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_8Way_Run_B.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_8Way_Run_B.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 896220,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_8Way_Run_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_8Way_Run_BL.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_8Way_Run_BL.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 897404,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_8Way_Run_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_8Way_Run_BR.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_8Way_Run_BR.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 895916,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_8Way_Run_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_8Way_Run_F.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_8Way_Run_F.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 895068,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_8Way_Run_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_8Way_Run_FL.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_8Way_Run_FL.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 894540,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_8Way_Run_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_8Way_Run_FR.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_8Way_Run_FR.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 895100,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_8Way_Run_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_8Way_Run_L.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_8Way_Run_L.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 895356,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_8Way_Run_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_8Way_Run_R.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_8Way_Run_R.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 895068,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Block_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Defense/Frank_RPG_2Hand_Block_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Block_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Block",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Defense/Frank_RPG_2Hand_Block.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Block.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Defense",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo01_1_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo01_1_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo01_1_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1082044,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo01_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo01_1.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo01_1.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1083596,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo01_2_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo01_2_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo01_2_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 96,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1167068,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo01_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo01_2.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo01_2.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 96,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1169820,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo01_3_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo01_3_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo01_3_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 101,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1194796,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo01_3",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo01_3.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo01_3.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 101,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1198940,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo01_4_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo01_4_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo01_4_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 135,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1376844,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo01_4",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo01_4.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo01_4.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 135,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1385484,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo01_All_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo01_All_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo01_All_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 254,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 2033196,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo01_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo01_All.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo01_All.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 254,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 2046012,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo02_1_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo02_1_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo02_1_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 96,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1167788,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo02_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo02_1.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo02_1.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 96,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1171004,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo02_2_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo02_2_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo02_2_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 163,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1542700,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo02_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo02_2.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo02_2.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 163,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1552588,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo02_All_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo02_All_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo02_All_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 219,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1844428,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo02_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo02_All.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo02_All.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 219,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1856028,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo03_1_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo03_1_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo03_1_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 101,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1194380,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo03_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo03_1.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo03_1.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 101,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1197900,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo03_2_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo03_2_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo03_2_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1011596,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo03_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo03_2.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo03_2.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1016620,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo03_3_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo03_3_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo03_3_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 110,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1240092,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo03_3",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo03_3.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo03_3.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 110,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1250108,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo03_All_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo03_All_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo03_All_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 201,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1743516,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo03_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo03_All.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo03_All.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 201,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1757004,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo04_1_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo04_1_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo04_1_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 96,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1168092,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo04_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo04_1.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo04_1.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 96,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1168764,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo04_2_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo04_2_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo04_2_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 86,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1111084,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo04_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo04_2.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo04_2.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 86,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1113308,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo04_3_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo04_3_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo04_3_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 63,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 968620,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo04_3",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo04_3.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo04_3.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 63,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 971820,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo04_4_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo04_4_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo04_4_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 109,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1237900,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo04_4",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo04_4.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo04_4.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 109,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1246140,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo04_All_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo04_All_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo04_All_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 241,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1971084,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo04_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo04_All.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo04_All.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 241,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1983756,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo05_1_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo05_1_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo05_1_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 141,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1412268,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo05_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo05_1.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo05_1.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 111,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1249996,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo05_2_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo05_2_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo05_2_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 128,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1339324,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo05_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo05_2.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo05_2.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 128,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1350604,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo05_All_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo05_All_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo05_All_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 231,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1913244,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Combo05_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo05_All.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo05_All.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 231,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1927404,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Death01_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Death/Frank_RPG_2Hand_Death01_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Death01_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Death",
+      "frames": 121,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1301484,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Death01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Death/Frank_RPG_2Hand_Death01.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Death01.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 121,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1304396,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Death02_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Death/Frank_RPG_2Hand_Death02_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Death02_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Death",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 999884,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Death02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Death/Frank_RPG_2Hand_Death02.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Death02.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1001932,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Evade_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Evasion/Frank_RPG_2Hand_Evade_B.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Evade_B.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 46,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 866588,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Evade_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Evasion/Frank_RPG_2Hand_Evade_F.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Evade_F.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 46,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 865900,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Evade_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Evasion/Frank_RPG_2Hand_Evade_L.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Evade_L.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 46,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 864604,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Evade_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Evasion/Frank_RPG_2Hand_Evade_R.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Evade_R.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 46,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 864508,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Getup_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Recovery/Frank_RPG_2Hand_Getup_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Getup_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Recovery",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1079900,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Getup",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Recovery/Frank_RPG_2Hand_Getup.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Getup.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Recovery",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1080972,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Guard_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Defense/Frank_RPG_2Hand_Guard_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Guard_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1064940,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Guard",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Defense/Frank_RPG_2Hand_Guard.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Guard.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Defense",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1065084,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Hit_Knockback_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Reactions/Frank_RPG_2Hand_Hit_Knockback_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Hit_Knockback_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 900108,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Hit_Knockback",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Reactions/Frank_RPG_2Hand_Hit_Knockback.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Hit_Knockback.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 900876,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Hit_Knockdown_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Reactions/Frank_RPG_2Hand_Hit_Knockdown_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Hit_Knockdown_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 956796,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Hit_Knockdown_Loop_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Reactions/Frank_RPG_2Hand_Hit_Knockdown_Loop_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Hit_Knockdown_Loop_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 935404,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Hit_Knockdown_Loop",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Reactions/Frank_RPG_2Hand_Hit_Knockdown_Loop.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Hit_Knockdown_Loop.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 935420,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Hit_Knockdown",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Reactions/Frank_RPG_2Hand_Hit_Knockdown.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Hit_Knockdown.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 958588,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Hit01_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Reactions/Frank_RPG_2Hand_Hit01_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Hit01_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 834236,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Hit01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Reactions/Frank_RPG_2Hand_Hit01.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Hit01.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 834972,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Hit02_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Reactions/Frank_RPG_2Hand_Hit02_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Hit02_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 828988,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Hit02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Reactions/Frank_RPG_2Hand_Hit02.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Hit02.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 829596,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Hit03_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Reactions/Frank_RPG_2Hand_Hit03_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Hit03_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 833820,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Hit03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Reactions/Frank_RPG_2Hand_Hit03.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Hit03.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 834220,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Idle_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_Idle_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Idle_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 151,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1443116,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_Idle.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Idle.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 151,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1444412,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Jump_In_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Air/Frank_RPG_2Hand_Jump_In_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Jump_In_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Air",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1000940,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Jump_Running_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Air/Frank_RPG_2Hand_Jump_Running_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Jump_Running_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Air",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 980444,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Jump_Running",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Air/Frank_RPG_2Hand_Jump_Running.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Jump_Running.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 980844,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Jump",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Air/Frank_RPG_2Hand_Jump.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Jump.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1002780,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Run_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_Run_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Run_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 830956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Run",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Locomotion/Frank_RPG_2Hand_Run.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Run.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 831500,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Skill01_WhirlWind_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Skills/Frank_RPG_2Hand_Skill01_WhirlWind_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Skill01_WhirlWind_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 177,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1620204,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Skill01_WhirlWind",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Skills/Frank_RPG_2Hand_Skill01_WhirlWind.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Skill01_WhirlWind.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 177,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1629900,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Skill02_Rolling_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Skills/Frank_RPG_2Hand_Skill02_Rolling_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Skill02_Rolling_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 186,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1664764,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Skill02_Rolling",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Skills/Frank_RPG_2Hand_Skill02_Rolling.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Skill02_Rolling.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 186,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1674108,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Step_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Evasion/Frank_RPG_2Hand_Step_B.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Step_B.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Step_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Evasion/Frank_RPG_2Hand_Step_F.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Step_F.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Step_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Evasion/Frank_RPG_2Hand_Step_L.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Step_L.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Step_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Evasion/Frank_RPG_2Hand_Step_R.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Step_R.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Walk_Backward_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_Walk_Backward_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Walk_Backward_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1007356,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Walk_Backward",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Locomotion/Frank_RPG_2Hand_Walk_Backward.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Walk_Backward.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1008380,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Walk_Forward_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_Walk_Forward_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Walk_Forward_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1007996,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Walk_Forward",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Locomotion/Frank_RPG_2Hand_Walk_Forward.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Walk_Forward.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1008764,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Walk_Left_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_Walk_Left_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Walk_Left_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1005324,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Walk_Left",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Locomotion/Frank_RPG_2Hand_Walk_Left.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Walk_Left.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1006172,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Walk_Right_in_Place",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Locomotion/Frank_RPG_2Hand_Walk_Right_in_Place.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Walk_Right_in_Place.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1006188,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_2Hand_Walk_Right",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Locomotion/Frank_RPG_2Hand_Walk_Right.fbx",
+      "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Walk_Right.uasset",
+      "sourceGroup": "Frank_2Handed_AXE\\Animations",
+      "motion": "RootMotion",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 81,
+      "mappedBones": 80,
+      "bytes": 1006668,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
+      ]
+    }
+  ]
+}

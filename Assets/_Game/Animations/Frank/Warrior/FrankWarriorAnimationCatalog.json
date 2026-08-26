@@ -1,0 +1,3065 @@
+{
+  "schemaVersion": 1,
+  "pack": "Warrior",
+  "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
+  "animationType": "Humanoid",
+  "clipCount": 191,
+  "clips": [
+    {
+      "name": "Frank_RPG_Warrior_4Way_Block_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Defense/Frank_RPG_Warrior_4Way_Block_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Block_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Block",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Defense/Frank_RPG_Warrior_4Way_Block.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Block.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Guard_Walk_B_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Defense/Frank_RPG_Warrior_4Way_Guard_Walk_B_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Guard_Walk_B_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 892508,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Guard_Walk_B",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Defense/Frank_RPG_Warrior_4Way_Guard_Walk_B.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Guard_Walk_B.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 893020,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Guard_Walk_F_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Defense/Frank_RPG_Warrior_4Way_Guard_Walk_F_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Guard_Walk_F_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 892796,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Guard_Walk_F",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Defense/Frank_RPG_Warrior_4Way_Guard_Walk_F.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Guard_Walk_F.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 893388,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Guard_Walk_L_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Defense/Frank_RPG_Warrior_4Way_Guard_Walk_L_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Guard_Walk_L_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 891084,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Guard_Walk_L",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Defense/Frank_RPG_Warrior_4Way_Guard_Walk_L.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Guard_Walk_L.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 891868,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Guard_Walk_R_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Defense/Frank_RPG_Warrior_4Way_Guard_Walk_R_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Guard_Walk_R_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 891468,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Guard_Walk_R",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Defense/Frank_RPG_Warrior_4Way_Guard_Walk_R.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Guard_Walk_R.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 892028,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Walk_B_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_4Way_Walk_B_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Walk_B_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 893308,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Walk_B",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_4Way_Walk_B.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Walk_B.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 894012,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Walk_F_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_4Way_Walk_F_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Walk_F_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 901228,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Walk_F",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_4Way_Walk_F.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Walk_F.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 901916,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Walk_L_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_4Way_Walk_L_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Walk_L_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 892844,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Walk_L",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_4Way_Walk_L.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Walk_L.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 893580,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Walk_R_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_4Way_Walk_R_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Walk_R_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 893212,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_4Way_Walk_R",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_4Way_Walk_R.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_4Way_Walk_R.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 893756,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_B_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_B_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_B_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 895100,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_B",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_B.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_B.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 895580,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_BL_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_BL_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_BL_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 894588,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_BL.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_BL.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 895132,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_BR_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_BR_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_BR_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 895084,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_BR.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_BR.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 895452,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_F_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_F_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_F_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 894188,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_F",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_F.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_F.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 894764,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_FL_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_FL_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_FL_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 896012,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_FL.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_FL.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 896700,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_FR_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_FR_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_FR_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 894268,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_FR.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_FR.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 894796,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_L_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_L_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_L_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 895164,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_L",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_L.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_L.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 895580,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_R_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_R_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_R_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 895468,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Run_R",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Run_R.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Run_R.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 895804,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Walk_B",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Walk_B.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Walk_B.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 894252,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Walk_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Walk_BL.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Walk_BL.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 893372,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Walk_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Walk_BR.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Walk_BR.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 893516,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Walk_F",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Walk_F.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Walk_F.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 894012,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Walk_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Walk_FL.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Walk_FL.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 893244,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Walk_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Walk_FR.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Walk_FR.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 893004,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Walk_L",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Walk_L.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Walk_L.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 893580,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_8Way_Walk_R",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_8Way_Walk_R.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_8Way_Walk_R.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 894060,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Attack01_GuardnAttack_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Attack01_GuardnAttack_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Attack01_GuardnAttack_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 86,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1116364,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Attack02_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Attack02_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Attack02_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 993260,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Attack03_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Attack03_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Attack03_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 79,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1078252,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Attack04_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Attack04_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Attack04_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 91,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1134988,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Attack05_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Attack05_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Attack05_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 79,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1078828,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Attack06_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Attack06_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Attack06_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 94,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1156652,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Block_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Defense/Frank_RPG_Warrior_Block_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Block_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Block",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Defense/Frank_RPG_Warrior_Block.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Block.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo01_1_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo01_1_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo01_1_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 66,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 983148,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo01_2_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo01_2_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo01_2_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 987052,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo01_3_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo01_3_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo01_3_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1010364,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo01_4_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo01_4_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo01_4_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 98,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1174188,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo01_All_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo01_All_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo01_All_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 205,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1758380,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo02_1_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo02_1_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo02_1_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 70,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 996636,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo02_2_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo02_2_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo02_2_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 66,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 974748,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo02_3_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo02_3_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo02_3_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 978748,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo02_All_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo02_All_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo02_All_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1339660,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo03_1_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo03_1_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo03_1_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 72,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1006412,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo03_2_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo03_2_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo03_2_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 69,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 992092,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo03_3_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo03_3_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo03_3_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 101,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1180204,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo03_All_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo03_All_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo03_All_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 181,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1619420,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo04_1_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo04_1_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo04_1_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 69,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1006908,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo04_2_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo04_2_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo04_2_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 77,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1067884,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo04_3_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo04_3_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo04_3_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 83,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1095740,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo04_All_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo04_All_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo04_All_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 171,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1596284,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo05_1_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo05_1_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo05_1_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 76,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1060940,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo05_2_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo05_2_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo05_2_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 84,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1106332,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo05_3_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo05_3_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo05_3_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 106,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1230876,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo05_All_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo05_All_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo05_All_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 191,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1709164,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo06_1_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo06_1_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo06_1_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 76,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1044252,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo06_2_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo06_2_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo06_2_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 978988,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo06_3_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo06_3_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo06_3_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 98,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1166668,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo06_All_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo06_All_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo06_All_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 178,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1603036,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo07_1_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo07_1_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo07_1_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 68,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 985308,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo07_2_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo07_2_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo07_2_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 950076,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo07_3_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo07_3_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo07_3_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 74,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1027996,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo07_All_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_Combo07_All_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Combo07_All_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 133,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1347132,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Die_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Death/Frank_RPG_Warrior_Die_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Die_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Death",
+      "frames": 68,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 986092,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Die02_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Death/Frank_RPG_Warrior_Die02_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Die02_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Death",
+      "frames": 111,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1233596,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Draw_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Equipment/Frank_RPG_Warrior_Draw_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Draw_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 962636,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Equip",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Equipment/Frank_RPG_Warrior_Equip.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Equip.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 963548,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Evade_B_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Evasion/Frank_RPG_Warrior_Evade_B_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Evade_B_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 46,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 863388,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Evade_F_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Evasion/Frank_RPG_Warrior_Evade_F_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Evade_F_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 46,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 863660,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Evade_L_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Evasion/Frank_RPG_Warrior_Evade_L_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Evade_L_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 46,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 863964,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Evade_R_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Evasion/Frank_RPG_Warrior_Evade_R_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Evade_R_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 46,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 863612,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Getup_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Recovery/Frank_RPG_Warrior_Getup_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Getup_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Recovery",
+      "frames": 69,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 991100,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Guard_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Defense/Frank_RPG_Warrior_Guard_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Guard_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 996444,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Guard",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Defense/Frank_RPG_Warrior_Guard.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Guard.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 996444,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Hit_Knockback_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Reactions/Frank_RPG_Warrior_Hit_Knockback_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Hit_Knockback_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 948508,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Hit_Knockdown_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Reactions/Frank_RPG_Warrior_Hit_Knockdown_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Hit_Knockdown_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 76,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1045228,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Hit_Knockdown_Loop_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Reactions/Frank_RPG_Warrior_Hit_Knockdown_Loop_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Hit_Knockdown_Loop_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1046444,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Hit_Knockdown_Loop",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Reactions/Frank_RPG_Warrior_Hit_Knockdown_Loop.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Hit_Knockdown_Loop.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1046156,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Hit01_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Reactions/Frank_RPG_Warrior_Hit01_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Hit01_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 828620,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Hit01",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Reactions/Frank_RPG_Warrior_Hit01.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Hit01.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 829196,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Hit02_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Reactions/Frank_RPG_Warrior_Hit02_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Hit02_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 829852,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Hit02",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Reactions/Frank_RPG_Warrior_Hit02.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Hit02.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 830524,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Hit03_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Reactions/Frank_RPG_Warrior_Hit03_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Hit03_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 868828,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Hit03",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Reactions/Frank_RPG_Warrior_Hit03.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Hit03.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Reactions",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 869068,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Idle_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_Idle_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Idle_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 241,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1939164,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_Idle.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Idle.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 241,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1941468,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Jump_01_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Air/Frank_RPG_Warrior_Jump_01_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Jump_01_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 952220,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Jump_02_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Air/Frank_RPG_Warrior_Jump_02_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Jump_02_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 950764,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Jump_ZeroHeight_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Air/Frank_RPG_Warrior_Jump_ZeroHeight_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Jump_ZeroHeight_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 949740,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Jump_ZeroHeight",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Air/Frank_RPG_Warrior_Jump_ZeroHeight.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Jump_ZeroHeight.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 949756,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Putup_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Equipment/Frank_RPG_Warrior_Putup_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Putup_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 963164,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Run01_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_Run01_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Run01_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 45,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 857404,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Run01",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_Run01.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Run01.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 45,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 857820,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Run02_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_Run02_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Run02_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 45,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 855804,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Run02",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_Run02.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Run02.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 45,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 856476,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_ShieldAttack01_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_ShieldAttack01_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_ShieldAttack01_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 947692,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_ShieldAttack02_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Attacks/Frank_RPG_Warrior_ShieldAttack02_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_ShieldAttack02_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Attacks",
+      "frames": 84,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1088412,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_ShieldSkill01_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Skills/Frank_RPG_Warrior_ShieldSkill01_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_ShieldSkill01_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 176,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1618908,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_ShieldSkill02_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Skills/Frank_RPG_Warrior_ShieldSkill02_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_ShieldSkill02_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 165,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1530012,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Skill01_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Skills/Frank_RPG_Warrior_Skill01_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Skill01_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1351308,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Skill02_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Skills/Frank_RPG_Warrior_Skill02_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Skill02_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 161,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1525212,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Skill03_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Skills/Frank_RPG_Warrior_Skill03_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Skill03_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 166,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1554236,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Skill04_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Skills/Frank_RPG_Warrior_Skill04_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Skill04_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 151,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1458220,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Skill05_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Skills/Frank_RPG_Warrior_Skill05_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Skill05_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Skills",
+      "frames": 151,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1460908,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Step_B_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Evasion/Frank_RPG_Warrior_Step_B_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Step_B_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Step_F_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Evasion/Frank_RPG_Warrior_Step_F_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Step_F_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Step_L_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Evasion/Frank_RPG_Warrior_Step_L_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Step_L_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Step_R_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Evasion/Frank_RPG_Warrior_Step_R_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Step_R_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Unequip_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Equipment/Frank_RPG_Warrior_Unequip_Idle.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Unequip_Idle.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 301,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 2289756,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Unequip_Run_Faster",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Equipment/Frank_RPG_Warrior_Unequip_Run_Faster.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Unequip_Run_Faster.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 33,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 780508,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Unequip_Run",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Equipment/Frank_RPG_Warrior_Unequip_Run.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Unequip_Run.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 833084,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Unequip",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Equipment/Frank_RPG_Warrior_Unequip.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Unequip.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 964028,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Walk_Faster_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_Walk_Faster_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Walk_Faster_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 948988,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Walk_Faster",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_Walk_Faster.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Walk_Faster.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 949756,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Walk_IP",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_Walk_IP.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Walk_IP.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1001852,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Walk",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/InPlace/Locomotion/Frank_RPG_Warrior_Walk.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_IP/Frank_RPG_Warrior_Walk.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_IP",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1002860,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Attack01_GuardnAttack",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Attack01_GuardnAttack.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Attack01_GuardnAttack.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 86,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1119356,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Attack02",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Attack02.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Attack02.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 994284,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Attack03",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Attack03.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Attack03.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 79,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1079564,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Attack04",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Attack04.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Attack04.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 91,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1135884,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Attack05",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Attack05.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Attack05.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 79,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1079900,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Attack06",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Attack06.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Attack06.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 94,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1158380,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo01_1",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo01_1.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo01_1.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 66,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 984156,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo01_2",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo01_2.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo01_2.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 987516,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo01_3",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo01_3.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo01_3.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1013404,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo01_4",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo01_4.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo01_4.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 98,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1178044,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo01_All",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo01_All.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo01_All.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 205,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1769228,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo02_1",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo02_1.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo02_1.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 70,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 997260,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo02_2",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo02_2.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo02_2.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 66,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 976492,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo02_3",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo02_3.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo02_3.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 981228,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo02_All",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo02_All.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo02_All.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1344556,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo03_1",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo03_1.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo03_1.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 72,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1007420,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo03_2",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo03_2.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo03_2.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 69,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 994044,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo03_3",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo03_3.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo03_3.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 101,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1185340,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo03_All",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo03_All.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo03_All.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 181,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1627756,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo04_1",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo04_1.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo04_1.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 69,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1007852,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo04_2",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo04_2.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo04_2.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 77,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1070572,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo04_3",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo04_3.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo04_3.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 83,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1098732,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo04_All",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo04_All.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo04_All.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 171,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1603436,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo05_1",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo05_1.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo05_1.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 76,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1062284,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo05_2",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo05_2.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo05_2.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 84,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1107788,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo05_3",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo05_3.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo05_3.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 106,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1233116,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo05_All",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo05_All.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo05_All.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 191,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1713260,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo06_1",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo06_1.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo06_1.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 76,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1046092,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo06_2",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo06_2.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo06_2.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 67,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 980764,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo06_3",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo06_3.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo06_3.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 98,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1167868,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo06_All",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo06_All.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo06_All.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 178,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1609180,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo07_1",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo07_1.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo07_1.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 68,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 987292,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo07_2",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo07_2.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo07_2.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 951916,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo07_3",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo07_3.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo07_3.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 74,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1029308,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Combo07_All",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_Combo07_All.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Combo07_All.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 133,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1352540,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Die",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Death/Frank_RPG_Warrior_Die.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Die.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 68,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 988108,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Die02",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Death/Frank_RPG_Warrior_Die02.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Die02.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 111,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1235884,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Evade_B",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Evasion/Frank_RPG_Warrior_Evade_B.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Evade_B.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 46,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 866060,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Evade_F",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Evasion/Frank_RPG_Warrior_Evade_F.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Evade_F.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 46,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 866876,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Evade_L",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Evasion/Frank_RPG_Warrior_Evade_L.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Evade_L.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 46,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 866348,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Evade_R",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Evasion/Frank_RPG_Warrior_Evade_R.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Evade_R.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 46,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 865804,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Getup",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Recovery/Frank_RPG_Warrior_Getup.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Getup.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Recovery",
+      "frames": 69,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 992188,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Hit_Knockback",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Reactions/Frank_RPG_Warrior_Hit_Knockback.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Hit_Knockback.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 950428,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Hit_Knockdown",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Reactions/Frank_RPG_Warrior_Hit_Knockdown.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Hit_Knockdown.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 76,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1049900,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Jump_01",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Air/Frank_RPG_Warrior_Jump_01.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Jump_01.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 952396,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Jump_02",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Air/Frank_RPG_Warrior_Jump_02.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Jump_02.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 950956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_ShieldAttack01",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_ShieldAttack01.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_ShieldAttack01.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 948620,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_ShieldAttack02",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Attacks/Frank_RPG_Warrior_ShieldAttack02.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_ShieldAttack02.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 84,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1092284,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_ShieldSkill01",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Skills/Frank_RPG_Warrior_ShieldSkill01.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_ShieldSkill01.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 176,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1629500,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_ShieldSkill02",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Skills/Frank_RPG_Warrior_ShieldSkill02.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_ShieldSkill02.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 165,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1533244,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Skill01",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Skills/Frank_RPG_Warrior_Skill01.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Skill01.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1354684,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Skill02",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Skills/Frank_RPG_Warrior_Skill02.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Skill02.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 161,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1529996,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Skill03",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Skills/Frank_RPG_Warrior_Skill03.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Skill03.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 166,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1558556,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Skill04",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Skills/Frank_RPG_Warrior_Skill04.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Skill04.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 151,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1462940,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Skill05",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Skills/Frank_RPG_Warrior_Skill05.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Skill05.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 151,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 1467068,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Step_B",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Evasion/Frank_RPG_Warrior_Step_B.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Step_B.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Step_F",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Evasion/Frank_RPG_Warrior_Step_F.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Step_F.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Step_L",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Evasion/Frank_RPG_Warrior_Step_L.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Step_L.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_Warrior_Step_R",
+      "assetPath": "Assets/_Game/Animations/Frank/Warrior/Animations/RootMotion/Evasion/Frank_RPG_Warrior_Step_R.fbx",
+      "sourceAsset": "Frank_Warrior/Animations/Frank_Warrior_RM/Frank_RPG_Warrior_Step_R.uasset",
+      "sourceGroup": "Frank_Warrior\\Animations\\Frank_Warrior_RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 118,
+      "mappedBones": 91,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1545 @@
+{
+  "schemaVersion": 1,
+  "pack": "WhipFemale",
+  "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
+  "animationType": "Humanoid",
+  "clipCount": 96,
+  "clips": [
+    {
+      "name": "Frank_Whip_Attack01",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Attack01.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/01_Attack_RootMotion/Frank_Whip_Attack01.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\01_Attack_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 897628,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Attack02",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Attack02.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/01_Attack_RootMotion/Frank_Whip_Attack02.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\01_Attack_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 58,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 930204,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Attack03",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Attack03.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/01_Attack_RootMotion/Frank_Whip_Attack03.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\01_Attack_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1068444,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Attack04",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Attack04.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/01_Attack_RootMotion/Frank_Whip_Attack04.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\01_Attack_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 91,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1129036,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Attack05",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Attack05.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/01_Attack_RootMotion/Frank_Whip_Attack05.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\01_Attack_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 66,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 972428,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Attack06",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Attack06.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/01_Attack_RootMotion/Frank_Whip_Attack06.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\01_Attack_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 63,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 956188,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo01_1",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo01_1.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo01_1.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 75,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1030220,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo01_3",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo01_3.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo01_3.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 64,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 962636,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo01_4",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo01_4.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo01_4.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 75,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1030220,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo01_5",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo01_5.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo01_5.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 93,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1134284,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo01_6",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo01_6.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo01_6.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 64,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 962636,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo01_All",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo01_All.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo01_All.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 161,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1503516,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo02_1",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo02_1.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo02_1.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 55,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 918732,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo02_3",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo02_3.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo02_3.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 100,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1171532,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo02_4",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo02_4.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo02_4.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 55,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 918732,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo02_5",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo02_5.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo02_5.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 999548,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo02_6",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo02_6.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo02_6.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 100,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1171532,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo02_All",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo02_All.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo02_All.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 161,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1503068,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo03_1",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo03_1.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo03_1.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 86,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1096300,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo03_3",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo03_3.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo03_3.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 94,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1140892,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo03_4",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo03_4.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo03_4.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 86,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1096300,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo03_5",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo03_5.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo03_5.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 91,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1122108,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo03_6",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo03_6.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo03_6.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 94,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1140892,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo03_All",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo03_All.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo03_All.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 201,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1715132,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo04_1",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo04_1.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo04_1.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1068092,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo04_3",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo04_3.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo04_3.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1068092,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo04_4",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo04_4.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo04_4.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 110,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1223292,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo04_All",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo04_All.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo04_All.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 151,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1444204,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo05_1",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo05_1.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo05_1.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 76,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1042348,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo05_3",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo05_3.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo05_3.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 151,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1444364,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo05_4",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo05_4.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo05_4.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 76,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1042348,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo05_5",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo05_5.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo05_5.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 91,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1121580,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo05_6",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo05_6.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo05_6.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 151,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1444364,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Combo05_All",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Combo05_All.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/02_Combo_Set_RootMotion/Frank_Whip_Combo05_All.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\02_Combo_Set_RootMotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 241,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1936748,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Critical_Attack",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Attacks/Frank_Whip_Critical_Attack.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/03_Skill/Frank_Whip_Critical_Attack.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\03_Skill",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 191,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1678268,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Skill01",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Skills/Frank_Whip_Skill01.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/03_Skill/Frank_Whip_Skill01.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\03_Skill",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 151,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1448860,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Skill02",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Skills/Frank_Whip_Skill02.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/03_Skill/Frank_Whip_Skill02.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\03_Skill",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 191,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1683052,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Run_B",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Run_B.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Run_B.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 832652,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Run_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Run_BL.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Run_BL.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 832748,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Run_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Run_BR.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Run_BR.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 832732,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Run_F",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Run_F.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Run_F.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 833308,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Run_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Run_FL.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Run_FL.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 833308,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Run_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Run_FR.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Run_FR.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 832924,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Run_L",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Run_L.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Run_L.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 832924,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Run_R",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Run_R.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Run_R.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 833164,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_B",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Walk_B.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_B.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 997948,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Walk_BL.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_BL.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 997628,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Walk_BR.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_BR.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 997564,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_F",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Walk_F.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_F.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 997612,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Walk_FL.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_FL.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 997020,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Walk_FR.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_FR.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 997644,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_Guard_B",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Defense/Frank_Whip_8Way_Walk_Guard_B.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_Guard_B.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 993500,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_Guard_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Defense/Frank_Whip_8Way_Walk_Guard_BL.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_Guard_BL.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 994764,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_Guard_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Defense/Frank_Whip_8Way_Walk_Guard_BR.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_Guard_BR.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 994988,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_Guard_F",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Defense/Frank_Whip_8Way_Walk_Guard_F.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_Guard_F.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 994092,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_Guard_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Defense/Frank_Whip_8Way_Walk_Guard_FL.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_Guard_FL.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 995244,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_Guard_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Defense/Frank_Whip_8Way_Walk_Guard_FR.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_Guard_FR.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 994828,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_Guard_L",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Defense/Frank_Whip_8Way_Walk_Guard_L.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_Guard_L.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 994748,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_Guard_R",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Defense/Frank_Whip_8Way_Walk_Guard_R.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_Guard_R.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Defense",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 994956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_L",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Walk_L.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_L.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 997036,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_8Way_Walk_R",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Locomotion/Frank_Whip_8Way_Walk_R.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_8Way_Walk_R.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 997020,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Unequip_Run_Turbo1",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Equipment/Frank_Whip_Unequip_Run_Turbo1.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_Unequip_Run_Turbo1.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 793260,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Unequip_Run_Turbo2",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Equipment/Frank_Whip_Unequip_Run_Turbo2.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/04_Run_Walk_InPlace/Frank_Whip_Unequip_Run_Turbo2.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\04_Run_Walk_InPlace",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 29,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 791468,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Jump_01_0Height",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Air/Frank_Whip_Jump_01_0Height.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/05_Jump/Frank_Whip_Jump_01_0Height.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\05_Jump",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 943788,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Jump_01_Air_0Height",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Air/Frank_Whip_Jump_01_Air_0Height.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/05_Jump/Frank_Whip_Jump_01_Air_0Height.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\05_Jump",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 788876,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Jump_01_End_0Height",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Air/Frank_Whip_Jump_01_End_0Height.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/05_Jump/Frank_Whip_Jump_01_End_0Height.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\05_Jump",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 18,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 696556,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Jump_01_Start_0Height",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Air/Frank_Whip_Jump_01_Start_0Height.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/05_Jump/Frank_Whip_Jump_01_Start_0Height.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\05_Jump",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 10,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 640124,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Jump_01",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Air/Frank_Whip_Jump_01.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/05_Jump/Frank_Whip_Jump_01.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\05_Jump",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 945340,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Jump_02_0Height",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Air/Frank_Whip_Jump_02_0Height.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/05_Jump/Frank_Whip_Jump_02_0Height.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\05_Jump",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 944300,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Jump_02",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Air/Frank_Whip_Jump_02.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/05_Jump/Frank_Whip_Jump_02.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\05_Jump",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 945884,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Jump_03_0Height",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Air/Frank_Whip_Jump_03_0Height.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/05_Jump/Frank_Whip_Jump_03_0Height.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\05_Jump",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 944348,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Jump_03",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Air/Frank_Whip_Jump_03.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/05_Jump/Frank_Whip_Jump_03.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\05_Jump",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 946268,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Jump_3",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Air/Frank_Whip_Jump_3.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/05_Jump/Frank_Whip_Jump_3.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\05_Jump",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 945884,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Jump_4",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Air/Frank_Whip_Jump_4.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/05_Jump/Frank_Whip_Jump_4.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\05_Jump",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 946268,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Jump_Double",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Air/Frank_Whip_Jump_Double.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/05_Jump/Frank_Whip_Jump_Double.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\05_Jump",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 35,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 789244,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Hit01",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Reactions/Frank_Whip_Hit01.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/06_Hit/Frank_Whip_Hit01.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\06_Hit",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Hit02",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Reactions/Frank_Whip_Hit02.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/06_Hit/Frank_Whip_Hit02.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\06_Hit",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 830508,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Hit03",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Reactions/Frank_Whip_Hit03.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/06_Hit/Frank_Whip_Hit03.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\06_Hit",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 832124,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Hit04",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Reactions/Frank_Whip_Hit04.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/06_Hit/Frank_Whip_Hit04.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\06_Hit",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 952380,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Hit05",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Reactions/Frank_Whip_Hit05.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/06_Hit/Frank_Whip_Hit05.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\06_Hit",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 994940,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Hit06",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Reactions/Frank_Whip_Hit06.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/06_Hit/Frank_Whip_Hit06.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\06_Hit",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1368348,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Hit07",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Reactions/Frank_Whip_Hit07.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/06_Hit/Frank_Whip_Hit07.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\06_Hit",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 136,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1391468,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Die01",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Death/Frank_Whip_Die01.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/07_KO/Frank_Whip_Die01.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\07_KO",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 141,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1386572,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Die02",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Death/Frank_Whip_Die02.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/07_KO/Frank_Whip_Die02.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\07_KO",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 141,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1396812,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Die03",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Death/Frank_Whip_Die03.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/07_KO/Frank_Whip_Die03.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\07_KO",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1014188,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Die04",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Death/Frank_Whip_Die04.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/07_KO/Frank_Whip_Die04.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\07_KO",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 76,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1056108,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Block",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Defense/Frank_Whip_Block.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/08_ETC/Frank_Whip_Block.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\08_ETC",
+      "motion": "RootMotion",
+      "category": "Defense",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 827052,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Equip_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Equipment/Frank_Whip_Equip_Idle.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/08_ETC/Frank_Whip_Equip_Idle.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\08_ETC",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 271,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 2069692,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Equip",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Equipment/Frank_Whip_Equip.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/08_ETC/Frank_Whip_Equip.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\08_ETC",
+      "motion": "RootMotion",
+      "category": "Equipment",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 952796,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Evade_B",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Evasion/Frank_Whip_Evade_B.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/08_ETC/Frank_Whip_Evade_B.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\08_ETC",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 898092,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Evade_F",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Evasion/Frank_Whip_Evade_F.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/08_ETC/Frank_Whip_Evade_F.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\08_ETC",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 897980,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Evade_L",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Evasion/Frank_Whip_Evade_L.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/08_ETC/Frank_Whip_Evade_L.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\08_ETC",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 899756,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Evade_R",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Evasion/Frank_Whip_Evade_R.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/08_ETC/Frank_Whip_Evade_R.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\08_ETC",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 895196,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Guard",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Defense/Frank_Whip_Guard.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/08_ETC/Frank_Whip_Guard.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\08_ETC",
+      "motion": "RootMotion",
+      "category": "Defense",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 937980,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Unequip_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Equipment/Frank_Whip_Unequip_Idle.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/08_ETC/Frank_Whip_Unequip_Idle.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\08_ETC",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1065436,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    },
+    {
+      "name": "Frank_Whip_Unequip",
+      "assetPath": "Assets/_Game/Animations/Frank/WhipFemale/Animations/RootMotion/Equipment/Frank_Whip_Unequip.fbx",
+      "sourceAsset": "Frank_Whip_Female/Animations/08_ETC/Frank_Whip_Unequip.uasset",
+      "sourceGroup": "Frank_Whip_Female\\Animations\\08_ETC",
+      "motion": "RootMotion",
+      "category": "Equipment",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 104,
+      "mappedBones": 69,
+      "bytes": 1072972,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
+      ]
+    }
+  ]
+}

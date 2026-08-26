@@ -1,0 +1,1284 @@
+{
+  "schemaVersion": 1,
+  "pack": "TwoHandedGreatSword",
+  "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
+  "animationType": "Humanoid",
+  "clipCount": 75,
+  "clips": [
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Run_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Run_B.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Run_B.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 893772,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Run_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Run_BL.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Run_BL.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 893372,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Run_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Run_BR.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Run_BR.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 900492,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Run_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Run_F.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Run_F.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 901996,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Run_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Run_FL.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Run_FL.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 895212,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Run_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Run_FR.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Run_FR.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 893692,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Run_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Run_L.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Run_L.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 893132,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Run_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Run_R.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Run_R.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 892924,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Walk_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Walk_B.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Walk_B.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 890796,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Walk_BL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Walk_BL.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Walk_BL.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 891004,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Walk_BR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Walk_BR.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Walk_BR.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 892028,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Walk_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Walk_F.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Walk_F.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 891916,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Walk_FL",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Walk_FL.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Walk_FL.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 890700,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Walk_FR",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Walk_FR.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Walk_FR.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 890892,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Walk_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Walk_L.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Walk_L.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 889164,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_8Way_Walk_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Locomotion/Frank_RPG_GreatSword_8Way_Walk_R.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_8Way_Walk_R.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Locomotion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 889148,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Attack01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Attack01.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Attack01.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 950252,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Attack02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Attack02.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Attack02.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 126,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1330988,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Attack03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Attack03.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Attack03.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 111,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1242636,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Attack04",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Attack04.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Attack04.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 131,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1359532,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Block",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Defense/Frank_RPG_GreatSword_Block.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Block.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Defense",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo01_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo01_1.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo01_1.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1072700,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo01_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo01_2.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo01_2.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 78,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1054156,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo01_3",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo01_3.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo01_3.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 76,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1048332,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo01_4",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo01_4.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo01_4.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 103,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1195804,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo01_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo01_All.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo01_All.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 236,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1927308,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo02_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo02_1.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo02_1.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 75,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1039052,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo02_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo02_2.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo02_2.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 73,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1014828,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo02_3",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo02_3.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo02_3.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 69,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 993212,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo02_4",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo02_4.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo02_4.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 92,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1137708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo02_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo02_All.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo02_All.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 221,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1844412,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo03_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo03_1.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo03_1.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1075660,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo03_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo03_2.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo03_2.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 86,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1104172,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo03_3",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo03_3.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo03_3.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 141,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1404268,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo03_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo03_All.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo03_All.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 245,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1977436,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo04_1",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo04_1.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo04_1.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 96,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1160924,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo04_2",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo04_2.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo04_2.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 111,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1242508,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo04_3",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo04_3.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo04_3.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 147,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1447580,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Combo04_All",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo04_All.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Combo04_All.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 276,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 2163180,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Die01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Death/Frank_RPG_GreatSword_Die01.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Die01.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 56,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 933836,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Die02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Death/Frank_RPG_GreatSword_Die02.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Die02.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 906380,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Die03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Death/Frank_RPG_GreatSword_Die03.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Die03.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 57,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 943468,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Die04",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Death/Frank_RPG_GreatSword_Die04.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Die04.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1094748,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Die05",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Death/Frank_RPG_GreatSword_Die05.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Die05.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Death",
+      "frames": 85,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1112524,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Equip_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Equipment/Frank_RPG_GreatSword_Equip_Idle.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Equip_Idle.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 271,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 2065596,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Equip_Run01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Equipment/Frank_RPG_GreatSword_Equip_Run01.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Equip_Run01.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 45,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 855404,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Equip_Run02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Equipment/Frank_RPG_GreatSword_Equip_Run02.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Equip_Run02.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 45,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 861612,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Equip",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Equipment/Frank_RPG_GreatSword_Equip.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Equip.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Equipment",
+      "frames": 101,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1204796,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Evade_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Evasion/Frank_RPG_GreatSword_Evade_B.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Evade_B.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 903932,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Evade_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Evasion/Frank_RPG_GreatSword_Evade_F.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Evade_F.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 901836,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Evade_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Evasion/Frank_RPG_GreatSword_Evade_L.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Evade_L.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 903660,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Evade_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Evasion/Frank_RPG_GreatSword_Evade_R.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Evade_R.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 51,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 897244,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Getup01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Recovery/Frank_RPG_GreatSword_Getup01.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Getup01.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Recovery",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1086924,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Guard",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Defense/Frank_RPG_GreatSword_Guard.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Guard.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Defense",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 993468,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Hit_Knockback",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Reactions/Frank_RPG_GreatSword_Hit_Knockback.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Hit_Knockback.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 964300,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Hit_Knockdown_Loop",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Reactions/Frank_RPG_GreatSword_Hit_Knockdown_Loop.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Hit_Knockdown_Loop.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 81,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1044524,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Hit_Knockdown",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Reactions/Frank_RPG_GreatSword_Hit_Knockdown.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Hit_Knockdown.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 69,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1007900,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Hit01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Reactions/Frank_RPG_GreatSword_Hit01.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Hit01.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 831612,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Hit02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Reactions/Frank_RPG_GreatSword_Hit02.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Hit02.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 829116,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Hit03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Reactions/Frank_RPG_GreatSword_Hit03.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Hit03.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 869116,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Jump_ZeroHeight",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Air/Frank_RPG_GreatSword_Jump_ZeroHeight.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Jump_ZeroHeight.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 952284,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Jump",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Air/Frank_RPG_GreatSword_Jump.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Jump.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Air",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 954428,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Skill01",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Skills/Frank_RPG_GreatSword_Skill01.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Skill01.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 181,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1635196,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Skill02",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Skills/Frank_RPG_GreatSword_Skill02.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Skill02.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 221,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1862588,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Skill03",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Skills/Frank_RPG_GreatSword_Skill03.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Skill03.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Skills",
+      "frames": 221,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1844764,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Step_B",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Evasion/Frank_RPG_GreatSword_Step_B.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Step_B.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Step_F",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Evasion/Frank_RPG_GreatSword_Step_F.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Step_F.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Step_L",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Evasion/Frank_RPG_GreatSword_Step_L.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Step_L.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Step_R",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Evasion/Frank_RPG_GreatSword_Step_R.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Step_R.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Evasion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 807708,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Unequip_Idle",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Equipment/Frank_RPG_GreatSword_Unequip_Idle.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Unequip_Idle.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 301,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 2284956,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Unequip_Run_Faster",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Equipment/Frank_RPG_GreatSword_Unequip_Run_Faster.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Unequip_Run_Faster.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 37,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 804908,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Unequip_Run",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Equipment/Frank_RPG_GreatSword_Unequip_Run.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Unequip_Run.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 832220,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Unequip_Walk_Faster",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Equipment/Frank_RPG_GreatSword_Unequip_Walk_Faster.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Unequip_Walk_Faster.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 57,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 927836,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Unequip_Walk",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/InPlace/Equipment/Frank_RPG_GreatSword_Unequip_Walk.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Unequip_Walk.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "InPlace",
+      "category": "Equipment",
+      "frames": 65,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 968732,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    },
+    {
+      "name": "Frank_RPG_GreatSword_Unequip",
+      "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Equipment/Frank_RPG_GreatSword_Unequip.fbx",
+      "sourceAsset": "Frank_2Handed_GreatSword/Animations/IP+RM/Frank_RPG_GreatSword_Unequip.uasset",
+      "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
+      "motion": "RootMotion",
+      "category": "Equipment",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 91,
+      "mappedBones": 82,
+      "bytes": 1020812,
+      "warnings": [
+        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
+        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
+      ]
+    }
+  ]
+}
