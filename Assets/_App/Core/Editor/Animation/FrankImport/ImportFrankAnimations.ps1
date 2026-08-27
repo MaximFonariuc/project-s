@@ -1,7 +1,8 @@
 [CmdletBinding()]
 param(
     [string]$ProjectRoot,
-    [string]$BlenderPath = 'D:\Games\SteamGames\steamapps\common\Blender\blender.exe'
+    [string]$BlenderPath = 'D:\Games\SteamGames\steamapps\common\Blender\blender.exe',
+    [switch]$FinalizeOnly
 )
 
 $ErrorActionPreference = 'Stop'
@@ -88,6 +89,7 @@ if (-not (Test-Path -LiteralPath (Join-Path $addonPythonRoot 'psk_psa_py'))) {
 }
 
 $sourceSets = @(
+    @{ Pack = 'DualSwords'; FlatOutput = $true; Directories = @('Frank_Dual_Sword/Animations/Frank_Dual_In_place', 'Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion') },
     @{ Pack = 'TwoHandedAxe'; Directories = @('Frank_2Handed_AXE/Animations') },
     @{ Pack = 'TwoHandedGreatSword'; Directories = @('Frank_2Handed_GreatSword/Animations/IP+RM') },
     @{ Pack = 'TwoHandedKatana'; Directories = @('Frank_2Handed_Katana/Animations/Frank_Katana_IP', 'Frank_2Handed_Katana/Animations/Frank_Katana_RM') },
@@ -128,6 +130,7 @@ $sourceSets = @(
     ) }
 )
 
+if (-not $FinalizeOnly) {
 Write-Host 'Extracting selected Frank AnimSequence packages with UE Viewer 1590...'
 foreach ($sourceSet in $sourceSets) {
     foreach ($sourceDirectory in $sourceSet.Directories) {
@@ -159,10 +162,10 @@ foreach ($sourceSet in $sourceSets) {
 }
 
 function Get-MotionMode([string]$RelativePsaPath, [string]$ClipName) {
-    if ($RelativePsaPath -match '(?i)Frank_(Katana|Spear|Assassin|Warrior)_IP|in_Place_Anims|Run_Walk_InPlace') {
+    if ($RelativePsaPath -match '(?i)Frank_(Dual_In_place|Katana_IP|Spear_IP|Assassin_IP|Warrior_IP)|in_Place_Anims|Run_Walk_InPlace') {
         return 'InPlace'
     }
-    if ($RelativePsaPath -match '(?i)Frank_(Katana|Spear|Assassin|Warrior)_RM|RootMotion') {
+    if ($RelativePsaPath -match '(?i)Frank_(Dual_Rootmotion|Katana_RM|Spear_RM|Assassin_RM|Warrior_RM)|RootMotion') {
         return 'RootMotion'
     }
     if ($ClipName -match '(?i)_IP$|_In_?Place$') {
@@ -205,7 +208,11 @@ foreach ($sourceSet in $sourceSets) {
             $clipName = $psa.BaseName
             $motion = Get-MotionMode $relativePsaPath $clipName
             $category = Get-ActionCategory $clipName $relativePsaPath
-            $relativeAssetPath = "Assets/_Game/Animations/Frank/$($sourceSet.Pack)/Animations/$motion/$category/$clipName.fbx"
+            $relativeAssetPath = if ($sourceSet.FlatOutput) {
+                "Assets/_Game/Animations/Frank/$($sourceSet.Pack)/Animations/$motion/$clipName.fbx"
+            } else {
+                "Assets/_Game/Animations/Frank/$($sourceSet.Pack)/Animations/$motion/$category/$clipName.fbx"
+            }
             if (-not $outputKeys.Add($relativeAssetPath)) {
                 throw "Two Frank source animations map to the same output: $relativeAssetPath"
             }
@@ -240,6 +247,9 @@ $manifest = [ordered]@{
 $manifest | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $manifestPath -Encoding utf8
 
 Write-Host "Converting $($jobs.Count) PSA sequences to FBX with Blender..."
+if (Test-Path -LiteralPath $conversionReportPath) {
+    Remove-Item -LiteralPath $conversionReportPath -Force
+}
 & $BlenderPath `
     --background `
     --factory-startup `
@@ -247,12 +257,60 @@ Write-Host "Converting $($jobs.Count) PSA sequences to FBX with Blender..."
     -- `
     --manifest $manifestPath 2>&1 |
     Tee-Object -FilePath (Join-Path $logRoot 'blender-conversion.log')
-if ($LASTEXITCODE -ne 0) {
-    throw "Blender conversion failed. See $(Join-Path $logRoot 'blender-conversion.log')."
+$blenderExitCode = $LASTEXITCODE
 }
 
+if (-not (Test-Path -LiteralPath $conversionReportPath)) {
+    throw "Blender did not produce a conversion report. See $(Join-Path $logRoot 'blender-conversion.log')."
+}
 $conversionReport = Get-Content -LiteralPath $conversionReportPath -Raw | ConvertFrom-Json
 $failed = @($conversionReport | Where-Object status -eq 'failed')
+if (-not $FinalizeOnly -and $failed.Count -gt 0) {
+    $retryReportPath = Join-Path $workingRoot 'frank-conversion-retry-report.json'
+    $retryArguments = [System.Collections.Generic.List[string]]::new()
+    foreach ($argument in @(
+        '--background',
+        '--factory-startup',
+        '--python', $converterPath,
+        '--',
+        '--manifest', $manifestPath,
+        '--report', $retryReportPath
+    )) {
+        $retryArguments.Add($argument)
+    }
+    foreach ($failedClip in $failed) {
+        $retryArguments.Add('--asset-path')
+        $retryArguments.Add($failedClip.assetPath)
+    }
+
+    Write-Host "Retrying $($failed.Count) failed Frank FBX exports..."
+    if (Test-Path -LiteralPath $retryReportPath) {
+        Remove-Item -LiteralPath $retryReportPath -Force
+    }
+    & $BlenderPath @retryArguments 2>&1 |
+        Tee-Object -FilePath (Join-Path $logRoot 'blender-conversion-retry.log')
+    if (-not (Test-Path -LiteralPath $retryReportPath)) {
+        throw "Blender did not produce a retry report. See $(Join-Path $logRoot 'blender-conversion-retry.log')."
+    }
+    $retryReport = @(Get-Content -LiteralPath $retryReportPath -Raw | ConvertFrom-Json)
+    $retryByAssetPath = @{}
+    foreach ($retryRecord in $retryReport) {
+        $retryByAssetPath[$retryRecord.assetPath] = $retryRecord
+    }
+    $conversionReport = @($conversionReport | ForEach-Object {
+        if ($retryByAssetPath.ContainsKey($_.assetPath)) {
+            $retryByAssetPath[$_.assetPath]
+        } else {
+            $_
+        }
+    })
+    $conversionReport | ConvertTo-Json -Depth 12 |
+        Set-Content -LiteralPath $conversionReportPath -Encoding utf8
+    $failed = @($conversionReport | Where-Object status -eq 'failed')
+}
+if (-not $FinalizeOnly -and $blenderExitCode -ne 0 -and $failed.Count -eq 0) {
+    Write-Warning 'The full Blender pass reported a failure, but every failed export succeeded on targeted retry.'
+}
 if ($failed.Count -gt 0) {
     throw "$($failed.Count) Frank animations failed conversion. See $conversionReportPath."
 }
@@ -263,19 +321,21 @@ $correctedSourceClips = @($conversionReport | Where-Object sourceKeyCorrectionCo
         sourceAsset = $_.sourceAsset
         correctionCount = $_.sourceKeyCorrectionCount
         corrections = $_.sourceKeyCorrections
+        quaternionSignCorrectionCount = $_.quaternionSignCorrectionCount
     }
 })
 $sourceKeyAudit = [ordered]@{
-    schemaVersion = 1
+    schemaVersion = 2
     scannedClipCount = $conversionReport.Count
     correctedClipCount = $correctedSourceClips.Count
     correctionCount = ($conversionReport | Measure-Object -Property sourceKeyCorrectionCount -Sum).Sum
+    quaternionSignCorrectedClipCount = @($conversionReport | Where-Object quaternionSignCorrectionCount -gt 0).Count
+    quaternionSignCorrectionCount = ($conversionReport | Measure-Object -Property quaternionSignCorrectionCount -Sum).Sum
     detection = [ordered]@{
         minimumIncomingAndOutgoingAngleDegrees = 35
         maximumNeighborBridgeAngleDegrees = 20
-        coherentClusterMinimumAngleDegrees = 20
-        coherentClusterMaximumNeighborBridgeDegrees = 5
-        policy = 'Only isolated one-frame Humanoid body rotation outliers, coherent multi-bone clusters, and confirmed corrupt body frames are repaired by neighbor quaternion slerp.'
+        policy = 'Only isolated one-frame Humanoid body rotation outliers and confirmed corrupt body frames are repaired by neighbor quaternion slerp. Ambiguous multi-bone motion is preserved.'
+        quaternionInterpolationPolicy = 'Equivalent q/-q keys are placed on one hemisphere per bone track before Blender writes linear quaternion F-curves.'
     }
     clips = $correctedSourceClips
 }
@@ -298,10 +358,11 @@ foreach ($pack in $sourceSets.Pack) {
             warnings = $_.warnings
             sourceKeyCorrectionCount = $_.sourceKeyCorrectionCount
             sourceKeyCorrections = $_.sourceKeyCorrections
+            quaternionSignCorrectionCount = $_.quaternionSignCorrectionCount
         }
     })
     $catalog = [ordered]@{
-        schemaVersion = 1
+        schemaVersion = 2
         pack = $pack
         rig = 'Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx'
         animationType = 'Humanoid'
@@ -310,7 +371,12 @@ foreach ($pack in $sourceSets.Pack) {
     }
     $packRoot = Join-Path $assetRoot $pack
     New-Item -ItemType Directory -Force -Path $packRoot | Out-Null
-    $catalogPath = Join-Path $packRoot "Frank$($pack)AnimationCatalog.json"
+    $catalogFileName = if ($pack -eq 'DualSwords') {
+        'FrankDualSwordAnimationCatalog.json'
+    } else {
+        "Frank$($pack)AnimationCatalog.json"
+    }
+    $catalogPath = Join-Path $packRoot $catalogFileName
     $catalog | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $catalogPath -Encoding utf8
 }
 

@@ -1,16 +1,89 @@
 {
-  "schemaVersion": 1,
-  "scannedClipCount": 1226,
-  "correctedClipCount": 24,
-  "correctionCount": 55,
+  "schemaVersion": 2,
+  "scannedClipCount": 1374,
+  "correctedClipCount": 25,
+  "correctionCount": 51.0,
+  "quaternionSignCorrectedClipCount": 1351,
+  "quaternionSignCorrectionCount": 2306336.0,
   "detection": {
     "minimumIncomingAndOutgoingAngleDegrees": 35,
     "maximumNeighborBridgeAngleDegrees": 20,
-    "coherentClusterMinimumAngleDegrees": 20,
-    "coherentClusterMaximumNeighborBridgeDegrees": 5,
-    "policy": "Only isolated one-frame Humanoid body rotation outliers, coherent multi-bone clusters, and confirmed corrupt body frames are repaired by neighbor quaternion slerp."
+    "policy": "Only isolated one-frame Humanoid body rotation outliers and confirmed corrupt body frames are repaired by neighbor quaternion slerp. Ambiguous multi-bone motion is preserved.",
+    "quaternionInterpolationPolicy": "Equivalent q/-q keys are placed on one hemisphere per bone track before Blender writes linear quaternion F-curves."
   },
   "clips": [
+    {
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo07_3_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo07_3_IP.uasset",
+      "correctionCount": 1,
+      "corrections": [
+        {
+          "bone": "hand_l",
+          "sourceFrame": 31,
+          "sourceTime": 0.5105158629694345,
+          "incomingAngle": 36.10742985952288,
+          "outgoingAngle": 35.83207055576275,
+          "neighborAngle": 11.864356419479634,
+          "residualAngle": 35.493436606902684,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 308
+    },
+    {
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo07_All_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo07_All_IP.uasset",
+      "correctionCount": 1,
+      "corrections": [
+        {
+          "bone": "hand_l",
+          "sourceFrame": 83,
+          "sourceTime": 1.3764510082820047,
+          "incomingAngle": 36.107375218009565,
+          "outgoingAngle": 35.83205006519524,
+          "neighborAngle": 11.864274457209603,
+          "residualAngle": 35.493436606902684,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 1909
+    },
+    {
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo07_3.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo07_3.uasset",
+      "correctionCount": 1,
+      "corrections": [
+        {
+          "bone": "hand_l",
+          "sourceFrame": 31,
+          "sourceTime": 0.5105158629694345,
+          "incomingAngle": 36.10742985952288,
+          "outgoingAngle": 35.83207055576275,
+          "neighborAngle": 11.864356419479634,
+          "residualAngle": 35.493436606902684,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 308
+    },
+    {
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo07_All.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo07_All.uasset",
+      "correctionCount": 1,
+      "corrections": [
+        {
+          "bone": "hand_l",
+          "sourceFrame": 83,
+          "sourceTime": 1.3764510082820047,
+          "incomingAngle": 36.107375218009565,
+          "outgoingAngle": 35.83205006519524,
+          "neighborAngle": 11.864274457209603,
+          "residualAngle": 35.493436606902684,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 1909
+    },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo01_4_in_Place.fbx",
       "sourceAsset": "Frank_2Handed_AXE/Animations/Frank_RPG_2Hand_Combo01_4_in_Place.uasset",
@@ -26,7 +99,8 @@
           "residualAngle": 45.88532695736155,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 1573
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo01_4.fbx",
@@ -43,7 +117,8 @@
           "residualAngle": 45.885309881888624,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 1573
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo01_All_in_Place.fbx",
@@ -60,7 +135,8 @@
           "residualAngle": 45.878913409730906,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 2723
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo01_All.fbx",
@@ -77,7 +153,8 @@
           "residualAngle": 45.878913409730906,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 2723
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo02_2_in_Place.fbx",
@@ -94,7 +171,8 @@
           "residualAngle": 51.35353223801525,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 2437
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo02_2.fbx",
@@ -111,7 +189,8 @@
           "residualAngle": 51.35350491725859,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 2437
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo02_All_in_Place.fbx",
@@ -128,7 +207,8 @@
           "residualAngle": 51.352586029444105,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 1844
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo02_All.fbx",
@@ -145,7 +225,8 @@
           "residualAngle": 51.352586029444105,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 1844
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Attack02.fbx",
@@ -162,7 +243,8 @@
           "residualAngle": 51.2627997777097,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 1327
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo04_3.fbx",
@@ -179,7 +261,8 @@
           "residualAngle": 51.26291247583101,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 2362
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Attacks/Frank_RPG_GreatSword_Combo04_All.fbx",
@@ -196,7 +279,8 @@
           "residualAngle": 51.261741098388356,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 3312
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedGreatSword/Animations/RootMotion/Skills/Frank_RPG_GreatSword_Skill02.fbx",
@@ -213,7 +297,8 @@
           "residualAngle": 51.26228068333278,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 2387
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Recovery/Frank_RPG_Katana_Getup02.fbx",
@@ -480,7 +565,8 @@
           "residualAngle": 59.355259132759585,
           "classification": "corrupt-body-frame"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 676
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/InPlace/Skills/Frank_RPG_Katana_S1_Skill02__IP.fbx",
@@ -497,7 +583,8 @@
           "residualAngle": 45.25780332736663,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 1409
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/TwoHandedKatana/Animations/RootMotion/Skills/Frank_RPG_Katana_S1_Skill02.fbx",
@@ -514,7 +601,8 @@
           "residualAngle": 45.257786251893705,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 1409
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Skills/Frank_RPG_Assassin_Skill01_IP.fbx",
@@ -531,7 +619,8 @@
           "residualAngle": 47.984438749697816,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 715
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/RootMotion/Skills/Frank_RPG_Assassin_Skill01.fbx",
@@ -548,34 +637,8 @@
           "residualAngle": 47.984438749697816,
           "classification": "isolated-key"
         }
-      ]
-    },
-    {
-      "assetPath": "Assets/_Game/Animations/Frank/SwordTwoFemale/Animations/RootMotion/Attacks/Frank_Sword2_Attack06.fbx",
-      "sourceAsset": "Frank_Sword2_Female/Animations/01_Mannequin_Female/Frank_Sword2_Attack06.uasset",
-      "correctionCount": 2,
-      "corrections": [
-        {
-          "bone": "foot_r",
-          "sourceFrame": 18,
-          "sourceTime": 0.29464286216059515,
-          "incomingAngle": 31.630991952017155,
-          "outgoingAngle": 30.59045019800615,
-          "neighborAngle": 3.5124920153536996,
-          "residualAngle": 31.066592930331492,
-          "classification": "coherent-bone-cluster"
-        },
-        {
-          "bone": "ball_r",
-          "sourceFrame": 18,
-          "sourceTime": 0.29464286216059515,
-          "incomingAngle": 22.929025298455553,
-          "outgoingAngle": 23.855140893301336,
-          "neighborAngle": 4.723469400714739,
-          "residualAngle": 23.27872586131833,
-          "classification": "coherent-bone-cluster"
-        }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 715
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/SwordTwoFemale/Animations/RootMotion/Attacks/Frank_Sword2_Attack09.fbx",
@@ -592,7 +655,8 @@
           "residualAngle": 39.14518017117708,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 569
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/SwordTwoFemale/Animations/RootMotion/Skills/Frank_Sword2_Skill06.fbx",
@@ -619,81 +683,8 @@
           "residualAngle": 92.19118866192079,
           "classification": "isolated-key"
         }
-      ]
-    },
-    {
-      "assetPath": "Assets/_Game/Animations/Frank/DamageReactions/Animations/RootMotion/Reactions/Frank_Damage_Bound05.fbx",
-      "sourceAsset": "Frank_Damages/Animations/09_Bound/Frank_Damage_Bound05.uasset",
-      "correctionCount": 3,
-      "corrections": [
-        {
-          "bone": "spine_01",
-          "sourceFrame": 1,
-          "sourceTime": 0.016369047897810844,
-          "incomingAngle": 25.99997055684708,
-          "outgoingAngle": 24.94907935869621,
-          "neighborAngle": 1.0849711740665884,
-          "residualAngle": 25.474201377559716,
-          "classification": "coherent-bone-cluster"
-        },
-        {
-          "bone": "spine_02",
-          "sourceFrame": 1,
-          "sourceTime": 0.016369047897810844,
-          "incomingAngle": 25.99997055684708,
-          "outgoingAngle": 24.372725798415733,
-          "neighborAngle": 1.65795873174672,
-          "residualAngle": 25.185822253065314,
-          "classification": "coherent-bone-cluster"
-        },
-        {
-          "bone": "spine_03",
-          "sourceFrame": 1,
-          "sourceTime": 0.016369047897810844,
-          "incomingAngle": 26.000033963468013,
-          "outgoingAngle": 22.979970199298464,
-          "neighborAngle": 3.5712818014175265,
-          "residualAngle": 24.471738155542596,
-          "classification": "coherent-bone-cluster"
-        }
-      ]
-    },
-    {
-      "assetPath": "Assets/_Game/Animations/Frank/DamageReactions/Animations/InPlace/Reactions/Frank_Damage_Bound05_iP.fbx",
-      "sourceAsset": "Frank_Damages/Animations/in_Place_Anims/Frank_Damage_Bound05_iP.uasset",
-      "correctionCount": 3,
-      "corrections": [
-        {
-          "bone": "spine_01",
-          "sourceFrame": 1,
-          "sourceTime": 0.016369047897810844,
-          "incomingAngle": 25.99997055684708,
-          "outgoingAngle": 24.94907935869621,
-          "neighborAngle": 1.0849711740665884,
-          "residualAngle": 25.474201377559716,
-          "classification": "coherent-bone-cluster"
-        },
-        {
-          "bone": "spine_02",
-          "sourceFrame": 1,
-          "sourceTime": 0.016369047897810844,
-          "incomingAngle": 25.99997055684708,
-          "outgoingAngle": 24.372693355017176,
-          "neighborAngle": 1.6584307618513914,
-          "residualAngle": 25.185822253065314,
-          "classification": "coherent-bone-cluster"
-        },
-        {
-          "bone": "spine_03",
-          "sourceFrame": 1,
-          "sourceTime": 0.016369047897810844,
-          "incomingAngle": 25.99997932195464,
-          "outgoingAngle": 22.97999752005518,
-          "neighborAngle": 3.5712818014175265,
-          "residualAngle": 24.471738155542596,
-          "classification": "coherent-bone-cluster"
-        }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 1209
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Attacker/Frank_Stealth_Kill_Front_02.fbx",
@@ -710,7 +701,8 @@
           "residualAngle": 46.58793485690242,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 1427
     },
     {
       "assetPath": "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Victim/Frank_Stealth_Kill_Hit_Top_01.fbx",
@@ -727,7 +719,8 @@
           "residualAngle": 43.4349692718628,
           "classification": "isolated-key"
         }
-      ]
+      ],
+      "quaternionSignCorrectionCount": 1555
     }
   ]
 }

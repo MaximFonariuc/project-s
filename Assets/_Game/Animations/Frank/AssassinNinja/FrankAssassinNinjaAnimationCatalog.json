@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "pack": "AssassinNinja",
   "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
   "animationType": "Humanoid",
@@ -16,10 +16,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 826476,
+      "bytes": 825484,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 68
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Run_BL",
@@ -32,10 +35,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 826604,
+      "bytes": 825836,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 135
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Run_BR",
@@ -48,10 +54,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 819132,
+      "bytes": 818092,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 94
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Run_F",
@@ -64,10 +73,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 826252,
+      "bytes": 825708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 100
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Run_FL",
@@ -80,10 +92,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 827340,
+      "bytes": 826524,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 50
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Run_FR",
@@ -96,10 +111,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 826156,
+      "bytes": 826012,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 108
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Run_L",
@@ -112,10 +130,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 826892,
+      "bytes": 826028,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 92
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Run_R",
@@ -128,10 +149,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 826844,
+      "bytes": 825900,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 59
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Walk_B",
@@ -144,10 +168,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 863932,
+      "bytes": 863244,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 147
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Walk_BL",
@@ -160,10 +187,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 867452,
+      "bytes": 867436,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 102
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Walk_BR",
@@ -176,10 +206,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 867836,
+      "bytes": 867260,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 180
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Walk_F",
@@ -192,10 +225,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 863708,
+      "bytes": 862812,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 133
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Walk_FL",
@@ -208,10 +244,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 867660,
+      "bytes": 867404,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 182
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Walk_FR",
@@ -224,10 +263,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 868172,
+      "bytes": 867468,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 107
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Walk_L",
@@ -240,10 +282,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 868028,
+      "bytes": 867420,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 384
     },
     {
       "name": "Frank_RPG_Assassin_8Way_Walk_R",
@@ -256,10 +301,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 863244,
+      "bytes": 862236,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 190
     },
     {
       "name": "Frank_RPG_Assassin_Attack01_IP",
@@ -272,10 +320,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 866556,
+      "bytes": 865580,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 517
     },
     {
       "name": "Frank_RPG_Assassin_Attack02_IP",
@@ -288,10 +339,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 851580,
+      "bytes": 850348,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 298
     },
     {
       "name": "Frank_RPG_Assassin_Attack03_IP",
@@ -304,10 +358,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 995644,
+      "bytes": 994540,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 563
     },
     {
       "name": "Frank_RPG_Assassin_Attack04_IP",
@@ -320,10 +377,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 907100,
+      "bytes": 905644,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 678
     },
     {
       "name": "Frank_RPG_Assassin_Attack05_IP",
@@ -336,10 +396,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 973372,
+      "bytes": 972236,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 530
     },
     {
       "name": "Frank_RPG_Assassin_Attack06_IP",
@@ -352,10 +415,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 904540,
+      "bytes": 903708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 463
     },
     {
       "name": "Frank_RPG_Assassin_Attack07_IP",
@@ -368,10 +434,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 943980,
+      "bytes": 942956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 677
     },
     {
       "name": "Frank_RPG_Assassin_Attack08_IP",
@@ -384,10 +453,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1123164,
+      "bytes": 1121228,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 753
     },
     {
       "name": "Frank_RPG_Assassin_Block",
@@ -403,7 +475,10 @@
       "bytes": 807708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 86
     },
     {
       "name": "Frank_RPG_Assassin_Combo01_1_IP",
@@ -416,10 +491,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 793900,
+      "bytes": 792620,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 250
     },
     {
       "name": "Frank_RPG_Assassin_Combo01_2_IP",
@@ -432,10 +510,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 838620,
+      "bytes": 837132,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 249
     },
     {
       "name": "Frank_RPG_Assassin_Combo01_3_IP",
@@ -448,10 +529,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 962540,
+      "bytes": 961628,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 616
     },
     {
       "name": "Frank_RPG_Assassin_Combo01_All_IP",
@@ -464,10 +548,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1156252,
+      "bytes": 1154764,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 777
     },
     {
       "name": "Frank_RPG_Assassin_Combo02_1_IP",
@@ -480,10 +567,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 907628,
+      "bytes": 906156,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 288
     },
     {
       "name": "Frank_RPG_Assassin_Combo02_2_IP",
@@ -496,10 +586,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 944092,
+      "bytes": 942508,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 382
     },
     {
       "name": "Frank_RPG_Assassin_Combo02_3_IP",
@@ -512,10 +605,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 911052,
+      "bytes": 909516,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 279
     },
     {
       "name": "Frank_RPG_Assassin_Combo02_All_IP",
@@ -528,10 +624,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1326812,
+      "bytes": 1324396,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 915
     },
     {
       "name": "Frank_RPG_Assassin_Combo03_1_IP",
@@ -544,10 +643,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1063036,
+      "bytes": 1061580,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 558
     },
     {
       "name": "Frank_RPG_Assassin_Combo03_2_IP",
@@ -560,10 +662,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 998332,
+      "bytes": 996748,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 567
     },
     {
       "name": "Frank_RPG_Assassin_Combo03_3_IP",
@@ -576,10 +681,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 968940,
+      "bytes": 967388,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 790
     },
     {
       "name": "Frank_RPG_Assassin_Combo03_All_IP",
@@ -592,10 +700,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1462076,
+      "bytes": 1459196,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1722
     },
     {
       "name": "Frank_RPG_Assassin_Combo04_1_IP",
@@ -608,10 +719,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 943916,
+      "bytes": 942636,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 499
     },
     {
       "name": "Frank_RPG_Assassin_Combo04_2_IP",
@@ -624,10 +738,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 903292,
+      "bytes": 901884,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 495
     },
     {
       "name": "Frank_RPG_Assassin_Combo04_3_IP",
@@ -640,10 +757,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1186540,
+      "bytes": 1184524,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2152
     },
     {
       "name": "Frank_RPG_Assassin_Combo04_All_IP",
@@ -656,10 +776,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1541164,
+      "bytes": 1539020,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2789
     },
     {
       "name": "Frank_RPG_Assassin_Combo05_1_IP",
@@ -672,10 +795,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 854172,
+      "bytes": 852956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 366
     },
     {
       "name": "Frank_RPG_Assassin_Combo05_2_IP",
@@ -688,10 +814,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 921372,
+      "bytes": 920556,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 600
     },
     {
       "name": "Frank_RPG_Assassin_Combo05_3_IP",
@@ -704,10 +833,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 988636,
+      "bytes": 987132,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 957
     },
     {
       "name": "Frank_RPG_Assassin_Combo05_All_IP",
@@ -720,10 +852,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1331548,
+      "bytes": 1329548,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1808
     },
     {
       "name": "Frank_RPG_Assassin_Equip_Idle",
@@ -736,10 +871,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1907340,
+      "bytes": 1903068,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 514
     },
     {
       "name": "Frank_RPG_Assassin_Equip",
@@ -752,10 +890,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 955708,
+      "bytes": 954748,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 575
     },
     {
       "name": "Frank_RPG_Assassin_Evade_B_IP",
@@ -768,10 +909,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 797404,
+      "bytes": 796428,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 515
     },
     {
       "name": "Frank_RPG_Assassin_Evade_F_IP",
@@ -784,10 +928,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 797756,
+      "bytes": 796892,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 386
     },
     {
       "name": "Frank_RPG_Assassin_Evade_L_IP",
@@ -800,10 +947,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 798252,
+      "bytes": 797564,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 378
     },
     {
       "name": "Frank_RPG_Assassin_Evade_R_IP",
@@ -816,10 +966,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 797532,
+      "bytes": 796764,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 436
     },
     {
       "name": "Frank_RPG_Assassin_Getup01",
@@ -832,10 +985,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 922220,
+      "bytes": 921052,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 820
     },
     {
       "name": "Frank_RPG_Assassin_Getup02",
@@ -848,10 +1004,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 897100,
+      "bytes": 896156,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 696
     },
     {
       "name": "Frank_RPG_Assassin_Guard",
@@ -864,10 +1023,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 992428,
+      "bytes": 990748,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 67
     },
     {
       "name": "Frank_RPG_Assassin_Hit_Knockback_IP",
@@ -880,10 +1042,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 916652,
+      "bytes": 915852,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 406
     },
     {
       "name": "Frank_RPG_Assassin_Hit_Knockdown_IP",
@@ -896,10 +1061,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 991052,
+      "bytes": 989020,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1255
     },
     {
       "name": "Frank_RPG_Assassin_Hit_Knockdown_Loop",
@@ -912,10 +1080,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1038828,
+      "bytes": 1026940,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 25
     },
     {
       "name": "Frank_RPG_Assassin_Hit01",
@@ -928,10 +1099,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 830860,
+      "bytes": 830204,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 298
     },
     {
       "name": "Frank_RPG_Assassin_Hit02",
@@ -944,10 +1118,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 830556,
+      "bytes": 829276,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 233
     },
     {
       "name": "Frank_RPG_Assassin_Hit03",
@@ -960,10 +1137,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 868124,
+      "bytes": 867084,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 297
     },
     {
       "name": "Frank_RPG_Assassin_Jump_ZeroHeight",
@@ -976,10 +1156,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 950892,
+      "bytes": 949468,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 735
     },
     {
       "name": "Frank_RPG_Assassin_Run01",
@@ -992,10 +1175,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 789756,
+      "bytes": 788604,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 142
     },
     {
       "name": "Frank_RPG_Assassin_Run02",
@@ -1008,10 +1194,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 788892,
+      "bytes": 788220,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 133
     },
     {
       "name": "Frank_RPG_Assassin_Skill01_IP",
@@ -1024,10 +1213,24 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1061548,
+      "bytes": 1060108,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "foot_r",
+          "sourceFrame": 41,
+          "sourceTime": 0.6748971193415638,
+          "incomingAngle": 41.928270522093,
+          "outgoingAngle": 54.48647831122647,
+          "neighborAngle": 15.773003661634636,
+          "residualAngle": 47.984438749697816,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 715
     },
     {
       "name": "Frank_RPG_Assassin_Skill02_IP",
@@ -1040,10 +1243,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1246716,
+      "bytes": 1244764,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1324
     },
     {
       "name": "Frank_RPG_Assassin_Skill03_IP",
@@ -1056,10 +1262,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1311676,
+      "bytes": 1309788,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1537
     },
     {
       "name": "Frank_RPG_Assassin_Skill04_IP",
@@ -1072,10 +1281,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1557420,
+      "bytes": 1555068,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2282
     },
     {
       "name": "Frank_RPG_Assassin_Step_B_IP",
@@ -1091,7 +1303,10 @@
       "bytes": 764956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 145
     },
     {
       "name": "Frank_RPG_Assassin_Step_F_IP",
@@ -1107,7 +1322,10 @@
       "bytes": 764956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 136
     },
     {
       "name": "Frank_RPG_Assassin_Step_L_IP",
@@ -1123,7 +1341,10 @@
       "bytes": 764956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 145
     },
     {
       "name": "Frank_RPG_Assassin_Step_R_IP",
@@ -1139,7 +1360,10 @@
       "bytes": 764956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 230
     },
     {
       "name": "Frank_RPG_Assassin_Tumbling_B_IP",
@@ -1152,10 +1376,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 890780,
+      "bytes": 889548,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 547
     },
     {
       "name": "Frank_RPG_Assassin_Tumbling_F_IP",
@@ -1168,10 +1395,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 833676,
+      "bytes": 832444,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 473
     },
     {
       "name": "Frank_RPG_Assassin_Tumbling_L_IP",
@@ -1184,10 +1414,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 828348,
+      "bytes": 827388,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 387
     },
     {
       "name": "Frank_RPG_Assassin_Tumbling_R_IP",
@@ -1200,10 +1433,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 826540,
+      "bytes": 825660,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 445
     },
     {
       "name": "Frank_RPG_Assassin_Unequip_Idle",
@@ -1216,10 +1452,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1068172,
+      "bytes": 1067932,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 0
     },
     {
       "name": "Frank_RPG_Assassin_Unequip_Run_Faster",
@@ -1235,7 +1474,10 @@
       "bytes": 773516,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 188
     },
     {
       "name": "Frank_RPG_Assassin_Unequip_Run",
@@ -1248,10 +1490,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 801596,
+      "bytes": 800652,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 125
     },
     {
       "name": "Frank_RPG_Assassin_Unequip",
@@ -1264,10 +1509,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 875836,
+      "bytes": 874876,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 389
     },
     {
       "name": "Frank_RPG_Assassin_Walk_Faster",
@@ -1280,10 +1528,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 922476,
+      "bytes": 921084,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 173
     },
     {
       "name": "Frank_RPG_Assassin_Walk",
@@ -1296,10 +1547,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 962620,
+      "bytes": 961004,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 196
     },
     {
       "name": "Frank_RPG_Assassin_Attack01",
@@ -1312,10 +1566,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 868028,
+      "bytes": 867004,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 517
     },
     {
       "name": "Frank_RPG_Assassin_Attack02",
@@ -1328,10 +1585,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 852556,
+      "bytes": 851292,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 298
     },
     {
       "name": "Frank_RPG_Assassin_Attack03",
@@ -1344,10 +1604,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 996972,
+      "bytes": 995900,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 563
     },
     {
       "name": "Frank_RPG_Assassin_Attack04",
@@ -1360,10 +1623,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 907244,
+      "bytes": 905852,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 678
     },
     {
       "name": "Frank_RPG_Assassin_Attack05",
@@ -1376,10 +1642,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 974572,
+      "bytes": 973148,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 530
     },
     {
       "name": "Frank_RPG_Assassin_Attack06",
@@ -1392,10 +1661,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 905516,
+      "bytes": 904636,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 463
     },
     {
       "name": "Frank_RPG_Assassin_Attack07",
@@ -1408,10 +1680,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 945132,
+      "bytes": 943804,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 677
     },
     {
       "name": "Frank_RPG_Assassin_Attack08",
@@ -1424,10 +1699,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1125932,
+      "bytes": 1123932,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 753
     },
     {
       "name": "Frank_RPG_Assassin_Combo01_1",
@@ -1440,10 +1718,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 794684,
+      "bytes": 793276,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 250
     },
     {
       "name": "Frank_RPG_Assassin_Combo01_2",
@@ -1456,10 +1737,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 839564,
+      "bytes": 838204,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 249
     },
     {
       "name": "Frank_RPG_Assassin_Combo01_3",
@@ -1472,10 +1756,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 963932,
+      "bytes": 962796,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 616
     },
     {
       "name": "Frank_RPG_Assassin_Combo01_All",
@@ -1488,10 +1775,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1160572,
+      "bytes": 1158972,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 777
     },
     {
       "name": "Frank_RPG_Assassin_Combo02_1",
@@ -1504,10 +1794,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 908428,
+      "bytes": 907036,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 288
     },
     {
       "name": "Frank_RPG_Assassin_Combo02_2",
@@ -1520,10 +1813,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 944652,
+      "bytes": 943084,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 382
     },
     {
       "name": "Frank_RPG_Assassin_Combo02_3",
@@ -1536,10 +1832,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 912940,
+      "bytes": 911804,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 279
     },
     {
       "name": "Frank_RPG_Assassin_Combo02_All",
@@ -1552,10 +1851,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1331020,
+      "bytes": 1328652,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 915
     },
     {
       "name": "Frank_RPG_Assassin_Combo03_1",
@@ -1568,10 +1870,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1064652,
+      "bytes": 1063308,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 558
     },
     {
       "name": "Frank_RPG_Assassin_Combo03_2",
@@ -1584,10 +1889,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 999244,
+      "bytes": 997420,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 567
     },
     {
       "name": "Frank_RPG_Assassin_Combo03_3",
@@ -1600,10 +1908,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 970524,
+      "bytes": 968748,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 790
     },
     {
       "name": "Frank_RPG_Assassin_Combo03_All",
@@ -1616,10 +1927,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1468412,
+      "bytes": 1465468,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1722
     },
     {
       "name": "Frank_RPG_Assassin_Combo04_1",
@@ -1632,10 +1946,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 945084,
+      "bytes": 943676,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 499
     },
     {
       "name": "Frank_RPG_Assassin_Combo04_2",
@@ -1648,10 +1965,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 904092,
+      "bytes": 902844,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 495
     },
     {
       "name": "Frank_RPG_Assassin_Combo04_3",
@@ -1664,10 +1984,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1187292,
+      "bytes": 1185100,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2152
     },
     {
       "name": "Frank_RPG_Assassin_Combo04_All",
@@ -1680,10 +2003,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1544380,
+      "bytes": 1541788,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2789
     },
     {
       "name": "Frank_RPG_Assassin_Combo05_1",
@@ -1696,10 +2022,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 854732,
+      "bytes": 853756,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 366
     },
     {
       "name": "Frank_RPG_Assassin_Combo05_2",
@@ -1712,10 +2041,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 921964,
+      "bytes": 921452,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 600
     },
     {
       "name": "Frank_RPG_Assassin_Combo05_3",
@@ -1728,10 +2060,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 988300,
+      "bytes": 987164,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 957
     },
     {
       "name": "Frank_RPG_Assassin_Combo05_All",
@@ -1744,10 +2079,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1333132,
+      "bytes": 1331372,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1808
     },
     {
       "name": "Frank_RPG_Assassin_Die01",
@@ -1760,10 +2098,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 922844,
+      "bytes": 922124,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1051
     },
     {
       "name": "Frank_RPG_Assassin_Die02",
@@ -1776,10 +2117,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 896092,
+      "bytes": 895100,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 789
     },
     {
       "name": "Frank_RPG_Assassin_Evade_B",
@@ -1792,10 +2136,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 799708,
+      "bytes": 798732,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 515
     },
     {
       "name": "Frank_RPG_Assassin_Evade_F",
@@ -1808,10 +2155,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 800348,
+      "bytes": 799356,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 386
     },
     {
       "name": "Frank_RPG_Assassin_Evade_L",
@@ -1824,10 +2174,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 800172,
+      "bytes": 799484,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 378
     },
     {
       "name": "Frank_RPG_Assassin_Evade_R",
@@ -1840,10 +2193,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 799436,
+      "bytes": 798604,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 436
     },
     {
       "name": "Frank_RPG_Assassin_Hit_Knockback",
@@ -1856,10 +2212,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 917500,
+      "bytes": 916684,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 406
     },
     {
       "name": "Frank_RPG_Assassin_Hit_Knockdown",
@@ -1872,10 +2231,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 995100,
+      "bytes": 993084,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1255
     },
     {
       "name": "Frank_RPG_Assassin_Jump_01",
@@ -1888,10 +2250,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 953692,
+      "bytes": 952364,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 737
     },
     {
       "name": "Frank_RPG_Assassin_Jump_02",
@@ -1904,10 +2269,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 918716,
+      "bytes": 917724,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 337
     },
     {
       "name": "Frank_RPG_Assassin_Skill01",
@@ -1920,10 +2288,24 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1066812,
+      "bytes": 1065372,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "foot_r",
+          "sourceFrame": 41,
+          "sourceTime": 0.6748971193415638,
+          "incomingAngle": 41.928270522093,
+          "outgoingAngle": 54.48647831122647,
+          "neighborAngle": 15.773003661634636,
+          "residualAngle": 47.984438749697816,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 715
     },
     {
       "name": "Frank_RPG_Assassin_Skill02",
@@ -1936,10 +2318,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1249356,
+      "bytes": 1247532,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1324
     },
     {
       "name": "Frank_RPG_Assassin_Skill03",
@@ -1952,10 +2337,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1313772,
+      "bytes": 1311836,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1537
     },
     {
       "name": "Frank_RPG_Assassin_Skill04",
@@ -1968,10 +2356,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1561948,
+      "bytes": 1559052,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2282
     },
     {
       "name": "Frank_RPG_Assassin_Skill05",
@@ -1984,10 +2375,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 1711452,
+      "bytes": 1707516,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 3575
     },
     {
       "name": "Frank_RPG_Assassin_Step_B",
@@ -2003,7 +2397,10 @@
       "bytes": 764956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 145
     },
     {
       "name": "Frank_RPG_Assassin_Step_F",
@@ -2019,7 +2416,10 @@
       "bytes": 764956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 136
     },
     {
       "name": "Frank_RPG_Assassin_Step_L",
@@ -2035,7 +2435,10 @@
       "bytes": 764956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 145
     },
     {
       "name": "Frank_RPG_Assassin_Step_R",
@@ -2051,7 +2454,10 @@
       "bytes": 764956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 230
     },
     {
       "name": "Frank_RPG_Assassin_Tumbling_B",
@@ -2064,10 +2470,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 893116,
+      "bytes": 891820,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 547
     },
     {
       "name": "Frank_RPG_Assassin_Tumbling_F",
@@ -2080,10 +2489,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 834620,
+      "bytes": 833580,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 473
     },
     {
       "name": "Frank_RPG_Assassin_Tumbling_L",
@@ -2096,10 +2508,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 829612,
+      "bytes": 828924,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 387
     },
     {
       "name": "Frank_RPG_Assassin_Tumbling_R",
@@ -2112,10 +2527,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 827516,
+      "bytes": 826508,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 445
     }
   ]
 }

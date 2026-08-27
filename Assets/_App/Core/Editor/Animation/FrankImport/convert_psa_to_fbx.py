@@ -24,8 +24,6 @@ from mathutils import Quaternion
 # or ambiguous motion untouched.
 _OUTLIER_JUMP_DEGREES = 35.0
 _OUTLIER_NEIGHBOR_BRIDGE_DEGREES = 20.0
-_COHERENT_OUTLIER_JUMP_DEGREES = 20.0
-_COHERENT_OUTLIER_NEIGHBOR_BRIDGE_DEGREES = 5.0
 _GLOBAL_CORRUPT_FRAME_MIN_CORE_BONES = 3
 _GLOBAL_CORRUPT_FRAME_MIN_RESIDUAL_DEGREES = 5.0
 _HUMANOID_BODY_BONES = frozenset(
@@ -100,7 +98,7 @@ def _rotation_angle_degrees(left: Quaternion, right: Quaternion) -> float:
 
 
 def _sanitize_sequence_rotation_keys(reader, sequence_name: str):
-    """Replace only unambiguous one-frame body rotation corruption."""
+    """Repair unambiguous body corruption and quaternion sign discontinuities."""
 
     sequence = reader.sequences[sequence_name]
     bone_count = len(reader.bones)
@@ -109,7 +107,6 @@ def _sanitize_sequence_rotation_keys(reader, sequence_name: str):
     metrics = {}
     primary_outliers = set()
     primary_core_outliers_by_frame = {}
-    coherent_outliers_by_frame = {}
 
     for bone_index, bone in enumerate(reader.bones):
         bone_name = bone.name.decode("windows-1252").rstrip()
@@ -160,14 +157,6 @@ def _sanitize_sequence_rotation_keys(reader, sequence_name: str):
                     primary_core_outliers_by_frame.setdefault(frame_index, []).append(
                         key_id
                     )
-            if (
-                incoming_angle > _COHERENT_OUTLIER_JUMP_DEGREES
-                and outgoing_angle > _COHERENT_OUTLIER_JUMP_DEGREES
-                and neighbor_angle < _COHERENT_OUTLIER_NEIGHBOR_BRIDGE_DEGREES
-                and not _is_humanoid_finger_bone(bone_name)
-            ):
-                coherent_outliers_by_frame.setdefault(frame_index, []).append(key_id)
-
     correction_classifications = {key_id: "isolated-key" for key_id in primary_outliers}
     global_corrupt_frames = {
         frame_index
@@ -183,12 +172,6 @@ def _sanitize_sequence_rotation_keys(reader, sequence_name: str):
                 > _GLOBAL_CORRUPT_FRAME_MIN_RESIDUAL_DEGREES
             ):
                 correction_classifications[key_id] = "corrupt-body-frame"
-
-    for frame_index, key_ids in coherent_outliers_by_frame.items():
-        if len(key_ids) < 2:
-            continue
-        for key_id in key_ids:
-            correction_classifications.setdefault(key_id, "coherent-bone-cluster")
 
     # Detect against the untouched source tracks, then apply all corrections.
     # This prevents one repair from changing whether a neighboring key passes a
@@ -213,7 +196,40 @@ def _sanitize_sequence_rotation_keys(reader, sequence_name: str):
             }
         )
 
-    return keys, corrections
+    compatibility_flip_count = _make_quaternion_tracks_hemisphere_continuous(
+        keys, bone_count, sequence.frame_count
+    )
+    return keys, corrections, compatibility_flip_count
+
+
+def _make_quaternion_tracks_hemisphere_continuous(
+    keys, bone_count: int, frame_count: int
+) -> int:
+    """Keep equivalent q/-q keys on one interpolation hemisphere per track.
+
+    The pinned Blender PSA importer writes quaternion components to independent
+    linear F-curves. A source sign change therefore becomes a long-path spin even
+    though q and -q represent the same orientation. Flipping the representation
+    when consecutive normalized quaternions have a negative dot product preserves
+    every authored pose while making interpolation deterministic.
+    """
+
+    flip_count = 0
+    for bone_index in range(bone_count):
+        previous = _normalized_rotation(keys[bone_index])
+        for frame_index in range(1, frame_count):
+            key = keys[frame_index * bone_count + bone_index]
+            current = _normalized_rotation(key)
+            if previous.dot(current) < 0.0:
+                key.rotation.w = -key.rotation.w
+                key.rotation.x = -key.rotation.x
+                key.rotation.y = -key.rotation.y
+                key.rotation.z = -key.rotation.z
+                current.negate()
+                flip_count += 1
+            previous = current
+
+    return flip_count
 
 
 class _SanitizedPsaReader:
@@ -223,6 +239,7 @@ class _SanitizedPsaReader:
         self._source_reader = source_reader
         self._key_cache = {}
         self.corrections = {}
+        self.quaternion_sign_corrections = {}
 
     @property
     def bones(self):
@@ -238,11 +255,12 @@ class _SanitizedPsaReader:
 
     def read_sequence_keys(self, sequence_name: str):
         if sequence_name not in self._key_cache:
-            keys, corrections = _sanitize_sequence_rotation_keys(
+            keys, corrections, sign_correction_count = _sanitize_sequence_rotation_keys(
                 self._source_reader, sequence_name
             )
             self._key_cache[sequence_name] = keys
             self.corrections[sequence_name] = corrections
+            self.quaternion_sign_corrections[sequence_name] = sign_correction_count
         return self._key_cache[sequence_name]
 
     def read_sequence_scale_keys(self, sequence_name: str):
@@ -255,6 +273,7 @@ def _parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--manifest", required=True)
     parser.add_argument("--report")
+    parser.add_argument("--asset-path", action="append", default=[])
     parser.add_argument("--only-with-source-key-corrections", action="store_true")
     return parser.parse_args(argv)
 
@@ -437,8 +456,12 @@ def _convert_job(
         options = PsaImportOptions(
             psa_config=psa_config,
             sequence_names=[sequence_name],
-            fps_custom=target_fps,
-            fps_source="CUSTOM",
+            # Keep the source samples intact inside Blender. Resampling a 60.22
+            # FPS PSA to 60 FPS can choose a new sign independently for adjacent
+            # quaternion samples and undo the hemisphere-continuity pass above.
+            # FBX playback rate is still normalized to target_fps during export.
+            fps_custom=float(sequence.fps),
+            fps_source="SEQUENCE",
             should_overwrite=True,
             should_use_config_file=False,
             should_write_metadata=False,
@@ -468,6 +491,9 @@ def _convert_job(
             "warnings": result.warnings,
             "sourceKeyCorrectionCount": len(reader.corrections[sequence_name]),
             "sourceKeyCorrections": reader.corrections[sequence_name],
+            "quaternionSignCorrectionCount": reader.quaternion_sign_corrections[
+                sequence_name
+            ],
             "bytes": output_path.stat().st_size,
         }
 
@@ -489,6 +515,21 @@ def main() -> int:
     ) = _load_pipeline(manifest_path)
     if args.report:
         manifest["report"] = str(pathlib.Path(args.report).resolve())
+    if args.asset_path:
+        selected_paths = {path.replace("\\", "/") for path in args.asset_path}
+        manifest["jobs"] = [
+            job
+            for job in manifest["jobs"]
+            if job["assetPath"].replace("\\", "/") in selected_paths
+        ]
+        missing_paths = selected_paths.difference(
+            job["assetPath"].replace("\\", "/") for job in manifest["jobs"]
+        )
+        if missing_paths:
+            raise RuntimeError(
+                "Requested animation assets are missing from the manifest: "
+                + ", ".join(sorted(missing_paths))
+            )
     if args.only_with_source_key_corrections:
         manifest["jobs"] = _filter_jobs_with_source_key_corrections(
             manifest["jobs"], PsaReader
@@ -498,7 +539,11 @@ def main() -> int:
             f"{len(manifest['jobs'])} clips contain unambiguous source key outliers."
         )
     armature = _load_armature(manifest["rigFbx"])
-    if manifest.get("rigOutput") and not args.only_with_source_key_corrections:
+    if (
+        manifest.get("rigOutput")
+        and not args.only_with_source_key_corrections
+        and not args.asset_path
+    ):
         _export_rig(armature, pathlib.Path(manifest["rigOutput"]))
     reports = []
 

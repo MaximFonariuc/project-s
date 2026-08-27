@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "pack": "WhipFemale",
   "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
   "animationType": "Humanoid",
@@ -16,10 +16,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 897628,
+      "bytes": 896540,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 680
     },
     {
       "name": "Frank_Whip_Attack02",
@@ -32,10 +35,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 930204,
+      "bytes": 929068,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 675
     },
     {
       "name": "Frank_Whip_Attack03",
@@ -48,10 +54,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1068444,
+      "bytes": 1067388,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1167
     },
     {
       "name": "Frank_Whip_Attack04",
@@ -64,10 +73,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1129036,
+      "bytes": 1127884,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 991
     },
     {
       "name": "Frank_Whip_Attack05",
@@ -80,10 +92,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 972428,
+      "bytes": 971708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 824
     },
     {
       "name": "Frank_Whip_Attack06",
@@ -96,10 +111,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 956188,
+      "bytes": 955212,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 714
     },
     {
       "name": "Frank_Whip_Combo01_1",
@@ -112,10 +130,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1030220,
+      "bytes": 1029196,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 638
     },
     {
       "name": "Frank_Whip_Combo01_3",
@@ -128,10 +149,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 962636,
+      "bytes": 961836,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 883
     },
     {
       "name": "Frank_Whip_Combo01_4",
@@ -144,10 +168,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1030220,
+      "bytes": 1029196,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 638
     },
     {
       "name": "Frank_Whip_Combo01_5",
@@ -160,10 +187,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1134284,
+      "bytes": 1133324,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1438
     },
     {
       "name": "Frank_Whip_Combo01_6",
@@ -176,10 +206,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 962636,
+      "bytes": 961836,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 883
     },
     {
       "name": "Frank_Whip_Combo01_All",
@@ -192,10 +225,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1503516,
+      "bytes": 1501628,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2046
     },
     {
       "name": "Frank_Whip_Combo02_1",
@@ -208,10 +244,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 918732,
+      "bytes": 917996,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 468
     },
     {
       "name": "Frank_Whip_Combo02_3",
@@ -224,10 +263,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1171532,
+      "bytes": 1170140,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1310
     },
     {
       "name": "Frank_Whip_Combo02_4",
@@ -240,10 +282,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 918732,
+      "bytes": 917996,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 468
     },
     {
       "name": "Frank_Whip_Combo02_5",
@@ -256,10 +301,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 999548,
+      "bytes": 998220,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 528
     },
     {
       "name": "Frank_Whip_Combo02_6",
@@ -272,10 +320,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1171532,
+      "bytes": 1170140,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1310
     },
     {
       "name": "Frank_Whip_Combo02_All",
@@ -288,10 +339,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1503068,
+      "bytes": 1501100,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1799
     },
     {
       "name": "Frank_Whip_Combo03_1",
@@ -304,10 +358,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1096300,
+      "bytes": 1095260,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1140
     },
     {
       "name": "Frank_Whip_Combo03_3",
@@ -320,10 +377,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1140892,
+      "bytes": 1139468,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1304
     },
     {
       "name": "Frank_Whip_Combo03_4",
@@ -336,10 +396,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1096300,
+      "bytes": 1095260,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1140
     },
     {
       "name": "Frank_Whip_Combo03_5",
@@ -352,10 +415,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1122108,
+      "bytes": 1121004,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1467
     },
     {
       "name": "Frank_Whip_Combo03_6",
@@ -368,10 +434,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1140892,
+      "bytes": 1139468,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1304
     },
     {
       "name": "Frank_Whip_Combo03_All",
@@ -384,10 +453,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1715132,
+      "bytes": 1712780,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2908
     },
     {
       "name": "Frank_Whip_Combo04_1",
@@ -400,10 +472,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1068092,
+      "bytes": 1066812,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1121
     },
     {
       "name": "Frank_Whip_Combo04_3",
@@ -416,10 +491,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1068092,
+      "bytes": 1066812,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1121
     },
     {
       "name": "Frank_Whip_Combo04_4",
@@ -432,10 +510,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1223292,
+      "bytes": 1221996,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1377
     },
     {
       "name": "Frank_Whip_Combo04_All",
@@ -448,10 +529,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1444204,
+      "bytes": 1442524,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2278
     },
     {
       "name": "Frank_Whip_Combo05_1",
@@ -464,10 +548,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1042348,
+      "bytes": 1041612,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 816
     },
     {
       "name": "Frank_Whip_Combo05_3",
@@ -480,10 +567,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1444364,
+      "bytes": 1442636,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2330
     },
     {
       "name": "Frank_Whip_Combo05_4",
@@ -496,10 +586,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1042348,
+      "bytes": 1041612,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 816
     },
     {
       "name": "Frank_Whip_Combo05_5",
@@ -512,10 +605,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1121580,
+      "bytes": 1120060,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1214
     },
     {
       "name": "Frank_Whip_Combo05_6",
@@ -528,10 +624,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1444364,
+      "bytes": 1442636,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2330
     },
     {
       "name": "Frank_Whip_Combo05_All",
@@ -544,10 +643,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1936748,
+      "bytes": 1933468,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2863
     },
     {
       "name": "Frank_Whip_Critical_Attack",
@@ -560,10 +662,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1678268,
+      "bytes": 1676108,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 3062
     },
     {
       "name": "Frank_Whip_Skill01",
@@ -576,10 +681,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1448860,
+      "bytes": 1447228,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1623
     },
     {
       "name": "Frank_Whip_Skill02",
@@ -592,10 +700,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1683052,
+      "bytes": 1681308,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 3280
     },
     {
       "name": "Frank_Whip_8Way_Run_B",
@@ -608,10 +719,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 832652,
+      "bytes": 832108,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 604
     },
     {
       "name": "Frank_Whip_8Way_Run_BL",
@@ -624,10 +738,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 832748,
+      "bytes": 832268,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 322
     },
     {
       "name": "Frank_Whip_8Way_Run_BR",
@@ -640,10 +757,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 832732,
+      "bytes": 831996,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 529
     },
     {
       "name": "Frank_Whip_8Way_Run_F",
@@ -656,10 +776,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 833308,
+      "bytes": 832444,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 492
     },
     {
       "name": "Frank_Whip_8Way_Run_FL",
@@ -672,10 +795,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 833308,
+      "bytes": 832492,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 434
     },
     {
       "name": "Frank_Whip_8Way_Run_FR",
@@ -688,10 +814,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 832924,
+      "bytes": 832364,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 563
     },
     {
       "name": "Frank_Whip_8Way_Run_L",
@@ -704,10 +833,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 832924,
+      "bytes": 832316,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 448
     },
     {
       "name": "Frank_Whip_8Way_Run_R",
@@ -720,10 +852,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 833164,
+      "bytes": 832140,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 473
     },
     {
       "name": "Frank_Whip_8Way_Walk_B",
@@ -736,10 +871,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 997948,
+      "bytes": 997004,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 726
     },
     {
       "name": "Frank_Whip_8Way_Walk_BL",
@@ -752,10 +890,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 997628,
+      "bytes": 996844,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 383
     },
     {
       "name": "Frank_Whip_8Way_Walk_BR",
@@ -768,10 +909,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 997564,
+      "bytes": 996252,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 470
     },
     {
       "name": "Frank_Whip_8Way_Walk_F",
@@ -784,10 +928,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 997612,
+      "bytes": 996540,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 613
     },
     {
       "name": "Frank_Whip_8Way_Walk_FL",
@@ -800,10 +947,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 997020,
+      "bytes": 996220,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 454
     },
     {
       "name": "Frank_Whip_8Way_Walk_FR",
@@ -816,10 +966,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 997644,
+      "bytes": 997116,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 342
     },
     {
       "name": "Frank_Whip_8Way_Walk_Guard_B",
@@ -832,10 +985,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 993500,
+      "bytes": 992060,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 628
     },
     {
       "name": "Frank_Whip_8Way_Walk_Guard_BL",
@@ -848,10 +1004,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 994764,
+      "bytes": 993740,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 370
     },
     {
       "name": "Frank_Whip_8Way_Walk_Guard_BR",
@@ -864,10 +1023,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 994988,
+      "bytes": 994172,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 153
     },
     {
       "name": "Frank_Whip_8Way_Walk_Guard_F",
@@ -880,10 +1042,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 994092,
+      "bytes": 992956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 570
     },
     {
       "name": "Frank_Whip_8Way_Walk_Guard_FL",
@@ -896,10 +1061,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 995244,
+      "bytes": 994188,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 488
     },
     {
       "name": "Frank_Whip_8Way_Walk_Guard_FR",
@@ -912,10 +1080,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 994828,
+      "bytes": 994252,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 423
     },
     {
       "name": "Frank_Whip_8Way_Walk_Guard_L",
@@ -928,10 +1099,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 994748,
+      "bytes": 993756,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 454
     },
     {
       "name": "Frank_Whip_8Way_Walk_Guard_R",
@@ -944,10 +1118,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 994956,
+      "bytes": 994060,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 597
     },
     {
       "name": "Frank_Whip_8Way_Walk_L",
@@ -960,10 +1137,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 997036,
+      "bytes": 996236,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 244
     },
     {
       "name": "Frank_Whip_8Way_Walk_R",
@@ -976,10 +1156,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 997020,
+      "bytes": 996012,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 357
     },
     {
       "name": "Frank_Whip_Unequip_Run_Turbo1",
@@ -992,10 +1175,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 793260,
+      "bytes": 792508,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 350
     },
     {
       "name": "Frank_Whip_Unequip_Run_Turbo2",
@@ -1011,7 +1197,10 @@
       "bytes": 791468,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 337
     },
     {
       "name": "Frank_Whip_Jump_01_0Height",
@@ -1024,10 +1213,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 943788,
+      "bytes": 942700,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 687
     },
     {
       "name": "Frank_Whip_Jump_01_Air_0Height",
@@ -1040,10 +1232,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 788876,
+      "bytes": 788220,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 321
     },
     {
       "name": "Frank_Whip_Jump_01_End_0Height",
@@ -1059,7 +1254,10 @@
       "bytes": 696556,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 102
     },
     {
       "name": "Frank_Whip_Jump_01_Start_0Height",
@@ -1075,7 +1273,10 @@
       "bytes": 640124,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 91
     },
     {
       "name": "Frank_Whip_Jump_01",
@@ -1088,10 +1289,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 945340,
+      "bytes": 944396,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 694
     },
     {
       "name": "Frank_Whip_Jump_02_0Height",
@@ -1104,10 +1308,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 944300,
+      "bytes": 943308,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 683
     },
     {
       "name": "Frank_Whip_Jump_02",
@@ -1120,10 +1327,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 945884,
+      "bytes": 944732,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 685
     },
     {
       "name": "Frank_Whip_Jump_03_0Height",
@@ -1136,10 +1346,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 944348,
+      "bytes": 943340,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 811
     },
     {
       "name": "Frank_Whip_Jump_03",
@@ -1152,10 +1365,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 946268,
+      "bytes": 945068,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 810
     },
     {
       "name": "Frank_Whip_Jump_3",
@@ -1168,10 +1384,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 945884,
+      "bytes": 944732,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 685
     },
     {
       "name": "Frank_Whip_Jump_4",
@@ -1184,10 +1403,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 946268,
+      "bytes": 945068,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 810
     },
     {
       "name": "Frank_Whip_Jump_Double",
@@ -1200,10 +1422,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 789244,
+      "bytes": 788380,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 562
     },
     {
       "name": "Frank_Whip_Hit01",
@@ -1219,7 +1444,10 @@
       "bytes": 807708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 322
     },
     {
       "name": "Frank_Whip_Hit02",
@@ -1232,10 +1460,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 830508,
+      "bytes": 829884,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 385
     },
     {
       "name": "Frank_Whip_Hit03",
@@ -1248,10 +1479,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 832124,
+      "bytes": 831708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 449
     },
     {
       "name": "Frank_Whip_Hit04",
@@ -1264,10 +1498,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 952380,
+      "bytes": 951180,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 744
     },
     {
       "name": "Frank_Whip_Hit05",
@@ -1280,10 +1517,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 994940,
+      "bytes": 993788,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 703
     },
     {
       "name": "Frank_Whip_Hit06",
@@ -1296,10 +1536,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1368348,
+      "bytes": 1366732,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2563
     },
     {
       "name": "Frank_Whip_Hit07",
@@ -1312,10 +1555,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1391468,
+      "bytes": 1388652,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 3087
     },
     {
       "name": "Frank_Whip_Die01",
@@ -1328,10 +1574,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1386572,
+      "bytes": 1385052,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1600
     },
     {
       "name": "Frank_Whip_Die02",
@@ -1344,10 +1593,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1396812,
+      "bytes": 1395228,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1829
     },
     {
       "name": "Frank_Whip_Die03",
@@ -1360,10 +1612,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1014188,
+      "bytes": 1013420,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1126
     },
     {
       "name": "Frank_Whip_Die04",
@@ -1376,10 +1631,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1056108,
+      "bytes": 1055612,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1184
     },
     {
       "name": "Frank_Whip_Block",
@@ -1392,10 +1650,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 827052,
+      "bytes": 826332,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 152
     },
     {
       "name": "Frank_Whip_Equip_Idle",
@@ -1408,10 +1669,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 2069692,
+      "bytes": 2063660,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 194
     },
     {
       "name": "Frank_Whip_Equip",
@@ -1420,14 +1684,17 @@
       "sourceGroup": "Frank_Whip_Female\\Animations\\08_ETC",
       "motion": "RootMotion",
       "category": "Equipment",
-      "frames": 61,
+      "frames": 1921,
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 952796,
+      "bytes": 10955932,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 21705
     },
     {
       "name": "Frank_Whip_Evade_B",
@@ -1440,10 +1707,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 898092,
+      "bytes": 897324,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 593
     },
     {
       "name": "Frank_Whip_Evade_F",
@@ -1456,10 +1726,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 897980,
+      "bytes": 896988,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 651
     },
     {
       "name": "Frank_Whip_Evade_L",
@@ -1472,10 +1745,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 899756,
+      "bytes": 898732,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 618
     },
     {
       "name": "Frank_Whip_Evade_R",
@@ -1488,10 +1764,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 895196,
+      "bytes": 894268,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 624
     },
     {
       "name": "Frank_Whip_Guard",
@@ -1504,10 +1783,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 937980,
+      "bytes": 936492,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 25
     },
     {
       "name": "Frank_Whip_Unequip_Idle",
@@ -1520,10 +1802,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1065436,
+      "bytes": 1063580,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 62
     },
     {
       "name": "Frank_Whip_Unequip",
@@ -1536,10 +1821,13 @@
       "fps": 60.0,
       "sourceBones": 104,
       "mappedBones": 69,
-      "bytes": 1072972,
+      "bytes": 1071916,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 35 bones that exist in the PSA:\n['Cape_C_01', 'Cape_C_02', 'Cape_C_03', 'Cape_C_04', 'Cape_C_05', 'Cape_C_06', 'Cape_C_07', 'Cape_L_01', 'Cape_L_02', 'Cape_L_03', 'Cape_L_04', 'Cape_L_05', 'Cape_L_06', 'Cape_R_01', 'Cape_R_02', 'Cape_R_03', 'Cape_R_04', 'Cape_R_05', 'Cape_Root', 'L_Hand_Weapon', 'Sword_Blade01', 'Sword_Blade02', 'Sword_Blade03', 'Sword_Blade04', 'Sword_Blade05', 'Sword_Blade06', 'Sword_Blade07', 'Sword_Blade08', 'Sword_Blade09', 'Sword_Blade10', 'Sword_Blade11', 'Sword_Blade12', 'Sword_Blade13', 'Sword_Blade14', 'Sword_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 704
     }
   ]
 }

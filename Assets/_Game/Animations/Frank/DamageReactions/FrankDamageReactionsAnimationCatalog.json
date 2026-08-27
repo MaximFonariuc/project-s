@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "pack": "DamageReactions",
   "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
   "animationType": "Humanoid",
@@ -17,7 +17,10 @@
       "sourceBones": 68,
       "mappedBones": 68,
       "bytes": 807708,
-      "warnings": []
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 28
     },
     {
       "name": "Frank_Damage_High_F",
@@ -31,7 +34,10 @@
       "sourceBones": 68,
       "mappedBones": 68,
       "bytes": 807708,
-      "warnings": []
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 50
     },
     {
       "name": "Frank_Damage_High_L",
@@ -45,7 +51,10 @@
       "sourceBones": 68,
       "mappedBones": 68,
       "bytes": 807708,
-      "warnings": []
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 41
     },
     {
       "name": "Frank_Damage_High_R",
@@ -59,7 +68,10 @@
       "sourceBones": 68,
       "mappedBones": 68,
       "bytes": 807708,
-      "warnings": []
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 3
     },
     {
       "name": "Frank_Damage_Low_L1",
@@ -73,7 +85,10 @@
       "sourceBones": 68,
       "mappedBones": 68,
       "bytes": 773516,
-      "warnings": []
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 57
     },
     {
       "name": "Frank_Damage_Low_L2",
@@ -86,8 +101,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 899500,
-      "warnings": []
+      "bytes": 898652,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 453
     },
     {
       "name": "Frank_Damage_Low_R1",
@@ -101,7 +119,10 @@
       "sourceBones": 68,
       "mappedBones": 68,
       "bytes": 773516,
-      "warnings": []
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 12
     },
     {
       "name": "Frank_Damage_Low_R2",
@@ -114,8 +135,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 899740,
-      "warnings": []
+      "bytes": 898892,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 358
     },
     {
       "name": "Frank_Damage_Mid_B",
@@ -128,8 +152,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 833468,
-      "warnings": []
+      "bytes": 832748,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 82
     },
     {
       "name": "Frank_Damage_Mid_F",
@@ -142,8 +169,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 831772,
-      "warnings": []
+      "bytes": 830972,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 153
     },
     {
       "name": "Frank_Damage_Mid_L",
@@ -156,8 +186,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 835420,
-      "warnings": []
+      "bytes": 834732,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 234
     },
     {
       "name": "Frank_Damage_Mid_R",
@@ -170,8 +203,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 833628,
-      "warnings": []
+      "bytes": 832972,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 157
     },
     {
       "name": "Frank_Damage_Strong_B1",
@@ -184,8 +220,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 897612,
-      "warnings": []
+      "bytes": 896892,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 198
     },
     {
       "name": "Frank_Damage_Strong_B2",
@@ -198,8 +237,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 945132,
-      "warnings": []
+      "bytes": 943884,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 24
     },
     {
       "name": "Frank_Damage_Strong_F1",
@@ -212,8 +254,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 926172,
-      "warnings": []
+      "bytes": 925292,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 284
     },
     {
       "name": "Frank_Damage_Strong_F2",
@@ -226,8 +271,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 986620,
-      "warnings": []
+      "bytes": 985452,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 586
     },
     {
       "name": "Frank_Damage_Strong_L_Chest",
@@ -240,8 +288,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 944812,
-      "warnings": []
+      "bytes": 943676,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 97
     },
     {
       "name": "Frank_Damage_Strong_L_Foot",
@@ -254,8 +305,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 943980,
-      "warnings": []
+      "bytes": 942812,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 127
     },
     {
       "name": "Frank_Damage_Strong_L_Head",
@@ -268,8 +322,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 944492,
-      "warnings": []
+      "bytes": 943420,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 159
     },
     {
       "name": "Frank_Damage_Strong_L",
@@ -282,8 +339,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 946364,
-      "warnings": []
+      "bytes": 945148,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 219
     },
     {
       "name": "Frank_Damage_Strong_R_Chest",
@@ -296,8 +356,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 945308,
-      "warnings": []
+      "bytes": 943820,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 77
     },
     {
       "name": "Frank_Damage_Strong_R_Foot",
@@ -310,8 +373,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 944076,
-      "warnings": []
+      "bytes": 942876,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 37
     },
     {
       "name": "Frank_Damage_Strong_R_Head",
@@ -324,8 +390,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 944748,
-      "warnings": []
+      "bytes": 943580,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 42
     },
     {
       "name": "Frank_Damage_Strong_R",
@@ -338,8 +407,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 946300,
-      "warnings": []
+      "bytes": 945180,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 65
     },
     {
       "name": "Frank_Damage_KnockDown_01",
@@ -352,8 +424,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 962988,
-      "warnings": []
+      "bytes": 961948,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 753
     },
     {
       "name": "Frank_Damage_KnockDown_02",
@@ -366,8 +441,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 954620,
-      "warnings": []
+      "bytes": 954076,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 709
     },
     {
       "name": "Frank_Damage_KnockDown_03",
@@ -380,8 +458,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 982940,
-      "warnings": []
+      "bytes": 981100,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 657
     },
     {
       "name": "Frank_Damage_KnockDown_04",
@@ -394,8 +475,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 904444,
-      "warnings": []
+      "bytes": 903548,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 561
     },
     {
       "name": "Frank_Damage_KnockDown_05",
@@ -408,8 +492,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 902652,
-      "warnings": []
+      "bytes": 901964,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 427
     },
     {
       "name": "Frank_Damage_High_StunDown",
@@ -422,8 +509,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1246428,
-      "warnings": []
+      "bytes": 1244540,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1165
     },
     {
       "name": "Frank_Damage_Low_StunDown",
@@ -436,8 +526,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 834156,
-      "warnings": []
+      "bytes": 833884,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 500
     },
     {
       "name": "Frank_Damage_Mid_StunDown",
@@ -450,8 +543,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1249324,
-      "warnings": []
+      "bytes": 1247868,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1321
     },
     {
       "name": "Frank_Damage_Stun01_end",
@@ -464,8 +560,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 889852,
-      "warnings": []
+      "bytes": 889116,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 190
     },
     {
       "name": "Frank_Damage_Stun01_loop",
@@ -478,8 +577,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 934684,
-      "warnings": []
+      "bytes": 932268,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 48
     },
     {
       "name": "Frank_Damage_Stun01_start",
@@ -492,8 +594,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 999164,
-      "warnings": []
+      "bytes": 997660,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 205
     },
     {
       "name": "Frank_Damage_Stun02_end",
@@ -506,8 +611,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1054476,
-      "warnings": []
+      "bytes": 1053948,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1227
     },
     {
       "name": "Frank_Damage_Stun02_loop",
@@ -520,8 +628,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1037036,
-      "warnings": []
+      "bytes": 1025148,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 0
     },
     {
       "name": "Frank_Damage_Stun02_start",
@@ -534,8 +645,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 997820,
-      "warnings": []
+      "bytes": 996636,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 103
     },
     {
       "name": "Frank_Damage_Stun03_end",
@@ -548,8 +662,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 890476,
-      "warnings": []
+      "bytes": 889804,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 114
     },
     {
       "name": "Frank_Damage_Stun03_loop",
@@ -562,8 +679,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1051148,
-      "warnings": []
+      "bytes": 1049100,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 0
     },
     {
       "name": "Frank_Damage_Stun03_start",
@@ -576,8 +696,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 973116,
-      "warnings": []
+      "bytes": 972124,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 399
     },
     {
       "name": "Frank_Damage_Stun04_end",
@@ -590,8 +713,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 955868,
-      "warnings": []
+      "bytes": 955052,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 412
     },
     {
       "name": "Frank_Damage_Stun04_loop",
@@ -604,8 +730,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1259244,
-      "warnings": []
+      "bytes": 1255388,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 254
     },
     {
       "name": "Frank_Damage_Stun04_start",
@@ -618,8 +747,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 877916,
-      "warnings": []
+      "bytes": 877196,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 326
     },
     {
       "name": "Frank_Damage_Stun05_end",
@@ -632,8 +764,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1003036,
-      "warnings": []
+      "bytes": 1002172,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 556
     },
     {
       "name": "Frank_Damage_Stun05_loop",
@@ -646,8 +781,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1151116,
-      "warnings": []
+      "bytes": 1148204,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 0
     },
     {
       "name": "Frank_Damage_Stun05_start",
@@ -660,8 +798,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 976492,
-      "warnings": []
+      "bytes": 975132,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 404
     },
     {
       "name": "Frank_Damage_Wall_B",
@@ -674,8 +815,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1012956,
-      "warnings": []
+      "bytes": 1011980,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 752
     },
     {
       "name": "Frank_Damage_Wall_L",
@@ -688,8 +832,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1014092,
-      "warnings": []
+      "bytes": 1013100,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 857
     },
     {
       "name": "Frank_Damage_Wall_R",
@@ -702,8 +849,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1098172,
-      "warnings": []
+      "bytes": 1096764,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 995
     },
     {
       "name": "Frank_Damage_WallBound",
@@ -716,8 +866,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 851772,
-      "warnings": []
+      "bytes": 850860,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 419
     },
     {
       "name": "Frank_Damage_Air_Screw",
@@ -730,8 +883,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1063868,
-      "warnings": []
+      "bytes": 1063020,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 898
     },
     {
       "name": "Frank_Damage_Air_Spin",
@@ -744,8 +900,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 960076,
-      "warnings": []
+      "bytes": 959500,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 742
     },
     {
       "name": "Frank_Damage_Air",
@@ -758,8 +917,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 916508,
-      "warnings": []
+      "bytes": 915612,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 486
     },
     {
       "name": "Frank_Damage_KO_High_1",
@@ -772,8 +934,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 936972,
-      "warnings": []
+      "bytes": 935868,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 658
     },
     {
       "name": "Frank_Damage_KO_High_2",
@@ -786,8 +951,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 953724,
-      "warnings": []
+      "bytes": 953116,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 592
     },
     {
       "name": "Frank_Damage_KO_Low_1",
@@ -800,8 +968,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1333212,
-      "warnings": []
+      "bytes": 1331868,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1695
     },
     {
       "name": "Frank_Damage_KO_Low_2",
@@ -814,8 +985,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1019628,
-      "warnings": []
+      "bytes": 1018428,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 920
     },
     {
       "name": "Frank_Damage_KO_Mid_1",
@@ -828,8 +1002,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 965468,
-      "warnings": []
+      "bytes": 963900,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 926
     },
     {
       "name": "Frank_Damage_KO_Mid_2",
@@ -842,8 +1019,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1124124,
-      "warnings": []
+      "bytes": 1122620,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1119
     },
     {
       "name": "Frank_Damage_Parrying01",
@@ -856,8 +1036,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1117244,
-      "warnings": []
+      "bytes": 1115868,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 301
     },
     {
       "name": "Frank_Damage_Parrying02",
@@ -870,8 +1053,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1114348,
-      "warnings": []
+      "bytes": 1112524,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 225
     },
     {
       "name": "Frank_Damage_Parrying03",
@@ -884,8 +1070,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1061836,
-      "warnings": []
+      "bytes": 1060412,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 283
     },
     {
       "name": "Frank_Damage_Bound01",
@@ -898,8 +1087,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1103804,
-      "warnings": []
+      "bytes": 1103020,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 906
     },
     {
       "name": "Frank_Damage_Bound02",
@@ -912,8 +1104,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1014924,
-      "warnings": []
+      "bytes": 1013932,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1027
     },
     {
       "name": "Frank_Damage_Bound03",
@@ -926,8 +1121,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1016652,
-      "warnings": []
+      "bytes": 1015612,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 880
     },
     {
       "name": "Frank_Damage_Bound04",
@@ -940,8 +1138,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 928060,
-      "warnings": []
+      "bytes": 926844,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 682
     },
     {
       "name": "Frank_Damage_Bound05",
@@ -954,8 +1155,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 924412,
-      "warnings": []
+      "bytes": 923132,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 770
     },
     {
       "name": "Frank_Damage_Bound06",
@@ -968,8 +1172,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1033468,
-      "warnings": []
+      "bytes": 1032556,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1095
     },
     {
       "name": "Frank_Damage_Getup01_P",
@@ -982,8 +1189,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1104908,
-      "warnings": []
+      "bytes": 1104332,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1027
     },
     {
       "name": "Frank_Damage_Getup02_L",
@@ -996,8 +1206,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1083148,
-      "warnings": []
+      "bytes": 1082220,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 889
     },
     {
       "name": "Frank_Damage_Getup03_L",
@@ -1010,8 +1223,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1054636,
-      "warnings": []
+      "bytes": 1053996,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 863
     },
     {
       "name": "Frank_Damage_Getup04_L",
@@ -1024,8 +1240,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 956844,
-      "warnings": []
+      "bytes": 955372,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 769
     },
     {
       "name": "Frank_Damage_Critical_2Handed_Hit",
@@ -1038,8 +1257,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 2543772,
-      "warnings": []
+      "bytes": 2539100,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 3092
     },
     {
       "name": "Frank_Damage_Critical_2Handed",
@@ -1052,10 +1274,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 2580028,
+      "bytes": 2576108,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['R_Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2459
     },
     {
       "name": "Frank_Damage_Critical_Assassin_Hit",
@@ -1068,8 +1293,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 2531772,
-      "warnings": []
+      "bytes": 2523548,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2480
     },
     {
       "name": "Frank_Damage_Critical_Assassin",
@@ -1082,10 +1310,13 @@
       "fps": 60.0,
       "sourceBones": 88,
       "mappedBones": 78,
-      "bytes": 2532284,
+      "bytes": 2527692,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 10 bones that exist in the PSA:\n['FX_Root', 'L_Hand_Weapon', 'Muffler01', 'Muffler02', 'Muffler03', 'Muffler04', 'Muffler05', 'Muffler06', 'Muffler07', 'Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 4975
     },
     {
       "name": "Frank_Damage_Critical_Dual_Hit",
@@ -1098,8 +1329,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 3011132,
-      "warnings": []
+      "bytes": 3004332,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 3398
     },
     {
       "name": "Frank_Damage_Critical_Dual",
@@ -1112,8 +1346,11 @@
       "fps": 60.0,
       "sourceBones": 94,
       "mappedBones": 94,
-      "bytes": 3094812,
-      "warnings": []
+      "bytes": 3092044,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 7088
     },
     {
       "name": "Frank_Damage_Critical_GreatSword_Hit",
@@ -1126,8 +1363,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 2605292,
-      "warnings": []
+      "bytes": 2602764,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2742
     },
     {
       "name": "Frank_Damage_Critical_GreatSword",
@@ -1140,11 +1380,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 2606060,
+      "bytes": 2601932,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 4004
     },
     {
       "name": "Frank_Damage_Critical_Katana_Hit",
@@ -1157,8 +1400,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 2576092,
-      "warnings": []
+      "bytes": 2566348,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 4114
     },
     {
       "name": "Frank_Damage_Critical_Katana",
@@ -1171,11 +1417,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 2644988,
+      "bytes": 2642908,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 7276
     },
     {
       "name": "Frank_Damage_Critical_Spear_Hit",
@@ -1188,8 +1437,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 2861436,
-      "warnings": []
+      "bytes": 2855820,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 3056
     },
     {
       "name": "Frank_Damage_Critical_Spear",
@@ -1202,11 +1454,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 2889644,
+      "bytes": 2886460,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 7903
     },
     {
       "name": "Frank_Damage_Critical_Warrior_Hit",
@@ -1219,8 +1474,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 2537484,
-      "warnings": []
+      "bytes": 2534956,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2979
     },
     {
       "name": "Frank_Damage_Critical_Warrior_Hit2",
@@ -1233,10 +1491,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 69,
-      "bytes": 2537452,
+      "bytes": 2534812,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['L_Hand_Weapon']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2957
     },
     {
       "name": "Frank_Damage_Critical_Warrior",
@@ -1245,14 +1506,17 @@
       "sourceGroup": "Frank_Damages\\Animations\\11_Critical_Attack_Set",
       "motion": "RootMotion",
       "category": "Attacks",
-      "frames": 351,
+      "frames": 4551,
       "fps": 60.0,
       "sourceBones": 118,
       "mappedBones": 91,
-      "bytes": 2563516,
+      "bytes": 25387484,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 27 bones that exist in the PSA:\n['Bone023', 'Bone024', 'Bone028', 'Bone029', 'Bone033', 'Bone034', 'Bone038', 'Bone039', 'Bone040', 'Bone041', 'Bone044', 'Bone045', 'Bone049', 'Bone050', 'Bone051', 'Bone052', 'Bone053', 'Bone054', 'Bone055', 'Bone056', 'Bone057', 'Bone058', 'Bone059', 'Bone060', 'FX_Shield', 'Lhand_Shield_Bone', 'Shield_Root']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 34724
     },
     {
       "name": "Frank_Damage_Sting_B",
@@ -1265,8 +1529,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 940108,
-      "warnings": []
+      "bytes": 939084,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 114
     },
     {
       "name": "Frank_Damage_Sting_F",
@@ -1279,8 +1546,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 941692,
-      "warnings": []
+      "bytes": 940828,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 109
     },
     {
       "name": "Frank_Damage_Sting_L",
@@ -1293,8 +1563,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 943084,
-      "warnings": []
+      "bytes": 942092,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 132
     },
     {
       "name": "Frank_Damage_Sting_R",
@@ -1307,8 +1580,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 943116,
-      "warnings": []
+      "bytes": 942284,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 38
     },
     {
       "name": "Frank_Damage_E-Shock_01",
@@ -1321,8 +1597,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1928236,
-      "warnings": []
+      "bytes": 1926588,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1062
     },
     {
       "name": "Frank_Damage_E-Shock_02",
@@ -1335,8 +1614,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1635916,
-      "warnings": []
+      "bytes": 1634236,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1223
     },
     {
       "name": "Frank_Damage_Air_iP",
@@ -1349,8 +1631,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 914780,
-      "warnings": []
+      "bytes": 914380,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 486
     },
     {
       "name": "Frank_Damage_Air_Screw_iP",
@@ -1363,8 +1648,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1059516,
-      "warnings": []
+      "bytes": 1058844,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 898
     },
     {
       "name": "Frank_Damage_Air_Spin_iP",
@@ -1377,8 +1665,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 959244,
-      "warnings": []
+      "bytes": 959116,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 742
     },
     {
       "name": "Frank_Damage_Bound01_iP",
@@ -1391,8 +1682,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1102972,
-      "warnings": []
+      "bytes": 1102460,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 906
     },
     {
       "name": "Frank_Damage_Bound02_iP",
@@ -1405,8 +1699,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1013356,
-      "warnings": []
+      "bytes": 1013052,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1027
     },
     {
       "name": "Frank_Damage_Bound03_iP",
@@ -1419,8 +1716,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1013932,
-      "warnings": []
+      "bytes": 1013372,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 880
     },
     {
       "name": "Frank_Damage_Bound04_iP",
@@ -1433,8 +1733,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 924076,
-      "warnings": []
+      "bytes": 923468,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 682
     },
     {
       "name": "Frank_Damage_Bound05_iP",
@@ -1447,8 +1750,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 923852,
-      "warnings": []
+      "bytes": 922668,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 770
     },
     {
       "name": "Frank_Damage_Bound06_iP",
@@ -1461,8 +1767,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1031772,
-      "warnings": []
+      "bytes": 1031196,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1095
     },
     {
       "name": "Frank_Damage_E-Shock_01_iP",
@@ -1475,8 +1784,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1927884,
-      "warnings": []
+      "bytes": 1925964,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1062
     },
     {
       "name": "Frank_Damage_E-Shock_02_iP",
@@ -1489,8 +1801,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1636604,
-      "warnings": []
+      "bytes": 1634284,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1223
     },
     {
       "name": "Frank_Damage_Getup01_P_iP",
@@ -1503,8 +1818,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1104460,
-      "warnings": []
+      "bytes": 1103708,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1027
     },
     {
       "name": "Frank_Damage_Getup02_L_iP",
@@ -1517,8 +1835,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1081548,
-      "warnings": []
+      "bytes": 1080716,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 889
     },
     {
       "name": "Frank_Damage_Getup03_L_iP",
@@ -1531,8 +1852,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1053740,
-      "warnings": []
+      "bytes": 1053020,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 863
     },
     {
       "name": "Frank_Damage_Getup04_L_iP",
@@ -1545,8 +1869,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 954428,
-      "warnings": []
+      "bytes": 953740,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 769
     },
     {
       "name": "Frank_Damage_High_B_iP",
@@ -1560,7 +1887,10 @@
       "sourceBones": 68,
       "mappedBones": 68,
       "bytes": 807708,
-      "warnings": []
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 28
     },
     {
       "name": "Frank_Damage_High_F_iP",
@@ -1574,7 +1904,10 @@
       "sourceBones": 68,
       "mappedBones": 68,
       "bytes": 807708,
-      "warnings": []
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 50
     },
     {
       "name": "Frank_Damage_High_L_iP",
@@ -1588,7 +1921,10 @@
       "sourceBones": 68,
       "mappedBones": 68,
       "bytes": 807708,
-      "warnings": []
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 41
     },
     {
       "name": "Frank_Damage_High_R_iP",
@@ -1602,7 +1938,10 @@
       "sourceBones": 68,
       "mappedBones": 68,
       "bytes": 807708,
-      "warnings": []
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 3
     },
     {
       "name": "Frank_Damage_High_StunDown_iP",
@@ -1615,8 +1954,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1244636,
-      "warnings": []
+      "bytes": 1243500,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1165
     },
     {
       "name": "Frank_Damage_KnockDown_01_iP",
@@ -1629,8 +1971,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 960636,
-      "warnings": []
+      "bytes": 960332,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 753
     },
     {
       "name": "Frank_Damage_KnockDown_02_iP",
@@ -1643,8 +1988,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 951324,
-      "warnings": []
+      "bytes": 951452,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 709
     },
     {
       "name": "Frank_Damage_KnockDown_03_iP",
@@ -1657,8 +2005,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 978956,
-      "warnings": []
+      "bytes": 977948,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 657
     },
     {
       "name": "Frank_Damage_KnockDown_04_iP",
@@ -1671,8 +2022,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 902380,
-      "warnings": []
+      "bytes": 901964,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 561
     },
     {
       "name": "Frank_Damage_KnockDown_05_iP",
@@ -1685,8 +2039,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 898172,
-      "warnings": []
+      "bytes": 898028,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 427
     },
     {
       "name": "Frank_Damage_KO_High_1_iP",
@@ -1699,8 +2056,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 935324,
-      "warnings": []
+      "bytes": 934748,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 658
     },
     {
       "name": "Frank_Damage_KO_High_2_iP",
@@ -1713,8 +2073,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 949052,
-      "warnings": []
+      "bytes": 948780,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 553
     },
     {
       "name": "Frank_Damage_KO_Low_1_iP",
@@ -1727,8 +2090,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1328204,
-      "warnings": []
+      "bytes": 1327324,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1695
     },
     {
       "name": "Frank_Damage_KO_Low_2_iP",
@@ -1741,8 +2107,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1013532,
-      "warnings": []
+      "bytes": 1013036,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1004
     },
     {
       "name": "Frank_Damage_KO_Mid_1_iP",
@@ -1755,8 +2124,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 960124,
-      "warnings": []
+      "bytes": 959372,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 974
     },
     {
       "name": "Frank_Damage_KO_Mid_2_iP",
@@ -1769,8 +2141,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1122396,
-      "warnings": []
+      "bytes": 1121452,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1119
     },
     {
       "name": "Frank_Damage_Low_L1_iP",
@@ -1784,7 +2159,10 @@
       "sourceBones": 68,
       "mappedBones": 68,
       "bytes": 773516,
-      "warnings": []
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 57
     },
     {
       "name": "Frank_Damage_Low_L2_iP",
@@ -1797,8 +2175,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 898508,
-      "warnings": []
+      "bytes": 897948,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 453
     },
     {
       "name": "Frank_Damage_Low_R1_iP",
@@ -1812,7 +2193,10 @@
       "sourceBones": 68,
       "mappedBones": 68,
       "bytes": 773516,
-      "warnings": []
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 12
     },
     {
       "name": "Frank_Damage_Low_R2_iP",
@@ -1825,8 +2209,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 898812,
-      "warnings": []
+      "bytes": 898220,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 358
     },
     {
       "name": "Frank_Damage_Low_StunDown_iP",
@@ -1839,8 +2226,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 833244,
-      "warnings": []
+      "bytes": 832876,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 500
     },
     {
       "name": "Frank_Damage_Mid_B_iP",
@@ -1853,8 +2243,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 833148,
-      "warnings": []
+      "bytes": 832764,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 82
     },
     {
       "name": "Frank_Damage_Mid_F_iP",
@@ -1867,8 +2260,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 831324,
-      "warnings": []
+      "bytes": 830556,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 153
     },
     {
       "name": "Frank_Damage_Mid_L_iP",
@@ -1881,8 +2277,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 834508,
-      "warnings": []
+      "bytes": 834060,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 234
     },
     {
       "name": "Frank_Damage_Mid_R_iP",
@@ -1895,8 +2294,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 833148,
-      "warnings": []
+      "bytes": 832508,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 157
     },
     {
       "name": "Frank_Damage_Mid_StunDown_iP",
@@ -1909,8 +2311,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1247372,
-      "warnings": []
+      "bytes": 1246268,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1321
     },
     {
       "name": "Frank_Damage_Parrying01_iP",
@@ -1923,8 +2328,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1116236,
-      "warnings": []
+      "bytes": 1115260,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 301
     },
     {
       "name": "Frank_Damage_Parrying02_iP",
@@ -1937,8 +2345,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1114364,
-      "warnings": []
+      "bytes": 1112844,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 225
     },
     {
       "name": "Frank_Damage_Parrying03_iP",
@@ -1951,8 +2362,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1060732,
-      "warnings": []
+      "bytes": 1059596,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 283
     },
     {
       "name": "Frank_Damage_Sting_B_iP",
@@ -1965,8 +2379,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 940652,
-      "warnings": []
+      "bytes": 939356,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 114
     },
     {
       "name": "Frank_Damage_Sting_F_iP",
@@ -1979,8 +2396,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 941532,
-      "warnings": []
+      "bytes": 940380,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 109
     },
     {
       "name": "Frank_Damage_Sting_L_iP",
@@ -1993,8 +2413,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 942972,
-      "warnings": []
+      "bytes": 941948,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 132
     },
     {
       "name": "Frank_Damage_Sting_R_iP",
@@ -2007,8 +2430,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 943180,
-      "warnings": []
+      "bytes": 942380,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 38
     },
     {
       "name": "Frank_Damage_Strong_B1_iP",
@@ -2021,8 +2447,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 896828,
-      "warnings": []
+      "bytes": 896252,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 198
     },
     {
       "name": "Frank_Damage_Strong_B2_iP",
@@ -2035,8 +2464,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 944092,
-      "warnings": []
+      "bytes": 943164,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 24
     },
     {
       "name": "Frank_Damage_Strong_F1_iP",
@@ -2049,8 +2481,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 924972,
-      "warnings": []
+      "bytes": 924556,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 284
     },
     {
       "name": "Frank_Damage_Strong_F2_iP",
@@ -2063,8 +2498,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 984492,
-      "warnings": []
+      "bytes": 984028,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 586
     },
     {
       "name": "Frank_Damage_Strong_L_Chest_iP",
@@ -2077,8 +2515,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 942700,
-      "warnings": []
+      "bytes": 942060,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 97
     },
     {
       "name": "Frank_Damage_Strong_L_Foot_iP",
@@ -2091,8 +2532,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 942236,
-      "warnings": []
+      "bytes": 941372,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 127
     },
     {
       "name": "Frank_Damage_Strong_L_Head_iP",
@@ -2105,8 +2549,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 942492,
-      "warnings": []
+      "bytes": 941468,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 159
     },
     {
       "name": "Frank_Damage_Strong_L_iP",
@@ -2119,8 +2566,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 943404,
-      "warnings": []
+      "bytes": 942332,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 219
     },
     {
       "name": "Frank_Damage_Strong_R_Chest_iP",
@@ -2133,8 +2583,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 943436,
-      "warnings": []
+      "bytes": 942556,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 77
     },
     {
       "name": "Frank_Damage_Strong_R_Foot_iP",
@@ -2147,8 +2600,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 941820,
-      "warnings": []
+      "bytes": 940956,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 37
     },
     {
       "name": "Frank_Damage_Strong_R_Head_iP",
@@ -2161,8 +2617,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 942156,
-      "warnings": []
+      "bytes": 941036,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 42
     },
     {
       "name": "Frank_Damage_Strong_R_iP",
@@ -2175,8 +2634,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 944588,
-      "warnings": []
+      "bytes": 943580,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 65
     },
     {
       "name": "Frank_Damage_Stun01_end_iP",
@@ -2189,8 +2651,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 889244,
-      "warnings": []
+      "bytes": 888844,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 190
     },
     {
       "name": "Frank_Damage_Stun01_loop_iP",
@@ -2203,8 +2668,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 933596,
-      "warnings": []
+      "bytes": 931340,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 48
     },
     {
       "name": "Frank_Damage_Stun01_start_iP",
@@ -2217,8 +2685,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 996316,
-      "warnings": []
+      "bytes": 995340,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 205
     },
     {
       "name": "Frank_Damage_Stun02_end_iP",
@@ -2231,8 +2702,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1053484,
-      "warnings": []
+      "bytes": 1053196,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1227
     },
     {
       "name": "Frank_Damage_Stun02_loop_iP",
@@ -2245,8 +2719,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1036092,
-      "warnings": []
+      "bytes": 1024492,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 0
     },
     {
       "name": "Frank_Damage_Stun02_start_iP",
@@ -2259,8 +2736,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 996956,
-      "warnings": []
+      "bytes": 996396,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 103
     },
     {
       "name": "Frank_Damage_Stun03_end_iP",
@@ -2273,8 +2753,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 890172,
-      "warnings": []
+      "bytes": 889484,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 114
     },
     {
       "name": "Frank_Damage_Stun03_loop_iP",
@@ -2287,8 +2770,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1049772,
-      "warnings": []
+      "bytes": 1048124,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 0
     },
     {
       "name": "Frank_Damage_Stun03_start_iP",
@@ -2301,8 +2787,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 970924,
-      "warnings": []
+      "bytes": 970444,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 399
     },
     {
       "name": "Frank_Damage_Stun04_end_iP",
@@ -2315,8 +2804,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 955692,
-      "warnings": []
+      "bytes": 954700,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 412
     },
     {
       "name": "Frank_Damage_Stun04_loop_iP",
@@ -2329,8 +2821,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1257548,
-      "warnings": []
+      "bytes": 1253852,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 254
     },
     {
       "name": "Frank_Damage_Stun04_start_iP",
@@ -2343,8 +2838,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 877564,
-      "warnings": []
+      "bytes": 876812,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 326
     },
     {
       "name": "Frank_Damage_Stun05_end_iP",
@@ -2357,8 +2855,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1001884,
-      "warnings": []
+      "bytes": 1001180,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 556
     },
     {
       "name": "Frank_Damage_Stun05_loop_iP",
@@ -2371,8 +2872,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1150764,
-      "warnings": []
+      "bytes": 1147372,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 0
     },
     {
       "name": "Frank_Damage_Stun05_start_iP",
@@ -2385,8 +2889,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 972828,
-      "warnings": []
+      "bytes": 972460,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 404
     },
     {
       "name": "Frank_Damage_Wall_B_iP",
@@ -2399,8 +2906,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1012860,
-      "warnings": []
+      "bytes": 1011964,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 752
     },
     {
       "name": "Frank_Damage_Wall_L_iP",
@@ -2413,8 +2923,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1013100,
-      "warnings": []
+      "bytes": 1012460,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 857
     },
     {
       "name": "Frank_Damage_Wall_R_iP",
@@ -2427,8 +2940,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1097212,
-      "warnings": []
+      "bytes": 1096124,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 995
     },
     {
       "name": "Frank_Damage_WallBound_iP",
@@ -2441,8 +2957,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 849964,
-      "warnings": []
+      "bytes": 849500,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 419
     }
   ]
 }

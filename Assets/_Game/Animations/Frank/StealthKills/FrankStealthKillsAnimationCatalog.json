@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "pack": "StealthKills",
   "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
   "animationType": "Humanoid",
@@ -19,7 +19,10 @@
       "bytes": 807708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 0
     },
     {
       "name": "Frank_Stealth_Kill_Behind_01",
@@ -32,10 +35,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1399036,
+      "bytes": 1396860,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1316
     },
     {
       "name": "Frank_Stealth_Kill_Behind_02",
@@ -48,10 +54,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1726220,
+      "bytes": 1724364,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1639
     },
     {
       "name": "Frank_Stealth_Kill_Behind_03",
@@ -64,10 +73,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1988572,
+      "bytes": 1985388,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2633
     },
     {
       "name": "Frank_Stealth_Kill_Behind_04",
@@ -80,10 +92,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1697916,
+      "bytes": 1696140,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1864
     },
     {
       "name": "Frank_Stealth_Kill_Behind_05",
@@ -96,10 +111,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1134316,
+      "bytes": 1133356,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 823
     },
     {
       "name": "Frank_Stealth_Kill_Behind_06",
@@ -112,10 +130,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1671916,
+      "bytes": 1669948,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2257
     },
     {
       "name": "Frank_Stealth_Kill_Behind_07",
@@ -128,10 +149,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1683372,
+      "bytes": 1681324,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 3290
     },
     {
       "name": "Frank_Stealth_Kill_Behind_08",
@@ -144,10 +168,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1404572,
+      "bytes": 1402924,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1278
     },
     {
       "name": "Frank_Stealth_Kill_Front_01",
@@ -160,10 +187,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1630940,
+      "bytes": 1628876,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1350
     },
     {
       "name": "Frank_Stealth_Kill_Front_02",
@@ -176,10 +206,24 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1583084,
+      "bytes": 1581676,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_r",
+          "sourceFrame": 97,
+          "sourceTime": 1.607212415876912,
+          "incomingAngle": 42.98157448456818,
+          "outgoingAngle": 50.19424058772331,
+          "neighborAngle": 7.212607192773533,
+          "residualAngle": 46.58793485690242,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 1427
     },
     {
       "name": "Frank_Stealth_Kill_Front_03",
@@ -192,10 +236,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1506988,
+      "bytes": 1505948,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 714
     },
     {
       "name": "Frank_Stealth_Kill_Front_04",
@@ -208,10 +255,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1451612,
+      "bytes": 1450284,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1567
     },
     {
       "name": "Frank_Stealth_Kill_Ledge_01",
@@ -224,10 +274,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1344396,
+      "bytes": 1343820,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 991
     },
     {
       "name": "Frank_Stealth_Kill_Ledge_02",
@@ -240,10 +293,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1521260,
+      "bytes": 1519852,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2327
     },
     {
       "name": "Frank_Stealth_Kill_Ledge_Climb",
@@ -256,10 +312,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1274508,
+      "bytes": 1273516,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1536
     },
     {
       "name": "Frank_Stealth_Kill_Top_01",
@@ -272,10 +331,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1339676,
+      "bytes": 1338044,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 640
     },
     {
       "name": "Frank_Stealth_Kill_Top_02",
@@ -288,10 +350,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1201356,
+      "bytes": 1200348,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 779
     },
     {
       "name": "Frank_Stealth_Kill_Top_03",
@@ -304,10 +369,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 1343036,
+      "bytes": 1341836,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1329
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Behind_01",
@@ -320,8 +388,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1389484,
-      "warnings": []
+      "bytes": 1387980,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 692
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Behind_02",
@@ -334,8 +405,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1720508,
-      "warnings": []
+      "bytes": 1719196,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1155
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Behind_03",
@@ -348,8 +422,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1992780,
-      "warnings": []
+      "bytes": 1991004,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1333
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Behind_04",
@@ -362,8 +439,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1675868,
-      "warnings": []
+      "bytes": 1673148,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 616
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Behind_05",
@@ -376,8 +456,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1122604,
-      "warnings": []
+      "bytes": 1119804,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 474
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Behind_06",
@@ -390,8 +473,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1664796,
-      "warnings": []
+      "bytes": 1658828,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1268
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Behind_07",
@@ -404,8 +490,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1659676,
-      "warnings": []
+      "bytes": 1658716,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1311
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Behind_08",
@@ -418,8 +507,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1401276,
-      "warnings": []
+      "bytes": 1398028,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1271
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Front_01",
@@ -432,8 +524,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1620412,
-      "warnings": []
+      "bytes": 1619708,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1323
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Front_02",
@@ -446,8 +541,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1536972,
-      "warnings": []
+      "bytes": 1527180,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1275
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Front_03",
@@ -460,8 +558,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1501404,
-      "warnings": []
+      "bytes": 1499004,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1242
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Front_04",
@@ -474,8 +575,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1442028,
-      "warnings": []
+      "bytes": 1437116,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1493
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Ledge_01",
@@ -488,8 +592,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1343036,
-      "warnings": []
+      "bytes": 1339564,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 759
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Ledge_02",
@@ -502,8 +609,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1513228,
-      "warnings": []
+      "bytes": 1505756,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 923
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Top_01",
@@ -516,8 +626,22 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1320540,
-      "warnings": []
+      "bytes": 1318332,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "calf_r",
+          "sourceFrame": 40,
+          "sourceTime": 0.6615776306183571,
+          "incomingAngle": 36.26913777584645,
+          "outgoingAngle": 50.600834918824994,
+          "neighborAngle": 14.331644209012477,
+          "residualAngle": 43.4349692718628,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 1555
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Top_02",
@@ -530,8 +654,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1176988,
-      "warnings": []
+      "bytes": 1169964,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1142
     },
     {
       "name": "Frank_Stealth_Kill_Hit_Top_03",
@@ -544,8 +671,11 @@
       "fps": 60.0,
       "sourceBones": 68,
       "mappedBones": 68,
-      "bytes": 1320988,
-      "warnings": []
+      "bytes": 1316892,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1432
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Idle",
@@ -558,10 +688,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 933276,
+      "bytes": 931532,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 0
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Run_B",
@@ -574,10 +707,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 787916,
+      "bytes": 787420,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 99
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Run_BL",
@@ -590,10 +726,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 788300,
+      "bytes": 787660,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 118
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Run_BR",
@@ -606,10 +745,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 788396,
+      "bytes": 788044,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 153
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Run_F",
@@ -622,10 +764,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 787868,
+      "bytes": 787324,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 88
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Run_FL",
@@ -638,10 +783,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 788668,
+      "bytes": 788076,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 153
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Run_FR",
@@ -654,10 +802,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 788076,
+      "bytes": 787468,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 118
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Run_L",
@@ -670,10 +821,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 787724,
+      "bytes": 787068,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 153
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Run_R",
@@ -686,10 +840,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 787740,
+      "bytes": 787052,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 150
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Walk_B",
@@ -702,10 +859,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 886892,
+      "bytes": 886108,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 109
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Walk_BL",
@@ -718,10 +878,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 888252,
+      "bytes": 887308,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 136
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Walk_BR",
@@ -734,10 +897,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 887692,
+      "bytes": 886476,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 114
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Walk_F",
@@ -750,10 +916,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 887004,
+      "bytes": 886076,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 99
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Walk_FL",
@@ -766,10 +935,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 887404,
+      "bytes": 886396,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 114
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Walk_FR",
@@ -782,10 +954,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 888220,
+      "bytes": 887116,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 136
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Walk_L",
@@ -798,10 +973,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 887308,
+      "bytes": 886316,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 143
     },
     {
       "name": "Frank_Stealth_Kill_Sneak_Walk_R",
@@ -814,10 +992,13 @@
       "fps": 60.0,
       "sourceBones": 70,
       "mappedBones": 68,
-      "bytes": 888012,
+      "bytes": 887084,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 2 bones that exist in the PSA:\n['Axe_Bone', 'Knife_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 251
     }
   ]
 }

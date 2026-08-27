@@ -77,15 +77,8 @@ namespace ProjectS.Core.Editor.Animation
         [MenuItem("Project S/Animation/Frank/Configure Humanoid Imports")]
         public static void ConfigureAll()
         {
-            if (AssetImporter.GetAtPath(SharedAvatarPath) is not ModelImporter rigImporter)
-                throw new FileNotFoundException("The generated shared Frank rig is missing.", SharedAvatarPath);
-
-            FrankAnimationImportSettings.ApplySharedRig(rigImporter);
-            rigImporter.SaveAndReimport();
-
-            var avatar = AssetDatabase.LoadAssetAtPath<Avatar>(SharedAvatarPath);
-            if (avatar == null || !avatar.isValid || !avatar.isHuman)
-                throw new InvalidOperationException($"A valid Humanoid avatar is required at '{SharedAvatarPath}'.");
+            ConfigureAvatarImporter(SharedAvatarPath);
+            var avatar = LoadValidAvatar(SharedAvatarPath);
 
             var paths = AssetDatabase.FindAssets("t:Model", new[] { FrankRoot })
                 .Select(AssetDatabase.GUIDToAssetPath)
@@ -93,13 +86,54 @@ namespace ProjectS.Core.Editor.Animation
                 .OrderBy(path => path)
                 .ToArray();
 
-            // The first pass establishes a valid Humanoid Avatar binding. The second
-            // pass can then read Unity's default take and persist the semantic clip
-            // name/loop settings; invalid or Generic imports expose no usable take.
-            ConfigureAndImport(paths, avatar);
+            // Every source FBX already has a valid Humanoid take. Reimport exactly
+            // once: a second pass in the same editor cycle can retain a stale native
+            // ModelImporter handle for migrated legacy metadata.
             ConfigureAndImport(paths, avatar);
 
             ValidateAll();
+        }
+
+        [MenuItem("Project S/Animation/Frank/Prepare Legacy DualSwords Humanoid Metadata")]
+        public static void PrepareLegacyDualSwordHumanoidMetadata()
+        {
+            var paths = AssetDatabase.FindAssets(
+                    "t:Model", new[] { FrankAnimationImportSettings.DualSwordRoot })
+                .Select(AssetDatabase.GUIDToAssetPath)
+                .Where(FrankAnimationImportSettings.IsGeneratedClip)
+                .OrderBy(path => path)
+                .ToArray();
+            var migratedCount = 0;
+            AssetDatabase.StartAssetEditing();
+            try
+            {
+                foreach (var path in paths)
+                {
+                    if (AssetImporter.GetAtPath(path) is not ModelImporter importer
+                        || !HasLegacyDualSwordHumanDescription(importer))
+                    {
+                        continue;
+                    }
+
+                    importer.animationType = ModelImporterAnimationType.Human;
+                    importer.avatarSetup = ModelImporterAvatarSetup.CreateFromThisModel;
+                    importer.sourceAvatar = null;
+                    importer.humanDescription = new HumanDescription();
+                    if (!AssetDatabase.WriteImportSettingsIfDirty(path))
+                        throw new IOException($"Failed to write migrated import settings: {path}");
+                    migratedCount++;
+                }
+            }
+            finally
+            {
+                AssetDatabase.StopAssetEditing();
+            }
+
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+
+            Debug.Log(
+                $"Legacy DualSwords Humanoid metadata prepared: {migratedCount}/{paths.Length} clips migrated. "
+                + "Run Configure Humanoid Imports in a new Unity Editor session/pass to bind the shared Avatar.");
         }
 
         [MenuItem("Project S/Animation/Frank/Validate Humanoid Library")]
@@ -153,7 +187,8 @@ namespace ProjectS.Core.Editor.Animation
                         || path.Contains("/Rig/", StringComparison.Ordinal))
                         continue;
 
-                    report.models.Add(ValidateModel(path, avatar, poseAuditObject, poseAuditAnimator));
+                    report.models.Add(ValidateModel(
+                        path, avatar, poseAuditObject, poseAuditAnimator));
                 }
             }
             finally
@@ -243,9 +278,9 @@ namespace ProjectS.Core.Editor.Animation
             if (FrankAnimationImportSettings.IsGeneratedClip(path))
             {
                 if (importer.avatarSetup != ModelImporterAvatarSetup.CopyFromOther)
-                    failures.Add("avatar is not copied from the shared rig");
+                    failures.Add("avatar is not copied from the configured rig");
                 if (expectedAvatar == null || importer.sourceAvatar != expectedAvatar)
-                    failures.Add("shared source avatar is missing or different");
+                    failures.Add("configured source avatar is missing or different");
                 if (clips.Length == 1
                     && clips[0].name != Path.GetFileNameWithoutExtension(path))
                 {
@@ -488,7 +523,34 @@ namespace ProjectS.Core.Editor.Animation
             return !float.IsNaN(value) && !float.IsInfinity(value);
         }
 
-        private static void ConfigureAndImport(IEnumerable<string> paths, Avatar avatar)
+        private static bool HasLegacyDualSwordHumanDescription(ModelImporter importer)
+        {
+            return importer.humanDescription.skeleton.Any(
+                bone => bone.name.StartsWith("FrankDualRig", StringComparison.Ordinal));
+        }
+
+        private static void ConfigureAvatarImporter(string path)
+        {
+            if (AssetImporter.GetAtPath(path) is not ModelImporter rigImporter)
+                throw new FileNotFoundException("The Frank Humanoid rig is missing.", path);
+
+            FrankAnimationImportSettings.ApplySharedRig(rigImporter);
+            rigImporter.sourceAvatar = null;
+            rigImporter.SaveAndReimport();
+        }
+
+        private static Avatar LoadValidAvatar(string path)
+        {
+            var avatar = AssetDatabase.LoadAssetAtPath<Avatar>(path);
+            if (avatar == null || !avatar.isValid || !avatar.isHuman)
+                throw new InvalidOperationException($"A valid Humanoid avatar is required at '{path}'.");
+
+            return avatar;
+        }
+
+        private static void ConfigureAndImport(
+            IEnumerable<string> paths,
+            Avatar avatar)
         {
             AssetDatabase.StartAssetEditing();
             try

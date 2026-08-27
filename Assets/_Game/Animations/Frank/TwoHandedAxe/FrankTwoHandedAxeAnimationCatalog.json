@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "pack": "TwoHandedAxe",
   "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
   "animationType": "Humanoid",
@@ -16,10 +16,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 896220,
+      "bytes": 894396,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 181
     },
     {
       "name": "Frank_RPG_2Hand_8Way_Run_BL",
@@ -32,10 +35,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 897404,
+      "bytes": 895740,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 182
     },
     {
       "name": "Frank_RPG_2Hand_8Way_Run_BR",
@@ -48,10 +54,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 895916,
+      "bytes": 893820,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 103
     },
     {
       "name": "Frank_RPG_2Hand_8Way_Run_F",
@@ -64,10 +73,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 895068,
+      "bytes": 893468,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 121
     },
     {
       "name": "Frank_RPG_2Hand_8Way_Run_FL",
@@ -80,10 +92,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 894540,
+      "bytes": 893180,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 119
     },
     {
       "name": "Frank_RPG_2Hand_8Way_Run_FR",
@@ -96,10 +111,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 895100,
+      "bytes": 894076,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 195
     },
     {
       "name": "Frank_RPG_2Hand_8Way_Run_L",
@@ -112,10 +130,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 895356,
+      "bytes": 893836,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 114
     },
     {
       "name": "Frank_RPG_2Hand_8Way_Run_R",
@@ -128,10 +149,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 895068,
+      "bytes": 893708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 74
     },
     {
       "name": "Frank_RPG_2Hand_Block_in_Place",
@@ -147,7 +171,10 @@
       "bytes": 807708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 24
     },
     {
       "name": "Frank_RPG_2Hand_Block",
@@ -163,7 +190,10 @@
       "bytes": 807708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 24
     },
     {
       "name": "Frank_RPG_2Hand_Combo01_1_in_Place",
@@ -176,10 +206,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1082044,
+      "bytes": 1080012,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 698
     },
     {
       "name": "Frank_RPG_2Hand_Combo01_1",
@@ -192,10 +225,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1083596,
+      "bytes": 1081276,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 698
     },
     {
       "name": "Frank_RPG_2Hand_Combo01_2_in_Place",
@@ -208,10 +244,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1167068,
+      "bytes": 1165196,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1034
     },
     {
       "name": "Frank_RPG_2Hand_Combo01_2",
@@ -224,10 +263,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1169820,
+      "bytes": 1167676,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1034
     },
     {
       "name": "Frank_RPG_2Hand_Combo01_3_in_Place",
@@ -240,10 +282,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1194796,
+      "bytes": 1193036,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1507
     },
     {
       "name": "Frank_RPG_2Hand_Combo01_3",
@@ -256,10 +301,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1198940,
+      "bytes": 1197020,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1507
     },
     {
       "name": "Frank_RPG_2Hand_Combo01_4_in_Place",
@@ -272,10 +320,24 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1376844,
+      "bytes": 1374956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_r",
+          "sourceFrame": 62,
+          "sourceTime": 1.0256790065491532,
+          "incomingAngle": 42.531994357925015,
+          "outgoingAngle": 49.23865272660892,
+          "neighborAngle": 6.706558050280465,
+          "residualAngle": 45.88532695736155,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 1573
     },
     {
       "name": "Frank_RPG_2Hand_Combo01_4",
@@ -288,10 +350,24 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1385484,
+      "bytes": 1382668,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_r",
+          "sourceFrame": 62,
+          "sourceTime": 1.0256790065491532,
+          "incomingAngle": 42.531994357925015,
+          "outgoingAngle": 49.238669802081844,
+          "neighborAngle": 6.706558050280465,
+          "residualAngle": 45.885309881888624,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 1573
     },
     {
       "name": "Frank_RPG_2Hand_Combo01_All_in_Place",
@@ -304,10 +380,24 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 2033196,
+      "bytes": 2030908,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_r",
+          "sourceFrame": 181,
+          "sourceTime": 3.004790128535538,
+          "incomingAngle": 42.525382734808446,
+          "outgoingAngle": 49.23247140541005,
+          "neighborAngle": 6.706908097475429,
+          "residualAngle": 45.878913409730906,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 2723
     },
     {
       "name": "Frank_RPG_2Hand_Combo01_All",
@@ -320,10 +410,24 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 2046012,
+      "bytes": 2041916,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_r",
+          "sourceFrame": 181,
+          "sourceTime": 3.004790128535538,
+          "incomingAngle": 42.525382734808446,
+          "outgoingAngle": 49.23247140541005,
+          "neighborAngle": 6.706908097475429,
+          "residualAngle": 45.878913409730906,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 2723
     },
     {
       "name": "Frank_RPG_2Hand_Combo02_1_in_Place",
@@ -336,10 +440,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1167788,
+      "bytes": 1165580,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 781
     },
     {
       "name": "Frank_RPG_2Hand_Combo02_1",
@@ -352,10 +459,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1171004,
+      "bytes": 1167788,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 781
     },
     {
       "name": "Frank_RPG_2Hand_Combo02_2_in_Place",
@@ -368,10 +478,24 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1542700,
+      "bytes": 1540092,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_l",
+          "sourceFrame": 57,
+          "sourceTime": 0.9441718012376048,
+          "incomingAngle": 55.832787143811444,
+          "outgoingAngle": 46.8742395388075,
+          "neighborAngle": 8.958602701259451,
+          "residualAngle": 51.35353223801525,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 2437
     },
     {
       "name": "Frank_RPG_2Hand_Combo02_2",
@@ -384,10 +508,24 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1552588,
+      "bytes": 1549708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_l",
+          "sourceFrame": 57,
+          "sourceTime": 0.9441718012376048,
+          "incomingAngle": 55.832817879662706,
+          "outgoingAngle": 46.8742395388075,
+          "neighborAngle": 8.958493418232763,
+          "residualAngle": 51.35350491725859,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 2437
     },
     {
       "name": "Frank_RPG_2Hand_Combo02_All_in_Place",
@@ -400,10 +538,24 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1844428,
+      "bytes": 1840364,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_l",
+          "sourceFrame": 113,
+          "sourceTime": 1.8747337237399981,
+          "incomingAngle": 55.831704786199055,
+          "outgoingAngle": 46.87346066987105,
+          "neighborAngle": 8.958247531422614,
+          "residualAngle": 51.352586029444105,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 1844
     },
     {
       "name": "Frank_RPG_2Hand_Combo02_All",
@@ -416,10 +568,24 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1856028,
+      "bytes": 1852156,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_l",
+          "sourceFrame": 113,
+          "sourceTime": 1.8747337237399981,
+          "incomingAngle": 55.831704786199055,
+          "outgoingAngle": 46.87346066987105,
+          "neighborAngle": 8.958165569152584,
+          "residualAngle": 51.352586029444105,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 1844
     },
     {
       "name": "Frank_RPG_2Hand_Combo03_1_in_Place",
@@ -432,10 +598,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1194380,
+      "bytes": 1192028,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 958
     },
     {
       "name": "Frank_RPG_2Hand_Combo03_1",
@@ -448,10 +617,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1197900,
+      "bytes": 1195196,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 958
     },
     {
       "name": "Frank_RPG_2Hand_Combo03_2_in_Place",
@@ -464,10 +636,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1011596,
+      "bytes": 1009980,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1117
     },
     {
       "name": "Frank_RPG_2Hand_Combo03_2",
@@ -480,10 +655,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1016620,
+      "bytes": 1014924,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1117
     },
     {
       "name": "Frank_RPG_2Hand_Combo03_3_in_Place",
@@ -496,10 +674,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1240092,
+      "bytes": 1238060,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1473
     },
     {
       "name": "Frank_RPG_2Hand_Combo03_3",
@@ -512,10 +693,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1250108,
+      "bytes": 1247692,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1473
     },
     {
       "name": "Frank_RPG_2Hand_Combo03_All_in_Place",
@@ -528,10 +712,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1743516,
+      "bytes": 1740620,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1961
     },
     {
       "name": "Frank_RPG_2Hand_Combo03_All",
@@ -544,10 +731,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1757004,
+      "bytes": 1753708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1961
     },
     {
       "name": "Frank_RPG_2Hand_Combo04_1_in_Place",
@@ -560,10 +750,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1168092,
+      "bytes": 1165564,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 620
     },
     {
       "name": "Frank_RPG_2Hand_Combo04_1",
@@ -576,10 +769,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1168764,
+      "bytes": 1166044,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 598
     },
     {
       "name": "Frank_RPG_2Hand_Combo04_2_in_Place",
@@ -592,10 +788,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1111084,
+      "bytes": 1108796,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 845
     },
     {
       "name": "Frank_RPG_2Hand_Combo04_2",
@@ -608,10 +807,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1113308,
+      "bytes": 1110508,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 845
     },
     {
       "name": "Frank_RPG_2Hand_Combo04_3_in_Place",
@@ -624,10 +826,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 968620,
+      "bytes": 967244,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 912
     },
     {
       "name": "Frank_RPG_2Hand_Combo04_3",
@@ -640,10 +845,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 971820,
+      "bytes": 970220,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 912
     },
     {
       "name": "Frank_RPG_2Hand_Combo04_4_in_Place",
@@ -656,10 +864,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1237900,
+      "bytes": 1235948,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1722
     },
     {
       "name": "Frank_RPG_2Hand_Combo04_4",
@@ -672,10 +883,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1246140,
+      "bytes": 1244364,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1722
     },
     {
       "name": "Frank_RPG_2Hand_Combo04_All_in_Place",
@@ -688,10 +902,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1971084,
+      "bytes": 1967516,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2452
     },
     {
       "name": "Frank_RPG_2Hand_Combo04_All",
@@ -704,10 +921,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1983756,
+      "bytes": 1980444,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2452
     },
     {
       "name": "Frank_RPG_2Hand_Combo05_1_in_Place",
@@ -720,10 +940,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1412268,
+      "bytes": 1410220,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1631
     },
     {
       "name": "Frank_RPG_2Hand_Combo05_1",
@@ -736,10 +959,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1249996,
+      "bytes": 1248316,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2284
     },
     {
       "name": "Frank_RPG_2Hand_Combo05_2_in_Place",
@@ -752,10 +978,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1339324,
+      "bytes": 1336508,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2095
     },
     {
       "name": "Frank_RPG_2Hand_Combo05_2",
@@ -768,10 +997,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1350604,
+      "bytes": 1347756,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2095
     },
     {
       "name": "Frank_RPG_2Hand_Combo05_All_in_Place",
@@ -784,10 +1016,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1913244,
+      "bytes": 1909916,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2435
     },
     {
       "name": "Frank_RPG_2Hand_Combo05_All",
@@ -800,10 +1035,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1927404,
+      "bytes": 1924428,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2435
     },
     {
       "name": "Frank_RPG_2Hand_Death01_in_Place",
@@ -816,10 +1054,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1301484,
+      "bytes": 1299932,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1118
     },
     {
       "name": "Frank_RPG_2Hand_Death01",
@@ -832,10 +1073,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1304396,
+      "bytes": 1302828,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1118
     },
     {
       "name": "Frank_RPG_2Hand_Death02_in_Place",
@@ -848,10 +1092,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 999884,
+      "bytes": 998812,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 334
     },
     {
       "name": "Frank_RPG_2Hand_Death02",
@@ -864,10 +1111,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1001932,
+      "bytes": 1000348,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 334
     },
     {
       "name": "Frank_RPG_2Hand_Evade_B",
@@ -880,10 +1130,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 866588,
+      "bytes": 864828,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 415
     },
     {
       "name": "Frank_RPG_2Hand_Evade_F",
@@ -896,10 +1149,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 865900,
+      "bytes": 864524,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 303
     },
     {
       "name": "Frank_RPG_2Hand_Evade_L",
@@ -912,10 +1168,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 864604,
+      "bytes": 862860,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 239
     },
     {
       "name": "Frank_RPG_2Hand_Evade_R",
@@ -928,10 +1187,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 864508,
+      "bytes": 863324,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 291
     },
     {
       "name": "Frank_RPG_2Hand_Getup_in_Place",
@@ -944,10 +1206,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1079900,
+      "bytes": 1077900,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1060
     },
     {
       "name": "Frank_RPG_2Hand_Getup",
@@ -960,10 +1225,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1080972,
+      "bytes": 1079004,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1060
     },
     {
       "name": "Frank_RPG_2Hand_Guard_in_Place",
@@ -976,10 +1244,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1064940,
+      "bytes": 1063244,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 76
     },
     {
       "name": "Frank_RPG_2Hand_Guard",
@@ -992,10 +1263,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1065084,
+      "bytes": 1063164,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 76
     },
     {
       "name": "Frank_RPG_2Hand_Hit_Knockback_in_Place",
@@ -1008,10 +1282,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 900108,
+      "bytes": 898908,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 143
     },
     {
       "name": "Frank_RPG_2Hand_Hit_Knockback",
@@ -1024,10 +1301,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 900876,
+      "bytes": 898956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 143
     },
     {
       "name": "Frank_RPG_2Hand_Hit_Knockdown_in_Place",
@@ -1040,10 +1320,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 956796,
+      "bytes": 955260,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 676
     },
     {
       "name": "Frank_RPG_2Hand_Hit_Knockdown_Loop_in_Place",
@@ -1056,10 +1339,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 935404,
+      "bytes": 932812,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 30
     },
     {
       "name": "Frank_RPG_2Hand_Hit_Knockdown_Loop",
@@ -1072,10 +1358,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 935420,
+      "bytes": 932508,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 30
     },
     {
       "name": "Frank_RPG_2Hand_Hit_Knockdown",
@@ -1088,10 +1377,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 958588,
+      "bytes": 956748,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 676
     },
     {
       "name": "Frank_RPG_2Hand_Hit01_in_Place",
@@ -1104,10 +1396,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 834236,
+      "bytes": 832988,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 154
     },
     {
       "name": "Frank_RPG_2Hand_Hit01",
@@ -1120,10 +1415,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 834972,
+      "bytes": 833676,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 154
     },
     {
       "name": "Frank_RPG_2Hand_Hit02_in_Place",
@@ -1136,10 +1434,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 828988,
+      "bytes": 827484,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 86
     },
     {
       "name": "Frank_RPG_2Hand_Hit02",
@@ -1152,10 +1453,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 829596,
+      "bytes": 827996,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 86
     },
     {
       "name": "Frank_RPG_2Hand_Hit03_in_Place",
@@ -1168,10 +1472,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 833820,
+      "bytes": 832156,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 123
     },
     {
       "name": "Frank_RPG_2Hand_Hit03",
@@ -1184,10 +1491,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 834220,
+      "bytes": 832396,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 123
     },
     {
       "name": "Frank_RPG_2Hand_Idle_in_Place",
@@ -1200,10 +1510,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1443116,
+      "bytes": 1438348,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 18
     },
     {
       "name": "Frank_RPG_2Hand_Idle",
@@ -1216,10 +1529,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1444412,
+      "bytes": 1439276,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 18
     },
     {
       "name": "Frank_RPG_2Hand_Jump_In_Place",
@@ -1232,10 +1548,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1000940,
+      "bytes": 999004,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 120
     },
     {
       "name": "Frank_RPG_2Hand_Jump_Running_in_Place",
@@ -1248,10 +1567,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 980444,
+      "bytes": 978732,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 301
     },
     {
       "name": "Frank_RPG_2Hand_Jump_Running",
@@ -1264,10 +1586,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 980844,
+      "bytes": 979260,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 301
     },
     {
       "name": "Frank_RPG_2Hand_Jump",
@@ -1280,10 +1605,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1002780,
+      "bytes": 1000540,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 124
     },
     {
       "name": "Frank_RPG_2Hand_Run_in_Place",
@@ -1296,10 +1624,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 830956,
+      "bytes": 830428,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 131
     },
     {
       "name": "Frank_RPG_2Hand_Run",
@@ -1312,10 +1643,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 831500,
+      "bytes": 830524,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 131
     },
     {
       "name": "Frank_RPG_2Hand_Skill01_WhirlWind_in_Place",
@@ -1328,10 +1662,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1620204,
+      "bytes": 1616876,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1624
     },
     {
       "name": "Frank_RPG_2Hand_Skill01_WhirlWind",
@@ -1344,10 +1681,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1629900,
+      "bytes": 1625868,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1624
     },
     {
       "name": "Frank_RPG_2Hand_Skill02_Rolling_in_Place",
@@ -1360,10 +1700,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1664764,
+      "bytes": 1662604,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1643
     },
     {
       "name": "Frank_RPG_2Hand_Skill02_Rolling",
@@ -1376,10 +1719,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1674108,
+      "bytes": 1671772,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1643
     },
     {
       "name": "Frank_RPG_2Hand_Step_B",
@@ -1395,7 +1741,10 @@
       "bytes": 807708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 59
     },
     {
       "name": "Frank_RPG_2Hand_Step_F",
@@ -1411,7 +1760,10 @@
       "bytes": 807708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 76
     },
     {
       "name": "Frank_RPG_2Hand_Step_L",
@@ -1427,7 +1779,10 @@
       "bytes": 807708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 55
     },
     {
       "name": "Frank_RPG_2Hand_Step_R",
@@ -1443,7 +1798,10 @@
       "bytes": 807708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 89
     },
     {
       "name": "Frank_RPG_2Hand_Walk_Backward_in_Place",
@@ -1456,10 +1814,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1007356,
+      "bytes": 1005804,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 467
     },
     {
       "name": "Frank_RPG_2Hand_Walk_Backward",
@@ -1472,10 +1833,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1008380,
+      "bytes": 1006556,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 467
     },
     {
       "name": "Frank_RPG_2Hand_Walk_Forward_in_Place",
@@ -1488,10 +1852,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1007996,
+      "bytes": 1005996,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 465
     },
     {
       "name": "Frank_RPG_2Hand_Walk_Forward",
@@ -1504,10 +1871,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1008764,
+      "bytes": 1006572,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 465
     },
     {
       "name": "Frank_RPG_2Hand_Walk_Left_in_Place",
@@ -1520,10 +1890,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1005324,
+      "bytes": 1004060,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 528
     },
     {
       "name": "Frank_RPG_2Hand_Walk_Left",
@@ -1536,10 +1909,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1006172,
+      "bytes": 1004972,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 528
     },
     {
       "name": "Frank_RPG_2Hand_Walk_Right_in_Place",
@@ -1552,10 +1928,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1006188,
+      "bytes": 1004236,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 180
     },
     {
       "name": "Frank_RPG_2Hand_Walk_Right",
@@ -1568,10 +1947,13 @@
       "fps": 60.0,
       "sourceBones": 81,
       "mappedBones": 80,
-      "bytes": 1006668,
+      "bytes": 1004828,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 1 bones that exist in the PSA:\n['Weapon_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 180
     }
   ]
 }

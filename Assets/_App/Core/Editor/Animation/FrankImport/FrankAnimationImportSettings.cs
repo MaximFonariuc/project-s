@@ -8,14 +8,13 @@ namespace ProjectS.Core.Editor.Animation
     internal static class FrankAnimationImportSettings
     {
         internal const string FrankRoot = "Assets/_Game/Animations/Frank/";
-        internal const string ExistingDualSwordRoot = FrankRoot + "DualSwords/";
+        internal const string DualSwordRoot = FrankRoot + "DualSwords/";
         internal const string SharedAvatarPath = FrankRoot + "Rig/FrankHumanoidAnimationRig.fbx";
 
         internal static bool IsGeneratedClip(string path)
         {
             return path.StartsWith(FrankRoot, StringComparison.Ordinal)
-                   && !path.StartsWith(ExistingDualSwordRoot, StringComparison.Ordinal)
-                   && !path.StartsWith(FrankRoot + "Rig/", StringComparison.Ordinal)
+                   && !path.Contains("/Rig/", StringComparison.Ordinal)
                    && path.EndsWith(".fbx", StringComparison.OrdinalIgnoreCase);
         }
 
@@ -42,6 +41,7 @@ namespace ProjectS.Core.Editor.Animation
             importer.preserveHierarchy = true;
             importer.optimizeGameObjects = false;
             importer.resampleCurves = false;
+            importer.humanoidOversampling = ModelImporterHumanoidOversampling.X4;
             importer.removeConstantScaleCurves = true;
             importer.animationCompression = ModelImporterAnimationCompression.Optimal;
             importer.importAnimatedCustomProperties = false;

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "pack": "TwoHandedGreatSword",
   "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
   "animationType": "Humanoid",
@@ -16,11 +16,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 893772,
+      "bytes": 892364,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 87
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Run_BL",
@@ -33,11 +36,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 893372,
+      "bytes": 892700,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 207
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Run_BR",
@@ -50,11 +56,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 900492,
+      "bytes": 899676,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 125
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Run_F",
@@ -67,11 +76,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 901996,
+      "bytes": 899868,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 104
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Run_FL",
@@ -84,11 +96,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 895212,
+      "bytes": 893100,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 65
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Run_FR",
@@ -101,11 +116,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 893692,
+      "bytes": 891740,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 220
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Run_L",
@@ -118,11 +136,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 893132,
+      "bytes": 892124,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 278
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Run_R",
@@ -135,11 +156,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 892924,
+      "bytes": 891676,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 73
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_B",
@@ -152,11 +176,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 890796,
+      "bytes": 889500,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 148
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_BL",
@@ -169,11 +196,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 891004,
+      "bytes": 889772,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 95
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_BR",
@@ -186,11 +216,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 892028,
+      "bytes": 890844,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 104
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_F",
@@ -203,11 +236,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 891916,
+      "bytes": 890732,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 233
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_FL",
@@ -220,11 +256,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 890700,
+      "bytes": 889340,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 104
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_FR",
@@ -237,11 +276,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 890892,
+      "bytes": 889628,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 95
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_L",
@@ -254,11 +296,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 889164,
+      "bytes": 886972,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 209
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_R",
@@ -271,11 +316,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 889148,
+      "bytes": 887036,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 206
     },
     {
       "name": "Frank_RPG_GreatSword_Attack01",
@@ -288,11 +336,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 950252,
+      "bytes": 948380,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 430
     },
     {
       "name": "Frank_RPG_GreatSword_Attack02",
@@ -305,11 +356,25 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1330988,
+      "bytes": 1327948,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_r",
+          "sourceFrame": 39,
+          "sourceTime": 0.644841234049451,
+          "incomingAngle": 53.38977555413612,
+          "outgoingAngle": 49.13584813431647,
+          "neighborAngle": 4.25394108019799,
+          "residualAngle": 51.2627997777097,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 1327
     },
     {
       "name": "Frank_RPG_GreatSword_Attack03",
@@ -322,11 +387,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1242636,
+      "bytes": 1240348,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1444
     },
     {
       "name": "Frank_RPG_GreatSword_Attack04",
@@ -339,11 +407,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1359532,
+      "bytes": 1356348,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1190
     },
     {
       "name": "Frank_RPG_GreatSword_Block",
@@ -360,7 +431,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 12
     },
     {
       "name": "Frank_RPG_GreatSword_Combo01_1",
@@ -373,11 +447,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1072700,
+      "bytes": 1070028,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 628
     },
     {
       "name": "Frank_RPG_GreatSword_Combo01_2",
@@ -390,11 +467,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1054156,
+      "bytes": 1051772,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 653
     },
     {
       "name": "Frank_RPG_GreatSword_Combo01_3",
@@ -407,11 +487,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1048332,
+      "bytes": 1046796,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1001
     },
     {
       "name": "Frank_RPG_GreatSword_Combo01_4",
@@ -424,11 +507,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1195804,
+      "bytes": 1192796,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1181
     },
     {
       "name": "Frank_RPG_GreatSword_Combo01_All",
@@ -441,11 +527,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1927308,
+      "bytes": 1923244,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2290
     },
     {
       "name": "Frank_RPG_GreatSword_Combo02_1",
@@ -458,11 +547,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1039052,
+      "bytes": 1036844,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 766
     },
     {
       "name": "Frank_RPG_GreatSword_Combo02_2",
@@ -475,11 +567,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1014828,
+      "bytes": 1012940,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1080
     },
     {
       "name": "Frank_RPG_GreatSword_Combo02_3",
@@ -492,11 +587,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 993212,
+      "bytes": 991228,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 901
     },
     {
       "name": "Frank_RPG_GreatSword_Combo02_4",
@@ -509,11 +607,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1137708,
+      "bytes": 1135084,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1006
     },
     {
       "name": "Frank_RPG_GreatSword_Combo02_All",
@@ -526,11 +627,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1844412,
+      "bytes": 1840572,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2655
     },
     {
       "name": "Frank_RPG_GreatSword_Combo03_1",
@@ -543,11 +647,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1075660,
+      "bytes": 1073372,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 373
     },
     {
       "name": "Frank_RPG_GreatSword_Combo03_2",
@@ -560,11 +667,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1104172,
+      "bytes": 1101068,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 717
     },
     {
       "name": "Frank_RPG_GreatSword_Combo03_3",
@@ -577,11 +687,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1404268,
+      "bytes": 1400076,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1362
     },
     {
       "name": "Frank_RPG_GreatSword_Combo03_All",
@@ -594,11 +707,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1977436,
+      "bytes": 1970604,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1419
     },
     {
       "name": "Frank_RPG_GreatSword_Combo04_1",
@@ -611,11 +727,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1160924,
+      "bytes": 1158748,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 900
     },
     {
       "name": "Frank_RPG_GreatSword_Combo04_2",
@@ -628,11 +747,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1242508,
+      "bytes": 1240236,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1884
     },
     {
       "name": "Frank_RPG_GreatSword_Combo04_3",
@@ -645,11 +767,25 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1447580,
+      "bytes": 1444940,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_r",
+          "sourceFrame": 45,
+          "sourceTime": 0.7448979785140155,
+          "incomingAngle": 53.389748233379464,
+          "outgoingAngle": 49.13609743622118,
+          "neighborAngle": 4.253585910361153,
+          "residualAngle": 51.26291247583101,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 2362
     },
     {
       "name": "Frank_RPG_GreatSword_Combo04_All",
@@ -662,11 +798,25 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 2163180,
+      "bytes": 2160828,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_r",
+          "sourceFrame": 174,
+          "sourceTime": 2.8894927636073735,
+          "incomingAngle": 53.38819095024866,
+          "outgoingAngle": 49.13535636069623,
+          "neighborAngle": 4.252657004634045,
+          "residualAngle": 51.261741098388356,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 3312
     },
     {
       "name": "Frank_RPG_GreatSword_Die01",
@@ -679,11 +829,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 933836,
+      "bytes": 932476,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1305
     },
     {
       "name": "Frank_RPG_GreatSword_Die02",
@@ -696,11 +849,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 906380,
+      "bytes": 905404,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1061
     },
     {
       "name": "Frank_RPG_GreatSword_Die03",
@@ -713,11 +869,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 943468,
+      "bytes": 942204,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1003
     },
     {
       "name": "Frank_RPG_GreatSword_Die04",
@@ -730,11 +889,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1094748,
+      "bytes": 1092716,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1877
     },
     {
       "name": "Frank_RPG_GreatSword_Die05",
@@ -747,11 +909,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1112524,
+      "bytes": 1111164,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1360
     },
     {
       "name": "Frank_RPG_GreatSword_Equip_Idle",
@@ -764,11 +929,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 2065596,
+      "bytes": 2058172,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 869
     },
     {
       "name": "Frank_RPG_GreatSword_Equip_Run01",
@@ -781,11 +949,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 855404,
+      "bytes": 854156,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 241
     },
     {
       "name": "Frank_RPG_GreatSword_Equip_Run02",
@@ -798,11 +969,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 861612,
+      "bytes": 860732,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 197
     },
     {
       "name": "Frank_RPG_GreatSword_Equip",
@@ -815,11 +989,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1204796,
+      "bytes": 1202492,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1195
     },
     {
       "name": "Frank_RPG_GreatSword_Evade_B",
@@ -832,11 +1009,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 903932,
+      "bytes": 902572,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 798
     },
     {
       "name": "Frank_RPG_GreatSword_Evade_F",
@@ -849,11 +1029,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 901836,
+      "bytes": 900124,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 642
     },
     {
       "name": "Frank_RPG_GreatSword_Evade_L",
@@ -866,11 +1049,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 903660,
+      "bytes": 902668,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 706
     },
     {
       "name": "Frank_RPG_GreatSword_Evade_R",
@@ -883,11 +1069,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 897244,
+      "bytes": 895884,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 629
     },
     {
       "name": "Frank_RPG_GreatSword_Getup01",
@@ -900,11 +1089,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1086924,
+      "bytes": 1084460,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1425
     },
     {
       "name": "Frank_RPG_GreatSword_Guard",
@@ -917,11 +1109,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 993468,
+      "bytes": 991596,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 0
     },
     {
       "name": "Frank_RPG_GreatSword_Hit_Knockback",
@@ -934,11 +1129,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 964300,
+      "bytes": 963436,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 676
     },
     {
       "name": "Frank_RPG_GreatSword_Hit_Knockdown_Loop",
@@ -951,11 +1149,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1044524,
+      "bytes": 1034060,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 25
     },
     {
       "name": "Frank_RPG_GreatSword_Hit_Knockdown",
@@ -968,11 +1169,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1007900,
+      "bytes": 1006540,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1583
     },
     {
       "name": "Frank_RPG_GreatSword_Hit01",
@@ -985,11 +1189,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 831612,
+      "bytes": 829964,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 195
     },
     {
       "name": "Frank_RPG_GreatSword_Hit02",
@@ -1002,11 +1209,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 829116,
+      "bytes": 827516,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 157
     },
     {
       "name": "Frank_RPG_GreatSword_Hit03",
@@ -1019,11 +1229,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 869116,
+      "bytes": 867436,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 221
     },
     {
       "name": "Frank_RPG_GreatSword_Jump_ZeroHeight",
@@ -1036,11 +1249,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 952284,
+      "bytes": 950540,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 601
     },
     {
       "name": "Frank_RPG_GreatSword_Jump",
@@ -1053,11 +1269,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 954428,
+      "bytes": 952620,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 558
     },
     {
       "name": "Frank_RPG_GreatSword_Skill01",
@@ -1070,11 +1289,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1635196,
+      "bytes": 1631612,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2260
     },
     {
       "name": "Frank_RPG_GreatSword_Skill02",
@@ -1087,11 +1309,25 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1862588,
+      "bytes": 1858220,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_r",
+          "sourceFrame": 122,
+          "sourceTime": 2.0241328348312004,
+          "incomingAngle": 53.38898325219242,
+          "outgoingAngle": 49.135619322979274,
+          "neighborAngle": 4.253394665064377,
+          "residualAngle": 51.26228068333278,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 2387
     },
     {
       "name": "Frank_RPG_GreatSword_Skill03",
@@ -1104,11 +1340,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1844764,
+      "bytes": 1838908,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1939
     },
     {
       "name": "Frank_RPG_GreatSword_Step_B",
@@ -1125,7 +1364,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 289
     },
     {
       "name": "Frank_RPG_GreatSword_Step_F",
@@ -1142,7 +1384,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 335
     },
     {
       "name": "Frank_RPG_GreatSword_Step_L",
@@ -1159,7 +1404,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 218
     },
     {
       "name": "Frank_RPG_GreatSword_Step_R",
@@ -1176,7 +1424,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 166
     },
     {
       "name": "Frank_RPG_GreatSword_Unequip_Idle",
@@ -1189,11 +1440,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 2284956,
+      "bytes": 2281772,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 66
     },
     {
       "name": "Frank_RPG_GreatSword_Unequip_Run_Faster",
@@ -1206,11 +1460,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 804908,
+      "bytes": 804092,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 269
     },
     {
       "name": "Frank_RPG_GreatSword_Unequip_Run",
@@ -1223,11 +1480,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 832220,
+      "bytes": 831196,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 173
     },
     {
       "name": "Frank_RPG_GreatSword_Unequip_Walk_Faster",
@@ -1240,11 +1500,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 927836,
+      "bytes": 926588,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 161
     },
     {
       "name": "Frank_RPG_GreatSword_Unequip_Walk",
@@ -1257,11 +1520,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 968732,
+      "bytes": 967052,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 192
     },
     {
       "name": "Frank_RPG_GreatSword_Unequip",
@@ -1274,11 +1540,14 @@
       "fps": 60.0,
       "sourceBones": 91,
       "mappedBones": 82,
-      "bytes": 1020812,
+      "bytes": 1018444,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 884
     }
   ]
 }

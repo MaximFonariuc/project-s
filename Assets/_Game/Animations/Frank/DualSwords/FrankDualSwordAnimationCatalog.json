@@ -1,1783 +1,2569 @@
 {
-  "rig": "FrankDualRig",
-  "bone_count": 94,
-  "clip_count": 148,
+  "schemaVersion": 2,
+  "pack": "DualSwords",
+  "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
+  "animationType": "Humanoid",
+  "clipCount": 148,
   "clips": [
     {
       "name": "Frank_RPG_Dual_Air_Combo_1_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Air_Combo_1_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Air_Combo_1_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 96,
-      "fps": 60,
-      "duration_seconds": 1.5833333333333333,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        -254.30099
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1163004,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1559
     },
     {
       "name": "Frank_RPG_Dual_Air_Combo_1_ZeroHeight_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Air_Combo_1_ZeroHeight_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Air_Combo_1_ZeroHeight_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 96,
-      "fps": 60,
-      "duration_seconds": 1.5833333333333333,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1158876,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1567
     },
     {
       "name": "Frank_RPG_Dual_Air_Combo_2_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Air_Combo_2_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Air_Combo_2_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 91,
-      "fps": 60,
-      "duration_seconds": 1.5,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        -254.30099
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1131564,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 915
     },
     {
       "name": "Frank_RPG_Dual_Air_Combo_2_ZeroHeight_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Air_Combo_2_ZeroHeight_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Air_Combo_2_ZeroHeight_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 91,
-      "fps": 60,
-      "duration_seconds": 1.5,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1127724,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 910
     },
     {
       "name": "Frank_RPG_Dual_Air_Combo_3_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Air_Combo_3_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Air_Combo_3_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 116,
-      "fps": 60,
-      "duration_seconds": 1.9166666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        -254.30099
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1268652,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1530
     },
     {
       "name": "Frank_RPG_Dual_Air_Combo_3_ZeroHeight_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Air_Combo_3_ZeroHeight_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Air_Combo_3_ZeroHeight_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 116,
-      "fps": 60,
-      "duration_seconds": 1.9166666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1262908,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1532
     },
     {
       "name": "Frank_RPG_Dual_Air_Combo_All_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Air_Combo_All_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Air_Combo_All_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 214,
-      "fps": 60,
-      "duration_seconds": 3.55,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1814348,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2181
     },
     {
       "name": "Frank_RPG_Dual_Air_Combo_Start_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Air_Combo_Start_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Air_Combo_Start_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 86,
-      "fps": 60,
-      "duration_seconds": 1.4166666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        53.93037
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1106540,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 949
     },
     {
       "name": "Frank_RPG_Dual_Air_Combo_Start_ZeroHeight_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Air_Combo_Start_ZeroHeight_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Air_Combo_Start_ZeroHeight_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 86,
-      "fps": 60,
-      "duration_seconds": 1.4166666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1103196,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 940
     },
     {
       "name": "Frank_RPG_Dual_Combo01_1_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo01_1_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo01_1_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 77,
-      "fps": 60,
-      "duration_seconds": 1.2666666666666666,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1051740,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 488
     },
     {
       "name": "Frank_RPG_Dual_Combo01_2_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo01_2_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo01_2_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 61,
-      "fps": 60,
-      "duration_seconds": 1.0,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 951948,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 688
     },
     {
       "name": "Frank_RPG_Dual_Combo01_3_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo01_3_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo01_3_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 65,
-      "fps": 60,
-      "duration_seconds": 1.0666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 971516,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 955
     },
     {
       "name": "Frank_RPG_Dual_Combo01_All_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo01_All_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo01_All_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 156,
-      "fps": 60,
-      "duration_seconds": 2.5833333333333335,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1482828,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1476
     },
     {
       "name": "Frank_RPG_Dual_Combo02_1_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo02_1_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo02_1_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 61,
-      "fps": 60,
-      "duration_seconds": 1.0,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 950908,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 233
     },
     {
       "name": "Frank_RPG_Dual_Combo02_2_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo02_2_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo02_2_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 59,
-      "fps": 60,
-      "duration_seconds": 0.9666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 940892,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 590
     },
     {
       "name": "Frank_RPG_Dual_Combo02_3_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo02_3_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo02_3_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 81,
-      "fps": 60,
-      "duration_seconds": 1.3333333333333333,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1074620,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 829
     },
     {
       "name": "Frank_RPG_Dual_Combo02_All_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo02_All_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo02_All_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 136,
-      "fps": 60,
-      "duration_seconds": 2.25,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1373116,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1053
     },
     {
       "name": "Frank_RPG_Dual_Combo03_1_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo03_1_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo03_1_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 64,
-      "fps": 60,
-      "duration_seconds": 1.05,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 965468,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 162
     },
     {
       "name": "Frank_RPG_Dual_Combo03_2_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo03_2_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo03_2_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 73,
-      "fps": 60,
-      "duration_seconds": 1.2,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1014284,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 395
     },
     {
       "name": "Frank_RPG_Dual_Combo03_3_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo03_3_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo03_3_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 107,
-      "fps": 60,
-      "duration_seconds": 1.7666666666666666,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1217196,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 632
     },
     {
       "name": "Frank_RPG_Dual_Combo03_All_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo03_All_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo03_All_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 174,
-      "fps": 60,
-      "duration_seconds": 2.8833333333333333,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1591772,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1079
     },
     {
       "name": "Frank_RPG_Dual_Combo04_1_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo04_1_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo04_1_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 111,
-      "fps": 60,
-      "duration_seconds": 1.8333333333333333,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1236860,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 991
     },
     {
       "name": "Frank_RPG_Dual_Combo04_2_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo04_2_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo04_2_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 105,
-      "fps": 60,
-      "duration_seconds": 1.7333333333333334,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1207276,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1076
     },
     {
       "name": "Frank_RPG_Dual_Combo04_3_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo04_3_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo04_3_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 71,
-      "fps": 60,
-      "duration_seconds": 1.1666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        -301.97305
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1006460,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 710
     },
     {
       "name": "Frank_RPG_Dual_Combo04_All_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo04_All_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo04_All_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 211,
-      "fps": 60,
-      "duration_seconds": 3.5,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1790892,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2203
     },
     {
       "name": "Frank_RPG_Dual_Combo05_1_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo05_1_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo05_1_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 65,
-      "fps": 60,
-      "duration_seconds": 1.0666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 971516,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 309
     },
     {
       "name": "Frank_RPG_Dual_Combo05_2_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo05_2_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo05_2_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 107,
-      "fps": 60,
-      "duration_seconds": 1.7666666666666666,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1220908,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1351
     },
     {
       "name": "Frank_RPG_Dual_Combo05_3_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo05_3_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo05_3_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 106,
-      "fps": 60,
-      "duration_seconds": 1.75,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        -239.81715
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1218140,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1479
     },
     {
       "name": "Frank_RPG_Dual_Combo05_4_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo05_4_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo05_4_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 123,
-      "fps": 60,
-      "duration_seconds": 2.033333333333333,
-      "root_delta_cm": [
-        -0.0,
-        0.0,
-        -377.63763
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1323436,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2662
     },
     {
       "name": "Frank_RPG_Dual_Combo05_All_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo05_All_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo05_All_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 271,
-      "fps": 60,
-      "duration_seconds": 4.5,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 2149868,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 4529
     },
     {
       "name": "Frank_RPG_Dual_Combo06_1_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo06_1_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo06_1_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 71,
-      "fps": 60,
-      "duration_seconds": 1.1666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1005084,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 476
     },
     {
       "name": "Frank_RPG_Dual_Combo06_2_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo06_2_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo06_2_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 71,
-      "fps": 60,
-      "duration_seconds": 1.1666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1005772,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 574
     },
     {
       "name": "Frank_RPG_Dual_Combo06_3_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo06_3_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo06_3_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 57,
-      "fps": 60,
-      "duration_seconds": 0.9333333333333333,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 929548,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 524
     },
     {
       "name": "Frank_RPG_Dual_Combo06_4_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo06_4_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo06_4_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 112,
-      "fps": 60,
-      "duration_seconds": 1.85,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1244460,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1587
     },
     {
       "name": "Frank_RPG_Dual_Combo06_All_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo06_All_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo06_All_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 206,
-      "fps": 60,
-      "duration_seconds": 3.4166666666666665,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1762812,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1951
     },
     {
       "name": "Frank_RPG_Dual_Combo07_1_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo07_1_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo07_1_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 57,
-      "fps": 60,
-      "duration_seconds": 0.9333333333333333,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 927836,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 531
     },
     {
       "name": "Frank_RPG_Dual_Combo07_2_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo07_2_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo07_2_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 54,
-      "fps": 60,
-      "duration_seconds": 0.8833333333333333,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 912348,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 476
     },
     {
       "name": "Frank_RPG_Dual_Combo07_3_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo07_3_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo07_3_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 84,
-      "fps": 60,
-      "duration_seconds": 1.3833333333333333,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1087500,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "hand_l",
+          "sourceFrame": 31,
+          "sourceTime": 0.5105158629694345,
+          "incomingAngle": 36.10742985952288,
+          "outgoingAngle": 35.83207055576275,
+          "neighborAngle": 11.864356419479634,
+          "residualAngle": 35.493436606902684,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 308
     },
     {
       "name": "Frank_RPG_Dual_Combo07_4_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo07_4_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo07_4_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 108,
-      "fps": 60,
-      "duration_seconds": 1.7833333333333334,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1221900,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1086
     },
     {
       "name": "Frank_RPG_Dual_Combo07_All_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Combo07_All_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Combo07_All_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 201,
-      "fps": 60,
-      "duration_seconds": 3.3333333333333335,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1728476,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "hand_l",
+          "sourceFrame": 83,
+          "sourceTime": 1.3764510082820047,
+          "incomingAngle": 36.107375218009565,
+          "outgoingAngle": 35.83205006519524,
+          "neighborAngle": 11.864274457209603,
+          "residualAngle": 35.493436606902684,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 1909
     },
     {
       "name": "Frank_RPG_Dual_Evade_B_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Evade_B_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Evade_B_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Evasion",
       "frames": 46,
-      "fps": 60,
-      "duration_seconds": 0.75,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 862652,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 367
     },
     {
       "name": "Frank_RPG_Dual_Evade_F_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Evade_F_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Evade_F_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Evasion",
       "frames": 46,
-      "fps": 60,
-      "duration_seconds": 0.75,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 862924,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 363
     },
     {
       "name": "Frank_RPG_Dual_Evade_L_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Evade_L_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Evade_L_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Evasion",
       "frames": 46,
-      "fps": 60,
-      "duration_seconds": 0.75,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 862892,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 313
     },
     {
       "name": "Frank_RPG_Dual_Evade_R_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Evade_R_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Evade_R_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Evasion",
       "frames": 46,
-      "fps": 60,
-      "duration_seconds": 0.75,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 862780,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 351
     },
     {
       "name": "Frank_RPG_Dual_Hit_Knockback_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Hit_Knockback_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Hit_Knockback_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Reactions",
       "frames": 61,
-      "fps": 60,
-      "duration_seconds": 1.0,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 947884,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 155
     },
     {
       "name": "Frank_RPG_Dual_Hit_Knockdown_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Hit_Knockdown_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Hit_Knockdown_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Reactions",
       "frames": 76,
-      "fps": 60,
-      "duration_seconds": 1.25,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1044444,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 609
     },
     {
       "name": "Frank_RPG_Dual_Skill01_WhirlWind_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Skill01_WhirlWind_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Skill01_WhirlWind_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Skills",
       "frames": 121,
-      "fps": 60,
-      "duration_seconds": 2.0,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1285036,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 998
     },
     {
       "name": "Frank_RPG_Dual_Skill02_Rolling_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Skill02_Rolling_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Skill02_Rolling_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Skills",
       "frames": 149,
-      "fps": 60,
-      "duration_seconds": 2.466666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1437900,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1048
     },
     {
       "name": "Frank_RPG_Dual_Skill03_PowerAttack_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Skill03_PowerAttack_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Skill03_PowerAttack_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Attacks",
       "frames": 117,
-      "fps": 60,
-      "duration_seconds": 1.9333333333333333,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1264348,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 919
     },
     {
       "name": "Frank_RPG_Dual_Skill04_InfinitySlash_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Skill04_InfinitySlash_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Skill04_InfinitySlash_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Skills",
       "frames": 149,
-      "fps": 60,
-      "duration_seconds": 2.466666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1437964,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1273
     },
     {
       "name": "Frank_RPG_Dual_Step_B_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Step_B_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Step_B_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Evasion",
       "frames": 31,
-      "fps": 60,
-      "duration_seconds": 0.5,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 807708,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 58
     },
     {
       "name": "Frank_RPG_Dual_Step_F_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Step_F_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Step_F_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Evasion",
       "frames": 31,
-      "fps": 60,
-      "duration_seconds": 0.5,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 807708,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 81
     },
     {
       "name": "Frank_RPG_Dual_Step_L_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Step_L_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Step_L_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Evasion",
       "frames": 31,
-      "fps": 60,
-      "duration_seconds": 0.5,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 807708,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 75
     },
     {
       "name": "Frank_RPG_Dual_Step_R_IP",
-      "category": "InPlace",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Step_R_IP.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_In_place/Frank_RPG_Dual_Step_R_IP.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_In_place",
+      "motion": "InPlace",
+      "category": "Evasion",
       "frames": 31,
-      "fps": 60,
-      "duration_seconds": 0.5,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 807708,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 143
     },
     {
       "name": "Frank_RPG_Dual_4Way_Walk_B",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_4Way_Walk_B.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_4Way_Walk_B.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 51,
-      "fps": 60,
-      "duration_seconds": 0.8333333333333334,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 898732,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 146
     },
     {
       "name": "Frank_RPG_Dual_4Way_Walk_F",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_4Way_Walk_F.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_4Way_Walk_F.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 51,
-      "fps": 60,
-      "duration_seconds": 0.8333333333333334,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 900076,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 120
     },
     {
       "name": "Frank_RPG_Dual_4Way_Walk_L",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_4Way_Walk_L.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_4Way_Walk_L.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 51,
-      "fps": 60,
-      "duration_seconds": 0.8333333333333334,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 898092,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 61
     },
     {
       "name": "Frank_RPG_Dual_4Way_Walk_R",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_4Way_Walk_R.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_4Way_Walk_R.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 51,
-      "fps": 60,
-      "duration_seconds": 0.8333333333333334,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 898428,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 61
     },
     {
       "name": "Frank_RPG_Dual_8Way_Run_B",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_8Way_Run_B.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_8Way_Run_B.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 47,
-      "fps": 60,
-      "duration_seconds": 0.7666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 870652,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 120
     },
     {
       "name": "Frank_RPG_Dual_8Way_Run_BL",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_8Way_Run_BL.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_8Way_Run_BL.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 47,
-      "fps": 60,
-      "duration_seconds": 0.7666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 870140,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 150
     },
     {
       "name": "Frank_RPG_Dual_8Way_Run_BR",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_8Way_Run_BR.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_8Way_Run_BR.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 47,
-      "fps": 60,
-      "duration_seconds": 0.7666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 870108,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 95
     },
     {
       "name": "Frank_RPG_Dual_8Way_Run_F",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_8Way_Run_F.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_8Way_Run_F.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 47,
-      "fps": 60,
-      "duration_seconds": 0.7666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 869308,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 205
     },
     {
       "name": "Frank_RPG_Dual_8Way_Run_FL",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_8Way_Run_FL.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_8Way_Run_FL.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 47,
-      "fps": 60,
-      "duration_seconds": 0.7666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 869916,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 86
     },
     {
       "name": "Frank_RPG_Dual_8Way_Run_FR",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_8Way_Run_FR.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_8Way_Run_FR.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 47,
-      "fps": 60,
-      "duration_seconds": 0.7666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 870012,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 188
     },
     {
       "name": "Frank_RPG_Dual_8Way_Run_L",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_8Way_Run_L.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_8Way_Run_L.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 47,
-      "fps": 60,
-      "duration_seconds": 0.7666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 870636,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 194
     },
     {
       "name": "Frank_RPG_Dual_8Way_Run_R",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_8Way_Run_R.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_8Way_Run_R.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 47,
-      "fps": 60,
-      "duration_seconds": 0.7666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "name": "Frank_RPG_Dual_Air_Combo_1",
-      "category": "RootMotion",
-      "frames": 96,
-      "fps": 60,
-      "duration_seconds": 1.5833333333333333,
-      "root_delta_cm": [
-        -0.0,
-        12.64166,
-        -254.30099
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 870764,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 165
     },
     {
       "name": "Frank_RPG_Dual_Air_Combo_1_ZeroHeight",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Air_Combo_1_ZeroHeight.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Air_Combo_1_ZeroHeight.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 96,
-      "fps": 60,
-      "duration_seconds": 1.5833333333333333,
-      "root_delta_cm": [
-        -0.0,
-        12.64166,
-        -0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1160092,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1567
     },
     {
-      "name": "Frank_RPG_Dual_Air_Combo_2",
-      "category": "RootMotion",
-      "frames": 91,
-      "fps": 60,
-      "duration_seconds": 1.5,
-      "root_delta_cm": [
-        -0.0,
-        12.64166,
-        -254.30099
-      ]
+      "name": "Frank_RPG_Dual_Air_Combo_1",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Air_Combo_1.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Air_Combo_1.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 96,
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1164172,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1559
     },
     {
       "name": "Frank_RPG_Dual_Air_Combo_2_ZeroHeight",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Air_Combo_2_ZeroHeight.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Air_Combo_2_ZeroHeight.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 91,
-      "fps": 60,
-      "duration_seconds": 1.5,
-      "root_delta_cm": [
-        -0.0,
-        12.64166,
-        -0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1129100,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 910
     },
     {
-      "name": "Frank_RPG_Dual_Air_Combo_3",
-      "category": "RootMotion",
-      "frames": 116,
-      "fps": 60,
-      "duration_seconds": 1.9166666666666667,
-      "root_delta_cm": [
-        -0.0,
-        12.64166,
-        -254.30099
-      ]
+      "name": "Frank_RPG_Dual_Air_Combo_2",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Air_Combo_2.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Air_Combo_2.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 91,
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1132780,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 915
     },
     {
       "name": "Frank_RPG_Dual_Air_Combo_3_ZeroHeight",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Air_Combo_3_ZeroHeight.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Air_Combo_3_ZeroHeight.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 116,
-      "fps": 60,
-      "duration_seconds": 1.9166666666666667,
-      "root_delta_cm": [
-        -0.0,
-        12.64166,
-        -0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1264556,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1532
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_3",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Air_Combo_3.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Air_Combo_3.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 116,
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1270204,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1530
     },
     {
       "name": "Frank_RPG_Dual_Air_Combo_All",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Air_Combo_All.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Air_Combo_All.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 214,
-      "fps": 60,
-      "duration_seconds": 3.55,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "name": "Frank_RPG_Dual_Air_Combo_Start",
-      "category": "RootMotion",
-      "frames": 86,
-      "fps": 60,
-      "duration_seconds": 1.4166666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        53.93037
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1815324,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2181
     },
     {
       "name": "Frank_RPG_Dual_Air_Combo_Start_ZeroHeight",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Air_Combo_Start_ZeroHeight.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Air_Combo_Start_ZeroHeight.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 86,
-      "fps": 60,
-      "duration_seconds": 1.4166666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1104044,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 940
+    },
+    {
+      "name": "Frank_RPG_Dual_Air_Combo_Start",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Air_Combo_Start.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Air_Combo_Start.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
+      "frames": 86,
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1107420,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 949
     },
     {
       "name": "Frank_RPG_Dual_Block",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Block.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Block.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Defense",
       "frames": 31,
-      "fps": 60,
-      "duration_seconds": 0.5,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 807708,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 3
     },
     {
       "name": "Frank_RPG_Dual_Combo01_1",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo01_1.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo01_1.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 77,
-      "fps": 60,
-      "duration_seconds": 1.2666666666666666,
-      "root_delta_cm": [
-        -0.0,
-        -71.48627,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1052588,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 488
     },
     {
       "name": "Frank_RPG_Dual_Combo01_2",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo01_2.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo01_2.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 61,
-      "fps": 60,
-      "duration_seconds": 1.0,
-      "root_delta_cm": [
-        0.0,
-        -152.34827,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 953484,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 688
     },
     {
       "name": "Frank_RPG_Dual_Combo01_3",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo01_3.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo01_3.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 65,
-      "fps": 60,
-      "duration_seconds": 1.0666666666666667,
-      "root_delta_cm": [
-        0.0,
-        -145.56805,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 973148,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 955
     },
     {
       "name": "Frank_RPG_Dual_Combo01_4",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo01_4.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo01_4.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 64,
-      "fps": 60,
-      "duration_seconds": 1.05,
-      "root_delta_cm": [
-        0.0,
-        -205.23389,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 969308,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 682
     },
     {
       "name": "Frank_RPG_Dual_Combo01_All",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo01_All.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo01_All.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 156,
-      "fps": 60,
-      "duration_seconds": 2.5833333333333335,
-      "root_delta_cm": [
-        0.0,
-        -535.76794,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1491724,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1476
     },
     {
       "name": "Frank_RPG_Dual_Combo02_1",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo02_1.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo02_1.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 61,
-      "fps": 60,
-      "duration_seconds": 1.0,
-      "root_delta_cm": [
-        0.0,
-        -43.01392,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 952348,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 233
     },
     {
       "name": "Frank_RPG_Dual_Combo02_2",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo02_2.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo02_2.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 59,
-      "fps": 60,
-      "duration_seconds": 0.9666666666666667,
-      "root_delta_cm": [
-        -0.0,
-        73.53955,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 941948,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 590
     },
     {
       "name": "Frank_RPG_Dual_Combo02_3",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo02_3.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo02_3.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 81,
-      "fps": 60,
-      "duration_seconds": 1.3333333333333333,
-      "root_delta_cm": [
-        0.0,
-        -30.52356,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1076764,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 829
     },
     {
       "name": "Frank_RPG_Dual_Combo02_All",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo02_All.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo02_All.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 136,
-      "fps": 60,
-      "duration_seconds": 2.25,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1375756,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1053
     },
     {
       "name": "Frank_RPG_Dual_Combo03_1",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo03_1.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo03_1.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 64,
-      "fps": 60,
-      "duration_seconds": 1.05,
-      "root_delta_cm": [
-        0.0,
-        -33.34662,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 966860,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 162
     },
     {
       "name": "Frank_RPG_Dual_Combo03_2",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo03_2.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo03_2.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 73,
-      "fps": 60,
-      "duration_seconds": 1.2,
-      "root_delta_cm": [
-        0.0,
-        -64.10199,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1015148,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 395
     },
     {
       "name": "Frank_RPG_Dual_Combo03_3",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo03_3.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo03_3.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 107,
-      "fps": 60,
-      "duration_seconds": 1.7666666666666666,
-      "root_delta_cm": [
-        0.0,
-        84.22345,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1218780,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 632
     },
     {
       "name": "Frank_RPG_Dual_Combo03_All",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo03_All.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo03_All.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 174,
-      "fps": 60,
-      "duration_seconds": 2.8833333333333333,
-      "root_delta_cm": [
-        0.0,
-        -56.96057,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1595228,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1079
     },
     {
       "name": "Frank_RPG_Dual_Combo04_1",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo04_1.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo04_1.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 111,
-      "fps": 60,
-      "duration_seconds": 1.8333333333333333,
-      "root_delta_cm": [
-        -0.0,
-        103.97631,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1238988,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 991
     },
     {
       "name": "Frank_RPG_Dual_Combo04_2",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo04_2.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo04_2.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 105,
-      "fps": 60,
-      "duration_seconds": 1.7333333333333334,
-      "root_delta_cm": [
-        0.0,
-        121.00335,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1208940,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1076
     },
     {
       "name": "Frank_RPG_Dual_Combo04_3",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo04_3.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo04_3.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 71,
-      "fps": 60,
-      "duration_seconds": 1.1666666666666667,
-      "root_delta_cm": [
-        0.0,
-        -398.27496,
-        -301.97305
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1009820,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 710
     },
     {
       "name": "Frank_RPG_Dual_Combo04_All",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo04_All.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo04_All.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 211,
-      "fps": 60,
-      "duration_seconds": 3.5,
-      "root_delta_cm": [
-        -0.0,
-        -305.1253,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1795948,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2203
     },
     {
       "name": "Frank_RPG_Dual_Combo05_1",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo05_1.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo05_1.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 65,
-      "fps": 60,
-      "duration_seconds": 1.0666666666666667,
-      "root_delta_cm": [
-        0.0,
-        -38.22381,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 972732,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 309
     },
     {
       "name": "Frank_RPG_Dual_Combo05_2",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo05_2.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo05_2.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 107,
-      "fps": 60,
-      "duration_seconds": 1.7666666666666666,
-      "root_delta_cm": [
-        0.0,
-        29.99316,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1222876,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1351
     },
     {
       "name": "Frank_RPG_Dual_Combo05_3",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo05_3.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo05_3.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 106,
-      "fps": 60,
-      "duration_seconds": 1.75,
-      "root_delta_cm": [
-        0.0,
-        -23.26294,
-        -239.81715
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1218860,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1479
     },
     {
       "name": "Frank_RPG_Dual_Combo05_4",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo05_4.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo05_4.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 123,
-      "fps": 60,
-      "duration_seconds": 2.033333333333333,
-      "root_delta_cm": [
-        0.0,
-        -152.41724,
-        -377.63763
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1326732,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2662
     },
     {
       "name": "Frank_RPG_Dual_Combo05_All",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo05_All.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo05_All.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 271,
-      "fps": 60,
-      "duration_seconds": 4.5,
-      "root_delta_cm": [
-        -0.0,
-        -297.37515,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 2154252,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 4529
     },
     {
       "name": "Frank_RPG_Dual_Combo06_1",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo06_1.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo06_1.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 71,
-      "fps": 60,
-      "duration_seconds": 1.1666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1006252,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 476
     },
     {
       "name": "Frank_RPG_Dual_Combo06_2",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo06_2.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo06_2.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 71,
-      "fps": 60,
-      "duration_seconds": 1.1666666666666667,
-      "root_delta_cm": [
-        0.0,
-        19.46817,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1006796,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 574
     },
     {
       "name": "Frank_RPG_Dual_Combo06_3",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo06_3.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo06_3.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 57,
-      "fps": 60,
-      "duration_seconds": 0.9333333333333333,
-      "root_delta_cm": [
-        -0.0,
-        -203.87646,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 931484,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 524
     },
     {
       "name": "Frank_RPG_Dual_Combo06_4",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo06_4.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo06_4.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 112,
-      "fps": 60,
-      "duration_seconds": 1.85,
-      "root_delta_cm": [
-        0.0,
-        -528.28137,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1252108,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1587
     },
     {
       "name": "Frank_RPG_Dual_Combo06_All",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo06_All.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo06_All.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 206,
-      "fps": 60,
-      "duration_seconds": 3.4166666666666665,
-      "root_delta_cm": [
-        0.0,
-        -667.96027,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1773868,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1951
     },
     {
       "name": "Frank_RPG_Dual_Combo07_1",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo07_1.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo07_1.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 57,
-      "fps": 60,
-      "duration_seconds": 0.9333333333333333,
-      "root_delta_cm": [
-        0.0,
-        -117.24426,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 929148,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 531
     },
     {
       "name": "Frank_RPG_Dual_Combo07_2",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo07_2.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo07_2.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 54,
-      "fps": 60,
-      "duration_seconds": 0.8833333333333333,
-      "root_delta_cm": [
-        -0.0,
-        -38.41922,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 913388,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 476
     },
     {
       "name": "Frank_RPG_Dual_Combo07_3",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo07_3.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo07_3.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 84,
-      "fps": 60,
-      "duration_seconds": 1.3833333333333333,
-      "root_delta_cm": [
-        -0.0,
-        -109.82236,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1089740,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "hand_l",
+          "sourceFrame": 31,
+          "sourceTime": 0.5105158629694345,
+          "incomingAngle": 36.10742985952288,
+          "outgoingAngle": 35.83207055576275,
+          "neighborAngle": 11.864356419479634,
+          "residualAngle": 35.493436606902684,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 308
     },
     {
       "name": "Frank_RPG_Dual_Combo07_4",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo07_4.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo07_4.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 108,
-      "fps": 60,
-      "duration_seconds": 1.7833333333333334,
-      "root_delta_cm": [
-        0.0,
-        -437.36346,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1228620,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1086
     },
     {
       "name": "Frank_RPG_Dual_Combo07_All",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Combo07_All.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Combo07_All.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 201,
-      "fps": 60,
-      "duration_seconds": 3.3333333333333335,
-      "root_delta_cm": [
-        0.0,
-        -707.10632,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1741052,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "hand_l",
+          "sourceFrame": 83,
+          "sourceTime": 1.3764510082820047,
+          "incomingAngle": 36.107375218009565,
+          "outgoingAngle": 35.83205006519524,
+          "neighborAngle": 11.864274457209603,
+          "residualAngle": 35.493436606902684,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 1909
     },
     {
       "name": "Frank_RPG_Dual_Die",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Die.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Die.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Death",
       "frames": 68,
-      "fps": 60,
-      "duration_seconds": 1.1166666666666667,
-      "root_delta_cm": [
-        0.0,
-        142.08899,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 987964,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 656
     },
     {
       "name": "Frank_RPG_Dual_Draw",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Draw.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Draw.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Equipment",
       "frames": 61,
-      "fps": 60,
-      "duration_seconds": 1.0,
-      "root_delta_cm": [
-        -0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 962876,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 441
     },
     {
       "name": "Frank_RPG_Dual_Evade_B",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Evade_B.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Evade_B.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Evasion",
       "frames": 46,
-      "fps": 60,
-      "duration_seconds": 0.75,
-      "root_delta_cm": [
-        0.0,
-        300.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 864828,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 367
     },
     {
       "name": "Frank_RPG_Dual_Evade_F",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Evade_F.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Evade_F.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Evasion",
       "frames": 46,
-      "fps": 60,
-      "duration_seconds": 0.75,
-      "root_delta_cm": [
-        -0.0,
-        -350.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 865980,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 363
     },
     {
       "name": "Frank_RPG_Dual_Evade_L",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Evade_L.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Evade_L.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Evasion",
       "frames": 46,
-      "fps": 60,
-      "duration_seconds": 0.75,
-      "root_delta_cm": [
-        300.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 865516,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 313
     },
     {
       "name": "Frank_RPG_Dual_Evade_R",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Evade_R.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Evade_R.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Evasion",
       "frames": 46,
-      "fps": 60,
-      "duration_seconds": 0.75,
-      "root_delta_cm": [
-        -300.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 865324,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 351
     },
     {
       "name": "Frank_RPG_Dual_Getup",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Getup.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Getup.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Recovery",
       "frames": 69,
-      "fps": 60,
-      "duration_seconds": 1.1333333333333333,
-      "root_delta_cm": [
-        -0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 991196,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 370
     },
     {
       "name": "Frank_RPG_Dual_Guard",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Guard.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Guard.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Defense",
       "frames": 71,
-      "fps": 60,
-      "duration_seconds": 1.1666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "name": "Frank_RPG_Dual_Hit01",
-      "category": "RootMotion",
-      "frames": 41,
-      "fps": 60,
-      "duration_seconds": 0.6666666666666666,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "name": "Frank_RPG_Dual_Hit02",
-      "category": "RootMotion",
-      "frames": 41,
-      "fps": 60,
-      "duration_seconds": 0.6666666666666666,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "name": "Frank_RPG_Dual_Hit03",
-      "category": "RootMotion",
-      "frames": 47,
-      "fps": 60,
-      "duration_seconds": 0.7666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 996716,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 0
     },
     {
       "name": "Frank_RPG_Dual_Hit_Knockback",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Hit_Knockback.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Hit_Knockback.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Reactions",
       "frames": 61,
-      "fps": 60,
-      "duration_seconds": 1.0,
-      "root_delta_cm": [
-        0.0,
-        130.0,
-        0.0
-      ]
-    },
-    {
-      "name": "Frank_RPG_Dual_Hit_Knockdown",
-      "category": "RootMotion",
-      "frames": 76,
-      "fps": 60,
-      "duration_seconds": 1.25,
-      "root_delta_cm": [
-        -4.67932,
-        322.76437,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 949020,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 155
     },
     {
       "name": "Frank_RPG_Dual_Hit_Knockdown_Loop",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Hit_Knockdown_Loop.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Hit_Knockdown_Loop.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Reactions",
       "frames": 81,
-      "fps": 60,
-      "duration_seconds": 1.3333333333333333,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1035340,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 25
+    },
+    {
+      "name": "Frank_RPG_Dual_Hit_Knockdown",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Hit_Knockdown.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Hit_Knockdown.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 76,
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1048860,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 609
+    },
+    {
+      "name": "Frank_RPG_Dual_Hit01",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Hit01.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Hit01.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 829228,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 80
+    },
+    {
+      "name": "Frank_RPG_Dual_Hit02",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Hit02.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Hit02.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 830412,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 282
+    },
+    {
+      "name": "Frank_RPG_Dual_Hit03",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Hit03.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Hit03.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Reactions",
+      "frames": 47,
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 868380,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 230
     },
     {
       "name": "Frank_RPG_Dual_Idle",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Idle.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Idle.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 241,
-      "fps": 60,
-      "duration_seconds": 4.0,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1955452,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 96
     },
     {
       "name": "Frank_RPG_Dual_Jump_01",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Jump_01.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Jump_01.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Air",
       "frames": 61,
-      "fps": 60,
-      "duration_seconds": 1.0,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 950412,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 370
     },
     {
       "name": "Frank_RPG_Dual_Jump_02",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Jump_02.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Jump_02.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Air",
       "frames": 61,
-      "fps": 60,
-      "duration_seconds": 1.0,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 949644,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 215
     },
     {
       "name": "Frank_RPG_Dual_Jump_ZeroHeight",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Jump_ZeroHeight.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Jump_ZeroHeight.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Air",
       "frames": 61,
-      "fps": 60,
-      "duration_seconds": 1.0,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 948156,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 244
     },
     {
       "name": "Frank_RPG_Dual_Putup",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Putup.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Putup.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Equipment",
       "frames": 61,
-      "fps": 60,
-      "duration_seconds": 1.0,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "name": "Frank_RPG_Dual_Run01",
-      "category": "RootMotion",
-      "frames": 41,
-      "fps": 60,
-      "duration_seconds": 0.6666666666666666,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 965004,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 479
     },
     {
       "name": "Frank_RPG_Dual_Run01_Velocity_UE4",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Run01_Velocity_UE4.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Run01_Velocity_UE4.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 41,
-      "fps": 60,
-      "duration_seconds": 0.6666666666666666,
-      "root_delta_cm": [
-        0.0,
-        -406.518,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 832012,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 196
     },
     {
-      "name": "Frank_RPG_Dual_Run02",
-      "category": "RootMotion",
+      "name": "Frank_RPG_Dual_Run01",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Run01.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Run01.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 41,
-      "fps": 60,
-      "duration_seconds": 0.6666666666666666,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 831340,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 192
     },
     {
       "name": "Frank_RPG_Dual_Run02_Velocity_UE4",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Run02_Velocity_UE4.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Run02_Velocity_UE4.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 41,
-      "fps": 60,
-      "duration_seconds": 0.6666666666666666,
-      "root_delta_cm": [
-        0.0,
-        -406.518,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 831244,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 128
     },
     {
-      "name": "Frank_RPG_Dual_Run03_Faster",
-      "category": "RootMotion",
-      "frames": 31,
-      "fps": 60,
-      "duration_seconds": 0.5,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "name": "Frank_RPG_Dual_Run02",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Run02.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Run02.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
+      "frames": 41,
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 831020,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 128
     },
     {
       "name": "Frank_RPG_Dual_Run03_Faster_Velocity_UE4",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Run03_Faster_Velocity_UE4.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Run03_Faster_Velocity_UE4.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 31,
-      "fps": 60,
-      "duration_seconds": 0.5,
-      "root_delta_cm": [
-        0.0,
-        -437.37317,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 807708,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 209
+    },
+    {
+      "name": "Frank_RPG_Dual_Run03_Faster",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Run03_Faster.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Run03_Faster.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
+      "frames": 31,
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 807708,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 194
     },
     {
       "name": "Frank_RPG_Dual_Skill01_WhirlWind",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Skill01_WhirlWind.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Skill01_WhirlWind.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Skills",
       "frames": 121,
-      "fps": 60,
-      "duration_seconds": 2.0,
-      "root_delta_cm": [
-        0.0,
-        -661.89105,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1293532,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 998
     },
     {
       "name": "Frank_RPG_Dual_Skill02_Rolling",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Skill02_Rolling.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Skill02_Rolling.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Skills",
       "frames": 149,
-      "fps": 60,
-      "duration_seconds": 2.466666666666667,
-      "root_delta_cm": [
-        0.0,
-        -753.57269,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1448636,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1048
     },
     {
       "name": "Frank_RPG_Dual_Skill03_PowerAttack",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Skill03_PowerAttack.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Skill03_PowerAttack.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Attacks",
       "frames": 117,
-      "fps": 60,
-      "duration_seconds": 1.9333333333333333,
-      "root_delta_cm": [
-        -0.0,
-        -174.33276,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1268252,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 919
     },
     {
       "name": "Frank_RPG_Dual_Skill04_InfinitySlash",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Skill04_InfinitySlash.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Skill04_InfinitySlash.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Skills",
       "frames": 149,
-      "fps": 60,
-      "duration_seconds": 2.466666666666667,
-      "root_delta_cm": [
-        0.0,
-        -78.41119,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1441020,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1273
     },
     {
       "name": "Frank_RPG_Dual_Step_B",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Step_B.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Step_B.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Evasion",
       "frames": 31,
-      "fps": 60,
-      "duration_seconds": 0.5,
-      "root_delta_cm": [
-        0.0,
-        150.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 807708,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 58
     },
     {
       "name": "Frank_RPG_Dual_Step_F",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Step_F.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Step_F.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Evasion",
       "frames": 31,
-      "fps": 60,
-      "duration_seconds": 0.5,
-      "root_delta_cm": [
-        0.0,
-        -200.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 807708,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 81
     },
     {
       "name": "Frank_RPG_Dual_Step_L",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Step_L.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Step_L.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Evasion",
       "frames": 31,
-      "fps": 60,
-      "duration_seconds": 0.5,
-      "root_delta_cm": [
-        150.00002,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 807708,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 75
     },
     {
       "name": "Frank_RPG_Dual_Step_R",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Step_R.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Step_R.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Evasion",
       "frames": 31,
-      "fps": 60,
-      "duration_seconds": 0.5,
-      "root_delta_cm": [
-        -149.99998,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 807708,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 143
     },
     {
       "name": "Frank_RPG_Dual_Unequip_Run_Velocity_UE4",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Unequip_Run_Velocity_UE4.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Unequip_Run_Velocity_UE4.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Equipment",
       "frames": 41,
-      "fps": 60,
-      "duration_seconds": 0.6666666666666666,
-      "root_delta_cm": [
-        0.0,
-        -406.518,
-        0.0
-      ]
-    },
-    {
-      "name": "Frank_RPG_Dual_Walk",
-      "category": "RootMotion",
-      "frames": 71,
-      "fps": 60,
-      "duration_seconds": 1.1666666666666667,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
-    },
-    {
-      "name": "Frank_RPG_Dual_Walk_faster",
-      "category": "RootMotion",
-      "frames": 61,
-      "fps": 60,
-      "duration_seconds": 1.0,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 834108,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 170
     },
     {
       "name": "Frank_RPG_Dual_Walk_Faster_Velocity_UE4",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Walk_Faster_Velocity_UE4.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Walk_Faster_Velocity_UE4.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 61,
-      "fps": 60,
-      "duration_seconds": 1.0,
-      "root_delta_cm": [
-        0.0,
-        -200.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 949628,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 171
+    },
+    {
+      "name": "Frank_RPG_Dual_Walk_faster",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Walk_faster.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Walk_faster.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
+      "frames": 61,
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 950780,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 165
     },
     {
       "name": "Frank_RPG_Dual_Walk_Velocity_UE4",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Walk_Velocity_UE4.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Walk_Velocity_UE4.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 71,
-      "fps": 60,
-      "duration_seconds": 1.1666666666666667,
-      "root_delta_cm": [
-        0.0,
-        -200.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1000956,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 153
+    },
+    {
+      "name": "Frank_RPG_Dual_Walk",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Walk.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Dual_Walk.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
+      "frames": 71,
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 1002332,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 153
     },
     {
       "name": "Frank_RPG_Idle",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Idle.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Idle.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 301,
-      "fps": 60,
-      "duration_seconds": 5.0,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 2281084,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 66
     },
     {
       "name": "Frank_RPG_Run",
-      "category": "RootMotion",
+      "assetPath": "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Run.fbx",
+      "sourceAsset": "Frank_Dual_Sword/Animations/Frank_Dual_Rootmotion/Frank_RPG_Run.uasset",
+      "sourceGroup": "Frank_Dual_Sword\\Animations\\Frank_Dual_Rootmotion",
+      "motion": "RootMotion",
+      "category": "Locomotion",
       "frames": 41,
-      "fps": 60,
-      "duration_seconds": 0.6666666666666666,
-      "root_delta_cm": [
-        0.0,
-        0.0,
-        0.0
-      ]
+      "fps": 60.0,
+      "sourceBones": 94,
+      "mappedBones": 94,
+      "bytes": 833196,
+      "warnings": [],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 170
     }
   ]
 }

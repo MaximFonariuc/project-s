@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "pack": "TwoHandedKatana",
   "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
   "animationType": "Humanoid",
@@ -16,11 +16,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 865660,
+      "bytes": 863276,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 128
     },
     {
       "name": "Frank_RPG_Katana_8Way_GuardWalk_BL",
@@ -33,11 +36,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 866044,
+      "bytes": 863564,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 140
     },
     {
       "name": "Frank_RPG_Katana_8Way_GuardWalk_BR",
@@ -50,11 +56,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 866284,
+      "bytes": 863900,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 158
     },
     {
       "name": "Frank_RPG_Katana_8Way_GuardWalk_F",
@@ -67,11 +76,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 865692,
+      "bytes": 863468,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 111
     },
     {
       "name": "Frank_RPG_Katana_8Way_GuardWalk_FL",
@@ -84,11 +96,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 865532,
+      "bytes": 863500,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 198
     },
     {
       "name": "Frank_RPG_Katana_8Way_GuardWalk_FR",
@@ -101,11 +116,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 866188,
+      "bytes": 863708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 120
     },
     {
       "name": "Frank_RPG_Katana_8Way_GuardWalk_L",
@@ -118,11 +136,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 865660,
+      "bytes": 863388,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 176
     },
     {
       "name": "Frank_RPG_Katana_8Way_GuardWalk_R",
@@ -135,11 +156,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 865580,
+      "bytes": 863372,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 180
     },
     {
       "name": "Frank_RPG_Katana_8Way_Run_B",
@@ -152,11 +176,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 827468,
+      "bytes": 826684,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 68
     },
     {
       "name": "Frank_RPG_Katana_8Way_Run_BL",
@@ -169,11 +196,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 827548,
+      "bytes": 826844,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 130
     },
     {
       "name": "Frank_RPG_Katana_8Way_Run_BR",
@@ -186,11 +216,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 827548,
+      "bytes": 826716,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 91
     },
     {
       "name": "Frank_RPG_Katana_8Way_Run_F",
@@ -203,11 +236,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 826748,
+      "bytes": 826556,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 100
     },
     {
       "name": "Frank_RPG_Katana_8Way_Run_FL",
@@ -220,11 +256,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 828092,
+      "bytes": 827036,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 50
     },
     {
       "name": "Frank_RPG_Katana_8Way_Run_FR",
@@ -237,11 +276,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 826908,
+      "bytes": 826716,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 108
     },
     {
       "name": "Frank_RPG_Katana_8Way_Run_L",
@@ -254,11 +296,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 827756,
+      "bytes": 826668,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 92
     },
     {
       "name": "Frank_RPG_Katana_8Way_Run_R",
@@ -271,11 +316,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 827916,
+      "bytes": 826700,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 59
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Run_B",
@@ -288,11 +336,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 825708,
+      "bytes": 825116,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 68
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Run_BL",
@@ -305,11 +356,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 826940,
+      "bytes": 825836,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 148
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Run_BR",
@@ -322,11 +376,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 826140,
+      "bytes": 825564,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 81
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Run_F",
@@ -339,11 +396,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 826284,
+      "bytes": 824828,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 79
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Run_FL",
@@ -356,11 +416,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 826268,
+      "bytes": 825740,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 50
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Run_FR",
@@ -373,11 +436,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 825708,
+      "bytes": 825548,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 116
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Run_L",
@@ -390,11 +456,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 825868,
+      "bytes": 825276,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 92
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Run_R",
@@ -407,11 +476,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 825932,
+      "bytes": 825180,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 55
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Walk_B",
@@ -424,11 +496,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 862556,
+      "bytes": 862492,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 128
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Walk_BL",
@@ -441,11 +516,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 862652,
+      "bytes": 862732,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 140
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Walk_BR",
@@ -458,11 +536,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 862668,
+      "bytes": 862588,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 134
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Walk_F",
@@ -475,11 +556,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 862492,
+      "bytes": 862460,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 111
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Walk_FL",
@@ -492,11 +576,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 862748,
+      "bytes": 862796,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 152
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Walk_FR",
@@ -509,11 +596,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 863100,
+      "bytes": 862876,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 120
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Walk_L",
@@ -526,11 +616,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 862412,
+      "bytes": 862780,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 176
     },
     {
       "name": "Frank_RPG_Katana_8Way_S2_Walk_R",
@@ -543,11 +636,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 862556,
+      "bytes": 862508,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 180
     },
     {
       "name": "Frank_RPG_Katana_8Way_Walk_B",
@@ -560,11 +656,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 864588,
+      "bytes": 863564,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 147
     },
     {
       "name": "Frank_RPG_Katana_8Way_Walk_BL",
@@ -577,11 +676,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 868668,
+      "bytes": 868316,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 102
     },
     {
       "name": "Frank_RPG_Katana_8Way_Walk_BR",
@@ -594,11 +696,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 869180,
+      "bytes": 869132,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 188
     },
     {
       "name": "Frank_RPG_Katana_8Way_Walk_F",
@@ -611,11 +716,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 866908,
+      "bytes": 866460,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 154
     },
     {
       "name": "Frank_RPG_Katana_8Way_Walk_FL",
@@ -628,11 +736,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 868604,
+      "bytes": 868716,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 178
     },
     {
       "name": "Frank_RPG_Katana_8Way_Walk_FR",
@@ -645,11 +756,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 869148,
+      "bytes": 868908,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 107
     },
     {
       "name": "Frank_RPG_Katana_8Way_Walk_L",
@@ -662,11 +776,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 868828,
+      "bytes": 868124,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 370
     },
     {
       "name": "Frank_RPG_Katana_8Way_Walk_R",
@@ -679,11 +796,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 863948,
+      "bytes": 863148,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 190
     },
     {
       "name": "Frank_RPG_Katana_Block",
@@ -700,7 +820,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 96
     },
     {
       "name": "Frank_RPG_Katana_Evade_B__IP",
@@ -713,11 +836,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 884956,
+      "bytes": 883324,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 488
     },
     {
       "name": "Frank_RPG_Katana_Evade_F__IP",
@@ -730,11 +856,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 884060,
+      "bytes": 882668,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 441
     },
     {
       "name": "Frank_RPG_Katana_Evade_L__IP",
@@ -747,11 +876,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 885964,
+      "bytes": 884476,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 423
     },
     {
       "name": "Frank_RPG_Katana_Evade_R__IP",
@@ -764,11 +896,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 885756,
+      "bytes": 884412,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 440
     },
     {
       "name": "Frank_RPG_Katana_Getup01",
@@ -781,11 +916,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 925484,
+      "bytes": 923484,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 607
     },
     {
       "name": "Frank_RPG_Katana_Getup02",
@@ -798,11 +936,275 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 899900,
+      "bytes": 898252,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 26,
+      "sourceKeyCorrections": [
+        {
+          "bone": "thigh_l",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 84.79250918690954,
+          "outgoingAngle": 86.12259290512114,
+          "neighborAngle": 12.216280835319814,
+          "residualAngle": 85.28305337309985,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "calf_l",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 50.50520885535023,
+          "outgoingAngle": 50.75265977879062,
+          "neighborAngle": 0.2470813995341237,
+          "residualAngle": 50.62892407178667,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "foot_l",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 37.50172737384529,
+          "outgoingAngle": 31.866940836895246,
+          "neighborAngle": 15.249046190024618,
+          "residualAngle": 33.97465525249114,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "ball_l",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 21.847787569822316,
+          "outgoingAngle": 13.91394142899941,
+          "neighborAngle": 7.933686485151059,
+          "residualAngle": 17.880876879128735,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "thigh_r",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 50.66493988665121,
+          "outgoingAngle": 42.88601672298512,
+          "neighborAngle": 9.949854395125044,
+          "residualAngle": 46.67823678791916,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "calf_r",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 27.72217054003835,
+          "outgoingAngle": 46.5762552334217,
+          "neighborAngle": 18.854044166990548,
+          "residualAngle": 37.14920082021342,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "foot_r",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 22.128327344696835,
+          "outgoingAngle": 17.697906356547847,
+          "neighborAngle": 12.709117403750316,
+          "residualAngle": 19.00999423384376,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "ball_r",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 7.9557719018322945,
+          "outgoingAngle": 10.121488283859938,
+          "neighborAngle": 11.770329246673219,
+          "residualAngle": 6.947905772810628,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "clavicle_l",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 36.62577610335867,
+          "outgoingAngle": 36.62575219769657,
+          "neighborAngle": 0.0,
+          "residualAngle": 36.62577610335867,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "upperarm_l",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 133.86333392032748,
+          "outgoingAngle": 108.32426623622015,
+          "neighborAngle": 34.69354632301332,
+          "residualAngle": 120.7509416574121,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "lowerarm_l",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 16.335343608656615,
+          "outgoingAngle": 49.127655549778126,
+          "neighborAngle": 32.79225046941897,
+          "residualAngle": 32.7315132395957,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "hand_l",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 11.984075975251642,
+          "outgoingAngle": 17.198051142342592,
+          "neighborAngle": 8.127310395289873,
+          "residualAngle": 14.255824213954554,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "index_01_l",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 6.843534078990486,
+          "outgoingAngle": 6.3048829634127515,
+          "neighborAngle": 0.5366789263102305,
+          "residualAngle": 6.574129020494638,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "index_02_l",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 5.284983094362896,
+          "outgoingAngle": 4.868903992309242,
+          "neighborAngle": 0.4149649553006043,
+          "residualAngle": 5.076896912914492,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "middle_01_l",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 6.369136033111258,
+          "outgoingAngle": 5.867832818801958,
+          "neighborAngle": 0.5004516029525234,
+          "residualAngle": 6.118418799071378,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "middle_02_l",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 5.488190186794061,
+          "outgoingAngle": 5.056488307674499,
+          "neighborAngle": 0.4297728054212371,
+          "residualAngle": 5.272240323176845,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "ring_01_l",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 5.4883327669929844,
+          "outgoingAngle": 5.056324383134438,
+          "neighborAngle": 0.43160329611879433,
+          "residualAngle": 5.272240323176845,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "pinky_01_l",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 5.488183583975967,
+          "outgoingAngle": 5.056488307674499,
+          "neighborAngle": 0.42978271661217654,
+          "residualAngle": 5.272240323176845,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "upperarm_r",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 15.703810430247822,
+          "outgoingAngle": 8.525022292747053,
+          "neighborAngle": 22.948442046089667,
+          "residualAngle": 5.294452098357738,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "thumb_01_r",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 131.53635677199583,
+          "outgoingAngle": 131.53635677199583,
+          "neighborAngle": 0.0,
+          "residualAngle": 131.53635677199583,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "index_01_r",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 131.5363840927525,
+          "outgoingAngle": 131.5363840927525,
+          "neighborAngle": 0.0,
+          "residualAngle": 131.5363840927525,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "middle_01_r",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 131.5363840927525,
+          "outgoingAngle": 131.5363840927525,
+          "neighborAngle": 0.0,
+          "residualAngle": 131.5363840927525,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "ring_01_r",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 131.5363840927525,
+          "outgoingAngle": 131.53639775313087,
+          "neighborAngle": 0.0,
+          "residualAngle": 131.53639775313087,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "pinky_01_r",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 131.53639775313087,
+          "outgoingAngle": 131.5363840927525,
+          "neighborAngle": 0.0,
+          "residualAngle": 131.5363840927525,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "neck_01",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 75.0294845986175,
+          "outgoingAngle": 62.375261425226576,
+          "neighborAngle": 13.901869069641412,
+          "residualAngle": 68.64940489490859,
+          "classification": "corrupt-body-frame"
+        },
+        {
+          "bone": "head",
+          "sourceFrame": 4,
+          "sourceTime": 0.06535947630939015,
+          "incomingAngle": 69.40593030775754,
+          "outgoingAngle": 49.672294606823854,
+          "neighborAngle": 22.031488922644396,
+          "residualAngle": 59.355259132759585,
+          "classification": "corrupt-body-frame"
+        }
+      ],
+      "quaternionSignCorrectionCount": 676
     },
     {
       "name": "Frank_RPG_Katana_Guard",
@@ -815,11 +1217,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 987612,
+      "bytes": 985644,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 0
     },
     {
       "name": "Frank_RPG_Katana_Hit_Knockdown_Loop",
@@ -832,11 +1237,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1037340,
+      "bytes": 1025852,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 25
     },
     {
       "name": "Frank_RPG_Katana_Hit01",
@@ -849,11 +1257,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 832620,
+      "bytes": 831628,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 247
     },
     {
       "name": "Frank_RPG_Katana_Hit02",
@@ -866,11 +1277,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 833084,
+      "bytes": 831836,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 199
     },
     {
       "name": "Frank_RPG_Katana_Hit03",
@@ -883,11 +1297,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 871500,
+      "bytes": 870604,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 336
     },
     {
       "name": "Frank_RPG_Katana_Jump_ZeroHeight",
@@ -900,11 +1317,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 952860,
+      "bytes": 951452,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 254
     },
     {
       "name": "Frank_RPG_Katana_Run_Stance2",
@@ -917,11 +1337,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 788332,
+      "bytes": 786748,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 59
     },
     {
       "name": "Frank_RPG_Katana_Run_Stance3",
@@ -934,11 +1357,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 788652,
+      "bytes": 787740,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 74
     },
     {
       "name": "Frank_RPG_Katana_Run01",
@@ -951,11 +1377,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 789548,
+      "bytes": 789260,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 99
     },
     {
       "name": "Frank_RPG_Katana_Run02",
@@ -968,11 +1397,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 789996,
+      "bytes": 789068,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 139
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo01_All__IP",
@@ -985,11 +1417,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1329276,
+      "bytes": 1327196,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1456
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo02_All__IP",
@@ -1002,11 +1437,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1567036,
+      "bytes": 1563100,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1323
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo03_All__IP",
@@ -1019,11 +1457,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1715756,
+      "bytes": 1712348,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1904
     },
     {
       "name": "Frank_RPG_Katana_S1_Skill01__IP",
@@ -1036,11 +1477,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1404812,
+      "bytes": 1401340,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 960
     },
     {
       "name": "Frank_RPG_Katana_S1_Skill02__IP",
@@ -1053,11 +1497,25 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1437340,
+      "bytes": 1434204,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_l",
+          "sourceFrame": 56,
+          "sourceTime": 0.9271522944582429,
+          "incomingAngle": 44.17254090976496,
+          "outgoingAngle": 46.34308282044122,
+          "neighborAngle": 2.1703274000476362,
+          "residualAngle": 45.25780332736663,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 1409
     },
     {
       "name": "Frank_RPG_Katana_S2_Combo01_All__IP",
@@ -1070,11 +1528,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1466236,
+      "bytes": 1462508,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1489
     },
     {
       "name": "Frank_RPG_Katana_S2_Combo02_All__IP",
@@ -1087,11 +1548,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1743596,
+      "bytes": 1740620,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2405
     },
     {
       "name": "Frank_RPG_Katana_S2_Skill01__IP",
@@ -1104,11 +1568,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1742076,
+      "bytes": 1740412,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2878
     },
     {
       "name": "Frank_RPG_Katana_S2_Skill02__IP",
@@ -1121,11 +1588,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1461564,
+      "bytes": 1457676,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1504
     },
     {
       "name": "Frank_RPG_Katana_S3_Combo01_All__IP",
@@ -1138,11 +1608,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1349916,
+      "bytes": 1346444,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1759
     },
     {
       "name": "Frank_RPG_Katana_S3_Skill01__IP",
@@ -1155,11 +1628,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1312924,
+      "bytes": 1310108,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1942
     },
     {
       "name": "Frank_RPG_Katana_S3_Skill02__IP",
@@ -1172,11 +1648,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1765804,
+      "bytes": 1760652,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2866
     },
     {
       "name": "Frank_RPG_Katana_Stance1_Idle",
@@ -1189,11 +1668,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1050460,
+      "bytes": 1047772,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 0
     },
     {
       "name": "Frank_RPG_Katana_Stance2_Idle",
@@ -1206,11 +1688,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1056444,
+      "bytes": 1053996,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 9
     },
     {
       "name": "Frank_RPG_Katana_Stance3_Idle",
@@ -1223,11 +1708,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 936524,
+      "bytes": 931660,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 34
     },
     {
       "name": "Frank_RPG_Katana_Step_B__IP",
@@ -1244,7 +1732,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 56
     },
     {
       "name": "Frank_RPG_Katana_Step_F__IP",
@@ -1261,7 +1752,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 58
     },
     {
       "name": "Frank_RPG_Katana_Step_L__IP",
@@ -1278,7 +1772,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 32
     },
     {
       "name": "Frank_RPG_Katana_Step_R__IP",
@@ -1295,7 +1792,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 24
     },
     {
       "name": "Frank_RPG_Katana_Tumbling_B__IP",
@@ -1308,11 +1808,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 898012,
+      "bytes": 896012,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 463
     },
     {
       "name": "Frank_RPG_Katana_Tumbling_F__IP",
@@ -1325,11 +1828,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 899900,
+      "bytes": 898492,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 450
     },
     {
       "name": "Frank_RPG_Katana_Tumbling_L__IP",
@@ -1342,11 +1848,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 897868,
+      "bytes": 896252,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 392
     },
     {
       "name": "Frank_RPG_Katana_Tumbling_R__IP",
@@ -1359,11 +1868,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 899612,
+      "bytes": 898076,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 534
     },
     {
       "name": "Frank_RPG_Katana_Unequip_Idle",
@@ -1376,11 +1888,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 2260188,
+      "bytes": 2258028,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 66
     },
     {
       "name": "Frank_RPG_Katana_Unequip_Run_Faster",
@@ -1397,7 +1912,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 188
     },
     {
       "name": "Frank_RPG_Katana_Unequip_Run",
@@ -1410,11 +1928,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 801916,
+      "bytes": 801372,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 132
     },
     {
       "name": "Frank_RPG_Katana_Unequip",
@@ -1427,11 +1948,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1588220,
+      "bytes": 1586172,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1977
     },
     {
       "name": "Frank_RPG_Katana_Walk_Faster",
@@ -1444,11 +1968,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 923116,
+      "bytes": 922044,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 173
     },
     {
       "name": "Frank_RPG_Katana_Walk",
@@ -1461,11 +1988,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 963788,
+      "bytes": 962700,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 204
     },
     {
       "name": "Frank_RPG_Katana_Die01",
@@ -1478,11 +2008,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 922172,
+      "bytes": 921148,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 702
     },
     {
       "name": "Frank_RPG_Katana_Die02",
@@ -1495,11 +2028,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 897644,
+      "bytes": 896540,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 636
     },
     {
       "name": "Frank_RPG_Katana_Die03",
@@ -1512,11 +2048,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1182284,
+      "bytes": 1179676,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1005
     },
     {
       "name": "Frank_RPG_Katana_Evade_B",
@@ -1529,11 +2068,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 887916,
+      "bytes": 886556,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 488
     },
     {
       "name": "Frank_RPG_Katana_Evade_F",
@@ -1546,11 +2088,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 887820,
+      "bytes": 886236,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 441
     },
     {
       "name": "Frank_RPG_Katana_Evade_L",
@@ -1563,11 +2108,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 888476,
+      "bytes": 887100,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 423
     },
     {
       "name": "Frank_RPG_Katana_Evade_R",
@@ -1580,11 +2128,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 888044,
+      "bytes": 886924,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 440
     },
     {
       "name": "Frank_RPG_Katana_Guard_Crash",
@@ -1601,7 +2152,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 67
     },
     {
       "name": "Frank_RPG_Katana_Hit_Knockback",
@@ -1614,11 +2168,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 920172,
+      "bytes": 918684,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 256
     },
     {
       "name": "Frank_RPG_Katana_Hit_Knockdown",
@@ -1631,11 +2188,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1046540,
+      "bytes": 1045132,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 943
     },
     {
       "name": "Frank_RPG_Katana_Jump_01",
@@ -1648,11 +2208,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 956108,
+      "bytes": 954524,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 541
     },
     {
       "name": "Frank_RPG_Katana_Jump_02",
@@ -1665,11 +2228,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 954524,
+      "bytes": 952908,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 260
     },
     {
       "name": "Frank_RPG_Katana_S1_Attack01",
@@ -1682,11 +2248,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1046252,
+      "bytes": 1044524,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 349
     },
     {
       "name": "Frank_RPG_Katana_S1_Attack02",
@@ -1699,11 +2268,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1065628,
+      "bytes": 1063388,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 502
     },
     {
       "name": "Frank_RPG_Katana_S1_Attack03",
@@ -1716,11 +2288,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1072684,
+      "bytes": 1071180,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 481
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo01_01",
@@ -1733,11 +2308,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 951340,
+      "bytes": 949996,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 402
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo01_02",
@@ -1750,11 +2328,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 995884,
+      "bytes": 993868,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 790
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo01_03",
@@ -1767,11 +2348,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 965820,
+      "bytes": 964476,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 785
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo01_All",
@@ -1784,11 +2368,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1332748,
+      "bytes": 1330588,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1456
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo02_01",
@@ -1801,11 +2388,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1103964,
+      "bytes": 1101868,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 481
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo02_02",
@@ -1818,11 +2408,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1077084,
+      "bytes": 1074860,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 744
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo02_03",
@@ -1835,11 +2428,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1080636,
+      "bytes": 1078572,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 684
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo02_All",
@@ -1852,11 +2448,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1572620,
+      "bytes": 1568588,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1323
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo03_01",
@@ -1869,11 +2468,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1123212,
+      "bytes": 1120844,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 608
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo03_02",
@@ -1886,11 +2488,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1230972,
+      "bytes": 1227964,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1159
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo03_03",
@@ -1903,11 +2508,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1111788,
+      "bytes": 1109532,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 586
     },
     {
       "name": "Frank_RPG_Katana_S1_Combo03_All",
@@ -1920,11 +2528,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1719676,
+      "bytes": 1716588,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1904
     },
     {
       "name": "Frank_RPG_Katana_S1_Skill01",
@@ -1937,11 +2548,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1408924,
+      "bytes": 1405612,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 960
     },
     {
       "name": "Frank_RPG_Katana_S1_Skill02",
@@ -1954,11 +2568,25 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1440700,
+      "bytes": 1437564,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 1,
+      "sourceKeyCorrections": [
+        {
+          "bone": "lowerarm_l",
+          "sourceFrame": 56,
+          "sourceTime": 0.9271522944582429,
+          "incomingAngle": 44.17250675881911,
+          "outgoingAngle": 46.34308282044122,
+          "neighborAngle": 2.1706881194131777,
+          "residualAngle": 45.257786251893705,
+          "classification": "isolated-key"
+        }
+      ],
+      "quaternionSignCorrectionCount": 1409
     },
     {
       "name": "Frank_RPG_Katana_S2_Attack01",
@@ -1971,11 +2599,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1065644,
+      "bytes": 1063036,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 636
     },
     {
       "name": "Frank_RPG_Katana_S2_Attack02",
@@ -1988,11 +2619,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 976252,
+      "bytes": 974956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 387
     },
     {
       "name": "Frank_RPG_Katana_S2_Attack03",
@@ -2005,11 +2639,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1006220,
+      "bytes": 1004348,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 804
     },
     {
       "name": "Frank_RPG_Katana_S2_Combo01_01",
@@ -2022,11 +2659,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1021532,
+      "bytes": 1019420,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 577
     },
     {
       "name": "Frank_RPG_Katana_S2_Combo01_02",
@@ -2039,11 +2679,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1000108,
+      "bytes": 998012,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 686
     },
     {
       "name": "Frank_RPG_Katana_S2_Combo01_03",
@@ -2056,11 +2699,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 977340,
+      "bytes": 975836,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 738
     },
     {
       "name": "Frank_RPG_Katana_S2_Combo01_All",
@@ -2073,11 +2719,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1470044,
+      "bytes": 1466668,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1489
     },
     {
       "name": "Frank_RPG_Katana_S2_Combo02_01",
@@ -2090,11 +2739,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1067820,
+      "bytes": 1066188,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 835
     },
     {
       "name": "Frank_RPG_Katana_S2_Combo02_02",
@@ -2107,11 +2759,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1307740,
+      "bytes": 1304396,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1673
     },
     {
       "name": "Frank_RPG_Katana_S2_Combo02_03",
@@ -2124,11 +2779,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1209740,
+      "bytes": 1207916,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1096
     },
     {
       "name": "Frank_RPG_Katana_S2_Combo02_All",
@@ -2141,11 +2799,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1752828,
+      "bytes": 1750412,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2405
     },
     {
       "name": "Frank_RPG_Katana_S2_Skill01",
@@ -2158,11 +2819,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1756812,
+      "bytes": 1755196,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2878
     },
     {
       "name": "Frank_RPG_Katana_S2_Skill02",
@@ -2175,11 +2839,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1465212,
+      "bytes": 1461196,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1504
     },
     {
       "name": "Frank_RPG_Katana_S3_Attack01",
@@ -2192,11 +2859,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 924124,
+      "bytes": 922412,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 413
     },
     {
       "name": "Frank_RPG_Katana_S3_Attack02",
@@ -2209,11 +2879,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 923916,
+      "bytes": 922444,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 442
     },
     {
       "name": "Frank_RPG_Katana_S3_Attack03",
@@ -2226,11 +2899,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1130012,
+      "bytes": 1127452,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1498
     },
     {
       "name": "Frank_RPG_Katana_S3_Combo01_01",
@@ -2243,11 +2919,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1132956,
+      "bytes": 1130188,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1013
     },
     {
       "name": "Frank_RPG_Katana_S3_Combo01_02",
@@ -2260,11 +2939,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 987692,
+      "bytes": 985084,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 934
     },
     {
       "name": "Frank_RPG_Katana_S3_Combo01_All",
@@ -2277,11 +2959,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1354444,
+      "bytes": 1350892,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1759
     },
     {
       "name": "Frank_RPG_Katana_S3_Skill01",
@@ -2294,11 +2979,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1317388,
+      "bytes": 1314092,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1942
     },
     {
       "name": "Frank_RPG_Katana_S3_Skill02",
@@ -2311,11 +2999,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1768828,
+      "bytes": 1763836,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2866
     },
     {
       "name": "Frank_RPG_Katana_Stance1_Equip",
@@ -2328,11 +3019,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1189564,
+      "bytes": 1187580,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 653
     },
     {
       "name": "Frank_RPG_Katana_Stance1_to_2",
@@ -2345,11 +3039,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 891516,
+      "bytes": 890252,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 266
     },
     {
       "name": "Frank_RPG_Katana_Stance1_to_3",
@@ -2362,11 +3059,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 834876,
+      "bytes": 833532,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 625
     },
     {
       "name": "Frank_RPG_Katana_Stance2_to_1",
@@ -2379,11 +3079,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 891772,
+      "bytes": 890268,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 274
     },
     {
       "name": "Frank_RPG_Katana_Stance3_to_1",
@@ -2396,11 +3099,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 1057004,
+      "bytes": 1055036,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1298
     },
     {
       "name": "Frank_RPG_Katana_Step_B",
@@ -2417,7 +3123,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 56
     },
     {
       "name": "Frank_RPG_Katana_Step_F",
@@ -2434,7 +3143,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 58
     },
     {
       "name": "Frank_RPG_Katana_Step_L",
@@ -2451,7 +3163,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 32
     },
     {
       "name": "Frank_RPG_Katana_Step_R",
@@ -2468,7 +3183,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 24
     },
     {
       "name": "Frank_RPG_Katana_Tumbling_B",
@@ -2481,11 +3199,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 900092,
+      "bytes": 898236,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 463
     },
     {
       "name": "Frank_RPG_Katana_Tumbling_F",
@@ -2498,11 +3219,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 901228,
+      "bytes": 899708,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 450
     },
     {
       "name": "Frank_RPG_Katana_Tumbling_L",
@@ -2515,11 +3239,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 899628,
+      "bytes": 898204,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 392
     },
     {
       "name": "Frank_RPG_Katana_Tumbling_R",
@@ -2532,11 +3259,14 @@
       "fps": 60.0,
       "sourceBones": 77,
       "mappedBones": 70,
-      "bytes": 901068,
+      "bytes": 899660,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 7 bones that exist in the PSA:\n['Center_Slash_FX', 'L_Hand_Weapon', 'Main_Camera', 'Sword_Case', 'Weapon_Blade', 'Weapon_Sword', 'Weapon_Sword_Dummy']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 534
     }
   ]
 }

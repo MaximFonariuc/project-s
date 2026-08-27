@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "pack": "TwoHandedSpear",
   "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
   "animationType": "Humanoid",
@@ -16,11 +16,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 827164,
+      "bytes": 826172,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 77
     },
     {
       "name": "Frank_RPG_Spear_8Way_Run_BL",
@@ -33,11 +36,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 826252,
+      "bytes": 826412,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 130
     },
     {
       "name": "Frank_RPG_Spear_8Way_Run_BR",
@@ -50,11 +56,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 828876,
+      "bytes": 828668,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 154
     },
     {
       "name": "Frank_RPG_Spear_8Way_Run_F",
@@ -67,11 +76,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 828364,
+      "bytes": 827196,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 110
     },
     {
       "name": "Frank_RPG_Spear_8Way_Run_FL",
@@ -84,11 +96,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 828284,
+      "bytes": 827020,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 50
     },
     {
       "name": "Frank_RPG_Spear_8Way_Run_FR",
@@ -101,11 +116,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 828284,
+      "bytes": 827148,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 121
     },
     {
       "name": "Frank_RPG_Spear_8Way_Run_L",
@@ -118,11 +136,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 826972,
+      "bytes": 826252,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 188
     },
     {
       "name": "Frank_RPG_Spear_8Way_Run_R",
@@ -135,11 +156,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 826796,
+      "bytes": 825756,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 71
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_B",
@@ -152,11 +176,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 863836,
+      "bytes": 863532,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 235
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_BL",
@@ -173,7 +200,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 178
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_BR",
@@ -186,11 +216,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 869228,
+      "bytes": 868956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 166
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_F",
@@ -203,11 +236,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 868972,
+      "bytes": 869180,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 156
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_FL",
@@ -220,11 +256,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 863116,
+      "bytes": 862924,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 167
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_FR",
@@ -237,11 +276,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 863660,
+      "bytes": 863468,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 183
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_L",
@@ -254,11 +296,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 863052,
+      "bytes": 862540,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 288
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_R",
@@ -271,11 +316,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 862876,
+      "bytes": 862652,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 291
     },
     {
       "name": "Frank_RPG_Spear_Block",
@@ -292,7 +340,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 34
     },
     {
       "name": "Frank_RPG_Spear_Equip_Idle",
@@ -305,11 +356,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 946428,
+      "bytes": 945132,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 52
     },
     {
       "name": "Frank_RPG_Spear_Equip_Run01",
@@ -322,11 +376,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 789692,
+      "bytes": 788844,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 160
     },
     {
       "name": "Frank_RPG_Spear_Equip_Run02",
@@ -339,11 +396,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 791532,
+      "bytes": 791084,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 162
     },
     {
       "name": "Frank_RPG_Spear_Equip",
@@ -356,11 +416,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1014540,
+      "bytes": 1013292,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 707
     },
     {
       "name": "Frank_RPG_Spear_Getup01",
@@ -373,11 +436,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 930700,
+      "bytes": 929132,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 978
     },
     {
       "name": "Frank_RPG_Spear_Getup02",
@@ -390,11 +456,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 903900,
+      "bytes": 902396,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 931
     },
     {
       "name": "Frank_RPG_Spear_Guard",
@@ -407,11 +476,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 990220,
+      "bytes": 986284,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 0
     },
     {
       "name": "Frank_RPG_Spear_Hit_Knockdown_Loop",
@@ -424,11 +496,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1037964,
+      "bytes": 1026972,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 25
     },
     {
       "name": "Frank_RPG_Spear_Hit01",
@@ -441,11 +516,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 837356,
+      "bytes": 836220,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 599
     },
     {
       "name": "Frank_RPG_Spear_Hit02",
@@ -458,11 +536,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 837276,
+      "bytes": 835948,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 532
     },
     {
       "name": "Frank_RPG_Spear_Hit03",
@@ -475,11 +556,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 876684,
+      "bytes": 875260,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 554
     },
     {
       "name": "Frank_RPG_Spear_Jump_ZeroHeight",
@@ -492,11 +576,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 959308,
+      "bytes": 957500,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1110
     },
     {
       "name": "Frank_RPG_Spear_Unequip_Idle",
@@ -509,11 +596,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 2258508,
+      "bytes": 2255980,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 66
     },
     {
       "name": "Frank_RPG_Spear_Unequip_Run_Faster",
@@ -530,7 +620,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 220
     },
     {
       "name": "Frank_RPG_Spear_Unequip_Run",
@@ -543,11 +636,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 801900,
+      "bytes": 801052,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 140
     },
     {
       "name": "Frank_RPG_Spear_Unequip",
@@ -560,11 +656,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 986892,
+      "bytes": 985500,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 991
     },
     {
       "name": "Frank_RPG_Spear_Walk_Faster",
@@ -577,11 +676,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 922604,
+      "bytes": 921260,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 161
     },
     {
       "name": "Frank_RPG_Spear_Walk",
@@ -594,11 +696,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 963324,
+      "bytes": 961612,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 192
     },
     {
       "name": "Frank_RPG_Spear_Attack01",
@@ -611,11 +716,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 890972,
+      "bytes": 889580,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 220
     },
     {
       "name": "Frank_RPG_Spear_Attack02",
@@ -628,11 +736,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 947788,
+      "bytes": 945884,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 522
     },
     {
       "name": "Frank_RPG_Spear_Attack03",
@@ -645,11 +756,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 952012,
+      "bytes": 950044,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 668
     },
     {
       "name": "Frank_RPG_Spear_Attack04",
@@ -662,11 +776,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 892428,
+      "bytes": 891116,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 417
     },
     {
       "name": "Frank_RPG_Spear_Attack05",
@@ -679,11 +796,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1051852,
+      "bytes": 1050140,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1045
     },
     {
       "name": "Frank_RPG_Spear_Combo01_1",
@@ -696,11 +816,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1004908,
+      "bytes": 1003004,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 742
     },
     {
       "name": "Frank_RPG_Spear_Combo01_2",
@@ -713,11 +836,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1105580,
+      "bytes": 1103468,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1115
     },
     {
       "name": "Frank_RPG_Spear_Combo01_All",
@@ -730,11 +856,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1299820,
+      "bytes": 1296956,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1991
     },
     {
       "name": "Frank_RPG_Spear_Combo02_1",
@@ -747,11 +876,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 924284,
+      "bytes": 922972,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 512
     },
     {
       "name": "Frank_RPG_Spear_Combo02_2",
@@ -764,11 +896,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1101132,
+      "bytes": 1099804,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 761
     },
     {
       "name": "Frank_RPG_Spear_Combo02_3",
@@ -781,11 +916,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1032460,
+      "bytes": 1030268,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 925
     },
     {
       "name": "Frank_RPG_Spear_Combo02_All",
@@ -798,11 +936,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1464124,
+      "bytes": 1461436,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1559
     },
     {
       "name": "Frank_RPG_Spear_Combo03_1",
@@ -815,11 +956,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1166540,
+      "bytes": 1164220,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1482
     },
     {
       "name": "Frank_RPG_Spear_Combo03_2",
@@ -832,11 +976,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1214028,
+      "bytes": 1211884,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1523
     },
     {
       "name": "Frank_RPG_Spear_Combo03_3",
@@ -849,11 +996,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1194620,
+      "bytes": 1193084,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1386
     },
     {
       "name": "Frank_RPG_Spear_Combo03_All",
@@ -866,11 +1016,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1904476,
+      "bytes": 1901100,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 3820
     },
     {
       "name": "Frank_RPG_Spear_Combo04_1",
@@ -883,11 +1036,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 953596,
+      "bytes": 951500,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 648
     },
     {
       "name": "Frank_RPG_Spear_Combo04_2",
@@ -900,11 +1056,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1007068,
+      "bytes": 1005388,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 820
     },
     {
       "name": "Frank_RPG_Spear_Combo04_3",
@@ -917,11 +1076,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 976764,
+      "bytes": 974988,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 783
     },
     {
       "name": "Frank_RPG_Spear_Combo04_4",
@@ -934,11 +1096,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1079244,
+      "bytes": 1076924,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1252
     },
     {
       "name": "Frank_RPG_Spear_Combo04_All",
@@ -951,11 +1116,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1589708,
+      "bytes": 1586044,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 3507
     },
     {
       "name": "Frank_RPG_Spear_Combo05_1",
@@ -968,11 +1136,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 975468,
+      "bytes": 974108,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 452
     },
     {
       "name": "Frank_RPG_Spear_Combo05_2",
@@ -985,11 +1156,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1239772,
+      "bytes": 1238812,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1446
     },
     {
       "name": "Frank_RPG_Spear_Combo05_3",
@@ -1002,11 +1176,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1006956,
+      "bytes": 1005084,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 925
     },
     {
       "name": "Frank_RPG_Spear_Combo05_All",
@@ -1019,11 +1196,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1523884,
+      "bytes": 1520876,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2266
     },
     {
       "name": "Frank_RPG_Spear_Die01",
@@ -1036,11 +1216,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 929548,
+      "bytes": 927964,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1149
     },
     {
       "name": "Frank_RPG_Spear_Die02",
@@ -1053,11 +1236,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 901324,
+      "bytes": 900252,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1039
     },
     {
       "name": "Frank_RPG_Spear_Die03",
@@ -1070,11 +1256,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 938620,
+      "bytes": 937212,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 869
     },
     {
       "name": "Frank_RPG_Spear_Die04",
@@ -1087,11 +1276,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 962460,
+      "bytes": 960700,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1318
     },
     {
       "name": "Frank_RPG_Spear_Die05",
@@ -1104,11 +1296,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1108076,
+      "bytes": 1106492,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1621
     },
     {
       "name": "Frank_RPG_Spear_Evade_B",
@@ -1121,11 +1316,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 840460,
+      "bytes": 839340,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 653
     },
     {
       "name": "Frank_RPG_Spear_Evade_F",
@@ -1138,11 +1336,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 841116,
+      "bytes": 839804,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 684
     },
     {
       "name": "Frank_RPG_Spear_Evade_L",
@@ -1155,11 +1356,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 839916,
+      "bytes": 839116,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 710
     },
     {
       "name": "Frank_RPG_Spear_Evade_R",
@@ -1172,11 +1376,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 840316,
+      "bytes": 839404,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 729
     },
     {
       "name": "Frank_RPG_Spear_Hit_Knockback",
@@ -1189,11 +1396,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 926732,
+      "bytes": 925436,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 715
     },
     {
       "name": "Frank_RPG_Spear_Hit_Knockdown",
@@ -1206,11 +1416,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1002476,
+      "bytes": 1001068,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1459
     },
     {
       "name": "Frank_RPG_Spear_Jump_01",
@@ -1223,11 +1436,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 961852,
+      "bytes": 960188,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1104
     },
     {
       "name": "Frank_RPG_Spear_Jump_02",
@@ -1240,11 +1456,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 926636,
+      "bytes": 925612,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1066
     },
     {
       "name": "Frank_RPG_Spear_Skill01",
@@ -1257,11 +1476,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1292764,
+      "bytes": 1289980,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1516
     },
     {
       "name": "Frank_RPG_Spear_Skill02",
@@ -1274,11 +1496,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1529676,
+      "bytes": 1526524,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2897
     },
     {
       "name": "Frank_RPG_Spear_Skill03",
@@ -1291,11 +1516,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 1628636,
+      "bytes": 1625180,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 2564
     },
     {
       "name": "Frank_RPG_Spear_Step_B",
@@ -1312,7 +1540,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 382
     },
     {
       "name": "Frank_RPG_Spear_Step_F",
@@ -1329,7 +1560,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 267
     },
     {
       "name": "Frank_RPG_Spear_Step_L",
@@ -1346,7 +1580,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 505
     },
     {
       "name": "Frank_RPG_Spear_Step_R",
@@ -1363,7 +1600,10 @@
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 288
     },
     {
       "name": "Frank_RPG_Spear_Tumbling_B",
@@ -1376,11 +1616,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 904572,
+      "bytes": 902764,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 990
     },
     {
       "name": "Frank_RPG_Spear_Tumbling_F",
@@ -1393,11 +1636,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 906732,
+      "bytes": 905356,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 863
     },
     {
       "name": "Frank_RPG_Spear_Tumbling_L",
@@ -1410,11 +1656,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 904428,
+      "bytes": 903100,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 908
     },
     {
       "name": "Frank_RPG_Spear_Tumbling_R",
@@ -1427,11 +1676,14 @@
       "fps": 60.0,
       "sourceBones": 75,
       "mappedBones": 70,
-      "bytes": 906588,
+      "bytes": 905596,
       "warnings": [
         "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
         "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ]
+      ],
+      "sourceKeyCorrectionCount": 0,
+      "sourceKeyCorrections": [],
+      "quaternionSignCorrectionCount": 1065
     }
   ]
 }
