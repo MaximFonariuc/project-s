@@ -2,7 +2,7 @@
 
 ## Граница
 
-`ModularInput.InputBuffer<TAction>` — нейтральная очередь semantic actions. `_App.CombatInputBuffer` адаптирует её к `PlayerCombatCommandId`, unscaled combat clock и authoring-настройкам Project S.
+`ModularInput.InputBuffer<TAction>` — нейтральная очередь semantic actions. `_App.CombatInputBuffer` адаптирует её к `PlayerCombatCommandSample`, unscaled combat clock и authoring-настройкам Project S.
 
 Raw keyboard, gamepad и будущий mobile UI не попадают в buffer: каждый input source сначала преобразуется в одинаковую команду через `IPlayerInput`.
 
@@ -19,14 +19,19 @@ classDiagram
         -CanAcceptBufferedEntry(entry) bool
     }
     class CombatInputBuffer {
-        +Store(commandId) bool
-        +TryConsume(predicate, commandId) bool
+        +Store(commandId, sourceActionId, normalizedTime) bool
+        +TryConsume(predicate, sample) bool
         +Clear()
+    }
+    class PlayerCombatCommandSample {
+        +CommandId PlayerCombatCommandId
+        +SourceActionId PlayerCombatActionId
+        +SourceNormalizedTime float
     }
     class CombatInputBufferSettings {
         +GetWriteOptions(commandId)
     }
-    class InputBuffer~PlayerCombatCommandId~ {
+    class InputBuffer~PlayerCombatCommandSample~ {
         <<ModularInput>>
     }
     class PlayerCombatActionGraph {
@@ -39,17 +44,23 @@ classDiagram
     IPlayerInput --> PlayerCombatController
     PlayerCombatController --> CombatInputBuffer
     PlayerCombatController --> PlayerCombatActionGraph
-    CombatInputBuffer --> InputBuffer~PlayerCombatCommandId~
+    CombatInputBuffer --> PlayerCombatCommandSample
+    CombatInputBuffer --> InputBuffer~PlayerCombatCommandSample~
     CombatInputBuffer --> CombatInputBufferSettings
     CombatInputBuffer --> ICombatClock
 ```
 
 ## Ownership и consumption
 
-Buffer хранит команду, timestamp, expiration, priority и duplicate policy. Он не решает, какая action следует за текущей. При каждом `CombatActionFrame` controller передаёт predicate, а graph проверяет одновременно:
+Buffer хранит команду, action-источник, normalized time получения, timestamp,
+expiration, priority и duplicate policy. Он не решает, какая action следует за
+текущей. При каждом `CombatActionFrame` controller передаёт predicate, а graph
+проверяет одновременно:
 
+- получена ли команда во время того же source action;
 - существует ли transition из текущей action по этой команде;
 - открыт ли требуемый `ChainWindow` или `CancelWindow`;
+- попадает ли время фактического нажатия в optional `InputWindow`;
 - подходит ли target action текущему Grounded/Airborne environment;
 - доступна ли presentation и завершён ли cooldown.
 
@@ -73,6 +84,12 @@ environment по-прежнему не позволяют потребить к�
 несколько будущих heavy/special actions. Приоритет влияет только на выбор среди
 одновременно допустимых buffered commands и не обходит graph transition,
 environment, presentation или cooldown gates.
+
+`RefreshMatching` обновляет не только lifetime/priority, но и sample последнего
+повторного нажатия. Поэтому timing-gate всегда читает актуальный input context,
+а не normalized time первого нажатия. Команда, оставшаяся от предыдущего action,
+не может случайно стать transition следующего action; на completion она всё ещё
+может пройти отдельное entry rule как независимый ввод.
 
 У первых двух ground light actions начало `CancelWindow` выровнено с началом
 `ChainWindow`. Благодаря этому light и named commands становятся кандидатами в

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ModularInput;
 
 namespace _App
@@ -7,7 +8,7 @@ namespace _App
     {
         private readonly ICombatClock _clock;
         private readonly CombatInputBufferSettings _settings;
-        private readonly InputBuffer<PlayerCombatCommandId> _buffer;
+        private readonly InputBuffer<PlayerCombatCommandSample> _buffer;
 
         public int Count => _buffer.Count;
 
@@ -17,51 +18,74 @@ namespace _App
         {
             _clock = clock ?? throw new ArgumentNullException(nameof(clock));
             _settings = settings ?? throw new ArgumentNullException(nameof(settings));
-            _buffer = new InputBuffer<PlayerCombatCommandId>(_settings.BufferOptions);
+            _buffer = new InputBuffer<PlayerCombatCommandSample>(
+                _settings.BufferOptions,
+                CommandSampleComparer.Instance);
         }
 
-        public bool Store(PlayerCombatCommandId commandId)
+        public bool Store(
+            PlayerCombatCommandId commandId,
+            PlayerCombatActionId sourceActionId,
+            float sourceNormalizedTime)
         {
             return _buffer.TryEnqueue(
-                commandId,
+                new PlayerCombatCommandSample(
+                    commandId,
+                    sourceActionId,
+                    sourceNormalizedTime),
                 _clock.UnscaledTime,
                 _settings.GetWriteOptions(commandId));
         }
 
-        public bool TryConsume(out PlayerCombatCommandId commandId)
+        public bool TryConsume(out PlayerCombatCommandSample sample)
         {
             if (!_buffer.TryConsume(
                     _clock.UnscaledTime,
-                    out InputBufferEntry<PlayerCombatCommandId> entry))
+                    out InputBufferEntry<PlayerCombatCommandSample> entry))
             {
-                commandId = default;
+                sample = default;
                 return false;
             }
 
-            commandId = entry.Action;
+            sample = entry.Action;
             return true;
         }
 
         public bool TryConsume(
-            InputBufferEntryPredicate<PlayerCombatCommandId> predicate,
-            out PlayerCombatCommandId commandId)
+            InputBufferEntryPredicate<PlayerCombatCommandSample> predicate,
+            out PlayerCombatCommandSample sample)
         {
             if (!_buffer.TryConsume(
                     _clock.UnscaledTime,
                     predicate,
-                    out InputBufferEntry<PlayerCombatCommandId> entry))
+                    out InputBufferEntry<PlayerCombatCommandSample> entry))
             {
-                commandId = default;
+                sample = default;
                 return false;
             }
 
-            commandId = entry.Action;
+            sample = entry.Action;
             return true;
         }
 
         public void Clear()
         {
             _buffer.Clear();
+        }
+
+        private sealed class CommandSampleComparer : IEqualityComparer<PlayerCombatCommandSample>
+        {
+            public static CommandSampleComparer Instance { get; } = new CommandSampleComparer();
+
+            public bool Equals(PlayerCombatCommandSample left, PlayerCombatCommandSample right)
+            {
+                return left.CommandId == right.CommandId;
+            }
+
+            public int GetHashCode(PlayerCombatCommandSample sample)
+            {
+                return sample.CommandId.GetHashCode();
+            }
         }
     }
 }

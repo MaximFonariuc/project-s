@@ -70,5 +70,7 @@ classDiagram
   gameplay interrupts an action. Normal completion lets the controller use its
   authored exit transition.
 - Weapon transitions, three-step ground/air light combos, a grounded heavy,
-  the first grounded named special and the launcher-to-air-chase route are
-  implemented. Additional named skills remain deferred.
+  a timing-sampled `Light -> pause -> Light` finisher, the first grounded named
+  special and the launcher-to-air-chase route are implemented. The pause
+  finisher currently reuses the heavy presentation slot; additional named
+  skills remain deferred.

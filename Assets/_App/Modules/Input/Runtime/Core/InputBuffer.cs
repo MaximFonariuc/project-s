@@ -47,7 +47,7 @@ namespace ModularInput
                     return false;
 
                 case InputBufferDuplicatePolicy.RefreshMatching when matchingIndex >= 0:
-                    return TryRefresh(matchingIndex, timestamp, options);
+                    return TryRefresh(matchingIndex, action, timestamp, options);
 
                 case InputBufferDuplicatePolicy.ReplaceMatching:
                     RemoveMatching(action);
@@ -150,6 +150,7 @@ namespace ModularInput
 
         private bool TryRefresh(
             int index,
+            TAction action,
             double timestamp,
             InputBufferWriteOptions options)
         {
@@ -162,7 +163,7 @@ namespace ModularInput
             InputBufferEntry<TAction> existing = _entries[index];
             _entries[index] = new InputBufferEntry<TAction>(
                 existing.Sequence,
-                existing.Action,
+                action,
                 timestamp,
                 expiresAt,
                 options.Priority);

@@ -54,6 +54,38 @@ namespace _App
 
     }
 
+    internal readonly struct PlayerCombatCommandSample
+    {
+        public PlayerCombatCommandId CommandId { get; }
+        public PlayerCombatActionId SourceActionId { get; }
+        public float SourceNormalizedTime { get; }
+
+        public PlayerCombatCommandSample(
+            PlayerCombatCommandId commandId,
+            PlayerCombatActionId sourceActionId,
+            float sourceNormalizedTime)
+        {
+            if (string.IsNullOrEmpty(commandId.Value))
+            {
+                throw new ArgumentException("Combat command sample requires a command id.", nameof(commandId));
+            }
+
+            if (string.IsNullOrEmpty(sourceActionId.Value))
+            {
+                throw new ArgumentException("Combat command sample requires a source action id.", nameof(sourceActionId));
+            }
+
+            if (sourceNormalizedTime < 0.0f || sourceNormalizedTime > 1.0f)
+            {
+                throw new ArgumentOutOfRangeException(nameof(sourceNormalizedTime));
+            }
+
+            CommandId = commandId;
+            SourceActionId = sourceActionId;
+            SourceNormalizedTime = sourceNormalizedTime;
+        }
+    }
+
     public readonly struct PlayerCombatActionId : IEquatable<PlayerCombatActionId>
     {
         public string Value { get; }

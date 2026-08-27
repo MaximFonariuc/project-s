@@ -170,13 +170,20 @@ namespace _App
         [SerializeField] private PlayerCombatTransitionCondition _condition =
             PlayerCombatTransitionCondition.Any;
 
-        [Header("Optional Timing Gate")]
+        [Header("Optional Transition Timing Gate")]
         [Tooltip(
-            "Restricts this route to a sub-range of the selected Chain/Cancel window. " +
-            "Use non-overlapping ranges for fast and delayed variants of the same input.")]
+            "Restricts this route to a sub-range of the selected Chain/Cancel window.")]
         [SerializeField] private bool _useAcceptanceWindow;
         [SerializeField, Range(0.0f, 1.0f)] private float _acceptanceStart = 0.5f;
         [SerializeField, Range(0.0f, 1.0f)] private float _acceptanceEnd = 0.75f;
+
+        [Header("Optional Input Timing Gate")]
+        [Tooltip(
+            "Restricts this route by the normalized source-action time at which input was received. " +
+            "Use non-overlapping ranges for rapid and delayed variants of the same command.")]
+        [SerializeField] private bool _useInputWindow;
+        [SerializeField, Range(0.0f, 1.0f)] private float _inputStart;
+        [SerializeField, Range(0.0f, 1.0f)] private float _inputEnd = 0.75f;
 
         internal PlayerCombatTransitionRule Build()
         {
@@ -188,6 +195,9 @@ namespace _App
                 _condition,
                 _useAcceptanceWindow
                     ? new NormalizedActionWindow(_acceptanceStart, _acceptanceEnd)
+                    : NormalizedActionWindow.Disabled,
+                _useInputWindow
+                    ? new NormalizedActionWindow(_inputStart, _inputEnd)
                     : NormalizedActionWindow.Disabled);
         }
     }

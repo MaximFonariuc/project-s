@@ -18,6 +18,11 @@ classDiagram
     class PlayerCombatActionId {
         +Value string
     }
+    class PlayerCombatCommandSample {
+        +CommandId PlayerCombatCommandId
+        +SourceActionId PlayerCombatActionId
+        +SourceNormalizedTime float
+    }
     class PlayerCombatAnimationId {
         +Value string
     }
@@ -41,6 +46,8 @@ classDiagram
         +TargetActionId PlayerCombatActionId
         +Window PlayerCombatTransitionWindow
         +Condition PlayerCombatTransitionCondition
+        +AcceptanceWindow NormalizedActionWindow
+        +InputWindow NormalizedActionWindow
     }
     class CombatActionOutcome {
         +ExecutionId AttackExecutionId
@@ -83,16 +90,22 @@ classDiagram
     PlayerCombatAction --> CombatActionDefinition
     PlayerCombatEntryRule --> PlayerCombatCommandId
     PlayerCombatTransitionRule --> PlayerCombatCommandId
+    PlayerCombatCommandSample --> PlayerCombatCommandId
+    PlayerCombatCommandSample --> PlayerCombatActionId
     PlayerCombatController *-- CombatActionOutcome
     ICombatHitEvents --> PlayerCombatController : matching execution only
     PlayerCombatActionProfile ..> PlayerCombatActionGraph : builds
     IPlayerInput --> PlayerCombatController : command
-    PlayerCombatController --> PlayerCombatActionGraph : resolves
+    PlayerCombatController --> PlayerCombatCommandSample : buffers
+    PlayerCombatController --> PlayerCombatActionGraph : resolves sample
 ```
 
 ## Команда, действие и presentation
 
 - `PlayerCombatCommandId` отвечает на вопрос «что запросил игрок»: `attack.light`, `attack.heavy`, `attack.launcher`, `skill.special` и будущие `item.use`.
+- `PlayerCombatCommandSample` дополняет buffered command id action-источником и
+  normalized time реального нажатия. Graph использует их только для provenance и
+  timing-gates; timestamp/lifetime остаются ответственностью input buffer.
 - `PlayerCombatActionId` идентифицирует узел moveset: `combo.0`, `combo.1`, `air.combo.0`.
 - `PlayerCombatAnimationId` выбирает named animation slot (`attack.heavy`, `skill.special`) и не определяет gameplay transition.
 - `PlayerCombatPresentation` сообщает animation adapter, как отобразить уже выбранное действие: combo index либо named `PlayerCombatAnimationId`.
@@ -127,6 +140,13 @@ Graph отклоняет `OnHit` для source action без hitbox-window и `O
 условия взаимоисключающие (`OnHit` и `OnWhiff`); `Any` пересекается с обоими и
 поэтому не скрывает более конкретное правило порядком элементов в списке.
 
+Optional `InputWindow` относится ко времени получения semantic input, а
+`AcceptanceWindow` — к времени исполнения внутри выбранного
+`ChainWindow`/`CancelWindow`. Поэтому раннее buffered нажатие и осознанная пауза
+могут вести в разные узлы без зависимости от frame rate или длины buffer
+lifetime. Для одной команды пересекающиеся execution-, input- и
+environment-области отклоняются как неоднозначный graph.
+
 Условие относится именно к переходу текущего action. Если команда не прошла
 transition condition, но дожила в buffer до completion и имеет отдельное entry rule,
 она по-прежнему может начаться как новое самостоятельное action. Для команды,
@@ -154,6 +174,9 @@ serialized profile не требует migration и не меняет текущ
 named action:
 
 - три наземных actions `combo.ground.0 → 1 → 2`;
+- поздний `attack.light` после `combo.ground.0` входит в
+  `combo.ground.pause-finisher`; до отдельного presentation slot он намеренно
+  переиспользует универсальную heavy-анимацию;
 - три воздушных actions `combo.air.0 → 1 → 2`;
 - самостоятельную наземную `attack.heavy`, доступную entry и из cancel window
   любого наземного light-combo step;

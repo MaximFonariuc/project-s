@@ -25,6 +25,7 @@ namespace _App
         public PlayerCombatTransitionWindow Window { get; }
         public PlayerCombatTransitionCondition Condition { get; }
         public NormalizedActionWindow AcceptanceWindow { get; }
+        public NormalizedActionWindow InputWindow { get; }
 
         public PlayerCombatTransitionRule(
             PlayerCombatActionId sourceActionId,
@@ -32,7 +33,8 @@ namespace _App
             PlayerCombatActionId targetActionId,
             PlayerCombatTransitionWindow window,
             PlayerCombatTransitionCondition condition = PlayerCombatTransitionCondition.Any,
-            NormalizedActionWindow acceptanceWindow = default)
+            NormalizedActionWindow acceptanceWindow = default,
+            NormalizedActionWindow inputWindow = default)
         {
             SourceActionId = sourceActionId;
             CommandId = commandId;
@@ -40,6 +42,7 @@ namespace _App
             Window = window;
             Condition = condition;
             AcceptanceWindow = acceptanceWindow;
+            InputWindow = inputWindow;
         }
     }
 
@@ -84,21 +87,25 @@ namespace _App
 
         public bool TryResolveTransition(
             PlayerCombatAction source,
-            PlayerCombatCommandId commandId,
+            in PlayerCombatCommandSample command,
             PlayerCombatEnvironment environment,
             in CombatActionFrame frame,
             CombatActionOutcome outcome,
             out PlayerCombatAction action)
         {
             if (source != null &&
+                command.SourceActionId == source.Id &&
                 _transitions.TryGetValue(
-                    new TransitionKey(source.Id, commandId),
+                    new TransitionKey(source.Id, command.CommandId),
                     out List<PlayerCombatTransitionRule> candidates))
             {
                 for (int i = 0; i < candidates.Count; i++)
                 {
                     PlayerCombatTransitionRule transition = candidates[i];
-                    if (IsWindowOpen(in transition, in frame) &&
+                    if (IsWindowOpen(
+                            in transition,
+                            in frame,
+                            command.SourceNormalizedTime) &&
                         IsConditionSatisfied(
                             transition.Condition,
                             source.Definition.HitboxWindow,
@@ -234,7 +241,8 @@ namespace _App
 
         private static bool IsWindowOpen(
             in PlayerCombatTransitionRule transition,
-            in CombatActionFrame frame)
+            in CombatActionFrame frame,
+            float inputNormalizedTime)
         {
             bool sourceWindowOpen = transition.Window switch
             {
@@ -245,7 +253,9 @@ namespace _App
 
             return sourceWindowOpen &&
                    (!transition.AcceptanceWindow.IsEnabled ||
-                    transition.AcceptanceWindow.Contains(frame.NormalizedTime));
+                    transition.AcceptanceWindow.Contains(frame.NormalizedTime)) &&
+                   (!transition.InputWindow.IsEnabled ||
+                    transition.InputWindow.Contains(inputNormalizedTime));
         }
 
         private static bool IsConditionSatisfied(
@@ -453,6 +463,16 @@ namespace _App
                     $"window outside its {transition.Window} window.",
                     "transitions");
             }
+
+            NormalizedActionWindow inputWindow = transition.InputWindow;
+            if (inputWindow.IsEnabled &&
+                inputWindow.End > actions[transition.SourceActionId].Definition.CompletionTime)
+            {
+                throw new ArgumentException(
+                    $"Combat transition from '{transition.SourceActionId}' has an input " +
+                    "window after its source action completes.",
+                    "transitions");
+            }
         }
 
         private static bool TransitionWindowsOverlap(
@@ -461,18 +481,45 @@ namespace _App
             IReadOnlyDictionary<PlayerCombatActionId, PlayerCombatAction> actions)
         {
             CombatActionDefinition definition = actions[left.SourceActionId].Definition;
-            NormalizedActionWindow leftWindow = GetEffectiveTransitionWindow(left, definition);
-            NormalizedActionWindow rightWindow = GetEffectiveTransitionWindow(right, definition);
-            return leftWindow.Start <= rightWindow.End && rightWindow.Start <= leftWindow.End;
+            NormalizedActionWindow leftExecutionWindow =
+                GetExecutionWindow(left, definition);
+            NormalizedActionWindow rightExecutionWindow =
+                GetExecutionWindow(right, definition);
+            if (!WindowsOverlap(in leftExecutionWindow, in rightExecutionWindow))
+            {
+                return false;
+            }
+
+            NormalizedActionWindow leftInputWindow =
+                GetInputWindow(left, definition);
+            NormalizedActionWindow rightInputWindow =
+                GetInputWindow(right, definition);
+            return WindowsOverlap(in leftInputWindow, in rightInputWindow);
         }
 
-        private static NormalizedActionWindow GetEffectiveTransitionWindow(
+        private static NormalizedActionWindow GetExecutionWindow(
             in PlayerCombatTransitionRule transition,
             in CombatActionDefinition definition)
         {
             return transition.AcceptanceWindow.IsEnabled
                 ? transition.AcceptanceWindow
                 : GetSourceWindow(transition.Window, definition);
+        }
+
+        private static NormalizedActionWindow GetInputWindow(
+            in PlayerCombatTransitionRule transition,
+            in CombatActionDefinition definition)
+        {
+            return transition.InputWindow.IsEnabled
+                ? transition.InputWindow
+                : new NormalizedActionWindow(0.0f, definition.CompletionTime);
+        }
+
+        private static bool WindowsOverlap(
+            in NormalizedActionWindow left,
+            in NormalizedActionWindow right)
+        {
+            return left.Start <= right.End && right.Start <= left.End;
         }
 
         private static NormalizedActionWindow GetSourceWindow(

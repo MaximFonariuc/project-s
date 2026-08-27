@@ -16,6 +16,12 @@ Combat не управляет motor напрямую. Он выдаёт тол�
 новая цепочка начинается только отдельным вводом, который остаётся жив на
 completion boundary.
 
+После первого light action timing самого второго нажатия разделяет две ветки:
+rapid input до `0.63` идёт в `combo.ground.1`, а input после осознанной паузы в
+`0.67–0.86` запускает `combo.ground.pause-finisher`. Buffer хранит normalized
+time получения команды, поэтому заранее намэшенный Light не превращается в
+pause-finisher только из-за позднего consumption.
+
 | Step | Duration | Hitbox | Chain | Cancel | Damage | Motor distance |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | 0 | 1.20 s | 0.28–0.50 | 0.50–0.76 | 0.50–0.90 | 10 | 0.55 m |
@@ -25,6 +31,9 @@ completion boundary.
 `attack.heavy` не является четвёртым combo step. Это самостоятельная наземная
 action с duration `1.32 s`, hitbox `0.24–0.45`, damage `24` и motor distance
 `0.90 m`; она отображается через существующий `BaseAttack4` slot.
+`combo.ground.pause-finisher` является отдельным graph node без entry rule, но
+на текущем vertical slice переиспользует тот же presentation/timeline, чтобы не
+менять универсальный Animator до выбора отдельного клипа.
 
 На первых двух light steps `CancelWindow` начинается одновременно с
 `ChainWindow`. Поэтому, если light и named action уже находятся в buffer,

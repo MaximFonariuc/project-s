@@ -37,8 +37,8 @@ namespace _App
         private readonly ICombatClock _clock;
         private readonly EWeaponType _preferredWeapon;
         private readonly ECharacterType _characterType;
-        private readonly InputBufferEntryPredicate<PlayerCombatCommandId> _bufferedTransitionPredicate;
-        private readonly InputBufferEntryPredicate<PlayerCombatCommandId> _bufferedEntryPredicate;
+        private readonly InputBufferEntryPredicate<PlayerCombatCommandSample> _bufferedTransitionPredicate;
+        private readonly InputBufferEntryPredicate<PlayerCombatCommandSample> _bufferedEntryPredicate;
         private readonly Dictionary<PlayerCombatActionId, float> _lastActionUseTime =
             new Dictionary<PlayerCombatActionId, float>();
         private readonly CombatAttackExecution _attackExecution = new CombatAttackExecution();
@@ -185,7 +185,11 @@ namespace _App
 
             if (Phase is PlayerCombatPhase.Executing or PlayerCombatPhase.Recovery)
             {
-                return _inputBuffer.Store(commandId);
+                return _currentAction != null &&
+                       _inputBuffer.Store(
+                           commandId,
+                           _currentAction.Id,
+                           _observedFrame.NormalizedTime);
             }
 
             if (Phase != PlayerCombatPhase.Ready ||
@@ -494,10 +498,10 @@ namespace _App
                     _observedFrame = frame;
                     if (!_inputBuffer.TryConsume(
                             _bufferedTransitionPredicate,
-                            out PlayerCombatCommandId commandId) ||
+                            out PlayerCombatCommandSample command) ||
                         !_actionGraph.TryResolveTransition(
                             _currentAction,
-                            commandId,
+                            in command,
                             GetEnvironment(),
                             in _observedFrame,
                             _actionOutcome,
@@ -521,12 +525,13 @@ namespace _App
         }
 
         private bool CanAcceptBufferedTransition(
-            in InputBufferEntry<PlayerCombatCommandId> entry)
+            in InputBufferEntry<PlayerCombatCommandSample> entry)
         {
+            PlayerCombatCommandSample command = entry.Action;
             return CanEnterCombatAction() &&
                    _actionGraph.TryResolveTransition(
                        _currentAction,
-                       entry.Action,
+                       in command,
                        GetEnvironment(),
                        in _observedFrame,
                        _actionOutcome,
@@ -535,11 +540,11 @@ namespace _App
         }
 
         private bool CanAcceptBufferedEntry(
-            in InputBufferEntry<PlayerCombatCommandId> entry)
+            in InputBufferEntry<PlayerCombatCommandSample> entry)
         {
             return CanEnterCombatAction() &&
                    _actionGraph.TryResolveEntry(
-                       entry.Action,
+                       entry.Action.CommandId,
                        GetEnvironment(),
                        out PlayerCombatAction target) &&
                    CanUseAction(target);
@@ -550,9 +555,9 @@ namespace _App
             if (CanEnterCombatAction() &&
                 _inputBuffer.TryConsume(
                     _bufferedEntryPredicate,
-                    out PlayerCombatCommandId commandId) &&
+                    out PlayerCombatCommandSample command) &&
                 _actionGraph.TryResolveEntry(
-                    commandId,
+                    command.CommandId,
                     GetEnvironment(),
                     out action) &&
                 CanUseAction(action))

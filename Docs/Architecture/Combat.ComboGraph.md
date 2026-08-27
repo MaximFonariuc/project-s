@@ -13,8 +13,13 @@ classDiagram
         +CombatActionRequested(commandId)
     }
     class CombatInputBuffer {
-        +Store(commandId) bool
-        +TryConsume(predicate, commandId) bool
+        +Store(commandId, sourceActionId, normalizedTime) bool
+        +TryConsume(predicate, sample) bool
+    }
+    class PlayerCombatCommandSample {
+        +CommandId
+        +SourceActionId
+        +SourceNormalizedTime
     }
     class PlayerCombatController {
         -currentAction
@@ -38,6 +43,7 @@ classDiagram
         +Window
         +Condition
         +AcceptanceWindow
+        +InputWindow
     }
     class CombatActionDefinition {
         +HitboxWindow
@@ -57,6 +63,7 @@ classDiagram
 
     IPlayerInput --> PlayerCombatController
     PlayerCombatController --> CombatInputBuffer
+    CombatInputBuffer --> PlayerCombatCommandSample
     PlayerCombatController --> PlayerCombatActionGraph
     PlayerCombatActionGraph --> PlayerCombatAction
     PlayerCombatActionGraph --> PlayerCombatTransitionRule
@@ -71,15 +78,18 @@ classDiagram
 
 1. совпали текущий action и semantic command;
 2. открыт выбранный `Chain` либо `Cancel` window исходного action;
-3. если задан `AcceptanceWindow`, normalized time попадает и в этот поддиапазон;
+3. command sample принадлежит текущему action, а normalized time фактического
+   нажатия попадает в optional `InputWindow`;
 4. выполнено условие `Any`, `OnHit` либо `OnWhiff`;
 5. target action поддерживает текущее окружение `Grounded/Airborne`;
 6. target action доступен по cooldown и имеет animation presentation.
 
-`AcceptanceWindow` позволяет одному вводу иметь быстрый и pause-вариант. Такие
-ветки обязаны использовать непересекающиеся диапазоны. Профиль отклоняется при
-перекрывающихся диапазонах, неоднозначном окружении, выключенном исходном окне
-или выходе поддиапазона за границы `Chain/Cancel`.
+`InputWindow` позволяет одному вводу иметь быстрый и pause-вариант. Такие ветки
+обязаны использовать непересекающиеся диапазоны. `AcceptanceWindow` при
+необходимости дополнительно сужает момент исполнения внутри `Chain/Cancel`.
+Профиль отклоняется при пересекающихся execution/input ranges, неоднозначном
+окружении, выключенном исходном окне или выходе input-поддиапазона за completion
+source action.
 
 ## Семантические команды
 
@@ -104,17 +114,24 @@ classDiagram
 | Контекст | Ввод | Результат |
 | --- | --- | --- |
 | Ground | `Light → Light → Light` | основная безопасная трёхударная серия |
+| Ground | `Light → pause → Light` | поздний силовой finisher через отдельный graph node |
 | Ground | `Light/Light2 → Heavy` | ранний выход в тяжёлый finisher |
 | Ground | `Heavy` | самостоятельный силовой удар |
 | Ground, hit confirm | `Light/Light2 → Launcher → Light` | launcher, air chase и переход в aerial chain |
 | Air | `Light → Light → Light` | воздушная серия с завершающим slam |
 | Ground | `Special` | отдельный оружейный skill с cooldown |
 
-После того как основная серия станет отзывчивой, первая дополнительная ветка —
-`Light → pause → Light`. Она использует поздний `AcceptanceWindow`, поэтому не
-мешает обычному rapid-input продолжению. Hold-, directional- и lock-on-specific
-команды добавляются только когда для них выбраны клипы и подтверждена польза в
-combat UX.
+Первая дополнительная ветка `Light → pause → Light` уже использует поздний
+`InputWindow`: ввод, полученный до `0.63` первого action, выбирает обычный
+`combo.ground.1`, а ввод в диапазоне `0.67–0.86` выбирает
+`combo.ground.pause-finisher`; его `AcceptanceWindow` совпадает с поздним
+диапазоном и не позволяет исполнить finisher раньше паузы. Между диапазонами
+оставлен небольшой dead zone,
+чтобы колебание frame time не делало выбор неоднозначным. Pause-finisher пока
+переиспользует универсальный heavy presentation slot и его authored impact;
+отдельный клип можно подключить позже без изменения input semantics. Hold-,
+directional- и lock-on-specific команды добавляются только когда для них выбраны
+клипы и подтверждена польза в combat UX.
 ## DualSwords vertical slice
 
 `DualSwords.overrideController` использует `XController` как неизменяемый base
