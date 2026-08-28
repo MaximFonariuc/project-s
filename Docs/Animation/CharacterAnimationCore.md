@@ -89,8 +89,8 @@ assembly не ссылается на editor assembly.
 | --- | --- | --- |
 | `Base Layer` | Override | locomotion, roll, attacks, reactions |
 | `SwitchWeapon Layer` | Override + Avatar Mask | draw/sheathe presentation |
-| `BodyLook` | Additive | ограниченный поворот корпуса |
-| `HeadLook` | Additive | остаточный поворот головы |
+| `BodyLook` | Additive + `BodyLook.mask` | ограниченный поворот только корпуса |
+| `HeadLook` | Additive + `HeadLook.mask` | остаточный поворот только головы |
 
 Обязательные параметры:
 
@@ -155,9 +155,15 @@ stateDiagram-v2
   look adapter. Dodge/reaction подавляют look, attacks и weapon transitions
   используют ограниченный tracking.
 - `XControllerLookPoseController` является единственным owner calibration,
-  body/head angle split, grounded/action weights и экспоненциального smoothing
-  четырёх look-параметров. Driver только выбирает presentation weights и не
-  дублирует накопленные значения.
+  body/head angle split, grounded/action weights и экспоненциального smoothing.
+  Look-параметры сохраняют непрерывную цель, а grounded/action policy плавно
+  меняет веса additive-слоёв. Поэтому вход в attack/reaction не перераспределяет
+  yaw между каналами и не оставляет затухающий поворот корпуса поверх нового
+  finite-action клипа.
+- `BodyLook.mask` включает только Humanoid `Body`, `HeadLook.mask` — только
+  `Head`. Root, ноги, руки и IK-каналы выключены, поэтому даже ошибочно
+  импортированная лишняя кривая look-клипа не может деформировать locomotion или
+  реакцию вне своей области.
 
 ## Timing и root motion
 

@@ -20,6 +20,10 @@ namespace _App.Editor.Animation
             "Assets/_Game/Settings/Combat/Player/PlayerCombatActionProfile.asset";
         private const string CharacterReactionProfilePath =
             "Assets/_Game/Settings/Combat/Player/PlayerCharacterReactionProfile.asset";
+        private const string BodyLookMaskPath =
+            "Assets/_Game/Animations/Masks/BodyLook.mask";
+        private const string HeadLookMaskPath =
+            "Assets/_Game/Animations/Masks/HeadLook.mask";
         private const string MenuPath =
             "Tools/Animation/Validate XController Contract";
         private const float TransitionTimingTolerance = 0.005f;
@@ -142,13 +146,25 @@ namespace _App.Editor.Animation
                 layers,
                 XControllerAnimationContract.BodyLookLayerName,
                 AnimatorLayerBlendingMode.Additive,
-                false,
+                true,
                 result);
             ValidateLayer(
                 layers,
                 XControllerAnimationContract.HeadLookLayerName,
                 AnimatorLayerBlendingMode.Additive,
-                false,
+                true,
+                result);
+            ValidateLookMask(
+                layers,
+                XControllerAnimationContract.BodyLookLayerName,
+                BodyLookMaskPath,
+                AvatarMaskBodyPart.Body,
+                result);
+            ValidateLookMask(
+                layers,
+                XControllerAnimationContract.HeadLookLayerName,
+                HeadLookMaskPath,
+                AvatarMaskBodyPart.Head,
                 result);
             ValidateDirectionalLookTree(
                 layers,
@@ -298,6 +314,46 @@ namespace _App.Editor.Animation
                 result.Error(
                     $"Parameter '{parameter.name}' must default to {expected:F1}, " +
                     $"found {parameter.defaultFloat:F3}.");
+            }
+        }
+
+        private static void ValidateLookMask(
+            IReadOnlyList<AnimatorControllerLayer> layers,
+            string layerName,
+            string maskPath,
+            AvatarMaskBodyPart activePart,
+            ValidationResult result)
+        {
+            AnimatorControllerLayer layer = layers.FirstOrDefault(
+                candidate => candidate.name == layerName);
+            if (layer == null)
+            {
+                return;
+            }
+
+            AvatarMask expectedMask = AssetDatabase.LoadAssetAtPath<AvatarMask>(maskPath);
+            if (expectedMask == null)
+            {
+                result.Error($"Missing look Avatar Mask: {maskPath}");
+                return;
+            }
+
+            if (layer.avatarMask != expectedMask)
+            {
+                result.Error(
+                    $"Layer '{layerName}' must use '{maskPath}'.");
+            }
+
+            for (int i = 0; i < (int)AvatarMaskBodyPart.LastBodyPart; i++)
+            {
+                var bodyPart = (AvatarMaskBodyPart)i;
+                bool expectedActive = bodyPart == activePart;
+                if (expectedMask.GetHumanoidBodyPartActive(bodyPart) != expectedActive)
+                {
+                    result.Error(
+                        $"Mask '{maskPath}' must enable only {activePart}; " +
+                        $"unexpected {bodyPart} state.");
+                }
             }
         }
 

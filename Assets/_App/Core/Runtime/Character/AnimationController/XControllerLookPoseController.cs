@@ -21,6 +21,7 @@ namespace _App
         private const float BodyVerticalShare = 0.30f;
         private const float BodyResponseSpeed = 3.5f;
         private const float HeadResponseSpeed = 8.0f;
+        private const float LayerWeightResponseSpeed = 10.0f;
 
         private static readonly int BodyLookXHash = Animator.StringToHash(
             XControllerAnimationContract.BodyLookXParameterName);
@@ -32,11 +33,15 @@ namespace _App
             XControllerAnimationContract.HeadLookYParameterName);
 
         private readonly Animator _animator;
+        private readonly int _bodyLayerIndex;
+        private readonly int _headLayerIndex;
 
         private float _bodyLookX;
         private float _bodyLookY;
         private float _headLookX;
         private float _headLookY;
+        private float _bodyLayerWeight = 1.0f;
+        private float _headLayerWeight = 1.0f;
         private float _actionBodyWeight = 1.0f;
         private float _actionHeadWeight = 1.0f;
         private bool _isGrounded = true;
@@ -46,6 +51,10 @@ namespace _App
             _animator = animator != null
                 ? animator
                 : throw new ArgumentNullException(nameof(animator));
+            _bodyLayerIndex = _animator.GetLayerIndex(
+                XControllerAnimationContract.BodyLookLayerName);
+            _headLayerIndex = _animator.GetLayerIndex(
+                XControllerAnimationContract.HeadLookLayerName);
         }
 
         public void Apply(in CharacterLookFrame frame, float deltaTime)
@@ -56,8 +65,6 @@ namespace _App
                                (_isGrounded ? 1.0f : AirborneHeadWeight);
             ResolveTargets(
                 in frame,
-                bodyWeight,
-                headWeight,
                 out float bodyTargetX,
                 out float bodyTargetY,
                 out float headTargetX,
@@ -84,8 +91,19 @@ namespace _App
                 headTargetY,
                 HeadResponseSpeed,
                 safeDeltaTime);
+            _bodyLayerWeight = Damp(
+                _bodyLayerWeight,
+                bodyWeight,
+                LayerWeightResponseSpeed,
+                safeDeltaTime);
+            _headLayerWeight = Damp(
+                _headLayerWeight,
+                headWeight,
+                LayerWeightResponseSpeed,
+                safeDeltaTime);
 
             WriteParameters();
+            WriteLayerWeights();
         }
 
         public void SetGrounded(bool grounded)
@@ -105,10 +123,13 @@ namespace _App
             _bodyLookY = 0.0f;
             _headLookX = 0.0f;
             _headLookY = 0.0f;
+            _bodyLayerWeight = 1.0f;
+            _headLayerWeight = 1.0f;
             _actionBodyWeight = 1.0f;
             _actionHeadWeight = 1.0f;
             _isGrounded = true;
             WriteParameters();
+            WriteLayerWeights();
         }
 
         private void WriteParameters()
@@ -119,10 +140,21 @@ namespace _App
             _animator.SetFloat(HeadLookYHash, _headLookY);
         }
 
+        private void WriteLayerWeights()
+        {
+            if (_bodyLayerIndex >= 0)
+            {
+                _animator.SetLayerWeight(_bodyLayerIndex, _bodyLayerWeight);
+            }
+
+            if (_headLayerIndex >= 0)
+            {
+                _animator.SetLayerWeight(_headLayerIndex, _headLayerWeight);
+            }
+        }
+
         private static void ResolveTargets(
             in CharacterLookFrame frame,
-            float bodyWeight,
-            float headWeight,
             out float bodyX,
             out float bodyY,
             out float headX,
@@ -134,11 +166,11 @@ namespace _App
             float bodyYawDegrees = Mathf.Clamp(
                 yawDegrees * BodyHorizontalShare,
                 -BodyHorizontalPoseDegrees * BodyHorizontalLimit,
-                BodyHorizontalPoseDegrees * BodyHorizontalLimit) * bodyWeight;
+                BodyHorizontalPoseDegrees * BodyHorizontalLimit);
             float bodyPitchDegrees = Mathf.Clamp(
                 pitchDegrees * BodyVerticalShare,
                 -BodyVerticalPoseDegrees * BodyVerticalLimit,
-                BodyVerticalPoseDegrees * BodyVerticalLimit) * bodyWeight;
+                BodyVerticalPoseDegrees * BodyVerticalLimit);
             float headYawDegrees = Mathf.Clamp(
                 yawDegrees - bodyYawDegrees,
                 -HeadHorizontalPoseDegrees * HeadHorizontalLimit,
@@ -150,8 +182,8 @@ namespace _App
 
             bodyX = bodyYawDegrees / BodyHorizontalPoseDegrees;
             bodyY = bodyPitchDegrees / BodyVerticalPoseDegrees;
-            headX = headYawDegrees / HeadHorizontalPoseDegrees * headWeight;
-            headY = headPitchDegrees / HeadVerticalPoseDegrees * headWeight;
+            headX = headYawDegrees / HeadHorizontalPoseDegrees;
+            headY = headPitchDegrees / HeadVerticalPoseDegrees;
         }
 
         private static float Damp(

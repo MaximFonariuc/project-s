@@ -196,6 +196,13 @@ body twist and retains only a reduced head response. Dodge and reaction poses
 fully suppress look, while attacks and weapon transitions retain reduced
 tracking so additive layers do not deform authored action silhouettes.
 
+Suppression is applied through damped Animator layer weights, not by scaling the
+`BodyLookX/Y` and `HeadLookX/Y` values. The look target therefore remains
+continuous when presentation ownership changes and the body/head angle split
+cannot jump on attack or reaction entry. `BodyLook.mask` enables only the
+Humanoid Body channel; `HeadLook.mask` enables only Head. Root, limbs and IK are
+excluded from both additive layers.
+
 Both look layers use `SimpleDirectional2D` Blend Trees. Their horizontal and
 vertical parameters are evaluated together and each tree contains exactly one
 neutral motion at `(0, 0)`. A `Simple1D` tree is invalid here: it ignores the

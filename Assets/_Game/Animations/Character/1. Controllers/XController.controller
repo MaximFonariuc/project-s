@@ -1922,7 +1922,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: BodyLook
     m_StateMachine: {fileID: -2641236636130088560}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: a2d2c1fef5f9ea94593864638acb953e, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 1
@@ -1934,7 +1934,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: HeadLook
     m_StateMachine: {fileID: -2735017432864653993}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 41eaa836de597b3439b20013fac08037, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 1
