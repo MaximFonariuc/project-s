@@ -34,7 +34,9 @@ namespace _App
             for (int i = 0; i < Weapons.Length; i++)
             {
                 PlayerWeaponBinding binding = Weapons[i];
-                if (binding != null && binding.WeaponType == weaponType && binding.HasHitboxes())
+                if (binding != null &&
+                    binding.WeaponType == weaponType &&
+                    binding.IsConfigured())
                 {
                     return true;
                 }

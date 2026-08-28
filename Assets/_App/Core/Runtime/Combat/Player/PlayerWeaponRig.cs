@@ -36,7 +36,7 @@ namespace _App
             }
 
             PlayerWeaponBinding binding = FindBinding(weaponType);
-            return binding != null && binding.HasHitboxes();
+            return binding != null && binding.IsConfigured();
         }
 
         public void ApplyWeapon(EWeaponType weaponType)

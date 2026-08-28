@@ -98,7 +98,9 @@ classDiagram
   дублирует persistent weapon state после завершения операции.
 - `IPlayerWeaponRig.CanEquip` проверяется до открытия weapon-transition
   operation. `Unarmed` является допустимым sheathed-состоянием без обязательной
-  attack hitbox, оружейный тип требует binding с hitboxes.
+  attack hitbox, оружейный тип требует полностью настроенный binding. Каждый
+  attachment обязан иметь weapon root, equipped/sheath parents и хотя бы один
+  hitbox; частично собранное многоклинковое оружие целиком отклоняется.
 - При draw Animator заранее получает incoming loadout, необходимый для
   правильного animation override. Отмена до commit возвращает предыдущий
   loadout; отмена после sheathe сохраняет `Unarmed` как последний подтверждённый

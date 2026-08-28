@@ -111,6 +111,14 @@ namespace _App
             return false;
         }
 
+        internal bool IsConfigured()
+        {
+            return _weaponRoot != null &&
+                   _equippedParent != null &&
+                   _sheathedParent != null &&
+                   HasHitboxes();
+        }
+
         internal bool HasActiveHitboxes()
         {
             if (_hitboxes == null)
@@ -220,6 +228,24 @@ namespace _App
             }
 
             return false;
+        }
+
+        internal bool IsConfigured()
+        {
+            if (_attachments == null || _attachments.Length == 0)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < _attachments.Length; i++)
+            {
+                if (_attachments[i]?.IsConfigured() != true)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         internal bool HasActiveHitboxes()
