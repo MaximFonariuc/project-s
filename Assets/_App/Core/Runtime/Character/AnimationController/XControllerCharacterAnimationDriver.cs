@@ -88,13 +88,14 @@ namespace _App
         public void ApplyLook(in CharacterLookFrame frame, float deltaTime)
         {
             ThrowIfDisposed();
+            TryReleaseCompletedActionPolicy();
             _lookPose.Apply(in frame, deltaTime);
         }
 
         public void ApplyLocomotion(in CharacterLocomotionFrame frame, float deltaTime)
         {
             ThrowIfDisposed();
-            TryReleaseCompletedActionPlaybackRate();
+            TryReleaseCompletedActionPolicy();
 
             float safeDeltaTime = Mathf.Max(0.0f, deltaTime);
             float planarSpeed = Mathf.Sqrt(
@@ -310,22 +311,21 @@ namespace _App
 
         private void ReleaseActionPlaybackPolicy()
         {
-            if (!Mathf.Approximately(_actionPlaybackRate, 1.0f) &&
-                _actionLayerIndex >= 0 &&
+            if (_actionLayerIndex >= 0 &&
                 _actionStateHash != 0)
             {
                 _releasedActionLayerIndex = _actionLayerIndex;
                 _releasedActionStateHash = _actionStateHash;
+                ClearActiveActionTracking();
             }
             else
             {
                 ResetActionPlaybackRate();
+                ClearActionPresentationPolicy();
             }
-
-            ClearActionPresentationPolicy();
         }
 
-        private void TryReleaseCompletedActionPlaybackRate()
+        private void TryReleaseCompletedActionPolicy()
         {
             if (_releasedActionLayerIndex < 0)
             {
@@ -350,7 +350,7 @@ namespace _App
             }
 
             ResetActionPlaybackRate();
-            ClearReleasedActionTracking();
+            ClearActionPresentationPolicy();
         }
 
         private void ResetActionPlaybackRate()
@@ -364,6 +364,12 @@ namespace _App
         {
             _releasedActionLayerIndex = -1;
             _releasedActionStateHash = 0;
+        }
+
+        private void ClearActiveActionTracking()
+        {
+            _actionLayerIndex = -1;
+            _actionStateHash = 0;
         }
 
         private void ApplyPlaybackRate()

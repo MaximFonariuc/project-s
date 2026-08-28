@@ -107,8 +107,10 @@ classDiagram
 - `PlayerAnimationCoordinator` arbitrates finite action priority:
   `Death > Reaction > Traversal > Combat > Locomotion`.
 - Normal completion calls `CompleteAction` and only releases transient
-  presentation policy. Interruption calls `CancelAction` and requests an
-  explicit visual exit from the active Animator layer.
+  presentation ownership. Playback rate and look-layer suppression remain
+  active until Animator has actually left the action state. Interruption calls
+  `CancelAction`, releases both immediately and requests an explicit visual exit
+  from the active Animator layer.
 - Coordinator construction and actor disable both execute a full driver reset
   after feature owners stop. This clears stale look values, action ownership,
   per-source playback speed and Animator speed before a later re-enable; camera
@@ -225,9 +227,11 @@ Content rate and time policy are separate factors. Hit stop multiplies the
 current action rate and restores it afterwards; completion or cancellation
 does not make Animator timing authoritative. Normal completion retains the
 content factor while the authored exit still references the action state and
-clears it once Animator reaches the destination state; an explicit cancel
-clears it before its forced crossfade. The base attack and dodge states therefore
-keep authored state speed `1`, which is enforced by the editor contract validator.
+retains the matching BodyLook/HeadLook action weights over the same interval.
+Both are cleared once Animator reaches the destination state; an explicit cancel
+clears them before its forced crossfade. The base attack and dodge states
+therefore keep authored state speed `1`, which is enforced by the editor contract
+validator.
 
 Reaction and death actions keep authored playback speed `1`. Gameplay reaction
 state and duration remain authoritative and cancel presentation when their

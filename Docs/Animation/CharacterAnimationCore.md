@@ -178,9 +178,11 @@ fallback без отдельной ручной таблицы длительн�
 Content playback rate и time policy независимы: hit stop умножает текущую
 скорость действия, а после него восстанавливается рассчитанный action rate.
 При штатном completion action rate сохраняется до фактического выхода Animator
-из action state, поэтому blend tail не получает скачок скорости. Cancel
-сбрасывает rate сразу перед явным crossfade. Reaction/death сохраняют authored
-speed `1`, чтобы не ускорять impact pose под короткое gameplay-окно.
+из action state. Ограничение `BodyLook`/`HeadLook` удерживается до той же
+границы, поэтому blend tail не получает ни скачок скорости, ни внезапно
+вернувшийся additive look. Cancel сбрасывает обе policy сразу перед явным
+crossfade. Reaction/death сохраняют authored speed `1`, чтобы не ускорять impact
+pose под короткое gameplay-окно.
 
 Политика перемещения — motor-owned motion:
 
