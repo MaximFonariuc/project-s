@@ -127,6 +127,24 @@ boolean flags:
 Это позволяет переносить цель из launcher в air chase, не оставляя mutable
 outcome жить между actions.
 
+## Защита коротких окон от frame hitch
+
+Обычный кадр использует текущее normalized time. Если один большой delta целиком
+пересёк короткое hitbox, chain или cancel window, `NormalizedActionWindow`
+отмечает это как fully-crossed interval и executor выдаёт один catch-up frame.
+
+- hitbox открывается ровно на один rendering frame, чтобы late-frame swept query
+  прошёл от предыдущей до текущей позы оружия;
+- completion откладывается до следующего tick, иначе session закрыл бы hitbox до
+  `PlayerWeaponLoadout.LateUpdate`;
+- принятый buffered transition также фиксируется, но применяется на следующем
+  tick после swept sample;
+- invulnerability и movement windows не продлеваются: catch-up предназначен
+  только для событий, которые иначе полностью потерялись бы при frame hitch.
+
+Это не заменяет разумную ширину authoring windows, но не позволяет единичному
+длинному кадру бесследно удалить удар или уже buffered combo input.
+
 ## Границы зависимостей
 
 - Session находится в `_App/Core`: она использует Project S action, actor и

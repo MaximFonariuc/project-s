@@ -188,11 +188,18 @@ namespace _App
 
         private CombatActionFrame CreateFrame(float previousTime, float normalizedTime)
         {
+            bool hitboxCatchUpPulse =
+                _definition.HitboxWindow.WasFullyCrossed(previousTime, normalizedTime);
+            bool chainCatchUpPulse =
+                _definition.ChainWindow.WasFullyCrossed(previousTime, normalizedTime);
+            bool cancelCatchUpPulse =
+                _definition.CancelWindow.WasFullyCrossed(previousTime, normalizedTime);
             return new CombatActionFrame(
                 normalizedTime,
-                _definition.HitboxWindow.Contains(normalizedTime),
-                _definition.ChainWindow.Contains(normalizedTime),
-                _definition.CancelWindow.Contains(normalizedTime),
+                _definition.HitboxWindow.Contains(normalizedTime) || hitboxCatchUpPulse,
+                hitboxCatchUpPulse,
+                _definition.ChainWindow.Contains(normalizedTime) || chainCatchUpPulse,
+                _definition.CancelWindow.Contains(normalizedTime) || cancelCatchUpPulse,
                 !_definition.MovementConstraintWindow.IsEnabled ||
                 _definition.MovementConstraintWindow.Contains(normalizedTime),
                 _definition.InvulnerabilityWindow.Contains(normalizedTime),
@@ -200,7 +207,7 @@ namespace _App
                 _definition.HasCommit &&
                 previousTime < _definition.CommitTime &&
                 normalizedTime >= _definition.CommitTime,
-                normalizedTime >= _definition.CompletionTime);
+                normalizedTime >= _definition.CompletionTime && !hitboxCatchUpPulse);
         }
 
         private void Finish(int executionId)

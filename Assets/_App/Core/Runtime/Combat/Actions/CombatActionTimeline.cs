@@ -32,6 +32,15 @@ namespace _App
         {
             return IsEnabled && normalizedTime >= Start && normalizedTime <= End;
         }
+
+        public bool WasFullyCrossed(float previousTime, float currentTime)
+        {
+            return IsEnabled &&
+                   previousTime >= 0.0f &&
+                   currentTime > previousTime &&
+                   previousTime < Start &&
+                   currentTime > End;
+        }
     }
 
     internal readonly struct CombatActionDefinition
@@ -144,6 +153,7 @@ namespace _App
     {
         public float NormalizedTime { get; }
         public bool IsHitboxOpen { get; }
+        public bool IsHitboxCatchUpPulse { get; }
         public bool CanChain { get; }
         public bool CanCancel { get; }
         public bool IsMovementConstrained { get; }
@@ -155,6 +165,7 @@ namespace _App
         public CombatActionFrame(
             float normalizedTime,
             bool isHitboxOpen,
+            bool isHitboxCatchUpPulse,
             bool canChain,
             bool canCancel,
             bool isMovementConstrained,
@@ -165,6 +176,7 @@ namespace _App
         {
             NormalizedTime = normalizedTime;
             IsHitboxOpen = isHitboxOpen;
+            IsHitboxCatchUpPulse = isHitboxCatchUpPulse;
             CanChain = canChain;
             CanCancel = canCancel;
             IsMovementConstrained = isMovementConstrained;

@@ -187,6 +187,14 @@ namespace _App
                 return CombatActionEndReason.Landed;
             }
 
+            // A transition accepted during a catch-up hitbox pulse is committed
+            // on the next frame. This leaves the previous action's hitbox active
+            // through LateUpdate so its swept query can sample the skipped window.
+            if (_acceptedBufferedAction != null)
+            {
+                return CombatActionEndReason.Transitioned;
+            }
+
             if (frame.IsInRecovery && Phase == PlayerCombatPhase.Executing)
             {
                 _stateMachine.ChangeState<PlayerCombatRecoveryState, PlayerCombatAction>(
@@ -207,7 +215,9 @@ namespace _App
                 return CombatActionEndReason.None;
             }
 
-            return CombatActionEndReason.Transitioned;
+            return frame.IsHitboxCatchUpPulse
+                ? CombatActionEndReason.None
+                : CombatActionEndReason.Transitioned;
         }
 
         private bool CanAcceptBufferedTransition(
