@@ -15,6 +15,8 @@ namespace _App
         ICombatActionObserver,
         IDisposable
     {
+        private const int PendingCommandCapacity = 8;
+
         private enum ActionObservationMode
         {
             None,
@@ -41,6 +43,8 @@ namespace _App
         private readonly InputBufferEntryPredicate<PlayerCombatCommandSample> _bufferedEntryPredicate;
         private readonly Dictionary<PlayerCombatActionId, float> _lastActionUseTime =
             new Dictionary<PlayerCombatActionId, float>();
+        private readonly Queue<PlayerCombatCommandId> _pendingCommands =
+            new Queue<PlayerCombatCommandId>(PendingCommandCapacity);
         private readonly CombatAttackExecution _attackExecution = new CombatAttackExecution();
         private readonly CombatActionOutcome _actionOutcome = new CombatActionOutcome();
 
@@ -53,6 +57,7 @@ namespace _App
         private EWeaponType _pendingWeapon;
         private bool _weaponApplied;
         private bool _landingInterrupted;
+        private bool _weaponSwitchRequested;
         private bool _enabled;
 
         public event Action<PlayerCombatPhase> PhaseChanged;
@@ -165,6 +170,8 @@ namespace _App
             _enabled = false;
 
             CancelActiveAction();
+            _pendingCommands.Clear();
+            _weaponSwitchRequested = false;
             _inputBuffer.Clear();
             _currentAction = null;
             _acceptedBufferedAction = null;
@@ -179,8 +186,38 @@ namespace _App
         public bool TryExecute(PlayerCombatCommandId commandId)
         {
             if (!_enabled || string.IsNullOrEmpty(commandId.Value) ||
-                !CanEnterCombatAction() ||
-                Phase == PlayerCombatPhase.WeaponSwitch)
+                _pendingCommands.Count >= PendingCommandCapacity)
+            {
+                return false;
+            }
+
+            _pendingCommands.Enqueue(commandId);
+            return true;
+        }
+
+        public void Tick(float scaledDeltaTime)
+        {
+            if (!_enabled)
+            {
+                return;
+            }
+
+            _actionExecutor.Advance(scaledDeltaTime);
+            ConsumePendingCommands();
+
+            bool switchWeapon = _weaponSwitchRequested;
+            _weaponSwitchRequested = false;
+            if (switchWeapon)
+            {
+                ToggleWeaponAsync(_preferredWeapon).Forget();
+            }
+
+            _actionExecutor.Observe();
+        }
+
+        private bool TryExecuteNow(PlayerCombatCommandId commandId)
+        {
+            if (!CanEnterCombatAction() || Phase == PlayerCombatPhase.WeaponSwitch)
             {
                 return false;
             }
@@ -191,7 +228,9 @@ namespace _App
                        _inputBuffer.Store(
                            commandId,
                            _currentAction.Id,
-                           _observedFrame.NormalizedTime);
+                           _actionExecutor.IsRunning
+                               ? _actionExecutor.CurrentFrame.NormalizedTime
+                               : _observedFrame.NormalizedTime);
             }
 
             if (Phase != PlayerCombatPhase.Ready ||
@@ -207,6 +246,14 @@ namespace _App
             CancellationTokenSource cancellation = BeginAction();
             RunActionPipelineAsync(action, cancellation).Forget();
             return true;
+        }
+
+        private void ConsumePendingCommands()
+        {
+            while (_pendingCommands.Count > 0)
+            {
+                TryExecuteNow(_pendingCommands.Dequeue());
+            }
         }
 
         public async UniTask<bool> ToggleWeaponAsync(EWeaponType targetWeapon)
@@ -289,6 +336,8 @@ namespace _App
             }
 
             CancelActiveAction();
+            _pendingCommands.Clear();
+            _weaponSwitchRequested = false;
             _inputBuffer.Clear();
             _currentAction = null;
             _acceptedBufferedAction = null;
@@ -767,7 +816,7 @@ namespace _App
 
         private void OnSwitchWeaponRequested()
         {
-            ToggleWeaponAsync(_preferredWeapon).Forget();
+            _weaponSwitchRequested = true;
         }
 
         private void OnDodgeAccepted()

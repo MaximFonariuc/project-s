@@ -109,6 +109,7 @@ namespace _App
 
             _gameplayTime.Tick(unscaledDeltaTime);
             _reaction.Tick(scaledDeltaTime);
+            _combat.Tick(scaledDeltaTime);
             _traversal.Tick();
             _locomotion.SetMovementIntent(
                 _reaction.BlocksActions

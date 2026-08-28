@@ -129,6 +129,10 @@ flowchart LR
 - Traversal читает только climbing state; interaction physics и simulation pause проходят через отдельные adapters.
 - `PlayerActorAdapter` регистрируется один раз на gameplay scope и публикуется под consumer-specific портами, включая общий lease-based damage-immunity gate для Combat и Dodge. Service locator и runtime search не используются.
 - `PlayerActorController` не заменяет feature controllers и не дублирует их state: он фиксирует lifecycle, порядок межfeature-вызовов и реакцию на их подтверждённые события. Non-stable reaction прерывает Combat/Traversal и немедленно блокирует locomotion intent; сами reaction/combat/traversal states остаются у своих владельцев. При dispose scope coordinator симметрично отключает весь player flow.
+- Frame order задан явно: gameplay time → reaction → combat timeline/commands →
+  traversal → locomotion intent/simulation → targeting. Combat получает scaled
+  delta time ровно один раз; никакой async continuation не продвигает gameplay
+  timeline самостоятельно.
 
 ## Граница абстракции
 

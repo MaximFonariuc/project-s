@@ -81,6 +81,11 @@ flowchart LR
   `PlayerActorController` передал актуальный combat/reaction movement intent.
   Поэтому допустимость cancel не зависит от порядка Input System callbacks и
   gameplay Update в конкретном кадре.
+- Combat callbacks также не запускают action немедленно. Controller помещает
+  semantic command в заранее выделенную очередь ёмкостью `8`, а единственный
+  combat tick потребляет её после продвижения action timeline. Очередь ограничена,
+  очищается при disable/interruption и не переносит команды между lifecycle
+  generations.
 - Keyboard/mouse, gamepad и будущий mobile adapter публикуют одинаковый `PlayerCombatCommandId`; input не зависит от animation ids и конкретной реализации moveset.
 - `PlayerInputIds` — project configuration. GUID остаются стабильными после rename action/map.
 - `GameLifetimeScope` — единственное место, где встречаются VContainer, Unity source и project asset.

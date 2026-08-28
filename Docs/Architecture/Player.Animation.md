@@ -194,9 +194,9 @@ Cancellation restores the loadout for the weapon that actually reached commit.
 
 Weapon transitions run for `1.00 s`, matching the current draw/sheathe clips.
 Their Animator states start returning to `Waiting` at normalized time `0.90`
-through a `0.10 s` fixed-duration blend. The combat executor advances once per
-rendered frame with `UniTask.NextFrame`, so a single `Time.deltaTime` cannot be
-counted multiple times.
+through a `0.10 s` fixed-duration blend. The combat executor is advanced once
+by `PlayerActorController`'s gameplay tick; async weapon/action workflows await
+completion but never advance time themselves.
 
 The source motions assigned to `RollFront`, `RollBack`, `BaseAttack1...3`,
 `BaseAttack4`, `Launcher`, `AirAttack1...3` and `Skill`

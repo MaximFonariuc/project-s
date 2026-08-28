@@ -7,12 +7,14 @@ namespace _App
 {
     internal sealed class CombatActionExecutor
     {
-        private readonly ICombatClock _clock;
         private readonly IDamageImmunityTarget _damageImmunity;
         private readonly CombatMotionController _motion;
 
         private CombatActionDefinition _definition;
         private CombatActionFrame _currentFrame;
+        private ICombatActionObserver _observer;
+        private UniTaskCompletionSource<CombatActionRunResult> _completion;
+        private CancellationToken _cancellationToken;
         private IDisposable _damageImmunityLease;
         private float _duration;
         private float _elapsed;
@@ -20,6 +22,7 @@ namespace _App
         private int _activeExecutionId;
 
         public bool IsRunning => _activeExecutionId != 0;
+        public CombatActionFrame CurrentFrame => _currentFrame;
         public PlayerMovementIntent MovementIntent
         {
             get
@@ -41,16 +44,14 @@ namespace _App
         }
 
         public CombatActionExecutor(
-            ICombatClock clock,
             IDamageImmunityTarget damageImmunity,
             CombatMotionController motion)
         {
-            _clock = clock ?? throw new ArgumentNullException(nameof(clock));
             _damageImmunity = damageImmunity ?? throw new ArgumentNullException(nameof(damageImmunity));
             _motion = motion ?? throw new ArgumentNullException(nameof(motion));
         }
 
-        public async UniTask<CombatActionRunResult> ExecuteAsync(
+        public UniTask<CombatActionRunResult> ExecuteAsync(
             CombatActionDefinition definition,
             float duration,
             Transform previousConfirmedHitTarget,
@@ -67,44 +68,69 @@ namespace _App
                 throw new ArgumentOutOfRangeException(nameof(duration));
             }
 
-            int executionId = 0;
+            var completion = new UniTaskCompletionSource<CombatActionRunResult>();
+            UniTask<CombatActionRunResult> task = completion.Task;
+            _observer = observer;
+            _completion = completion;
+            _cancellationToken = cancellationToken;
+
             try
             {
-                executionId = Begin(definition, duration, previousConfirmedHitTarget);
-                while (true)
+                Begin(definition, duration, previousConfirmedHitTarget);
+                Observe();
+            }
+            catch (Exception exception)
+            {
+                Fail(exception);
+            }
+
+            return task;
+        }
+
+        public void Advance(float deltaTime)
+        {
+            if (!IsRunning)
+            {
+                return;
+            }
+
+            if (_cancellationToken.IsCancellationRequested)
+            {
+                Cancel();
+                return;
+            }
+
+            AdvanceFrame(_activeExecutionId, Mathf.Max(0.0f, deltaTime));
+        }
+
+        public void Observe()
+        {
+            if (!IsRunning)
+            {
+                return;
+            }
+
+            if (_cancellationToken.IsCancellationRequested)
+            {
+                Cancel();
+                return;
+            }
+
+            try
+            {
+                if (_observer != null &&
+                    _observer.Observe(in _currentFrame) == CombatActionDirective.Interrupt)
                 {
-                    cancellationToken.ThrowIfCancellationRequested();
-                    if (observer != null &&
-                        observer.Observe(in _currentFrame) == CombatActionDirective.Interrupt)
-                    {
-                        return CombatActionRunResult.Interrupted;
-                    }
-
-                    if (_currentFrame.IsComplete)
-                    {
-                        return CombatActionRunResult.Completed;
-                    }
-
-                    // Yield can resume again in the same rendered frame. Since the
-                    // executor advances by Time.deltaTime, that would count one
-                    // frame more than once and desynchronize gameplay from clips.
-                    await UniTask.NextFrame(cancellationToken);
-                    Advance(executionId, Mathf.Max(0.0f, _clock.DeltaTime));
+                    Complete(CombatActionRunResult.Interrupted);
+                }
+                else if (_currentFrame.IsComplete)
+                {
+                    Complete(CombatActionRunResult.Completed);
                 }
             }
-            finally
+            catch (Exception exception)
             {
-                if (executionId != 0)
-                {
-                    Finish(executionId);
-                }
-                else
-                {
-                    // Begin marks the executor active before it configures the
-                    // motion adapter. Roll back that partial initialization if
-                    // any adapter rejects the action during startup.
-                    Abort();
-                }
+                Fail(exception);
             }
         }
 
@@ -112,7 +138,14 @@ namespace _App
         {
             if (IsRunning)
             {
-                Finish(_activeExecutionId);
+                if (_cancellationToken.IsCancellationRequested)
+                {
+                    Cancel();
+                }
+                else
+                {
+                    Complete(CombatActionRunResult.Interrupted);
+                }
             }
         }
 
@@ -138,7 +171,7 @@ namespace _App
             return executionId;
         }
 
-        private void Advance(int executionId, float deltaTime)
+        private void AdvanceFrame(int executionId, float deltaTime)
         {
             if (_activeExecutionId != executionId)
             {
@@ -177,13 +210,82 @@ namespace _App
                 return;
             }
 
-            ReleaseDamageImmunity();
-            _motion.End();
-            _definition = default;
-            _currentFrame = default;
-            _duration = 0.0f;
-            _elapsed = 0.0f;
-            _activeExecutionId = 0;
+            try
+            {
+                ReleaseDamageImmunity();
+                _motion.End();
+            }
+            finally
+            {
+                _definition = default;
+                _currentFrame = default;
+                _duration = 0.0f;
+                _elapsed = 0.0f;
+                _activeExecutionId = 0;
+            }
+        }
+
+        private void Complete(CombatActionRunResult result)
+        {
+            UniTaskCompletionSource<CombatActionRunResult> completion = _completion;
+            try
+            {
+                Finish(_activeExecutionId);
+            }
+            catch (Exception exception)
+            {
+                ClearOperation();
+                completion?.TrySetException(exception);
+                return;
+            }
+
+            ClearOperation();
+            completion?.TrySetResult(result);
+        }
+
+        private void Cancel()
+        {
+            UniTaskCompletionSource<CombatActionRunResult> completion = _completion;
+            CancellationToken cancellationToken = _cancellationToken;
+            try
+            {
+                Finish(_activeExecutionId);
+            }
+            catch (Exception exception)
+            {
+                ClearOperation();
+                completion?.TrySetException(exception);
+                return;
+            }
+
+            ClearOperation();
+            completion?.TrySetCanceled(cancellationToken);
+        }
+
+        private void Fail(Exception exception)
+        {
+            UniTaskCompletionSource<CombatActionRunResult> completion = _completion;
+            try
+            {
+                if (IsRunning)
+                {
+                    Finish(_activeExecutionId);
+                }
+            }
+            catch (Exception cleanupException)
+            {
+                exception = new AggregateException(exception, cleanupException);
+            }
+
+            ClearOperation();
+            completion?.TrySetException(exception);
+        }
+
+        private void ClearOperation()
+        {
+            _observer = null;
+            _completion = null;
+            _cancellationToken = default;
         }
 
         private void ApplyDamageImmunity(bool immune)

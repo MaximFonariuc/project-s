@@ -15,6 +15,7 @@ classDiagram
     }
     class PlayerCombatController {
         +TryExecute(commandId) bool
+        +Tick(scaledDeltaTime)
         -CanAcceptBufferedTransition(entry) bool
         -CanAcceptBufferedEntry(entry) bool
     }
@@ -51,6 +52,15 @@ classDiagram
 ```
 
 ## Ownership и consumption
+
+Input callback сначала попадает в bounded pending-command queue контроллера и
+не меняет combat state. В gameplay tick executor продвигается на переданный
+scaled delta time, затем controller дренирует pending commands и только после
+этого наблюдает новый `CombatActionFrame`. Если action уже выполняется,
+`sourceNormalizedTime` берётся непосредственно из `CombatActionExecutor.CurrentFrame`.
+Поэтому нажатие на границе окна оценивается относительно одного явно
+продвинутого frame, а не относительно последнего callback или продолжения async
+метода.
 
 Buffer хранит команду, action-источник, normalized time получения, timestamp,
 expiration, priority и duplicate policy. Он не решает, какая action следует за
@@ -104,8 +114,9 @@ environment, presentation или cooldown gates.
 | Souls-like | 1–2 | NewestFirst | 0.10–0.25 s |
 | Action RPG | 2–4 | HighestPriorityThenOldest | 0.15–0.35 s |
 
-Очередь очищается при disable, interruption и завершении всего action pipeline.
-Внутри pipeline она сохраняется между завершившимся action и новым action,
+Обе очереди очищаются при disable и interruption. Gameplay input buffer также
+очищается при завершении всего action pipeline; внутри pipeline он сохраняется
+между завершившимся action и новым action,
 принятым через transition либо completion entry handoff. Dodge остаётся отдельным
 locomotion event, но его допустимость берётся из `AllowDodge && CancelWindow`
 текущего combat action. Прыжок использует симметричную policy

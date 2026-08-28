@@ -75,7 +75,6 @@ namespace _App
 
     internal interface ICombatClock
     {
-        float DeltaTime { get; }
         float ScaledTime { get; }
         float UnscaledTime { get; }
     }

@@ -16,7 +16,12 @@ classDiagram
         +CompletionTime
         +Motion
     }
-    class CombatActionExecutor
+    class CombatActionExecutor {
+        +ExecuteAsync(definition, duration, target, observer, cancellationToken)
+        +Advance(scaledDeltaTime)
+        +Observe()
+        +CurrentFrame CombatActionFrame
+    }
     class CombatActionFrame
     class CombatMotionController
     class IDamageImmunityTarget
@@ -37,8 +42,15 @@ classDiagram
 
 - `DurationSeconds` is the full gameplay time basis. Normalized hit, cancel,
   recovery, invulnerability and motion windows are evaluated against it.
-- `CombatActionExecutor` owns elapsed time and cleanup. It does not read
+- `CombatActionExecutor` owns elapsed time and cleanup, but does not poll Unity
+  time or schedule its own frame loop. `PlayerCombatController.Tick` supplies
+  scaled delta time exactly once per gameplay tick. The executor does not read
   Animator state or clip length.
+- A tick is split deliberately: `Advance` first creates the authoritative
+  `CombatActionFrame`, input callbacks captured since the previous tick are then
+  consumed against that frame, and `Observe` finally resolves recovery,
+  transition, commit and completion. This prevents callback/`UniTask` scheduling
+  order from changing combat results.
 - `Allow Jump` and `Allow Dodge` are action policies, not free-form movement
   flags: locomotion receives them only while the authored `CancelWindow` is
   open. Startup, hit-confirm and committed recovery therefore cannot be

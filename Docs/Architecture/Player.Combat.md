@@ -103,7 +103,9 @@ classDiagram
         +IsHitWindowOpen bool
         +MovementIntent PlayerMovementIntent
     }
-    class PlayerCombatController
+    class PlayerCombatController {
+        +Tick(scaledDeltaTime)
+    }
     class IStateMachine~PlayerCombatPhase~
     class PlayerCombatReadyState
     class PlayerCombatExecutingState {
@@ -195,6 +197,7 @@ stateDiagram-v2
 ```mermaid
 sequenceDiagram
     participant Input as IPlayerInput
+    participant Actor as PlayerActorController
     participant Combat as PlayerCombatController
     participant Graph as PlayerCombatActionGraph
     participant Machine as Combat StateMachine
@@ -202,7 +205,9 @@ sequenceDiagram
     participant Hits as ICombatHitEvents
     participant View as Animation / Weapon adapters
 
-    Input->>Combat: CombatActionRequested(command)
+    Input->>Combat: CombatActionRequested(command) / latch
+    Actor->>Combat: Tick(scaledDeltaTime)
+    Combat->>Executor: Advance(scaledDeltaTime)
     Combat->>Graph: TryResolveEntry(command, environment)
     Graph-->>Combat: PlayerCombatAction
     Combat->>View: play presentation
@@ -211,6 +216,7 @@ sequenceDiagram
     Hits-->>Combat: HitResolved(matching execution)
     Combat->>Combat: update CombatActionOutcome
     Executor-->>Combat: CombatActionFrame
+    Combat->>Executor: Observe()
     Combat->>Machine: Executing -> Recovery(action)
     Combat->>Graph: resolve buffered transition
     Combat->>Machine: Recovery -> Executing(next action)
@@ -245,6 +251,13 @@ time Animator.
 Hitbox открывается только по `CombatActionFrame` и закрывается при completion, cancellation, interruption и disable. Каждое фактически запущенное action получает отдельный `CombatAttackExecution`, поэтому повторные hurtbox одной цели фильтруются на уровне атаки, а не оружия. Параллельный `CombatActionOutcome` хранит только подтверждённый результат этого execution и сбрасывается на той же lifecycle-границе. Weapon transition применяет loadout только после commit point. Cooldown хранится по `PlayerCombatActionId`; animation lookup использует отдельный `PlayerCombatAnimationId`.
 
 Gameplay timeline использует scaled delta time, поэтому execution, hitbox/cancel windows, обычный Animator и character physics замораживаются во время hit stop. Input buffer намеренно использует unscaled clock: команды продолжают приниматься и истекают в реальном времени. Полная time policy описана в `Docs/Architecture/Combat.HitStop.md`.
+
+Timeline не содержит собственного async frame loop. Каждый actor tick сначала
+вызывает `CombatActionExecutor.Advance`, затем controller потребляет защёлкнутые
+semantic commands относительно нового `CurrentFrame` и после этого вызывает
+`Observe`. `ExecuteAsync` остаётся lifecycle-result API для action/weapon
+sequences, но его continuation не является источником времени. Это даёт один
+детерминированный owner порядка frame boundaries, input windows и completion.
 
 `Allow Jump / Allow Dodge` в action profile не открывают locomotion-cancel на
 всей длительности атаки. `CombatActionExecutor` совмещает эти policies с текущим
