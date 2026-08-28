@@ -170,7 +170,9 @@ transition condition, но дожила в buffer до completion и имеет 
 - skill может вернуться к первой combo action через `CancelWindow`;
 - prototype создаёт ограниченный запас combo nodes, а animation adapter проверяет каждый semantic presentation через `CanPlayAction`; поэтому graph строится до `Enable/ApplyLoadout`, не теряет будущие steps и безопасно поддерживает skill-only loadout.
 
-ScriptableObject хранит только authoring data. Очередь input, текущая action, cooldown timestamps и progress timeline принадлежат scoped runtime objects.
+ScriptableObject хранит только authoring data. Очередь input, текущая action и
+progress timeline принадлежат scoped runtime objects; cooldown timestamps имеет
+единственного owner в `PlayerCombatAvailability`.
 Существующие transitions после добавления outcome-условий остаются `Any`, поэтому
 serialized profile не требует migration и не меняет текущий moveset без явного tuning.
 

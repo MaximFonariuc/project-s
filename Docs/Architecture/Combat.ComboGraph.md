@@ -63,18 +63,25 @@ classDiagram
         +CanPlayAction(character, weapon, action) bool
         +TryPlayAction(character, weapon, action, playback) bool
     }
+    class PlayerCombatAvailability {
+        +CanEnterAction bool
+        +CanUseAction(action, weapon) bool
+        +RecordUse(action)
+    }
 
     IPlayerInput --> PlayerCombatController
     PlayerCombatController --> CombatInputBuffer
     PlayerCombatController --> CombatActionSession
     CombatInputBuffer --> PlayerCombatCommandSample
     PlayerCombatController --> PlayerCombatActionGraph
+    PlayerCombatController --> PlayerCombatAvailability
     PlayerCombatActionGraph --> PlayerCombatAction
     PlayerCombatActionGraph --> PlayerCombatTransitionRule
     PlayerCombatAction --> CombatActionDefinition
     PlayerCombatActionGraph --> CombatActionOutcome
     PlayerCombatController --> IPlayerCombatAnimation
     IPlayerCombatAnimation --> PlayerCombatAction : semantic presentation
+    PlayerCombatAvailability --> IPlayerCombatAnimation : slot availability
 ```
 
 ## Правила разрешения перехода

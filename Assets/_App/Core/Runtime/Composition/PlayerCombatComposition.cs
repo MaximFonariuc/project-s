@@ -35,6 +35,14 @@ namespace _App
                     resolver.Resolve<PlayerAnimatorLoadout>()),
                 Lifetime.Scoped);
             builder.Register(
+                resolver => new PlayerCombatAvailability(
+                    resolver.Resolve<IPlayerCombatActor>(),
+                    resolver.Resolve<ICharacterReactionState>(),
+                    resolver.Resolve<IPlayerCombatAnimation>(),
+                    resolver.Resolve<ICombatClock>(),
+                    player.CharacterType),
+                Lifetime.Scoped);
+            builder.Register(
                 _ => actionProfile != null
                     ? actionProfile.CreateActionGraph()
                     : PlayerCombatActionGraph.CreatePrototype(
@@ -75,7 +83,7 @@ namespace _App
                     resolver => new PlayerCombatController(
                         resolver.Resolve<IPlayerInput>(),
                         resolver.Resolve<IPlayerCombatActor>(),
-                        resolver.Resolve<ICharacterReactionState>(),
+                        resolver.Resolve<PlayerCombatAvailability>(),
                         resolver.Resolve<IPlayerLocomotionEvents>(),
                         resolver.Resolve<IPlayerCombatAnimation>(),
                         resolver.Resolve<IPlayerWeaponRig>(),
@@ -86,7 +94,6 @@ namespace _App
                         resolver.Resolve<PlayerWeaponTransitionSession>(),
                         resolver.Resolve<PlayerCombatActionGraph>(),
                         resolver.Resolve<ModularStateMachine.IStateMachine<PlayerCombatPhase>>(),
-                        resolver.Resolve<ICombatClock>(),
                         player.CharacterType,
                         player.StartingWeapon),
                     Lifetime.Scoped)

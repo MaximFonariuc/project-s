@@ -8,6 +8,12 @@ classDiagram
     class PlayerCombatController
     class CombatActionSession
     class PlayerWeaponTransitionSession
+    class PlayerCombatAvailability {
+        +CanEnterAction bool
+        +CanSwitchWeapon bool
+        +CanUseAction(action, weapon) bool
+        +RecordUse(action)
+    }
     class IPlayerCombatAnimation {
         <<interface>>
         +CanPlayAction(character, weapon, action) bool
@@ -32,8 +38,10 @@ classDiagram
     PlayerCombatController --> IPlayerCombatAnimation
     PlayerCombatController --> CombatActionSession
     PlayerCombatController --> PlayerWeaponTransitionSession
+    PlayerCombatController --> PlayerCombatAvailability
     IPlayerCombatAnimation <|.. PlayerCombatAnimationAdapter
     PlayerCombatAnimationAdapter --> PlayerCombatAction : maps presentation
+    PlayerCombatAvailability --> IPlayerCombatAnimation : slot availability
     PlayerWeaponTransitionSession --> IPlayerCombatAnimation : draw / sheathe
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     PlayerCombatAnimationAdapter --> AnimationActionRequest
@@ -51,6 +59,10 @@ classDiagram
   The adapter alone interprets `ComboStep`, `AirComboStep` and `NamedAnimation`;
   `PlayerCombatController` does not know the available Animator slot counts or
   construct `AnimationActionRequest`.
+- `PlayerCombatAvailability` owns live actor/reaction admission checks and the
+  scaled-time cooldown dictionary. It asks the animation port only whether the
+  semantic presentation exists; it does not run the graph or mutate combat
+  phase.
 - The Animator Controller maps those variants to `BaseAttack1...3`; gameplay
   code has no clip reference.
 - The adapter exposes a separate three-step air track and maps it to semantic

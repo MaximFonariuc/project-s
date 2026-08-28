@@ -17,7 +17,7 @@ namespace _App
 
         private readonly IPlayerInput _input;
         private readonly IPlayerCombatActor _actor;
-        private readonly ICharacterReactionState _reactionState;
+        private readonly PlayerCombatAvailability _availability;
         private readonly IPlayerLocomotionEvents _locomotionEvents;
         private readonly IPlayerCombatAnimation _animation;
         private readonly IPlayerWeaponRig _weaponRig;
@@ -28,15 +28,12 @@ namespace _App
         private readonly PlayerWeaponTransitionSession _weaponTransitionSession;
         private readonly PlayerCombatActionGraph _actionGraph;
         private readonly IStateMachine<PlayerCombatPhase> _stateMachine;
-        private readonly ICombatClock _clock;
         private readonly EWeaponType _preferredWeapon;
         private readonly ECharacterType _characterType;
         private readonly InputBufferEntryPredicate<PlayerCombatCommandSample> _bufferedTransitionPredicate;
         private readonly InputBufferEntryPredicate<PlayerCombatCommandSample> _bufferedEntryPredicate;
         private readonly CombatActionFrameHandler _combatFrameHandler;
         private readonly Action<EWeaponType> _weaponCommitHandler;
-        private readonly Dictionary<PlayerCombatActionId, float> _lastActionUseTime =
-            new Dictionary<PlayerCombatActionId, float>();
         private readonly Queue<PlayerCombatCommandId> _pendingCommands =
             new Queue<PlayerCombatCommandId>(PendingCommandCapacity);
         private CancellationTokenSource _actionCancellation;
@@ -77,7 +74,7 @@ namespace _App
         internal PlayerCombatController(
             IPlayerInput input,
             IPlayerCombatActor actor,
-            ICharacterReactionState reactionState,
+            PlayerCombatAvailability availability,
             IPlayerLocomotionEvents locomotionEvents,
             IPlayerCombatAnimation animation,
             IPlayerWeaponRig weaponRig,
@@ -88,13 +85,12 @@ namespace _App
             PlayerWeaponTransitionSession weaponTransitionSession,
             PlayerCombatActionGraph actionGraph,
             IStateMachine<PlayerCombatPhase> stateMachine,
-            ICombatClock clock,
             ECharacterType characterType,
             EWeaponType startingWeapon)
         {
             _input = input ?? throw new ArgumentNullException(nameof(input));
             _actor = actor ?? throw new ArgumentNullException(nameof(actor));
-            _reactionState = reactionState ?? throw new ArgumentNullException(nameof(reactionState));
+            _availability = availability ?? throw new ArgumentNullException(nameof(availability));
             _locomotionEvents = locomotionEvents ?? throw new ArgumentNullException(nameof(locomotionEvents));
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _weaponRig = weaponRig ?? throw new ArgumentNullException(nameof(weaponRig));
@@ -106,7 +102,6 @@ namespace _App
                 throw new ArgumentNullException(nameof(weaponTransitionSession));
             _actionGraph = actionGraph ?? throw new ArgumentNullException(nameof(actionGraph));
             _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
-            _clock = clock ?? throw new ArgumentNullException(nameof(clock));
             _preferredWeapon = startingWeapon == EWeaponType.None
                 ? EWeaponType.Unarmed
                 : startingWeapon;
@@ -204,7 +199,7 @@ namespace _App
 
         private bool TryExecuteNow(PlayerCombatCommandId commandId)
         {
-            if (!CanEnterCombatAction() || Phase == PlayerCombatPhase.WeaponSwitch)
+            if (!_availability.CanEnterAction || Phase == PlayerCombatPhase.WeaponSwitch)
             {
                 return false;
             }
@@ -225,7 +220,7 @@ namespace _App
                     commandId,
                     GetEnvironment(),
                     out PlayerCombatAction action) ||
-                !CanUseAction(action))
+                !_availability.CanUseAction(action, CurrentWeapon))
             {
                 return false;
             }
@@ -245,9 +240,9 @@ namespace _App
 
         public async UniTask<bool> ToggleWeaponAsync(EWeaponType targetWeapon)
         {
-            if (!_enabled || _reactionState.BlocksActions || targetWeapon == EWeaponType.None ||
-                Phase != PlayerCombatPhase.Ready ||
-                _actor.IsFalling)
+            if (!_enabled || !_availability.CanSwitchWeapon ||
+                targetWeapon == EWeaponType.None ||
+                Phase != PlayerCombatPhase.Ready)
             {
                 return false;
             }
@@ -328,7 +323,8 @@ namespace _App
             {
                 PlayerCombatAction action = initialAction;
                 Transform previousConfirmedHitTarget = null;
-                while (action != null && CanUseAction(action))
+                while (action != null &&
+                       _availability.CanUseAction(action, CurrentWeapon))
                 {
                     if (!_animation.TryPlayAction(
                             _characterType,
@@ -360,10 +356,7 @@ namespace _App
                         break;
                     }
 
-                    if (action.Definition.Cooldown > 0.0f)
-                    {
-                        _lastActionUseTime[action.Id] = _clock.ScaledTime;
-                    }
+                    _availability.RecordUse(action);
 
                     PlayerCombatAction acceptedAction = _acceptedBufferedAction;
                     Transform nextMotionTarget = ResolveNextMotionTarget(
@@ -427,7 +420,7 @@ namespace _App
         {
             PlayerCombatCommandSample command = entry.Action;
             CombatActionFrame currentFrame = _actionSession.CurrentFrame;
-            return CanEnterCombatAction() &&
+            return _availability.CanEnterAction &&
                    _actionGraph.TryResolveTransition(
                        _actionSession.Action,
                        in command,
@@ -435,23 +428,23 @@ namespace _App
                        in currentFrame,
                        _actionSession.Outcome,
                        out PlayerCombatAction target) &&
-                   CanUseAction(target);
+                   _availability.CanUseAction(target, CurrentWeapon);
         }
 
         private bool CanAcceptBufferedEntry(
             in InputBufferEntry<PlayerCombatCommandSample> entry)
         {
-            return CanEnterCombatAction() &&
+            return _availability.CanEnterAction &&
                    _actionGraph.TryResolveEntry(
                        entry.Action.CommandId,
                        GetEnvironment(),
                        out PlayerCombatAction target) &&
-                   CanUseAction(target);
+                   _availability.CanUseAction(target, CurrentWeapon);
         }
 
         private bool TryConsumeBufferedEntry(out PlayerCombatAction action)
         {
-            if (CanEnterCombatAction() &&
+            if (_availability.CanEnterAction &&
                 _inputBuffer.TryConsume(
                     _bufferedEntryPredicate,
                     out PlayerCombatCommandSample command) &&
@@ -459,33 +452,13 @@ namespace _App
                     command.CommandId,
                     GetEnvironment(),
                     out action) &&
-                CanUseAction(action))
+                _availability.CanUseAction(action, CurrentWeapon))
             {
                 return true;
             }
 
             action = null;
             return false;
-        }
-
-        private bool CanEnterCombatAction()
-        {
-            return !_reactionState.BlocksActions && _actor.CanAttack;
-        }
-
-        private bool CanUseAction(PlayerCombatAction action)
-        {
-            if (action == null ||
-                (_lastActionUseTime.TryGetValue(action.Id, out float lastUseTime) &&
-                 _clock.ScaledTime - lastUseTime < action.Definition.Cooldown))
-            {
-                return false;
-            }
-
-            return _animation.CanPlayAction(
-                _characterType,
-                CurrentWeapon,
-                action);
         }
 
         private Transform ResolveNextMotionTarget(

@@ -2,7 +2,10 @@
 
 ## Ответственность
 
-`PlayerCombatController` координирует выполнение уже определённых combat actions: принимает семантические команды, обращается к action graph, запускает timeline executor, управляет buffer/cooldown и публикует подтверждённое состояние. Animator и weapon rig остаются presentation/scene adapters.
+`PlayerCombatController` координирует выполнение уже определённых combat actions: принимает семантические команды, обращается к action graph, запускает timeline executor, управляет buffer и публикует подтверждённое состояние. `PlayerCombatAvailability` отвечает за live admission rules и cooldown history. Animator и weapon rig остаются presentation/scene adapters.
+
+Подробная граница admission/cooldown описана в
+`Docs/Architecture/Combat.ActionAvailability.md`.
 
 Combat не управляет motor напрямую. Он выдаёт только `PlayerMovementIntent`, который читает locomotion.
 
@@ -139,6 +142,12 @@ classDiagram
         +ExecuteAsync(current, target, commit, token) UniTask~bool~
         +Abort()
     }
+    class PlayerCombatAvailability {
+        +CanEnterAction bool
+        +CanSwitchWeapon bool
+        +CanUseAction(action, weapon) bool
+        +RecordUse(action)
+    }
     class CombatInputBuffer
     class IPlayerCombatAnimation
     class IPlayerWeaponRig
@@ -165,6 +174,7 @@ classDiagram
     PlayerCombatController --> ICombatHitEvents : confirmed outgoing hits
     PlayerCombatController --> CombatActionSession : attack lifecycle
     PlayerCombatController --> PlayerWeaponTransitionSession : draw / sheathe lifecycle
+    PlayerCombatController --> PlayerCombatAvailability : admission / cooldown
     PlayerCombatController --> CombatActionExecutor : deterministic tick
     CombatActionSession --> CombatActionExecutor : attack timeline
     PlayerWeaponTransitionSession --> CombatActionExecutor : transition timeline
@@ -174,9 +184,11 @@ classDiagram
     PlayerCombatController --> IPlayerCombatAnimation
     PlayerCombatController --> IPlayerWeaponRig
     PlayerCombatController --> IPlayerCombatActor
-    PlayerCombatController --> ICharacterReactionState : entry gate
+    PlayerCombatAvailability --> ICharacterReactionState : reaction gate
+    PlayerCombatAvailability --> IPlayerCombatActor : actor gate
+    PlayerCombatAvailability --> IPlayerCombatAnimation : presentation support
+    PlayerCombatAvailability --> ICombatClock : scaled cooldown time
     PlayerCombatController --> IPlayerLocomotionEvents : confirmed cancels
-    PlayerCombatController --> ICombatClock
     IStateMachine~PlayerCombatPhase~ *-- PlayerCombatReadyState
     IStateMachine~PlayerCombatPhase~ *-- PlayerCombatExecutingState
     IStateMachine~PlayerCombatPhase~ *-- PlayerCombatRecoveryState
@@ -324,11 +336,14 @@ event и не отменяет атаку.
   hitbox, завершает motion, отменяет combat presentation и возвращается в
   `Ready`. Action с environment `Any` эту границу не наследует.
 - State machine и её states создаются scoped-регистрациями VContainer в `PlayerCombatComposition`; controller не вызывает `Resolve` и не владеет container.
+- `PlayerCombatAvailability` создаётся в том же scope и является единственным
+  owner cooldown timestamps. Disable/enable controller не сбрасывает cooldown,
+  поэтому время действия ограничений совпадает с lifecycle gameplay scope.
 - Animator, graph authoring и input buffer не являются владельцами combat phase.
 - Входящая реакция передаёт session отдельную причину `Reaction`; jump/dodge и
   внешняя команда используют `Interrupted`. Все пути проходят через один
   session cleanup вместо ручного сброса execution/outcome в controller.
-- Входящая реакция не входит в combat state machine. `PlayerActorController` прерывает executing/recovery/weapon-switch action по подтверждённому reaction state, а `PlayerCombatController` читает только `ICharacterReactionState.BlocksActions`, чтобы не принять новый action во время hit-stun/knockdown/airborne/death. Владельцем этих состояний остаётся `CharacterReactionController`.
+- Входящая реакция не входит в combat state machine. `PlayerActorController` прерывает executing/recovery/weapon-switch action по подтверждённому reaction state, а `PlayerCombatAvailability` читает только `ICharacterReactionState.BlocksActions`, чтобы не принять новый action во время hit-stun/knockdown/airborne/death. Владельцем этих состояний остаётся `CharacterReactionController`.
 
 `IPlayerCombatActor.CanAttack` допускает только обычные walking/falling movement
 modes и по-прежнему блокирует crouch и dodge. Поэтому воздушная ветка доступна
