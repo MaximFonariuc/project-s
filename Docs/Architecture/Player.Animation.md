@@ -223,9 +223,11 @@ remains small.
 
 Content rate and time policy are separate factors. Hit stop multiplies the
 current action rate and restores it afterwards; completion or cancellation
-clears only the content factor before locomotion resumes. The base attack and
-dodge states therefore keep authored state speed `1`, which is enforced by the
-editor contract validator.
+does not make Animator timing authoritative. Normal completion retains the
+content factor while the authored exit still references the action state and
+clears it once Animator reaches the destination state; an explicit cancel
+clears it before its forced crossfade. The base attack and dodge states therefore
+keep authored state speed `1`, which is enforced by the editor contract validator.
 
 Reaction and death actions keep authored playback speed `1`. Gameplay reaction
 state and duration remain authoritative and cancel presentation when their

@@ -66,6 +66,9 @@ namespace _App
         private float _actionPlaybackRate = 1.0f;
         private float _timePlaybackRate = 1.0f;
         private int _actionLayerIndex = -1;
+        private int _actionStateHash;
+        private int _releasedActionLayerIndex = -1;
+        private int _releasedActionStateHash;
         private bool _wasGrounded = true;
         private bool _disposed;
 
@@ -91,6 +94,7 @@ namespace _App
         public void ApplyLocomotion(in CharacterLocomotionFrame frame, float deltaTime)
         {
             ThrowIfDisposed();
+            TryReleaseCompletedActionPlaybackRate();
 
             float safeDeltaTime = Mathf.Max(0.0f, deltaTime);
             float planarSpeed = Mathf.Sqrt(
@@ -134,6 +138,7 @@ namespace _App
                 return AnimationActionPlayback.Invalid;
             }
 
+            ClearReleasedActionTracking();
             _actionPlaybackRate = ResolveActionPlaybackRate(in request, statePath);
             ApplyPlaybackRate();
             _animator.CrossFadeInFixedTime(
@@ -141,7 +146,7 @@ namespace _App
                 crossFadeSeconds,
                 layerIndex,
                 0.0f);
-            SetActionPresentationPolicy(request.Action, layerIndex);
+            SetActionPresentationPolicy(request.Action, layerIndex, stateHash);
 
             _nextSequence++;
             if (_nextSequence == 0)
@@ -159,7 +164,7 @@ namespace _App
                 return;
             }
 
-            ClearActionPlaybackPolicy();
+            ReleaseActionPlaybackPolicy();
         }
 
         public void CancelAction()
@@ -170,7 +175,8 @@ namespace _App
             }
 
             int cancelledLayerIndex = _actionLayerIndex;
-            ClearActionPlaybackPolicy();
+            ResetActionPlaybackRate();
+            ClearActionPresentationPolicy();
 
             if (cancelledLayerIndex == _switchWeaponLayerIndex)
             {
@@ -216,6 +222,7 @@ namespace _App
             _animator.SetBool(OnGroundHash, true);
             _actionPlaybackRate = 1.0f;
             _timePlaybackRate = 1.0f;
+            ClearReleasedActionTracking();
             ApplyPlaybackRate();
             _lastAirborneVerticalSpeed = 0.0f;
             _wasGrounded = true;
@@ -248,7 +255,8 @@ namespace _App
 
         private void SetActionPresentationPolicy(
             AnimationActionId action,
-            int layerIndex)
+            int layerIndex,
+            int stateHash)
         {
             float bodyWeight;
             float headWeight;
@@ -281,6 +289,7 @@ namespace _App
 
             _lookPose.SetActionWeights(bodyWeight, headWeight);
             _actionLayerIndex = layerIndex;
+            _actionStateHash = stateHash;
         }
 
         private static bool IsAttackAction(AnimationActionId action)
@@ -296,13 +305,65 @@ namespace _App
         {
             _lookPose.SetActionWeights(1.0f, 1.0f);
             _actionLayerIndex = -1;
+            _actionStateHash = 0;
         }
 
-        private void ClearActionPlaybackPolicy()
+        private void ReleaseActionPlaybackPolicy()
+        {
+            if (!Mathf.Approximately(_actionPlaybackRate, 1.0f) &&
+                _actionLayerIndex >= 0 &&
+                _actionStateHash != 0)
+            {
+                _releasedActionLayerIndex = _actionLayerIndex;
+                _releasedActionStateHash = _actionStateHash;
+            }
+            else
+            {
+                ResetActionPlaybackRate();
+            }
+
+            ClearActionPresentationPolicy();
+        }
+
+        private void TryReleaseCompletedActionPlaybackRate()
+        {
+            if (_releasedActionLayerIndex < 0)
+            {
+                return;
+            }
+
+            AnimatorStateInfo current = _animator.GetCurrentAnimatorStateInfo(
+                _releasedActionLayerIndex);
+            bool releasedStateIsActive =
+                current.fullPathHash == _releasedActionStateHash;
+            if (_animator.IsInTransition(_releasedActionLayerIndex))
+            {
+                AnimatorStateInfo next = _animator.GetNextAnimatorStateInfo(
+                    _releasedActionLayerIndex);
+                releasedStateIsActive |=
+                    next.fullPathHash == _releasedActionStateHash;
+            }
+
+            if (releasedStateIsActive)
+            {
+                return;
+            }
+
+            ResetActionPlaybackRate();
+            ClearReleasedActionTracking();
+        }
+
+        private void ResetActionPlaybackRate()
         {
             _actionPlaybackRate = 1.0f;
+            ClearReleasedActionTracking();
             ApplyPlaybackRate();
-            ClearActionPresentationPolicy();
+        }
+
+        private void ClearReleasedActionTracking()
+        {
+            _releasedActionLayerIndex = -1;
+            _releasedActionStateHash = 0;
         }
 
         private void ApplyPlaybackRate()
