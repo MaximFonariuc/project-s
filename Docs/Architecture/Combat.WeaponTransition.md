@@ -27,6 +27,11 @@ classDiagram
         +Abort()
         -RunStepAsync(animationWeapon, draw, result, token)
     }
+    class PlayerCombatOperationLifetime {
+        +Begin() CancellationTokenSource
+        +TryComplete(tokenSource) bool
+        +Cancel(reason)
+    }
     class ICombatActionObserver {
         +Observe(frame) CombatActionDirective
     }
@@ -49,7 +54,9 @@ classDiagram
     }
 
     ICombatActionObserver <|.. PlayerWeaponTransitionSession
-    PlayerCombatController --> PlayerWeaponTransitionSession : execute / abort
+    PlayerCombatController --> PlayerWeaponTransitionSession : execute
+    PlayerCombatController --> PlayerCombatOperationLifetime : operation lifecycle
+    PlayerCombatOperationLifetime --> PlayerWeaponTransitionSession : abort
     PlayerWeaponTransitionSession --> CombatActionExecutor : timeline
     PlayerWeaponTransitionSession --> PlayerWeaponTransitionAction : authoring data
     PlayerWeaponTransitionSession --> IPlayerCombatAnimation : presentation
@@ -106,8 +113,9 @@ sequenceDiagram
 - `Abort` завершает executor через его штатную cancellation boundary. `finally`
   очищает transient references и восстанавливает loadout последнего
   подтверждённого оружия при completion, failure, cancellation и disable.
-- `PlayerCombatController` по-прежнему владеет combat phase, lifecycle token,
-  публичным `WeaponChanged` и окончательным возвратом в `Ready`.
+- `PlayerCombatOperationLifetime` владеет общим lifecycle token и единым abort
+  path атаки/смены оружия. `PlayerCombatController` по-прежнему владеет combat
+  phase, публичным `WeaponChanged` и окончательным возвратом в `Ready`.
 
 ## Composition
 
@@ -115,3 +123,5 @@ sequenceDiagram
 combat profile (либо prototype defaults) и регистрирует
 `PlayerWeaponTransitionSession` как scoped plain C# dependency. Сессия не
 вызывает container и не получает Unity scene references напрямую.
+`PlayerCombatOperationLifetime` регистрируется в том же scope и зависит только
+от animation port и двух runtime sessions.

@@ -34,6 +34,11 @@ classDiagram
         +Abort(reason)
         +TryRecord(hit) bool
     }
+    class PlayerCombatOperationLifetime {
+        +Begin() CancellationTokenSource
+        +TryComplete(tokenSource) bool
+        +Cancel(reason)
+    }
     class CombatActionExecutor {
         <<timeline / motion / immunity>>
         +Advance(scaledDeltaTime)
@@ -60,7 +65,9 @@ classDiagram
     }
     class PlayerCombatActionGraph
 
-    PlayerCombatController --> CombatActionSession : starts / observes / aborts
+    PlayerCombatController --> CombatActionSession : starts / observes
+    PlayerCombatController --> PlayerCombatOperationLifetime : operation lifecycle
+    PlayerCombatOperationLifetime --> CombatActionSession : aborts
     PlayerCombatController --> PlayerCombatActionGraph : entry / transition rules
     PlayerCombatController --> ICombatHitEvents : forwards confirmed hit
     CombatActionSession --> CombatActionExecutor : timeline lifecycle
@@ -123,5 +130,6 @@ outcome жить между actions.
 - Weapon draw/sheathe не создаёт damage execution и намеренно не входит в
   `CombatActionSession`; это отдельный equipment transition на том же
   сериализованном timeline executor.
-- Session создаётся `PlayerCombatComposition` в gameplay scope через VContainer.
-
+- Session и `PlayerCombatOperationLifetime` создаются `PlayerCombatComposition`
+  в gameplay scope через VContainer. Общая cancellation boundary описана в
+  `Docs/Architecture/Combat.OperationLifetime.md`.

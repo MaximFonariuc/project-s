@@ -2,7 +2,7 @@
 
 ## Ответственность
 
-`PlayerCombatController` координирует выполнение уже определённых combat actions: принимает семантические команды, обращается к action graph, запускает timeline executor и публикует подтверждённое состояние. `PlayerCombatCommandInbox` изолирует pre-tick FIFO, `CombatInputBuffer` — длительное buffering с action context, а `PlayerCombatAvailability` отвечает за live admission rules и cooldown history. Animator и weapon rig остаются presentation/scene adapters.
+`PlayerCombatController` координирует выполнение уже определённых combat actions: принимает семантические команды, обращается к action graph, запускает timeline executor и публикует подтверждённое состояние. `PlayerCombatCommandInbox` изолирует pre-tick FIFO, `CombatInputBuffer` — длительное buffering с action context, `PlayerCombatOperationLifetime` — cancellation ownership attack/weapon операций, а `PlayerCombatAvailability` отвечает за live admission rules и cooldown history. Animator и weapon rig остаются presentation/scene adapters.
 
 Подробная граница admission/cooldown описана в
 `Docs/Architecture/Combat.ActionAvailability.md`.
@@ -142,6 +142,11 @@ classDiagram
         +ExecuteAsync(current, target, commit, token) UniTask~bool~
         +Abort()
     }
+    class PlayerCombatOperationLifetime {
+        +Begin() CancellationTokenSource
+        +TryComplete(tokenSource) bool
+        +Cancel(reason)
+    }
     class PlayerCombatAvailability {
         +CanEnterAction bool
         +CanSwitchWeapon bool
@@ -180,6 +185,10 @@ classDiagram
     PlayerCombatController --> ICombatHitEvents : confirmed outgoing hits
     PlayerCombatController --> CombatActionSession : attack lifecycle
     PlayerCombatController --> PlayerWeaponTransitionSession : draw / sheathe lifecycle
+    PlayerCombatController --> PlayerCombatOperationLifetime : cancellation owner
+    PlayerCombatOperationLifetime --> CombatActionSession : abort
+    PlayerCombatOperationLifetime --> PlayerWeaponTransitionSession : abort
+    PlayerCombatOperationLifetime --> IPlayerCombatAnimation : cancel presentation
     PlayerCombatController --> PlayerCombatAvailability : admission / cooldown
     PlayerCombatController --> CombatActionExecutor : deterministic tick
     CombatActionSession --> CombatActionExecutor : attack timeline
@@ -330,7 +339,8 @@ event и не отменяет атаку.
 ## Lifecycle
 
 - `Enable` запускает state machine в `Ready` и симметрично подписывает semantic input, dodge, state и outgoing hit events.
-- `Disable` отменяет UniTask action, передаёт session причину `Disabled`, очищает
+- `Disable` через `PlayerCombatOperationLifetime` отменяет UniTask action,
+  передаёт session причину `Disabled`, очищает
   buffer, закрывает hitbox, снимает callbacks и останавливает state machine.
 - Ошибка во время запуска action откатывает частично начатый execution через тот
   же `Abort` boundary: damage-immunity lease освобождается, combat motion
@@ -350,6 +360,8 @@ event и не отменяет атаку.
 - Входящая реакция передаёт session отдельную причину `Reaction`; jump/dodge и
   внешняя команда используют `Interrupted`. Все пути проходят через один
   session cleanup вместо ручного сброса execution/outcome в controller.
+- Общий operation lifecycle, защита от запоздавшего async `finally` и порядок
+  cancellation описаны в `Docs/Architecture/Combat.OperationLifetime.md`.
 - Входящая реакция не входит в combat state machine. `PlayerActorController` прерывает executing/recovery/weapon-switch action по подтверждённому reaction state, а `PlayerCombatAvailability` читает только `ICharacterReactionState.BlocksActions`, чтобы не принять новый action во время hit-stun/knockdown/airborne/death. Владельцем этих состояний остаётся `CharacterReactionController`.
 
 `IPlayerCombatActor.CanAttack` допускает только обычные walking/falling movement

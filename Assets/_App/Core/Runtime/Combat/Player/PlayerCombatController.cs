@@ -25,6 +25,7 @@ namespace _App
         private readonly CombatActionExecutor _actionExecutor;
         private readonly CombatActionSession _actionSession;
         private readonly PlayerWeaponTransitionSession _weaponTransitionSession;
+        private readonly PlayerCombatOperationLifetime _operationLifetime;
         private readonly PlayerCombatActionGraph _actionGraph;
         private readonly IStateMachine<PlayerCombatPhase> _stateMachine;
         private readonly EWeaponType _preferredWeapon;
@@ -35,7 +36,6 @@ namespace _App
         private readonly Action<EWeaponType> _weaponCommitHandler;
         private readonly PlayerCombatCommandInbox _commandInbox =
             new PlayerCombatCommandInbox(CommandInboxCapacity);
-        private CancellationTokenSource _actionCancellation;
         private PlayerCombatAction _acceptedBufferedAction;
         private bool _enabled;
 
@@ -81,6 +81,7 @@ namespace _App
             CombatActionExecutor actionExecutor,
             CombatActionSession actionSession,
             PlayerWeaponTransitionSession weaponTransitionSession,
+            PlayerCombatOperationLifetime operationLifetime,
             PlayerCombatActionGraph actionGraph,
             IStateMachine<PlayerCombatPhase> stateMachine,
             ECharacterType characterType,
@@ -98,6 +99,8 @@ namespace _App
             _actionSession = actionSession ?? throw new ArgumentNullException(nameof(actionSession));
             _weaponTransitionSession = weaponTransitionSession ??
                 throw new ArgumentNullException(nameof(weaponTransitionSession));
+            _operationLifetime = operationLifetime ??
+                throw new ArgumentNullException(nameof(operationLifetime));
             _actionGraph = actionGraph ?? throw new ArgumentNullException(nameof(actionGraph));
             _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
             _preferredWeapon = startingWeapon == EWeaponType.None
@@ -481,20 +484,16 @@ namespace _App
 
         private CancellationTokenSource BeginAction()
         {
-            CancelActiveAction(CombatActionEndReason.Cancelled);
-            _actionCancellation = new CancellationTokenSource();
-            return _actionCancellation;
+            return _operationLifetime.Begin();
         }
 
         private void CompleteAction(CancellationTokenSource cancellation)
         {
-            if (!ReferenceEquals(_actionCancellation, cancellation))
+            if (!_operationLifetime.TryComplete(cancellation))
             {
                 return;
             }
 
-            _actionCancellation = null;
-            cancellation.Dispose();
             _inputBuffer.Clear();
             _acceptedBufferedAction = null;
             SetComboIndex(0);
@@ -504,20 +503,7 @@ namespace _App
 
         private void CancelActiveAction(CombatActionEndReason reason)
         {
-            _animation.Cancel();
-            CancellationTokenSource cancellation = _actionCancellation;
-            if (cancellation == null)
-            {
-                _actionSession.Abort(reason);
-                _weaponTransitionSession.Abort();
-                return;
-            }
-
-            _actionCancellation = null;
-            cancellation.Cancel();
-            _actionSession.Abort(reason);
-            _weaponTransitionSession.Abort();
-            cancellation.Dispose();
+            _operationLifetime.Cancel(reason);
         }
 
         private void EnterExecuting(PlayerCombatAction action)

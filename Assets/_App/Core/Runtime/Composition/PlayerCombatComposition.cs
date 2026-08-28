@@ -60,6 +60,7 @@ namespace _App
                     weaponTransitionAction,
                     player.CharacterType),
                 Lifetime.Scoped);
+            builder.Register<PlayerCombatOperationLifetime>(Lifetime.Scoped);
 
             builder.RegisterStateMachine<PlayerCombatPhase>(Lifetime.Scoped)
                 .State<PlayerCombatReadyState>(PlayerCombatPhase.Ready, Lifetime.Scoped)
@@ -92,6 +93,7 @@ namespace _App
                         resolver.Resolve<CombatActionExecutor>(),
                         resolver.Resolve<CombatActionSession>(),
                         resolver.Resolve<PlayerWeaponTransitionSession>(),
+                        resolver.Resolve<PlayerCombatOperationLifetime>(),
                         resolver.Resolve<PlayerCombatActionGraph>(),
                         resolver.Resolve<ModularStateMachine.IStateMachine<PlayerCombatPhase>>(),
                         player.CharacterType,
