@@ -22,9 +22,12 @@ classDiagram
         +SourceNormalizedTime
     }
     class PlayerCombatController {
-        -currentAction
-        -observedFrame
         +TryExecute(commandId) bool
+    }
+    class CombatActionSession {
+        +Action PlayerCombatAction
+        +CurrentFrame CombatActionFrame
+        +Outcome CombatActionOutcome
     }
     class PlayerCombatActionGraph {
         +TryResolveEntry(command, environment, action) bool
@@ -57,12 +60,13 @@ classDiagram
     }
     class IPlayerCombatAnimation {
         <<presentation>>
-        +TryPlayComboStep(index)
-        +TryPlayNamedAnimation(id)
+        +CanPlayAction(character, weapon, action) bool
+        +TryPlayAction(character, weapon, action, playback) bool
     }
 
     IPlayerInput --> PlayerCombatController
     PlayerCombatController --> CombatInputBuffer
+    PlayerCombatController --> CombatActionSession
     CombatInputBuffer --> PlayerCombatCommandSample
     PlayerCombatController --> PlayerCombatActionGraph
     PlayerCombatActionGraph --> PlayerCombatAction
@@ -70,6 +74,7 @@ classDiagram
     PlayerCombatAction --> CombatActionDefinition
     PlayerCombatActionGraph --> CombatActionOutcome
     PlayerCombatController --> IPlayerCombatAnimation
+    IPlayerCombatAnimation --> PlayerCombatAction : semantic presentation
 ```
 
 ## Правила разрешения перехода

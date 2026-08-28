@@ -10,12 +10,15 @@ classDiagram
     class PlayerWeaponTransitionSession
     class IPlayerCombatAnimation {
         <<interface>>
-        +TryPlayComboStep(index, expectedDuration, playback) bool
-        +TryPlayAirComboStep(index, expectedDuration, playback) bool
-        +HasNamedAnimation(animationId) bool
-        +TryPlayNamedAnimation(animationId, expectedDuration, playback) bool
+        +CanPlayAction(character, weapon, action) bool
+        +TryPlayAction(character, weapon, action, playback) bool
+        +TryPlayWeaponTransition(weapon, draw, playback) bool
         +Cancel()
         +Release()
+    }
+    class PlayerCombatAction {
+        +Presentation PlayerCombatPresentation
+        +Definition CombatActionDefinition
     }
     class PlayerCombatAnimationAdapter
     class PlayerAnimationCoordinator
@@ -30,6 +33,7 @@ classDiagram
     PlayerCombatController --> CombatActionSession
     PlayerCombatController --> PlayerWeaponTransitionSession
     IPlayerCombatAnimation <|.. PlayerCombatAnimationAdapter
+    PlayerCombatAnimationAdapter --> PlayerCombatAction : maps presentation
     PlayerWeaponTransitionSession --> IPlayerCombatAnimation : draw / sheathe
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     PlayerCombatAnimationAdapter --> AnimationActionRequest
@@ -43,6 +47,10 @@ classDiagram
 
 - The adapter exposes three combo steps for every compatible animation loadout
   and maps them to semantic action `LightAttack`, variants `0...2`.
+- Gameplay passes one `PlayerCombatAction` through the narrow animation port.
+  The adapter alone interprets `ComboStep`, `AirComboStep` and `NamedAnimation`;
+  `PlayerCombatController` does not know the available Animator slot counts or
+  construct `AnimationActionRequest`.
 - The Animator Controller maps those variants to `BaseAttack1...3`; gameplay
   code has no clip reference.
 - The adapter exposes a separate three-step air track and maps it to semantic

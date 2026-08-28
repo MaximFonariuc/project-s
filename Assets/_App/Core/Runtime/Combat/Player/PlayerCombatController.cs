@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using ModularAnimation;
 using ModularInput;
 using ModularStateMachine;
 using UnityEngine;
@@ -331,7 +330,11 @@ namespace _App
                 Transform previousConfirmedHitTarget = null;
                 while (action != null && CanUseAction(action))
                 {
-                    if (!TryPlayAction(action, out _))
+                    if (!_animation.TryPlayAction(
+                            _characterType,
+                            CurrentWeapon,
+                            action,
+                            out _))
                     {
                         break;
                     }
@@ -387,34 +390,6 @@ namespace _App
             {
                 CompleteAction(cancellation);
             }
-        }
-
-        private bool TryPlayAction(
-            PlayerCombatAction action,
-            out AnimationActionPlayback playback)
-        {
-            PlayerCombatPresentation presentation = action.Presentation;
-            return presentation.Kind switch
-            {
-                PlayerCombatPresentationKind.ComboStep =>
-                    _animation.TryPlayComboStep(
-                        presentation.ComboIndex,
-                        action.Definition.DurationSeconds,
-                        out playback),
-                PlayerCombatPresentationKind.AirComboStep =>
-                    _animation.TryPlayAirComboStep(
-                        presentation.ComboIndex,
-                        action.Definition.DurationSeconds,
-                        out playback),
-                PlayerCombatPresentationKind.NamedAnimation =>
-                    _animation.TryPlayNamedAnimation(
-                        _characterType,
-                        CurrentWeapon,
-                        presentation.AnimationId,
-                        action.Definition.DurationSeconds,
-                        out playback),
-                _ => FailPlayback(out playback)
-            };
         }
 
         private CombatActionEndReason ObserveCombatFrame(in CombatActionFrame frame)
@@ -507,20 +482,10 @@ namespace _App
                 return false;
             }
 
-            PlayerCombatPresentation presentation = action.Presentation;
-            return presentation.Kind switch
-            {
-                PlayerCombatPresentationKind.ComboStep =>
-                    presentation.ComboIndex < _animation.ComboCount,
-                PlayerCombatPresentationKind.AirComboStep =>
-                    presentation.ComboIndex < _animation.AirComboCount,
-                PlayerCombatPresentationKind.NamedAnimation =>
-                    _animation.HasNamedAnimation(
-                        _characterType,
-                        CurrentWeapon,
-                        presentation.AnimationId),
-                _ => false
-            };
+            return _animation.CanPlayAction(
+                _characterType,
+                CurrentWeapon,
+                action);
         }
 
         private Transform ResolveNextMotionTarget(
@@ -666,10 +631,5 @@ namespace _App
             HitWindowChanged?.Invoke(open);
         }
 
-        private static bool FailPlayback(out AnimationActionPlayback playback)
-        {
-            playback = default;
-            return false;
-        }
     }
 }

@@ -15,7 +15,15 @@ classDiagram
     }
     class PlayerLocomotionAnimationAdapter
     class PlayerCharacterAnimationPresenter
-    class PlayerCombatAnimationAdapter
+    class PlayerCombatAnimationAdapter {
+        +CanPlayAction(character, weapon, action) bool
+        +TryPlayAction(character, weapon, action, playback) bool
+        +TryPlayWeaponTransition(weapon, draw, playback) bool
+    }
+    class PlayerCombatAction {
+        +Presentation PlayerCombatPresentation
+        +Definition CombatActionDefinition
+    }
     class PlayerAnimatorLoadout {
         +Apply(weaponType)
     }
@@ -56,6 +64,7 @@ classDiagram
     PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator : accepted dodge
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     PlayerCombatAnimationAdapter --> PlayerAnimatorLoadout
+    PlayerCombatAnimationAdapter --> PlayerCombatAction : semantic mapping
     PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
     PlayerCameraAnimationAdapter --> ICharacterLookAnimationDriver

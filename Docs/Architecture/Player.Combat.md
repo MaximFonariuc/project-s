@@ -229,7 +229,7 @@ sequenceDiagram
     Combat->>Executor: Advance(scaledDeltaTime)
     Combat->>Graph: TryResolveEntry(command, environment)
     Graph-->>Combat: PlayerCombatAction
-    Combat->>View: play presentation
+    Combat->>View: TryPlayAction(character, weapon, action)
     Combat->>Machine: Ready -> Executing(action)
     Combat->>Session: ExecuteAsync(action)
     Session->>Executor: ExecuteAsync(definition)
@@ -256,18 +256,24 @@ buffered input не может принять отсутствие ещё не �
 Текущий профиль использует `Any`; outcome-условия являются готовой границей для
 будущих hit-confirm веток и не меняют существующие combo transitions автоматически.
 
-Для ground/air combo presentation вызов содержит отдельный semantic track,
-`ComboIndex` и
+Для ground/air combo `PlayerCombatController` передаёт adapter целую
+`PlayerCombatAction`. `PlayerCombatAnimationAdapter` в одном месте преобразует
+её presentation в semantic track, `ComboIndex` и
 `CombatActionDefinition.DurationSeconds`. Это не переносит authority в Animator:
 длительность остаётся метаданными ожидаемого playback. Текущий XController
 воспроизводит authored clip speed и не выводит gameplay timeline из normalized
 time Animator.
 
-Для named presentation controller передаёт отдельный `PlayerCombatAnimationId`
-и ту же ожидаемую gameplay-длительность. Наземный `attack.heavy` отображается
+Для named presentation тот же adapter читает `PlayerCombatAnimationId` из action
+и использует ожидаемую gameplay-длительность. Наземный `attack.heavy` отображается
 существующим `Attack/BaseAttack4`, а `skill.special` — `Attack/Skill`. ПКМ/RT
 выдают semantic command тяжёлой атаки; клавиша `3`/D-pad Down — special,
 независимо от control scheme.
+
+`CanPlayAction` проверяет только существование поддерживаемого presentation slot.
+Допустимость action по environment, cooldown, reaction state и graph transition
+остаётся в gameplay controller/graph. Поэтому animation adapter не становится
+владельцем combat rules.
 
 Hitbox открывается только по `CombatActionFrame` и закрывается при completion,
 cancellation, interruption и disable. `CombatActionSession` является единым

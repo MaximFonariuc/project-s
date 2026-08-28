@@ -13,9 +13,6 @@ namespace _App
 
         private bool _disposed;
 
-        public int ComboCount => SupportedComboCount;
-        public int AirComboCount => SupportedAirComboCount;
-
         public PlayerCombatAnimationAdapter(
             PlayerAnimationCoordinator animation,
             PlayerAnimatorLoadout loadout)
@@ -30,82 +27,48 @@ namespace _App
             _loadout.Apply(weaponType);
         }
 
-        public bool HasNamedAnimation(
+        public bool CanPlayAction(
             ECharacterType characterType,
             EWeaponType weaponType,
-            PlayerCombatAnimationId animationId)
+            PlayerCombatAction action)
         {
             ThrowIfDisposed();
-            return TryResolveNamedAction(animationId, out _);
-        }
-
-        public bool TryPlayComboStep(
-            int comboIndex,
-            float expectedDuration,
-            out AnimationActionPlayback playback)
-        {
-            ThrowIfDisposed();
-            if (comboIndex < 0 ||
-                comboIndex >= SupportedComboCount ||
-                expectedDuration <= 0.0f)
+            if (action == null)
             {
-                playback = default;
                 return false;
             }
 
-            var request = new AnimationActionRequest(
-                PlayerAnimatorActions.LightAttack,
-                comboIndex,
-                expectedDuration);
-            return _animation.TryPlayAction(
-                PlayerAnimationSource.Combat,
-                in request,
-                out playback);
+            PlayerCombatPresentation presentation = action.Presentation;
+            return TryResolveAction(in presentation, out _, out _);
         }
 
-        public bool TryPlayNamedAnimation(
+        public bool TryPlayAction(
             ECharacterType characterType,
             EWeaponType weaponType,
-            PlayerCombatAnimationId animationId,
-            float expectedDuration,
+            PlayerCombatAction action,
             out AnimationActionPlayback playback)
         {
             ThrowIfDisposed();
-            if (!TryResolveNamedAction(animationId, out AnimationActionId action) ||
-                expectedDuration <= 0.0f)
+            if (action == null || action.Definition.DurationSeconds <= 0.0f)
+            {
+                playback = default;
+                return false;
+            }
+
+            PlayerCombatPresentation presentation = action.Presentation;
+            if (!TryResolveAction(
+                    in presentation,
+                    out AnimationActionId animationAction,
+                    out int variant))
             {
                 playback = default;
                 return false;
             }
 
             var request = new AnimationActionRequest(
-                action,
-                0,
-                expectedDuration);
-            return _animation.TryPlayAction(
-                PlayerAnimationSource.Combat,
-                in request,
-                out playback);
-        }
-
-        public bool TryPlayAirComboStep(
-            int comboIndex,
-            float expectedDuration,
-            out AnimationActionPlayback playback)
-        {
-            ThrowIfDisposed();
-            if (comboIndex < 0 ||
-                comboIndex >= SupportedAirComboCount ||
-                expectedDuration <= 0.0f)
-            {
-                playback = default;
-                return false;
-            }
-
-            var request = new AnimationActionRequest(
-                PlayerAnimatorActions.AirAttack,
-                comboIndex,
-                expectedDuration);
+                animationAction,
+                variant,
+                action.Definition.DurationSeconds);
             return _animation.TryPlayAction(
                 PlayerAnimationSource.Combat,
                 in request,
@@ -200,6 +163,38 @@ namespace _App
 
             action = default;
             return false;
+        }
+
+        private static bool TryResolveAction(
+            in PlayerCombatPresentation presentation,
+            out AnimationActionId action,
+            out int variant)
+        {
+            switch (presentation.Kind)
+            {
+                case PlayerCombatPresentationKind.ComboStep
+                    when presentation.ComboIndex >= 0 &&
+                         presentation.ComboIndex < SupportedComboCount:
+                    action = PlayerAnimatorActions.LightAttack;
+                    variant = presentation.ComboIndex;
+                    return true;
+
+                case PlayerCombatPresentationKind.AirComboStep
+                    when presentation.ComboIndex >= 0 &&
+                         presentation.ComboIndex < SupportedAirComboCount:
+                    action = PlayerAnimatorActions.AirAttack;
+                    variant = presentation.ComboIndex;
+                    return true;
+
+                case PlayerCombatPresentationKind.NamedAnimation:
+                    variant = 0;
+                    return TryResolveNamedAction(presentation.AnimationId, out action);
+
+                default:
+                    action = default;
+                    variant = 0;
+                    return false;
+            }
         }
     }
 }
