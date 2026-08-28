@@ -6,6 +6,7 @@ It does not decide action legality, damage or cancel timing.
 ```mermaid
 classDiagram
     class PlayerCombatController
+    class CombatActionSession
     class IPlayerCombatAnimation {
         <<interface>>
         +TryPlayComboStep(index, expectedDuration, playback) bool
@@ -25,10 +26,12 @@ classDiagram
     class Weapon
 
     PlayerCombatController --> IPlayerCombatAnimation
+    PlayerCombatController --> CombatActionSession
     IPlayerCombatAnimation <|.. PlayerCombatAnimationAdapter
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     PlayerCombatAnimationAdapter --> AnimationActionRequest
-    PlayerCombatController --> PlayerWeaponRig
+    PlayerCombatController --> PlayerWeaponRig : equipped loadout
+    CombatActionSession --> PlayerWeaponRig : hitbox lifecycle
     PlayerWeaponRig --> PlayerWeaponLoadout
     PlayerWeaponLoadout *-- PlayerWeaponBinding
     PlayerWeaponBinding *-- PlayerWeaponAttachment
@@ -55,9 +58,9 @@ classDiagram
   input start the next valid ground/air action instead of being cleared merely
   because it missed the previous action's chain or cancel window.
 - An airborne-only action is interrupted as soon as the actor lands. The
-  controller closes its hitbox, releases combat motion and crossfades the
-  Animator back to locomotion instead of letting an aerial clip finish on the
-  ground. Actions valid in both environments are not affected.
+  session closes its hitbox and releases combat motion; the controller
+  crossfades the Animator back to locomotion instead of letting an aerial clip
+  finish on the ground. Actions valid in both environments are not affected.
 - A confirmed launcher target is carried through the non-damaging air chase
   into the air combo. Direct airborne entries fall back to the current lock-on;
   independent buffered entries clear the carried target.

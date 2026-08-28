@@ -145,7 +145,7 @@ namespace _App
                 return;
             }
 
-            _combat.InterruptAttack();
+            _combat.InterruptAttack(CombatActionEndReason.Reaction);
             _traversal.Interrupt();
             _locomotion.SetMovementIntent(PlayerMovementIntent.Locked);
         }

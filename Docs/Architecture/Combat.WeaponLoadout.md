@@ -17,6 +17,8 @@ gameplay-окне атаки.
 classDiagram
     class PlayerCombatController {
         +CurrentWeapon
+    }
+    class CombatActionSession {
         -SetHitWindow(open)
     }
     class IPlayerWeaponRig {
@@ -56,6 +58,8 @@ classDiagram
     class CombatHitResolver
 
     PlayerCombatController --> IPlayerWeaponRig
+    PlayerCombatController --> CombatActionSession
+    CombatActionSession --> IPlayerWeaponRig : attack hitbox lifecycle
     IPlayerWeaponRig <|.. PlayerWeaponRig
     PlayerWeaponRig --> PlayerWeaponLoadout
     PlayerWeaponLoadout *-- PlayerWeaponBinding

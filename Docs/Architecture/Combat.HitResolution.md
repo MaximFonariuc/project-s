@@ -128,6 +128,7 @@ classDiagram
 ```mermaid
 sequenceDiagram
     participant Combat as PlayerCombatController
+    participant Session as CombatActionSession
     participant Execution as CombatAttackExecution
     participant Loadout as PlayerWeaponLoadout
     participant Weapon
@@ -136,8 +137,9 @@ sequenceDiagram
     participant Health
     participant Events as ICombatHitEvents
 
-    Combat->>Execution: Begin(action id, impact, source)
-    Combat->>Weapon: EnableHitbox(execution, resolver)
+    Combat->>Session: ExecuteAsync(action)
+    Session->>Execution: Begin(action id, impact, source)
+    Session->>Weapon: EnableHitbox(execution, resolver)
     Loadout->>Loadout: LateUpdate / SyncTransforms once
     Loadout->>Weapon: SampleSweptHitbox()
     Weapon->>Hurtbox: trigger or interpolated shape overlap
@@ -150,10 +152,11 @@ sequenceDiagram
     alt accepted
         Resolver->>Execution: RegisterConfirmedTarget(actor root id)
         Resolver-->>Events: HitResolved(result)
-        Events-->>Combat: record matching execution outcome
+        Events-->>Combat: confirmed result
+        Combat->>Session: record matching execution outcome
     end
-    Combat->>Weapon: DisableHitbox()
-    Combat->>Execution: End()
+    Session->>Weapon: DisableHitbox()
+    Session->>Execution: End()
 ```
 
 `Health.Damaged`, `Health.Died` и глобальный для gameplay scope `ICombatHitEvents.HitResolved` получают один и тот же immutable result. Событие resolver означает подтверждённое попадание; overlap, иммунитет или уже поражённая в этом execution цель событие не создают. Actor добавляется в множество execution только после принятого damage: overlap во время i-frame не «съедает» удар навсегда и может быть повторно проверен, пока hitbox остаётся открытым.
@@ -162,15 +165,15 @@ sequenceDiagram
 
 ```text
 CombatActionAuthoring -> CombatActionDefinition -> CombatHitDefinition
-PlayerCombatController -> CombatAttackExecution -> IPlayerWeaponRig
+PlayerCombatController -> CombatActionSession -> CombatAttackExecution -> IPlayerWeaponRig
 Weapon -> ICombatHitResolver -> ICombatHitTarget
 Hurtbox -> BodyColliderRig -> Health
 ICombatHitEvents -> PlayerCombatController outcome / hit stop / future VFX / audio adapters
 Health.Damaged -> target-local reaction / incoming hit stop
 ```
 
-- `PlayerCombatController` владеет lifecycle execution: новый id на каждое фактически запущенное action, завершение при completion, chain transition, interruption, cancellation и disable.
-- `PlayerCombatController` принимает через `ICombatHitEvents` только result с совпадающими execution/action ids; этот outcome используется graph conditions и не изменяет результат damage resolution.
+- `CombatActionSession` владеет lifecycle execution: новый id на каждое фактически запущенное action, завершение при completion, chain transition, interruption, cancellation и disable.
+- `PlayerCombatController` принимает `ICombatHitEvents` и передаёт result активной session; `CombatActionOutcome` принимает только совпадающие execution/action ids. Outcome используется graph conditions и не изменяет результат damage resolution.
 - `CombatAttackExecution` владеет множеством уже поражённых actor root. Оно не находится в `Weapon`, поэтому смена collider или несколько зон тела не меняют правило одного попадания.
 - `Weapon` принадлежит scene/prefab и знает только Physics, активный execution и resolver. Он не хранит damage, cooldown, combo или reaction rules.
 - `WeaponHitboxSweep` интерполирует предыдущую и текущую форму

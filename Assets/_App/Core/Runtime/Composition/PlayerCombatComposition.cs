@@ -25,6 +25,7 @@ namespace _App
             builder.RegisterInstance(weaponTransitionAction);
             builder.Register<CombatMotionController>(Lifetime.Scoped);
             builder.Register<CombatActionExecutor>(Lifetime.Scoped);
+            builder.Register<CombatActionSession>(Lifetime.Scoped);
             builder.Register<CombatHitResolver>(Lifetime.Scoped)
                 .AsSelf()
                 .As<ICombatHitResolver>()
@@ -75,6 +76,7 @@ namespace _App
                         resolver.Resolve<ICombatHitEvents>(),
                         resolver.Resolve<CombatInputBuffer>(),
                         resolver.Resolve<CombatActionExecutor>(),
+                        resolver.Resolve<CombatActionSession>(),
                         resolver.Resolve<PlayerCombatActionGraph>(),
                         resolver.Resolve<PlayerWeaponTransitionAction>(),
                         resolver.Resolve<ModularStateMachine.IStateMachine<PlayerCombatPhase>>(),

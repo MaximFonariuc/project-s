@@ -73,6 +73,9 @@ classDiagram
     class PlayerCombatController {
         <<runtime owner>>
     }
+    class CombatActionSession {
+        <<active action / outcome owner>>
+    }
     class IPlayerInput {
         <<semantic input port>>
         +CombatActionRequested
@@ -92,7 +95,8 @@ classDiagram
     PlayerCombatTransitionRule --> PlayerCombatCommandId
     PlayerCombatCommandSample --> PlayerCombatCommandId
     PlayerCombatCommandSample --> PlayerCombatActionId
-    PlayerCombatController *-- CombatActionOutcome
+    PlayerCombatController --> CombatActionSession
+    CombatActionSession *-- CombatActionOutcome
     ICombatHitEvents --> PlayerCombatController : matching execution only
     PlayerCombatActionProfile ..> PlayerCombatActionGraph : builds
     IPlayerInput --> PlayerCombatController : command

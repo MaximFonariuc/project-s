@@ -22,6 +22,10 @@ classDiagram
         +Observe()
         +CurrentFrame CombatActionFrame
     }
+    class CombatActionSession {
+        +ExecuteAsync(action, weapon, target, observer, token)
+        +Abort(reason)
+    }
     class CombatActionFrame
     class CombatMotionController
     class IDamageImmunityTarget
@@ -35,6 +39,7 @@ classDiagram
     CombatActionExecutor --> CombatActionFrame
     CombatActionExecutor --> CombatMotionController
     CombatActionExecutor --> IDamageImmunityTarget : window lease
+    CombatActionSession --> CombatActionExecutor : owns one attack run
     CombatMotionController --> ICharacterActionMotionMotor
     CombatMotionController --> IPlayerCombatTargetingQuery : one query per action
     ICharacterActionMotionMotor <|.. CharacterMotor
@@ -51,6 +56,9 @@ classDiagram
   consumed against that frame, and `Observe` finally resolves recovery,
   transition, commit and completion. This prevents callback/`UniTask` scheduling
   order from changing combat results.
+- `CombatActionSession` surrounds one graph action with its execution id,
+  confirmed outcome and hitbox lifecycle. The executor remains the lower-level
+  timeline/motion mechanism; session end reason explains why the action stopped.
 - `Allow Jump` and `Allow Dodge` are action policies, not free-form movement
   flags: locomotion receives them only while the authored `CancelWindow` is
   open. Startup, hit-confirm and committed recovery therefore cannot be

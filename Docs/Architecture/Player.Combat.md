@@ -127,6 +127,13 @@ classDiagram
         +LastConfirmedTarget GameObject
     }
     class CombatActionExecutor
+    class CombatActionSession {
+        +Action PlayerCombatAction
+        +CurrentFrame CombatActionFrame
+        +Outcome CombatActionOutcome
+        +ExecuteAsync(action, weapon, target, observer, token)
+        +Abort(reason)
+    }
     class CombatInputBuffer
     class IPlayerCombatAnimation
     class IPlayerWeaponRig
@@ -150,9 +157,11 @@ classDiagram
     IPlayerCombatState <|.. PlayerCombatController
     PlayerCombatController --> IStateMachine~PlayerCombatPhase~
     PlayerCombatController --> PlayerCombatActionGraph
-    PlayerCombatController *-- CombatActionOutcome
     PlayerCombatController --> ICombatHitEvents : confirmed outgoing hits
-    PlayerCombatController --> CombatActionExecutor
+    PlayerCombatController --> CombatActionSession : action lifecycle
+    PlayerCombatController --> CombatActionExecutor : deterministic tick / weapon transition
+    CombatActionSession --> CombatActionExecutor : attack timeline
+    CombatActionSession *-- CombatActionOutcome
     PlayerCombatController --> CombatInputBuffer
     PlayerCombatController --> IPlayerCombatAnimation
     PlayerCombatController --> IPlayerWeaponRig
@@ -201,6 +210,7 @@ sequenceDiagram
     participant Combat as PlayerCombatController
     participant Graph as PlayerCombatActionGraph
     participant Machine as Combat StateMachine
+    participant Session as CombatActionSession
     participant Executor as CombatActionExecutor
     participant Hits as ICombatHitEvents
     participant View as Animation / Weapon adapters
@@ -212,11 +222,13 @@ sequenceDiagram
     Graph-->>Combat: PlayerCombatAction
     Combat->>View: play presentation
     Combat->>Machine: Ready -> Executing(action)
-    Combat->>Executor: ExecuteAsync(definition)
+    Combat->>Session: ExecuteAsync(action)
+    Session->>Executor: ExecuteAsync(definition)
     Hits-->>Combat: HitResolved(matching execution)
-    Combat->>Combat: update CombatActionOutcome
-    Executor-->>Combat: CombatActionFrame
+    Combat->>Session: TryRecord(hit)
     Combat->>Executor: Observe()
+    Executor-->>Session: CombatActionFrame
+    Session-->>Combat: frame + active outcome
     Combat->>Machine: Executing -> Recovery(action)
     Combat->>Graph: resolve buffered transition
     Combat->>Machine: Recovery -> Executing(next action)
@@ -248,7 +260,16 @@ time Animator.
 выдают semantic command тяжёлой атаки; клавиша `3`/D-pad Down — special,
 независимо от control scheme.
 
-Hitbox открывается только по `CombatActionFrame` и закрывается при completion, cancellation, interruption и disable. Каждое фактически запущенное action получает отдельный `CombatAttackExecution`, поэтому повторные hurtbox одной цели фильтруются на уровне атаки, а не оружия. Параллельный `CombatActionOutcome` хранит только подтверждённый результат этого execution и сбрасывается на той же lifecycle-границе. Weapon transition применяет loadout только после commit point. Cooldown хранится по `PlayerCombatActionId`; animation lookup использует отдельный `PlayerCombatAnimationId`.
+Hitbox открывается только по `CombatActionFrame` и закрывается при completion,
+cancellation, interruption и disable. `CombatActionSession` является единым
+owner текущей action, `CombatAttackExecution`, `CombatActionOutcome` и hitbox
+window. Каждое фактически запущенное action получает отдельный execution,
+поэтому повторные hurtbox одной цели фильтруются на уровне атаки, а не оружия.
+Подтверждённая motion-цель копируется в result до очистки session. Weapon
+transition применяет loadout только после commit point. Cooldown хранится по
+`PlayerCombatActionId`; animation lookup использует отдельный
+`PlayerCombatAnimationId`. Подробная граница описана в
+`Docs/Architecture/Combat.ActionSession.md`.
 
 Gameplay timeline использует scaled delta time, поэтому execution, hitbox/cancel windows, обычный Animator и character physics замораживаются во время hit stop. Input buffer намеренно использует unscaled clock: команды продолжают приниматься и истекают в реальном времени. Полная time policy описана в `Docs/Architecture/Combat.HitStop.md`.
 
@@ -270,7 +291,8 @@ event и не отменяет атаку.
 ## Lifecycle
 
 - `Enable` запускает state machine в `Ready` и симметрично подписывает semantic input, dodge, state и outgoing hit events.
-- `Disable` отменяет UniTask action, aborts executor, очищает buffer и outcome, закрывает hitbox, снимает callbacks и останавливает state machine.
+- `Disable` отменяет UniTask action, передаёт session причину `Disabled`, очищает
+  buffer, закрывает hitbox, снимает callbacks и останавливает state machine.
 - Ошибка во время запуска action откатывает частично начатый execution через тот
   же `Abort` boundary: damage-immunity lease освобождается, combat motion
   очищается, а executor снова допускает следующее действие.
@@ -280,6 +302,9 @@ event и не отменяет атаку.
   `Ready`. Action с environment `Any` эту границу не наследует.
 - State machine и её states создаются scoped-регистрациями VContainer в `PlayerCombatComposition`; controller не вызывает `Resolve` и не владеет container.
 - Animator, graph authoring и input buffer не являются владельцами combat phase.
+- Входящая реакция передаёт session отдельную причину `Reaction`; jump/dodge и
+  внешняя команда используют `Interrupted`. Все пути проходят через один
+  session cleanup вместо ручного сброса execution/outcome в controller.
 - Входящая реакция не входит в combat state machine. `PlayerActorController` прерывает executing/recovery/weapon-switch action по подтверждённому reaction state, а `PlayerCombatController` читает только `ICharacterReactionState.BlocksActions`, чтобы не принять новый action во время hit-stun/knockdown/airborne/death. Владельцем этих состояний остаётся `CharacterReactionController`.
 
 `IPlayerCombatActor.CanAttack` допускает только обычные walking/falling movement
