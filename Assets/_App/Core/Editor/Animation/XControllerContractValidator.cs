@@ -229,7 +229,43 @@ namespace _App.Editor.Animation
                     result.Error(
                         $"Parameter '{requirement.Name}' must be " +
                         $"{requirement.Type}, found {matches[0].type}.");
+                    continue;
                 }
+
+                ValidateParameterDefault(matches[0], result);
+            }
+        }
+
+        private static void ValidateParameterDefault(
+            AnimatorControllerParameter parameter,
+            ValidationResult result)
+        {
+            if (parameter.name == XControllerAnimationContract.OnGroundParameterName)
+            {
+                if (!parameter.defaultBool)
+                {
+                    result.Error(
+                        $"Parameter '{parameter.name}' must default to true for a " +
+                        "stable grounded preview pose.");
+                }
+
+                return;
+            }
+
+            if (parameter.type != AnimatorControllerParameterType.Float)
+            {
+                return;
+            }
+
+            float expected = parameter.name ==
+                XControllerAnimationContract.SpeedMultiplierParameterName
+                ? 1.0f
+                : 0.0f;
+            if (!Mathf.Approximately(parameter.defaultFloat, expected))
+            {
+                result.Error(
+                    $"Parameter '{parameter.name}' must default to {expected:F1}, " +
+                    $"found {parameter.defaultFloat:F3}.");
             }
         }
 

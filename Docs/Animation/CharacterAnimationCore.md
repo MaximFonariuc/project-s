@@ -198,6 +198,8 @@ parameters и state names не копируются. Если override для we
 - совместимости AnimatorOverrideController с базовым XController;
 - структуры locomotion Blend Tree: `MovementType` пороги `0/1/2/3` и
   directional subtrees `MovementDirection -0.5/0.5`;
+- нейтральных Animator defaults: `OnGround=true`, motion/look floats `0`,
+  `SpeedMultiplier=1`;
 - Humanoid Avatar, controller и отключённого root motion в Player и training
   target prefabs;
 - обязательной ссылки Player prefab на активный combat action profile и полной

@@ -313,6 +313,10 @@ It also fixes the locomotion blend contract to a continuous
 `Idle(0) / Walk(1) / Run(2) / Sprint(3)` gait axis with backward/forward
 subtrees at `-0.5 / 0.5`. Runtime damping therefore cannot be invalidated by an
 accidental Blend Tree type or threshold change.
+Controller defaults are part of the same neutral-pose contract:
+`OnGround=true`, all movement/look channels at zero and `SpeedMultiplier=1`.
+This keeps Editor preview and the first frame before composition consistent with
+the runtime driver reset.
 The validator also builds the active player combat profile and verifies that
 each mapped combat state has timed exits with normalized blend duration and the
 same completion boundary as gameplay. This catches a disabled launcher exit or
