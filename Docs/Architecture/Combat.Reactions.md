@@ -270,7 +270,9 @@ vertical impact сохраняет тип `Slam` в snapshot до подтвер
 - Standalone host подаёт нейтральный look frame в animation driver каждый presentation tick. Это применяет и восстанавливает сглаженные `BodyLook`/`HeadLook` layer weights у reaction/death; без owner этого tick action policy оставалась только внутренней целью driver.
 - `CombatTrainingTarget` адаптирует физику через `RigidbodyCharacterImpactMotor`; это prefab-local composition, а не новый global service.
 - `Enable` подписывает `Health`, запускает state machine и синхронизируется с текущим alive/dead состоянием.
-- `Disable` симметрично снимает подписки, останавливает machine, сбрасывает runtime state и presentation.
+- `Disable` симметрично снимает подписки, останавливает machine и немедленно
+  сбрасывает animation driver вместе с parameters/layer weights; повторный enable
+  не наследует частично подавленную reaction pose.
 - `PlayerActorController` подписывается до запуска reaction state machine. Любой non-stable state синхронно прерывает Combat и Traversal и блокирует locomotion intent; `Stable` восстанавливает актуальный combat movement intent.
 - При таком прерывании Combat освобождает animation ownership без crossfade в
   `Move`; reaction presentation в том же синхронном вызове делает единственный

@@ -71,6 +71,7 @@ namespace _App
         private void OnDisable()
         {
             _reaction?.Disable();
+            _animationDriver?.Reset();
         }
 
         private void OnDestroy()
