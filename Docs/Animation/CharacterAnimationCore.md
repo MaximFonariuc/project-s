@@ -204,6 +204,8 @@ parameters и state names не копируются. Если override для we
   валидности его graph/input/weapon-transition authoring;
 - согласованности длительности evade clips каждого weapon override с активным
   `DodgeSettings` (допуск `0.05s`);
+- согласованности длительности каждого combat clip weapon override с authored
+  `CombatActionDefinition.DurationSeconds` (допуск `0.02s`);
 - явного presentation state для каждого combat action и согласованных timed exits
   у каждого state, синхронизированных с gameplay completion;
 - отсутствующих/дублирующихся weapon override bindings.

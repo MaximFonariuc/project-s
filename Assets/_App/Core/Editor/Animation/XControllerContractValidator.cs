@@ -22,6 +22,7 @@ namespace _App.Editor.Animation
             "Tools/Animation/Validate XController Contract";
         private const float TransitionTimingTolerance = 0.005f;
         private const float DodgeDurationToleranceSeconds = 0.05f;
+        private const float CombatClipDurationToleranceSeconds = 0.02f;
 
         private static readonly string[] RequiredMotionStatePaths =
         {
@@ -759,7 +760,7 @@ namespace _App.Editor.Animation
             }
 
             var serializedPlayer = new SerializedObject(player);
-            ValidatePlayerCombatProfile(
+            PlayerCombatActionProfile combatProfile = ValidatePlayerCombatProfile(
                 serializedPlayer,
                 prefabPath,
                 result);
@@ -816,6 +817,98 @@ namespace _App.Editor.Animation
                         baseController,
                         dodgeSettings.Duration,
                         result);
+                }
+
+                if (combatProfile != null)
+                {
+                    ValidateCombatClipDurations(
+                        animationOverride,
+                        baseController,
+                        combatProfile,
+                        result);
+                }
+            }
+        }
+
+        private static void ValidateCombatClipDurations(
+            AnimatorOverrideController animationOverride,
+            AnimatorController baseController,
+            PlayerCombatActionProfile profile,
+            ValidationResult result)
+        {
+            IReadOnlyList<PlayerCombatAnimationTimingRequirement> requirements;
+            try
+            {
+                requirements = profile.CreateAnimationTimingRequirements();
+            }
+            catch (Exception exception)
+            {
+                result.Error(
+                    $"Combat action profile cannot expose animation timings: " +
+                    exception.Message);
+                return;
+            }
+
+            var states = new Dictionary<string, AnimatorState>(StringComparer.Ordinal);
+            AnimatorControllerLayer[] layers = baseController.layers;
+            for (int i = 0; i < layers.Length; i++)
+            {
+                CollectStates(layers[i].stateMachine, layers[i].name, states, result);
+            }
+
+            var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(
+                animationOverride.overridesCount);
+            animationOverride.GetOverrides(overrides);
+            var resolvedClips = new Dictionary<AnimationClip, AnimationClip>();
+            for (int i = 0; i < overrides.Count; i++)
+            {
+                KeyValuePair<AnimationClip, AnimationClip> pair = overrides[i];
+                if (pair.Key != null)
+                {
+                    resolvedClips[pair.Key] = pair.Value != null
+                        ? pair.Value
+                        : pair.Key;
+                }
+            }
+
+            for (int i = 0; i < requirements.Count; i++)
+            {
+                PlayerCombatAnimationTimingRequirement requirement = requirements[i];
+                if (!XControllerAnimationContract.TryGetCombatStatePath(
+                        requirement.PresentationKind,
+                        requirement.ComboIndex,
+                        requirement.AnimationId,
+                        out string statePath) ||
+                    !states.TryGetValue(statePath, out AnimatorState state))
+                {
+                    continue;
+                }
+
+                var sourceClips = new HashSet<AnimationClip>();
+                CollectClips(state.motion, sourceClips);
+                if (sourceClips.Count != 1 || state.speed <= 0.0f)
+                {
+                    result.Error(
+                        $"Combat state '{statePath}' requires one clip and positive " +
+                        "speed for duration validation.");
+                    continue;
+                }
+
+                AnimationClip source = sourceClips.First();
+                AnimationClip active = resolvedClips.TryGetValue(
+                    source,
+                    out AnimationClip replacement)
+                    ? replacement
+                    : source;
+                float visualDuration = active.length / state.speed;
+                if (Mathf.Abs(visualDuration - requirement.DurationSeconds) >
+                    CombatClipDurationToleranceSeconds)
+                {
+                    result.Error(
+                        $"Override '{animationOverride.name}' action " +
+                        $"'{requirement.ActionId.Value}' plays '{active.name}' for " +
+                        $"{visualDuration:F3}s; gameplay expects " +
+                        $"{requirement.DurationSeconds:F3}s.");
                 }
             }
         }
@@ -937,7 +1030,7 @@ namespace _App.Editor.Animation
             }
         }
 
-        private static void ValidatePlayerCombatProfile(
+        private static PlayerCombatActionProfile ValidatePlayerCombatProfile(
             SerializedObject serializedPlayer,
             string prefabPath,
             ValidationResult result)
@@ -948,7 +1041,7 @@ namespace _App.Editor.Animation
             {
                 result.Error(
                     $"Player prefab '{prefabPath}' requires a combat action profile.");
-                return;
+                return null;
             }
 
             PlayerCombatActionProfile expected =
@@ -957,7 +1050,7 @@ namespace _App.Editor.Animation
             if (expected == null)
             {
                 result.Error($"Missing combat action profile: {CombatActionProfilePath}");
-                return;
+                return null;
             }
 
             if (property.objectReferenceValue != expected)
@@ -967,6 +1060,8 @@ namespace _App.Editor.Animation
                     $"'{property.objectReferenceValue.name}', but animation timing " +
                     $"validation uses '{CombatActionProfilePath}'.");
             }
+
+            return expected;
         }
 
         private static RuntimeAnimatorController ResolveBaseController(

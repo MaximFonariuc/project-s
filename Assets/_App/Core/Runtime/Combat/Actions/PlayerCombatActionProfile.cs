@@ -11,6 +11,7 @@ namespace _App
         public PlayerCombatPresentationKind PresentationKind { get; }
         public int ComboIndex { get; }
         public PlayerCombatAnimationId AnimationId { get; }
+        public float DurationSeconds { get; }
         public float CompletionTime { get; }
 
         internal PlayerCombatAnimationTimingRequirement(PlayerCombatAction action)
@@ -19,6 +20,7 @@ namespace _App
             PresentationKind = action.Presentation.Kind;
             ComboIndex = action.Presentation.ComboIndex;
             AnimationId = action.Presentation.AnimationId;
+            DurationSeconds = action.Definition.DurationSeconds;
             CompletionTime = action.Definition.CompletionTime;
         }
     }

@@ -317,6 +317,10 @@ The validator also builds the active player combat profile and verifies that
 each mapped combat state has timed exits with normalized blend duration and the
 same completion boundary as gameplay. This catches a disabled launcher exit or
 an override-incompatible fixed-time blend before Play Mode.
+For every Player weapon override it additionally resolves the actual clip behind
+each combat slot and compares its effective duration with the action profile
+within 20 ms. Hit, chain and recovery windows therefore cannot drift silently
+after a clip replacement.
 It additionally requires the Player prefab to reference that exact profile and
 builds its full graph, input-buffer settings and weapon-transition definition
 before comparing animation timings. A broken route or missing authoring block
