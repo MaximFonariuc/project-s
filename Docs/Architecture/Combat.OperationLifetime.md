@@ -53,7 +53,7 @@ classDiagram
 - Вложенные `finally` гарантируют abort и dispose, даже если один callback
   cancellation/animation выбросил исключение.
 
-Контроллер остаётся владельцем combat phase, input buffer, combo index и
-возврата в `Ready`. Lifetime не выбирает actions и не регистрируется как
+Контроллер остаётся владельцем operation completion и возврата в `Ready`, а
+`PlayerCombatActionPipeline` владеет contextual input buffer и combo index.
+Lifetime не выбирает actions и не регистрируется как
 публичный service/interface: это конкретный scoped collaborator Player Combat.
-

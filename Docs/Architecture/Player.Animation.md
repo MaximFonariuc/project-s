@@ -117,6 +117,13 @@ dodge/attack/reaction actions to `Move` and weapon-layer actions to `Waiting`.
 `CompleteAction` does not force a transition and lets the controller finish its
 authored exit.
 
+Combat exits use normalized transition duration. For every semantic action
+slot, `exitTime + transitionDuration` equals the gameplay
+`CombatActionDefinition.CompletionTime`. This keeps the visual completion
+boundary stable when an `AnimatorOverrideController` substitutes a clip of a
+different absolute length. The transition remains authored in the existing
+state; no runtime code creates nodes or derives gameplay timing from Animator.
+
 The current action contract is:
 
 | Action | Id | Variant | State |
@@ -267,3 +274,7 @@ finite-state exit ownership, base and
 override-controller compatibility, and the Player/training-target prefabs. It
 reports mismatches but never creates or rewrites Animator states, transitions,
 Blend Trees, clips or prefab bindings.
+The validator also builds the active player combat profile and verifies that
+each mapped combat state has one timed exit, normalized blend duration and the
+same completion boundary as gameplay. This catches a disabled launcher exit or
+an override-incompatible fixed-time blend before Play Mode.

@@ -4,6 +4,24 @@ using UnityEngine;
 
 namespace _App
 {
+#if UNITY_EDITOR
+    public readonly struct PlayerCombatAnimationTimingRequirement
+    {
+        public PlayerCombatPresentationKind PresentationKind { get; }
+        public int ComboIndex { get; }
+        public PlayerCombatAnimationId AnimationId { get; }
+        public float CompletionTime { get; }
+
+        internal PlayerCombatAnimationTimingRequirement(PlayerCombatAction action)
+        {
+            PresentationKind = action.Presentation.Kind;
+            ComboIndex = action.Presentation.ComboIndex;
+            AnimationId = action.Presentation.AnimationId;
+            CompletionTime = action.Definition.CompletionTime;
+        }
+    }
+#endif
+
     [CreateAssetMenu(fileName = "PlayerCombatActionProfile", menuName = "Combat/Player Action Profile")]
     public sealed class PlayerCombatActionProfile : ScriptableObject
     {
@@ -87,6 +105,32 @@ namespace _App
         }
 
 #if UNITY_EDITOR
+        public IReadOnlyList<PlayerCombatAnimationTimingRequirement>
+            CreateAnimationTimingRequirements()
+        {
+            var requirements = new List<PlayerCombatAnimationTimingRequirement>(
+                _actions?.Count ?? 0);
+            if (_actions == null)
+            {
+                return requirements;
+            }
+
+            for (int i = 0; i < _actions.Count; i++)
+            {
+                PlayerCombatActionAuthoring authoring = _actions[i];
+                if (authoring == null)
+                {
+                    throw new InvalidOperationException(
+                        $"{name} has a null combat action at index {i}.");
+                }
+
+                requirements.Add(
+                    new PlayerCombatAnimationTimingRequirement(authoring.Build()));
+            }
+
+            return requirements;
+        }
+
         private void OnValidate()
         {
             try

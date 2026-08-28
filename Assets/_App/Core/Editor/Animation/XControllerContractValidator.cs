@@ -16,8 +16,11 @@ namespace _App.Editor.Animation
             "Assets/_Game/Prefabs/Character/Player.prefab";
         private const string TrainingTargetPrefabPath =
             "Assets/_Game/Prefabs/Enemies/CombatTrainingTarget.prefab";
+        private const string CombatActionProfilePath =
+            "Assets/_Game/Settings/Combat/Player/PlayerCombatActionProfile.asset";
         private const string MenuPath =
             "Tools/Animation/Validate XController Contract";
+        private const float TransitionTimingTolerance = 0.005f;
 
         private static readonly string[] RequiredMotionStatePaths =
         {
@@ -152,6 +155,7 @@ namespace _App.Editor.Animation
                 result);
             ValidateMotions(states, result);
             ValidateFiniteStateTransitions(states, result);
+            ValidateCombatActionTransitionTimings(states, result);
             ValidateReactionStates(states, result);
         }
 
@@ -379,13 +383,163 @@ namespace _App.Editor.Animation
             for (int i = 0; i < StatesWithAuthoredExit.Length; i++)
             {
                 string path = StatesWithAuthoredExit[i];
-                if (states.TryGetValue(path, out AnimatorState state) &&
-                    state.transitions.Length == 0)
+                if (!states.TryGetValue(path, out AnimatorState state))
+                {
+                    continue;
+                }
+
+                if (state.transitions.Length == 0)
                 {
                     result.Error(
                         $"Finite state '{path}' requires an authored exit transition.");
+                    continue;
+                }
+
+                int timedExitCount = state.transitions.Count(
+                    transition => transition.hasExitTime);
+                if (timedExitCount == 0)
+                {
+                    result.Error(
+                        $"Finite state '{path}' requires at least one timed exit.");
                 }
             }
+        }
+
+        private static void ValidateCombatActionTransitionTimings(
+            IReadOnlyDictionary<string, AnimatorState> states,
+            ValidationResult result)
+        {
+            PlayerCombatActionProfile profile =
+                AssetDatabase.LoadAssetAtPath<PlayerCombatActionProfile>(
+                    CombatActionProfilePath);
+            if (profile == null)
+            {
+                result.Error($"Missing combat action profile: {CombatActionProfilePath}");
+                return;
+            }
+
+            IReadOnlyList<PlayerCombatAnimationTimingRequirement> requirements;
+            try
+            {
+                requirements = profile.CreateAnimationTimingRequirements();
+            }
+            catch (Exception exception)
+            {
+                result.Error(
+                    $"Combat action profile cannot build its graph: {exception.Message}");
+                return;
+            }
+
+            var expectedCompletions = new Dictionary<string, float>(
+                StringComparer.Ordinal);
+            for (int i = 0; i < requirements.Count; i++)
+            {
+                PlayerCombatAnimationTimingRequirement requirement = requirements[i];
+                if (!TryResolveCombatStatePath(in requirement, out string statePath))
+                {
+                    continue;
+                }
+
+                float completion = requirement.CompletionTime;
+                if (expectedCompletions.TryGetValue(statePath, out float existing) &&
+                    !Mathf.Approximately(existing, completion))
+                {
+                    result.Error(
+                        $"Combat actions mapped to '{statePath}' disagree on completion " +
+                        $"({existing:F3} versus {completion:F3}).");
+                    continue;
+                }
+
+                expectedCompletions[statePath] = completion;
+            }
+
+            foreach (KeyValuePair<string, float> expected in expectedCompletions)
+            {
+                if (!states.TryGetValue(expected.Key, out AnimatorState state))
+                {
+                    continue;
+                }
+
+                AnimatorStateTransition[] exits = state.transitions
+                    .Where(transition => transition.hasExitTime)
+                    .ToArray();
+                if (exits.Length != 1)
+                {
+                    continue;
+                }
+
+                AnimatorStateTransition transition = exits[0];
+                if (transition.hasFixedDuration)
+                {
+                    result.Error(
+                        $"Combat state '{expected.Key}' must use normalized transition " +
+                        "duration so Animator Override clips keep the same completion boundary.");
+                    continue;
+                }
+
+                float animatorCompletion = transition.exitTime + transition.duration;
+                if (Mathf.Abs(animatorCompletion - expected.Value) >
+                    TransitionTimingTolerance)
+                {
+                    result.Error(
+                        $"Combat state '{expected.Key}' completes at normalized " +
+                        $"{animatorCompletion:F3}; gameplay expects {expected.Value:F3}.");
+                }
+            }
+        }
+
+        private static bool TryResolveCombatStatePath(
+            in PlayerCombatAnimationTimingRequirement requirement,
+            out string statePath)
+        {
+            switch (requirement.PresentationKind)
+            {
+                case PlayerCombatPresentationKind.ComboStep:
+                    return TryGetStatePath(
+                        XControllerAnimationContract.LightAttackStatePaths,
+                        requirement.ComboIndex,
+                        out statePath);
+
+                case PlayerCombatPresentationKind.AirComboStep:
+                    return TryGetStatePath(
+                        XControllerAnimationContract.AirAttackStatePaths,
+                        requirement.ComboIndex,
+                        out statePath);
+
+                case PlayerCombatPresentationKind.NamedAnimation
+                    when requirement.AnimationId == PlayerCombatAnimationIds.HeavyAttack:
+                    statePath = XControllerAnimationContract.HeavyAttackStatePath;
+                    return true;
+
+                case PlayerCombatPresentationKind.NamedAnimation
+                    when requirement.AnimationId == PlayerCombatAnimationIds.Special:
+                    statePath = XControllerAnimationContract.SpecialAttackStatePath;
+                    return true;
+
+                case PlayerCombatPresentationKind.NamedAnimation
+                    when requirement.AnimationId == PlayerCombatAnimationIds.Launcher:
+                    statePath = XControllerAnimationContract.LauncherStatePath;
+                    return true;
+
+                default:
+                    statePath = null;
+                    return false;
+            }
+        }
+
+        private static bool TryGetStatePath(
+            IReadOnlyList<string> statePaths,
+            int index,
+            out string statePath)
+        {
+            if (index >= 0 && index < statePaths.Count)
+            {
+                statePath = statePaths[index];
+                return true;
+            }
+
+            statePath = null;
+            return false;
         }
 
         private static void ValidateReactionStates(

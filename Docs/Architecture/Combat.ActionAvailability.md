@@ -8,8 +8,9 @@ live gates, проверку semantic animation presentation и cooldown timesta
 которые раньше хранились непосредственно в `PlayerCombatController`.
 
 Объект не запускает action, не потребляет input buffer, не выбирает graph edge,
-не меняет combat phase и не управляет Animator. `PlayerCombatController` остаётся
-orchestrator, `PlayerCombatActionGraph` — владельцем routes, а
+не меняет combat phase и не управляет Animator. `PlayerCombatActionPipeline`
+координирует action admission/chain, `PlayerCombatController` сохраняет weapon
+switch boundary, `PlayerCombatActionGraph` — владельцем routes, а
 `IPlayerCombatAnimation` — presentation port.
 
 ## Дерево классов и зависимости
@@ -22,6 +23,7 @@ classDiagram
         +TryExecute(command) bool
         +ToggleWeaponAsync(target) UniTask~bool~
     }
+    class PlayerCombatActionPipeline
     class PlayerCombatAvailability {
         +CanEnterAction bool
         +CanSwitchWeapon bool
@@ -51,6 +53,7 @@ classDiagram
     }
 
     PlayerCombatController --> PlayerCombatAvailability
+    PlayerCombatActionPipeline --> PlayerCombatAvailability
     PlayerCombatAvailability --> IPlayerCombatActor : live actor gate
     PlayerCombatAvailability --> ICharacterReactionState : live reaction gate
     PlayerCombatAvailability --> IPlayerCombatAnimation : presentation support
