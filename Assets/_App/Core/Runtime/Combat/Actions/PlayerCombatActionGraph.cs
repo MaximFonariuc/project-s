@@ -158,6 +158,7 @@ namespace _App
                     outcome != null &&
                     outcome.IsTracking &&
                     !outcome.HasConfirmedHit &&
+                    !frame.IsHitboxCatchUpPulse &&
                     HasHitboxResolved(in hitboxWindow, in frame),
                 _ => false
             };

@@ -139,6 +139,9 @@ outcome жить между actions.
   `PlayerWeaponLoadout.LateUpdate`;
 - принятый buffered transition также фиксируется, но применяется на следующем
   tick после swept sample;
+- `OnWhiff` не принимается на catch-up frame: buffered command переоценивается
+  на следующем tick, когда late-frame query уже подтвердил hit либо истинный
+  промах;
 - invulnerability и movement windows не продлеваются: catch-up предназначен
   только для событий, которые иначе полностью потерялись бы при frame hitch.
 
