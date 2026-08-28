@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ModularAnimation;
 using UnityEngine;
 
 namespace _App
@@ -214,5 +215,83 @@ namespace _App
 
         public static IReadOnlyList<string> RequiredSwitchWeaponStatePaths =>
             SwitchWeaponStates;
+
+        public static bool TryGetCombatStatePath(
+            PlayerCombatPresentationKind presentationKind,
+            int comboIndex,
+            PlayerCombatAnimationId animationId,
+            out string statePath)
+        {
+            if (!PlayerCombatPresentationResolver.TryResolve(
+                    presentationKind,
+                    comboIndex,
+                    animationId,
+                    out AnimationActionId action,
+                    out int variant))
+            {
+                statePath = null;
+                return false;
+            }
+
+            return TryGetCombatActionStatePath(action, variant, out statePath);
+        }
+
+        private static bool TryGetCombatActionStatePath(
+            AnimationActionId action,
+            int variant,
+            out string statePath)
+        {
+            if (action == PlayerAnimatorActions.LightAttack)
+            {
+                return TryGetStatePath(LightAttackStates, variant, out statePath);
+            }
+
+            if (action == PlayerAnimatorActions.AirAttack)
+            {
+                return TryGetStatePath(AirAttackStates, variant, out statePath);
+            }
+
+            if (action == PlayerAnimatorActions.HeavyAttack && variant == 0)
+            {
+                statePath = HeavyAttackStatePath;
+                return true;
+            }
+
+            if (action == PlayerAnimatorActions.SpecialAttack && variant == 0)
+            {
+                statePath = SpecialAttackStatePath;
+                return true;
+            }
+
+            if (action == PlayerAnimatorActions.Launcher && variant == 0)
+            {
+                statePath = LauncherStatePath;
+                return true;
+            }
+
+            if (action == PlayerAnimatorActions.AirChase && variant == 0)
+            {
+                statePath = AirChaseStatePath;
+                return true;
+            }
+
+            statePath = null;
+            return false;
+        }
+
+        private static bool TryGetStatePath(
+            IReadOnlyList<string> paths,
+            int index,
+            out string statePath)
+        {
+            if (index >= 0 && index < paths.Count)
+            {
+                statePath = paths[index];
+                return true;
+            }
+
+            statePath = null;
+            return false;
+        }
     }
 }

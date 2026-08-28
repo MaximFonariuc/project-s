@@ -503,59 +503,11 @@ namespace _App.Editor.Animation
             in PlayerCombatAnimationTimingRequirement requirement,
             out string statePath)
         {
-            switch (requirement.PresentationKind)
-            {
-                case PlayerCombatPresentationKind.ComboStep:
-                    return TryGetStatePath(
-                        XControllerAnimationContract.LightAttackStatePaths,
-                        requirement.ComboIndex,
-                        out statePath);
-
-                case PlayerCombatPresentationKind.AirComboStep:
-                    return TryGetStatePath(
-                        XControllerAnimationContract.AirAttackStatePaths,
-                        requirement.ComboIndex,
-                        out statePath);
-
-                case PlayerCombatPresentationKind.NamedAnimation
-                    when requirement.AnimationId == PlayerCombatAnimationIds.HeavyAttack:
-                    statePath = XControllerAnimationContract.HeavyAttackStatePath;
-                    return true;
-
-                case PlayerCombatPresentationKind.NamedAnimation
-                    when requirement.AnimationId == PlayerCombatAnimationIds.Special:
-                    statePath = XControllerAnimationContract.SpecialAttackStatePath;
-                    return true;
-
-                case PlayerCombatPresentationKind.NamedAnimation
-                    when requirement.AnimationId == PlayerCombatAnimationIds.Launcher:
-                    statePath = XControllerAnimationContract.LauncherStatePath;
-                    return true;
-
-                case PlayerCombatPresentationKind.NamedAnimation
-                    when requirement.AnimationId == PlayerCombatAnimationIds.AirChase:
-                    statePath = XControllerAnimationContract.AirChaseStatePath;
-                    return true;
-
-                default:
-                    statePath = null;
-                    return false;
-            }
-        }
-
-        private static bool TryGetStatePath(
-            IReadOnlyList<string> statePaths,
-            int index,
-            out string statePath)
-        {
-            if (index >= 0 && index < statePaths.Count)
-            {
-                statePath = statePaths[index];
-                return true;
-            }
-
-            statePath = null;
-            return false;
+            return XControllerAnimationContract.TryGetCombatStatePath(
+                requirement.PresentationKind,
+                requirement.ComboIndex,
+                requirement.AnimationId,
+                out statePath);
         }
 
         private static void ValidateReactionStates(

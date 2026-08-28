@@ -5,9 +5,6 @@ namespace _App
 {
     internal sealed class PlayerCombatAnimationAdapter : IPlayerCombatAnimation
     {
-        private const int SupportedComboCount = 3;
-        private const int SupportedAirComboCount = 3;
-
         private readonly PlayerAnimationCoordinator _animation;
         private readonly PlayerAnimatorLoadout _loadout;
 
@@ -133,68 +130,15 @@ namespace _App
             }
         }
 
-        private static bool TryResolveNamedAction(
-            PlayerCombatAnimationId animationId,
-            out AnimationActionId action)
-        {
-            if (animationId == PlayerCombatAnimationIds.HeavyAttack)
-            {
-                action = PlayerAnimatorActions.HeavyAttack;
-                return true;
-            }
-
-            if (animationId == PlayerCombatAnimationIds.Special)
-            {
-                action = PlayerAnimatorActions.SpecialAttack;
-                return true;
-            }
-
-            if (animationId == PlayerCombatAnimationIds.Launcher)
-            {
-                action = PlayerAnimatorActions.Launcher;
-                return true;
-            }
-
-            if (animationId == PlayerCombatAnimationIds.AirChase)
-            {
-                action = PlayerAnimatorActions.AirChase;
-                return true;
-            }
-
-            action = default;
-            return false;
-        }
-
         private static bool TryResolveAction(
             in PlayerCombatPresentation presentation,
             out AnimationActionId action,
             out int variant)
         {
-            switch (presentation.Kind)
-            {
-                case PlayerCombatPresentationKind.ComboStep
-                    when presentation.ComboIndex >= 0 &&
-                         presentation.ComboIndex < SupportedComboCount:
-                    action = PlayerAnimatorActions.LightAttack;
-                    variant = presentation.ComboIndex;
-                    return true;
-
-                case PlayerCombatPresentationKind.AirComboStep
-                    when presentation.ComboIndex >= 0 &&
-                         presentation.ComboIndex < SupportedAirComboCount:
-                    action = PlayerAnimatorActions.AirAttack;
-                    variant = presentation.ComboIndex;
-                    return true;
-
-                case PlayerCombatPresentationKind.NamedAnimation:
-                    variant = 0;
-                    return TryResolveNamedAction(presentation.AnimationId, out action);
-
-                default:
-                    action = default;
-                    variant = 0;
-                    return false;
-            }
+            return PlayerCombatPresentationResolver.TryResolve(
+                in presentation,
+                out action,
+                out variant);
         }
     }
 }

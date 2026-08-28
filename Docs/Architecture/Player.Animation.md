@@ -20,6 +20,9 @@ classDiagram
         +TryPlayAction(character, weapon, action, playback) bool
         +TryPlayWeaponTransition(weapon, draw, playback) bool
     }
+    class PlayerCombatPresentationResolver {
+        +TryResolve(kind, comboIndex, animationId, action, variant) bool
+    }
     class PlayerCombatAction {
         +Presentation PlayerCombatPresentation
         +Definition CombatActionDefinition
@@ -70,7 +73,8 @@ classDiagram
     PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator : accepted dodge
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     PlayerCombatAnimationAdapter --> PlayerAnimatorLoadout
-    PlayerCombatAnimationAdapter --> PlayerCombatAction : semantic mapping
+    PlayerCombatAnimationAdapter --> PlayerCombatAction
+    PlayerCombatAnimationAdapter --> PlayerCombatPresentationResolver : semantic mapping
     PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
     PlayerCameraAnimationAdapter --> ICharacterLookAnimationDriver
@@ -82,6 +86,7 @@ classDiagram
     XControllerLookPoseController --> XControllerAnimationContract : look parameters
     XControllerCharacterAnimationDriver --> XController : validated contract
     XControllerContractValidator --> XControllerAnimationContract
+    XControllerAnimationContract --> PlayerCombatPresentationResolver : validates same mapping
     XControllerContractValidator --> XController : read-only validation
     PlayerAnimatorLoadout --> XController : base graph
     PlayerLocomotionController --> CharacterMotor
@@ -112,6 +117,10 @@ classDiagram
   no lifecycle, target selection or gameplay authority outside its driver owner.
 - `XController.controller` is the manually authored visual graph. No editor
   setup tool creates or rewrites its states, motions, Blend Trees or transitions.
+- `PlayerCombatPresentationResolver` is the single mapping from combat
+  presentation (`ComboStep`, `AirComboStep`, named ids) to semantic animation
+  action and variant. Runtime playback and editor validation consume the same
+  result, so adding a slot cannot silently update only one side.
 - `CombatActionDefinition.DurationSeconds` owns gameplay action duration. No
   combat rule reads clip length or Animator normalized time.
 - Root motion is disabled. Dodge and attack movement go through

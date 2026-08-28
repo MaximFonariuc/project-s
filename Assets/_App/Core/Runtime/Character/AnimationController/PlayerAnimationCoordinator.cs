@@ -15,6 +15,9 @@ namespace _App
 
     internal static class PlayerAnimatorActions
     {
+        public const int LightAttackVariantCount = 3;
+        public const int AirAttackVariantCount = 3;
+
         public static readonly AnimationActionId Dodge = new AnimationActionId(1);
         public static readonly AnimationActionId LightAttack = new AnimationActionId(2);
         public static readonly AnimationActionId WeaponTransition = new AnimationActionId(3);

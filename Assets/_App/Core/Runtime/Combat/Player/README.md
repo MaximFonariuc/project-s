@@ -29,6 +29,7 @@ classDiagram
         +Definition CombatActionDefinition
     }
     class PlayerCombatAnimationAdapter
+    class PlayerCombatPresentationResolver
     class PlayerAnimationCoordinator
     class AnimationActionRequest
     class PlayerWeaponRig
@@ -43,7 +44,8 @@ classDiagram
     PlayerCombatController --> PlayerWeaponTransitionSession
     PlayerCombatController --> PlayerCombatAvailability
     IPlayerCombatAnimation <|.. PlayerCombatAnimationAdapter
-    PlayerCombatAnimationAdapter --> PlayerCombatAction : maps presentation
+    PlayerCombatAnimationAdapter --> PlayerCombatAction
+    PlayerCombatAnimationAdapter --> PlayerCombatPresentationResolver : maps presentation
     PlayerCombatAvailability --> IPlayerCombatAnimation : slot availability
     PlayerWeaponTransitionSession --> IPlayerCombatAnimation : draw / sheathe
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
@@ -57,12 +59,14 @@ classDiagram
     PlayerWeaponAttachment o-- Weapon
 ```
 
-- The adapter exposes three combo steps for every compatible animation loadout
-  and maps them to semantic action `LightAttack`, variants `0...2`.
+- The shared presentation resolver exposes three combo steps for every
+  compatible animation loadout and maps them to semantic action `LightAttack`,
+  variants `0...2`.
 - Gameplay passes one `PlayerCombatAction` through the narrow animation port.
-  The adapter alone interprets `ComboStep`, `AirComboStep` and `NamedAnimation`;
-  `PlayerCombatController` does not know the available Animator slot counts or
-  construct `AnimationActionRequest`.
+  `PlayerCombatPresentationResolver` alone interprets `ComboStep`,
+  `AirComboStep` and `NamedAnimation`; both the adapter and editor contract
+  validator consume it. `PlayerCombatController` does not know the available
+  Animator slot counts or construct `AnimationActionRequest`.
 - `PlayerCombatActionPipeline` owns graph traversal, contextual input buffering,
   combo index, action-to-action execution, confirmed-target carry and landing
   termination. `PlayerCombatController` owns input subscriptions, operation
