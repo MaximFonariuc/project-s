@@ -22,7 +22,6 @@ namespace _App
             builder.Register<ICombatClock, UnityCombatClock>(Lifetime.Scoped);
             builder.RegisterInstance(inputBufferSettings);
             builder.Register<CombatInputBuffer>(Lifetime.Scoped);
-            builder.RegisterInstance(weaponTransitionAction);
             builder.Register<CombatMotionController>(Lifetime.Scoped);
             builder.Register<CombatActionExecutor>(Lifetime.Scoped);
             builder.Register<CombatActionSession>(Lifetime.Scoped);
@@ -45,6 +44,13 @@ namespace _App
                 resolver => new PlayerWeaponRig(
                     player.WeaponLoadout,
                     resolver.Resolve<ICombatHitResolver>()),
+                Lifetime.Scoped);
+            builder.Register(
+                resolver => new PlayerWeaponTransitionSession(
+                    resolver.Resolve<IPlayerCombatAnimation>(),
+                    resolver.Resolve<CombatActionExecutor>(),
+                    weaponTransitionAction,
+                    player.CharacterType),
                 Lifetime.Scoped);
 
             builder.RegisterStateMachine<PlayerCombatPhase>(Lifetime.Scoped)
@@ -77,8 +83,8 @@ namespace _App
                         resolver.Resolve<CombatInputBuffer>(),
                         resolver.Resolve<CombatActionExecutor>(),
                         resolver.Resolve<CombatActionSession>(),
+                        resolver.Resolve<PlayerWeaponTransitionSession>(),
                         resolver.Resolve<PlayerCombatActionGraph>(),
-                        resolver.Resolve<PlayerWeaponTransitionAction>(),
                         resolver.Resolve<ModularStateMachine.IStateMachine<PlayerCombatPhase>>(),
                         resolver.Resolve<ICombatClock>(),
                         player.CharacterType,

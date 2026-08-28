@@ -12,7 +12,6 @@ namespace _App
     public sealed class PlayerCombatController :
         IPlayerCombatCommands,
         IPlayerCombatState,
-        ICombatActionObserver,
         IDisposable
     {
         private const int PendingCommandCapacity = 8;
@@ -27,8 +26,8 @@ namespace _App
         private readonly CombatInputBuffer _inputBuffer;
         private readonly CombatActionExecutor _actionExecutor;
         private readonly CombatActionSession _actionSession;
+        private readonly PlayerWeaponTransitionSession _weaponTransitionSession;
         private readonly PlayerCombatActionGraph _actionGraph;
-        private readonly PlayerWeaponTransitionAction _weaponTransitionAction;
         private readonly IStateMachine<PlayerCombatPhase> _stateMachine;
         private readonly ICombatClock _clock;
         private readonly EWeaponType _preferredWeapon;
@@ -36,15 +35,13 @@ namespace _App
         private readonly InputBufferEntryPredicate<PlayerCombatCommandSample> _bufferedTransitionPredicate;
         private readonly InputBufferEntryPredicate<PlayerCombatCommandSample> _bufferedEntryPredicate;
         private readonly CombatActionFrameHandler _combatFrameHandler;
+        private readonly Action<EWeaponType> _weaponCommitHandler;
         private readonly Dictionary<PlayerCombatActionId, float> _lastActionUseTime =
             new Dictionary<PlayerCombatActionId, float>();
         private readonly Queue<PlayerCombatCommandId> _pendingCommands =
             new Queue<PlayerCombatCommandId>(PendingCommandCapacity);
         private CancellationTokenSource _actionCancellation;
         private PlayerCombatAction _acceptedBufferedAction;
-        private EWeaponType _pendingWeapon;
-        private bool _weaponApplied;
-        private bool _observingWeaponTransition;
         private bool _weaponSwitchRequested;
         private bool _enabled;
 
@@ -89,8 +86,8 @@ namespace _App
             CombatInputBuffer inputBuffer,
             CombatActionExecutor actionExecutor,
             CombatActionSession actionSession,
+            PlayerWeaponTransitionSession weaponTransitionSession,
             PlayerCombatActionGraph actionGraph,
-            PlayerWeaponTransitionAction weaponTransitionAction,
             IStateMachine<PlayerCombatPhase> stateMachine,
             ICombatClock clock,
             ECharacterType characterType,
@@ -106,9 +103,9 @@ namespace _App
             _inputBuffer = inputBuffer ?? throw new ArgumentNullException(nameof(inputBuffer));
             _actionExecutor = actionExecutor ?? throw new ArgumentNullException(nameof(actionExecutor));
             _actionSession = actionSession ?? throw new ArgumentNullException(nameof(actionSession));
+            _weaponTransitionSession = weaponTransitionSession ??
+                throw new ArgumentNullException(nameof(weaponTransitionSession));
             _actionGraph = actionGraph ?? throw new ArgumentNullException(nameof(actionGraph));
-            _weaponTransitionAction = weaponTransitionAction ??
-                throw new ArgumentNullException(nameof(weaponTransitionAction));
             _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
             _clock = clock ?? throw new ArgumentNullException(nameof(clock));
             _preferredWeapon = startingWeapon == EWeaponType.None
@@ -119,6 +116,7 @@ namespace _App
             _bufferedTransitionPredicate = CanAcceptBufferedTransition;
             _bufferedEntryPredicate = CanAcceptBufferedEntry;
             _combatFrameHandler = ObserveCombatFrame;
+            _weaponCommitHandler = CommitWeapon;
             _actionSession.HitWindowChanged += OnHitWindowChanged;
         }
 
@@ -265,41 +263,10 @@ namespace _App
 
             try
             {
-                if (targetWeapon == EWeaponType.Unarmed)
-                {
-                    return await RunWeaponTransitionAsync(
-                        CurrentWeapon,
-                        false,
-                        EWeaponType.Unarmed,
-                        cancellation.Token);
-                }
-
-                if (CurrentWeapon == targetWeapon)
-                {
-                    return await RunWeaponTransitionAsync(
-                        CurrentWeapon,
-                        false,
-                        EWeaponType.Unarmed,
-                        cancellation.Token);
-                }
-
-                if (CurrentWeapon != EWeaponType.Unarmed)
-                {
-                    bool sheathed = await RunWeaponTransitionAsync(
-                        CurrentWeapon,
-                        false,
-                        EWeaponType.Unarmed,
-                        cancellation.Token);
-                    if (!sheathed)
-                    {
-                        return false;
-                    }
-                }
-
-                return await RunWeaponTransitionAsync(
+                return await _weaponTransitionSession.ExecuteAsync(
+                    CurrentWeapon,
                     targetWeapon,
-                    true,
-                    targetWeapon,
+                    _weaponCommitHandler,
                     cancellation.Token);
             }
             catch (OperationCanceledException)
@@ -448,62 +415,6 @@ namespace _App
                         out playback),
                 _ => FailPlayback(out playback)
             };
-        }
-
-        private async UniTask<bool> RunWeaponTransitionAsync(
-            EWeaponType animationWeapon,
-            bool draw,
-            EWeaponType resultingWeapon,
-            CancellationToken token)
-        {
-            // Draw belongs to the incoming loadout, while sheathe belongs to the
-            // currently equipped one. The weapon itself is still committed only
-            // at the gameplay-owned commit point below.
-            if (draw)
-            {
-                _animation.ApplyLoadout(_characterType, animationWeapon);
-            }
-
-            try
-            {
-                if (!_animation.TryPlayWeaponTransition(
-                        animationWeapon,
-                        draw,
-                        out AnimationActionPlayback playback))
-                {
-                    return false;
-                }
-
-                _pendingWeapon = resultingWeapon;
-                _weaponApplied = false;
-                _observingWeaponTransition = true;
-                CombatActionRunResult result = await _actionExecutor.ExecuteAsync(
-                    _weaponTransitionAction.Definition,
-                    _weaponTransitionAction.Definition.DurationSeconds,
-                    null,
-                    this,
-                    token);
-
-                return result == CombatActionRunResult.Completed && _weaponApplied;
-            }
-            finally
-            {
-                _observingWeaponTransition = false;
-                // Keep the source loadout for the full sheathe clip. On cancel,
-                // restore whichever weapon actually reached its commit point.
-                _animation.ApplyLoadout(_characterType, CurrentWeapon);
-            }
-        }
-
-        CombatActionDirective ICombatActionObserver.Observe(in CombatActionFrame frame)
-        {
-            if (_observingWeaponTransition && frame.CommitReached)
-            {
-                CommitWeapon(_pendingWeapon);
-                _weaponApplied = true;
-            }
-
-            return CombatActionDirective.Continue;
         }
 
         private CombatActionEndReason ObserveCombatFrame(in CombatActionFrame frame)
@@ -673,14 +584,14 @@ namespace _App
             if (cancellation == null)
             {
                 _actionSession.Abort(reason);
-                _actionExecutor.Abort();
+                _weaponTransitionSession.Abort();
                 return;
             }
 
             _actionCancellation = null;
             cancellation.Cancel();
             _actionSession.Abort(reason);
-            _actionExecutor.Abort();
+            _weaponTransitionSession.Abort();
             cancellation.Dispose();
         }
 

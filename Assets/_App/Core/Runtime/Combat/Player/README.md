@@ -7,6 +7,7 @@ It does not decide action legality, damage or cancel timing.
 classDiagram
     class PlayerCombatController
     class CombatActionSession
+    class PlayerWeaponTransitionSession
     class IPlayerCombatAnimation {
         <<interface>>
         +TryPlayComboStep(index, expectedDuration, playback) bool
@@ -27,7 +28,9 @@ classDiagram
 
     PlayerCombatController --> IPlayerCombatAnimation
     PlayerCombatController --> CombatActionSession
+    PlayerCombatController --> PlayerWeaponTransitionSession
     IPlayerCombatAnimation <|.. PlayerCombatAnimationAdapter
+    PlayerWeaponTransitionSession --> IPlayerCombatAnimation : draw / sheathe
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     PlayerCombatAnimationAdapter --> AnimationActionRequest
     PlayerCombatController --> PlayerWeaponRig : equipped loadout
@@ -72,6 +75,10 @@ classDiagram
 - `Cancel()` asks the XController adapter to crossfade to locomotion when
   gameplay interrupts an action. Normal completion lets the controller use its
   authored exit transition.
+- `PlayerWeaponTransitionSession` owns the transient sheathe/draw sequence and
+  commits the weapon rig only at the authored timeline point. Cancellation
+  restores the Animator loadout of the last committed weapon; the controller
+  remains the sole owner of persistent `CurrentWeapon`.
 - Weapon transitions, three-step ground/air light combos, a grounded heavy,
   a timing-sampled `Light -> pause -> Light` finisher, the first grounded named
   special and the launcher-to-air-chase route are implemented. The pause

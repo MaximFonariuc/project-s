@@ -13,6 +13,11 @@ attachments. Он не открывает hit window и не решает, ка�
 между hand/sheath sockets и включает только hitboxes выбранного оружия в
 gameplay-окне атаки.
 
+`PlayerWeaponTransitionSession` владеет только временным процессом смены оружия:
+последовательностью sheathe/draw, animation loadout, timeline commit-point и
+восстановлением после отмены. Подтверждённое `CurrentWeapon` остаётся у
+`PlayerCombatController`, а scene attachments — у `PlayerWeaponRig`.
+
 ```mermaid
 classDiagram
     class PlayerCombatController {
@@ -21,6 +26,13 @@ classDiagram
     class CombatActionSession {
         -SetHitWindow(open)
     }
+    class PlayerWeaponTransitionSession {
+        +ExecuteAsync(current, target, commit, token)
+        +Abort()
+    }
+    class CombatActionExecutor
+    class PlayerWeaponTransitionAction
+    class IPlayerCombatAnimation
     class IPlayerWeaponRig {
         <<interface>>
         +ApplyWeapon(weaponType)
@@ -59,7 +71,12 @@ classDiagram
 
     PlayerCombatController --> IPlayerWeaponRig
     PlayerCombatController --> CombatActionSession
+    PlayerCombatController --> PlayerWeaponTransitionSession
     CombatActionSession --> IPlayerWeaponRig : attack hitbox lifecycle
+    PlayerWeaponTransitionSession --> CombatActionExecutor : authored timeline
+    PlayerWeaponTransitionSession --> PlayerWeaponTransitionAction
+    PlayerWeaponTransitionSession --> IPlayerCombatAnimation : draw / sheathe
+    PlayerWeaponTransitionSession ..> PlayerCombatController : commit callback
     IPlayerWeaponRig <|.. PlayerWeaponRig
     PlayerWeaponRig --> PlayerWeaponLoadout
     PlayerWeaponLoadout *-- PlayerWeaponBinding
@@ -71,8 +88,15 @@ classDiagram
 
 ## Правила зависимостей и состояния
 
-- Единственный owner hit window — `PlayerCombatController`. Animator и
+- Единственный owner hit window — `CombatActionSession`. Animator и
   `Weapon` не могут самостоятельно начать или продлить нанесение урона.
+- Единственный owner подтверждённого `CurrentWeapon` — `PlayerCombatController`.
+  `PlayerWeaponTransitionSession` сообщает commit через узкий callback и не
+  дублирует persistent weapon state после завершения операции.
+- При draw Animator заранее получает incoming loadout, необходимый для
+  правильного animation override. Отмена до commit возвращает предыдущий
+  loadout; отмена после sheathe сохраняет `Unarmed` как последний подтверждённый
+  результат.
 - Один action execution передаётся всем активным клинкам. Фильтр
   `CombatAttackExecution` всё равно разрешает поразить одну цель только один раз
   за атаку, даже если её пересекли оба меча.

@@ -134,6 +134,11 @@ classDiagram
         +ExecuteAsync(action, weapon, target, observer, token)
         +Abort(reason)
     }
+    class PlayerWeaponTransitionSession {
+        +IsActive bool
+        +ExecuteAsync(current, target, commit, token) UniTask~bool~
+        +Abort()
+    }
     class CombatInputBuffer
     class IPlayerCombatAnimation
     class IPlayerWeaponRig
@@ -158,9 +163,12 @@ classDiagram
     PlayerCombatController --> IStateMachine~PlayerCombatPhase~
     PlayerCombatController --> PlayerCombatActionGraph
     PlayerCombatController --> ICombatHitEvents : confirmed outgoing hits
-    PlayerCombatController --> CombatActionSession : action lifecycle
-    PlayerCombatController --> CombatActionExecutor : deterministic tick / weapon transition
+    PlayerCombatController --> CombatActionSession : attack lifecycle
+    PlayerCombatController --> PlayerWeaponTransitionSession : draw / sheathe lifecycle
+    PlayerCombatController --> CombatActionExecutor : deterministic tick
     CombatActionSession --> CombatActionExecutor : attack timeline
+    PlayerWeaponTransitionSession --> CombatActionExecutor : transition timeline
+    PlayerWeaponTransitionSession --> IPlayerCombatAnimation : play / restore loadout
     CombatActionSession *-- CombatActionOutcome
     PlayerCombatController --> CombatInputBuffer
     PlayerCombatController --> IPlayerCombatAnimation
@@ -175,6 +183,7 @@ classDiagram
     IStateMachine~PlayerCombatPhase~ *-- PlayerCombatWeaponSwitchState
     IStateMachine~PlayerCombatPhase~ *-- PlayerCombatInterruptedState
     PlayerCombatComposition ..> PlayerCombatController : constructs
+    PlayerCombatComposition ..> PlayerWeaponTransitionSession : constructs
 ```
 
 ## State machine
@@ -265,11 +274,16 @@ cancellation, interruption и disable. `CombatActionSession` является е
 owner текущей action, `CombatAttackExecution`, `CombatActionOutcome` и hitbox
 window. Каждое фактически запущенное action получает отдельный execution,
 поэтому повторные hurtbox одной цели фильтруются на уровне атаки, а не оружия.
-Подтверждённая motion-цель копируется в result до очистки session. Weapon
-transition применяет loadout только после commit point. Cooldown хранится по
+Подтверждённая motion-цель копируется в result до очистки session. Weapon rig и
+`CurrentWeapon` меняются только в commit point; Animator loadout может быть
+временно переключён перед draw и восстанавливается до последнего подтверждённого
+оружия при cancellation/failure. Этой последовательностью владеет
+`PlayerWeaponTransitionSession`, поэтому controller больше не является timeline
+observer смены оружия. Cooldown хранится по
 `PlayerCombatActionId`; animation lookup использует отдельный
 `PlayerCombatAnimationId`. Подробная граница описана в
-`Docs/Architecture/Combat.ActionSession.md`.
+`Docs/Architecture/Combat.ActionSession.md` и
+`Docs/Architecture/Combat.WeaponTransition.md`.
 
 Gameplay timeline использует scaled delta time, поэтому execution, hitbox/cancel windows, обычный Animator и character physics замораживаются во время hit stop. Input buffer намеренно использует unscaled clock: команды продолжают приниматься и истекают в реальном времени. Полная time policy описана в `Docs/Architecture/Combat.HitStop.md`.
 
@@ -296,6 +310,9 @@ event и не отменяет атаку.
 - Ошибка во время запуска action откатывает частично начатый execution через тот
   же `Abort` boundary: damage-immunity lease освобождается, combat motion
   очищается, а executor снова допускает следующее действие.
+- Отмена weapon transition прерывает общий executor, сохраняет только оружие,
+  которое уже пересекло commit frame, и возвращает Animator к соответствующему
+  loadout. Незавершённый draw не меняет `CurrentWeapon` и weapon rig.
 - Airborne-only action проверяет актуальный environment на каждом frame timeline.
   Приземление имеет приоритет над buffered transition: controller закрывает
   hitbox, завершает motion, отменяет combat presentation и возвращается в
