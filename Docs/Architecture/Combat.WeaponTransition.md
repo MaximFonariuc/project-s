@@ -47,6 +47,7 @@ classDiagram
         +TryPlayWeaponTransition(weapon, draw, out playback) bool
     }
     class IPlayerWeaponRig {
+        +CanEquip(weapon) bool
         +ApplyWeapon(weapon)
     }
     class PlayerCombatComposition {
@@ -99,6 +100,11 @@ sequenceDiagram
 Повторный выбор уже экипированного оружия означает sheathe в `Unarmed`.
 `Unarmed → Unarmed` является успешной no-op операцией и не открывает
 `WeaponSwitch` phase.
+
+До создания operation controller проверяет `IPlayerWeaponRig.CanEquip`.
+`Unarmed` всегда допустим как sheathed-состояние, а weapon type требует
+реальный binding с hitboxes. Неподдерживаемый enum отклоняется в `Ready` и не
+может попасть в gameplay state под видом base-animation fallback.
 
 ## Инварианты lifecycle
 

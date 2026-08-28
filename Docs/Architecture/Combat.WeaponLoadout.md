@@ -36,6 +36,7 @@ classDiagram
     class IPlayerCombatAnimation
     class IPlayerWeaponRig {
         <<interface>>
+        +CanEquip(weaponType) bool
         +ApplyWeapon(weaponType)
         +OpenHitbox(execution)
         +CloseHitbox()
@@ -95,6 +96,9 @@ classDiagram
 - Единственный owner подтверждённого `CurrentWeapon` — `PlayerCombatController`.
   `PlayerWeaponTransitionSession` сообщает commit через узкий callback и не
   дублирует persistent weapon state после завершения операции.
+- `IPlayerWeaponRig.CanEquip` проверяется до открытия weapon-transition
+  operation. `Unarmed` является допустимым sheathed-состоянием без обязательной
+  attack hitbox, оружейный тип требует binding с hitboxes.
 - При draw Animator заранее получает incoming loadout, необходимый для
   правильного animation override. Отмена до commit возвращает предыдущий
   loadout; отмена после sheathe сохраняет `Unarmed` как последний подтверждённый

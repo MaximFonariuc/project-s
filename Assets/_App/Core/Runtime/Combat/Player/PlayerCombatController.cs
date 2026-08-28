@@ -208,6 +208,7 @@ namespace _App
         {
             if (!_enabled || !_availability.CanSwitchWeapon ||
                 targetWeapon == EWeaponType.None ||
+                !_weaponRig.CanEquip(targetWeapon) ||
                 Phase != PlayerCombatPhase.Ready)
             {
                 return false;

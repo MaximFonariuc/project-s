@@ -23,6 +23,22 @@ namespace _App
             _hitResolver = hitResolver;
         }
 
+        public bool CanEquip(EWeaponType weaponType)
+        {
+            if (weaponType == EWeaponType.Unarmed)
+            {
+                return true;
+            }
+
+            if (weaponType == EWeaponType.None)
+            {
+                return false;
+            }
+
+            PlayerWeaponBinding binding = FindBinding(weaponType);
+            return binding != null && binding.HasHitboxes();
+        }
+
         public void ApplyWeapon(EWeaponType weaponType)
         {
             CloseHitbox();
