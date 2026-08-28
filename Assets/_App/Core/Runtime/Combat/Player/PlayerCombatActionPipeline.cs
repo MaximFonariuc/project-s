@@ -192,6 +192,9 @@ namespace _App
             // through LateUpdate so its swept query can sample the skipped window.
             if (_acceptedBufferedAction != null)
             {
+                // Inputs received during the one-frame catch-up deferral still
+                // belong to the old source action and cannot cross the edge.
+                _inputBuffer.Clear();
                 return CombatActionEndReason.Transitioned;
             }
 

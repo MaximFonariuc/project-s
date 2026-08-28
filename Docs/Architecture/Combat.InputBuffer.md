@@ -91,6 +91,10 @@ expiration, priority и duplicate policy. Он не решает, какая act
 использует unscaled time, поэтому ввод сохраняет предсказуемый lifetime во время
 hit stop. Cooldown actions использует scaled gameplay time.
 
+Если transition был принят на catch-up hitbox pulse, его применение откладывается
+на один frame ради `LateUpdate` sweep. Команды, пришедшие в этот короткий
+интервал, всё ещё имеют старый `SourceActionId` и очищаются при commit edge.
+
 На completion boundary команда, которая не стала transition, но всё ещё жива,
 повторно проверяется через entry rules графа для актуального Grounded/Airborne
 environment. Это сохраняет поздний recovery input для следующей допустимой
