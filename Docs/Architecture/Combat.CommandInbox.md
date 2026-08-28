@@ -20,6 +20,7 @@ classDiagram
         +TryExecute(commandId) bool
         +Tick(scaledDeltaTime)
     }
+    class PlayerCombatActionPipeline
     class PlayerCombatCommandInbox {
         -capacity int
         +TryEnqueue(commandId) bool
@@ -41,7 +42,8 @@ classDiagram
     IPlayerInput --> PlayerCombatController : semantic callbacks
     PlayerCombatController *-- PlayerCombatCommandInbox : pre-tick owner
     PlayerCombatController --> CombatActionExecutor : deterministic tick
-    PlayerCombatController --> CombatInputBuffer : accepted during action
+    PlayerCombatController --> PlayerCombatActionPipeline : drains commands
+    PlayerCombatActionPipeline --> CombatInputBuffer : accepted during action
 ```
 
 ## Inbox и input buffer
@@ -57,4 +59,3 @@ classDiagram
 Inbox принадлежит `PlayerCombatController` и не регистрируется в VContainer:
 это локальная деталь порядка обработки одного controller, а не scoped service.
 `Clear` атомарно удаляет команды и запрос смены оружия при disable/interruption.
-

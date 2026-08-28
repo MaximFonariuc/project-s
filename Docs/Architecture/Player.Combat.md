@@ -2,7 +2,7 @@
 
 ## Ответственность
 
-`PlayerCombatController` координирует выполнение уже определённых combat actions: принимает семантические команды, обращается к action graph, запускает timeline executor и публикует подтверждённое состояние. `PlayerCombatCommandInbox` изолирует pre-tick FIFO, `CombatInputBuffer` — длительное buffering с action context, `PlayerCombatOperationLifetime` — cancellation ownership attack/weapon операций, а `PlayerCombatAvailability` отвечает за live admission rules и cooldown history. Animator и weapon rig остаются presentation/scene adapters.
+`PlayerCombatController` принимает семантические команды, владеет subscriptions, operation lifecycle и persistent weapon state. `PlayerCombatActionPipeline` выполняет уже определённые combat actions: обращается к action graph, потребляет contextual input buffer, ведёт action chain и публикует combo/hit-window state. `PlayerCombatCommandInbox` изолирует pre-tick FIFO, `PlayerCombatOperationLifetime` — cancellation ownership attack/weapon операций, а `PlayerCombatAvailability` отвечает за live admission rules и cooldown history. Animator и weapon rig остаются presentation/scene adapters.
 
 Подробная граница admission/cooldown описана в
 `Docs/Architecture/Combat.ActionAvailability.md`.
@@ -109,6 +109,13 @@ classDiagram
     class PlayerCombatController {
         +Tick(scaledDeltaTime)
     }
+    class PlayerCombatActionPipeline {
+        +TryAccept(command, phase, weapon, action) bool
+        +ExecuteAsync(action, weapon, token)
+        +Reset()
+        +ComboIndex int
+        +IsHitWindowOpen bool
+    }
     class IStateMachine~PlayerCombatPhase~
     class PlayerCombatReadyState
     class PlayerCombatExecutingState {
@@ -181,9 +188,8 @@ classDiagram
     IPlayerCombatCommands <|.. PlayerCombatController
     IPlayerCombatState <|.. PlayerCombatController
     PlayerCombatController --> IStateMachine~PlayerCombatPhase~
-    PlayerCombatController --> PlayerCombatActionGraph
+    PlayerCombatController --> PlayerCombatActionPipeline : action lifecycle
     PlayerCombatController --> ICombatHitEvents : confirmed outgoing hits
-    PlayerCombatController --> CombatActionSession : attack lifecycle
     PlayerCombatController --> PlayerWeaponTransitionSession : draw / sheathe lifecycle
     PlayerCombatController --> PlayerCombatOperationLifetime : cancellation owner
     PlayerCombatOperationLifetime --> CombatActionSession : abort
@@ -191,12 +197,18 @@ classDiagram
     PlayerCombatOperationLifetime --> IPlayerCombatAnimation : cancel presentation
     PlayerCombatController --> PlayerCombatAvailability : admission / cooldown
     PlayerCombatController --> CombatActionExecutor : deterministic tick
+    PlayerCombatActionPipeline --> PlayerCombatActionGraph
+    PlayerCombatActionPipeline --> CombatActionSession : attack lifecycle
+    PlayerCombatActionPipeline --> CombatInputBuffer
+    PlayerCombatActionPipeline --> PlayerCombatAvailability
+    PlayerCombatActionPipeline --> IPlayerCombatAnimation
+    PlayerCombatActionPipeline --> IPlayerCombatActor
+    PlayerCombatActionPipeline --> IStateMachine~PlayerCombatPhase~
     CombatActionSession --> CombatActionExecutor : attack timeline
     PlayerWeaponTransitionSession --> CombatActionExecutor : transition timeline
     PlayerWeaponTransitionSession --> IPlayerCombatAnimation : play / restore loadout
     CombatActionSession *-- CombatActionOutcome
     PlayerCombatController *-- PlayerCombatCommandInbox : pre-tick commands
-    PlayerCombatController --> CombatInputBuffer
     PlayerCombatController --> IPlayerCombatAnimation
     PlayerCombatController --> IPlayerWeaponRig
     PlayerCombatController --> IPlayerCombatActor
@@ -211,6 +223,7 @@ classDiagram
     IStateMachine~PlayerCombatPhase~ *-- PlayerCombatWeaponSwitchState
     IStateMachine~PlayerCombatPhase~ *-- PlayerCombatInterruptedState
     PlayerCombatComposition ..> PlayerCombatController : constructs
+    PlayerCombatComposition ..> PlayerCombatActionPipeline : constructs
     PlayerCombatComposition ..> PlayerWeaponTransitionSession : constructs
 ```
 
@@ -245,6 +258,7 @@ sequenceDiagram
     participant Input as IPlayerInput
     participant Actor as PlayerActorController
     participant Combat as PlayerCombatController
+    participant Pipeline as PlayerCombatActionPipeline
     participant Graph as PlayerCombatActionGraph
     participant Machine as Combat StateMachine
     participant Session as CombatActionSession
@@ -255,24 +269,27 @@ sequenceDiagram
     Input->>Combat: CombatActionRequested(command) / latch
     Actor->>Combat: Tick(scaledDeltaTime)
     Combat->>Executor: Advance(scaledDeltaTime)
-    Combat->>Graph: TryResolveEntry(command, environment)
-    Graph-->>Combat: PlayerCombatAction
-    Combat->>View: TryPlayAction(character, weapon, action)
-    Combat->>Machine: Ready -> Executing(action)
-    Combat->>Session: ExecuteAsync(action)
+    Combat->>Pipeline: TryAccept(command, phase, weapon)
+    Pipeline->>Graph: TryResolveEntry(command, environment)
+    Graph-->>Pipeline: PlayerCombatAction
+    Combat->>Pipeline: ExecuteAsync(action, weapon, token)
+    Pipeline->>View: TryPlayAction(character, weapon, action)
+    Pipeline->>Machine: Ready -> Executing(action)
+    Pipeline->>Session: ExecuteAsync(action)
     Session->>Executor: ExecuteAsync(definition)
     Hits-->>Combat: HitResolved(matching execution)
-    Combat->>Session: TryRecord(hit)
+    Combat->>Pipeline: TryRecord(hit)
+    Pipeline->>Session: TryRecord(hit)
     Combat->>Executor: Observe()
     Executor-->>Session: CombatActionFrame
-    Session-->>Combat: frame + active outcome
-    Combat->>Machine: Executing -> Recovery(action)
-    Combat->>Graph: resolve buffered transition
-    Combat->>Machine: Recovery -> Executing(next action)
+    Session-->>Pipeline: frame + active outcome
+    Pipeline->>Machine: Executing -> Recovery(action)
+    Pipeline->>Graph: resolve buffered transition
+    Pipeline->>Machine: Recovery -> Executing(next action)
 ```
 
 Сначала buffered command проверяется как transition текущего action. Если его
-окно не открылось, но команда не истекла к завершению timeline, controller
+окно не открылось, но команда не истекла к завершению timeline, pipeline
 проверяет её как новый graph entry в актуальном environment. Так recovery input
 не теряется, при этом недопустимый ground/air action и cooldown по-прежнему
 отсекаются gameplay graph до запуска presentation.
@@ -300,7 +317,7 @@ time Animator.
 
 `CanPlayAction` проверяет только существование поддерживаемого presentation slot.
 Допустимость action по environment, cooldown, reaction state и graph transition
-остаётся в gameplay controller/graph. Поэтому animation adapter не становится
+остаётся в gameplay pipeline/graph. Поэтому animation adapter не становится
 владельцем combat rules.
 
 Hitbox открывается только по `CombatActionFrame` и закрывается при completion,

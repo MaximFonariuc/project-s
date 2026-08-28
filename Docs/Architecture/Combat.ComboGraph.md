@@ -24,6 +24,10 @@ classDiagram
     class PlayerCombatController {
         +TryExecute(commandId) bool
     }
+    class PlayerCombatActionPipeline {
+        +TryAccept(command, phase, weapon, action) bool
+        +ExecuteAsync(action, weapon, token)
+    }
     class CombatActionSession {
         +Action PlayerCombatAction
         +CurrentFrame CombatActionFrame
@@ -70,16 +74,17 @@ classDiagram
     }
 
     IPlayerInput --> PlayerCombatController
-    PlayerCombatController --> CombatInputBuffer
-    PlayerCombatController --> CombatActionSession
+    PlayerCombatController --> PlayerCombatActionPipeline
+    PlayerCombatActionPipeline --> CombatInputBuffer
+    PlayerCombatActionPipeline --> CombatActionSession
     CombatInputBuffer --> PlayerCombatCommandSample
-    PlayerCombatController --> PlayerCombatActionGraph
-    PlayerCombatController --> PlayerCombatAvailability
+    PlayerCombatActionPipeline --> PlayerCombatActionGraph
+    PlayerCombatActionPipeline --> PlayerCombatAvailability
     PlayerCombatActionGraph --> PlayerCombatAction
     PlayerCombatActionGraph --> PlayerCombatTransitionRule
     PlayerCombatAction --> CombatActionDefinition
     PlayerCombatActionGraph --> CombatActionOutcome
-    PlayerCombatController --> IPlayerCombatAnimation
+    PlayerCombatActionPipeline --> IPlayerCombatAnimation
     IPlayerCombatAnimation --> PlayerCombatAction : semantic presentation
     PlayerCombatAvailability --> IPlayerCombatAnimation : slot availability
 ```

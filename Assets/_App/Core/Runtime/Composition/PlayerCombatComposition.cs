@@ -81,6 +81,19 @@ namespace _App
                 .Transition(PlayerCombatPhase.WeaponSwitch, PlayerCombatPhase.Ready);
 
             builder.Register(
+                resolver => new PlayerCombatActionPipeline(
+                    resolver.Resolve<IPlayerCombatActor>(),
+                    resolver.Resolve<PlayerCombatAvailability>(),
+                    resolver.Resolve<IPlayerCombatAnimation>(),
+                    resolver.Resolve<CombatInputBuffer>(),
+                    resolver.Resolve<CombatActionExecutor>(),
+                    resolver.Resolve<CombatActionSession>(),
+                    resolver.Resolve<PlayerCombatActionGraph>(),
+                    resolver.Resolve<ModularStateMachine.IStateMachine<PlayerCombatPhase>>(),
+                    player.CharacterType),
+                Lifetime.Scoped);
+
+            builder.Register(
                     resolver => new PlayerCombatController(
                         resolver.Resolve<IPlayerInput>(),
                         resolver.Resolve<IPlayerCombatActor>(),
@@ -89,12 +102,10 @@ namespace _App
                         resolver.Resolve<IPlayerCombatAnimation>(),
                         resolver.Resolve<IPlayerWeaponRig>(),
                         resolver.Resolve<ICombatHitEvents>(),
-                        resolver.Resolve<CombatInputBuffer>(),
                         resolver.Resolve<CombatActionExecutor>(),
-                        resolver.Resolve<CombatActionSession>(),
+                        resolver.Resolve<PlayerCombatActionPipeline>(),
                         resolver.Resolve<PlayerWeaponTransitionSession>(),
                         resolver.Resolve<PlayerCombatOperationLifetime>(),
-                        resolver.Resolve<PlayerCombatActionGraph>(),
                         resolver.Resolve<ModularStateMachine.IStateMachine<PlayerCombatPhase>>(),
                         player.CharacterType,
                         player.StartingWeapon),

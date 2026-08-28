@@ -173,7 +173,7 @@ Health.Damaged -> target-local reaction / incoming hit stop
 ```
 
 - `CombatActionSession` владеет lifecycle execution: новый id на каждое фактически запущенное action, завершение при completion, chain transition, interruption, cancellation и disable.
-- `PlayerCombatController` принимает `ICombatHitEvents` и передаёт result активной session; `CombatActionOutcome` принимает только совпадающие execution/action ids. Outcome используется graph conditions и не изменяет результат damage resolution.
+- `PlayerCombatController` принимает `ICombatHitEvents` и передаёт result через `PlayerCombatActionPipeline` активной session; `CombatActionOutcome` принимает только совпадающие execution/action ids. Outcome используется graph conditions и не изменяет результат damage resolution.
 - `CombatAttackExecution` владеет множеством уже поражённых actor root. Оно не находится в `Weapon`, поэтому смена collider или несколько зон тела не меняют правило одного попадания.
 - `Weapon` принадлежит scene/prefab и знает только Physics, активный execution и resolver. Он не хранит damage, cooldown, combo или reaction rules.
 - `WeaponHitboxSweep` интерполирует предыдущую и текущую форму

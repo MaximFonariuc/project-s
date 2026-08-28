@@ -1,11 +1,13 @@
-# Player combat presentation
+# Player combat coordination
 
-This tree translates an accepted combat action into a semantic Animator action.
-It does not decide action legality, damage or cancel timing.
+This tree coordinates semantic commands, action chains, weapon transitions and
+their presentation adapters. Damage resolution and character reactions remain
+separate combat boundaries.
 
 ```mermaid
 classDiagram
     class PlayerCombatController
+    class PlayerCombatActionPipeline
     class CombatActionSession
     class PlayerWeaponTransitionSession
     class PlayerCombatAvailability {
@@ -35,8 +37,9 @@ classDiagram
     class PlayerWeaponAttachment
     class Weapon
 
-    PlayerCombatController --> IPlayerCombatAnimation
-    PlayerCombatController --> CombatActionSession
+    PlayerCombatController --> PlayerCombatActionPipeline
+    PlayerCombatActionPipeline --> IPlayerCombatAnimation
+    PlayerCombatActionPipeline --> CombatActionSession
     PlayerCombatController --> PlayerWeaponTransitionSession
     PlayerCombatController --> PlayerCombatAvailability
     IPlayerCombatAnimation <|.. PlayerCombatAnimationAdapter
@@ -45,6 +48,7 @@ classDiagram
     PlayerWeaponTransitionSession --> IPlayerCombatAnimation : draw / sheathe
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     PlayerCombatAnimationAdapter --> AnimationActionRequest
+    PlayerCombatActionPipeline --> PlayerCombatAvailability
     PlayerCombatController --> PlayerWeaponRig : equipped loadout
     CombatActionSession --> PlayerWeaponRig : hitbox lifecycle
     PlayerWeaponRig --> PlayerWeaponLoadout
@@ -59,6 +63,10 @@ classDiagram
   The adapter alone interprets `ComboStep`, `AirComboStep` and `NamedAnimation`;
   `PlayerCombatController` does not know the available Animator slot counts or
   construct `AnimationActionRequest`.
+- `PlayerCombatActionPipeline` owns graph traversal, contextual input buffering,
+  combo index, action-to-action execution, confirmed-target carry and landing
+  termination. `PlayerCombatController` owns input subscriptions, operation
+  lifetime and persistent weapon state.
 - `PlayerCombatAvailability` owns live actor/reaction admission checks and the
   scaled-time cooldown dictionary. It asks the animation port only whether the
   semantic presentation exists; it does not run the graph or mutate combat

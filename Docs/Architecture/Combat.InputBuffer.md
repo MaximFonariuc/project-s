@@ -16,6 +16,8 @@ classDiagram
     class PlayerCombatController {
         +TryExecute(commandId) bool
         +Tick(scaledDeltaTime)
+    }
+    class PlayerCombatActionPipeline {
         -CanAcceptBufferedTransition(entry) bool
         -CanAcceptBufferedEntry(entry) bool
     }
@@ -49,8 +51,9 @@ classDiagram
 
     IPlayerInput --> PlayerCombatController
     PlayerCombatController *-- PlayerCombatCommandInbox : pre-tick FIFO
-    PlayerCombatController --> CombatInputBuffer
-    PlayerCombatController --> PlayerCombatActionGraph
+    PlayerCombatController --> PlayerCombatActionPipeline : drains commands
+    PlayerCombatActionPipeline --> CombatInputBuffer
+    PlayerCombatActionPipeline --> PlayerCombatActionGraph
     CombatInputBuffer --> PlayerCombatCommandSample
     CombatInputBuffer --> InputBuffer~PlayerCombatCommandSample~
     CombatInputBuffer --> CombatInputBufferSettings
@@ -61,7 +64,7 @@ classDiagram
 
 Input callback сначала попадает в bounded `PlayerCombatCommandInbox` и не меняет
 combat state. В gameplay tick executor продвигается на переданный
-scaled delta time, затем controller дренирует pending commands и только после
+scaled delta time, затем controller передаёт pending commands в pipeline и только после
 этого наблюдает новый `CombatActionFrame`. Если action уже выполняется,
 `sourceNormalizedTime` берётся непосредственно из `CombatActionExecutor.CurrentFrame`.
 Поэтому нажатие на границе окна оценивается относительно одного явно
@@ -70,7 +73,7 @@ scaled delta time, затем controller дренирует pending commands и 
 
 Buffer хранит команду, action-источник, normalized time получения, timestamp,
 expiration, priority и duplicate policy. Он не решает, какая action следует за
-текущей. При каждом `CombatActionFrame` controller передаёт predicate, а graph
+текущей. При каждом `CombatActionFrame` pipeline передаёт predicate, а graph
 проверяет одновременно:
 
 - получена ли команда во время того же source action;

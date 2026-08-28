@@ -71,7 +71,10 @@ classDiagram
         +CreateActionGraph()
     }
     class PlayerCombatController {
-        <<runtime owner>>
+        <<command / lifecycle owner>>
+    }
+    class PlayerCombatActionPipeline {
+        <<graph execution owner>>
     }
     class CombatActionSession {
         <<active action / outcome owner>>
@@ -95,13 +98,14 @@ classDiagram
     PlayerCombatTransitionRule --> PlayerCombatCommandId
     PlayerCombatCommandSample --> PlayerCombatCommandId
     PlayerCombatCommandSample --> PlayerCombatActionId
-    PlayerCombatController --> CombatActionSession
+    PlayerCombatController --> PlayerCombatActionPipeline
+    PlayerCombatActionPipeline --> CombatActionSession
     CombatActionSession *-- CombatActionOutcome
     ICombatHitEvents --> PlayerCombatController : matching execution only
     PlayerCombatActionProfile ..> PlayerCombatActionGraph : builds
     IPlayerInput --> PlayerCombatController : command
-    PlayerCombatController --> PlayerCombatCommandSample : buffers
-    PlayerCombatController --> PlayerCombatActionGraph : resolves sample
+    PlayerCombatActionPipeline --> PlayerCombatCommandSample : buffers
+    PlayerCombatActionPipeline --> PlayerCombatActionGraph : resolves sample
 ```
 
 ## Команда, действие и presentation

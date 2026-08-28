@@ -23,6 +23,7 @@ classDiagram
     class PlayerCombatController {
         +CurrentWeapon
     }
+    class PlayerCombatActionPipeline
     class CombatActionSession {
         -SetHitWindow(open)
     }
@@ -70,7 +71,8 @@ classDiagram
     class CombatHitResolver
 
     PlayerCombatController --> IPlayerWeaponRig
-    PlayerCombatController --> CombatActionSession
+    PlayerCombatController --> PlayerCombatActionPipeline
+    PlayerCombatActionPipeline --> CombatActionSession
     PlayerCombatController --> PlayerWeaponTransitionSession
     CombatActionSession --> IPlayerWeaponRig : attack hitbox lifecycle
     PlayerWeaponTransitionSession --> CombatActionExecutor : authored timeline

@@ -8,7 +8,7 @@ lifecycle-границе: текущую action и frame, уникальный a
 hitbox window и timeline execution.
 
 Session не выбирает следующую action, не меняет combat phase и не знает правил
-combo graph. Эти решения остаются у `PlayerCombatController`. Animator также не
+combo graph. Эти решения остаются у `PlayerCombatActionPipeline`. Animator также не
 становится владельцем gameplay-состояния.
 
 ## Дерево классов
@@ -18,9 +18,12 @@ classDiagram
     direction LR
 
     class PlayerCombatController {
-        <<command / graph coordinator>>
+        <<command / lifecycle coordinator>>
         +Tick(scaledDeltaTime)
         +InterruptAttack()
+    }
+    class PlayerCombatActionPipeline {
+        <<graph / chain coordinator>>
         -ObserveCombatFrame(frame) CombatActionEndReason
     }
     class CombatActionSession {
@@ -65,10 +68,11 @@ classDiagram
     }
     class PlayerCombatActionGraph
 
-    PlayerCombatController --> CombatActionSession : starts / observes
+    PlayerCombatController --> PlayerCombatActionPipeline : starts
+    PlayerCombatActionPipeline --> CombatActionSession : starts / observes
     PlayerCombatController --> PlayerCombatOperationLifetime : operation lifecycle
     PlayerCombatOperationLifetime --> CombatActionSession : aborts
-    PlayerCombatController --> PlayerCombatActionGraph : entry / transition rules
+    PlayerCombatActionPipeline --> PlayerCombatActionGraph : entry / transition rules
     PlayerCombatController --> ICombatHitEvents : forwards confirmed hit
     CombatActionSession --> CombatActionExecutor : timeline lifecycle
     CombatActionSession *-- CombatAttackExecution
@@ -82,12 +86,14 @@ classDiagram
 ```mermaid
 sequenceDiagram
     participant Combat as PlayerCombatController
+    participant Pipeline as PlayerCombatActionPipeline
     participant Session as CombatActionSession
     participant Executor as CombatActionExecutor
     participant Rig as IPlayerWeaponRig
     participant Graph as PlayerCombatActionGraph
 
-    Combat->>Session: ExecuteAsync(action, weapon, target, frameHandler, token)
+    Combat->>Pipeline: ExecuteAsync(action, weapon, token)
+    Pipeline->>Session: ExecuteAsync(action, weapon, target, frameHandler, token)
     Session->>Session: begin execution + outcome
     Session->>Executor: ExecuteAsync(definition)
     loop gameplay tick
@@ -95,12 +101,12 @@ sequenceDiagram
         Combat->>Executor: Observe()
         Executor->>Session: Observe(frame)
         Session->>Rig: open / close authored hitbox window
-        Session->>Combat: frameHandler(frame)
-        Combat->>Graph: resolve transition
+        Session->>Pipeline: frameHandler(frame)
+        Pipeline->>Graph: resolve transition
     end
     Session->>Rig: CloseHitbox()
     Session->>Session: end execution + outcome
-    Session-->>Combat: result + reason + confirmed target
+    Session-->>Pipeline: result + reason + confirmed target
 ```
 
 Начало session транзакционно: частично созданные execution/outcome закрываются,
