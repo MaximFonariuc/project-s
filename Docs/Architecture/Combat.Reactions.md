@@ -267,6 +267,7 @@ vertical impact сохраняет тип `Slam` в snapshot до подтвер
 
 - `PlayerReactionComposition` создаёт settings, poise, state machine, motor/presentation ports и controller в gameplay scope. Reaction composition не зависит от Player Combat или Traversal.
 - `CharacterReactionStateMachineFactory` задаёт ту же topology для player scope и standalone actor; `CharacterReactionHost` использует её в тренировочном prefab без второго набора reaction rules.
+- Standalone host подаёт нейтральный look frame в animation driver каждый presentation tick. Это применяет и восстанавливает сглаженные `BodyLook`/`HeadLook` layer weights у reaction/death; без owner этого tick action policy оставалась только внутренней целью driver.
 - `CombatTrainingTarget` адаптирует физику через `RigidbodyCharacterImpactMotor`; это prefab-local composition, а не новый global service.
 - `Enable` подписывает `Health`, запускает state machine и синхронизируется с текущим alive/dead состоянием.
 - `Disable` симметрично снимает подписки, останавливает machine, сбрасывает runtime state и presentation.

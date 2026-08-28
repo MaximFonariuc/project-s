@@ -1,4 +1,5 @@
 using System;
+using ModularAnimation;
 using ModularStateMachine;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ namespace _App
     [AddComponentMenu("Project S/Combat/Character Reaction Host")]
     public sealed class CharacterReactionHost : MonoBehaviour
     {
+        private static readonly CharacterLookFrame NeutralLookFrame =
+            new CharacterLookFrame(0.0f, 0.0f);
+
         [SerializeField] private Health _health;
         [SerializeField] private Animator _animator;
         [SerializeField] private CharacterReactionProfile _profile;
@@ -56,7 +60,12 @@ namespace _App
 
         private void Update()
         {
-            _reaction?.Tick(Time.deltaTime);
+            float deltaTime = Time.deltaTime;
+            _reaction?.Tick(deltaTime);
+            if (_animationDriver != null)
+            {
+                _animationDriver.ApplyLook(in NeutralLookFrame, deltaTime);
+            }
         }
 
         private void OnDisable()
