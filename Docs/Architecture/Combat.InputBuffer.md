@@ -108,5 +108,8 @@ environment, presentation или cooldown gates.
 Внутри pipeline она сохраняется между завершившимся action и новым action,
 принятым через transition либо completion entry handoff. Dodge остаётся отдельным
 locomotion event, но его допустимость берётся из `AllowDodge && CancelWindow`
-текущего combat action. Перенос dodge/item/jump в единый action graph не требуется,
-пока им не нужны собственные ветвящиеся transitions и buffering semantics.
+текущего combat action. Прыжок использует симметричную policy
+`AllowJump && CancelWindow`; combat прерывается только после фактического
+`Character.Jumped`, опубликованного как `JumpAccepted`. Перенос dodge/item/jump в
+единый action graph не требуется, пока им не нужны собственные ветвящиеся
+transitions и buffering semantics.

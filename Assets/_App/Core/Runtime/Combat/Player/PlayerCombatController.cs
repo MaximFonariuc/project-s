@@ -143,6 +143,7 @@ namespace _App
 
             _input.CombatActionRequested += OnCombatActionRequested;
             _input.SwitchCombatStateRequested += OnSwitchWeaponRequested;
+            _locomotionEvents.JumpAccepted += OnJumpAccepted;
             _locomotionEvents.DodgeAccepted += OnDodgeAccepted;
             _outgoingHits.HitResolved += OnOutgoingHitResolved;
             _enabled = true;
@@ -157,6 +158,7 @@ namespace _App
 
             _input.CombatActionRequested -= OnCombatActionRequested;
             _input.SwitchCombatStateRequested -= OnSwitchWeaponRequested;
+            _locomotionEvents.JumpAccepted -= OnJumpAccepted;
             _locomotionEvents.DodgeAccepted -= OnDodgeAccepted;
             _outgoingHits.HitResolved -= OnOutgoingHitResolved;
             _stateMachine.StateChanged -= OnStateChanged;
@@ -769,6 +771,11 @@ namespace _App
         }
 
         private void OnDodgeAccepted()
+        {
+            InterruptAttack();
+        }
+
+        private void OnJumpAccepted()
         {
             InterruptAttack();
         }

@@ -20,6 +20,8 @@ namespace _App
         private bool _hasActionMotion;
         private bool _releaseJumpAfterSimulation;
 
+        public event Action Jumped;
+
         public bool IsGrounded => _character.IsGrounded();
         public bool IsFalling => _character.IsFalling();
         public bool IsJumping => _character.IsJumping();
@@ -46,6 +48,7 @@ namespace _App
             _walkSpeed = settings.WalkSpeed;
             _runSpeed = settings.RunSpeed;
             _sprintSpeed = settings.SprintSpeed;
+            _character.Jumped += OnJumped;
             _character.AfterSimulationUpdated += OnAfterSimulationUpdated;
         }
 
@@ -155,7 +158,14 @@ namespace _App
         {
             ClearActionMotion();
             _releaseJumpAfterSimulation = false;
+            _character.Jumped -= OnJumped;
             _character.AfterSimulationUpdated -= OnAfterSimulationUpdated;
+            Jumped = null;
+        }
+
+        private void OnJumped()
+        {
+            Jumped?.Invoke();
         }
 
         private void OnAfterSimulationUpdated(float deltaTime)

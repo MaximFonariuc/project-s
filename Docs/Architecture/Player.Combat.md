@@ -132,6 +132,10 @@ classDiagram
     class ICharacterReactionState {
         +BlocksActions bool
     }
+    class IPlayerLocomotionEvents {
+        +JumpAccepted
+        +DodgeAccepted
+    }
     class ICombatClock
     class ICombatHitEvents {
         +HitResolved(CombatHitResult)
@@ -152,6 +156,7 @@ classDiagram
     PlayerCombatController --> IPlayerWeaponRig
     PlayerCombatController --> IPlayerCombatActor
     PlayerCombatController --> ICharacterReactionState : entry gate
+    PlayerCombatController --> IPlayerLocomotionEvents : confirmed cancels
     PlayerCombatController --> ICombatClock
     IStateMachine~PlayerCombatPhase~ *-- PlayerCombatReadyState
     IStateMachine~PlayerCombatPhase~ *-- PlayerCombatExecutingState
@@ -170,8 +175,8 @@ stateDiagram-v2
     Executing --> Executing: chain/cancel selects next action
     Executing --> Recovery: RecoveryStart reached
     Recovery --> Executing: buffered transition accepted
-    Executing --> Interrupted: dodge inside CancelWindow / interruption
-    Recovery --> Interrupted: dodge inside CancelWindow / interruption
+    Executing --> Interrupted: jump/dodge inside CancelWindow / interruption
+    Recovery --> Interrupted: jump/dodge inside CancelWindow / interruption
     Interrupted --> Ready
     Executing --> Ready: airborne action lands
     Recovery --> Ready: airborne action lands
@@ -241,11 +246,13 @@ Hitbox открывается только по `CombatActionFrame` и закр�
 
 Gameplay timeline использует scaled delta time, поэтому execution, hitbox/cancel windows, обычный Animator и character physics замораживаются во время hit stop. Input buffer намеренно использует unscaled clock: команды продолжают приниматься и истекают в реальном времени. Полная time policy описана в `Docs/Architecture/Combat.HitStop.md`.
 
-`Allow Dodge` в action profile не открывает уклонение на всей длительности
-атаки. `CombatActionExecutor` совмещает эту policy с текущим `CancelWindow` и
-только затем публикует `PlayerMovementIntent.AllowDodge`. Locomotion остаётся
-владельцем самого dodge и после подтверждённого `DodgeAccepted` combat закрывает
-hitbox, motion, outcome и animation action через обычную interruption boundary.
+`Allow Jump / Allow Dodge` в action profile не открывают locomotion-cancel на
+всей длительности атаки. `CombatActionExecutor` совмещает эти policies с текущим
+`CancelWindow` и только затем публикует соответствующие разрешения. Locomotion
+остаётся владельцем jump/dodge; после подтверждённого `DodgeAccepted` combat
+либо фактического `JumpAccepted` он закрывает hitbox, motion, outcome и animation
+action через обычную interruption boundary. Неудачная попытка прыжка не создаёт
+event и не отменяет атаку.
 
 ## Lifecycle
 

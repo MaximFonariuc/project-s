@@ -39,9 +39,10 @@ classDiagram
   recovery, invulnerability and motion windows are evaluated against it.
 - `CombatActionExecutor` owns elapsed time and cleanup. It does not read
   Animator state or clip length.
-- `Allow Dodge` is an action policy, not a free-form movement flag: locomotion
-  receives it only while the authored `CancelWindow` is open. Startup,
-  hit-confirm and committed recovery therefore cannot be bypassed accidentally.
+- `Allow Jump` and `Allow Dodge` are action policies, not free-form movement
+  flags: locomotion receives them only while the authored `CancelWindow` is
+  open. Startup, hit-confirm and committed recovery therefore cannot be
+  bypassed accidentally.
 - Startup is transactional: if a motion or immunity adapter fails while an
   execution is beginning, `Abort` rolls the partial state back and leaves no
   stale motion intent or active execution id.

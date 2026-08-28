@@ -30,6 +30,7 @@ namespace _App
         private bool _jumpHeld;
         private bool _enabled;
 
+        public event Action JumpAccepted;
         public event Action DodgeAccepted;
 
         public PlayerLocomotionStateId? CurrentState => _stateMachine.CurrentStateId;
@@ -66,6 +67,7 @@ namespace _App
             _input.SprintChanged += OnSprintChanged;
             _input.JumpChanged += OnJumpChanged;
             _input.DodgeRequested += OnDodgeRequested;
+            _motor.Jumped += OnMotorJumped;
 
             _enabled = true;
             ApplySpeedMode();
@@ -82,6 +84,7 @@ namespace _App
             _input.SprintChanged -= OnSprintChanged;
             _input.JumpChanged -= OnJumpChanged;
             _input.DodgeRequested -= OnDodgeRequested;
+            _motor.Jumped -= OnMotorJumped;
 
             _walkHeld = false;
             _sprintHeld = false;
@@ -147,7 +150,13 @@ namespace _App
         public void Dispose()
         {
             Disable();
+            JumpAccepted = null;
             DodgeAccepted = null;
+        }
+
+        private void OnMotorJumped()
+        {
+            JumpAccepted?.Invoke();
         }
 
         private void RefreshMovementDirections()

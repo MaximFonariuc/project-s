@@ -104,6 +104,8 @@ namespace _App
 
     public interface ICharacterMotor
     {
+        event Action Jumped;
+
         bool IsGrounded { get; }
         bool IsFalling { get; }
         bool IsJumping { get; }
@@ -149,6 +151,7 @@ namespace _App
 
     public interface IPlayerLocomotionEvents
     {
+        event Action JumpAccepted;
         event Action DodgeAccepted;
     }
 

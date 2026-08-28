@@ -34,7 +34,7 @@ namespace _App
                     : PlayerMovementIntent.Unrestricted;
                 return new PlayerMovementIntent(
                     movement.TranslationScale,
-                    movement.AllowJump,
+                    _definition.MovementIntent.AllowJump && _currentFrame.CanCancel,
                     _definition.MovementIntent.AllowDodge && _currentFrame.CanCancel,
                     movement.FaceMoveDirection);
             }
