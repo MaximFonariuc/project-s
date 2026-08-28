@@ -122,6 +122,13 @@ flowchart LR
 
 `FreeLook` интегрирует look input в yaw/pitch с ограничением pitch. `TargetLock` плавно ориентирует follow target на `AimPosition`. При потере цели controller автоматически возвращается в `FreeLook`.
 
+Camera follow/look origin задаётся отдельным root-relative transform и не может
+находиться внутри Animator hierarchy. Иначе поза головы двигает источник, из
+которого вычисляется следующая поза головы, создавая feedback-loop и скачки
+`BodyLook/HeadLook`. Player prefab также обязан явно ссылаться на свой единственный
+Humanoid Animator и Cinemachine follow rig; это проверяет XController contract
+validator до Play Mode.
+
 Camera rig регистрируется `PlayerCameraComposition` из существующих serialized-ссылок `ThirdPersonController`, а сам composition-блок вызывается единственным `GameLifetimeScope`. Имена полей сохранены, поэтому prefab и сцена не требуют миграции. При уничтожении scope runtime-экземпляр Cinemachine camera удаляется через `IDisposable`.
 
 Поворот, zoom, FOV и shoulder interpolation используют unscaled delta time: камера остаётся отзывчивой во время hit stop. Head-look animation использует scaled delta time и замораживается вместе с gameplay presentation.

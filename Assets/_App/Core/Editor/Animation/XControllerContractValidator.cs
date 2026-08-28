@@ -1056,6 +1056,11 @@ namespace _App.Editor.Animation
             }
 
             var serializedPlayer = new SerializedObject(player);
+            ValidatePlayerPresentationReferences(
+                prefab,
+                prefabPath,
+                serializedPlayer,
+                result);
             PlayerCombatActionProfile combatProfile = ValidatePlayerCombatProfile(
                 serializedPlayer,
                 prefabPath,
@@ -1145,6 +1150,58 @@ namespace _App.Editor.Animation
                         combatProfile,
                         result);
                 }
+            }
+        }
+
+        private static void ValidatePlayerPresentationReferences(
+            GameObject prefab,
+            string prefabPath,
+            SerializedObject serializedPlayer,
+            ValidationResult result)
+        {
+            Animator resolvedAnimator = prefab.GetComponentInChildren<Animator>(true);
+            Animator assignedAnimator = serializedPlayer
+                .FindProperty("_animator")
+                ?.objectReferenceValue as Animator;
+            if (assignedAnimator == null || assignedAnimator != resolvedAnimator)
+            {
+                result.Error(
+                    $"Player prefab '{prefabPath}' must reference its single " +
+                    "Humanoid Animator explicitly.");
+            }
+
+            Transform followTarget = serializedPlayer
+                .FindProperty("_followTarget")
+                ?.objectReferenceValue as Transform;
+            if (followTarget == null)
+            {
+                result.Error(
+                    $"Player prefab '{prefabPath}' has no camera follow target.");
+            }
+            else
+            {
+                if (!followTarget.IsChildOf(prefab.transform))
+                {
+                    result.Error(
+                        $"Player follow target '{followTarget.name}' must belong " +
+                        "to the player prefab hierarchy.");
+                }
+
+                if (resolvedAnimator != null &&
+                    (followTarget == resolvedAnimator.transform ||
+                     followTarget.IsChildOf(resolvedAnimator.transform)))
+                {
+                    result.Error(
+                        $"Player follow target '{followTarget.name}' is inside " +
+                        "the animated hierarchy. Use a stable root-relative socket.");
+                }
+            }
+
+            if (serializedPlayer.FindProperty("_followCamera")
+                    ?.objectReferenceValue == null)
+            {
+                result.Error(
+                    $"Player prefab '{prefabPath}' has no Cinemachine follow rig.");
             }
         }
 
