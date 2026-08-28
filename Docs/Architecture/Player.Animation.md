@@ -151,6 +151,15 @@ body twist and retains only a reduced head response. Dodge and reaction poses
 fully suppress look, while attacks and weapon transitions retain reduced
 tracking so additive layers do not deform authored action silhouettes.
 
+Both look layers use `SimpleDirectional2D` Blend Trees. Their horizontal and
+vertical parameters are evaluated together and each tree contains exactly one
+neutral motion at `(0, 0)`. A `Simple1D` tree is invalid here: it ignores the
+vertical channel and selects a directional clip at zero, which twists the
+neutral pose and creates discontinuous jumps while the input crosses its
+thresholds. `XControllerContractValidator` checks the tree type, both parameter
+names and the single neutral child so this controller regression is reported
+before Play Mode.
+
 `CombatActionDefinition.DurationSeconds` remains the gameplay timeline for hit,
 chain, cancel and completion windows. The restored XController currently plays
 its authored clips at their native speed; it does not infer gameplay timing from

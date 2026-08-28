@@ -122,6 +122,18 @@ namespace _App.Editor.Animation
                 AnimatorLayerBlendingMode.Additive,
                 false,
                 result);
+            ValidateDirectionalLookTree(
+                layers,
+                XControllerAnimationContract.BodyLookLayerName,
+                XControllerAnimationContract.BodyLookXParameterName,
+                XControllerAnimationContract.BodyLookYParameterName,
+                result);
+            ValidateDirectionalLookTree(
+                layers,
+                XControllerAnimationContract.HeadLookLayerName,
+                XControllerAnimationContract.HeadLookXParameterName,
+                XControllerAnimationContract.HeadLookYParameterName,
+                result);
             ValidateParameters(controller, result);
 
             var states = new Dictionary<string, AnimatorState>(StringComparer.Ordinal);
@@ -211,6 +223,53 @@ namespace _App.Editor.Animation
                         $"Parameter '{requirement.Name}' must be " +
                         $"{requirement.Type}, found {matches[0].type}.");
                 }
+            }
+        }
+
+        private static void ValidateDirectionalLookTree(
+            IReadOnlyList<AnimatorControllerLayer> layers,
+            string layerName,
+            string horizontalParameter,
+            string verticalParameter,
+            ValidationResult result)
+        {
+            AnimatorControllerLayer layer = layers.FirstOrDefault(
+                candidate => candidate.name == layerName);
+            if (layer == null || layer.stateMachine.defaultState == null)
+            {
+                return;
+            }
+
+            if (layer.stateMachine.defaultState.motion is not BlendTree blendTree)
+            {
+                result.Error(
+                    $"Layer '{layerName}' requires a two-dimensional Blend Tree.");
+                return;
+            }
+
+            if (blendTree.blendType != BlendTreeType.SimpleDirectional2D)
+            {
+                result.Error(
+                    $"Layer '{layerName}' must use SimpleDirectional2D, " +
+                    $"found {blendTree.blendType}.");
+            }
+
+            if (blendTree.blendParameter != horizontalParameter ||
+                blendTree.blendParameterY != verticalParameter)
+            {
+                result.Error(
+                    $"Layer '{layerName}' must blend '{horizontalParameter}' and " +
+                    $"'{verticalParameter}'.");
+            }
+
+            ChildMotion[] children = blendTree.children;
+            int neutralCount = children.Count(
+                child => child.motion != null && child.position.sqrMagnitude < 0.0001f);
+            if (neutralCount != 1)
+            {
+                result.Error(
+                    $"Layer '{layerName}' requires exactly one neutral motion at (0, 0); " +
+                    $"found {neutralCount}.");
             }
         }
 
