@@ -30,6 +30,9 @@ namespace _App.Editor.Animation
         private const float DodgeDurationToleranceSeconds = 0.05f;
         private const float CombatClipDurationToleranceSeconds = 0.02f;
         private const float ReactionClipDurationToleranceSeconds = 0.02f;
+        private const float ActionStateSpeedTolerance = 0.001f;
+        private const float MinimumSynchronizedPlaybackRate = 0.5f;
+        private const float MaximumSynchronizedPlaybackRate = 2.0f;
 
         private static readonly string[] RequiredMotionStatePaths =
         {
@@ -1025,6 +1028,11 @@ namespace _App.Editor.Animation
                 serializedPlayer,
                 prefabPath,
                 result);
+            ValidateBaseActionSynchronization(
+                baseController,
+                combatProfile,
+                dodgeSettings,
+                result);
             SerializedProperty bindings =
                 serializedPlayer.FindProperty("_animationOverrides");
             if (bindings == null)
@@ -1212,6 +1220,123 @@ namespace _App.Editor.Animation
                         $"{visualDuration:F3}s; gameplay expects " +
                         $"{requirement.DurationSeconds:F3}s.");
                 }
+            }
+        }
+
+        private static void ValidateBaseActionSynchronization(
+            AnimatorController baseController,
+            PlayerCombatActionProfile combatProfile,
+            DodgeSettings dodgeSettings,
+            ValidationResult result)
+        {
+            var states = new Dictionary<string, AnimatorState>(StringComparer.Ordinal);
+            AnimatorControllerLayer[] layers = baseController.layers;
+            for (int i = 0; i < layers.Length; i++)
+            {
+                CollectStates(layers[i].stateMachine, layers[i].name, states, result);
+            }
+
+            if (combatProfile != null)
+            {
+                IReadOnlyList<PlayerCombatAnimationTimingRequirement> requirements;
+                try
+                {
+                    requirements = combatProfile.CreateAnimationTimingRequirements();
+                }
+                catch (Exception exception)
+                {
+                    result.Error(
+                        $"Combat action profile cannot expose animation timings: " +
+                        exception.Message);
+                    requirements = Array.Empty<PlayerCombatAnimationTimingRequirement>();
+                }
+
+                for (int i = 0; i < requirements.Count; i++)
+                {
+                    PlayerCombatAnimationTimingRequirement requirement = requirements[i];
+                    if (XControllerAnimationContract.TryGetCombatStatePath(
+                            requirement.PresentationKind,
+                            requirement.ComboIndex,
+                            requirement.AnimationId,
+                            out string statePath))
+                    {
+                        ValidateSynchronizedBaseState(
+                            states,
+                            statePath,
+                            requirement.DurationSeconds,
+                            $"combat action '{requirement.ActionId.Value}'",
+                            result);
+                    }
+                }
+            }
+
+            if (dodgeSettings != null)
+            {
+                ValidateSynchronizedBaseState(
+                    states,
+                    XControllerAnimationContract.RollForwardStatePath,
+                    dodgeSettings.Duration,
+                    "forward dodge",
+                    result);
+                ValidateSynchronizedBaseState(
+                    states,
+                    XControllerAnimationContract.RollBackwardStatePath,
+                    dodgeSettings.Duration,
+                    "backward dodge",
+                    result);
+            }
+        }
+
+        private static void ValidateSynchronizedBaseState(
+            IReadOnlyDictionary<string, AnimatorState> states,
+            string statePath,
+            float expectedDuration,
+            string usage,
+            ValidationResult result)
+        {
+            if (!states.TryGetValue(statePath, out AnimatorState state))
+            {
+                return;
+            }
+
+            var clips = new HashSet<AnimationClip>();
+            CollectClips(state.motion, clips);
+            if (clips.Count != 1 || expectedDuration <= 0.0f)
+            {
+                result.Error(
+                    $"Base state '{statePath}' for {usage} requires one clip and " +
+                    "a positive gameplay duration for automatic synchronization.");
+                return;
+            }
+
+            if (Mathf.Abs(state.speed - 1.0f) > ActionStateSpeedTolerance)
+            {
+                result.Error(
+                    $"Base state '{statePath}' for {usage} must keep speed 1.0; " +
+                    "XControllerCharacterAnimationDriver owns runtime clip synchronization.");
+                return;
+            }
+
+            AnimationClip clip = clips.First();
+            string clipSlot = statePath.Substring(statePath.LastIndexOf('.') + 1);
+            if (!string.Equals(clip.name, clipSlot, StringComparison.Ordinal))
+            {
+                result.Error(
+                    $"Base state '{statePath}' for {usage} must use clip slot " +
+                    $"'{clipSlot}', but its motion is '{clip.name}'. Runtime " +
+                    "synchronization resolves active overrides by this stable slot.");
+                return;
+            }
+
+            float playbackRate = clip.length / expectedDuration;
+            if (playbackRate < MinimumSynchronizedPlaybackRate ||
+                playbackRate > MaximumSynchronizedPlaybackRate)
+            {
+                result.Error(
+                    $"Base clip '{clip.name}' for {usage} requires playback rate " +
+                    $"{playbackRate:F3}; supported range is " +
+                    $"{MinimumSynchronizedPlaybackRate:F1}-" +
+                    $"{MaximumSynchronizedPlaybackRate:F1}.");
             }
         }
 

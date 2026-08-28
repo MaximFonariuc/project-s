@@ -26,6 +26,8 @@ namespace _App
         private const float AttackHeadLookWeight = 0.35f;
         private const float WeaponBodyLookWeight = 0.35f;
         private const float WeaponHeadLookWeight = 0.65f;
+        private const float MinimumActionPlaybackRate = 0.5f;
+        private const float MaximumActionPlaybackRate = 2.0f;
 
         private static readonly int OnGroundHash = Animator.StringToHash(
             XControllerAnimationContract.OnGroundParameterName);
@@ -55,9 +57,14 @@ namespace _App
         private readonly Animator _animator;
         private readonly XControllerLookPoseController _lookPose;
         private readonly int _switchWeaponLayerIndex;
+        private readonly Dictionary<string, AnimationClip> _activeClipsBySlot =
+            new Dictionary<string, AnimationClip>(StringComparer.Ordinal);
 
         private int _nextSequence;
         private float _lastAirborneVerticalSpeed;
+        private RuntimeAnimatorController _cachedClipController;
+        private float _actionPlaybackRate = 1.0f;
+        private float _timePlaybackRate = 1.0f;
         private int _actionLayerIndex = -1;
         private bool _wasGrounded = true;
         private bool _disposed;
@@ -121,11 +128,14 @@ namespace _App
                     request,
                     out int layerIndex,
                     out int stateHash,
+                    out string statePath,
                     out float crossFadeSeconds))
             {
                 return AnimationActionPlayback.Invalid;
             }
 
+            _actionPlaybackRate = ResolveActionPlaybackRate(in request, statePath);
+            ApplyPlaybackRate();
             _animator.CrossFadeInFixedTime(
                 stateHash,
                 crossFadeSeconds,
@@ -149,7 +159,7 @@ namespace _App
                 return;
             }
 
-            ClearActionPresentationPolicy();
+            ClearActionPlaybackPolicy();
         }
 
         public void CancelAction()
@@ -159,7 +169,10 @@ namespace _App
                 return;
             }
 
-            if (_actionLayerIndex == _switchWeaponLayerIndex)
+            int cancelledLayerIndex = _actionLayerIndex;
+            ClearActionPlaybackPolicy();
+
+            if (cancelledLayerIndex == _switchWeaponLayerIndex)
             {
                 _animator.CrossFadeInFixedTime(
                     WeaponWaitingStateHash,
@@ -178,16 +191,15 @@ namespace _App
                     0.0f);
             }
 
-            ClearActionPresentationPolicy();
         }
 
         public void SetPlaybackSpeed(float speed)
         {
             ThrowIfDisposed();
 
-            float safeSpeed = Mathf.Max(0.0f, speed);
-            _animator.speed = safeSpeed;
-            _animator.SetFloat(SpeedMultiplierHash, safeSpeed);
+            _timePlaybackRate = Mathf.Max(0.0f, speed);
+            _animator.SetFloat(SpeedMultiplierHash, _timePlaybackRate);
+            ApplyPlaybackRate();
         }
 
         public void Reset()
@@ -202,7 +214,9 @@ namespace _App
             _animator.SetFloat(FallingDurationHash, 0.0f);
             _animator.SetFloat(SpeedMultiplierHash, 1.0f);
             _animator.SetBool(OnGroundHash, true);
-            _animator.speed = 1.0f;
+            _actionPlaybackRate = 1.0f;
+            _timePlaybackRate = 1.0f;
+            ApplyPlaybackRate();
             _lastAirborneVerticalSpeed = 0.0f;
             _wasGrounded = true;
             _lookPose.Reset();
@@ -284,6 +298,91 @@ namespace _App
             _actionLayerIndex = -1;
         }
 
+        private void ClearActionPlaybackPolicy()
+        {
+            _actionPlaybackRate = 1.0f;
+            ApplyPlaybackRate();
+            ClearActionPresentationPolicy();
+        }
+
+        private void ApplyPlaybackRate()
+        {
+            _animator.speed = _actionPlaybackRate * _timePlaybackRate;
+        }
+
+        private float ResolveActionPlaybackRate(
+            in AnimationActionRequest request,
+            string statePath)
+        {
+            if ((!IsAttackAction(request.Action) &&
+                 request.Action != PlayerAnimatorActions.Dodge) ||
+                request.ExpectedDuration <= 0.0f ||
+                string.IsNullOrEmpty(statePath))
+            {
+                return 1.0f;
+            }
+
+            string clipSlot = statePath.Substring(statePath.LastIndexOf('.') + 1);
+            RefreshActiveClipSlots();
+            if (!_activeClipsBySlot.TryGetValue(clipSlot, out AnimationClip clip) ||
+                clip == null ||
+                clip.length <= 0.0f)
+            {
+                return 1.0f;
+            }
+
+            return Mathf.Clamp(
+                clip.length / request.ExpectedDuration,
+                MinimumActionPlaybackRate,
+                MaximumActionPlaybackRate);
+        }
+
+        private void RefreshActiveClipSlots()
+        {
+            RuntimeAnimatorController controller =
+                _animator.runtimeAnimatorController;
+            if (controller == _cachedClipController)
+            {
+                return;
+            }
+
+            _activeClipsBySlot.Clear();
+            _cachedClipController = controller;
+            if (controller == null)
+            {
+                return;
+            }
+
+            if (controller is AnimatorOverrideController animationOverride)
+            {
+                var overrides =
+                    new List<KeyValuePair<AnimationClip, AnimationClip>>(
+                        animationOverride.overridesCount);
+                animationOverride.GetOverrides(overrides);
+                for (int i = 0; i < overrides.Count; i++)
+                {
+                    KeyValuePair<AnimationClip, AnimationClip> pair = overrides[i];
+                    if (pair.Key != null)
+                    {
+                        _activeClipsBySlot[pair.Key.name] =
+                            pair.Value != null ? pair.Value : pair.Key;
+                    }
+                }
+
+                return;
+            }
+
+            AnimationClip[] clips = controller.animationClips;
+            for (int i = 0; i < clips.Length; i++)
+            {
+                AnimationClip clip = clips[i];
+                if (clip != null)
+                {
+                    _activeClipsBySlot[clip.name] = clip;
+                }
+            }
+        }
+
         private float ResolveFallingVelocity(in CharacterLocomotionFrame frame)
         {
             if (!frame.IsGrounded)
@@ -302,6 +401,7 @@ namespace _App
             in AnimationActionRequest request,
             out int layerIndex,
             out int stateHash,
+            out string statePath,
             out float crossFadeSeconds)
         {
             layerIndex = XControllerAnimationContract.BaseLayerIndex;
@@ -310,6 +410,7 @@ namespace _App
                     request.Variant,
                     out string combatStatePath))
             {
+                statePath = combatStatePath;
                 stateHash = Animator.StringToHash(combatStatePath);
                 crossFadeSeconds = AttackCrossFadeSeconds;
                 return _animator.HasState(layerIndex, stateHash);
@@ -318,6 +419,9 @@ namespace _App
             if (request.Action == PlayerAnimatorActions.Dodge &&
                 request.Variant is 0 or 1)
             {
+                statePath = request.Variant == 1
+                    ? XControllerAnimationContract.RollBackwardStatePath
+                    : XControllerAnimationContract.RollForwardStatePath;
                 stateHash = request.Variant == 1
                     ? RollBackwardStateHash
                     : RollForwardStateHash;
@@ -326,6 +430,9 @@ namespace _App
             else if (request.Action == PlayerAnimatorActions.WeaponTransition &&
                      request.Variant is 0 or 1)
             {
+                statePath = request.Variant == 1
+                    ? XControllerAnimationContract.WeaponUnsheatheStatePath
+                    : XControllerAnimationContract.WeaponSheatheStatePath;
                 layerIndex = _switchWeaponLayerIndex;
                 stateHash = request.Variant == 1
                     ? WeaponUnsheatheStateHash
@@ -336,6 +443,8 @@ namespace _App
                      request.Variant >= 0 &&
                      request.Variant < ReactionStateHashes.Length)
             {
+                statePath = XControllerAnimationContract.ReactionStatePaths[
+                    request.Variant];
                 stateHash = ReactionStateHashes[request.Variant];
                 crossFadeSeconds = AttackCrossFadeSeconds;
             }
@@ -343,6 +452,7 @@ namespace _App
             {
                 layerIndex = -1;
                 stateHash = 0;
+                statePath = null;
                 crossFadeSeconds = 0.0f;
                 return false;
             }

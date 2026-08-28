@@ -168,9 +168,18 @@ stateDiagram-v2
 ## Timing и root motion
 
 `CombatActionDefinition.DurationSeconds` и reaction durations определяют
-gameplay timeline. Текущий driver не растягивает клипы до этой длительности и
-не читает Animator normalized time как источник gameplay state. По умолчанию
-actions воспроизводятся с authored speed `1`.
+gameplay timeline. Для attack и dodge `XControllerCharacterAnimationDriver`
+автоматически находит активный clip override по стабильному semantic slot и
+вычисляет playback rate как `clip.length / expectedDuration`. Поэтому весь клип
+успевает отработать в gameplay-окне и базовый XController остаётся корректным
+fallback без отдельной ручной таблицы длительностей. Animator normalized time
+не становится источником gameplay state.
+
+Content playback rate и time policy независимы: hit stop умножает текущую
+скорость действия, а после него восстанавливается рассчитанный action rate.
+Completion/cancel сначала сбрасывает action rate и возвращает обычную скорость
+locomotion. Reaction/death сохраняют authored speed `1`, чтобы не ускорять
+impact pose под короткое gameplay-окно.
 
 Политика перемещения — motor-owned motion:
 
@@ -214,6 +223,9 @@ parameters и state names не копируются. Если override для we
   `DodgeSettings` (допуск `0.05s`);
 - согласованности длительности каждого combat clip weapon override с authored
   `CombatActionDefinition.DurationSeconds` (допуск `0.02s`);
+- возможности автоматически синхронизировать base attack/dodge clips: state
+  speed обязан быть `1`, ровно один clip на state, допустимый runtime playback
+  rate — `0.5..2.0`;
 - явного presentation state для каждого combat action и согласованных timed exits
   у каждого state, синхронизированных с gameplay completion;
 - отсутствующих/дублирующихся weapon override bindings.

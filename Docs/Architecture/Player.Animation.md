@@ -213,11 +213,19 @@ names and the single neutral child so this controller regression is reported
 before Play Mode.
 
 `CombatActionDefinition.DurationSeconds` remains the gameplay timeline for hit,
-chain, cancel and completion windows. The restored XController currently plays
-its authored clips at their native speed; it does not infer gameplay timing from
-Animator normalized time and does not stretch a clip automatically. Weapon
-overrides therefore need clips authored for the same semantic timing until an
-explicit per-action playback-rate contract is introduced.
+chain, cancel and completion windows. For attack and dodge actions the
+Project-S-specific driver resolves the active clip through the stable XController
+slot and derives `clip.length / expectedDuration`. This content rate lets the
+whole base or overridden clip finish inside the authoritative gameplay window;
+Animator normalized time never becomes simulation state. Weapon overrides
+should still be authored close to the semantic timing so runtime correction
+remains small.
+
+Content rate and time policy are separate factors. Hit stop multiplies the
+current action rate and restores it afterwards; completion or cancellation
+clears only the content factor before locomotion resumes. The base attack and
+dodge states therefore keep authored state speed `1`, which is enforced by the
+editor contract validator.
 
 Reaction and death actions keep authored playback speed `1`. Gameplay reaction
 state and duration remain authoritative and cancel presentation when their
@@ -332,6 +340,10 @@ For every Player weapon override it additionally resolves the actual clip behind
 each combat slot and compares its effective duration with the action profile
 within 20 ms. Hit, chain and recovery windows therefore cannot drift silently
 after a clip replacement.
+For the base-controller fallback it validates one clip per synchronized
+attack/dodge state, authored state speed `1`, and a bounded automatic playback
+rate of `0.5..2.0`. This covers `Unarmed` and unsupported weapon loadouts without
+duplicating timing data in another ScriptableObject.
 It additionally requires the Player prefab to reference that exact profile and
 builds its full graph, input-buffer settings and weapon-transition definition
 before comparing animation timings. A broken route or missing authoring block
