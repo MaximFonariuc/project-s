@@ -6,15 +6,19 @@ namespace _App
     {
         private readonly PlayerAnimationCoordinator _animation;
         private readonly PlayerCharacterAnimationPresenter _presenter;
+        private readonly float _dodgeDuration;
 
         private bool _wasDodging;
 
         public PlayerLocomotionAnimationAdapter(
             PlayerAnimationCoordinator animation,
-            PlayerCharacterAnimationPresenter presenter)
+            PlayerCharacterAnimationPresenter presenter,
+            PlayerLocomotionSettings settings)
         {
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
+            _dodgeDuration = settings?.DodgeDuration ??
+                throw new ArgumentNullException(nameof(settings));
         }
 
         public void Present(in PlayerLocomotionSnapshot snapshot, float deltaTime)
@@ -34,7 +38,8 @@ namespace _App
                     PlayerAnimationSource.Locomotion,
                     snapshot.DodgeBackwards
                         ? PlayerAnimationSlots.DodgeBackward
-                        : PlayerAnimationSlots.DodgeForward);
+                        : PlayerAnimationSlots.DodgeForward,
+                    _dodgeDuration);
             }
             else if (!isDodging && _wasDodging)
             {

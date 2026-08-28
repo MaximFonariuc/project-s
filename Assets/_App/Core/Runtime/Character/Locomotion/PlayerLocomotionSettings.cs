@@ -7,15 +7,18 @@ namespace _App
         public float WalkSpeed { get; }
         public float RunSpeed { get; }
         public float SprintSpeed { get; }
+        public float DodgeDuration { get; }
 
         public PlayerLocomotionSettings(
             float walkSpeed,
             float runSpeed,
-            float sprintSpeed)
+            float sprintSpeed,
+            float dodgeDuration)
         {
             WalkSpeed = walkSpeed;
             RunSpeed = runSpeed;
             SprintSpeed = sprintSpeed;
+            DodgeDuration = Math.Max(0.0f, dodgeDuration);
         }
 
         internal static PlayerLocomotionSettings From(
@@ -35,11 +38,13 @@ namespace _App
             float runSpeed = character.MaxWalkSpeed;
             WalkSpeedSettings walk = features.GetEnabled<WalkSpeedSettings>();
             SprintSpeedSettings sprint = features.GetEnabled<SprintSpeedSettings>();
+            DodgeSettings dodge = features.GetEnabled<DodgeSettings>();
 
             return new PlayerLocomotionSettings(
                 walk?.MaxSpeed ?? runSpeed,
                 runSpeed,
-                sprint?.MaxSpeed ?? runSpeed);
+                sprint?.MaxSpeed ?? runSpeed,
+                dodge?.Duration ?? 0.0f);
         }
     }
 }

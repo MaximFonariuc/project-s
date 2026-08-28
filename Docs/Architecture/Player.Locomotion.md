@@ -183,6 +183,7 @@ classDiagram
     IPlayerLocomotionPresentation <|.. PlayerLocomotionAnimationAdapter
     PlayerLocomotionAnimationAdapter --> PlayerCharacterAnimationPresenter
     PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator : dodge request
+    PlayerLocomotionAnimationAdapter --> PlayerLocomotionSettings : dodge duration metadata
     PlayerAnimationCoordinator --> ICharacterAnimationDriver : accepted transition
     PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver : locomotion frame
     PlayerLocomotionState <|-- PlayerIdleState
@@ -219,7 +220,7 @@ stateDiagram-v2
 
 `Jump` начинается не по нажатию кнопки, а после подтверждения motor: `Character` должен перейти в `Falling` и получить восходящую скорость. По той же причине `Dodge` становится активным только после перехода `Character` в custom movement mode. State machine не дублирует физическое состояние заранее.
 
-`Walk` и `Sprint` являются взаимоисключающими speed modes, а не отдельными locomotion states. Единственный runtime-owner скорости — `CharacterMotor`. При composition значения `WalkSpeedSettings` и `SprintSpeedSettings` один раз переводятся в immutable `PlayerLocomotionSettings`; motor не знает об authoring-каталоге.
+`Walk` и `Sprint` являются взаимоисключающими speed modes, а не отдельными locomotion states. Единственный runtime-owner скорости — `CharacterMotor`. При composition значения `WalkSpeedSettings`, `SprintSpeedSettings` и длительность `DodgeSettings` один раз переводятся в immutable `PlayerLocomotionSettings`; motor и presentation adapter не читают authoring-каталог независимо.
 
 ## Dodge и i-frames
 
@@ -277,7 +278,10 @@ flowchart LR
 - Camera участвует только как basis для camera-relative направления через отдельный adapter; locomotion не зависит от Cinemachine API.
 - Traversal запрашивает инверсию gravity через `IPlayerLocomotionCommands` и меняет camera orientation только после подтверждения команды.
 - `PlayerActorController` немедленно передаёт `PlayerMovementIntent.Locked` при non-stable reaction и удерживает ограничения во время traversal. Поэтому jump/dodge callbacks не проходят между межfeature transition и следующим locomotion tick.
-- Animation получает подтверждённое состояние. Продолжительность dodge и окно i-frames задаются gameplay-конфигурацией, а не длиной animation clip.
+- Animation получает подтверждённое состояние и ту же authored длительность
+  dodge через `PlayerLocomotionSettings`. Gameplay duration и i-frame window всё
+  равно являются авторитетными; editor validator лишь требует, чтобы evade clip
+  активного weapon override отличался от них не более чем на `0.05s`.
 - Glide и dodge проходят через `IPlayerLocomotionActions`. Их runtime-state принадлежит `PlayerGlideAction` и `PlayerDodgeAction`; общий ability runtime отсутствует.
 - `Character` симулируется с `Time.fixedDeltaTime`; presentation обновляется в frame `Update`.
 

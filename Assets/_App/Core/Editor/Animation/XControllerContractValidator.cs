@@ -21,6 +21,7 @@ namespace _App.Editor.Animation
         private const string MenuPath =
             "Tools/Animation/Validate XController Contract";
         private const float TransitionTimingTolerance = 0.005f;
+        private const float DodgeDurationToleranceSeconds = 0.05f;
 
         private static readonly string[] RequiredMotionStatePaths =
         {
@@ -664,6 +665,10 @@ namespace _App.Editor.Animation
                 serializedPlayer,
                 prefabPath,
                 result);
+            DodgeSettings dodgeSettings = ResolvePlayerDodgeSettings(
+                serializedPlayer,
+                prefabPath,
+                result);
             SerializedProperty bindings =
                 serializedPlayer.FindProperty("_animationOverrides");
             if (bindings == null)
@@ -703,7 +708,134 @@ namespace _App.Editor.Animation
                     result.Error(
                         $"Player override entry {i} does not use " +
                         $"'{baseController.name}' as its base.");
+                    continue;
                 }
+
+                if (dodgeSettings != null)
+                {
+                    ValidateDodgeClipDurations(
+                        animationOverride,
+                        baseController,
+                        dodgeSettings.Duration,
+                        result);
+                }
+            }
+        }
+
+        private static DodgeSettings ResolvePlayerDodgeSettings(
+            SerializedObject serializedPlayer,
+            string prefabPath,
+            ValidationResult result)
+        {
+            SerializedProperty property =
+                serializedPlayer.FindProperty("_characterFeatures");
+            var features = property?.objectReferenceValue as CharacterFeatureSet;
+            if (features == null)
+            {
+                result.Error(
+                    $"Player prefab '{prefabPath}' requires a character feature set.");
+                return null;
+            }
+
+            IReadOnlyList<CharacterFeatureEntry> entries = features.Features;
+            if (entries == null)
+            {
+                result.Error(
+                    $"Character feature set '{features.name}' has no feature list.");
+                return null;
+            }
+
+            for (int i = 0; i < entries.Count; i++)
+            {
+                CharacterFeatureEntry entry = entries[i];
+                if (entry is { IsEnabled: true, Settings: DodgeSettings dodge })
+                {
+                    return dodge;
+                }
+            }
+
+            return null;
+        }
+
+        private static void ValidateDodgeClipDurations(
+            AnimatorOverrideController animationOverride,
+            AnimatorController baseController,
+            float gameplayDuration,
+            ValidationResult result)
+        {
+            var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(
+                animationOverride.overridesCount);
+            animationOverride.GetOverrides(overrides);
+
+            ValidateDodgeClipDuration(
+                animationOverride,
+                overrides,
+                baseController,
+                "RollFront",
+                XControllerAnimationContract.RollForwardStatePath,
+                gameplayDuration,
+                result);
+            ValidateDodgeClipDuration(
+                animationOverride,
+                overrides,
+                baseController,
+                "RollBack",
+                XControllerAnimationContract.RollBackwardStatePath,
+                gameplayDuration,
+                result);
+        }
+
+        private static void ValidateDodgeClipDuration(
+            AnimatorOverrideController animationOverride,
+            IReadOnlyList<KeyValuePair<AnimationClip, AnimationClip>> overrides,
+            AnimatorController baseController,
+            string sourceClipName,
+            string statePath,
+            float gameplayDuration,
+            ValidationResult result)
+        {
+            AnimationClip clip = null;
+            for (int i = 0; i < overrides.Count; i++)
+            {
+                KeyValuePair<AnimationClip, AnimationClip> pair = overrides[i];
+                if (pair.Key != null && pair.Key.name == sourceClipName)
+                {
+                    clip = pair.Value != null ? pair.Value : pair.Key;
+                    break;
+                }
+            }
+
+            if (clip == null)
+            {
+                result.Error(
+                    $"Override '{animationOverride.name}' has no dodge clip for " +
+                    $"slot '{sourceClipName}'.");
+                return;
+            }
+
+            var states = new Dictionary<string, AnimatorState>(StringComparer.Ordinal);
+            AnimatorControllerLayer[] layers = baseController.layers;
+            for (int i = 0; i < layers.Length; i++)
+            {
+                CollectStates(layers[i].stateMachine, layers[i].name, states, result);
+            }
+
+            if (!states.TryGetValue(statePath, out AnimatorState state) ||
+                state.speed <= 0.0f)
+            {
+                result.Error(
+                    $"Dodge state '{statePath}' requires a positive playback speed.");
+                return;
+            }
+
+            float visualDuration = clip.length / state.speed;
+            if (Mathf.Abs(visualDuration - gameplayDuration) >
+                DodgeDurationToleranceSeconds)
+            {
+                result.Error(
+                    $"Override '{animationOverride.name}' dodge slot " +
+                    $"'{sourceClipName}' lasts {visualDuration:F3}s, but gameplay " +
+                    $"DodgeSettings lasts {gameplayDuration:F3}s.");
             }
         }
 

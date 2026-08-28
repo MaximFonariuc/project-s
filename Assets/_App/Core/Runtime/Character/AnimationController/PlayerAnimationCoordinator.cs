@@ -28,7 +28,6 @@ namespace _App
         public static readonly AnimationActionId Launcher = new AnimationActionId(8);
         public static readonly AnimationActionId AirChase = new AnimationActionId(9);
 
-        public const float DodgeDuration = 0.78f;
         public const float WeaponTransitionDuration = 1.00f;
         public const float HitStunDuration = 0.40f;
         public const float KnockdownDuration = 0.80f;
@@ -42,13 +41,13 @@ namespace _App
         {
             if (slot == PlayerAnimationSlots.DodgeForward)
             {
-                request = new AnimationActionRequest(Dodge, 0, DodgeDuration);
+                request = new AnimationActionRequest(Dodge, 0, 1.0f);
                 return true;
             }
 
             if (slot == PlayerAnimationSlots.DodgeBackward)
             {
-                request = new AnimationActionRequest(Dodge, 1, DodgeDuration);
+                request = new AnimationActionRequest(Dodge, 1, 1.0f);
                 return true;
             }
 

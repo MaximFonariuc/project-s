@@ -14,6 +14,9 @@ classDiagram
         +DodgeAccepted event
     }
     class PlayerLocomotionAnimationAdapter
+    class PlayerLocomotionSettings {
+        +DodgeDuration
+    }
     class PlayerCharacterAnimationPresenter
     class PlayerCombatAnimationAdapter {
         +CanPlayAction(character, weapon, action) bool
@@ -71,6 +74,7 @@ classDiagram
     PlayerLocomotionController --> PlayerLocomotionAnimationAdapter
     PlayerLocomotionAnimationAdapter --> PlayerCharacterAnimationPresenter
     PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator : accepted dodge
+    PlayerLocomotionAnimationAdapter --> PlayerLocomotionSettings : duration metadata
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     PlayerCombatAnimationAdapter --> PlayerAnimatorLoadout
     PlayerCombatAnimationAdapter --> PlayerCombatAction
@@ -127,6 +131,10 @@ classDiagram
   combat rule reads clip length or Animator normalized time.
 - Root motion is disabled. Dodge and attack movement go through
   `CharacterMotor`, including normal collision sweeps and grounding.
+- Dodge presentation receives its expected duration from the same immutable
+  `PlayerLocomotionSettings` snapshot as gameplay composition. The validator
+  checks every active weapon override's forward/back evade clips against that
+  duration with a 50 ms tolerance; clip length never becomes simulation state.
 
 ## Transition model
 
