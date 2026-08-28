@@ -37,6 +37,7 @@ classDiagram
         +TryPlayAction(source, request, playback) bool
         +Cancel(source)
         +ReleaseAll(source)
+        +Reset()
     }
     class ICharacterAnimationDriver {
         <<module interface>>
@@ -108,6 +109,10 @@ classDiagram
 - Normal completion calls `CompleteAction` and only releases transient
   presentation policy. Interruption calls `CancelAction` and requests an
   explicit visual exit from the active Animator layer.
+- Coordinator construction and actor disable both execute a full driver reset
+  after feature owners stop. This clears stale look values, action ownership,
+  per-source playback speed and Animator speed before a later re-enable; camera
+  shutdown can no longer freeze the last target pose on the character.
 - `XControllerCharacterAnimationDriver` is the only external parameter-writer
   boundary. The same scoped instance presents locomotion and finite actions and
   delegates only the four look channels to its owned

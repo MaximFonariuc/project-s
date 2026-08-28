@@ -8,6 +8,10 @@
 
 `PlayerActorController` является scoped runtime coordinator активного игрока. Он владеет порядком enable/disable, frame ticks и межfeature-реакцией на подтверждённые state changes, но не содержит gameplay state. `ThirdPersonController` после composition остаётся только Unity lifecycle/authoring host: хранит scene references и делегирует `OnEnable`, `Update`, `LateUpdate` и legacy-команду инверсии gravity координатору.
 
+При disable coordinator сначала останавливает feature-specific presentation
+owners, затем выполняет единый animation reset. Поэтому look pose, finite action
+и изменённый hit-stop playback speed не переживают disable/re-enable поколения.
+
 ## Дерево классов
 
 ```mermaid

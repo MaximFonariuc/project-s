@@ -91,10 +91,10 @@ namespace _App
             _hitStop.Disable();
             _reaction.Disable();
             _combat.Disable();
-            _animation.StopAllActions();
             _camera.Disable();
             _targeting.Disable();
             _locomotion.Disable();
+            _animation.Reset();
             _movementPolicyLifecycle.Disable();
             _gameplayTime.Disable();
             _enabled = false;

@@ -159,6 +159,8 @@ namespace _App
             {
                 _playbackSpeeds[i] = 1.0f;
             }
+
+            _driver.Reset();
         }
 
         public bool TryPlayAction(
@@ -213,10 +215,16 @@ namespace _App
             return PlayerAnimatorActions.TryCreate(slot, out _);
         }
 
-        public void StopAllActions()
+        public void Reset()
         {
             _actionOwner = null;
             _driver.CancelAction();
+            for (int i = 0; i < _playbackSpeeds.Length; i++)
+            {
+                _playbackSpeeds[i] = 1.0f;
+            }
+
+            _driver.Reset();
         }
 
         public void Cancel(PlayerAnimationSource source)
