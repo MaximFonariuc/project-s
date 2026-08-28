@@ -94,6 +94,14 @@ classDiagram
     class CharacterReactionAnimationAdapter
     class PlayerAnimationCoordinator
     class ICharacterAnimationDriver
+    class ICharacterLookAnimationDriver
+    class XControllerCharacterAnimationDriver
+    class CharacterReactionHost {
+        <<standalone MonoBehaviour composition>>
+        +State ICharacterReactionState
+        -Update()
+        -OnDisable()
+    }
     class CharacterReactionProfile {
         <<optional authoring data>>
     }
@@ -122,6 +130,14 @@ classDiagram
     CharacterReactionAnimationAdapter ..|> ICharacterReactionPresentation
     CharacterReactionAnimationAdapter --> PlayerAnimationCoordinator
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
+    XControllerCharacterAnimationDriver ..|> ICharacterAnimationDriver
+    XControllerCharacterAnimationDriver ..|> ICharacterLookAnimationDriver
+    CharacterReactionHost *-- CharacterReactionController
+    CharacterReactionHost *-- PlayerAnimationCoordinator
+    CharacterReactionHost *-- XControllerCharacterAnimationDriver
+    CharacterReactionHost --> ICharacterLookAnimationDriver : neutral look tick
+    CharacterReactionHost --> Health
+    CharacterReactionHost --> CharacterReactionProfile
     CharacterReactionAnimationAdapter --> CharacterReactionProfile : optional mapping
     PlayerReactionComposition ..> CharacterReactionController : constructs
 ```
