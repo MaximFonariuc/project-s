@@ -119,6 +119,21 @@ classDiagram
   capsule, sphere и box shapes, не создаёт коллекции в кадре и ограничен восемью
   промежуточными samples на один rendering frame.
 
+## Editor validation
+
+`Tools/Animation/Validate XController Contract` проверяет физический loadout
+вместе с animation contract. До Play Mode выявляются отсутствующий
+`PlayerWeaponLoadout`, неподдерживаемый starting weapon, дубли weapon bindings,
+пустые attachments, отсутствующие hand/equipped/sheath references, пустые или
+дублирующиеся hitboxes и animation override без соответствующего физического
+оружия. Hitbox attachment обязан находиться внутри своего weapon root, чтобы
+видимость оружия и его collision lifecycle не расходились.
+
+`Unarmed` остаётся допустимым sheathed-состоянием runtime rig, но prefab игрока
+должен иметь хотя бы один hand hitbox: текущий base combat graph позволяет
+рукопашные атаки, и их нельзя authoring-ошибкой превратить в тихий промах без
+урона.
+
 ## Текущий DualSwords prototype
 
 Player prefab содержит два независимых attachment и два capsule trigger:

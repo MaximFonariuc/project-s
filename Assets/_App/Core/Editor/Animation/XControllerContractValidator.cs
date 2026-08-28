@@ -1033,6 +1033,8 @@ namespace _App.Editor.Animation
                 combatProfile,
                 dodgeSettings,
                 result);
+            HashSet<EWeaponType> physicalWeaponTypes =
+                ValidatePlayerWeaponLoadout(serializedPlayer, prefabPath, result);
             SerializedProperty bindings =
                 serializedPlayer.FindProperty("_animationOverrides");
             if (bindings == null)
@@ -1064,6 +1066,21 @@ namespace _App.Editor.Animation
                         $"'{weaponType.enumDisplayNames[weaponType.enumValueIndex]}'.");
                 }
 
+                EWeaponType overrideWeaponType =
+                    (EWeaponType)weaponType.intValue;
+                if (overrideWeaponType is EWeaponType.None or EWeaponType.Unarmed)
+                {
+                    result.Error(
+                        $"Player animation override entry {i} uses reserved " +
+                        $"weapon type '{overrideWeaponType}'.");
+                }
+                else if (!physicalWeaponTypes.Contains(overrideWeaponType))
+                {
+                    result.Error(
+                        $"Player animation override '{overrideWeaponType}' has no " +
+                        "matching physical weapon binding with hitboxes.");
+                }
+
                 var animationOverride =
                     controller.objectReferenceValue as AnimatorOverrideController;
                 if (animationOverride == null ||
@@ -1093,6 +1110,230 @@ namespace _App.Editor.Animation
                         result);
                 }
             }
+        }
+
+        private static HashSet<EWeaponType> ValidatePlayerWeaponLoadout(
+            SerializedObject serializedPlayer,
+            string prefabPath,
+            ValidationResult result)
+        {
+            var supportedWeapons = new HashSet<EWeaponType>();
+            var authoredWeapons = new HashSet<EWeaponType>();
+            SerializedProperty loadoutProperty =
+                serializedPlayer.FindProperty("_weaponLoadout");
+            var loadout = loadoutProperty?.objectReferenceValue as PlayerWeaponLoadout;
+            if (loadout == null)
+            {
+                result.Error(
+                    $"Player prefab '{prefabPath}' has no weapon loadout.");
+                return supportedWeapons;
+            }
+
+            var serializedLoadout = new SerializedObject(loadout);
+            SerializedProperty unarmedHitboxes =
+                serializedLoadout.FindProperty("_unarmedHitboxes");
+            int validUnarmedHitboxes = ValidateWeaponArray(
+                unarmedHitboxes,
+                "Player unarmed hitboxes",
+                result);
+            if (validUnarmedHitboxes == 0)
+            {
+                result.Error(
+                    "Player base/unarmed combat requires at least one hand hitbox.");
+            }
+
+            SerializedProperty weaponBindings =
+                serializedLoadout.FindProperty("_weapons");
+            if (weaponBindings == null || weaponBindings.arraySize == 0)
+            {
+                result.Error("Player weapon loadout has no weapon bindings.");
+            }
+            else
+            {
+                for (int i = 0; i < weaponBindings.arraySize; i++)
+                {
+                    ValidateWeaponBinding(
+                        weaponBindings.GetArrayElementAtIndex(i),
+                        i,
+                        authoredWeapons,
+                        supportedWeapons,
+                        result);
+                }
+            }
+
+            SerializedProperty startingWeaponProperty =
+                serializedPlayer.FindProperty("_startingWeapon");
+            EWeaponType startingWeapon = startingWeaponProperty != null
+                ? (EWeaponType)startingWeaponProperty.intValue
+                : EWeaponType.None;
+            bool startingWeaponSupported = startingWeapon == EWeaponType.Unarmed
+                ? validUnarmedHitboxes > 0
+                : supportedWeapons.Contains(startingWeapon);
+            if (!startingWeaponSupported)
+            {
+                result.Error(
+                    $"Player starting weapon '{startingWeapon}' has no complete " +
+                    "physical loadout with hitboxes.");
+            }
+
+            return supportedWeapons;
+        }
+
+        private static void ValidateWeaponBinding(
+            SerializedProperty binding,
+            int bindingIndex,
+            HashSet<EWeaponType> authoredWeapons,
+            HashSet<EWeaponType> supportedWeapons,
+            ValidationResult result)
+        {
+            SerializedProperty weaponTypeProperty =
+                binding.FindPropertyRelative("_weaponType");
+            EWeaponType weaponType = weaponTypeProperty != null
+                ? (EWeaponType)weaponTypeProperty.intValue
+                : EWeaponType.None;
+            string context = $"Player weapon binding {bindingIndex} ('{weaponType}')";
+            bool uniqueSupportedType = false;
+            if (weaponType is EWeaponType.None or EWeaponType.Unarmed)
+            {
+                result.Error(
+                    $"{context} uses a reserved weapon type. " +
+                    "Unarmed hitboxes belong in the dedicated array.");
+            }
+            else if (!authoredWeapons.Add(weaponType))
+            {
+                result.Error($"Player has duplicate physical weapon '{weaponType}'.");
+            }
+            else
+            {
+                uniqueSupportedType = true;
+            }
+
+            SerializedProperty attachments =
+                binding.FindPropertyRelative("_attachments");
+            bool hasCompleteAttachment = false;
+            if (attachments == null || attachments.arraySize == 0)
+            {
+                result.Error($"{context} has no attachments.");
+            }
+            else
+            {
+                for (int i = 0; i < attachments.arraySize; i++)
+                {
+                    if (ValidateWeaponAttachment(
+                            attachments.GetArrayElementAtIndex(i),
+                            $"{context} attachment {i}",
+                            result))
+                    {
+                        hasCompleteAttachment = true;
+                    }
+                }
+            }
+
+            if (!hasCompleteAttachment)
+            {
+                result.Error(
+                    $"{context} has no complete attachment with a hitbox.");
+            }
+            else if (uniqueSupportedType)
+            {
+                supportedWeapons.Add(weaponType);
+            }
+        }
+
+        private static bool ValidateWeaponAttachment(
+            SerializedProperty attachment,
+            string context,
+            ValidationResult result)
+        {
+            Transform weaponRoot = attachment
+                .FindPropertyRelative("_weaponRoot")
+                ?.objectReferenceValue as Transform;
+            Transform equippedParent = attachment
+                .FindPropertyRelative("_equippedParent")
+                ?.objectReferenceValue as Transform;
+            Transform sheathedParent = attachment
+                .FindPropertyRelative("_sheathedParent")
+                ?.objectReferenceValue as Transform;
+
+            bool complete = true;
+            if (weaponRoot == null)
+            {
+                result.Error($"{context} has no weapon root.");
+                complete = false;
+            }
+
+            if (equippedParent == null)
+            {
+                result.Error($"{context} has no equipped parent.");
+                complete = false;
+            }
+
+            if (sheathedParent == null)
+            {
+                result.Error($"{context} has no sheathed parent.");
+                complete = false;
+            }
+
+            SerializedProperty hitboxes =
+                attachment.FindPropertyRelative("_hitboxes");
+            int validHitboxes = ValidateWeaponArray(hitboxes, $"{context} hitboxes", result);
+            if (validHitboxes == 0)
+            {
+                complete = false;
+            }
+
+            if (weaponRoot != null && hitboxes != null)
+            {
+                for (int i = 0; i < hitboxes.arraySize; i++)
+                {
+                    var hitbox = hitboxes.GetArrayElementAtIndex(i)
+                        .objectReferenceValue as Weapon;
+                    if (hitbox != null && !hitbox.transform.IsChildOf(weaponRoot))
+                    {
+                        result.Error(
+                            $"{context} hitbox '{hitbox.name}' is outside weapon " +
+                            $"root '{weaponRoot.name}'.");
+                        complete = false;
+                    }
+                }
+            }
+
+            return complete;
+        }
+
+        private static int ValidateWeaponArray(
+            SerializedProperty hitboxes,
+            string context,
+            ValidationResult result)
+        {
+            if (hitboxes == null || hitboxes.arraySize == 0)
+            {
+                result.Error($"{context} are empty.");
+                return 0;
+            }
+
+            int validCount = 0;
+            var uniqueHitboxes = new HashSet<UnityEngine.Object>();
+            for (int i = 0; i < hitboxes.arraySize; i++)
+            {
+                UnityEngine.Object hitbox =
+                    hitboxes.GetArrayElementAtIndex(i).objectReferenceValue;
+                if (hitbox == null)
+                {
+                    result.Error($"{context} contain a missing entry at index {i}.");
+                    continue;
+                }
+
+                if (!uniqueHitboxes.Add(hitbox))
+                {
+                    result.Error($"{context} contain duplicate '{hitbox.name}'.");
+                    continue;
+                }
+
+                validCount++;
+            }
+
+            return validCount;
         }
 
         private static void ValidateReactionProfileBinding(
