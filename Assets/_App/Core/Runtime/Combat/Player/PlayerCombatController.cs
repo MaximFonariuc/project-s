@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using ModularInput;
@@ -13,7 +12,7 @@ namespace _App
         IPlayerCombatState,
         IDisposable
     {
-        private const int PendingCommandCapacity = 8;
+        private const int CommandInboxCapacity = 8;
 
         private readonly IPlayerInput _input;
         private readonly IPlayerCombatActor _actor;
@@ -34,11 +33,10 @@ namespace _App
         private readonly InputBufferEntryPredicate<PlayerCombatCommandSample> _bufferedEntryPredicate;
         private readonly CombatActionFrameHandler _combatFrameHandler;
         private readonly Action<EWeaponType> _weaponCommitHandler;
-        private readonly Queue<PlayerCombatCommandId> _pendingCommands =
-            new Queue<PlayerCombatCommandId>(PendingCommandCapacity);
+        private readonly PlayerCombatCommandInbox _commandInbox =
+            new PlayerCombatCommandInbox(CommandInboxCapacity);
         private CancellationTokenSource _actionCancellation;
         private PlayerCombatAction _acceptedBufferedAction;
-        private bool _weaponSwitchRequested;
         private bool _enabled;
 
         public event Action<PlayerCombatPhase> PhaseChanged;
@@ -154,8 +152,7 @@ namespace _App
             _enabled = false;
 
             CancelActiveAction(CombatActionEndReason.Disabled);
-            _pendingCommands.Clear();
-            _weaponSwitchRequested = false;
+            _commandInbox.Clear();
             _inputBuffer.Clear();
             _acceptedBufferedAction = null;
             SetComboIndex(0);
@@ -167,14 +164,7 @@ namespace _App
 
         public bool TryExecute(PlayerCombatCommandId commandId)
         {
-            if (!_enabled || string.IsNullOrEmpty(commandId.Value) ||
-                _pendingCommands.Count >= PendingCommandCapacity)
-            {
-                return false;
-            }
-
-            _pendingCommands.Enqueue(commandId);
-            return true;
+            return _enabled && _commandInbox.TryEnqueue(commandId);
         }
 
         public void Tick(float scaledDeltaTime)
@@ -185,11 +175,9 @@ namespace _App
             }
 
             _actionExecutor.Advance(scaledDeltaTime);
-            ConsumePendingCommands();
+            ConsumeQueuedCommands();
 
-            bool switchWeapon = _weaponSwitchRequested;
-            _weaponSwitchRequested = false;
-            if (switchWeapon)
+            if (_commandInbox.ConsumeWeaponSwitchRequest())
             {
                 ToggleWeaponAsync(_preferredWeapon).Forget();
             }
@@ -230,11 +218,11 @@ namespace _App
             return true;
         }
 
-        private void ConsumePendingCommands()
+        private void ConsumeQueuedCommands()
         {
-            while (_pendingCommands.Count > 0)
+            while (_commandInbox.TryDequeue(out PlayerCombatCommandId commandId))
             {
-                TryExecuteNow(_pendingCommands.Dequeue());
+                TryExecuteNow(commandId);
             }
         }
 
@@ -292,8 +280,7 @@ namespace _App
             }
 
             CancelActiveAction(reason);
-            _pendingCommands.Clear();
-            _weaponSwitchRequested = false;
+            _commandInbox.Clear();
             _inputBuffer.Clear();
             _acceptedBufferedAction = null;
             SetComboIndex(0);
@@ -581,7 +568,7 @@ namespace _App
 
         private void OnSwitchWeaponRequested()
         {
-            _weaponSwitchRequested = true;
+            _commandInbox.RequestWeaponSwitch();
         }
 
         private void OnDodgeAccepted()

@@ -19,6 +19,11 @@ classDiagram
         -CanAcceptBufferedTransition(entry) bool
         -CanAcceptBufferedEntry(entry) bool
     }
+    class PlayerCombatCommandInbox {
+        +TryEnqueue(commandId) bool
+        +TryDequeue(commandId) bool
+        +Clear()
+    }
     class CombatInputBuffer {
         +Store(commandId, sourceActionId, normalizedTime) bool
         +TryConsume(predicate, sample) bool
@@ -43,6 +48,7 @@ classDiagram
     }
 
     IPlayerInput --> PlayerCombatController
+    PlayerCombatController *-- PlayerCombatCommandInbox : pre-tick FIFO
     PlayerCombatController --> CombatInputBuffer
     PlayerCombatController --> PlayerCombatActionGraph
     CombatInputBuffer --> PlayerCombatCommandSample
@@ -53,8 +59,8 @@ classDiagram
 
 ## Ownership и consumption
 
-Input callback сначала попадает в bounded pending-command queue контроллера и
-не меняет combat state. В gameplay tick executor продвигается на переданный
+Input callback сначала попадает в bounded `PlayerCombatCommandInbox` и не меняет
+combat state. В gameplay tick executor продвигается на переданный
 scaled delta time, затем controller дренирует pending commands и только после
 этого наблюдает новый `CombatActionFrame`. Если action уже выполняется,
 `sourceNormalizedTime` берётся непосредственно из `CombatActionExecutor.CurrentFrame`.
@@ -114,7 +120,9 @@ environment, presentation или cooldown gates.
 | Souls-like | 1–2 | NewestFirst | 0.10–0.25 s |
 | Action RPG | 2–4 | HighestPriorityThenOldest | 0.15–0.35 s |
 
-Обе очереди очищаются при disable и interruption. Gameplay input buffer также
+Обе очереди очищаются при disable и interruption. Их различия и pre-tick
+ownership подробно описаны в `Docs/Architecture/Combat.CommandInbox.md`.
+Gameplay input buffer также
 очищается при завершении всего action pipeline; внутри pipeline он сохраняется
 между завершившимся action и новым action,
 принятым через transition либо completion entry handoff. Dodge остаётся отдельным

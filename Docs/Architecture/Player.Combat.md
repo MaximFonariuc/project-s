@@ -2,7 +2,7 @@
 
 ## Ответственность
 
-`PlayerCombatController` координирует выполнение уже определённых combat actions: принимает семантические команды, обращается к action graph, запускает timeline executor, управляет buffer и публикует подтверждённое состояние. `PlayerCombatAvailability` отвечает за live admission rules и cooldown history. Animator и weapon rig остаются presentation/scene adapters.
+`PlayerCombatController` координирует выполнение уже определённых combat actions: принимает семантические команды, обращается к action graph, запускает timeline executor и публикует подтверждённое состояние. `PlayerCombatCommandInbox` изолирует pre-tick FIFO, `CombatInputBuffer` — длительное buffering с action context, а `PlayerCombatAvailability` отвечает за live admission rules и cooldown history. Animator и weapon rig остаются presentation/scene adapters.
 
 Подробная граница admission/cooldown описана в
 `Docs/Architecture/Combat.ActionAvailability.md`.
@@ -149,6 +149,12 @@ classDiagram
         +RecordUse(action)
     }
     class CombatInputBuffer
+    class PlayerCombatCommandInbox {
+        +TryEnqueue(commandId) bool
+        +TryDequeue(commandId) bool
+        +ConsumeWeaponSwitchRequest() bool
+        +Clear()
+    }
     class IPlayerCombatAnimation
     class IPlayerWeaponRig
     class IPlayerCombatActor
@@ -180,6 +186,7 @@ classDiagram
     PlayerWeaponTransitionSession --> CombatActionExecutor : transition timeline
     PlayerWeaponTransitionSession --> IPlayerCombatAnimation : play / restore loadout
     CombatActionSession *-- CombatActionOutcome
+    PlayerCombatController *-- PlayerCombatCommandInbox : pre-tick commands
     PlayerCombatController --> CombatInputBuffer
     PlayerCombatController --> IPlayerCombatAnimation
     PlayerCombatController --> IPlayerWeaponRig
