@@ -83,7 +83,13 @@ expiration, priority и duplicate policy. Он не решает, какая act
 - подходит ли target action текущему Grounded/Airborne environment;
 - доступна ли presentation и завершён ли cooldown.
 
-Только прошедшая все проверки команда атомарно удаляется из очереди. Expiration использует unscaled time, поэтому ввод сохраняет предсказуемый lifetime во время hit stop. Cooldown actions использует scaled gameplay time.
+Только прошедшая все проверки команда атомарно выбирается как successor.
+Принятый graph edge является transaction boundary: после выбора pipeline удаляет
+остальные samples завершившегося source action. Один action не может заранее
+запрограммировать несколько будущих узлов, а лишний mash-input не просачивается
+через следующий combo step и не перезапускает цепочку с entry. Expiration
+использует unscaled time, поэтому ввод сохраняет предсказуемый lifetime во время
+hit stop. Cooldown actions использует scaled gameplay time.
 
 На completion boundary команда, которая не стала transition, но всё ещё жива,
 повторно проверяется через entry rules графа для актуального Grounded/Airborne
@@ -101,7 +107,9 @@ Runtime не подменяет отсутствующий authoring скрыт�
 
 Текущий slasher profile использует capacity `4`, `DropLowestPriority` и
 `HighestPriorityThenOldest`. Default light input имеет priority `0` и допускает
-несколько последовательных записей для combo. `attack.heavy` имеет priority
+несколько последовательных записей-кандидатов в пределах текущего action, но
+после принятия одного successor остальные кандидаты этого source очищаются.
+`attack.heavy` имеет priority
 `10`, `skill.special` — `20`; обе named-команды используют `RefreshMatching`,
 поэтому повторное нажатие продлевает одну pending command, но не программирует
 несколько будущих heavy/special actions. Приоритет влияет только на выбор среди
@@ -110,9 +118,9 @@ environment, presentation или cooldown gates.
 
 `RefreshMatching` обновляет не только lifetime/priority, но и sample последнего
 повторного нажатия. Поэтому timing-gate всегда читает актуальный input context,
-а не normalized time первого нажатия. Команда, оставшаяся от предыдущего action,
-не может случайно стать transition следующего action; на completion она всё ещё
-может пройти отдельное entry rule как независимый ввод.
+а не normalized time первого нажатия. Если edge не был принят, на completion
+одна ещё живая команда может пройти отдельное entry rule как независимый ввод;
+после такого handoff остальные samples завершённого source также очищаются.
 
 У первых двух ground light actions начало `CancelWindow` выровнено с началом
 `ChainWindow`. Благодаря этому light и named commands становятся кандидатами в

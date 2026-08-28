@@ -215,6 +215,11 @@ namespace _App
                 return CombatActionEndReason.None;
             }
 
+            // One source action can commit exactly one successor. Any remaining
+            // samples were authored against the old action and must not leak
+            // through the next node as a fresh entry.
+            _inputBuffer.Clear();
+
             return frame.IsHitboxCatchUpPulse
                 ? CombatActionEndReason.None
                 : CombatActionEndReason.Transitioned;
@@ -259,6 +264,9 @@ namespace _App
                     out action) &&
                 _availability.CanUseAction(action, _activeWeapon))
             {
+                // Completion handoff consumes one intentional successor. Other
+                // samples still carry the completed source-action context.
+                _inputBuffer.Clear();
                 return true;
             }
 

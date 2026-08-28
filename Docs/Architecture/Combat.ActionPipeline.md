@@ -110,4 +110,7 @@ When an airborne-only action detects a grounded actor, landing wins over a
 buffered transition. The session returns `Landed`, the pipeline cancels the
 finite animation and completion returns the controller to `Ready`. A late
 buffered command that did not match a transition may still resolve as a fresh
-entry after the current session finishes.
+entry after the current session finishes. Accepting either a transition or this
+completion handoff clears all remaining commands authored against the completed
+source action, so one burst of duplicate input cannot leak across the successor
+and restart the combo from its entry node.
