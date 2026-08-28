@@ -7,24 +7,21 @@ namespace _App
     public sealed class PlayerCameraAnimationAdapter : IPlayerCameraPresentation
     {
         private readonly Transform _characterTransform;
+        private readonly Transform _lookOrigin;
         private readonly ICharacterLookAnimationDriver _animation;
-        private readonly Transform _head;
 
         public PlayerCameraAnimationAdapter(
             IPlayerActorTransform actor,
-            Animator animator,
+            Transform lookOrigin,
             ICharacterLookAnimationDriver animation)
         {
             _characterTransform = actor?.Root != null
                 ? actor.Root
                 : throw new ArgumentNullException(nameof(actor));
-            Animator safeAnimator = animator != null
-                ? animator
-                : throw new ArgumentNullException(nameof(animator));
+            _lookOrigin = lookOrigin != null
+                ? lookOrigin
+                : throw new ArgumentNullException(nameof(lookOrigin));
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
-            _head = safeAnimator.isHuman
-                ? safeAnimator.GetBoneTransform(HumanBodyBones.Head)
-                : null;
         }
 
         public void Tick(bool hasTarget, Vector3 targetPosition, float deltaTime)
@@ -34,8 +31,7 @@ namespace _App
 
             if (hasTarget)
             {
-                Vector3 eyePosition = _head != null ? _head.position : _characterTransform.position;
-                Vector3 direction = targetPosition - eyePosition;
+                Vector3 direction = targetPosition - _lookOrigin.position;
                 if (direction.sqrMagnitude > 0.0001f)
                 {
                     Vector3 localDirection = _characterTransform.InverseTransformDirection(direction.normalized);

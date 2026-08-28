@@ -30,7 +30,7 @@ namespace _App
             builder.Register<IPlayerCameraPresentation>(
                 resolver => new PlayerCameraAnimationAdapter(
                     resolver.Resolve<IPlayerActorTransform>(),
-                    player.PlayerAnimator,
+                    player.FollowTarget,
                     resolver.Resolve<ICharacterLookAnimationDriver>()),
                 Lifetime.Scoped);
             builder.Register(

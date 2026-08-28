@@ -113,6 +113,9 @@ flowchart LR
 - Targeting публикует read-only state. Камера не запускает physics query и не выбирает цель.
 - Locomotion читает только `ICameraOrientation`; зависимость от `Character.CameraTransform` устранена.
 - Camera controller и head-look adapter читают actor только через `IPlayerActorTransform`; combat/traversal API класса `Character` им недоступен.
+- Head-look adapter измеряет направление от стабильного camera follow target,
+  а не от анимируемой кости головы. Результат additive pose поэтому не становится
+  входом следующего кадра и не создаёт feedback/jitter значений.
 - Combat в будущем сможет задавать временный framing через `IPlayerCameraCommands`, не получая доступ к Cinemachine.
 
 ## Режимы и lifecycle

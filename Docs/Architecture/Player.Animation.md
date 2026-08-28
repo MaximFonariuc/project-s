@@ -94,8 +94,11 @@ classDiagram
 - `XControllerCharacterAnimationDriver` is the only parameter writer. The same
   scoped instance presents locomotion, finite actions and body/head look.
 - `PlayerCameraAnimationAdapter` supplies a rig-independent yaw/pitch request in
-  character-local degrees. The XController adapter owns pose calibration,
-  body/head distribution and presentation smoothing.
+  character-local degrees. Its origin is the stable camera follow target, never
+  the animated head bone that receives the resulting pose; this prevents a
+  presentation feedback loop from producing oscillating look values. The
+  XController adapter owns pose calibration, body/head distribution and
+  presentation smoothing.
 - `XController.controller` is the manually authored visual graph. No editor
   setup tool creates or rewrites its states, motions, Blend Trees or transitions.
 - `CombatActionDefinition.DurationSeconds` owns gameplay action duration. No
