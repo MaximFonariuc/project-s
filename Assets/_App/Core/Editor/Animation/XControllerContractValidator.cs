@@ -18,11 +18,14 @@ namespace _App.Editor.Animation
             "Assets/_Game/Prefabs/Enemies/CombatTrainingTarget.prefab";
         private const string CombatActionProfilePath =
             "Assets/_Game/Settings/Combat/Player/PlayerCombatActionProfile.asset";
+        private const string CharacterReactionProfilePath =
+            "Assets/_Game/Settings/Combat/Player/PlayerCharacterReactionProfile.asset";
         private const string MenuPath =
             "Tools/Animation/Validate XController Contract";
         private const float TransitionTimingTolerance = 0.005f;
         private const float DodgeDurationToleranceSeconds = 0.05f;
         private const float CombatClipDurationToleranceSeconds = 0.02f;
+        private const float ReactionClipDurationToleranceSeconds = 0.02f;
 
         private static readonly string[] RequiredMotionStatePaths =
         {
@@ -87,15 +90,35 @@ namespace _App.Editor.Animation
                 return result;
             }
 
-            ValidateController(controller, result);
-            ValidateOverrideControllers(controller, result);
-            ValidatePrefab(PlayerPrefabPath, controller, true, result);
-            ValidatePrefab(TrainingTargetPrefabPath, controller, false, result);
+            CharacterReactionProfile reactionProfile =
+                AssetDatabase.LoadAssetAtPath<CharacterReactionProfile>(
+                    CharacterReactionProfilePath);
+            if (reactionProfile == null)
+            {
+                result.Error(
+                    $"Missing character reaction profile: {CharacterReactionProfilePath}");
+            }
+
+            ValidateController(controller, reactionProfile, result);
+            ValidateOverrideControllers(controller, reactionProfile, result);
+            ValidatePrefab(
+                PlayerPrefabPath,
+                controller,
+                reactionProfile,
+                true,
+                result);
+            ValidatePrefab(
+                TrainingTargetPrefabPath,
+                controller,
+                reactionProfile,
+                false,
+                result);
             return result;
         }
 
         private static void ValidateController(
             AnimatorController controller,
+            CharacterReactionProfile reactionProfile,
             ValidationResult result)
         {
             AnimatorControllerLayer[] layers = controller.layers;
@@ -160,6 +183,15 @@ namespace _App.Editor.Animation
             ValidateFiniteStateTransitions(states, result);
             ValidateCombatActionTransitionTimings(states, result);
             ValidateReactionStates(states, result);
+            if (reactionProfile != null)
+            {
+                ValidateReactionClipDurations(
+                    states,
+                    null,
+                    controller.name,
+                    reactionProfile,
+                    result);
+            }
         }
 
         private static void ValidateLayer(
@@ -691,10 +723,117 @@ namespace _App.Editor.Animation
             }
         }
 
-        private static void ValidateOverrideControllers(
-            AnimatorController baseController,
+        private static void ValidateReactionClipDurations(
+            IReadOnlyDictionary<string, AnimatorState> states,
+            IReadOnlyDictionary<AnimationClip, AnimationClip> overrides,
+            string controllerName,
+            CharacterReactionProfile profile,
             ValidationResult result)
         {
+            var serializedProfile = new SerializedObject(profile);
+            ValidateReactionClipDuration(
+                states,
+                overrides,
+                controllerName,
+                XControllerAnimationContract.HitStunStatePath,
+                serializedProfile.FindProperty("_hitStunDuration").floatValue,
+                result);
+            ValidateReactionClipDuration(
+                states,
+                overrides,
+                controllerName,
+                XControllerAnimationContract.HitStunBackStatePath,
+                serializedProfile.FindProperty("_hitStunDuration").floatValue,
+                result);
+            ValidateReactionClipDuration(
+                states,
+                overrides,
+                controllerName,
+                XControllerAnimationContract.HitStunLeftStatePath,
+                serializedProfile.FindProperty("_hitStunDuration").floatValue,
+                result);
+            ValidateReactionClipDuration(
+                states,
+                overrides,
+                controllerName,
+                XControllerAnimationContract.HitStunRightStatePath,
+                serializedProfile.FindProperty("_hitStunDuration").floatValue,
+                result);
+            ValidateReactionClipDuration(
+                states,
+                overrides,
+                controllerName,
+                XControllerAnimationContract.KnockdownStatePath,
+                serializedProfile.FindProperty("_knockdownDuration").floatValue,
+                result);
+            ValidateReactionClipDuration(
+                states,
+                overrides,
+                controllerName,
+                XControllerAnimationContract.AirborneReactionStatePath,
+                serializedProfile.FindProperty("_airborneDuration").floatValue,
+                result);
+            ValidateReactionClipDuration(
+                states,
+                overrides,
+                controllerName,
+                XControllerAnimationContract.GetUpStatePath,
+                serializedProfile.FindProperty("_getUpDuration").floatValue,
+                result);
+        }
+
+        private static void ValidateReactionClipDuration(
+            IReadOnlyDictionary<string, AnimatorState> states,
+            IReadOnlyDictionary<AnimationClip, AnimationClip> overrides,
+            string controllerName,
+            string statePath,
+            float gameplayDuration,
+            ValidationResult result)
+        {
+            if (!states.TryGetValue(statePath, out AnimatorState state))
+            {
+                return;
+            }
+
+            var sourceClips = new HashSet<AnimationClip>();
+            CollectClips(state.motion, sourceClips);
+            if (sourceClips.Count != 1 || state.speed <= 0.0f)
+            {
+                result.Error(
+                    $"Reaction state '{statePath}' requires one clip and positive " +
+                    "speed for duration validation.");
+                return;
+            }
+
+            AnimationClip source = sourceClips.First();
+            AnimationClip active = overrides != null &&
+                                   overrides.TryGetValue(
+                                       source,
+                                       out AnimationClip replacement)
+                ? replacement
+                : source;
+            float visualDuration = active.length / state.speed;
+            if (visualDuration + ReactionClipDurationToleranceSeconds < gameplayDuration)
+            {
+                result.Error(
+                    $"Controller '{controllerName}' reaction '{statePath}' plays " +
+                    $"'{active.name}' for {visualDuration:F3}s; gameplay keeps the " +
+                    $"reaction active for {gameplayDuration:F3}s.");
+            }
+        }
+
+        private static void ValidateOverrideControllers(
+            AnimatorController baseController,
+            CharacterReactionProfile reactionProfile,
+            ValidationResult result)
+        {
+            var states = new Dictionary<string, AnimatorState>(StringComparer.Ordinal);
+            AnimatorControllerLayer[] layers = baseController.layers;
+            for (int i = 0; i < layers.Length; i++)
+            {
+                CollectStates(layers[i].stateMachine, layers[i].name, states, result);
+            }
+
             string[] guids = AssetDatabase.FindAssets(
                 "t:AnimatorOverrideController",
                 new[] { "Assets/_Game" });
@@ -713,10 +852,18 @@ namespace _App.Editor.Animation
                     new List<KeyValuePair<AnimationClip, AnimationClip>>(
                         animationOverride.overridesCount);
                 animationOverride.GetOverrides(overrides);
+                var resolvedClips = new Dictionary<AnimationClip, AnimationClip>();
                 for (int j = 0; j < overrides.Count; j++)
                 {
                     AnimationClip source = overrides[j].Key;
                     AnimationClip replacement = overrides[j].Value;
+                    if (source != null)
+                    {
+                        resolvedClips[source] = replacement != null
+                            ? replacement
+                            : source;
+                    }
+
                     if (replacement == null)
                     {
                         continue;
@@ -732,12 +879,23 @@ namespace _App.Editor.Animation
                             $"'{replacement.name}'.");
                     }
                 }
+
+                if (reactionProfile != null)
+                {
+                    ValidateReactionClipDurations(
+                        states,
+                        resolvedClips,
+                        animationOverride.name,
+                        reactionProfile,
+                        result);
+                }
             }
         }
 
         private static void ValidatePrefab(
             string prefabPath,
             AnimatorController baseController,
+            CharacterReactionProfile expectedReactionProfile,
             bool validateLoadout,
             ValidationResult result)
         {
@@ -775,6 +933,13 @@ namespace _App.Editor.Animation
                 result.Error(
                     $"Prefab '{prefabPath}' must keep Animator root motion disabled.");
             }
+
+            ValidateReactionProfileBinding(
+                prefab,
+                prefabPath,
+                expectedReactionProfile,
+                validateLoadout,
+                result);
 
             if (validateLoadout)
             {
@@ -863,6 +1028,51 @@ namespace _App.Editor.Animation
                         combatProfile,
                         result);
                 }
+            }
+        }
+
+        private static void ValidateReactionProfileBinding(
+            GameObject prefab,
+            string prefabPath,
+            CharacterReactionProfile expectedProfile,
+            bool playerPrefab,
+            ValidationResult result)
+        {
+            UnityEngine.Object owner;
+            string propertyName;
+            if (playerPrefab)
+            {
+                owner = prefab.GetComponent<ThirdPersonController>();
+                propertyName = "_reactionProfile";
+            }
+            else
+            {
+                owner = prefab.GetComponent<CharacterReactionHost>();
+                propertyName = "_profile";
+            }
+
+            if (owner == null)
+            {
+                result.Error(
+                    $"Prefab '{prefabPath}' has no reaction profile owner.");
+                return;
+            }
+
+            SerializedProperty property =
+                new SerializedObject(owner).FindProperty(propertyName);
+            if (property?.objectReferenceValue == null)
+            {
+                result.Error(
+                    $"Prefab '{prefabPath}' requires a character reaction profile.");
+                return;
+            }
+
+            if (expectedProfile != null && property.objectReferenceValue != expectedProfile)
+            {
+                result.Error(
+                    $"Prefab '{prefabPath}' uses reaction profile " +
+                    $"'{property.objectReferenceValue.name}', but animation timing " +
+                    $"validation uses '{CharacterReactionProfilePath}'.");
             }
         }
 

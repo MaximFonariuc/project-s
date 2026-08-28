@@ -210,6 +210,14 @@ get-up `1.833s`, airborne `0.45s`. Ни одного Animator state gameplay-с�
 Player prefab использует явный
 `Assets/_Game/Settings/Combat/Player/PlayerCharacterReactionProfile.asset` с теми
 же стартовыми gameplay timings, кроме увеличенного до `0.4s` hit-stun.
+`XControllerContractValidator` требует этот же profile на player и training
+target prefabs. Для базового controller и каждого связанного override он также
+проверяет, что визуальная длительность `HitStun`, directional hit-stun,
+`Knockdown`, `Airborne` и `GetUp` не короче соответствующего gameplay timing.
+Более длинный clip допустим: gameplay остаётся владельцем окончания реакции и
+явно отменяет presentation. Слишком короткий clip является authoring error,
+поскольку до завершения reaction state он начал бы повторяться или удерживать
+последний кадр.
 `XController` содержит девять обязательных presentation-слотов:
 `Reaction/HitStun`, `Reaction/HitStun_Back`, `Reaction/HitStun_Left`,
 `Reaction/HitStun_Right`, `Reaction/Knockdown`, `Reaction/Airborne`,
