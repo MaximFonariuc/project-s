@@ -154,6 +154,7 @@ namespace _App.Editor.Animation
                 XControllerAnimationContract.RequiredSwitchWeaponStatePaths,
                 states,
                 result);
+            ValidateLocomotionBlendTree(states, result);
             ValidateMotions(states, result);
             ValidateFiniteStateTransitions(states, result);
             ValidateCombatActionTransitionTimings(states, result);
@@ -275,6 +276,103 @@ namespace _App.Editor.Animation
                 result.Error(
                     $"Layer '{layerName}' requires exactly one neutral motion at (0, 0); " +
                     $"found {neutralCount}.");
+            }
+        }
+
+        private static void ValidateLocomotionBlendTree(
+            IReadOnlyDictionary<string, AnimatorState> states,
+            ValidationResult result)
+        {
+            if (!states.TryGetValue(
+                    XControllerAnimationContract.MoveStatePath,
+                    out AnimatorState moveState))
+            {
+                return;
+            }
+
+            if (moveState.motion is not BlendTree gaitTree)
+            {
+                result.Error("Locomotion Move state requires a gait Blend Tree.");
+                return;
+            }
+
+            if (gaitTree.blendType != BlendTreeType.Simple1D ||
+                gaitTree.blendParameter !=
+                XControllerAnimationContract.MovementTypeParameterName)
+            {
+                result.Error(
+                    "Locomotion gait tree must use Simple1D with " +
+                    $"'{XControllerAnimationContract.MovementTypeParameterName}'.");
+            }
+
+            ChildMotion[] gaits = gaitTree.children;
+            float[] expectedThresholds = { 0.0f, 1.0f, 2.0f, 3.0f };
+            if (gaits.Length != expectedThresholds.Length)
+            {
+                result.Error(
+                    "Locomotion gait tree requires Idle, Walk, Run and Sprint " +
+                    $"children; found {gaits.Length}.");
+                return;
+            }
+
+            for (int i = 0; i < gaits.Length; i++)
+            {
+                if (!Mathf.Approximately(gaits[i].threshold, expectedThresholds[i]))
+                {
+                    result.Error(
+                        $"Locomotion gait child {i} requires threshold " +
+                        $"{expectedThresholds[i]:F1}, found {gaits[i].threshold:F3}.");
+                }
+
+                if (gaits[i].motion == null)
+                {
+                    result.Error($"Locomotion gait child {i} requires a motion.");
+                }
+            }
+
+            for (int i = 1; i < gaits.Length; i++)
+            {
+                ValidateDirectionalGaitTree(gaits[i].motion, i, result);
+            }
+        }
+
+        private static void ValidateDirectionalGaitTree(
+            Motion motion,
+            int gaitIndex,
+            ValidationResult result)
+        {
+            if (motion is not BlendTree directionTree ||
+                directionTree.blendType != BlendTreeType.Simple1D ||
+                directionTree.blendParameter !=
+                XControllerAnimationContract.MovementDirectionParameterName)
+            {
+                result.Error(
+                    $"Locomotion gait child {gaitIndex} requires a Simple1D " +
+                    $"'{XControllerAnimationContract.MovementDirectionParameterName}' tree.");
+                return;
+            }
+
+            ChildMotion[] directions = directionTree.children;
+            if (directions.Length != 2)
+            {
+                result.Error(
+                    $"Locomotion gait child {gaitIndex} requires backward and " +
+                    $"forward motions; found {directions.Length}.");
+                return;
+            }
+
+            if (!Mathf.Approximately(directions[0].threshold, -0.5f) ||
+                !Mathf.Approximately(directions[1].threshold, 0.5f))
+            {
+                result.Error(
+                    $"Locomotion gait child {gaitIndex} direction thresholds must " +
+                    "be -0.5 and 0.5.");
+            }
+
+            if (directions[0].motion == null || directions[1].motion == null)
+            {
+                result.Error(
+                    $"Locomotion gait child {gaitIndex} requires both direction motions.");
             }
         }
 

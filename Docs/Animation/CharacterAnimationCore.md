@@ -196,6 +196,8 @@ parameters и state names не копируются. Если override для we
 - authored exits у roll/attack и gameplay-owned exits у reactions;
 - non-loop policy для hit-stun, knockdown, get-up и death;
 - совместимости AnimatorOverrideController с базовым XController;
+- структуры locomotion Blend Tree: `MovementType` пороги `0/1/2/3` и
+  directional subtrees `MovementDirection -0.5/0.5`;
 - Humanoid Avatar, controller и отключённого root motion в Player и training
   target prefabs;
 - обязательной ссылки Player prefab на активный combat action profile и полной

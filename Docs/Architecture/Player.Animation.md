@@ -309,6 +309,10 @@ finite-state exit ownership, base and
 override-controller compatibility, and the Player/training-target prefabs. It
 reports mismatches but never creates or rewrites Animator states, transitions,
 Blend Trees, clips or prefab bindings.
+It also fixes the locomotion blend contract to a continuous
+`Idle(0) / Walk(1) / Run(2) / Sprint(3)` gait axis with backward/forward
+subtrees at `-0.5 / 0.5`. Runtime damping therefore cannot be invalidated by an
+accidental Blend Tree type or threshold change.
 The validator also builds the active player combat profile and verifies that
 each mapped combat state has timed exits with normalized blend duration and the
 same completion boundary as gameplay. This catches a disabled launcher exit or
