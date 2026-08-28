@@ -35,13 +35,13 @@ namespace _App
 
         public event Action<PlayerCombatPhase> PhaseChanged;
         public event Action<EWeaponType> WeaponChanged;
-        public event Action<int> ComboIndexChanged;
+        public event Action<int?> ActiveComboIndexChanged;
         public event Action<bool> HitWindowChanged;
 
         public PlayerCombatPhase Phase =>
             _stateMachine.CurrentStateId ?? PlayerCombatPhase.Ready;
         public EWeaponType CurrentWeapon { get; private set; }
-        public int ComboIndex => _actionPipeline.ComboIndex;
+        public int? ActiveComboIndex => _actionPipeline.ActiveComboIndex;
         public bool IsHitWindowOpen => _actionPipeline.IsHitWindowOpen;
 
         public PlayerMovementIntent MovementIntent
@@ -100,7 +100,7 @@ namespace _App
             CurrentWeapon = _preferredWeapon;
             _characterType = characterType;
             _weaponCommitHandler = CommitWeapon;
-            _actionPipeline.ComboIndexChanged += OnComboIndexChanged;
+            _actionPipeline.ActiveComboIndexChanged += OnActiveComboIndexChanged;
             _actionPipeline.HitWindowChanged += OnHitWindowChanged;
         }
 
@@ -271,11 +271,11 @@ namespace _App
         public void Dispose()
         {
             Disable();
-            _actionPipeline.ComboIndexChanged -= OnComboIndexChanged;
+            _actionPipeline.ActiveComboIndexChanged -= OnActiveComboIndexChanged;
             _actionPipeline.HitWindowChanged -= OnHitWindowChanged;
             PhaseChanged = null;
             WeaponChanged = null;
-            ComboIndexChanged = null;
+            ActiveComboIndexChanged = null;
             HitWindowChanged = null;
         }
 
@@ -375,9 +375,9 @@ namespace _App
             _actionPipeline.TryRecord(in hit);
         }
 
-        private void OnComboIndexChanged(int comboIndex)
+        private void OnActiveComboIndexChanged(int? comboIndex)
         {
-            ComboIndexChanged?.Invoke(comboIndex);
+            ActiveComboIndexChanged?.Invoke(comboIndex);
         }
 
         private void OnHitWindowChanged(bool open)

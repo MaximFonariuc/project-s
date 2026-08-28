@@ -102,7 +102,7 @@ classDiagram
     class IPlayerCombatState {
         +Phase PlayerCombatPhase
         +CurrentWeapon EWeaponType
-        +ComboIndex int
+        +ActiveComboIndex int?
         +IsHitWindowOpen bool
         +MovementIntent PlayerMovementIntent
     }
@@ -113,7 +113,7 @@ classDiagram
         +TryAccept(command, phase, weapon, action) bool
         +ExecuteAsync(action, weapon, token)
         +Reset()
-        +ComboIndex int
+        +ActiveComboIndex int?
         +IsHitWindowOpen bool
     }
     class IStateMachine~PlayerCombatPhase~
@@ -305,7 +305,7 @@ buffered input не может принять отсутствие ещё не �
 
 Для ground/air combo `PlayerCombatController` передаёт adapter целую
 `PlayerCombatAction`. `PlayerCombatAnimationAdapter` в одном месте преобразует
-её presentation в semantic track, `ComboIndex` и
+её presentation в semantic track, presentation `ComboIndex` и
 `CombatActionDefinition.DurationSeconds`. Это не переносит authority в Animator:
 длительность остаётся метаданными ожидаемого playback. Текущий XController
 воспроизводит authored clip speed и не выводит gameplay timeline из normalized
@@ -346,6 +346,12 @@ semantic commands относительно нового `CurrentFrame` и пос
 `Observe`. `ExecuteAsync` остаётся lifecycle-result API для action/weapon
 sequences, но его continuation не является источником времени. Это даёт один
 детерминированный owner порядка frame boundaries, input windows и completion.
+
+`IPlayerCombatState.ActiveComboIndex` отделяет отсутствие активной combo action
+(`null`) от первого authored шага (`0`). Значение меняется при входе в каждый
+ground/air combo step и возвращается в `null` при named action, completion,
+interruption и disable. Поэтому UI/debug consumers не выводят active combo из
+неоднозначной пары `Phase + 0`.
 
 `Allow Jump / Allow Dodge` в action profile не открывают locomotion-cancel на
 всей длительности атаки. `CombatActionExecutor` совмещает эти policies с текущим

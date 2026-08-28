@@ -26,10 +26,10 @@ namespace _App
         private PlayerCombatAction _acceptedBufferedAction;
         private EWeaponType _activeWeapon;
 
-        public event Action<int> ComboIndexChanged;
+        public event Action<int?> ActiveComboIndexChanged;
         public event Action<bool> HitWindowChanged;
 
-        public int ComboIndex { get; private set; }
+        public int? ActiveComboIndex { get; private set; }
         public bool IsHitWindowOpen => _actionSession.IsHitWindowOpen;
 
         public PlayerCombatActionPipeline(
@@ -116,12 +116,12 @@ namespace _App
 
                     _acceptedBufferedAction = null;
                     EnterExecuting(action);
-                    SetComboIndex(
+                    SetActiveComboIndex(
                         action.Presentation.Kind is
                             PlayerCombatPresentationKind.ComboStep or
                             PlayerCombatPresentationKind.AirComboStep
                             ? action.Presentation.ComboIndex
-                            : 0);
+                            : null);
 
                     CombatActionSessionResult sessionResult =
                         await _actionSession.ExecuteAsync(
@@ -170,13 +170,13 @@ namespace _App
             _inputBuffer.Clear();
             _acceptedBufferedAction = null;
             _activeWeapon = EWeaponType.None;
-            SetComboIndex(0);
+            SetActiveComboIndex(null);
         }
 
         public void Dispose()
         {
             _actionSession.HitWindowChanged -= OnHitWindowChanged;
-            ComboIndexChanged = null;
+            ActiveComboIndexChanged = null;
             HitWindowChanged = null;
         }
 
@@ -295,15 +295,15 @@ namespace _App
             _stateMachine.ChangeState<PlayerCombatExecutingState, PlayerCombatAction>(action);
         }
 
-        private void SetComboIndex(int comboIndex)
+        private void SetActiveComboIndex(int? comboIndex)
         {
-            if (ComboIndex == comboIndex)
+            if (ActiveComboIndex == comboIndex)
             {
                 return;
             }
 
-            ComboIndex = comboIndex;
-            ComboIndexChanged?.Invoke(comboIndex);
+            ActiveComboIndex = comboIndex;
+            ActiveComboIndexChanged?.Invoke(comboIndex);
         }
 
         private void OnHitWindowChanged(bool open)

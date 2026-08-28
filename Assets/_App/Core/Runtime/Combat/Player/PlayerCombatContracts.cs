@@ -24,12 +24,12 @@ namespace _App
     {
         event Action<PlayerCombatPhase> PhaseChanged;
         event Action<EWeaponType> WeaponChanged;
-        event Action<int> ComboIndexChanged;
+        event Action<int?> ActiveComboIndexChanged;
         event Action<bool> HitWindowChanged;
 
         PlayerCombatPhase Phase { get; }
         EWeaponType CurrentWeapon { get; }
-        int ComboIndex { get; }
+        int? ActiveComboIndex { get; }
         bool IsHitWindowOpen { get; }
         PlayerMovementIntent MovementIntent { get; }
     }

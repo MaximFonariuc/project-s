@@ -21,7 +21,7 @@ classDiagram
         +ExecuteAsync(action, weapon, token)
         +TryRecord(hit)
         +Reset()
-        +ComboIndex int
+        +ActiveComboIndex int?
         +IsHitWindowOpen bool
     }
     class PlayerCombatActionGraph {
@@ -59,8 +59,8 @@ classDiagram
 - `PlayerCombatController` owns input/event subscriptions, the pre-tick command
   inbox, the shared operation cancellation boundary, persistent weapon state and
   weapon transitions.
-- `PlayerCombatActionPipeline` owns the buffered transition candidate, combo
-  index, graph entry/transition selection, action-to-action loop, landing exit
+- `PlayerCombatActionPipeline` owns the buffered transition candidate, nullable
+  active combo index, graph entry/transition selection, action-to-action loop, landing exit
   and confirmed-target carry between launcher, air chase and air combo.
 - `CombatActionSession` remains the owner of one active execution, its hitbox,
   outcome and combat motion. The pipeline does not duplicate those values.
@@ -101,6 +101,10 @@ not legal during execution, so every action in one chain uses the same graph and
 animation loadout context. `Reset` clears only pipeline-owned transient state;
 session cancellation and presentation cancellation are performed by the shared
 operation lifetime before reset.
+
+`ActiveComboIndex` is `null` outside a ground/air combo presentation. The first
+combo step is `0`, so entry into the first action and reset to no combo are
+observable as different states.
 
 When an airborne-only action detects a grounded actor, landing wins over a
 buffered transition. The session returns `Landed`, the pipeline cancels the
