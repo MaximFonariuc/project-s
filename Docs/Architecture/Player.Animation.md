@@ -223,6 +223,12 @@ Animator normalized time never becomes simulation state. Weapon overrides
 should still be authored close to the semantic timing so runtime correction
 remains small.
 
+The validator requires one consistent Write Defaults policy across the entire
+Base Layer. The preserved legacy controller currently uses `On`; new action
+states must not silently use `Off`, because incomplete Humanoid curves can then
+inherit transforms or muscle values from the previous state and make the result
+transition-order dependent.
+
 Content rate and time policy are separate factors. Hit stop multiplies the
 current action rate and restores it afterwards; completion or cancellation
 does not make Animator timing authoritative. Normal completion retains the

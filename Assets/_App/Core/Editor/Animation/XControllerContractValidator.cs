@@ -197,6 +197,7 @@ namespace _App.Editor.Animation
                 XControllerAnimationContract.RequiredSwitchWeaponStatePaths,
                 states,
                 result);
+            ValidateBaseLayerWriteDefaults(states, result);
             ValidateLocomotionBlendTree(states, result);
             ValidateMotions(states, result);
             ValidateFiniteStateTransitions(states, result);
@@ -629,6 +630,35 @@ namespace _App.Editor.Animation
                     result.Error(
                         $"Finite state '{path}' requires at least one timed exit.");
                 }
+            }
+        }
+
+        private static void ValidateBaseLayerWriteDefaults(
+            IReadOnlyDictionary<string, AnimatorState> states,
+            ValidationResult result)
+        {
+            if (!states.TryGetValue(
+                    XControllerAnimationContract.MoveStatePath,
+                    out AnimatorState referenceState))
+            {
+                return;
+            }
+
+            string prefix = XControllerAnimationContract.BaseLayerName + ".";
+            foreach (KeyValuePair<string, AnimatorState> pair in states)
+            {
+                if (!pair.Key.StartsWith(prefix, StringComparison.Ordinal) ||
+                    pair.Value.writeDefaultValues == referenceState.writeDefaultValues)
+                {
+                    continue;
+                }
+
+                result.Error(
+                    $"State '{pair.Key}' uses Write Defaults " +
+                    $"{(pair.Value.writeDefaultValues ? "On" : "Off")}, while " +
+                    $"'{XControllerAnimationContract.MoveStatePath}' uses " +
+                    $"{(referenceState.writeDefaultValues ? "On" : "Off")}. " +
+                    "Do not mix Write Defaults policies inside Base Layer.");
             }
         }
 
