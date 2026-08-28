@@ -200,6 +200,8 @@ parameters и state names не копируются. Если override для we
   target prefabs;
 - обязательной ссылки Player prefab на активный combat action profile и полной
   валидности его graph/input/weapon-transition authoring;
+- явного presentation state для каждого combat action и согласованных timed exits
+  у каждого state, синхронизированных с gameplay completion;
 - отсутствующих/дублирующихся weapon override bindings.
 
 Validator ничего не генерирует и не исправляет автоматически. После текущей

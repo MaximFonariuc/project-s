@@ -286,10 +286,14 @@ override-controller compatibility, and the Player/training-target prefabs. It
 reports mismatches but never creates or rewrites Animator states, transitions,
 Blend Trees, clips or prefab bindings.
 The validator also builds the active player combat profile and verifies that
-each mapped combat state has one timed exit, normalized blend duration and the
+each mapped combat state has timed exits with normalized blend duration and the
 same completion boundary as gameplay. This catches a disabled launcher exit or
 an override-incompatible fixed-time blend before Play Mode.
 It additionally requires the Player prefab to reference that exact profile and
 builds its full graph, input-buffer settings and weapon-transition definition
 before comparing animation timings. A broken route or missing authoring block
 therefore cannot pass because its individual animation slots happen to be valid.
+Every authored combat action must also map to an explicit XController state, and
+all timed exits from that state must agree with its gameplay completion boundary.
+Unsupported presentation slots and ambiguous completion transitions are
+validation errors rather than silent skips.

@@ -437,6 +437,9 @@ namespace _App.Editor.Animation
                 PlayerCombatAnimationTimingRequirement requirement = requirements[i];
                 if (!TryResolveCombatStatePath(in requirement, out string statePath))
                 {
+                    result.Error(
+                        $"Combat action '{requirement.ActionId.Value}' has no " +
+                        "presentation state in the XController contract.");
                     continue;
                 }
 
@@ -463,27 +466,35 @@ namespace _App.Editor.Animation
                 AnimatorStateTransition[] exits = state.transitions
                     .Where(transition => transition.hasExitTime)
                     .ToArray();
-                if (exits.Length != 1)
+                if (exits.Length == 0)
                 {
+                    result.Error(
+                        $"Combat state '{expected.Key}' requires a timed exit for " +
+                        "gameplay timing validation.");
                     continue;
                 }
 
-                AnimatorStateTransition transition = exits[0];
-                if (transition.hasFixedDuration)
+                for (int i = 0; i < exits.Length; i++)
                 {
-                    result.Error(
-                        $"Combat state '{expected.Key}' must use normalized transition " +
-                        "duration so Animator Override clips keep the same completion boundary.");
-                    continue;
-                }
+                    AnimatorStateTransition transition = exits[i];
+                    if (transition.hasFixedDuration)
+                    {
+                        result.Error(
+                            $"Combat state '{expected.Key}' timed exit {i} must use " +
+                            "normalized transition duration so Animator Override clips " +
+                            "keep the same completion boundary.");
+                        continue;
+                    }
 
-                float animatorCompletion = transition.exitTime + transition.duration;
-                if (Mathf.Abs(animatorCompletion - expected.Value) >
-                    TransitionTimingTolerance)
-                {
-                    result.Error(
-                        $"Combat state '{expected.Key}' completes at normalized " +
-                        $"{animatorCompletion:F3}; gameplay expects {expected.Value:F3}.");
+                    float animatorCompletion = transition.exitTime + transition.duration;
+                    if (Mathf.Abs(animatorCompletion - expected.Value) >
+                        TransitionTimingTolerance)
+                    {
+                        result.Error(
+                            $"Combat state '{expected.Key}' timed exit {i} completes at " +
+                            $"normalized {animatorCompletion:F3}; gameplay expects " +
+                            $"{expected.Value:F3}.");
+                    }
                 }
             }
         }
@@ -519,6 +530,11 @@ namespace _App.Editor.Animation
                 case PlayerCombatPresentationKind.NamedAnimation
                     when requirement.AnimationId == PlayerCombatAnimationIds.Launcher:
                     statePath = XControllerAnimationContract.LauncherStatePath;
+                    return true;
+
+                case PlayerCombatPresentationKind.NamedAnimation
+                    when requirement.AnimationId == PlayerCombatAnimationIds.AirChase:
+                    statePath = XControllerAnimationContract.AirChaseStatePath;
                     return true;
 
                 default:

@@ -7,6 +7,7 @@ namespace _App
 #if UNITY_EDITOR
     public readonly struct PlayerCombatAnimationTimingRequirement
     {
+        public PlayerCombatActionId ActionId { get; }
         public PlayerCombatPresentationKind PresentationKind { get; }
         public int ComboIndex { get; }
         public PlayerCombatAnimationId AnimationId { get; }
@@ -14,6 +15,7 @@ namespace _App
 
         internal PlayerCombatAnimationTimingRequirement(PlayerCombatAction action)
         {
+            ActionId = action.Id;
             PresentationKind = action.Presentation.Kind;
             ComboIndex = action.Presentation.ComboIndex;
             AnimationId = action.Presentation.AnimationId;
