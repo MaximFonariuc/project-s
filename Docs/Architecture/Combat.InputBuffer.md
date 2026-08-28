@@ -106,6 +106,7 @@ environment, presentation или cooldown gates.
 
 Очередь очищается при disable, interruption и завершении всего action pipeline.
 Внутри pipeline она сохраняется между завершившимся action и новым action,
-принятым через transition либо completion entry handoff. Dodge пока остаётся
-отдельным locomotion event и прерывает combat; перенос dodge/item/jump в единый
-action graph выполняется только когда для них появятся реальные общие cancel rules.
+принятым через transition либо completion entry handoff. Dodge остаётся отдельным
+locomotion event, но его допустимость берётся из `AllowDodge && CancelWindow`
+текущего combat action. Перенос dodge/item/jump в единый action graph не требуется,
+пока им не нужны собственные ветвящиеся transitions и buffering semantics.

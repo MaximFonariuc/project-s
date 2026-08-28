@@ -20,10 +20,25 @@ namespace _App
         private int _activeExecutionId;
 
         public bool IsRunning => _activeExecutionId != 0;
-        public PlayerMovementIntent MovementIntent =>
-            IsRunning && _currentFrame.IsMovementConstrained
-                ? _definition.MovementIntent
-                : PlayerMovementIntent.Unrestricted;
+        public PlayerMovementIntent MovementIntent
+        {
+            get
+            {
+                if (!IsRunning)
+                {
+                    return PlayerMovementIntent.Unrestricted;
+                }
+
+                PlayerMovementIntent movement = _currentFrame.IsMovementConstrained
+                    ? _definition.MovementIntent
+                    : PlayerMovementIntent.Unrestricted;
+                return new PlayerMovementIntent(
+                    movement.TranslationScale,
+                    movement.AllowJump,
+                    _definition.MovementIntent.AllowDodge && _currentFrame.CanCancel,
+                    movement.FaceMoveDirection);
+            }
+        }
 
         public CombatActionExecutor(
             ICombatClock clock,

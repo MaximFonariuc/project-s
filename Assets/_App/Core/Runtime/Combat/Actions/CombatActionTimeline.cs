@@ -87,6 +87,13 @@ namespace _App
             ValidateWindow(cancelWindow, completionTime, nameof(cancelWindow));
             ValidateWindow(movementConstraintWindow, completionTime, nameof(movementConstraintWindow));
             ValidateWindow(invulnerabilityWindow, completionTime, nameof(invulnerabilityWindow));
+            if (movementIntent.AllowDodge && !cancelWindow.IsEnabled)
+            {
+                throw new ArgumentException(
+                    "A dodge-enabled combat action requires a cancel window.",
+                    nameof(movementIntent));
+            }
+
             if (motion.IsEnabled)
             {
                 ValidateWindow(motion.Window, completionTime, nameof(motion));

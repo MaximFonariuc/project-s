@@ -253,6 +253,7 @@ namespace _App
         [Header("Movement")]
         [SerializeField, Range(0.0f, 1.0f)] private float _translationScale;
         [SerializeField] private bool _allowJump;
+        [Tooltip("Allows locomotion dodge only while this action's Cancel Window is open.")]
         [SerializeField] private bool _allowDodge = true;
         [SerializeField] private bool _faceMoveDirection = true;
 

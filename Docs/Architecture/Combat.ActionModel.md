@@ -113,6 +113,10 @@ classDiagram
 - `PlayerCombatActionProfile.OnValidate` собирает полный immutable graph в Editor и сразу сообщает об ошибочных id, переходах, временных окнах и impact-конфигурации. Runtime-конструкторы сохраняют ту же fail-fast проверку.
 - Стандартный `hit.launcher` требует положительный vertical knockback, а `hit.slam` — отрицательный. Пользовательские reaction id остаются открытыми и классифицируются reaction-системой получателя.
 - `CombatActionExecutor` удерживает отдельный damage-immunity lease только внутри authored invulnerability window. Он не восстанавливает сохранённый boolean, поэтому не может снять иммунитет, которым одновременно владеет dodge или другой gameplay flow.
+- `MovementIntent.AllowDodge` является policy текущего action, а не отдельным
+  временным окном. Executor передаёт разрешение locomotion только при одновременно
+  открытом `CancelWindow`; action с разрешённым dodge и выключенным cancel window
+  отклоняется при построении definition.
 
 Одна команда может иметь несколько entry/transition rules, если целевые actions принадлежат непересекающимся environment masks. Поэтому `attack.light` может выбирать отдельные наземную и воздушную ветки без проверки платформы или устройства в gameplay-коде. Неоднозначные правила с пересекающимися masks отклоняются при построении graph.
 

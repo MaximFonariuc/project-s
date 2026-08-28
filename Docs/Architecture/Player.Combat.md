@@ -170,8 +170,8 @@ stateDiagram-v2
     Executing --> Executing: chain/cancel selects next action
     Executing --> Recovery: RecoveryStart reached
     Recovery --> Executing: buffered transition accepted
-    Executing --> Interrupted: dodge/interruption
-    Recovery --> Interrupted: dodge/interruption
+    Executing --> Interrupted: dodge inside CancelWindow / interruption
+    Recovery --> Interrupted: dodge inside CancelWindow / interruption
     Interrupted --> Ready
     Executing --> Ready: airborne action lands
     Recovery --> Ready: airborne action lands
@@ -240,6 +240,12 @@ time Animator.
 Hitbox открывается только по `CombatActionFrame` и закрывается при completion, cancellation, interruption и disable. Каждое фактически запущенное action получает отдельный `CombatAttackExecution`, поэтому повторные hurtbox одной цели фильтруются на уровне атаки, а не оружия. Параллельный `CombatActionOutcome` хранит только подтверждённый результат этого execution и сбрасывается на той же lifecycle-границе. Weapon transition применяет loadout только после commit point. Cooldown хранится по `PlayerCombatActionId`; animation lookup использует отдельный `PlayerCombatAnimationId`.
 
 Gameplay timeline использует scaled delta time, поэтому execution, hitbox/cancel windows, обычный Animator и character physics замораживаются во время hit stop. Input buffer намеренно использует unscaled clock: команды продолжают приниматься и истекают в реальном времени. Полная time policy описана в `Docs/Architecture/Combat.HitStop.md`.
+
+`Allow Dodge` в action profile не открывает уклонение на всей длительности
+атаки. `CombatActionExecutor` совмещает эту policy с текущим `CancelWindow` и
+только затем публикует `PlayerMovementIntent.AllowDodge`. Locomotion остаётся
+владельцем самого dodge и после подтверждённого `DodgeAccepted` combat закрывает
+hitbox, motion, outcome и animation action через обычную interruption boundary.
 
 ## Lifecycle
 

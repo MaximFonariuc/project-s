@@ -258,6 +258,9 @@ flowchart LR
 
 - Gameplay input не знает о клавиатуре, gamepad или bindings.
 - Combat не вызывает `Character.SetMovementDirection`, `Jump` или `Dodge`. Он передаёт ограниченный intent: масштаб translation, разрешение jump/dodge и запрос разворота по input.
+- Во время combat action `AllowDodge` становится true только внутри его
+  `CancelWindow`. Locomotion проверяет intent до запуска dodge, а combat получает
+  назад только подтверждённый `DodgeAccepted` и прерывает текущий action.
 - Camera участвует только как basis для camera-relative направления через отдельный adapter; locomotion не зависит от Cinemachine API.
 - Traversal запрашивает инверсию gravity через `IPlayerLocomotionCommands` и меняет camera orientation только после подтверждения команды.
 - `PlayerActorController` немедленно передаёт `PlayerMovementIntent.Locked` при non-stable reaction и удерживает ограничения во время traversal. Поэтому jump/dodge callbacks не проходят между межfeature transition и следующим locomotion tick.
