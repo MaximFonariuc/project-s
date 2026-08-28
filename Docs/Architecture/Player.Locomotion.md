@@ -264,6 +264,10 @@ flowchart LR
 ```
 
 - Gameplay input не знает о клавиатуре, gamepad или bindings.
+- Jump/dodge callbacks не меняют gameplay state немедленно: controller защёлкивает
+  их до ближайшего locomotion tick, получает уже актуальный `PlayerMovementIntent`
+  и затем детерминированно потребляет. При одновременном jump+dodge приоритет имеет
+  dodge; jump release всё равно освобождает существующий hold/glide.
 - Combat не вызывает `Character.SetMovementDirection`, `Jump` или `Dodge`. Он передаёт ограниченный intent: масштаб translation, разрешение jump/dodge и запрос разворота по input.
 - Во время combat action `AllowJump / AllowDodge` становятся true только внутри
   его `CancelWindow`. Locomotion проверяет intent до запуска действия, а combat
@@ -281,7 +285,7 @@ flowchart LR
 
 `PlayerLocomotionComposition`, вызванный единственным `GameLifetimeScope`, регистрирует один scoped-набор motor/controller/runtime/state machine для активного Player. `ThirdPersonController` остаётся Unity-host для serialized references, а межfeature-порядком владеет scoped `PlayerActorController`; Combat, Traversal и Camera используют отдельные controllers.
 
-`PlayerLocomotionController.Enable` только подписывает semantic input. Первый motor snapshot и запуск state machine происходят в первом `Tick`, после завершения `Awake` Unity-компонентов. `Disable` симметрично снимает callbacks, освобождает jump/glide/dodge immunity, сбрасывает speed mode и останавливает state machine.
+`PlayerLocomotionController.Enable` только подписывает semantic input. Первый motor snapshot и запуск state machine происходят в первом `Tick`, после завершения `Awake` Unity-компонентов; pending action этого же кадра может быть принят до запуска machine и будет отражён после подтверждения motor. Pending jump/dodge signals очищаются при `Disable`, поэтому команда из старого enable-generation не переносится после повторного входа. `Disable` симметрично снимает callbacks, освобождает jump/glide/dodge immunity, сбрасывает speed mode и останавливает state machine.
 
 ## Текущая граница
 

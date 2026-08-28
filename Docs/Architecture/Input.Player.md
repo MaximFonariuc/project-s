@@ -76,6 +76,11 @@ flowchart LR
 ```
 
 - Gameplay зависит только от `IPlayerInput` и не знает о devices, bindings или Unity callback context.
+- Одноразовые jump/dodge callbacks только фиксируют pending semantic signal.
+  `PlayerLocomotionController` потребляет их в своём `Tick` после того, как
+  `PlayerActorController` передал актуальный combat/reaction movement intent.
+  Поэтому допустимость cancel не зависит от порядка Input System callbacks и
+  gameplay Update в конкретном кадре.
 - Keyboard/mouse, gamepad и будущий mobile adapter публикуют одинаковый `PlayerCombatCommandId`; input не зависит от animation ids и конкретной реализации moveset.
 - `PlayerInputIds` — project configuration. GUID остаются стабильными после rename action/map.
 - `GameLifetimeScope` — единственное место, где встречаются VContainer, Unity source и project asset.

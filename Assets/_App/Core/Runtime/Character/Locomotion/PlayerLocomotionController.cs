@@ -11,6 +11,15 @@ namespace _App
         IPlayerLocomotionState,
         IDisposable
     {
+        [Flags]
+        private enum PendingJumpSignals : byte
+        {
+            None = 0,
+            Started = 1 << 0,
+            Performed = 1 << 1,
+            Canceled = 1 << 2
+        }
+
         private const float MoveThresholdSqr = 0.0001f;
         private const float AscendingThreshold = 0.05f;
         private const float JumpStartupSeconds = 0.12f;
@@ -28,6 +37,8 @@ namespace _App
         private bool _walkHeld;
         private bool _sprintHeld;
         private bool _jumpHeld;
+        private PendingJumpSignals _pendingJumpSignals;
+        private bool _dodgeRequested;
         private bool _enabled;
 
         public event Action JumpAccepted;
@@ -89,6 +100,8 @@ namespace _App
             _walkHeld = false;
             _sprintHeld = false;
             _jumpHeld = false;
+            _pendingJumpSignals = PendingJumpSignals.None;
+            _dodgeRequested = false;
             _movementIntent = PlayerMovementIntent.Unrestricted;
             CancelJumpStartup();
             _motor.ReleaseJump();
@@ -119,6 +132,7 @@ namespace _App
                 return;
             }
 
+            ConsumePendingActionInput();
             UpdateJumpStartup(deltaTime);
             RefreshMovementDirections();
             PlayerLocomotionStateId stateId = ResolveState();
@@ -342,6 +356,53 @@ namespace _App
 
         private void OnJumpChanged(InputSignalPhase phase)
         {
+            _pendingJumpSignals |= phase switch
+            {
+                InputSignalPhase.Started => PendingJumpSignals.Started,
+                InputSignalPhase.Performed => PendingJumpSignals.Performed,
+                InputSignalPhase.Canceled => PendingJumpSignals.Canceled,
+                _ => PendingJumpSignals.None
+            };
+        }
+
+        private void ConsumePendingActionInput()
+        {
+            PendingJumpSignals jumpSignals = _pendingJumpSignals;
+            bool dodgeRequested = _dodgeRequested;
+            _pendingJumpSignals = PendingJumpSignals.None;
+            _dodgeRequested = false;
+
+            if (dodgeRequested && TryConsumeDodgeRequest())
+            {
+                // A release still has to terminate an existing jump/glide hold,
+                // but a dodge accepted in this tick owns action priority over a
+                // simultaneous jump press.
+                if ((jumpSignals & PendingJumpSignals.Canceled) != 0)
+                {
+                    ApplyJumpSignal(InputSignalPhase.Canceled);
+                }
+
+                return;
+            }
+
+            if ((jumpSignals & PendingJumpSignals.Started) != 0)
+            {
+                ApplyJumpSignal(InputSignalPhase.Started);
+            }
+
+            if ((jumpSignals & PendingJumpSignals.Performed) != 0)
+            {
+                ApplyJumpSignal(InputSignalPhase.Performed);
+            }
+
+            if ((jumpSignals & PendingJumpSignals.Canceled) != 0)
+            {
+                ApplyJumpSignal(InputSignalPhase.Canceled);
+            }
+        }
+
+        private void ApplyJumpSignal(InputSignalPhase phase)
+        {
             switch (phase)
             {
                 case InputSignalPhase.Started when _movementIntent.AllowJump && !_motor.IsDodging:
@@ -414,10 +475,15 @@ namespace _App
 
         private void OnDodgeRequested()
         {
-            if (!_stateMachine.IsRunning || !_movementIntent.AllowDodge || _motor.IsFalling ||
+            _dodgeRequested = true;
+        }
+
+        private bool TryConsumeDodgeRequest()
+        {
+            if (!_movementIntent.AllowDodge || _motor.IsFalling ||
                 _motor.IsSwimming || _motor.IsDodging)
             {
-                return;
+                return false;
             }
 
             RefreshMovementDirections();
@@ -426,11 +492,12 @@ namespace _App
 
             if (!_actions.TryDodge(_runtime.RawMoveDirection, backwards))
             {
-                return;
+                return false;
             }
 
             _runtime.DodgeBackwards = backwards;
             DodgeAccepted?.Invoke();
+            return true;
         }
     }
 }
