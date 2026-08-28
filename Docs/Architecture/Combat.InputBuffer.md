@@ -95,6 +95,10 @@ environment по-прежнему не позволяют потребить к�
 
 `CombatInputBufferAuthoring` задаёт capacity, overflow, selection, lifetime, priority и duplicate rules. Override адресуется строковым semantic command id (`attack.light`, `attack.heavy`, `skill.special`). Добавление новой команды не требует изменения generic `InputBuffer<TAction>`.
 
+Настройки являются обязательной частью назначенного `PlayerCombatActionProfile`.
+Runtime не подменяет отсутствующий authoring скрытым набором prototype defaults:
+неполный профиль отклоняется при сборке gameplay scope/валидации asset.
+
 Текущий slasher profile использует capacity `4`, `DropLowestPriority` и
 `HighestPriorityThenOldest`. Default light input имеет priority `0` и допускает
 несколько последовательных записей для combo. `attack.heavy` имеет priority

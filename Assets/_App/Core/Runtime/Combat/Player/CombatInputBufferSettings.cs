@@ -28,32 +28,6 @@ namespace _App
                 ? options
                 : DefaultWriteOptions;
         }
-
-        public static CombatInputBufferSettings CreatePrototypeDefaults()
-        {
-            var overrides = new Dictionary<PlayerCombatCommandId, InputBufferWriteOptions>
-            {
-                [PlayerCombatCommandIds.HeavyAttack] = new InputBufferWriteOptions(
-                    0.35,
-                    10,
-                    InputBufferDuplicatePolicy.RefreshMatching),
-                [PlayerCombatCommandIds.Special] = new InputBufferWriteOptions(
-                    0.35,
-                    20,
-                    InputBufferDuplicatePolicy.RefreshMatching)
-            };
-
-            return new CombatInputBufferSettings(
-                new InputBufferOptions(
-                    4,
-                    InputBufferOverflowPolicy.DropLowestPriority,
-                    InputBufferSelectionPolicy.HighestPriorityThenOldest),
-                new InputBufferWriteOptions(
-                    0.35,
-                    0,
-                    InputBufferDuplicatePolicy.Allow),
-                overrides);
-        }
     }
 
     [Serializable]

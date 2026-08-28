@@ -48,8 +48,6 @@ namespace _App
 
     internal sealed class PlayerCombatActionGraph
     {
-        public const int PrototypeComboCapacity = 16;
-
         private readonly Dictionary<PlayerCombatActionId, PlayerCombatAction> _actions;
         private readonly Dictionary<PlayerCombatCommandId, List<PlayerCombatActionId>> _entries;
         private readonly Dictionary<TransitionKey, List<PlayerCombatTransitionRule>> _transitions;
@@ -121,122 +119,6 @@ namespace _App
 
             action = null;
             return false;
-        }
-
-        public static PlayerCombatActionGraph CreatePrototype(int comboCapacity)
-        {
-            if (comboCapacity <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(comboCapacity));
-            }
-
-            var actions = new List<PlayerCombatAction>();
-            var entries = new List<PlayerCombatEntryRule>();
-            var transitions = new List<PlayerCombatTransitionRule>();
-            var comboActions = new List<PlayerCombatAction>(comboCapacity);
-            CombatActionDefinition comboDefinition =
-                CombatActionAuthoring.CreatePrototypeCombo().Build();
-
-            for (int i = 0; i < comboCapacity; i++)
-            {
-                var action = new PlayerCombatAction(
-                    new PlayerCombatActionId($"combo.{i}"),
-                    PlayerCombatEnvironment.Grounded,
-                    PlayerCombatPresentation.Combo(i),
-                    comboDefinition);
-                actions.Add(action);
-                comboActions.Add(action);
-            }
-
-            if (comboActions.Count > 0)
-            {
-                entries.Add(new PlayerCombatEntryRule(
-                    PlayerCombatCommandIds.LightAttack,
-                    comboActions[0].Id));
-            }
-
-            for (int i = 0; i < comboActions.Count - 1; i++)
-            {
-                transitions.Add(new PlayerCombatTransitionRule(
-                    comboActions[i].Id,
-                    PlayerCombatCommandIds.LightAttack,
-                    comboActions[i + 1].Id,
-                    PlayerCombatTransitionWindow.Chain));
-            }
-
-            var heavyAction = new PlayerCombatAction(
-                new PlayerCombatActionId("attack.heavy"),
-                PlayerCombatEnvironment.Grounded,
-                PlayerCombatPresentation.Named(PlayerCombatAnimationIds.HeavyAttack),
-                CombatActionAuthoring.CreatePrototypeHeavy().Build());
-            var specialAction = new PlayerCombatAction(
-                new PlayerCombatActionId("skill.special"),
-                PlayerCombatEnvironment.Grounded,
-                PlayerCombatPresentation.Named(PlayerCombatAnimationIds.Special),
-                CombatActionAuthoring.CreatePrototypeSkill().Build());
-            actions.Add(heavyAction);
-            actions.Add(specialAction);
-            var namedActions = new List<KeyValuePair<PlayerCombatCommandId, PlayerCombatAction>>
-            {
-                new KeyValuePair<PlayerCombatCommandId, PlayerCombatAction>(
-                    PlayerCombatCommandIds.HeavyAttack,
-                    heavyAction),
-                new KeyValuePair<PlayerCombatCommandId, PlayerCombatAction>(
-                    PlayerCombatCommandIds.Special,
-                    specialAction)
-            };
-            for (int i = 0; i < namedActions.Count; i++)
-            {
-                KeyValuePair<PlayerCombatCommandId, PlayerCombatAction> namedAction =
-                    namedActions[i];
-                entries.Add(new PlayerCombatEntryRule(
-                    namedAction.Key,
-                    namedAction.Value.Id));
-            }
-
-            for (int i = 0; i < comboActions.Count; i++)
-            {
-                for (int actionIndex = 0; actionIndex < namedActions.Count; actionIndex++)
-                {
-                    KeyValuePair<PlayerCombatCommandId, PlayerCombatAction> namedAction =
-                        namedActions[actionIndex];
-                    transitions.Add(new PlayerCombatTransitionRule(
-                        comboActions[i].Id,
-                        namedAction.Key,
-                        namedAction.Value.Id,
-                        PlayerCombatTransitionWindow.Cancel));
-                }
-            }
-
-            for (int sourceIndex = 0; sourceIndex < namedActions.Count; sourceIndex++)
-            {
-                PlayerCombatAction source = namedActions[sourceIndex].Value;
-                if (comboActions.Count > 0)
-                {
-                    transitions.Add(new PlayerCombatTransitionRule(
-                        source.Id,
-                        PlayerCombatCommandIds.LightAttack,
-                        comboActions[0].Id,
-                        PlayerCombatTransitionWindow.Cancel));
-                }
-
-                for (int targetIndex = 0; targetIndex < namedActions.Count; targetIndex++)
-                {
-                    KeyValuePair<PlayerCombatCommandId, PlayerCombatAction> target = namedActions[targetIndex];
-                    if (source.Id == target.Value.Id)
-                    {
-                        continue;
-                    }
-
-                    transitions.Add(new PlayerCombatTransitionRule(
-                        source.Id,
-                        target.Key,
-                        target.Value.Id,
-                        PlayerCombatTransitionWindow.Cancel));
-                }
-            }
-
-            return new PlayerCombatActionGraph(actions, entries, transitions);
         }
 
         private static bool IsWindowOpen(

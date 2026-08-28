@@ -26,7 +26,7 @@ namespace _App
     public sealed class PlayerCombatActionProfile : ScriptableObject
     {
         [SerializeField] private CombatActionAuthoring _weaponTransition =
-            CombatActionAuthoring.CreatePrototypeWeaponTransition();
+            CombatActionAuthoring.CreateDefaultWeaponTransition();
         [SerializeField] private CombatInputBufferAuthoring _inputBuffer = new();
 
         [Header("Action Graph")]
@@ -99,9 +99,13 @@ namespace _App
 
         internal CombatInputBufferSettings CreateInputBufferSettings()
         {
-            return _inputBuffer != null
-                ? _inputBuffer.Build()
-                : CombatInputBufferSettings.CreatePrototypeDefaults();
+            if (_inputBuffer == null)
+            {
+                throw new InvalidOperationException(
+                    $"{name} requires combat input buffer settings.");
+            }
+
+            return _inputBuffer.Build();
         }
 
 #if UNITY_EDITOR
@@ -160,7 +164,7 @@ namespace _App
         [SerializeField, Min(0)] private int _comboIndex;
         [SerializeField] private string _animationId = "skill.special";
         [SerializeField] private CombatActionAuthoring _action =
-            CombatActionAuthoring.CreatePrototypeCombo();
+            CombatActionAuthoring.CreateDefaultAttack();
 
         internal PlayerCombatAction Build()
         {
@@ -397,7 +401,7 @@ namespace _App
                     : CombatMotionDefinition.Disabled);
         }
 
-        internal static CombatActionAuthoring CreatePrototypeCombo()
+        internal static CombatActionAuthoring CreateDefaultAttack()
         {
             return new CombatActionAuthoring
             {
@@ -406,46 +410,7 @@ namespace _App
             };
         }
 
-        internal static CombatActionAuthoring CreatePrototypeSkill()
-        {
-            return new CombatActionAuthoring
-            {
-                _useChainWindow = false,
-                _useCancelWindow = false,
-                _allowDodge = false,
-                _cooldown = 1.25f,
-                _useCombatMotion = true,
-                _overridePlanarVelocity = true,
-                _combatMotionDistance = 1.0f
-            };
-        }
-
-        internal static CombatActionAuthoring CreatePrototypeHeavy()
-        {
-            return new CombatActionAuthoring
-            {
-                _useChainWindow = false,
-                _hitboxStart = 0.24f,
-                _hitboxEnd = 0.45f,
-                _cancelStart = 0.72f,
-                _cancelEnd = 0.94f,
-                _damage = 24,
-                _staggerDamage = 20.0f,
-                _knockback = 6.5f,
-                _reactionId = "hit.heavy",
-                _hitStopDuration = 0.08f,
-                _durationSeconds = 1.32f,
-                _recoveryStart = 0.80f,
-                _completionTime = 0.98f,
-                _translationScale = 0.08f,
-                _useCombatMotion = true,
-                _combatMotionEnd = 0.48f,
-                _overridePlanarVelocity = true,
-                _combatMotionDistance = 0.9f
-            };
-        }
-
-        internal static CombatActionAuthoring CreatePrototypeWeaponTransition()
+        internal static CombatActionAuthoring CreateDefaultWeaponTransition()
         {
             return new CombatActionAuthoring
             {

@@ -10,14 +10,13 @@ namespace _App
             this IContainerBuilder builder,
             ThirdPersonController player)
         {
-            PlayerCombatActionProfile actionProfile = player.CombatActionProfile;
-            CombatInputBufferSettings inputBufferSettings = actionProfile != null
-                ? actionProfile.CreateInputBufferSettings()
-                : CombatInputBufferSettings.CreatePrototypeDefaults();
+            PlayerCombatActionProfile actionProfile = player.CombatActionProfile ??
+                throw new InvalidOperationException(
+                    $"Player '{player.name}' requires a combat action profile.");
+            CombatInputBufferSettings inputBufferSettings =
+                actionProfile.CreateInputBufferSettings();
             var weaponTransitionAction = new PlayerWeaponTransitionAction(
-                actionProfile != null
-                    ? actionProfile.CreateWeaponTransitionDefinition()
-                    : CombatActionAuthoring.CreatePrototypeWeaponTransition().Build());
+                actionProfile.CreateWeaponTransitionDefinition());
 
             builder.Register<ICombatClock, UnityCombatClock>(Lifetime.Scoped);
             builder.RegisterInstance(inputBufferSettings);
@@ -43,10 +42,7 @@ namespace _App
                     player.CharacterType),
                 Lifetime.Scoped);
             builder.Register(
-                _ => actionProfile != null
-                    ? actionProfile.CreateActionGraph()
-                    : PlayerCombatActionGraph.CreatePrototype(
-                        PlayerCombatActionGraph.PrototypeComboCapacity),
+                _ => actionProfile.CreateActionGraph(),
                 Lifetime.Scoped);
             builder.Register<IPlayerWeaponRig>(
                 resolver => new PlayerWeaponRig(

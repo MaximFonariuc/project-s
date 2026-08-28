@@ -164,15 +164,18 @@ transition condition, но дожила в buffer до completion и имеет 
 она по-прежнему может начаться как новое самостоятельное action. Для команды,
 которая должна существовать только как hit-confirm branch, entry rule не создаётся.
 
-## Authoring и prototype fallback
+## Authoring и обязательный профиль
 
-`PlayerCombatActionProfile` содержит только graph authoring: actions, entries и transitions. Параллельного legacy catalog больше нет. Пока profile не назначен, composition создаёт небольшой prototype graph:
+`PlayerCombatActionProfile` содержит единственный graph authoring: actions,
+entries, transitions, input-buffer policies и weapon-transition timeline.
+Параллельного legacy catalog и runtime prototype fallback больше нет.
+`PlayerCombatComposition` прекращает сборку scope с явной ошибкой, если профиль
+не назначен на Player. Поэтому потерянная prefab-ссылка не запускает другой
+moveset с несовпадающими таймингами и не маскируется до первого нажатия input.
 
-- default input входит в первый combo step;
-- следующий combo step требует `ChainWindow`;
-- переход к skill требует `CancelWindow`;
-- skill может вернуться к первой combo action через `CancelWindow`;
-- prototype создаёт ограниченный запас combo nodes, а animation adapter проверяет каждый semantic presentation через `CanPlayAction`; поэтому graph строится до `Enable/ApplyLoadout`, не теряет будущие steps и безопасно поддерживает skill-only loadout.
+Новые ScriptableObject получают безопасные начальные значения для одной action
+и weapon transition, но это только editor authoring defaults. Runtime всегда
+строит граф из назначенного asset.
 
 ScriptableObject хранит только authoring data. Очередь input, текущая action и
 progress timeline принадлежат scoped runtime objects; cooldown timestamps имеет

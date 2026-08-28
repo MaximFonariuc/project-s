@@ -298,8 +298,10 @@ sequenceDiagram
 `OnHit` читает только подтверждённый `CombatHitResult` текущих execution/action ids.
 `OnWhiff` становится определённым лишь после закрытия hitbox-window, поэтому ранний
 buffered input не может принять отсутствие ещё не завершившегося попадания за промах.
-Текущий профиль использует `Any`; outcome-условия являются готовой границей для
-будущих hit-confirm веток и не меняют существующие combo transitions автоматически.
+Обычные combo/cancel routes текущего профиля используют `Any`, а переходы из
+первых двух ground-light actions в `attack.launcher` требуют `OnHit`. Поэтому
+отдельной entry-команды Launcher нет: промах не может запустить launcher, а
+подтверждённое попадание открывает его только внутри authored acceptance window.
 
 Для ground/air combo `PlayerCombatController` передаёт adapter целую
 `PlayerCombatAction`. `PlayerCombatAnimationAdapter` в одном месте преобразует
@@ -370,6 +372,10 @@ event и не отменяет атаку.
   hitbox, завершает motion, отменяет combat presentation и возвращается в
   `Ready`. Action с environment `Any` эту границу не наследует.
 - State machine и её states создаются scoped-регистрациями VContainer в `PlayerCombatComposition`; controller не вызывает `Resolve` и не владеет container.
+- `PlayerCombatActionProfile` является обязательной serialized-зависимостью
+  Player prefab. Composition не создаёт запасной prototype graph: отсутствующая
+  ссылка останавливает сборку scope с точным сообщением вместо запуска другого
+  moveset.
 - `PlayerCombatAvailability` создаётся в том же scope и является единственным
   owner cooldown timestamps. Disable/enable controller не сбрасывает cooldown,
   поэтому время действия ограничений совпадает с lifecycle gameplay scope.
