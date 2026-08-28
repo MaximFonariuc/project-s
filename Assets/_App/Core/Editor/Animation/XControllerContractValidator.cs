@@ -692,6 +692,10 @@ namespace _App.Editor.Animation
             }
 
             var serializedPlayer = new SerializedObject(player);
+            ValidatePlayerCombatProfile(
+                serializedPlayer,
+                prefabPath,
+                result);
             SerializedProperty bindings =
                 serializedPlayer.FindProperty("_animationOverrides");
             if (bindings == null)
@@ -732,6 +736,38 @@ namespace _App.Editor.Animation
                         $"Player override entry {i} does not use " +
                         $"'{baseController.name}' as its base.");
                 }
+            }
+        }
+
+        private static void ValidatePlayerCombatProfile(
+            SerializedObject serializedPlayer,
+            string prefabPath,
+            ValidationResult result)
+        {
+            SerializedProperty property =
+                serializedPlayer.FindProperty("_combatActionProfile");
+            if (property == null || property.objectReferenceValue == null)
+            {
+                result.Error(
+                    $"Player prefab '{prefabPath}' requires a combat action profile.");
+                return;
+            }
+
+            PlayerCombatActionProfile expected =
+                AssetDatabase.LoadAssetAtPath<PlayerCombatActionProfile>(
+                    CombatActionProfilePath);
+            if (expected == null)
+            {
+                result.Error($"Missing combat action profile: {CombatActionProfilePath}");
+                return;
+            }
+
+            if (property.objectReferenceValue != expected)
+            {
+                result.Error(
+                    $"Player prefab '{prefabPath}' uses combat profile " +
+                    $"'{property.objectReferenceValue.name}', but animation timing " +
+                    $"validation uses '{CombatActionProfilePath}'.");
             }
         }
 

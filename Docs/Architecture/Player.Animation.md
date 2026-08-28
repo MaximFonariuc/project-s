@@ -289,3 +289,7 @@ The validator also builds the active player combat profile and verifies that
 each mapped combat state has one timed exit, normalized blend duration and the
 same completion boundary as gameplay. This catches a disabled launcher exit or
 an override-incompatible fixed-time blend before Play Mode.
+It additionally requires the Player prefab to reference that exact profile and
+builds its full graph, input-buffer settings and weapon-transition definition
+before comparing animation timings. A broken route or missing authoring block
+therefore cannot pass because its individual animation slots happen to be valid.

@@ -112,6 +112,12 @@ namespace _App
         public IReadOnlyList<PlayerCombatAnimationTimingRequirement>
             CreateAnimationTimingRequirements()
         {
+            // Validate the complete authoring contract before exposing the
+            // animation subset to editor tooling.
+            CreateActionGraph();
+            CreateWeaponTransitionDefinition();
+            CreateInputBufferSettings();
+
             var requirements = new List<PlayerCombatAnimationTimingRequirement>(
                 _actions?.Count ?? 0);
             if (_actions == null)

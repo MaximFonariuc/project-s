@@ -198,6 +198,8 @@ parameters и state names не копируются. Если override для we
 - совместимости AnimatorOverrideController с базовым XController;
 - Humanoid Avatar, controller и отключённого root motion в Player и training
   target prefabs;
+- обязательной ссылки Player prefab на активный combat action profile и полной
+  валидности его graph/input/weapon-transition authoring;
 - отсутствующих/дублирующихся weapon override bindings.
 
 Validator ничего не генерирует и не исправляет автоматически. После текущей
