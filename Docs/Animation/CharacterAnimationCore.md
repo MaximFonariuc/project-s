@@ -38,6 +38,7 @@ classDiagram
         class PlayerAnimationCoordinator
         class PlayerCameraAnimationAdapter
         class XControllerCharacterAnimationDriver
+        class XControllerLookPoseController
         class XControllerAnimationContract
         class PlayerAnimatorLoadout
     }
@@ -57,6 +58,8 @@ classDiagram
     ICharacterAnimationDriver <|.. XControllerCharacterAnimationDriver
     ICharacterLookAnimationDriver <|.. XControllerCharacterAnimationDriver
     XControllerCharacterAnimationDriver --> XControllerAnimationContract
+    XControllerCharacterAnimationDriver *-- XControllerLookPoseController
+    XControllerLookPoseController --> Animator : BodyLook / HeadLook parameters
     XControllerCharacterAnimationDriver --> Animator
     Animator --> XController
     PlayerAnimatorLoadout --> Animator
@@ -151,6 +154,10 @@ stateDiagram-v2
 - `BodyLook` и `HeadLook` получают camera-relative yaw/pitch через отдельный
   look adapter. Dodge/reaction подавляют look, attacks и weapon transitions
   используют ограниченный tracking.
+- `XControllerLookPoseController` является единственным owner calibration,
+  body/head angle split, grounded/action weights и экспоненциального smoothing
+  четырёх look-параметров. Driver только выбирает presentation weights и не
+  дублирует накопленные значения.
 
 ## Timing и root motion
 
@@ -175,9 +182,9 @@ actions воспроизводятся с authored speed `1`.
 parameters и state names не копируются. Если override для weapon type не задан,
 `PlayerAnimatorLoadout` оставляет базовый XController.
 
-В текущем Player prefab override bindings отсутствуют. Это корректное состояние:
-двуручное оружие временно использует базовые motions. Новый binding добавляется
-только вместе с существующим совместимым override asset.
+Текущий Player prefab содержит binding `DualHand → DualSwords.overrideController`.
+Остальные weapon types используют базовый XController, пока для них не появится
+полный совместимый набор semantic slots.
 
 ## Editor validation
 

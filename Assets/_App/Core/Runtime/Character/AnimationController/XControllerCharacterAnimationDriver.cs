@@ -22,20 +22,6 @@ namespace _App
         private const float AttackCrossFadeSeconds = 0.12f;
         private const float WeaponCrossFadeSeconds = 0.15f;
         private const float ActionCancelCrossFadeSeconds = 0.12f;
-        private const float BodyHorizontalPoseDegrees = 52.0f;
-        private const float BodyVerticalPoseDegrees = 50.0f;
-        private const float HeadHorizontalPoseDegrees = 90.0f;
-        private const float HeadVerticalPoseDegrees = 90.0f;
-        private const float BodyHorizontalLimit = 0.45f;
-        private const float BodyVerticalLimit = 0.30f;
-        private const float HeadHorizontalLimit = 0.60f;
-        private const float HeadVerticalLimit = 0.45f;
-        private const float BodyHorizontalShare = 0.35f;
-        private const float BodyVerticalShare = 0.30f;
-        private const float BodyResponseSpeed = 3.5f;
-        private const float HeadResponseSpeed = 8.0f;
-        private const float AirborneBodyLookWeight = 0.0f;
-        private const float AirborneHeadLookWeight = 0.45f;
         private const float AttackBodyLookWeight = 0.15f;
         private const float AttackHeadLookWeight = 0.35f;
         private const float WeaponBodyLookWeight = 0.35f;
@@ -61,15 +47,6 @@ namespace _App
             XControllerAnimationContract.FallingDurationParameterName);
         private static readonly int SpeedMultiplierHash = Animator.StringToHash(
             XControllerAnimationContract.SpeedMultiplierParameterName);
-        private static readonly int BodyLookXHash = Animator.StringToHash(
-            XControllerAnimationContract.BodyLookXParameterName);
-        private static readonly int BodyLookYHash = Animator.StringToHash(
-            XControllerAnimationContract.BodyLookYParameterName);
-        private static readonly int HeadLookXHash = Animator.StringToHash(
-            XControllerAnimationContract.HeadLookXParameterName);
-        private static readonly int HeadLookYHash = Animator.StringToHash(
-            XControllerAnimationContract.HeadLookYParameterName);
-
         private static readonly int MoveStateHash = Animator.StringToHash(
             XControllerAnimationContract.MoveStatePath);
         private static readonly int RollForwardStateHash = Animator.StringToHash(
@@ -98,19 +75,13 @@ namespace _App
             XControllerAnimationContract.WeaponWaitingStatePath);
 
         private readonly Animator _animator;
+        private readonly XControllerLookPoseController _lookPose;
         private readonly int _switchWeaponLayerIndex;
 
         private int _nextSequence;
         private float _lastAirborneVerticalSpeed;
-        private float _bodyLookX;
-        private float _bodyLookY;
-        private float _headLookX;
-        private float _headLookY;
-        private float _actionBodyLookWeight = 1.0f;
-        private float _actionHeadLookWeight = 1.0f;
         private int _actionLayerIndex = -1;
         private bool _wasGrounded = true;
-        private bool _isGrounded = true;
         private bool _disposed;
 
         public XControllerCharacterAnimationDriver(Animator animator)
@@ -118,6 +89,7 @@ namespace _App
             _animator = animator != null
                 ? animator
                 : throw new ArgumentNullException(nameof(animator));
+            _lookPose = new XControllerLookPoseController(_animator);
             _switchWeaponLayerIndex = _animator.GetLayerIndex(
                 XControllerAnimationContract.SwitchWeaponLayerName);
 
@@ -128,30 +100,7 @@ namespace _App
         public void ApplyLook(in CharacterLookFrame frame, float deltaTime)
         {
             ThrowIfDisposed();
-
-            float bodyWeight = _actionBodyLookWeight *
-                               (_isGrounded ? 1.0f : AirborneBodyLookWeight);
-            float headWeight = _actionHeadLookWeight *
-                               (_isGrounded ? 1.0f : AirborneHeadLookWeight);
-            ResolveLookTargets(
-                in frame,
-                bodyWeight,
-                headWeight,
-                out float bodyTargetX,
-                out float bodyTargetY,
-                out float headTargetX,
-                out float headTargetY);
-
-            float safeDeltaTime = Mathf.Max(0.0f, deltaTime);
-            _bodyLookX = Damp(_bodyLookX, bodyTargetX, BodyResponseSpeed, safeDeltaTime);
-            _bodyLookY = Damp(_bodyLookY, bodyTargetY, BodyResponseSpeed, safeDeltaTime);
-            _headLookX = Damp(_headLookX, headTargetX, HeadResponseSpeed, safeDeltaTime);
-            _headLookY = Damp(_headLookY, headTargetY, HeadResponseSpeed, safeDeltaTime);
-
-            _animator.SetFloat(BodyLookXHash, _bodyLookX);
-            _animator.SetFloat(BodyLookYHash, _bodyLookY);
-            _animator.SetFloat(HeadLookXHash, _headLookX);
-            _animator.SetFloat(HeadLookYHash, _headLookY);
+            _lookPose.Apply(in frame, deltaTime);
         }
 
         public void ApplyLocomotion(in CharacterLocomotionFrame frame, float deltaTime)
@@ -183,7 +132,7 @@ namespace _App
             _animator.SetFloat(FallingDurationHash, fallingVelocity);
             _animator.SetBool(OnGroundHash, frame.IsGrounded);
             _wasGrounded = frame.IsGrounded;
-            _isGrounded = frame.IsGrounded;
+            _lookPose.SetGrounded(frame.IsGrounded);
         }
 
         public AnimationActionPlayback PlayAction(in AnimationActionRequest request)
@@ -274,19 +223,11 @@ namespace _App
             _animator.SetFloat(MovementDirectionHash, 0.0f);
             _animator.SetFloat(FallingDurationHash, 0.0f);
             _animator.SetFloat(SpeedMultiplierHash, 1.0f);
-            _animator.SetFloat(BodyLookXHash, 0.0f);
-            _animator.SetFloat(BodyLookYHash, 0.0f);
-            _animator.SetFloat(HeadLookXHash, 0.0f);
-            _animator.SetFloat(HeadLookYHash, 0.0f);
             _animator.SetBool(OnGroundHash, true);
             _animator.speed = 1.0f;
             _lastAirborneVerticalSpeed = 0.0f;
-            _bodyLookX = 0.0f;
-            _bodyLookY = 0.0f;
-            _headLookX = 0.0f;
-            _headLookY = 0.0f;
             _wasGrounded = true;
-            _isGrounded = true;
+            _lookPose.Reset();
             ClearActionPresentationPolicy();
         }
 
@@ -313,50 +254,9 @@ namespace _App
             return frame.ForwardSpeed < -DirectionEpsilon ? -1.0f : 1.0f;
         }
 
-        private static void ResolveLookTargets(
-            in CharacterLookFrame frame,
-            float bodyWeight,
-            float headWeight,
-            out float bodyX,
-            out float bodyY,
-            out float headX,
-            out float headY)
-        {
-            float yawDegrees = Mathf.Clamp(frame.YawDegrees, -180.0f, 180.0f);
-            float pitchDegrees = Mathf.Clamp(frame.PitchDegrees, -89.0f, 89.0f);
-
-            float bodyYawDegrees = Mathf.Clamp(
-                yawDegrees * BodyHorizontalShare,
-                -BodyHorizontalPoseDegrees * BodyHorizontalLimit,
-                BodyHorizontalPoseDegrees * BodyHorizontalLimit) * bodyWeight;
-            float bodyPitchDegrees = Mathf.Clamp(
-                pitchDegrees * BodyVerticalShare,
-                -BodyVerticalPoseDegrees * BodyVerticalLimit,
-                BodyVerticalPoseDegrees * BodyVerticalLimit) * bodyWeight;
-            float headYawDegrees = Mathf.Clamp(
-                yawDegrees - bodyYawDegrees,
-                -HeadHorizontalPoseDegrees * HeadHorizontalLimit,
-                HeadHorizontalPoseDegrees * HeadHorizontalLimit);
-            float headPitchDegrees = Mathf.Clamp(
-                pitchDegrees - bodyPitchDegrees,
-                -HeadVerticalPoseDegrees * HeadVerticalLimit,
-                HeadVerticalPoseDegrees * HeadVerticalLimit);
-
-            bodyX = bodyYawDegrees / BodyHorizontalPoseDegrees;
-            bodyY = bodyPitchDegrees / BodyVerticalPoseDegrees;
-            headX = headYawDegrees / HeadHorizontalPoseDegrees * headWeight;
-            headY = headPitchDegrees / HeadVerticalPoseDegrees * headWeight;
-        }
-
-        private static float Damp(float current, float target, float responseSpeed, float deltaTime)
-        {
-            float interpolation = 1.0f - Mathf.Exp(-responseSpeed * deltaTime);
-            return Mathf.Lerp(current, target, interpolation);
-        }
-
         private void SetActionPresentationPolicy(int actionId, int layerIndex)
         {
-            _actionBodyLookWeight = actionId switch
+            float bodyWeight = actionId switch
             {
                 DodgeActionId => 0.0f,
                 LightAttackActionId => AttackBodyLookWeight,
@@ -364,12 +264,12 @@ namespace _App
                 SpecialAttackActionId => AttackBodyLookWeight,
                 HeavyAttackActionId => AttackBodyLookWeight,
                 LauncherActionId => AttackBodyLookWeight,
-                AirChaseActionId => AirborneBodyLookWeight,
+                AirChaseActionId => XControllerLookPoseController.AirborneBodyWeight,
                 WeaponTransitionActionId => WeaponBodyLookWeight,
                 ReactionActionId => 0.0f,
                 _ => 1.0f
             };
-            _actionHeadLookWeight = actionId switch
+            float headWeight = actionId switch
             {
                 DodgeActionId => 0.0f,
                 LightAttackActionId => AttackHeadLookWeight,
@@ -377,18 +277,18 @@ namespace _App
                 SpecialAttackActionId => AttackHeadLookWeight,
                 HeavyAttackActionId => AttackHeadLookWeight,
                 LauncherActionId => AttackHeadLookWeight,
-                AirChaseActionId => AirborneHeadLookWeight,
+                AirChaseActionId => XControllerLookPoseController.AirborneHeadWeight,
                 WeaponTransitionActionId => WeaponHeadLookWeight,
                 ReactionActionId => 0.0f,
                 _ => 1.0f
             };
+            _lookPose.SetActionWeights(bodyWeight, headWeight);
             _actionLayerIndex = layerIndex;
         }
 
         private void ClearActionPresentationPolicy()
         {
-            _actionBodyLookWeight = 1.0f;
-            _actionHeadLookWeight = 1.0f;
+            _lookPose.SetActionWeights(1.0f, 1.0f);
             _actionLayerIndex = -1;
         }
 
