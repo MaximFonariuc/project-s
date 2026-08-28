@@ -51,7 +51,18 @@ namespace _App
         {
             try
             {
-                _animation.Cancel();
+                if (reason == CombatActionEndReason.Reaction)
+                {
+                    // The reaction presentation is requested synchronously after the
+                    // gameplay state change. Relinquish Combat ownership without an
+                    // intermediate crossfade to locomotion so the Animator receives
+                    // one direct Attack -> Reaction transition in this frame.
+                    _animation.Release();
+                }
+                else
+                {
+                    _animation.Cancel();
+                }
             }
             finally
             {

@@ -271,6 +271,10 @@ vertical impact сохраняет тип `Slam` в snapshot до подтвер
 - `Enable` подписывает `Health`, запускает state machine и синхронизируется с текущим alive/dead состоянием.
 - `Disable` симметрично снимает подписки, останавливает machine, сбрасывает runtime state и presentation.
 - `PlayerActorController` подписывается до запуска reaction state machine. Любой non-stable state синхронно прерывает Combat и Traversal и блокирует locomotion intent; `Stable` восстанавливает актуальный combat movement intent.
+- При таком прерывании Combat освобождает animation ownership без crossfade в
+  `Move`; reaction presentation в том же синхронном вызове делает единственный
+  прямой переход из текущей attack pose. Это исключает двойной
+  `Attack -> Move -> Reaction` transition в одном кадре.
 - `PlayerCombatController` и `PlayerTraversalController` дополнительно читают `ICharacterReactionState.BlocksActions`, поэтому новый input не запускает действие между state transition и следующим frame tick.
 - `Health` остаётся единственным владельцем hit points; `CharacterPoise` — единственным владельцем poise; state machine — единственным владельцем reaction phase.
 - Reaction не вызывает `Character` напрямую. Единственный путь физического воздействия — `ICharacterImpactMotor`, реализованный существующим `CharacterMotor`.
