@@ -117,13 +117,14 @@ namespace _App
                     : _combat.MovementIntent);
             _locomotion.Tick(scaledDeltaTime);
             _targeting.Tick();
+            _camera.TickPresentation(scaledDeltaTime);
         }
 
-        public void LateTick(float unscaledDeltaTime, float scaledDeltaTime)
+        public void LateTick(float unscaledDeltaTime)
         {
             if (_enabled)
             {
-                _camera.LateTick(unscaledDeltaTime, scaledDeltaTime);
+                _camera.LateTick(unscaledDeltaTime);
             }
         }
 

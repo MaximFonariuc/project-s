@@ -113,7 +113,7 @@ namespace _App
 
         protected virtual void LateUpdate()
         {
-            _actorController?.LateTick(Time.unscaledDeltaTime, Time.deltaTime);
+            _actorController?.LateTick(Time.unscaledDeltaTime);
         }
 
         #endregion

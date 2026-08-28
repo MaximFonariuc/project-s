@@ -94,7 +94,7 @@ namespace _App
             SetCursorActive(false);
         }
 
-        public void LateTick(float unscaledDeltaTime, float presentationDeltaTime)
+        public void LateTick(float unscaledDeltaTime)
         {
             if (!_enabled)
             {
@@ -151,7 +151,21 @@ namespace _App
                 Mathf.Infinity,
                 unscaledDeltaTime);
 
-            _presentation.Tick(hasTarget, _targeting.AimPosition, presentationDeltaTime);
+        }
+
+        public void TickPresentation(float deltaTime)
+        {
+            if (!_enabled)
+            {
+                return;
+            }
+
+            bool hasTarget =
+                _targeting.IsTargetLocked && _targeting.CurrentTarget != null;
+            _presentation.Tick(
+                hasTarget,
+                _targeting.AimPosition,
+                Mathf.Max(0.0f, deltaTime));
         }
 
         public void Recenter()

@@ -126,6 +126,10 @@ classDiagram
   `XControllerLookPoseController` owns pose calibration, body/head distribution,
   grounded/action weights, smoothing state and the four Animator writes. It has
   no lifecycle, target selection or gameplay authority outside its driver owner.
+- Camera look presentation ticks from `PlayerActorController.Update` after
+  targeting, before normal Animator evaluation. Cinemachine orientation remains
+  in camera `LateTick`; separating them prevents the first frame of an attack or
+  reaction from being evaluated with the previous BodyLook/HeadLook weights.
 - `XController.controller` is the manually authored visual graph. No editor
   setup tool creates or rewrites its states, motions, Blend Trees or transitions.
 - `PlayerCombatPresentationResolver` is the single mapping from combat

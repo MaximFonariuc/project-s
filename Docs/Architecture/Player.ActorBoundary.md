@@ -75,7 +75,7 @@ classDiagram
         +Enable()
         +Disable()
         +Tick(deltaTime)
-        +LateTick(unscaledDeltaTime, scaledDeltaTime)
+        +LateTick(unscaledDeltaTime)
         +TryInvertGravity() bool
     }
     class ThirdPersonController {

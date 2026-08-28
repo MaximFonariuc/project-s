@@ -22,7 +22,8 @@ classDiagram
         +Mode PlayerCameraMode
         +Enable()
         +Disable()
-        +LateTick(unscaledDeltaTime, presentationDeltaTime)
+        +TickPresentation(deltaTime)
+        +LateTick(unscaledDeltaTime)
         +Recenter()
         +SwapShoulder()
         +SetFraming(distanceOffset, fovOffset)
@@ -128,6 +129,13 @@ Camera follow/look origin задаётся отдельным root-relative tran
 `BodyLook/HeadLook`. Player prefab также обязан явно ссылаться на свой единственный
 Humanoid Animator и Cinemachine follow rig; это проверяет XController contract
 validator до Play Mode.
+
+Camera rig smoothing и Cinemachine orientation остаются в `LateTick` на
+unscaled time. Animation presentation отделена от них: `TickPresentation`
+выполняется в gameplay `Update` сразу после targeting и до обычной Animator
+evaluation. Поэтому attack/reaction policy успевает записать веса
+`BodyLook/HeadLook` в тот же visual frame, а не на кадр позже. Smoothing pose
+использует scaled presentation delta и корректно замораживается при hit stop.
 
 Camera rig регистрируется `PlayerCameraComposition` из существующих serialized-ссылок `ThirdPersonController`, а сам composition-блок вызывается единственным `GameLifetimeScope`. Имена полей сохранены, поэтому prefab и сцена не требуют миграции. При уничтожении scope runtime-экземпляр Cinemachine camera удаляется через `IDisposable`.
 
