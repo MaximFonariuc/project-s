@@ -1023,6 +1023,12 @@ namespace _App.Editor.Animation
                     $"Prefab '{prefabPath}' must keep Animator root motion disabled.");
             }
 
+            ValidateCombatTargetAimPoints(
+                prefab,
+                prefabPath,
+                animator,
+                result);
+
             ValidateReactionProfileBinding(
                 prefab,
                 prefabPath,
@@ -1138,6 +1144,53 @@ namespace _App.Editor.Animation
                         baseController,
                         combatProfile,
                         result);
+                }
+            }
+        }
+
+        private static void ValidateCombatTargetAimPoints(
+            GameObject prefab,
+            string prefabPath,
+            Animator animator,
+            ValidationResult result)
+        {
+            CombatTarget[] targets =
+                prefab.GetComponentsInChildren<CombatTarget>(true);
+            for (int i = 0; i < targets.Length; i++)
+            {
+                CombatTarget target = targets[i];
+                var serializedTarget = new SerializedObject(target);
+                Transform targetRoot = serializedTarget
+                    .FindProperty("_targetRoot")
+                    ?.objectReferenceValue as Transform;
+                Transform aimPoint = serializedTarget
+                    .FindProperty("_aimPoint")
+                    ?.objectReferenceValue as Transform;
+                string context =
+                    $"CombatTarget '{target.name}' on prefab '{prefabPath}'";
+
+                if (aimPoint == null)
+                {
+                    result.Error(
+                        $"{context} requires an explicit stable aim point. " +
+                        "Collider bounds are not a stable animation target.");
+                    continue;
+                }
+
+                if (animator != null &&
+                    (aimPoint == animator.transform ||
+                     aimPoint.IsChildOf(animator.transform)))
+                {
+                    result.Error(
+                        $"{context} uses animated transform '{aimPoint.name}' as " +
+                        "its aim point. Use a root-relative presentation socket.");
+                }
+
+                if (targetRoot != null && !aimPoint.IsChildOf(targetRoot))
+                {
+                    result.Error(
+                        $"{context} aim point '{aimPoint.name}' must belong to " +
+                        $"target root '{targetRoot.name}'.");
                 }
             }
         }

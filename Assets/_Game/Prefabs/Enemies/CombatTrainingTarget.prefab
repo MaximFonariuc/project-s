@@ -1207,7 +1207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetRoot: {fileID: 5566560537023341474}
-  _aimPoint: {fileID: 9160350341523750241}
+  _aimPoint: {fileID: 5024209813379241017}
   _aimCollider: {fileID: 761981607231819327}
   _health: {fileID: 6032431483796332789}
 --- !u!1 &6301183989958189046

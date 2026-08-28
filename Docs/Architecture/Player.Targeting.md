@@ -126,6 +126,13 @@ Visibility ray исключает physics layer `Player`, игнорирует t
 
 Collider цели должен находиться на physics layer `Enemy`. Для составного body rig достаточно одного `CombatTarget` на общем родителе: все дочерние colliders разрешаются в один `TargetId`.
 
+`AimPoint` задаётся отдельным стабильным transform под actor root. Его нельзя
+привязывать к анимированной кости или вычислять из меняющихся `Collider.bounds`:
+иначе idle/reaction клип двигает саму точку, camera lock и BodyLook/HeadLook
+начинают преследовать этот шум и визуально дрожат. Высота socket выбирается под
+тип персонажа, но его transform не входит в Animator hierarchy. Этот authoring
+контракт проверяется командой `Tools/Animation/Validate XController Contract`.
+
 ## Зависимости и ownership
 
 ```mermaid
