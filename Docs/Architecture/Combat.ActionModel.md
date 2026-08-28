@@ -2,7 +2,7 @@
 
 ## Ответственность
 
-`PlayerCombatActionGraph` описывает доступные действия игрока и разрешённые переходы между ними. Он находится в `_App/Core`, потому что команды, moveset, наземные и воздушные ветки являются правилами конкретной игры.
+`PlayerCombatActionGraph` описывает доступные действия игрока и разрешённые переходы между ними. Он находится в `_App/Core`, потому что команды, moveset, наземные и воздушные ветки являются правилами конкретной игры. `PlayerCombatActionGraphCompiler` один раз собирает и проверяет immutable lookup-структуры; runtime graph после создания только разрешает entry/transition.
 
 Граф не читает устройства ввода, не запускает Animator, не хранит прогресс атаки и не меняет состояние персонажа. Его вход — семантическая команда, окружение и подтверждённый `CombatActionFrame`; выход — конкретный `PlayerCombatAction`.
 
@@ -35,6 +35,12 @@ classDiagram
     class PlayerCombatActionGraph {
         +TryResolveEntry(command, environment, action) bool
         +TryResolveTransition(source, command, environment, frame, action) bool
+    }
+    class PlayerCombatActionGraphCompiler {
+        <<build-time validation>>
+        +BuildActions(actions)
+        +BuildEntries(entries, actions)
+        +BuildTransitions(transitions, actions)
     }
     class PlayerCombatEntryRule {
         +CommandId PlayerCombatCommandId
@@ -88,6 +94,7 @@ classDiagram
         +HitResolved(CombatHitResult)
     }
 
+    PlayerCombatActionGraphCompiler ..> PlayerCombatActionGraph : compiles lookup data
     PlayerCombatActionGraph *-- PlayerCombatAction
     PlayerCombatActionGraph *-- PlayerCombatEntryRule
     PlayerCombatActionGraph *-- PlayerCombatTransitionRule
@@ -118,7 +125,7 @@ classDiagram
 - `PlayerCombatAnimationId` выбирает named animation slot (`attack.heavy`, `skill.special`) и не определяет gameplay transition.
 - `PlayerCombatPresentation` сообщает animation adapter, как отобразить уже выбранное действие: combo index либо named `PlayerCombatAnimationId`.
 - `CombatActionDefinition` хранит immutable timeline и impact: hitbox, damage, stagger, knockback, reaction id, chain/cancel, recovery, movement, invulnerability, commit, completion и cooldown.
-- `PlayerCombatActionProfile.OnValidate` собирает полный immutable graph в Editor и сразу сообщает об ошибочных id, переходах, временных окнах и impact-конфигурации. Runtime-конструкторы сохраняют ту же fail-fast проверку.
+- `PlayerCombatActionProfile.OnValidate` собирает полный immutable graph в Editor и сразу сообщает об ошибочных id, переходах, временных окнах и impact-конфигурации. `PlayerCombatActionGraphCompiler` выполняет ту же fail-fast проверку при runtime composition, но больше не смешивает её с hot-path lookup.
 - Стандартный `hit.launcher` требует положительный vertical knockback, а `hit.slam` — отрицательный. Пользовательские reaction id остаются открытыми и классифицируются reaction-системой получателя.
 - `CombatActionExecutor` удерживает отдельный damage-immunity lease только внутри authored invulnerability window. Он не восстанавливает сохранённый boolean, поэтому не может снять иммунитет, которым одновременно владеет dodge или другой gameplay flow.
 - `MovementIntent.AllowJump / AllowDodge` являются policies текущего action, а
@@ -127,6 +134,11 @@ classDiagram
   и выключенным cancel window отклоняется при построении definition.
 
 Одна команда может иметь несколько entry/transition rules, если целевые actions принадлежат непересекающимся environment masks. Поэтому `attack.light` может выбирать отдельные наземную и воздушную ветки без проверки платформы или устройства в gameplay-коде. Неоднозначные правила с пересекающимися masks отклоняются при построении graph.
+
+Compiler не является service и не регистрируется в VContainer: он не хранит
+runtime state и вызывается только конструктором graph. `PlayerCombatTransitionKey`
+является внутренним составным ключом `source action + command`; pipeline и
+presentation его не видят.
 
 ## Результат action и условия перехода
 

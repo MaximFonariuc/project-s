@@ -37,6 +37,9 @@ classDiagram
         +TryResolveEntry(command, environment, action) bool
         +TryResolveTransition(source, command, environment, frame, outcome, action) bool
     }
+    class PlayerCombatActionGraphCompiler {
+        <<compile / validate authoring>>
+    }
     class PlayerCombatAction {
         +Id
         +Environment
@@ -78,6 +81,7 @@ classDiagram
     PlayerCombatActionPipeline --> CombatInputBuffer
     PlayerCombatActionPipeline --> CombatActionSession
     CombatInputBuffer --> PlayerCombatCommandSample
+    PlayerCombatActionGraphCompiler ..> PlayerCombatActionGraph : builds immutable lookups
     PlayerCombatActionPipeline --> PlayerCombatActionGraph
     PlayerCombatActionPipeline --> PlayerCombatAvailability
     PlayerCombatActionGraph --> PlayerCombatAction
@@ -107,6 +111,10 @@ classDiagram
 Профиль отклоняется при пересекающихся execution/input ranges, неоднозначном
 окружении, выключенном исходном окне или выходе input-поддиапазона за completion
 source action.
+
+Эти проверки принадлежат `PlayerCombatActionGraphCompiler` и выполняются один
+раз при сборке профиля. `TryResolveEntry/TryResolveTransition` не компилируют
+authoring и не меняют словари во время gameplay.
 
 ## Семантические команды
 
