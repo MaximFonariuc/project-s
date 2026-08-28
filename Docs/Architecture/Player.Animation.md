@@ -120,7 +120,9 @@ classDiagram
 - `PlayerCombatPresentationResolver` is the single mapping from combat
   presentation (`ComboStep`, `AirComboStep`, named ids) to semantic animation
   action and variant. Runtime playback and editor validation consume the same
-  result, so adding a slot cannot silently update only one side.
+  result. `XControllerAnimationContract` then owns the single action/variant to
+  Animator state mapping consumed by both the driver and validator, so adding a
+  slot cannot silently update only one side.
 - `CombatActionDefinition.DurationSeconds` owns gameplay action duration. No
   combat rule reads clip length or Animator normalized time.
 - Root motion is disabled. Dodge and attack movement go through

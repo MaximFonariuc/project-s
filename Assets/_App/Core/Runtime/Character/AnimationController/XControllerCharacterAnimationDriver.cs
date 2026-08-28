@@ -27,16 +27,6 @@ namespace _App
         private const float WeaponBodyLookWeight = 0.35f;
         private const float WeaponHeadLookWeight = 0.65f;
 
-        private const int DodgeActionId = 1;
-        private const int LightAttackActionId = 2;
-        private const int WeaponTransitionActionId = 3;
-        private const int ReactionActionId = 4;
-        private const int AirAttackActionId = 5;
-        private const int SpecialAttackActionId = 6;
-        private const int HeavyAttackActionId = 7;
-        private const int LauncherActionId = 8;
-        private const int AirChaseActionId = 9;
-
         private static readonly int OnGroundHash = Animator.StringToHash(
             XControllerAnimationContract.OnGroundParameterName);
         private static readonly int MovementDirectionHash = Animator.StringToHash(
@@ -53,20 +43,8 @@ namespace _App
             XControllerAnimationContract.RollForwardStatePath);
         private static readonly int RollBackwardStateHash = Animator.StringToHash(
             XControllerAnimationContract.RollBackwardStatePath);
-        private static readonly int[] LightAttackStateHashes = CreateStateHashes(
-            XControllerAnimationContract.LightAttackStatePaths);
         private static readonly int[] ReactionStateHashes = CreateStateHashes(
             XControllerAnimationContract.ReactionStatePaths);
-        private static readonly int[] AirAttackStateHashes = CreateStateHashes(
-            XControllerAnimationContract.AirAttackStatePaths);
-        private static readonly int SpecialAttackStateHash = Animator.StringToHash(
-            XControllerAnimationContract.SpecialAttackStatePath);
-        private static readonly int HeavyAttackStateHash = Animator.StringToHash(
-            XControllerAnimationContract.HeavyAttackStatePath);
-        private static readonly int LauncherStateHash = Animator.StringToHash(
-            XControllerAnimationContract.LauncherStatePath);
-        private static readonly int AirChaseStateHash = Animator.StringToHash(
-            XControllerAnimationContract.AirChaseStatePath);
         private static readonly int WeaponSheatheStateHash = Animator.StringToHash(
             XControllerAnimationContract.WeaponSheatheStatePath);
         private static readonly int WeaponUnsheatheStateHash = Animator.StringToHash(
@@ -153,7 +131,7 @@ namespace _App
                 crossFadeSeconds,
                 layerIndex,
                 0.0f);
-            SetActionPresentationPolicy(request.Action.Value, layerIndex);
+            SetActionPresentationPolicy(request.Action, layerIndex);
 
             _nextSequence++;
             if (_nextSequence == 0)
@@ -254,36 +232,50 @@ namespace _App
             return frame.ForwardSpeed < -DirectionEpsilon ? -1.0f : 1.0f;
         }
 
-        private void SetActionPresentationPolicy(int actionId, int layerIndex)
+        private void SetActionPresentationPolicy(
+            AnimationActionId action,
+            int layerIndex)
         {
-            float bodyWeight = actionId switch
+            float bodyWeight;
+            float headWeight;
+            if (action == PlayerAnimatorActions.Dodge ||
+                action == PlayerAnimatorActions.Reaction)
             {
-                DodgeActionId => 0.0f,
-                LightAttackActionId => AttackBodyLookWeight,
-                AirAttackActionId => AttackBodyLookWeight,
-                SpecialAttackActionId => AttackBodyLookWeight,
-                HeavyAttackActionId => AttackBodyLookWeight,
-                LauncherActionId => AttackBodyLookWeight,
-                AirChaseActionId => XControllerLookPoseController.AirborneBodyWeight,
-                WeaponTransitionActionId => WeaponBodyLookWeight,
-                ReactionActionId => 0.0f,
-                _ => 1.0f
-            };
-            float headWeight = actionId switch
+                bodyWeight = 0.0f;
+                headWeight = 0.0f;
+            }
+            else if (action == PlayerAnimatorActions.AirChase)
             {
-                DodgeActionId => 0.0f,
-                LightAttackActionId => AttackHeadLookWeight,
-                AirAttackActionId => AttackHeadLookWeight,
-                SpecialAttackActionId => AttackHeadLookWeight,
-                HeavyAttackActionId => AttackHeadLookWeight,
-                LauncherActionId => AttackHeadLookWeight,
-                AirChaseActionId => XControllerLookPoseController.AirborneHeadWeight,
-                WeaponTransitionActionId => WeaponHeadLookWeight,
-                ReactionActionId => 0.0f,
-                _ => 1.0f
-            };
+                bodyWeight = XControllerLookPoseController.AirborneBodyWeight;
+                headWeight = XControllerLookPoseController.AirborneHeadWeight;
+            }
+            else if (action == PlayerAnimatorActions.WeaponTransition)
+            {
+                bodyWeight = WeaponBodyLookWeight;
+                headWeight = WeaponHeadLookWeight;
+            }
+            else if (IsAttackAction(action))
+            {
+                bodyWeight = AttackBodyLookWeight;
+                headWeight = AttackHeadLookWeight;
+            }
+            else
+            {
+                bodyWeight = 1.0f;
+                headWeight = 1.0f;
+            }
+
             _lookPose.SetActionWeights(bodyWeight, headWeight);
             _actionLayerIndex = layerIndex;
+        }
+
+        private static bool IsAttackAction(AnimationActionId action)
+        {
+            return action == PlayerAnimatorActions.LightAttack ||
+                   action == PlayerAnimatorActions.AirAttack ||
+                   action == PlayerAnimatorActions.SpecialAttack ||
+                   action == PlayerAnimatorActions.HeavyAttack ||
+                   action == PlayerAnimatorActions.Launcher;
         }
 
         private void ClearActionPresentationPolicy()
@@ -313,65 +305,46 @@ namespace _App
             out float crossFadeSeconds)
         {
             layerIndex = XControllerAnimationContract.BaseLayerIndex;
-            switch (request.Action.Value)
+            if (XControllerAnimationContract.TryGetCombatActionStatePath(
+                    request.Action,
+                    request.Variant,
+                    out string combatStatePath))
             {
-                case DodgeActionId:
-                    bool backward = request.Variant == 1;
-                    stateHash = backward ? RollBackwardStateHash : RollForwardStateHash;
-                    crossFadeSeconds = DodgeCrossFadeSeconds;
-                    break;
+                stateHash = Animator.StringToHash(combatStatePath);
+                crossFadeSeconds = AttackCrossFadeSeconds;
+                return _animator.HasState(layerIndex, stateHash);
+            }
 
-                case LightAttackActionId when request.Variant >= 0 &&
-                                              request.Variant < LightAttackStateHashes.Length:
-                    stateHash = LightAttackStateHashes[request.Variant];
-                    crossFadeSeconds = AttackCrossFadeSeconds;
-                    break;
-
-                case AirAttackActionId when request.Variant >= 0 &&
-                                             request.Variant < AirAttackStateHashes.Length:
-                    stateHash = AirAttackStateHashes[request.Variant];
-                    crossFadeSeconds = AttackCrossFadeSeconds;
-                    break;
-
-                case SpecialAttackActionId when request.Variant == 0:
-                    stateHash = SpecialAttackStateHash;
-                    crossFadeSeconds = AttackCrossFadeSeconds;
-                    break;
-
-                case HeavyAttackActionId when request.Variant == 0:
-                    stateHash = HeavyAttackStateHash;
-                    crossFadeSeconds = AttackCrossFadeSeconds;
-                    break;
-
-                case LauncherActionId when request.Variant == 0:
-                    stateHash = LauncherStateHash;
-                    crossFadeSeconds = AttackCrossFadeSeconds;
-                    break;
-
-                case AirChaseActionId when request.Variant == 0:
-                    stateHash = AirChaseStateHash;
-                    crossFadeSeconds = AttackCrossFadeSeconds;
-                    break;
-
-                case WeaponTransitionActionId when request.Variant is 0 or 1:
-                    layerIndex = _switchWeaponLayerIndex;
-                    stateHash = request.Variant == 1
-                        ? WeaponUnsheatheStateHash
-                        : WeaponSheatheStateHash;
-                    crossFadeSeconds = WeaponCrossFadeSeconds;
-                    break;
-
-                case ReactionActionId when request.Variant >= 0 &&
-                                           request.Variant < ReactionStateHashes.Length:
-                    stateHash = ReactionStateHashes[request.Variant];
-                    crossFadeSeconds = AttackCrossFadeSeconds;
-                    break;
-
-                default:
-                    layerIndex = -1;
-                    stateHash = 0;
-                    crossFadeSeconds = 0.0f;
-                    return false;
+            if (request.Action == PlayerAnimatorActions.Dodge &&
+                request.Variant is 0 or 1)
+            {
+                stateHash = request.Variant == 1
+                    ? RollBackwardStateHash
+                    : RollForwardStateHash;
+                crossFadeSeconds = DodgeCrossFadeSeconds;
+            }
+            else if (request.Action == PlayerAnimatorActions.WeaponTransition &&
+                     request.Variant is 0 or 1)
+            {
+                layerIndex = _switchWeaponLayerIndex;
+                stateHash = request.Variant == 1
+                    ? WeaponUnsheatheStateHash
+                    : WeaponSheatheStateHash;
+                crossFadeSeconds = WeaponCrossFadeSeconds;
+            }
+            else if (request.Action == PlayerAnimatorActions.Reaction &&
+                     request.Variant >= 0 &&
+                     request.Variant < ReactionStateHashes.Length)
+            {
+                stateHash = ReactionStateHashes[request.Variant];
+                crossFadeSeconds = AttackCrossFadeSeconds;
+            }
+            else
+            {
+                layerIndex = -1;
+                stateHash = 0;
+                crossFadeSeconds = 0.0f;
+                return false;
             }
 
             return layerIndex >= 0 && _animator.HasState(layerIndex, stateHash);

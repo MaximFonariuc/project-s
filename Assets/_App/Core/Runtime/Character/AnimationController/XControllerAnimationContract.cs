@@ -236,7 +236,7 @@ namespace _App
             return TryGetCombatActionStatePath(action, variant, out statePath);
         }
 
-        private static bool TryGetCombatActionStatePath(
+        internal static bool TryGetCombatActionStatePath(
             AnimationActionId action,
             int variant,
             out string statePath)
