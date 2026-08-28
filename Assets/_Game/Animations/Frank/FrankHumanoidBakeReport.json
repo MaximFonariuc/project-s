@@ -1,0 +1,12 @@
+{
+    "generatedAtUtc": "2026-08-28T20:44:45.0009754Z",
+    "targetModel": "Assets/_Game/Models/Characters/UnityCharacter/DefaultMale.fbx",
+    "sourceCount": 1374,
+    "outputCount": 1374,
+    "validCount": 1374,
+    "invalidCount": 0,
+    "overrideSourceReferenceCount": 0,
+    "maximumAbsoluteMuscle": 1.0,
+    "maximumMuscleRate": 18.000276565551759,
+    "failures": []
+}
