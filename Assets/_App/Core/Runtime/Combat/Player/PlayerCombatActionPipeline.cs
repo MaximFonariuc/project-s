@@ -126,6 +126,10 @@ namespace _App
                         break;
                     }
 
+                    // The action is committed once its presentation has started.
+                    // Recording cooldown after the session would let dodge, jump,
+                    // reaction or disable interruptions bypass the action cost.
+                    _availability.RecordUse(action);
                     _acceptedBufferedAction = null;
                     EnterExecuting(action);
                     SetActiveComboIndex(
@@ -148,8 +152,6 @@ namespace _App
                         _animation.Cancel();
                         break;
                     }
-
-                    _availability.RecordUse(action);
 
                     PlayerCombatAction acceptedAction = _acceptedBufferedAction;
                     Transform nextMotionTarget = ResolveNextMotionTarget(

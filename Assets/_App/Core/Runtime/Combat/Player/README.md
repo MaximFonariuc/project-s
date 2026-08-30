@@ -59,6 +59,11 @@ classDiagram
     PlayerWeaponAttachment o-- Weapon
 ```
 
+`PlayerCombatAvailability.RecordUse` is called immediately after the animation
+driver accepts an action. Cooldown therefore belongs to the accepted gameplay
+action and is not avoided when its session later ends through dodge, jump,
+reaction, disable, or another interruption.
+
 - The shared presentation resolver exposes three combo steps for every
   compatible animation loadout and maps them to semantic action `LightAttack`,
   variants `0...2`.
