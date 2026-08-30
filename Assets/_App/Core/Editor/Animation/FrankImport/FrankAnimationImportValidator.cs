@@ -31,7 +31,6 @@ namespace ProjectS.Core.Editor.Animation
             public int invalidModelCount;
             public int curveKeyCount;
             public int invalidCurveKeyCount;
-            public int configuredRangeViolationCount;
             public int humanoidCurveSpikeCandidateCount;
             public int confirmedPoseSpikeCount;
             public int configuredRetargetCorrectionCount;
@@ -48,7 +47,6 @@ namespace ProjectS.Core.Editor.Animation
             public int clipCount;
             public int curveKeyCount;
             public int invalidCurveKeyCount;
-            public int configuredRangeViolationCount;
             public int humanoidCurveSpikeCandidateCount;
             public int confirmedPoseSpikeCount;
             public List<ClipRecord> clips = new();
@@ -64,7 +62,6 @@ namespace ProjectS.Core.Editor.Animation
             public int curveCount;
             public int keyCount;
             public int invalidKeyCount;
-            public int configuredRangeViolationCount;
             public int humanoidCurveSpikeCandidateCount;
             public int confirmedPoseSpikeCount;
             public List<KeyIssueRecord> keyIssues = new();
@@ -94,8 +91,9 @@ namespace ProjectS.Core.Editor.Animation
                 .Where(FrankAnimationImportSettings.IsGeneratedClip)
                 .OrderBy(path => path)
                 .ToArray();
+            var rigAssignments = FrankAnimationImportSettings.LoadRigAssignments();
 
-            ConfigureAndImport(paths);
+            ConfigureAndImport(paths, rigAssignments);
 
             ValidateAll();
         }
@@ -103,6 +101,7 @@ namespace ProjectS.Core.Editor.Animation
         [MenuItem("Project S/Animation/Frank/Validate Humanoid Library")]
         public static void ValidateAll()
         {
+            var rigAssignments = FrankAnimationImportSettings.LoadRigAssignments();
             var report = new ValidationReport
             {
                 generatedAtUtc = DateTime.UtcNow.ToString("O"),
@@ -164,7 +163,11 @@ namespace ProjectS.Core.Editor.Animation
                         || path.Contains("/Rig/", StringComparison.Ordinal))
                         continue;
 
-                    report.models.Add(ValidateModel(path, poseAuditObject, poseAuditAnimator));
+                    report.models.Add(ValidateModel(
+                        path,
+                        rigAssignments,
+                        poseAuditObject,
+                        poseAuditAnimator));
                 }
             }
             finally
@@ -180,8 +183,6 @@ namespace ProjectS.Core.Editor.Animation
             report.invalidModelCount = report.modelCount - report.validModelCount;
             report.curveKeyCount = report.models.Sum(model => model.curveKeyCount);
             report.invalidCurveKeyCount = report.models.Sum(model => model.invalidCurveKeyCount);
-            report.configuredRangeViolationCount = report.models.Sum(
-                model => model.configuredRangeViolationCount);
             report.humanoidCurveSpikeCandidateCount = report.models.Sum(
                 model => model.humanoidCurveSpikeCandidateCount);
             report.confirmedPoseSpikeCount = report.models.Sum(
@@ -200,7 +201,6 @@ namespace ProjectS.Core.Editor.Animation
                     + $"{report.validSourceRigCount}/{report.sourceRigCount} source rigs. "
                     + $"Checked {report.curveKeyCount} curve keys; "
                     + $"invalid keys: {report.invalidCurveKeyCount}; "
-                    + $"configured range violations: {report.configuredRangeViolationCount}; "
                     + $"Humanoid curve candidates: {report.humanoidCurveSpikeCandidateCount}; "
                     + $"confirmed sampled pose spikes: {report.confirmedPoseSpikeCount}. "
                     + $"Report: {ReportPath}");
@@ -216,6 +216,7 @@ namespace ProjectS.Core.Editor.Animation
 
         private static ModelRecord ValidateModel(
             string path,
+            IReadOnlyDictionary<string, string> rigAssignments,
             GameObject poseAuditObject,
             Animator poseAuditAnimator)
         {
@@ -241,15 +242,13 @@ namespace ProjectS.Core.Editor.Animation
                     curveCount = AnimationUtility.GetCurveBindings(clip).Length
                                  + AnimationUtility.GetObjectReferenceCurveBindings(clip).Length,
                 };
-                ValidateCurveKeys(path, clip, clipRecord, poseAuditObject, poseAuditAnimator);
+                ValidateCurveKeys(clip, clipRecord, poseAuditObject, poseAuditAnimator);
                 record.clips.Add(clipRecord);
             }
 
             record.clipCount = clips.Length;
             record.curveKeyCount = record.clips.Sum(clip => clip.keyCount);
             record.invalidCurveKeyCount = record.clips.Sum(clip => clip.invalidKeyCount);
-            record.configuredRangeViolationCount = record.clips.Sum(
-                clip => clip.configuredRangeViolationCount);
             record.humanoidCurveSpikeCandidateCount = record.clips.Sum(
                 clip => clip.humanoidCurveSpikeCandidateCount);
             record.confirmedPoseSpikeCount = record.clips.Sum(
@@ -259,11 +258,22 @@ namespace ProjectS.Core.Editor.Animation
                 failures.Add("animation type is not Humanoid");
             if (FrankAnimationImportSettings.IsGeneratedClip(path))
             {
-                if (importer.avatarSetup != ModelImporterAvatarSetup.CreateFromThisModel)
-                    failures.Add("clip does not create its Avatar from the embedded source bind pose");
-                var sourceAvatar = AssetDatabase.LoadAssetAtPath<Avatar>(path);
-                if (sourceAvatar == null || !sourceAvatar.isValid || !sourceAvatar.isHuman)
-                    failures.Add("embedded source Avatar is missing or invalid");
+                if (!rigAssignments.TryGetValue(path, out var rigAssetPath))
+                {
+                    failures.Add("clip has no source-rig assignment in its catalog");
+                }
+                else
+                {
+                    var sourceAvatar = AssetDatabase.LoadAssetAtPath<Avatar>(rigAssetPath);
+                    if (sourceAvatar == null || !sourceAvatar.isValid || !sourceAvatar.isHuman)
+                        failures.Add("assigned source Avatar is missing or invalid");
+                    if (importer.avatarSetup != ModelImporterAvatarSetup.CopyFromOther)
+                        failures.Add("clip does not copy its assigned source Avatar");
+                    if (sourceAvatar != null && importer.sourceAvatar != sourceAvatar)
+                        failures.Add("clip uses a different source Avatar than its catalog assignment");
+                }
+                if (importer.resampleCurves)
+                    failures.Add("clip has importer curve resampling enabled");
                 if (clips.Length == 1
                     && clips[0].name != Path.GetFileNameWithoutExtension(path))
                 {
@@ -280,10 +290,6 @@ namespace ProjectS.Core.Editor.Animation
                 failures.Add("clip contains no animation curves");
             if (record.invalidCurveKeyCount > 0)
                 failures.Add($"clip curves contain {record.invalidCurveKeyCount} invalid keys");
-            if (record.configuredRangeViolationCount > 0)
-                failures.Add(
-                    $"clip contains {record.configuredRangeViolationCount} "
-                    + "configured Humanoid range violations");
             if (record.confirmedPoseSpikeCount > 0)
                 failures.Add($"clip contains {record.confirmedPoseSpikeCount} confirmed pose discontinuities");
 
@@ -293,7 +299,6 @@ namespace ProjectS.Core.Editor.Animation
         }
 
         private static void ValidateCurveKeys(
-            string assetPath,
             AnimationClip clip,
             ClipRecord record,
             GameObject poseAuditObject,
@@ -322,30 +327,6 @@ namespace ProjectS.Core.Editor.Animation
                     {
                         record.invalidKeyCount++;
                         AddKeyIssue(record, binding.propertyName, key.time, "invalid key data");
-                    }
-                }
-
-                if (FrankHumanoidRetargetPostprocessor.TryGetAllowedMuscleRange(
-                        assetPath,
-                        binding.propertyName,
-                        out var minimum,
-                        out var maximum))
-                {
-                    foreach (var key in keys)
-                    {
-                        if (key.value >= minimum - 0.0001f
-                            && key.value <= maximum + 0.0001f)
-                        {
-                            continue;
-                        }
-
-                        record.configuredRangeViolationCount++;
-                        AddKeyIssue(
-                            record,
-                            binding.propertyName,
-                            key.time,
-                            $"configured Humanoid range violation: "
-                            + $"{key.value:F4} outside [{minimum:F4}, {maximum:F4}]");
                     }
                 }
 
@@ -547,7 +528,9 @@ namespace ProjectS.Core.Editor.Animation
             rigImporter.SaveAndReimport();
         }
 
-        private static void ConfigureAndImport(IEnumerable<string> paths)
+        private static void ConfigureAndImport(
+            IEnumerable<string> paths,
+            IReadOnlyDictionary<string, string> rigAssignments)
         {
             AssetDatabase.StartAssetEditing();
             try
@@ -557,7 +540,11 @@ namespace ProjectS.Core.Editor.Animation
                     if (AssetImporter.GetAtPath(path) is not ModelImporter importer)
                         continue;
 
-                    FrankAnimationImportSettings.Apply(importer, path);
+                    var sourceAvatar = FrankAnimationImportSettings.LoadSourceAvatar(
+                        path,
+                        rigAssignments,
+                        out _);
+                    FrankAnimationImportSettings.Apply(importer, path, sourceAvatar);
                     AssetDatabase.WriteImportSettingsIfDirty(path);
                 }
             }

@@ -36,9 +36,12 @@ source package, duration data, bone coverage, and conversion warnings.
 Frank is not one skeleton. The source library contains multiple distinct bind
 poses, so applying every PSA to `FrankDualRig` is invalid. The converter now
 reconstructs a compact Humanoid body rig from the bind transforms embedded in
-each PSA. Every clip therefore carries the matching source bind pose and Unity
-creates its Humanoid Avatar from that FBX. Diagnostic bind rigs are generated in
-`Rig/Source`, one per unique skeleton fingerprint.
+each PSA. A clean, animation-free Avatar is generated in `Rig/Source` for every
+unique skeleton fingerprint, and each catalog records the matching
+`rigAssetPath`. Unity imports animation FBXs with `Copy From Other Avatar` using
+that exact bind rig. Creating an Avatar from an animated FBX is forbidden: it
+produces a different Humanoid solve and can rotate feet and other limbs away
+from the authored pose.
 
 The converter retains authored rotation, translation, and (when present) scale
 tracks for every mapped body bone. It rejects non-finite locations and invalid
@@ -59,16 +62,9 @@ Unity's Humanoid conversion produced 11 isolated muscle-space discontinuities
 in seven clips even though their source bone rotations were smooth. Those exact
 imported muscle keys are replaced by interpolation between their untouched
 neighbors in `FrankHumanoidRetargetPostprocessor`; no broad spike heuristic and
-no source-transform mutation is allowed. The same postprocessor constrains the
-four foot muscles of `Frank_RPG_Dual_Air_Combo_1_IP` to the normalized
-Humanoid range because Unity otherwise generates sustained values as high as
-`3.43` and turns the feet backwards. Each affected curve is scaled uniformly,
-preserving its timing and shape instead of flattening individual keys. This
-correction is restricted to that clip and does not alter the source PSA or
-generic FBX transforms. The validator checks the configured range after every
-import. The validator and the
-`Render Reported Pose Spikes` contact-sheet command provide the before/after QA
-boundary for this explicit correction list.
+no source-transform mutation is allowed. The validator and the `Render Reported
+Pose Spikes` contact-sheet command provide the before/after QA boundary for this
+explicit correction list.
 
 The PSA source can encode the same rotation as either `q` or `-q`. Because the
 pinned Blender importer writes quaternion components to independent linear
