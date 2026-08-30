@@ -3,9 +3,70 @@ using System.Collections.Generic;
 
 namespace _App
 {
+    internal readonly struct PlayerCombatCommandRequest
+    {
+        public PlayerCombatCommandId CommandId { get; }
+        public PlayerCombatActionId SourceActionId { get; }
+        public float SourceNormalizedTime { get; }
+        public bool HasSourceAction { get; }
+
+        private PlayerCombatCommandRequest(
+            PlayerCombatCommandId commandId,
+            PlayerCombatActionId sourceActionId,
+            float sourceNormalizedTime,
+            bool hasSourceAction)
+        {
+            if (string.IsNullOrEmpty(commandId.Value))
+            {
+                throw new ArgumentException(
+                    "Combat command request requires a command id.",
+                    nameof(commandId));
+            }
+
+            if (hasSourceAction && string.IsNullOrEmpty(sourceActionId.Value))
+            {
+                throw new ArgumentException(
+                    "A bound combat command request requires a source action id.",
+                    nameof(sourceActionId));
+            }
+
+            if (sourceNormalizedTime < 0.0f || sourceNormalizedTime > 1.0f)
+            {
+                throw new ArgumentOutOfRangeException(nameof(sourceNormalizedTime));
+            }
+
+            CommandId = commandId;
+            SourceActionId = sourceActionId;
+            SourceNormalizedTime = sourceNormalizedTime;
+            HasSourceAction = hasSourceAction;
+        }
+
+        public static PlayerCombatCommandRequest Unbound(
+            PlayerCombatCommandId commandId)
+        {
+            return new PlayerCombatCommandRequest(
+                commandId,
+                default,
+                0.0f,
+                false);
+        }
+
+        public static PlayerCombatCommandRequest Bound(
+            PlayerCombatCommandId commandId,
+            PlayerCombatActionId sourceActionId,
+            float sourceNormalizedTime)
+        {
+            return new PlayerCombatCommandRequest(
+                commandId,
+                sourceActionId,
+                sourceNormalizedTime,
+                true);
+        }
+    }
+
     internal sealed class PlayerCombatCommandInbox
     {
-        private readonly Queue<PlayerCombatCommandId> _commands;
+        private readonly Queue<PlayerCombatCommandRequest> _commands;
         private readonly int _capacity;
         private bool _weaponSwitchRequested;
 
@@ -17,29 +78,30 @@ namespace _App
             }
 
             _capacity = capacity;
-            _commands = new Queue<PlayerCombatCommandId>(capacity);
+            _commands = new Queue<PlayerCombatCommandRequest>(capacity);
         }
 
-        public bool TryEnqueue(PlayerCombatCommandId commandId)
+        public bool TryEnqueue(in PlayerCombatCommandRequest request)
         {
-            if (string.IsNullOrEmpty(commandId.Value) || _commands.Count >= _capacity)
+            if (string.IsNullOrEmpty(request.CommandId.Value) ||
+                _commands.Count >= _capacity)
             {
                 return false;
             }
 
-            _commands.Enqueue(commandId);
+            _commands.Enqueue(request);
             return true;
         }
 
-        public bool TryDequeue(out PlayerCombatCommandId commandId)
+        public bool TryDequeue(out PlayerCombatCommandRequest request)
         {
             if (_commands.Count == 0)
             {
-                commandId = default;
+                request = default;
                 return false;
             }
 
-            commandId = _commands.Dequeue();
+            request = _commands.Dequeue();
             return true;
         }
 

@@ -154,7 +154,14 @@ namespace _App
 
         public bool TryExecute(PlayerCombatCommandId commandId)
         {
-            return _enabled && _commandInbox.TryEnqueue(commandId);
+            if (!_enabled)
+            {
+                return false;
+            }
+
+            PlayerCombatCommandRequest request =
+                _actionPipeline.CaptureCommand(commandId);
+            return _commandInbox.TryEnqueue(in request);
         }
 
         public void Tick(float scaledDeltaTime)
@@ -175,10 +182,10 @@ namespace _App
             _actionExecutor.Observe();
         }
 
-        private bool TryExecuteNow(PlayerCombatCommandId commandId)
+        private bool TryExecuteNow(in PlayerCombatCommandRequest request)
         {
             if (!_actionPipeline.TryAccept(
-                    commandId,
+                    in request,
                     Phase,
                     CurrentWeapon,
                     out PlayerCombatAction action))
@@ -198,9 +205,9 @@ namespace _App
 
         private void ConsumeQueuedCommands()
         {
-            while (_commandInbox.TryDequeue(out PlayerCombatCommandId commandId))
+            while (_commandInbox.TryDequeue(out PlayerCombatCommandRequest request))
             {
-                TryExecuteNow(commandId);
+                TryExecuteNow(in request);
             }
         }
 

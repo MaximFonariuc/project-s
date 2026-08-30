@@ -62,8 +62,26 @@ namespace _App
             _actionSession.HitWindowChanged += OnHitWindowChanged;
         }
 
+        public PlayerCombatCommandRequest CaptureCommand(
+            PlayerCombatCommandId commandId)
+        {
+            PlayerCombatAction sourceAction = _actionSession.Action;
+            if (sourceAction == null)
+            {
+                return PlayerCombatCommandRequest.Unbound(commandId);
+            }
+
+            float sourceNormalizedTime = _actionExecutor.IsRunning
+                ? _actionExecutor.CurrentFrame.NormalizedTime
+                : _actionSession.CurrentFrame.NormalizedTime;
+            return PlayerCombatCommandRequest.Bound(
+                commandId,
+                sourceAction.Id,
+                sourceNormalizedTime);
+        }
+
         public bool TryAccept(
-            PlayerCombatCommandId commandId,
+            in PlayerCombatCommandRequest request,
             PlayerCombatPhase phase,
             EWeaponType weapon,
             out PlayerCombatAction initialAction)
@@ -76,18 +94,12 @@ namespace _App
 
             if (phase is PlayerCombatPhase.Executing or PlayerCombatPhase.Recovery)
             {
-                return _actionSession.Action != null &&
-                       _inputBuffer.Store(
-                           commandId,
-                           _actionSession.Action.Id,
-                           _actionExecutor.IsRunning
-                               ? _actionExecutor.CurrentFrame.NormalizedTime
-                               : _actionSession.CurrentFrame.NormalizedTime);
+                return TryStoreDuringActiveAction(in request);
             }
 
             return phase == PlayerCombatPhase.Ready &&
                    _actionGraph.TryResolveEntry(
-                       commandId,
+                       request.CommandId,
                        GetEnvironment(),
                        out initialAction) &&
                    _availability.CanUseAction(initialAction, weapon);
@@ -275,6 +287,44 @@ namespace _App
 
             action = null;
             return false;
+        }
+
+        private bool TryStoreDuringActiveAction(
+            in PlayerCombatCommandRequest request)
+        {
+            PlayerCombatAction activeAction = _actionSession.Action;
+            if (activeAction == null)
+            {
+                return false;
+            }
+
+            PlayerCombatActionId sourceActionId;
+            float sourceNormalizedTime;
+            if (request.HasSourceAction)
+            {
+                if (request.SourceActionId != activeAction.Id)
+                {
+                    return false;
+                }
+
+                sourceActionId = request.SourceActionId;
+                sourceNormalizedTime = request.SourceNormalizedTime;
+            }
+            else
+            {
+                // Multiple commands may arrive while Ready and be consumed in
+                // one gameplay tick. Bind successors to the action started by
+                // the first command without inventing a stale source context.
+                sourceActionId = activeAction.Id;
+                sourceNormalizedTime = _actionExecutor.IsRunning
+                    ? _actionExecutor.CurrentFrame.NormalizedTime
+                    : _actionSession.CurrentFrame.NormalizedTime;
+            }
+
+            return _inputBuffer.Store(
+                request.CommandId,
+                sourceActionId,
+                sourceNormalizedTime);
         }
 
         private static Transform ResolveNextMotionTarget(

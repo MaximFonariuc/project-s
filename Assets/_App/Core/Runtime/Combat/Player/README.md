@@ -71,6 +71,10 @@ classDiagram
   combo index, action-to-action execution, confirmed-target carry and landing
   termination. `PlayerCombatController` owns input subscriptions, operation
   lifetime and persistent weapon state.
+- The command inbox captures the source action and its normalized time when the
+  semantic input arrives. Timeline advancement cannot move a press into a
+  different rapid/delayed branch during a slow frame; commands received together
+  while Ready are still bound deterministically to the first action they start.
 - `PlayerCombatAvailability` owns live actor/reaction admission checks and the
   scaled-time cooldown dictionary. It asks the animation port only whether the
   semantic presentation exists; it does not run the graph or mutate combat
