@@ -19,6 +19,8 @@ namespace _App
         private const float HeadVerticalLimit = 0.45f;
         private const float BodyHorizontalShare = 0.35f;
         private const float BodyVerticalShare = 0.30f;
+        private const float LookDeadZoneDegrees = 0.5f;
+        private const float RearYawSideReleaseDegrees = 150.0f;
         private const float BodyResponseSpeed = 3.5f;
         private const float HeadResponseSpeed = 8.0f;
         private const float LayerWeightResponseSpeed = 10.0f;
@@ -44,6 +46,7 @@ namespace _App
         private float _headLayerWeight = 1.0f;
         private float _actionBodyWeight = 1.0f;
         private float _actionHeadWeight = 1.0f;
+        private float _rearYawSign;
         private bool _isGrounded = true;
 
         public XControllerLookPoseController(Animator animator)
@@ -64,7 +67,8 @@ namespace _App
             float headWeight = _actionHeadWeight *
                                (_isGrounded ? 1.0f : AirborneHeadWeight);
             ResolveTargets(
-                in frame,
+                StabilizeYaw(frame.YawDegrees),
+                ApplyDeadZone(frame.PitchDegrees),
                 out float bodyTargetX,
                 out float bodyTargetY,
                 out float headTargetX,
@@ -127,6 +131,7 @@ namespace _App
             _headLayerWeight = 1.0f;
             _actionBodyWeight = 1.0f;
             _actionHeadWeight = 1.0f;
+            _rearYawSign = 0.0f;
             _isGrounded = true;
             WriteParameters();
             WriteLayerWeights();
@@ -153,15 +158,16 @@ namespace _App
             }
         }
 
-        private static void ResolveTargets(
-            in CharacterLookFrame frame,
+        private void ResolveTargets(
+            float yawDegrees,
+            float pitchDegrees,
             out float bodyX,
             out float bodyY,
             out float headX,
             out float headY)
         {
-            float yawDegrees = Mathf.Clamp(frame.YawDegrees, -180.0f, 180.0f);
-            float pitchDegrees = Mathf.Clamp(frame.PitchDegrees, -89.0f, 89.0f);
+            yawDegrees = Mathf.Clamp(yawDegrees, -180.0f, 180.0f);
+            pitchDegrees = Mathf.Clamp(pitchDegrees, -89.0f, 89.0f);
 
             float bodyYawDegrees = Mathf.Clamp(
                 yawDegrees * BodyHorizontalShare,
@@ -184,6 +190,38 @@ namespace _App
             bodyY = bodyPitchDegrees / BodyVerticalPoseDegrees;
             headX = headYawDegrees / HeadHorizontalPoseDegrees;
             headY = headPitchDegrees / HeadVerticalPoseDegrees;
+        }
+
+        private float StabilizeYaw(float yawDegrees)
+        {
+            float yaw = Mathf.Clamp(yawDegrees, -180.0f, 180.0f);
+            if (Mathf.Abs(yaw) <= LookDeadZoneDegrees)
+            {
+                _rearYawSign = 0.0f;
+                return 0.0f;
+            }
+
+            float absoluteYaw = Mathf.Abs(yaw);
+            if (absoluteYaw < RearYawSideReleaseDegrees)
+            {
+                _rearYawSign = Mathf.Sign(yaw);
+                return yaw;
+            }
+
+            if (Mathf.Approximately(_rearYawSign, 0.0f))
+            {
+                _rearYawSign = Mathf.Sign(yaw);
+            }
+
+            // At the rear seam Atan2 alternates between +180 and -180 for tiny
+            // target motion. Preserve the last unambiguous side until the target
+            // leaves the rear sector instead of flipping the additive poses.
+            return absoluteYaw * _rearYawSign;
+        }
+
+        private static float ApplyDeadZone(float degrees)
+        {
+            return Mathf.Abs(degrees) <= LookDeadZoneDegrees ? 0.0f : degrees;
         }
 
         private static float Damp(

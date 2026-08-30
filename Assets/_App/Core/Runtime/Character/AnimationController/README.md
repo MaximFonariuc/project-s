@@ -58,6 +58,9 @@ classDiagram
 - Targeting supplies local yaw/pitch degrees through `CharacterLookFrame`.
   XController splits that request into slower limited body motion and faster
   residual head motion, with action- and airborne-specific attenuation.
+  A small angular dead zone suppresses idle aim noise. The last unambiguous
+  yaw side is retained while a target crosses the `+180/-180` rear seam, so
+  BodyLook and HeadLook do not alternate between opposite additive poses.
 - Reaction and death use the required `Reaction/HitStun`, `HitStun_Back`,
   `HitStun_Left`, `HitStun_Right`, `Knockdown`, `GetUp`, `Airborne`, `Dead_1`
   and `Dead_2` states. Direction names identify the source side relative to the
