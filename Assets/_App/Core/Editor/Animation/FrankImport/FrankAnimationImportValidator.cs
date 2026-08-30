@@ -528,6 +528,35 @@ namespace ProjectS.Core.Editor.Animation
             rigImporter.SaveAndReimport();
         }
 
+        [MenuItem("Project S/Animation/Frank/Reimport Generated Clips")]
+        public static void ReimportGeneratedClips()
+        {
+            var paths = AssetDatabase.FindAssets("t:Model", new[] { FrankRoot })
+                .Select(AssetDatabase.GUIDToAssetPath)
+                .Where(FrankAnimationImportSettings.IsGeneratedClip)
+                .OrderBy(path => path)
+                .ToArray();
+            try
+            {
+                for (var index = 0; index < paths.Length; index++)
+                {
+                    EditorUtility.DisplayProgressBar(
+                        "Reimport Frank Humanoid animations",
+                        paths[index],
+                        (index + 1f) / paths.Length);
+                    AssetDatabase.ImportAsset(
+                        paths[index],
+                        ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
+                }
+            }
+            finally
+            {
+                EditorUtility.ClearProgressBar();
+            }
+
+            Debug.Log($"Reimported {paths.Length} Frank Humanoid animation clips.");
+        }
+
         private static void ConfigureAndImport(
             IEnumerable<string> paths,
             IReadOnlyDictionary<string, string> rigAssignments)

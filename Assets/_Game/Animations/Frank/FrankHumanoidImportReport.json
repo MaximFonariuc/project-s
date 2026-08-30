@@ -1,5 +1,5 @@
 {
-    "generatedAtUtc": "2026-08-30T10:02:15.3836376Z",
+    "generatedAtUtc": "2026-08-30T10:44:04.1812885Z",
     "sourceRigCount": 17,
     "validSourceRigCount": 17,
     "invalidSourceRigCount": 0,
@@ -10,8 +10,8 @@
     "invalidCurveKeyCount": 0,
     "humanoidCurveSpikeCandidateCount": 6,
     "confirmedPoseSpikeCount": 0,
-    "configuredRetargetCorrectionCount": 11,
-    "configuredRetargetCorrectionClipCount": 7,
+    "configuredRetargetCorrectionCount": 8,
+    "configuredRetargetCorrectionClipCount": 6,
     "models": [
         {
             "assetPath": "Assets/_Game/Animations/Frank/AssassinNinja/Animations/InPlace/Air/Frank_RPG_Assassin_Jump_ZeroHeight.fbx",
@@ -8075,7 +8075,7 @@
                         {
                             "property": "Left Foot Twist In-Out",
                             "time": 3.2291667461395265,
-                            "issue": "curve-only candidate (0,946/0,881, bridge 0,065); sampled bone 82,77/48,10, bridge 130,23"
+                            "issue": "curve-only candidate (0,946/0,881, bridge 0,065); sampled bone 112,33/74,02, bridge 179,15"
                         }
                     ]
                 }
@@ -9713,7 +9713,7 @@
                         {
                             "property": "Left Foot Twist In-Out",
                             "time": 3.2291667461395265,
-                            "issue": "curve-only candidate (0,946/0,881, bridge 0,065); sampled bone 82,77/48,10, bridge 130,23"
+                            "issue": "curve-only candidate (0,946/0,881, bridge 0,065); sampled bone 112,33/74,02, bridge 179,15"
                         }
                     ]
                 }

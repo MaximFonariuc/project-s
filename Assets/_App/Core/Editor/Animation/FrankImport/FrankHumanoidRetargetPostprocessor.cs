@@ -27,9 +27,6 @@ namespace ProjectS.Core.Editor.Animation
         private static readonly Correction[] Corrections =
         {
             new(
-                "Assets/_Game/Animations/Frank/DualSwords/Animations/RootMotion/Frank_RPG_Dual_Jump_02.fbx",
-                "Right Lower Leg Twist In-Out", 0.18333334f),
-            new(
                 "Assets/_Game/Animations/Frank/StealthKills/Animations/RootMotion/Movement/Frank_Stealth_Kill_Sneak_Run_FL.fbx",
                 "Left Foot Twist In-Out", 0.18750001f),
             new(
@@ -45,17 +42,11 @@ namespace ProjectS.Core.Editor.Animation
                 "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo05_2_in_Place.fbx",
                 "Left Lower Leg Stretch", 1.25000012f),
             new(
-                "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/InPlace/Attacks/Frank_RPG_2Hand_Combo05_2_in_Place.fbx",
-                "Left Lower Leg Twist In-Out", 1.25000012f),
-            new(
                 "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo05_2.fbx",
                 "Left Upper Leg Twist In-Out", 1.25000012f),
             new(
                 "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo05_2.fbx",
                 "Left Lower Leg Stretch", 1.25000012f),
-            new(
-                "Assets/_Game/Animations/Frank/TwoHandedAxe/Animations/RootMotion/Attacks/Frank_RPG_2Hand_Combo05_2.fbx",
-                "Left Lower Leg Twist In-Out", 1.25000012f),
             new(
                 "Assets/_Game/Animations/Frank/WhipFemale/Animations/InPlace/Equipment/Frank_Whip_Unequip_Run_Turbo2.fbx",
                 "Left Foot Twist In-Out", 0.125f),
@@ -70,12 +61,42 @@ namespace ProjectS.Core.Editor.Animation
 
         private void OnPostprocessAnimation(GameObject root, AnimationClip clip)
         {
+            if (FrankAnimationImportSettings.IsGeneratedClip(assetPath))
+                NeutralizeInvalidLowerLegTwist(clip);
+
             foreach (var correction in Corrections)
             {
                 if (!string.Equals(assetPath, correction.AssetPath, StringComparison.Ordinal))
                     continue;
 
                 ApplyCorrection(clip, correction);
+            }
+        }
+
+        private static void NeutralizeInvalidLowerLegTwist(AnimationClip clip)
+        {
+            // UE mannequin calf rolls become near-180-degree Humanoid muscle twists after
+            // retargeting, although the authored knee bend and joint trajectory are valid.
+            // A lower leg is a hinge in this source library; axial rotation belongs to the
+            // thigh/foot chains and retaining this generated curve inverts the whole leg.
+            foreach (var binding in AnimationUtility.GetCurveBindings(clip))
+            {
+                if (!string.Equals(
+                        binding.propertyName, "Left Lower Leg Twist In-Out", StringComparison.Ordinal)
+                    && !string.Equals(
+                        binding.propertyName, "Right Lower Leg Twist In-Out", StringComparison.Ordinal))
+                {
+                    continue;
+                }
+
+                var curve = AnimationUtility.GetEditorCurve(clip, binding);
+                if (curve == null)
+                    continue;
+                var keys = curve.keys;
+                for (var index = 0; index < keys.Length; index++)
+                    keys[index].value = 0f;
+                curve.keys = keys;
+                AnimationUtility.SetEditorCurve(clip, binding, curve);
             }
         }
 
