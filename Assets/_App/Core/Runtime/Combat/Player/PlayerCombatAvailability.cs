@@ -10,8 +10,7 @@ namespace _App
         private readonly IPlayerCombatAnimation _animation;
         private readonly ICombatClock _clock;
         private readonly ECharacterType _characterType;
-        private readonly Dictionary<PlayerCombatActionId, float> _lastUseTime =
-            new Dictionary<PlayerCombatActionId, float>();
+        private readonly Dictionary<PlayerCombatCooldownKey, float> _lastUseTime = new();
 
         public bool CanEnterAction =>
             !_reactionState.BlocksActions && _actor.CanAttack;
@@ -38,8 +37,9 @@ namespace _App
             PlayerCombatAction action,
             EWeaponType weaponType)
         {
+            var cooldownKey = new PlayerCombatCooldownKey(weaponType, action?.Id ?? default);
             if (action == null ||
-                (_lastUseTime.TryGetValue(action.Id, out float lastUseTime) &&
+                (_lastUseTime.TryGetValue(cooldownKey, out float lastUseTime) &&
                  _clock.ScaledTime - lastUseTime < action.Definition.Cooldown))
             {
                 return false;
@@ -51,7 +51,7 @@ namespace _App
                 action);
         }
 
-        public void RecordUse(PlayerCombatAction action)
+        public void RecordUse(PlayerCombatAction action, EWeaponType weaponType)
         {
             if (action == null)
             {
@@ -60,7 +60,37 @@ namespace _App
 
             if (action.Definition.Cooldown > 0.0f)
             {
-                _lastUseTime[action.Id] = _clock.ScaledTime;
+                _lastUseTime[new PlayerCombatCooldownKey(weaponType, action.Id)] =
+                    _clock.ScaledTime;
+            }
+        }
+
+        private readonly struct PlayerCombatCooldownKey : IEquatable<PlayerCombatCooldownKey>
+        {
+            private readonly EWeaponType _weaponType;
+            private readonly PlayerCombatActionId _actionId;
+
+            public PlayerCombatCooldownKey(
+                EWeaponType weaponType,
+                PlayerCombatActionId actionId)
+            {
+                _weaponType = weaponType;
+                _actionId = actionId;
+            }
+
+            public bool Equals(PlayerCombatCooldownKey other)
+            {
+                return _weaponType == other._weaponType && _actionId == other._actionId;
+            }
+
+            public override bool Equals(object obj)
+            {
+                return obj is PlayerCombatCooldownKey other && Equals(other);
+            }
+
+            public override int GetHashCode()
+            {
+                return HashCode.Combine((int)_weaponType, _actionId);
             }
         }
     }

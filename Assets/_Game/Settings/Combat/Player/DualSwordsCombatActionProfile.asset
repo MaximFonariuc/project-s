@@ -10,85 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ce29176ed91b19428c604960d3b9fe5, type: 3}
-  m_Name: PlayerCombatActionProfile
+  m_Name: DualSwordsCombatActionProfile
   m_EditorClassIdentifier: 
-  _weaponTransition:
-    _useHitboxWindow: 0
-    _hitboxStart: 0
-    _hitboxEnd: 0.25
-    _useChainWindow: 0
-    _chainStart: 0
-    _chainEnd: 0.25
-    _useCancelWindow: 0
-    _cancelStart: 0
-    _cancelEnd: 0.25
-    _useMovementConstraintWindow: 0
-    _movementConstraintStart: 0
-    _movementConstraintEnd: 0.5
-    _useInvulnerabilityWindow: 0
-    _invulnerabilityStart: 0
-    _invulnerabilityEnd: 0.25
-    _damage: 0
-    _staggerDamage: 0
-    _knockback: 0
-    _verticalKnockback: 0
-    _reactionId: 
-    _hitStopDuration: 0
-    _hitStopTimeScale: 0
-    _durationSeconds: 1
-    _recoveryStart: 0.9
-    _completionTime: 1
-    _hasCommit: 1
-    _commitTime: 0.5
-    _cooldown: 0
-    _translationScale: 1
-    _allowJump: 0
-    _allowDodge: 0
-    _faceMoveDirection: 0
-    _useCombatMotion: 0
-    _combatMotionStart: 0
-    _combatMotionEnd: 0.25
-    _overridePlanarVelocity: 0
-    _combatMotionDistance: 0
-    _verticalMotionMode: 0
-    _combatVerticalVelocity: 0
-    _combatVerticalImpulse: 0
-    _overrideVerticalVelocityOnImpulse: 1
-    _faceCombatTarget: 0
-    _combatMotionTargetSource: 0
-    _targetStoppingDistance: 0.8
-    _allowTargetAssist: 0
-    _targetAssistDistance: 5
-    _targetAssistAngle: 55
-    _trackTargetHeight: 0
-    _targetHeightOffset: 0
-    _targetHeightTolerance: 0.1
-    _targetHeightCorrectionSpeed: 6
-    _maxTargetVerticalSpeed: 8
-  _inputBuffer:
-    _capacity: 4
-    _overflowPolicy: 2
-    _selectionPolicy: 2
-    _defaultRule:
-      _lifetime: 0.35
-      _priority: 0
-      _duplicatePolicy: 0
-    _actionOverrides:
-    - _commandId: attack.heavy
-      _rule:
-        _lifetime: 0.35
-        _priority: 10
-        _duplicatePolicy: 2
-    - _commandId: skill.special
-      _rule:
-        _lifetime: 0.35
-        _priority: 20
-        _duplicatePolicy: 2
-    - _commandId: attack.launcher
-      _rule:
-        _lifetime: 0.45
-        _priority: 15
-        _duplicatePolicy: 2
   _actions:
   - _id: combo.ground.0
     _environment: 1
@@ -637,7 +560,7 @@ MonoBehaviour:
       _staggerDamage: 0
       _knockback: 0
       _verticalKnockback: 0
-      _reactionId:
+      _reactionId: 
       _hitStopDuration: 0
       _hitStopTimeScale: 0
       _durationSeconds: 0.53333336

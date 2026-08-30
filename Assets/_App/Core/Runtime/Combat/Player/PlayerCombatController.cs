@@ -20,6 +20,7 @@ namespace _App
         private readonly IPlayerLocomotionEvents _locomotionEvents;
         private readonly IPlayerCombatAnimation _animation;
         private readonly IPlayerWeaponRig _weaponRig;
+        private readonly PlayerCombatMovesetCatalog _movesets;
         private readonly ICombatHitEvents _outgoingHits;
         private readonly CombatActionExecutor _actionExecutor;
         private readonly PlayerCombatActionPipeline _actionPipeline;
@@ -70,6 +71,7 @@ namespace _App
             IPlayerLocomotionEvents locomotionEvents,
             IPlayerCombatAnimation animation,
             IPlayerWeaponRig weaponRig,
+            PlayerCombatMovesetCatalog movesets,
             ICombatHitEvents outgoingHits,
             CombatActionExecutor actionExecutor,
             PlayerCombatActionPipeline actionPipeline,
@@ -85,6 +87,7 @@ namespace _App
             _locomotionEvents = locomotionEvents ?? throw new ArgumentNullException(nameof(locomotionEvents));
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _weaponRig = weaponRig ?? throw new ArgumentNullException(nameof(weaponRig));
+            _movesets = movesets ?? throw new ArgumentNullException(nameof(movesets));
             _outgoingHits = outgoingHits ?? throw new ArgumentNullException(nameof(outgoingHits));
             _actionExecutor = actionExecutor ?? throw new ArgumentNullException(nameof(actionExecutor));
             _actionPipeline = actionPipeline ??
@@ -215,6 +218,7 @@ namespace _App
         {
             if (!_enabled || !_availability.CanSwitchWeapon ||
                 targetWeapon == EWeaponType.None ||
+                !_movesets.Supports(targetWeapon) ||
                 !_weaponRig.CanEquip(targetWeapon) ||
                 Phase != PlayerCombatPhase.Ready)
             {

@@ -32,25 +32,23 @@ namespace _App
 
         [Header("CombatController")]
         [SerializeField] private EWeaponType _startingWeapon = EWeaponType.DualHand;
-        [SerializeField] private PlayerCombatActionProfile _combatActionProfile;
+        [SerializeField] private PlayerCombatLoadoutProfile _combatLoadoutProfile;
 
         [Header("Combat Reactions")]
         [SerializeField] private CharacterReactionProfile _reactionProfile;
 
         [Header("AnimationController")]
         [SerializeField] private Animator _animator;
-        [SerializeField] private PlayerAnimationOverrideBinding[] _animationOverrides;
         [SerializeField] private PlayerWeaponLoadout _weaponLoadout;
 
         private PlayerActorController _actorController;
 
         internal CharacterFeatureSet CharacterFeatures => _characterFeatures;
         internal Animator PlayerAnimator => _animator;
-        internal PlayerAnimationOverrideBinding[] AnimationOverrides => _animationOverrides;
         internal PlayerWeaponLoadout WeaponLoadout => _weaponLoadout;
         internal ECharacterType CharacterType => _characterType;
         internal EWeaponType StartingWeapon => _startingWeapon;
-        internal PlayerCombatActionProfile CombatActionProfile => _combatActionProfile;
+        internal PlayerCombatLoadoutProfile CombatLoadoutProfile => _combatLoadoutProfile;
         internal CharacterReactionProfile ReactionProfile => _reactionProfile;
         internal CinemachineThirdPersonFollow FollowCameraPrefab => _followCamera;
         internal Transform FollowTarget => _followTarget;
@@ -86,6 +84,14 @@ namespace _App
             {
                 Debug.LogError(
                     $"{nameof(ThirdPersonController)} requires a weapon loadout configured for '{_startingWeapon}'.",
+                    this);
+                valid = false;
+            }
+
+            if (_combatLoadoutProfile == null)
+            {
+                Debug.LogError(
+                    $"{nameof(ThirdPersonController)} requires a combat loadout profile.",
                     this);
                 valid = false;
             }

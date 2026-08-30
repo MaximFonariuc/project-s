@@ -25,9 +25,20 @@ namespace _App
             }
 
             player.CharacterFeatures.ValidateConfiguration();
+            PlayerCombatLoadoutProfile combatLoadout = player.CombatLoadoutProfile ??
+                throw new InvalidOperationException(
+                    $"Player '{player.name}' requires a combat loadout profile.");
+            PlayerCombatMovesetCatalog movesets = combatLoadout.CreateMovesetCatalog();
+            if (!movesets.Supports(player.StartingWeapon))
+            {
+                throw new InvalidOperationException(
+                    $"Player combat loadout does not support starting weapon " +
+                    $"'{player.StartingWeapon}'.");
+            }
 
             builder.RegisterComponent(character);
             builder.RegisterComponent(health);
+            builder.RegisterInstance(movesets);
             builder.Register<PlayerActorAdapter>(Lifetime.Scoped)
                 .As<IPlayerActorTransform>()
                 .As<IPlayerTargetingActor>()
@@ -44,7 +55,7 @@ namespace _App
             builder.Register(
                 _ => new PlayerAnimatorLoadout(
                     player.PlayerAnimator,
-                    player.AnimationOverrides),
+                    movesets),
                 Lifetime.Scoped);
             builder.Register<PlayerAnimationCoordinator>(Lifetime.Scoped);
             builder.Register<PlayerCharacterAnimationPresenter>(Lifetime.Scoped);

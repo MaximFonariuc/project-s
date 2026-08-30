@@ -29,10 +29,6 @@ namespace _App
     [CreateAssetMenu(fileName = "PlayerCombatActionProfile", menuName = "Combat/Player Action Profile")]
     public sealed class PlayerCombatActionProfile : ScriptableObject
     {
-        [SerializeField] private CombatActionAuthoring _weaponTransition =
-            CombatActionAuthoring.CreateDefaultWeaponTransition();
-        [SerializeField] private CombatInputBufferAuthoring _inputBuffer = new();
-
         [Header("Action Graph")]
         [SerializeField] private List<PlayerCombatActionAuthoring> _actions = new();
         [SerializeField] private List<PlayerCombatEntryAuthoring> _entries = new();
@@ -91,27 +87,6 @@ namespace _App
             return new PlayerCombatActionGraph(actions, entries, transitions);
         }
 
-        internal CombatActionDefinition CreateWeaponTransitionDefinition()
-        {
-            if (_weaponTransition == null)
-            {
-                throw new InvalidOperationException($"{name} requires a weapon transition action.");
-            }
-
-            return _weaponTransition.Build();
-        }
-
-        internal CombatInputBufferSettings CreateInputBufferSettings()
-        {
-            if (_inputBuffer == null)
-            {
-                throw new InvalidOperationException(
-                    $"{name} requires combat input buffer settings.");
-            }
-
-            return _inputBuffer.Build();
-        }
-
 #if UNITY_EDITOR
         public IReadOnlyList<PlayerCombatAnimationTimingRequirement>
             CreateAnimationTimingRequirements()
@@ -119,8 +94,6 @@ namespace _App
             // Validate the complete authoring contract before exposing the
             // animation subset to editor tooling.
             CreateActionGraph();
-            CreateWeaponTransitionDefinition();
-            CreateInputBufferSettings();
 
             var requirements = new List<PlayerCombatAnimationTimingRequirement>(
                 _actions?.Count ?? 0);
@@ -150,8 +123,6 @@ namespace _App
             try
             {
                 CreateActionGraph();
-                CreateWeaponTransitionDefinition();
-                CreateInputBufferSettings();
             }
             catch (Exception exception)
             {

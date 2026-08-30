@@ -8,13 +8,27 @@ separate combat boundaries.
 classDiagram
     class PlayerCombatController
     class PlayerCombatActionPipeline
+    class PlayerCombatLoadoutProfile {
+        <<ScriptableObject authoring>>
+        +Shared input buffer settings
+        +Shared weapon transition timeline
+    }
+    class PlayerCombatMovesetAuthoring {
+        +WeaponType
+        +ActionProfile
+        +AnimationOverride
+    }
+    class PlayerCombatMovesetCatalog
+    class PlayerCombatActionProfile
+    class PlayerAnimatorLoadout
+    class AnimatorOverrideController
     class CombatActionSession
     class PlayerWeaponTransitionSession
     class PlayerCombatAvailability {
         +CanEnterAction bool
         +CanSwitchWeapon bool
         +CanUseAction(action, weapon) bool
-        +RecordUse(action)
+        +RecordUse(action, weapon)
     }
     class IPlayerCombatAnimation {
         <<interface>>
@@ -39,6 +53,12 @@ classDiagram
     class Weapon
 
     PlayerCombatController --> PlayerCombatActionPipeline
+    PlayerCombatLoadoutProfile *-- PlayerCombatMovesetAuthoring
+    PlayerCombatMovesetAuthoring --> PlayerCombatActionProfile
+    PlayerCombatMovesetAuthoring --> AnimatorOverrideController
+    PlayerCombatLoadoutProfile ..> PlayerCombatMovesetCatalog : compiles once
+    PlayerCombatActionPipeline --> PlayerCombatMovesetCatalog : graph by equipped weapon
+    PlayerAnimatorLoadout --> PlayerCombatMovesetCatalog : controller by equipped weapon
     PlayerCombatActionPipeline --> IPlayerCombatAnimation
     PlayerCombatActionPipeline --> CombatActionSession
     PlayerCombatController --> PlayerWeaponTransitionSession
@@ -58,6 +78,35 @@ classDiagram
     PlayerWeaponBinding *-- PlayerWeaponAttachment
     PlayerWeaponAttachment o-- Weapon
 ```
+
+`PlayerCombatLoadoutProfile` is the single authoring map between an equipped
+weapon, its immutable action graph and its animation override. The physical
+`PlayerWeaponLoadout` remains scene-owned because it contains character-bone,
+attachment and hitbox references. These are deliberately separate: changing
+combat data never changes hierarchy ownership, while a physical weapon cannot
+silently acquire an unrelated action graph.
+
+- The loadout owns input-buffer policy and the weapon-transition timeline once;
+  individual `PlayerCombatActionProfile` assets now contain only one moveset's
+  actions, entries and transitions.
+- The runtime catalog compiles every moveset during composition and rejects
+  null profiles, duplicate weapon types, `None`, or a missing explicit
+  `Unarmed` moveset before gameplay starts.
+- `PlayerCombatActionPipeline` resolves the graph from the weapon committed at
+  action start and keeps that graph fixed for the entire chain. Weapon
+  switching remains available only from `Ready`, so a combo cannot cross into
+  another weapon's graph.
+- Weapon switching requires both a combat moveset and a complete physical
+  weapon binding before transition playback starts; an incomplete future
+  weapon cannot become the authoritative `CurrentWeapon`.
+- `PlayerAnimatorLoadout` consumes the same catalog. `Unarmed` always uses the
+  base XController; a weapon may provide an override which must share that base
+  controller. Gameplay action ids and Animator state names remain stable.
+- Cooldowns are keyed by `(weapon, action id)`. Two movesets may reuse semantic
+  ids such as `combo.ground.0` without leaking cooldown state into each other.
+- The initial loadout contains separate `UnarmedCombatActionProfile` and
+  `DualSwordsCombatActionProfile` assets. Their graphs intentionally begin as
+  copies, providing an explicit safe split for later weapon-specific tuning.
 
 `PlayerCombatAvailability.RecordUse` is called immediately after the animation
 driver accepts an action. Cooldown therefore belongs to the accepted gameplay

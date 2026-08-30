@@ -4,16 +4,6 @@ using UnityEngine;
 
 namespace _App
 {
-    [Serializable]
-    public sealed class PlayerAnimationOverrideBinding
-    {
-        [SerializeField] private EWeaponType _weaponType = EWeaponType.TwoHanded;
-        [SerializeField] private AnimatorOverrideController _controller;
-
-        internal EWeaponType WeaponType => _weaponType;
-        internal AnimatorOverrideController Controller => _controller;
-    }
-
     /// <summary>
     /// Owns runtime controller selection for the player Animator. Every override
     /// must use the same base XController, so state and parameter contracts stay stable.
@@ -28,7 +18,7 @@ namespace _App
 
         public PlayerAnimatorLoadout(
             Animator animator,
-            PlayerAnimationOverrideBinding[] bindings)
+            PlayerCombatMovesetCatalog movesets)
         {
             _animator = animator != null
                 ? animator
@@ -36,7 +26,8 @@ namespace _App
             _baseController = ResolveBaseController(_animator.runtimeAnimatorController) ??
                 throw new InvalidOperationException(
                     $"Animator '{_animator.name}' requires a base Animator Controller.");
-            _overrides = BuildOverrides(bindings);
+            _overrides = BuildOverrides(
+                movesets ?? throw new ArgumentNullException(nameof(movesets)));
         }
 
         public void Apply(EWeaponType weaponType)
@@ -86,51 +77,36 @@ namespace _App
         }
 
         private Dictionary<EWeaponType, AnimatorOverrideController> BuildOverrides(
-            PlayerAnimationOverrideBinding[] bindings)
+            PlayerCombatMovesetCatalog movesets)
         {
             var result = new Dictionary<EWeaponType, AnimatorOverrideController>();
-            if (bindings == null)
+            IReadOnlyList<PlayerCombatMoveset> entries = movesets.All;
+            for (int i = 0; i < entries.Count; i++)
             {
-                return result;
-            }
-
-            for (int i = 0; i < bindings.Length; i++)
-            {
-                PlayerAnimationOverrideBinding binding = bindings[i];
-                if (binding == null)
+                PlayerCombatMoveset moveset = entries[i];
+                if (moveset.WeaponType == EWeaponType.Unarmed)
                 {
-                    throw new InvalidOperationException(
-                        $"Player animation override entry {i} is null.");
+                    continue;
                 }
 
-                if (binding.WeaponType is EWeaponType.None or EWeaponType.Unarmed)
+                if (moveset.AnimationOverride == null)
                 {
-                    throw new InvalidOperationException(
-                        $"Weapon '{binding.WeaponType}' uses the base controller and " +
-                        "must not have an override entry.");
-                }
-
-                if (binding.Controller == null)
-                {
-                    // The list is optional authoring data. A removed override may
-                    // leave an empty serialized slot behind; unsupported weapons
-                    // still fail explicitly if Apply is called for them.
                     continue;
                 }
 
                 RuntimeAnimatorController bindingBase = ResolveBaseController(
-                    binding.Controller.runtimeAnimatorController);
+                    moveset.AnimationOverride.runtimeAnimatorController);
                 if (bindingBase != _baseController)
                 {
                     throw new InvalidOperationException(
-                        $"Animator override '{binding.Controller.name}' must use base controller " +
+                        $"Animator override '{moveset.AnimationOverride.name}' must use base controller " +
                         $"'{_baseController.name}'.");
                 }
 
-                if (!result.TryAdd(binding.WeaponType, binding.Controller))
+                if (!result.TryAdd(moveset.WeaponType, moveset.AnimationOverride))
                 {
                     throw new InvalidOperationException(
-                        $"Player has multiple animation overrides for weapon '{binding.WeaponType}'.");
+                        $"Player has multiple animation overrides for weapon '{moveset.WeaponType}'.");
                 }
             }
 

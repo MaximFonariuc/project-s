@@ -16,8 +16,8 @@ namespace _App.Editor.Animation
             "Assets/_Game/Prefabs/Character/Player.prefab";
         private const string TrainingTargetPrefabPath =
             "Assets/_Game/Prefabs/Enemies/CombatTrainingTarget.prefab";
-        private const string CombatActionProfilePath =
-            "Assets/_Game/Settings/Combat/Player/PlayerCombatActionProfile.asset";
+        private const string CombatLoadoutProfilePath =
+            "Assets/_Game/Settings/Combat/Player/PlayerCombatLoadoutProfile.asset";
         private const string CharacterReactionProfilePath =
             "Assets/_Game/Settings/Combat/Player/PlayerCharacterReactionProfile.asset";
         private const string BodyLookMaskPath =
@@ -666,51 +666,84 @@ namespace _App.Editor.Animation
             IReadOnlyDictionary<string, AnimatorState> states,
             ValidationResult result)
         {
-            PlayerCombatActionProfile profile =
-                AssetDatabase.LoadAssetAtPath<PlayerCombatActionProfile>(
-                    CombatActionProfilePath);
-            if (profile == null)
-            {
-                result.Error($"Missing combat action profile: {CombatActionProfilePath}");
-                return;
-            }
-
-            IReadOnlyList<PlayerCombatAnimationTimingRequirement> requirements;
-            try
-            {
-                requirements = profile.CreateAnimationTimingRequirements();
-            }
-            catch (Exception exception)
+            PlayerCombatLoadoutProfile loadout =
+                AssetDatabase.LoadAssetAtPath<PlayerCombatLoadoutProfile>(
+                    CombatLoadoutProfilePath);
+            if (loadout == null)
             {
                 result.Error(
-                    $"Combat action profile cannot build its graph: {exception.Message}");
+                    $"Missing combat loadout profile: {CombatLoadoutProfilePath}");
                 return;
             }
 
             var expectedCompletions = new Dictionary<string, float>(
                 StringComparer.Ordinal);
-            for (int i = 0; i < requirements.Count; i++)
+            var completionOwners = new Dictionary<string, EWeaponType>(
+                StringComparer.Ordinal);
+            var serializedLoadout = new SerializedObject(loadout);
+            SerializedProperty movesets = serializedLoadout.FindProperty("_movesets");
+            if (movesets == null || movesets.arraySize == 0)
             {
-                PlayerCombatAnimationTimingRequirement requirement = requirements[i];
-                if (!TryResolveCombatStatePath(in requirement, out string statePath))
+                result.Error(
+                    $"Combat loadout '{CombatLoadoutProfilePath}' has no movesets.");
+                return;
+            }
+
+            for (int movesetIndex = 0; movesetIndex < movesets.arraySize; movesetIndex++)
+            {
+                SerializedProperty moveset = movesets.GetArrayElementAtIndex(movesetIndex);
+                EWeaponType weaponType = (EWeaponType)moveset
+                    .FindPropertyRelative("_weaponType").intValue;
+                var profile = moveset.FindPropertyRelative("_actionProfile")
+                    .objectReferenceValue as PlayerCombatActionProfile;
+                if (profile == null)
                 {
                     result.Error(
-                        $"Combat action '{requirement.ActionId.Value}' has no " +
-                        "presentation state in the XController contract.");
+                        $"Combat moveset '{weaponType}' has no action profile.");
                     continue;
                 }
 
-                float completion = requirement.CompletionTime;
-                if (expectedCompletions.TryGetValue(statePath, out float existing) &&
-                    !Mathf.Approximately(existing, completion))
+                IReadOnlyList<PlayerCombatAnimationTimingRequirement> requirements;
+                try
+                {
+                    requirements = profile.CreateAnimationTimingRequirements();
+                }
+                catch (Exception exception)
                 {
                     result.Error(
-                        $"Combat actions mapped to '{statePath}' disagree on completion " +
-                        $"({existing:F3} versus {completion:F3}).");
+                        $"Combat moveset '{weaponType}' cannot build its graph: " +
+                        exception.Message);
                     continue;
                 }
 
-                expectedCompletions[statePath] = completion;
+                for (int i = 0; i < requirements.Count; i++)
+                {
+                    PlayerCombatAnimationTimingRequirement requirement = requirements[i];
+                    if (!TryResolveCombatStatePath(in requirement, out string statePath))
+                    {
+                        result.Error(
+                            $"Combat action '{requirement.ActionId.Value}' in moveset " +
+                            $"'{weaponType}' has no presentation state in the " +
+                            "XController contract.");
+                        continue;
+                    }
+
+                    float completion = requirement.CompletionTime;
+                    if (expectedCompletions.TryGetValue(
+                            statePath,
+                            out float existing) &&
+                        !Mathf.Approximately(existing, completion))
+                    {
+                        result.Error(
+                            $"Combat movesets '{completionOwners[statePath]}' and " +
+                            $"'{weaponType}' map to '{statePath}' with different " +
+                            $"completion times ({existing:F3} versus {completion:F3}).");
+                        continue;
+                    }
+
+                    expectedCompletions[statePath] = completion;
+                    completionOwners[statePath] = weaponType;
+                }
             }
 
             foreach (KeyValuePair<string, float> expected in expectedCompletions)
@@ -1061,96 +1094,31 @@ namespace _App.Editor.Animation
                 prefabPath,
                 serializedPlayer,
                 result);
-            PlayerCombatActionProfile combatProfile = ValidatePlayerCombatProfile(
+            PlayerCombatLoadoutProfile combatLoadout = ValidatePlayerCombatLoadout(
                 serializedPlayer,
                 prefabPath,
                 result);
+            PlayerCombatActionProfile baseCombatProfile = FindMovesetActionProfile(
+                combatLoadout,
+                EWeaponType.Unarmed);
             DodgeSettings dodgeSettings = ResolvePlayerDodgeSettings(
                 serializedPlayer,
                 prefabPath,
                 result);
             ValidateBaseActionSynchronization(
                 baseController,
-                combatProfile,
+                baseCombatProfile,
                 dodgeSettings,
                 result);
             HashSet<EWeaponType> physicalWeaponTypes =
                 ValidatePlayerWeaponLoadout(serializedPlayer, prefabPath, result);
-            SerializedProperty bindings =
-                serializedPlayer.FindProperty("_animationOverrides");
-            if (bindings == null)
-            {
-                result.Error(
-                    $"Prefab '{prefabPath}' is missing animation override bindings.");
-                return;
-            }
-
-            var weaponTypes = new HashSet<int>();
-            for (int i = 0; i < bindings.arraySize; i++)
-            {
-                SerializedProperty binding = bindings.GetArrayElementAtIndex(i);
-                SerializedProperty weaponType =
-                    binding.FindPropertyRelative("_weaponType");
-                SerializedProperty controller =
-                    binding.FindPropertyRelative("_controller");
-                if (controller.objectReferenceValue == null)
-                {
-                    result.Error(
-                        $"Player animation override entry {i} has a missing controller.");
-                    continue;
-                }
-
-                if (!weaponTypes.Add(weaponType.enumValueIndex))
-                {
-                    result.Error(
-                        $"Player has duplicate animation override weapon " +
-                        $"'{weaponType.enumDisplayNames[weaponType.enumValueIndex]}'.");
-                }
-
-                EWeaponType overrideWeaponType =
-                    (EWeaponType)weaponType.intValue;
-                if (overrideWeaponType is EWeaponType.None or EWeaponType.Unarmed)
-                {
-                    result.Error(
-                        $"Player animation override entry {i} uses reserved " +
-                        $"weapon type '{overrideWeaponType}'.");
-                }
-                else if (!physicalWeaponTypes.Contains(overrideWeaponType))
-                {
-                    result.Error(
-                        $"Player animation override '{overrideWeaponType}' has no " +
-                        "matching physical weapon binding with hitboxes.");
-                }
-
-                var animationOverride =
-                    controller.objectReferenceValue as AnimatorOverrideController;
-                if (animationOverride == null ||
-                    ResolveBaseController(animationOverride) != baseController)
-                {
-                    result.Error(
-                        $"Player override entry {i} does not use " +
-                        $"'{baseController.name}' as its base.");
-                    continue;
-                }
-
-                if (dodgeSettings != null)
-                {
-                    ValidateDodgeClipDurations(
-                        animationOverride,
-                        baseController,
-                        dodgeSettings.Duration,
-                        result);
-                }
-
-                if (combatProfile != null)
-                {
-                    ValidateCombatClipDurations(
-                        animationOverride,
-                        baseController,
-                        combatProfile,
-                        result);
-                }
-            }
+            ValidatePlayerCombatMovesets(
+                serializedPlayer,
+                combatLoadout,
+                physicalWeaponTypes,
+                baseController,
+                dodgeSettings,
+                result);
         }
 
         private static void ValidatePlayerPresentationReferences(
@@ -1202,6 +1170,140 @@ namespace _App.Editor.Animation
             {
                 result.Error(
                     $"Player prefab '{prefabPath}' has no Cinemachine follow rig.");
+            }
+        }
+
+        private static void ValidatePlayerCombatMovesets(
+            SerializedObject serializedPlayer,
+            PlayerCombatLoadoutProfile combatLoadout,
+            HashSet<EWeaponType> physicalWeaponTypes,
+            AnimatorController baseController,
+            DodgeSettings dodgeSettings,
+            ValidationResult result)
+        {
+            if (combatLoadout == null)
+            {
+                return;
+            }
+
+            var serializedLoadout = new SerializedObject(combatLoadout);
+            SerializedProperty movesets = serializedLoadout.FindProperty("_movesets");
+            if (movesets == null || movesets.arraySize == 0)
+            {
+                result.Error(
+                    $"Combat loadout '{combatLoadout.name}' has no weapon movesets.");
+                return;
+            }
+
+            var authoredWeapons = new HashSet<EWeaponType>();
+            for (int i = 0; i < movesets.arraySize; i++)
+            {
+                SerializedProperty moveset = movesets.GetArrayElementAtIndex(i);
+                SerializedProperty weaponProperty =
+                    moveset.FindPropertyRelative("_weaponType");
+                EWeaponType weaponType = weaponProperty != null
+                    ? (EWeaponType)weaponProperty.intValue
+                    : EWeaponType.None;
+                var actionProfile = moveset.FindPropertyRelative("_actionProfile")
+                    ?.objectReferenceValue as PlayerCombatActionProfile;
+                var animationOverride = moveset.FindPropertyRelative("_animationOverride")
+                    ?.objectReferenceValue as AnimatorOverrideController;
+                string context = $"Player combat moveset {i} ('{weaponType}')";
+
+                if (weaponType == EWeaponType.None)
+                {
+                    result.Error($"{context} uses the reserved None weapon type.");
+                    continue;
+                }
+
+                if (!authoredWeapons.Add(weaponType))
+                {
+                    result.Error($"Player has duplicate combat moveset '{weaponType}'.");
+                }
+
+                if (actionProfile == null)
+                {
+                    result.Error($"{context} has no action profile.");
+                    continue;
+                }
+
+                try
+                {
+                    actionProfile.CreateAnimationTimingRequirements();
+                }
+                catch (Exception exception)
+                {
+                    result.Error(
+                        $"{context} action profile is invalid: {exception.Message}");
+                    continue;
+                }
+
+                if (weaponType == EWeaponType.Unarmed)
+                {
+                    if (animationOverride != null)
+                    {
+                        result.Error(
+                            $"{context} must use the base Animator Controller.");
+                    }
+
+                    continue;
+                }
+
+                if (!physicalWeaponTypes.Contains(weaponType))
+                {
+                    result.Error(
+                        $"{context} has no matching physical weapon binding with hitboxes.");
+                }
+
+                if (animationOverride == null)
+                {
+                    ValidateBaseActionSynchronization(
+                        baseController,
+                        actionProfile,
+                        null,
+                        result);
+                    continue;
+                }
+
+                if (ResolveBaseController(animationOverride) != baseController)
+                {
+                    result.Error(
+                        $"{context} override '{animationOverride.name}' does not use " +
+                        $"'{baseController.name}' as its base.");
+                    continue;
+                }
+
+                if (dodgeSettings != null)
+                {
+                    ValidateDodgeClipDurations(
+                        animationOverride,
+                        baseController,
+                        dodgeSettings.Duration,
+                        result);
+                }
+
+                ValidateCombatClipDurations(
+                    animationOverride,
+                    baseController,
+                    actionProfile,
+                    result);
+            }
+
+            if (!authoredWeapons.Contains(EWeaponType.Unarmed))
+            {
+                result.Error(
+                    $"Combat loadout '{combatLoadout.name}' requires an Unarmed moveset.");
+            }
+
+            SerializedProperty startingWeaponProperty =
+                serializedPlayer.FindProperty("_startingWeapon");
+            EWeaponType startingWeapon = startingWeaponProperty != null
+                ? (EWeaponType)startingWeaponProperty.intValue
+                : EWeaponType.None;
+            if (!authoredWeapons.Contains(startingWeapon))
+            {
+                result.Error(
+                    $"Player starting weapon '{startingWeapon}' has no combat moveset.");
             }
         }
 
@@ -1838,38 +1940,68 @@ namespace _App.Editor.Animation
             }
         }
 
-        private static PlayerCombatActionProfile ValidatePlayerCombatProfile(
+        private static PlayerCombatLoadoutProfile ValidatePlayerCombatLoadout(
             SerializedObject serializedPlayer,
             string prefabPath,
             ValidationResult result)
         {
             SerializedProperty property =
-                serializedPlayer.FindProperty("_combatActionProfile");
+                serializedPlayer.FindProperty("_combatLoadoutProfile");
             if (property == null || property.objectReferenceValue == null)
             {
                 result.Error(
-                    $"Player prefab '{prefabPath}' requires a combat action profile.");
+                    $"Player prefab '{prefabPath}' requires a combat loadout profile.");
                 return null;
             }
 
-            PlayerCombatActionProfile expected =
-                AssetDatabase.LoadAssetAtPath<PlayerCombatActionProfile>(
-                    CombatActionProfilePath);
+            PlayerCombatLoadoutProfile expected =
+                AssetDatabase.LoadAssetAtPath<PlayerCombatLoadoutProfile>(
+                    CombatLoadoutProfilePath);
             if (expected == null)
             {
-                result.Error($"Missing combat action profile: {CombatActionProfilePath}");
+                result.Error($"Missing combat loadout profile: {CombatLoadoutProfilePath}");
                 return null;
             }
 
             if (property.objectReferenceValue != expected)
             {
                 result.Error(
-                    $"Player prefab '{prefabPath}' uses combat profile " +
-                    $"'{property.objectReferenceValue.name}', but animation timing " +
-                    $"validation uses '{CombatActionProfilePath}'.");
+                    $"Player prefab '{prefabPath}' uses combat loadout " +
+                    $"'{property.objectReferenceValue.name}', but validation uses " +
+                    $"'{CombatLoadoutProfilePath}'.");
             }
 
             return expected;
+        }
+
+        private static PlayerCombatActionProfile FindMovesetActionProfile(
+            PlayerCombatLoadoutProfile loadout,
+            EWeaponType weaponType)
+        {
+            if (loadout == null)
+            {
+                return null;
+            }
+
+            var serializedLoadout = new SerializedObject(loadout);
+            SerializedProperty movesets = serializedLoadout.FindProperty("_movesets");
+            if (movesets == null)
+            {
+                return null;
+            }
+
+            for (int i = 0; i < movesets.arraySize; i++)
+            {
+                SerializedProperty moveset = movesets.GetArrayElementAtIndex(i);
+                SerializedProperty weapon = moveset.FindPropertyRelative("_weaponType");
+                if (weapon != null && (EWeaponType)weapon.intValue == weaponType)
+                {
+                    return moveset.FindPropertyRelative("_actionProfile")
+                        ?.objectReferenceValue as PlayerCombatActionProfile;
+                }
+            }
+
+            return null;
         }
 
         private static RuntimeAnimatorController ResolveBaseController(

@@ -15,7 +15,7 @@ namespace _App
         private readonly CombatInputBuffer _inputBuffer;
         private readonly CombatActionExecutor _actionExecutor;
         private readonly CombatActionSession _actionSession;
-        private readonly PlayerCombatActionGraph _actionGraph;
+        private readonly PlayerCombatMovesetCatalog _movesets;
         private readonly IStateMachine<PlayerCombatPhase> _stateMachine;
         private readonly ECharacterType _characterType;
         private readonly InputBufferEntryPredicate<PlayerCombatCommandSample>
@@ -24,6 +24,7 @@ namespace _App
             _bufferedEntryPredicate;
         private readonly CombatActionFrameHandler _combatFrameHandler;
         private PlayerCombatAction _acceptedBufferedAction;
+        private PlayerCombatActionGraph _activeActionGraph;
         private EWeaponType _activeWeapon;
 
         public event Action<int?> ActiveComboIndexChanged;
@@ -39,7 +40,7 @@ namespace _App
             CombatInputBuffer inputBuffer,
             CombatActionExecutor actionExecutor,
             CombatActionSession actionSession,
-            PlayerCombatActionGraph actionGraph,
+            PlayerCombatMovesetCatalog movesets,
             IStateMachine<PlayerCombatPhase> stateMachine,
             ECharacterType characterType)
         {
@@ -52,7 +53,7 @@ namespace _App
                 throw new ArgumentNullException(nameof(actionExecutor));
             _actionSession = actionSession ??
                 throw new ArgumentNullException(nameof(actionSession));
-            _actionGraph = actionGraph ?? throw new ArgumentNullException(nameof(actionGraph));
+            _movesets = movesets ?? throw new ArgumentNullException(nameof(movesets));
             _stateMachine = stateMachine ??
                 throw new ArgumentNullException(nameof(stateMachine));
             _characterType = characterType;
@@ -98,7 +99,8 @@ namespace _App
             }
 
             return phase == PlayerCombatPhase.Ready &&
-                   _actionGraph.TryResolveEntry(
+                   _movesets.TryGet(weapon, out PlayerCombatMoveset moveset) &&
+                   moveset.ActionGraph.TryResolveEntry(
                        request.CommandId,
                        GetEnvironment(),
                        out initialAction) &&
@@ -110,7 +112,9 @@ namespace _App
             EWeaponType weapon,
             CancellationToken cancellationToken)
         {
+            PlayerCombatActionGraph actionGraph = _movesets.Require(weapon).ActionGraph;
             _activeWeapon = weapon;
+            _activeActionGraph = actionGraph;
             try
             {
                 PlayerCombatAction action = initialAction;
@@ -129,7 +133,7 @@ namespace _App
                     // The action is committed once its presentation has started.
                     // Recording cooldown after the session would let dodge, jump,
                     // reaction or disable interruptions bypass the action cost.
-                    _availability.RecordUse(action);
+                    _availability.RecordUse(action, weapon);
                     _acceptedBufferedAction = null;
                     EnterExecuting(action);
                     SetActiveComboIndex(
@@ -170,6 +174,7 @@ namespace _App
             finally
             {
                 _acceptedBufferedAction = null;
+                _activeActionGraph = null;
                 _activeWeapon = EWeaponType.None;
             }
         }
@@ -183,6 +188,7 @@ namespace _App
         {
             _inputBuffer.Clear();
             _acceptedBufferedAction = null;
+            _activeActionGraph = null;
             _activeWeapon = EWeaponType.None;
             SetActiveComboIndex(null);
         }
@@ -221,7 +227,7 @@ namespace _App
             if (!_inputBuffer.TryConsume(
                     _bufferedTransitionPredicate,
                     out PlayerCombatCommandSample command) ||
-                !_actionGraph.TryResolveTransition(
+                !ActiveActionGraph.TryResolveTransition(
                     _actionSession.Action,
                     in command,
                     GetEnvironment(),
@@ -248,7 +254,7 @@ namespace _App
             PlayerCombatCommandSample command = entry.Action;
             CombatActionFrame currentFrame = _actionSession.CurrentFrame;
             return _availability.CanEnterAction &&
-                   _actionGraph.TryResolveTransition(
+                   ActiveActionGraph.TryResolveTransition(
                        _actionSession.Action,
                        in command,
                        GetEnvironment(),
@@ -262,7 +268,7 @@ namespace _App
             in InputBufferEntry<PlayerCombatCommandSample> entry)
         {
             return _availability.CanEnterAction &&
-                   _actionGraph.TryResolveEntry(
+                   ActiveActionGraph.TryResolveEntry(
                        entry.Action.CommandId,
                        GetEnvironment(),
                        out PlayerCombatAction target) &&
@@ -275,7 +281,7 @@ namespace _App
                 _inputBuffer.TryConsume(
                     _bufferedEntryPredicate,
                     out PlayerCombatCommandSample command) &&
-                _actionGraph.TryResolveEntry(
+                ActiveActionGraph.TryResolveEntry(
                     command.CommandId,
                     GetEnvironment(),
                     out action) &&
@@ -362,6 +368,10 @@ namespace _App
 
         private PlayerCombatPhase Phase =>
             _stateMachine.CurrentStateId ?? PlayerCombatPhase.Ready;
+
+        private PlayerCombatActionGraph ActiveActionGraph =>
+            _activeActionGraph ?? throw new InvalidOperationException(
+                "Combat action graph is not active.");
 
         private void EnterExecuting(PlayerCombatAction action)
         {

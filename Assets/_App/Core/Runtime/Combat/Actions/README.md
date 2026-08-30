@@ -6,7 +6,12 @@ Combat timing is independent from animation presentation.
 classDiagram
     class PlayerCombatActionProfile {
         <<ScriptableObject authoring>>
+        +Actions
+        +Entries
+        +Transitions
     }
+    class PlayerCombatLoadoutProfile
+    class PlayerCombatMovesetCatalog
     class PlayerCombatActionGraph
     class CombatActionDefinition {
         +DurationSeconds
@@ -33,6 +38,8 @@ classDiagram
     class IPlayerCombatTargetingQuery
     class CharacterMotor
 
+    PlayerCombatLoadoutProfile --> PlayerCombatMovesetCatalog
+    PlayerCombatMovesetCatalog --> PlayerCombatActionProfile
     PlayerCombatActionProfile --> PlayerCombatActionGraph
     PlayerCombatActionGraph --> CombatActionDefinition
     CombatActionExecutor --> CombatActionDefinition
@@ -69,6 +76,9 @@ classDiagram
 - `PlayerCombatActionProfile.OnValidate` builds the complete immutable graph in
   the Editor, so duplicate ids, invalid transitions, timelines and impact data
   fail at authoring time instead of first appearing during gameplay composition.
+- An action profile is weapon-specific and owns no runtime state, input-buffer
+  policy or draw/sheathe timing. `PlayerCombatLoadoutProfile` owns those shared
+  policies and maps each weapon to its profile and optional Animator override.
 - Standard `hit.launcher` and `hit.slam` ids validate the sign of vertical
   knockback. Custom reaction ids remain open and are classified by the target
   reaction system at runtime.

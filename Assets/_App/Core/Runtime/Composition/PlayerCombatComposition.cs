@@ -10,13 +10,13 @@ namespace _App
             this IContainerBuilder builder,
             ThirdPersonController player)
         {
-            PlayerCombatActionProfile actionProfile = player.CombatActionProfile ??
+            PlayerCombatLoadoutProfile combatLoadout = player.CombatLoadoutProfile ??
                 throw new InvalidOperationException(
-                    $"Player '{player.name}' requires a combat action profile.");
+                    $"Player '{player.name}' requires a combat loadout profile.");
             CombatInputBufferSettings inputBufferSettings =
-                actionProfile.CreateInputBufferSettings();
+                combatLoadout.CreateInputBufferSettings();
             var weaponTransitionAction = new PlayerWeaponTransitionAction(
-                actionProfile.CreateWeaponTransitionDefinition());
+                combatLoadout.CreateWeaponTransitionDefinition());
 
             builder.Register<ICombatClock, UnityCombatClock>(Lifetime.Scoped);
             builder.RegisterInstance(inputBufferSettings);
@@ -40,9 +40,6 @@ namespace _App
                     resolver.Resolve<IPlayerCombatAnimation>(),
                     resolver.Resolve<ICombatClock>(),
                     player.CharacterType),
-                Lifetime.Scoped);
-            builder.Register(
-                _ => actionProfile.CreateActionGraph(),
                 Lifetime.Scoped);
             builder.Register<IPlayerWeaponRig>(
                 resolver => new PlayerWeaponRig(
@@ -84,7 +81,7 @@ namespace _App
                     resolver.Resolve<CombatInputBuffer>(),
                     resolver.Resolve<CombatActionExecutor>(),
                     resolver.Resolve<CombatActionSession>(),
-                    resolver.Resolve<PlayerCombatActionGraph>(),
+                    resolver.Resolve<PlayerCombatMovesetCatalog>(),
                     resolver.Resolve<ModularStateMachine.IStateMachine<PlayerCombatPhase>>(),
                     player.CharacterType),
                 Lifetime.Scoped);
@@ -97,6 +94,7 @@ namespace _App
                         resolver.Resolve<IPlayerLocomotionEvents>(),
                         resolver.Resolve<IPlayerCombatAnimation>(),
                         resolver.Resolve<IPlayerWeaponRig>(),
+                        resolver.Resolve<PlayerCombatMovesetCatalog>(),
                         resolver.Resolve<ICombatHitEvents>(),
                         resolver.Resolve<CombatActionExecutor>(),
                         resolver.Resolve<PlayerCombatActionPipeline>(),
