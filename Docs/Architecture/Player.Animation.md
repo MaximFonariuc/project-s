@@ -318,10 +318,9 @@ the current attack only after gameplay accepts its buffered command inside the
 configured chain/cancel window.
 
 `AirAttack1...3` use standalone Humanoid `.anim` derivatives created from the
-Frank dual-sword zero-height source. The complete runtime library mirrors every
-Generic source below `Frank/Humanoid`; its conversion and validation contract is
-documented in `Docs/Animation/FrankHumanoidPipeline.md`. XController and its
-weapon overrides avoid direct Frank FBX references. This keeps the source catalog replaceable, gives the
+Frank dual-sword zero-height source. The Frank catalog and all derived slots use
+the shared Humanoid contract, while XController still avoids direct FBX
+references. This keeps the source catalog replaceable, gives the
 base controller stable universal slot names and lets a future weapon override
 replace only these motions. Their exits (`0.76 / 0.76 / 0.82` plus a `0.20 s`
 fixed blend) align with the authored gameplay completion times.
