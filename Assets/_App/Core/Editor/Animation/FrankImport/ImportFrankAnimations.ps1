@@ -13,7 +13,7 @@ if ([string]::IsNullOrWhiteSpace($ProjectRoot)) {
 }
 
 $ProjectRoot = (Resolve-Path -LiteralPath $ProjectRoot).Path
-$referenceRoot = Join-Path $ProjectRoot 'Reference/Frank'
+$referenceRoot = Join-Path $ProjectRoot 'Reference/FrankAnim'
 $assetRoot = Join-Path $ProjectRoot 'Assets/_Game/Animations/Frank'
 $workingRoot = Join-Path $ProjectRoot 'Library/ProjectSAnimationImport'
 $toolRoot = Join-Path $workingRoot 'Tools'
@@ -21,11 +21,10 @@ $extractRoot = Join-Path $workingRoot 'Extracted'
 $logRoot = Join-Path $workingRoot 'Logs'
 $manifestPath = Join-Path $workingRoot 'frank-blender-manifest.json'
 $conversionReportPath = Join-Path $workingRoot 'frank-conversion-report.json'
-$sourceKeyAuditReportPath = Join-Path $assetRoot 'FrankSourceKeyAuditReport.json'
+$sourceIntegrityReportPath = Join-Path $assetRoot 'FrankSourceKeyAuditReport.json'
 $converterPath = Join-Path $ProjectRoot 'Assets/_App/Core/Editor/Animation/FrankImport/convert_psa_to_fbx.py'
-$rigPath = Join-Path $assetRoot 'DualSwords/Rig/FrankDualRig.fbx'
 
-foreach ($requiredPath in @($referenceRoot, $assetRoot, $converterPath, $rigPath, $BlenderPath)) {
+foreach ($requiredPath in @($referenceRoot, $assetRoot, $converterPath, $BlenderPath)) {
     if (-not (Test-Path -LiteralPath $requiredPath)) {
         throw "Required Frank import path does not exist: $requiredPath"
     }
@@ -142,7 +141,7 @@ foreach ($sourceSet in $sourceSets) {
         $safeName = ($sourceDirectory -replace '[^A-Za-z0-9_-]', '_')
         $logPath = Join-Path $logRoot "umodel-$safeName.log"
         $arguments = @(
-            '-game=ue4.21',
+            '-game=ue4.23',
             "-path=$referenceRoot",
             '-export',
             "-out=$extractRoot",
@@ -237,8 +236,8 @@ if ($jobs.Count -eq 0) {
 }
 
 $manifest = [ordered]@{
-    rigFbx = $rigPath.Replace('\', '/')
-    rigOutput = (Join-Path $assetRoot 'Rig/FrankHumanoidAnimationRig.fbx').Replace('\', '/')
+    rigOutputRoot = (Join-Path $assetRoot 'Rig/Source').Replace('\', '/')
+    rigAssetRoot = 'Assets/_Game/Animations/Frank/Rig/Source'
     addonRoot = $addonRepositoryRoot.FullName.Replace('\', '/')
     pythonRoot = $addonPythonRoot.Replace('\', '/')
     report = $conversionReportPath.Replace('\', '/')
@@ -315,31 +314,18 @@ if ($failed.Count -gt 0) {
     throw "$($failed.Count) Frank animations failed conversion. See $conversionReportPath."
 }
 
-$correctedSourceClips = @($conversionReport | Where-Object sourceKeyCorrectionCount -gt 0 | ForEach-Object {
-    [ordered]@{
-        assetPath = $_.assetPath
-        sourceAsset = $_.sourceAsset
-        correctionCount = $_.sourceKeyCorrectionCount
-        corrections = $_.sourceKeyCorrections
-        quaternionSignCorrectionCount = $_.quaternionSignCorrectionCount
-    }
-})
-$sourceKeyAudit = [ordered]@{
-    schemaVersion = 2
+$sourceIntegrityAudit = [ordered]@{
+    schemaVersion = 3
     scannedClipCount = $conversionReport.Count
-    correctedClipCount = $correctedSourceClips.Count
-    correctionCount = ($conversionReport | Measure-Object -Property sourceKeyCorrectionCount -Sum).Sum
-    quaternionSignCorrectedClipCount = @($conversionReport | Where-Object quaternionSignCorrectionCount -gt 0).Count
-    quaternionSignCorrectionCount = ($conversionReport | Measure-Object -Property quaternionSignCorrectionCount -Sum).Sum
-    detection = [ordered]@{
-        minimumIncomingAndOutgoingAngleDegrees = 35
-        maximumNeighborBridgeAngleDegrees = 20
-        policy = 'Only isolated one-frame Humanoid body rotation outliers and confirmed corrupt body frames are repaired by neighbor quaternion slerp. Ambiguous multi-bone motion is preserved.'
-        quaternionInterpolationPolicy = 'Equivalent q/-q keys are placed on one hemisphere per bone track before Blender writes linear quaternion F-curves.'
-    }
-    clips = $correctedSourceClips
+    skeletonCount = @($conversionReport.skeletonFingerprint | Sort-Object -Unique).Count
+    sourceTransformMutationCount = ($conversionReport | Measure-Object -Property sourceTransformMutationCount -Sum).Sum
+    maximumBindPoseRotationErrorDegrees = ($conversionReport | Measure-Object -Property bindPoseMaxRotationErrorDegrees -Maximum).Maximum
+    maximumBindPoseLocationError = ($conversionReport | Measure-Object -Property bindPoseMaxLocationError -Maximum).Maximum
+    quaternionHemisphereFlipCount = ($conversionReport | Measure-Object -Property quaternionHemisphereFlipCount -Sum).Sum
+    sourceEngine = 'Unreal Engine 4.23'
+    policy = 'Every clip is rebuilt on its own embedded source bind pose. Authored transforms are never clamped, smoothed, interpolated or repaired. Only equivalent q/-q quaternion notation may be normalized.'
 }
-$sourceKeyAudit | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $sourceKeyAuditReportPath -Encoding utf8
+$sourceIntegrityAudit | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $sourceIntegrityReportPath -Encoding utf8
 
 foreach ($pack in $sourceSets.Pack) {
     $packItems = @($conversionReport | Where-Object pack -eq $pack | ForEach-Object {
@@ -350,21 +336,29 @@ foreach ($pack in $sourceSets.Pack) {
             sourceGroup = $_.sourceGroup
             motion = $_.motion
             category = $_.category
+            sourceFrames = $_.sourceFrames
             frames = $_.frames
             fps = $_.fps
+            sourceFps = $_.sourceFps
+            durationSeconds = $_.durationSeconds
+            resampledToTargetFps = $_.resampledToTargetFps
             sourceBones = $_.sourceBones
+            bodyBones = $_.bodyBones
             mappedBones = $_.mappedBones
+            skeletonFingerprint = $_.skeletonFingerprint
+            rigAssetPath = $_.rigAssetPath
+            bindPoseMaxRotationErrorDegrees = $_.bindPoseMaxRotationErrorDegrees
+            bindPoseMaxLocationError = $_.bindPoseMaxLocationError
+            sourceTransformMutationCount = $_.sourceTransformMutationCount
+            quaternionHemisphereFlipCount = $_.quaternionHemisphereFlipCount
             bytes = $_.bytes
             warnings = $_.warnings
-            sourceKeyCorrectionCount = $_.sourceKeyCorrectionCount
-            sourceKeyCorrections = $_.sourceKeyCorrections
-            quaternionSignCorrectionCount = $_.quaternionSignCorrectionCount
         }
     })
     $catalog = [ordered]@{
-        schemaVersion = 2
+        schemaVersion = 3
         pack = $pack
-        rig = 'Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx'
+        rigStrategy = 'PerSourceBindPose'
         animationType = 'Humanoid'
         clipCount = $packItems.Count
         clips = $packItems

@@ -10,7 +10,6 @@ namespace ProjectS.Core.Editor.Animation
     internal static class FrankAnimationImportValidator
     {
         private const string FrankRoot = "Assets/_Game/Animations/Frank";
-        private const string SharedAvatarPath = FrankAnimationImportSettings.SharedAvatarPath;
         private const string ReportPath = FrankRoot + "/FrankHumanoidImportReport.json";
         private const string PoseAuditModelPath =
             "Assets/_Game/Models/Characters/UnityCharacter/DefaultMale.fbx";
@@ -24,9 +23,9 @@ namespace ProjectS.Core.Editor.Animation
         private sealed class ValidationReport
         {
             public string generatedAtUtc;
-            public string sharedAvatar;
-            public bool sharedAvatarIsValid;
-            public bool sharedAvatarIsHuman;
+            public int sourceRigCount;
+            public int validSourceRigCount;
+            public int invalidSourceRigCount;
             public int modelCount;
             public int validModelCount;
             public int invalidModelCount;
@@ -34,6 +33,8 @@ namespace ProjectS.Core.Editor.Animation
             public int invalidCurveKeyCount;
             public int humanoidCurveSpikeCandidateCount;
             public int confirmedPoseSpikeCount;
+            public int configuredRetargetCorrectionCount;
+            public int configuredRetargetCorrectionClipCount;
             public List<ModelRecord> models = new();
         }
 
@@ -77,8 +78,13 @@ namespace ProjectS.Core.Editor.Animation
         [MenuItem("Project S/Animation/Frank/Configure Humanoid Imports")]
         public static void ConfigureAll()
         {
-            ConfigureAvatarImporter(SharedAvatarPath);
-            var avatar = LoadValidAvatar(SharedAvatarPath);
+            var rigPaths = AssetDatabase.FindAssets("t:Model", new[] { FrankRoot + "/Rig/Source" })
+                .Select(AssetDatabase.GUIDToAssetPath)
+                .Where(FrankAnimationImportSettings.IsGeneratedRig)
+                .OrderBy(path => path)
+                .ToArray();
+            foreach (var rigPath in rigPaths)
+                ConfigureRigImporter(rigPath);
 
             var paths = AssetDatabase.FindAssets("t:Model", new[] { FrankRoot })
                 .Select(AssetDatabase.GUIDToAssetPath)
@@ -86,67 +92,35 @@ namespace ProjectS.Core.Editor.Animation
                 .OrderBy(path => path)
                 .ToArray();
 
-            // Every source FBX already has a valid Humanoid take. Reimport exactly
-            // once: a second pass in the same editor cycle can retain a stale native
-            // ModelImporter handle for migrated legacy metadata.
-            ConfigureAndImport(paths, avatar);
+            ConfigureAndImport(paths);
 
             ValidateAll();
-        }
-
-        [MenuItem("Project S/Animation/Frank/Prepare Legacy DualSwords Humanoid Metadata")]
-        public static void PrepareLegacyDualSwordHumanoidMetadata()
-        {
-            var paths = AssetDatabase.FindAssets(
-                    "t:Model", new[] { FrankAnimationImportSettings.DualSwordRoot })
-                .Select(AssetDatabase.GUIDToAssetPath)
-                .Where(FrankAnimationImportSettings.IsGeneratedClip)
-                .OrderBy(path => path)
-                .ToArray();
-            var migratedCount = 0;
-            AssetDatabase.StartAssetEditing();
-            try
-            {
-                foreach (var path in paths)
-                {
-                    if (AssetImporter.GetAtPath(path) is not ModelImporter importer
-                        || !HasLegacyDualSwordHumanDescription(importer))
-                    {
-                        continue;
-                    }
-
-                    importer.animationType = ModelImporterAnimationType.Human;
-                    importer.avatarSetup = ModelImporterAvatarSetup.CreateFromThisModel;
-                    importer.sourceAvatar = null;
-                    importer.humanDescription = new HumanDescription();
-                    if (!AssetDatabase.WriteImportSettingsIfDirty(path))
-                        throw new IOException($"Failed to write migrated import settings: {path}");
-                    migratedCount++;
-                }
-            }
-            finally
-            {
-                AssetDatabase.StopAssetEditing();
-            }
-
-            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
-
-            Debug.Log(
-                $"Legacy DualSwords Humanoid metadata prepared: {migratedCount}/{paths.Length} clips migrated. "
-                + "Run Configure Humanoid Imports in a new Unity Editor session/pass to bind the shared Avatar.");
         }
 
         [MenuItem("Project S/Animation/Frank/Validate Humanoid Library")]
         public static void ValidateAll()
         {
-            var avatar = AssetDatabase.LoadAssetAtPath<Avatar>(SharedAvatarPath);
             var report = new ValidationReport
             {
                 generatedAtUtc = DateTime.UtcNow.ToString("O"),
-                sharedAvatar = SharedAvatarPath,
-                sharedAvatarIsValid = avatar != null && avatar.isValid,
-                sharedAvatarIsHuman = avatar != null && avatar.isHuman,
+                configuredRetargetCorrectionCount =
+                    FrankHumanoidRetargetPostprocessor.CorrectionCount,
+                configuredRetargetCorrectionClipCount =
+                    FrankHumanoidRetargetPostprocessor.CorrectedClipCount,
             };
+
+            var sourceRigPaths = AssetDatabase.FindAssets(
+                    "t:Model", new[] { FrankRoot + "/Rig/Source" })
+                .Select(AssetDatabase.GUIDToAssetPath)
+                .Where(FrankAnimationImportSettings.IsGeneratedRig)
+                .ToArray();
+            report.sourceRigCount = sourceRigPaths.Length;
+            report.validSourceRigCount = sourceRigPaths.Count(path =>
+            {
+                var sourceAvatar = AssetDatabase.LoadAssetAtPath<Avatar>(path);
+                return sourceAvatar != null && sourceAvatar.isValid && sourceAvatar.isHuman;
+            });
+            report.invalidSourceRigCount = report.sourceRigCount - report.validSourceRigCount;
 
             var guids = AssetDatabase.FindAssets("t:Model", new[] { FrankRoot });
             var poseAuditSource = AssetDatabase.LoadAssetAtPath<GameObject>(PoseAuditModelPath);
@@ -187,8 +161,7 @@ namespace ProjectS.Core.Editor.Animation
                         || path.Contains("/Rig/", StringComparison.Ordinal))
                         continue;
 
-                    report.models.Add(ValidateModel(
-                        path, avatar, poseAuditObject, poseAuditAnimator));
+                    report.models.Add(ValidateModel(path, poseAuditObject, poseAuditAnimator));
                 }
             }
             finally
@@ -215,10 +188,11 @@ namespace ProjectS.Core.Editor.Animation
             File.WriteAllText(absoluteReportPath, JsonUtility.ToJson(report, true));
             AssetDatabase.ImportAsset(ReportPath, ImportAssetOptions.ForceUpdate);
 
-            if (report.invalidModelCount == 0)
+            if (report.invalidModelCount == 0 && report.invalidSourceRigCount == 0)
             {
                 Debug.Log(
-                    $"Frank Humanoid validation passed: {report.validModelCount}/{report.modelCount} FBX models. "
+                    $"Frank Humanoid validation passed: {report.validModelCount}/{report.modelCount} clips, "
+                    + $"{report.validSourceRigCount}/{report.sourceRigCount} source rigs. "
                     + $"Checked {report.curveKeyCount} curve keys; "
                     + $"invalid keys: {report.invalidCurveKeyCount}; "
                     + $"Humanoid curve candidates: {report.humanoidCurveSpikeCandidateCount}; "
@@ -228,14 +202,14 @@ namespace ProjectS.Core.Editor.Animation
             else
             {
                 Debug.LogError(
-                    $"Frank Humanoid validation failed for {report.invalidModelCount}/{report.modelCount} FBX models. "
+                    $"Frank Humanoid validation failed: {report.invalidModelCount}/{report.modelCount} invalid clips, "
+                    + $"{report.invalidSourceRigCount}/{report.sourceRigCount} invalid source rigs. "
                     + $"Report: {ReportPath}");
             }
         }
 
         private static ModelRecord ValidateModel(
             string path,
-            Avatar expectedAvatar,
             GameObject poseAuditObject,
             Animator poseAuditAnimator)
         {
@@ -277,10 +251,11 @@ namespace ProjectS.Core.Editor.Animation
                 failures.Add("animation type is not Humanoid");
             if (FrankAnimationImportSettings.IsGeneratedClip(path))
             {
-                if (importer.avatarSetup != ModelImporterAvatarSetup.CopyFromOther)
-                    failures.Add("avatar is not copied from the configured rig");
-                if (expectedAvatar == null || importer.sourceAvatar != expectedAvatar)
-                    failures.Add("configured source avatar is missing or different");
+                if (importer.avatarSetup != ModelImporterAvatarSetup.CreateFromThisModel)
+                    failures.Add("clip does not create its Avatar from the embedded source bind pose");
+                var sourceAvatar = AssetDatabase.LoadAssetAtPath<Avatar>(path);
+                if (sourceAvatar == null || !sourceAvatar.isValid || !sourceAvatar.isHuman)
+                    failures.Add("embedded source Avatar is missing or invalid");
                 if (clips.Length == 1
                     && clips[0].name != Path.GetFileNameWithoutExtension(path))
                 {
@@ -297,6 +272,8 @@ namespace ProjectS.Core.Editor.Animation
                 failures.Add("clip contains no animation curves");
             if (record.invalidCurveKeyCount > 0)
                 failures.Add($"clip curves contain {record.invalidCurveKeyCount} invalid keys");
+            if (record.confirmedPoseSpikeCount > 0)
+                failures.Add($"clip contains {record.confirmedPoseSpikeCount} confirmed pose discontinuities");
 
             record.valid = failures.Count == 0;
             record.error = string.Join("; ", failures);
@@ -523,34 +500,17 @@ namespace ProjectS.Core.Editor.Animation
             return !float.IsNaN(value) && !float.IsInfinity(value);
         }
 
-        private static bool HasLegacyDualSwordHumanDescription(ModelImporter importer)
-        {
-            return importer.humanDescription.skeleton.Any(
-                bone => bone.name.StartsWith("FrankDualRig", StringComparison.Ordinal));
-        }
-
-        private static void ConfigureAvatarImporter(string path)
+        private static void ConfigureRigImporter(string path)
         {
             if (AssetImporter.GetAtPath(path) is not ModelImporter rigImporter)
-                throw new FileNotFoundException("The Frank Humanoid rig is missing.", path);
+                throw new FileNotFoundException("The Frank source rig is missing.", path);
 
-            FrankAnimationImportSettings.ApplySharedRig(rigImporter);
+            FrankAnimationImportSettings.ApplyRig(rigImporter);
             rigImporter.sourceAvatar = null;
             rigImporter.SaveAndReimport();
         }
 
-        private static Avatar LoadValidAvatar(string path)
-        {
-            var avatar = AssetDatabase.LoadAssetAtPath<Avatar>(path);
-            if (avatar == null || !avatar.isValid || !avatar.isHuman)
-                throw new InvalidOperationException($"A valid Humanoid avatar is required at '{path}'.");
-
-            return avatar;
-        }
-
-        private static void ConfigureAndImport(
-            IEnumerable<string> paths,
-            Avatar avatar)
+        private static void ConfigureAndImport(IEnumerable<string> paths)
         {
             AssetDatabase.StartAssetEditing();
             try
@@ -560,7 +520,7 @@ namespace ProjectS.Core.Editor.Animation
                     if (AssetImporter.GetAtPath(path) is not ModelImporter importer)
                         continue;
 
-                    FrankAnimationImportSettings.Apply(importer, path, avatar);
+                    FrankAnimationImportSettings.Apply(importer, path);
                     AssetDatabase.WriteImportSettingsIfDirty(path);
                 }
             }
@@ -569,8 +529,8 @@ namespace ProjectS.Core.Editor.Animation
                 AssetDatabase.StopAssetEditing();
             }
 
-            foreach (var path in paths)
-                AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
+            AssetDatabase.Refresh(
+                ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
         }
     }
 }

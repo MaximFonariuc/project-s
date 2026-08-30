@@ -33,23 +33,35 @@ for example `Locomotion`, `Attacks`, `Skills`, `Defense`, `Evasion`, `Air`,
 `Reactions`, and `Death`. A generated JSON catalog beside each set preserves the
 source package, duration data, bone coverage, and conversion warnings.
 
-All generated clips use the valid shared Humanoid Avatar at
-`Rig/FrankHumanoidAnimationRig.fbx`. The converter retains rotation tracks for
-the mapped body, retains `root` and `pelvis` translation for body/root motion,
-removes incompatible child-bone translation and scale tracks, and exports the
-source frame sequence at at most 60 FPS without changing the frame count.
+Frank is not one skeleton. The source library contains multiple distinct bind
+poses, so applying every PSA to `FrankDualRig` is invalid. The converter now
+reconstructs a compact Humanoid body rig from the bind transforms embedded in
+each PSA. Every clip therefore carries the matching source bind pose and Unity
+creates its Humanoid Avatar from that FBX. Diagnostic bind rigs are generated in
+`Rig/Source`, one per unique skeleton fingerprint.
 
-Before retargeting, every mapped Humanoid body rotation track is checked for
-non-finite/zero quaternions and one-frame outliers. A single key is repaired when
-it jumps by more than 35 degrees on both sides while its two neighbor poses
-differ by less than 20 degrees. If three or more core bones independently prove
-that an entire frame is corrupt, only body tracks that differ materially from
-their neighbor interpolation are repaired. Ambiguous coordinated multi-bone
-motion is preserved. The replacement is quaternion slerp between untouched
-neighbors. Sustained fast attacks remain unchanged. Every
-repair is stored in `FrankSourceKeyAuditReport.json` with its classification,
-bone, source frame, time, and measured angles. A complete rebuild also mirrors
-the same `sourceKeyCorrections` data into each generated pack catalog.
+The converter retains authored rotation, translation, and (when present) scale
+tracks for every mapped body bone. It rejects non-finite locations and invalid
+quaternions instead of trying to repair them. No pose key is clamped, smoothed,
+interpolated, or replaced. `q/-q` quaternion signs may be normalized because
+they encode exactly the same rotation and independent linear FBX curves would
+otherwise take the long interpolation path. The complete integrity summary is
+stored in `FrankSourceKeyAuditReport.json`; the expected source-transform
+mutation count is zero.
+
+Some UE4.23 assets are stored at unusual source sample rates (around 780 or
+1140 FPS). They are quaternion/linear resampled to a maximum of 60 FPS while
+preserving the source duration. This is a rate conversion, not a pose-key repair;
+the source and output rates, frame counts, and duration are recorded per clip in
+the generated catalogs.
+
+Unity's Humanoid conversion produced 11 isolated muscle-space discontinuities
+in seven clips even though their source bone rotations were smooth. Those exact
+imported muscle keys are replaced by interpolation between their untouched
+neighbors in `FrankHumanoidRetargetPostprocessor`; no broad spike heuristic and
+no source-transform mutation is allowed. The validator and the
+`Render Reported Pose Spikes` contact-sheet command provide the before/after QA
+boundary for this explicit correction list.
 
 The PSA source can encode the same rotation as either `q` or `-q`. Because the
 pinned Blender importer writes quaternion components to independent linear
@@ -73,11 +85,9 @@ Run the local source conversion from the repository root:
 
 Then use these Unity menu commands:
 
-- `Project S/Animation/Frank/Prepare Legacy DualSwords Humanoid Metadata`
-  (one time only for a checkout that still contains the old `FrankDualRig`
-  `HumanDescription`; finish this command before running the next command)
 - `Project S/Animation/Frank/Configure Humanoid Imports`
 - `Project S/Animation/Frank/Validate Humanoid Library`
+- `Project S/Animation/Frank/Render Reported Pose Spikes`
 
 Validation output is written to `FrankHumanoidImportReport.json`. In addition
 to the Humanoid Avatar/import contract, the validator scans every imported
@@ -87,4 +97,4 @@ curve-only candidates from confirmed 3D bone-pose discontinuities.
 
 The generated FBX files, `.meta` files, import tooling, catalogs, documentation,
 and validation reports are versioned. The original Unreal source archives under
-`Reference/Frank` remain local-only and ignored by Git.
+`Reference/FrankAnim` remain local-only and ignored by Git.

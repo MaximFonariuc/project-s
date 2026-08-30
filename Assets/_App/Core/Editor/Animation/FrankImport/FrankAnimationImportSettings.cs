@@ -8,17 +8,22 @@ namespace ProjectS.Core.Editor.Animation
     internal static class FrankAnimationImportSettings
     {
         internal const string FrankRoot = "Assets/_Game/Animations/Frank/";
-        internal const string DualSwordRoot = FrankRoot + "DualSwords/";
-        internal const string SharedAvatarPath = FrankRoot + "Rig/FrankHumanoidAnimationRig.fbx";
 
         internal static bool IsGeneratedClip(string path)
         {
             return path.StartsWith(FrankRoot, StringComparison.Ordinal)
+                   && path.Contains("/Animations/", StringComparison.Ordinal)
                    && !path.Contains("/Rig/", StringComparison.Ordinal)
                    && path.EndsWith(".fbx", StringComparison.OrdinalIgnoreCase);
         }
 
-        internal static void ApplySharedRig(ModelImporter importer)
+        internal static bool IsGeneratedRig(string path)
+        {
+            return path.StartsWith(FrankRoot + "Rig/Source/", StringComparison.Ordinal)
+                   && path.EndsWith(".fbx", StringComparison.OrdinalIgnoreCase);
+        }
+
+        internal static void ApplyRig(ModelImporter importer)
         {
             importer.materialImportMode = ModelImporterMaterialImportMode.None;
             importer.importAnimation = false;
@@ -31,13 +36,13 @@ namespace ProjectS.Core.Editor.Animation
             importer.importVisibility = false;
         }
 
-        internal static void Apply(ModelImporter importer, string assetPath, Avatar sourceAvatar)
+        internal static void Apply(ModelImporter importer, string assetPath)
         {
             importer.materialImportMode = ModelImporterMaterialImportMode.None;
             importer.importAnimation = true;
             importer.animationType = ModelImporterAnimationType.Human;
-            importer.avatarSetup = ModelImporterAvatarSetup.CopyFromOther;
-            importer.sourceAvatar = sourceAvatar;
+            importer.avatarSetup = ModelImporterAvatarSetup.CreateFromThisModel;
+            importer.sourceAvatar = null;
             importer.preserveHierarchy = true;
             importer.optimizeGameObjects = false;
             importer.resampleCurves = false;

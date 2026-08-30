@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "pack": "TwoHandedSpear",
-  "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
+  "rigStrategy": "PerSourceBindPose",
   "animationType": "Humanoid",
   "clipCount": 84,
   "clips": [
@@ -12,18 +12,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 826172,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 77,
+      "bytes": 478780,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 77
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Run_BL",
@@ -32,18 +39,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 826412,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 130,
+      "bytes": 478988,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 130
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Run_BR",
@@ -52,18 +66,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 828668,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 154,
+      "bytes": 481196,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 154
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Run_F",
@@ -72,18 +93,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 827196,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 110,
+      "bytes": 479356,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 110
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Run_FL",
@@ -92,18 +120,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 827020,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 50,
+      "bytes": 479324,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 50
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Run_FR",
@@ -112,18 +147,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 827148,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 121,
+      "bytes": 479196,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 121
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Run_L",
@@ -132,18 +174,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 826252,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 188,
+      "bytes": 479116,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 188
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Run_R",
@@ -152,18 +201,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 825756,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 71,
+      "bytes": 478812,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 71
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_B",
@@ -172,18 +228,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 47,
       "frames": 47,
       "fps": 60.0,
+      "sourceFps": 61.30434799194336,
+      "durationSeconds": 0.7666666645924815,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 863532,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 235,
+      "bytes": 500076,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 235
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_BL",
@@ -192,18 +255,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 47,
       "frames": 47,
       "fps": 60.0,
+      "sourceFps": 61.30434799194336,
+      "durationSeconds": 0.7666666645924815,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 863804,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 178,
+      "bytes": 499772,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 178
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_BR",
@@ -212,18 +282,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 47,
       "frames": 47,
       "fps": 60.0,
+      "sourceFps": 61.30434799194336,
+      "durationSeconds": 0.7666666645924815,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 868956,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 166,
+      "bytes": 507164,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 166
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_F",
@@ -232,18 +309,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 47,
       "frames": 47,
       "fps": 60.0,
+      "sourceFps": 61.30434799194336,
+      "durationSeconds": 0.7666666645924815,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 869180,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 156,
+      "bytes": 506524,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 156
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_FL",
@@ -252,18 +336,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 47,
       "frames": 47,
       "fps": 60.0,
+      "sourceFps": 61.30434799194336,
+      "durationSeconds": 0.7666666645924815,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 862924,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 167,
+      "bytes": 499244,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 167
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_FR",
@@ -272,18 +363,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 47,
       "frames": 47,
       "fps": 60.0,
+      "sourceFps": 61.30434799194336,
+      "durationSeconds": 0.7666666645924815,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 863468,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 183,
+      "bytes": 499756,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 183
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_L",
@@ -292,18 +390,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 47,
       "frames": 47,
       "fps": 60.0,
+      "sourceFps": 61.30434799194336,
+      "durationSeconds": 0.7666666645924815,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 862540,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 288,
+      "bytes": 499436,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 288
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_8Way_Walk_R",
@@ -312,18 +417,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 47,
       "frames": 47,
       "fps": 60.0,
+      "sourceFps": 61.30434799194336,
+      "durationSeconds": 0.7666666645924815,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 862652,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 291,
+      "bytes": 499388,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 291
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Block",
@@ -332,18 +444,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Defense",
+      "sourceFrames": 31,
       "frames": 31,
       "fps": 60.0,
+      "sourceFps": 62.0,
+      "durationSeconds": 0.5,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 807708,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 34,
+      "bytes": 463804,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 34
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Equip_Idle",
@@ -352,18 +471,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 61,
       "frames": 61,
       "fps": 60.0,
+      "sourceFps": 61.0,
+      "durationSeconds": 1.0,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 945132,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 52,
+      "bytes": 552556,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 52
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Equip_Run01",
@@ -372,18 +498,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 35,
       "frames": 35,
       "fps": 60.0,
+      "sourceFps": 61.764705657958984,
+      "durationSeconds": 0.5666666687253922,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 788844,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 160,
+      "bytes": 457148,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 160
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Equip_Run02",
@@ -392,18 +525,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 35,
       "frames": 35,
       "fps": 60.0,
+      "sourceFps": 61.764705657958984,
+      "durationSeconds": 0.5666666687253922,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 791084,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 162,
+      "bytes": 460860,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 162
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Equip",
@@ -412,18 +552,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 71,
       "frames": 71,
       "fps": 60.0,
+      "sourceFps": 60.85714340209961,
+      "durationSeconds": 1.1666666562195303,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1013292,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 707,
+      "bytes": 602732,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 707
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Getup01",
@@ -432,18 +579,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Recovery",
+      "sourceFrames": 56,
       "frames": 56,
       "fps": 60.0,
+      "sourceFps": 61.09090805053711,
+      "durationSeconds": 0.9166666822774072,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 929132,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 978,
+      "bytes": 549692,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 978
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Getup02",
@@ -452,18 +606,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Recovery",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 902396,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 931,
+      "bytes": 533132,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 931
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Guard",
@@ -472,18 +633,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Defense",
+      "sourceFrames": 71,
       "frames": 71,
       "fps": 60.0,
+      "sourceFps": 60.85714340209961,
+      "durationSeconds": 1.1666666562195303,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 986284,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 0,
+      "bytes": 573132,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 0
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Hit_Knockdown_Loop",
@@ -492,18 +660,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Reactions",
+      "sourceFrames": 81,
       "frames": 81,
       "fps": 60.0,
+      "sourceFps": 60.75,
+      "durationSeconds": 1.3333333333333333,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1026972,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 25,
+      "bytes": 599356,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 25
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Hit01",
@@ -512,18 +687,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Reactions",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 836220,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 599,
+      "bytes": 493148,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 599
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Hit02",
@@ -532,18 +714,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Reactions",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 835948,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 532,
+      "bytes": 492892,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 532
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Hit03",
@@ -552,18 +741,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Reactions",
+      "sourceFrames": 47,
       "frames": 47,
       "fps": 60.0,
+      "sourceFps": 61.30434799194336,
+      "durationSeconds": 0.7666666645924815,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 875260,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 554,
+      "bytes": 517708,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 554
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Jump_ZeroHeight",
@@ -572,18 +768,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Air",
+      "sourceFrames": 61,
       "frames": 61,
       "fps": 60.0,
+      "sourceFps": 61.0,
+      "durationSeconds": 1.0,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 957500,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1110,
+      "bytes": 567356,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1110
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Unequip_Idle",
@@ -592,18 +795,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 301,
       "frames": 301,
       "fps": 60.0,
+      "sourceFps": 60.20000076293945,
+      "durationSeconds": 4.999999936632936,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 2255980,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 66,
+      "bytes": 1354252,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 66
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Unequip_Run_Faster",
@@ -612,18 +822,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 31,
       "frames": 31,
       "fps": 60.0,
+      "sourceFps": 62.0,
+      "durationSeconds": 0.5,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 807708,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 220,
+      "bytes": 463804,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 220
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Unequip_Run",
@@ -632,18 +849,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 37,
       "frames": 37,
       "fps": 60.0,
+      "sourceFps": 61.666664123535156,
+      "durationSeconds": 0.6000000247439833,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 801052,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 140,
+      "bytes": 464012,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 140
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Unequip",
@@ -652,18 +876,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 66,
       "frames": 66,
       "fps": 60.0,
+      "sourceFps": 60.923072814941406,
+      "durationSeconds": 1.0833334063841487,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 985500,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 991,
+      "bytes": 585852,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 991
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Walk_Faster",
@@ -672,18 +903,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 57,
       "frames": 57,
       "fps": 60.0,
+      "sourceFps": 61.07143020629883,
+      "durationSeconds": 0.9333333083481823,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 921260,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 161,
+      "bytes": 534716,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 161
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Walk",
@@ -692,18 +930,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_IP",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 65,
       "frames": 65,
       "fps": 60.0,
+      "sourceFps": 60.937496185302734,
+      "durationSeconds": 1.0666667334401752,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 961612,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 192,
+      "bytes": 558444,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 192
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Attack01",
@@ -712,18 +957,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 889580,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 220,
+      "bytes": 516012,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 220
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Attack02",
@@ -732,18 +984,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 61,
       "frames": 61,
       "fps": 60.0,
+      "sourceFps": 61.0,
+      "durationSeconds": 1.0,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 945884,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 522,
+      "bytes": 549820,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 522
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Attack03",
@@ -752,18 +1011,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 61,
       "frames": 61,
       "fps": 60.0,
+      "sourceFps": 61.0,
+      "durationSeconds": 1.0,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 950044,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 668,
+      "bytes": 558124,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 668
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Attack04",
@@ -772,18 +1038,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 891116,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 417,
+      "bytes": 517388,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 417
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Attack05",
@@ -792,18 +1065,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 76,
       "frames": 76,
       "fps": 60.0,
+      "sourceFps": 60.79999923706055,
+      "durationSeconds": 1.250000015685433,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1050140,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1045,
+      "bytes": 618268,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1045
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo01_1",
@@ -812,18 +1092,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 71,
       "frames": 71,
       "fps": 60.0,
+      "sourceFps": 60.85714340209961,
+      "durationSeconds": 1.1666666562195303,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1003004,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 742,
+      "bytes": 589388,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 742
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo01_2",
@@ -832,18 +1119,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 85,
       "frames": 85,
       "fps": 60.0,
+      "sourceFps": 60.71428680419922,
+      "durationSeconds": 1.3999999748678773,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1103468,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1115,
+      "bytes": 653964,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1115
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo01_All",
@@ -852,18 +1146,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 121,
       "frames": 121,
       "fps": 60.0,
+      "sourceFps": 60.5,
+      "durationSeconds": 2.0,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1296956,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1991,
+      "bytes": 770988,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1991
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo02_1",
@@ -872,18 +1173,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 56,
       "frames": 56,
       "fps": 60.0,
+      "sourceFps": 61.09090805053711,
+      "durationSeconds": 0.9166666822774072,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 922972,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 512,
+      "bytes": 541772,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 512
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo02_2",
@@ -892,18 +1200,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 86,
       "frames": 86,
       "fps": 60.0,
+      "sourceFps": 60.70588302612305,
+      "durationSeconds": 1.4166666509569155,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1099804,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 761,
+      "bytes": 644956,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 761
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo02_3",
@@ -912,18 +1227,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 74,
       "frames": 74,
       "fps": 60.0,
+      "sourceFps": 60.82191467285156,
+      "durationSeconds": 1.2166667293857916,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1030268,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 925,
+      "bytes": 606716,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 925
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo02_All",
@@ -932,18 +1254,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 153,
       "frames": 153,
       "fps": 60.0,
+      "sourceFps": 60.394737243652344,
+      "durationSeconds": 2.5333333164899354,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1461436,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1559,
+      "bytes": 863404,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1559
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo03_1",
@@ -952,18 +1281,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 97,
       "frames": 97,
       "fps": 60.0,
+      "sourceFps": 60.625,
+      "durationSeconds": 1.6,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1164220,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1482,
+      "bytes": 687852,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1482
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo03_2",
@@ -972,18 +1308,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 106,
       "frames": 106,
       "fps": 60.0,
+      "sourceFps": 60.57143020629883,
+      "durationSeconds": 1.7499999527661318,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1211884,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1523,
+      "bytes": 715276,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1523
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo03_3",
@@ -992,18 +1335,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 102,
       "frames": 102,
       "fps": 60.0,
+      "sourceFps": 60.59406280517578,
+      "durationSeconds": 1.6833332389008817,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1193084,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1386,
+      "bytes": 704060,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1386
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo03_All",
@@ -1012,18 +1362,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 231,
       "frames": 231,
       "fps": 60.0,
+      "sourceFps": 60.26087188720703,
+      "durationSeconds": 3.833333185626206,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1901100,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 3820,
+      "bytes": 1131212,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 3820
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo04_1",
@@ -1032,18 +1389,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 61,
       "frames": 61,
       "fps": 60.0,
+      "sourceFps": 61.0,
+      "durationSeconds": 1.0,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 951500,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 648,
+      "bytes": 559228,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 648
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo04_2",
@@ -1052,18 +1416,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 71,
       "frames": 71,
       "fps": 60.0,
+      "sourceFps": 60.85714340209961,
+      "durationSeconds": 1.1666666562195303,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1005388,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 820,
+      "bytes": 589452,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 820
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo04_3",
@@ -1072,18 +1443,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 66,
       "frames": 66,
       "fps": 60.0,
+      "sourceFps": 60.923072814941406,
+      "durationSeconds": 1.0833334063841487,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 974988,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 783,
+      "bytes": 570140,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 783
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo04_4",
@@ -1092,18 +1470,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 81,
       "frames": 81,
       "fps": 60.0,
+      "sourceFps": 60.75,
+      "durationSeconds": 1.3333333333333333,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1076924,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1252,
+      "bytes": 633260,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1252
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo04_All",
@@ -1112,18 +1497,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 171,
       "frames": 171,
       "fps": 60.0,
+      "sourceFps": 60.352943420410156,
+      "durationSeconds": 2.8333332279891956,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1586044,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 3507,
+      "bytes": 941196,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 3507
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo05_1",
@@ -1132,18 +1524,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 66,
       "frames": 66,
       "fps": 60.0,
+      "sourceFps": 60.923072814941406,
+      "durationSeconds": 1.0833334063841487,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 974108,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 452,
+      "bytes": 569116,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 452
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo05_2",
@@ -1152,18 +1551,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 111,
       "frames": 111,
       "fps": 60.0,
+      "sourceFps": 60.54545211791992,
+      "durationSeconds": 1.833333406839765,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1238812,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1446,
+      "bytes": 729372,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1446
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo05_3",
@@ -1172,18 +1578,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 71,
       "frames": 71,
       "fps": 60.0,
+      "sourceFps": 60.85714340209961,
+      "durationSeconds": 1.1666666562195303,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1005084,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 925,
+      "bytes": 588956,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 925
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Combo05_All",
@@ -1192,18 +1605,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 161,
       "frames": 161,
       "fps": 60.0,
+      "sourceFps": 60.375,
+      "durationSeconds": 2.6666666666666665,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1520876,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 2266,
+      "bytes": 896732,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 2266
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Die01",
@@ -1212,18 +1632,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Death",
+      "sourceFrames": 56,
       "frames": 56,
       "fps": 60.0,
+      "sourceFps": 61.09090805053711,
+      "durationSeconds": 0.9166666822774072,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 927964,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1149,
+      "bytes": 545500,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1149
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Die02",
@@ -1232,18 +1659,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Death",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 900252,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1039,
+      "bytes": 529084,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1039
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Die03",
@@ -1252,18 +1686,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Death",
+      "sourceFrames": 57,
       "frames": 57,
       "fps": 60.0,
+      "sourceFps": 61.07143020629883,
+      "durationSeconds": 0.9333333083481823,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 937212,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 869,
+      "bytes": 554636,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 869
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Die04",
@@ -1272,18 +1713,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Death",
+      "sourceFrames": 61,
       "frames": 61,
       "fps": 60.0,
+      "sourceFps": 61.0,
+      "durationSeconds": 1.0,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 960700,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1318,
+      "bytes": 568604,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1318
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Die05",
@@ -1292,18 +1740,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Death",
+      "sourceFrames": 85,
       "frames": 85,
       "fps": 60.0,
+      "sourceFps": 60.71428680419922,
+      "durationSeconds": 1.3999999748678773,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1106492,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1621,
+      "bytes": 661676,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1621
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Evade_B",
@@ -1312,18 +1767,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 839340,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 653,
+      "bytes": 494044,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 653
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Evade_F",
@@ -1332,18 +1794,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 839804,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 684,
+      "bytes": 493820,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 684
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Evade_L",
@@ -1352,18 +1821,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 839116,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 710,
+      "bytes": 493484,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 710
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Evade_R",
@@ -1372,18 +1848,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 839404,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 729,
+      "bytes": 493596,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 729
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Hit_Knockback",
@@ -1392,18 +1875,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Reactions",
+      "sourceFrames": 55,
       "frames": 55,
       "fps": 60.0,
+      "sourceFps": 61.111114501953125,
+      "durationSeconds": 0.8999999500621476,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 925436,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 715,
+      "bytes": 546940,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 715
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Hit_Knockdown",
@@ -1412,18 +1902,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Reactions",
+      "sourceFrames": 69,
       "frames": 69,
       "fps": 60.0,
+      "sourceFps": 60.882354736328125,
+      "durationSeconds": 1.1333332999163406,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1001068,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1459,
+      "bytes": 587756,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1459
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Jump_01",
@@ -1432,18 +1929,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Air",
+      "sourceFrames": 61,
       "frames": 61,
       "fps": 60.0,
+      "sourceFps": 61.0,
+      "durationSeconds": 1.0,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 960188,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1104,
+      "bytes": 567660,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1104
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Jump_02",
@@ -1452,18 +1956,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Air",
+      "sourceFrames": 55,
       "frames": 55,
       "fps": 60.0,
+      "sourceFps": 61.111114501953125,
+      "durationSeconds": 0.8999999500621476,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 925612,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1066,
+      "bytes": 546124,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1066
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Skill01",
@@ -1472,18 +1983,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Skills",
+      "sourceFrames": 121,
       "frames": 121,
       "fps": 60.0,
+      "sourceFps": 60.5,
+      "durationSeconds": 2.0,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1289980,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1516,
+      "bytes": 761372,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1516
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Skill02",
@@ -1492,18 +2010,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Skills",
+      "sourceFrames": 161,
       "frames": 161,
       "fps": 60.0,
+      "sourceFps": 60.375,
+      "durationSeconds": 2.6666666666666665,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1526524,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 2897,
+      "bytes": 908764,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 2897
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Skill03",
@@ -1512,18 +2037,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Skills",
+      "sourceFrames": 181,
       "frames": 181,
       "fps": 60.0,
+      "sourceFps": 60.33333206176758,
+      "durationSeconds": 3.0000000632270276,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 1625180,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 2564,
+      "bytes": 961196,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 2564
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Step_B",
@@ -1532,18 +2064,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 31,
       "frames": 31,
       "fps": 60.0,
+      "sourceFps": 62.0,
+      "durationSeconds": 0.5,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 807708,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 382,
+      "bytes": 463804,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 382
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Step_F",
@@ -1552,18 +2091,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 31,
       "frames": 31,
       "fps": 60.0,
+      "sourceFps": 62.0,
+      "durationSeconds": 0.5,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 807708,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 267,
+      "bytes": 463804,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 267
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Step_L",
@@ -1572,18 +2118,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 31,
       "frames": 31,
       "fps": 60.0,
+      "sourceFps": 62.0,
+      "durationSeconds": 0.5,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 807708,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 505,
+      "bytes": 463804,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 505
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Step_R",
@@ -1592,18 +2145,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 31,
       "frames": 31,
       "fps": 60.0,
+      "sourceFps": 62.0,
+      "durationSeconds": 0.5,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 807708,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 288,
+      "bytes": 463804,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 288
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Tumbling_B",
@@ -1612,18 +2172,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 902764,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 990,
+      "bytes": 531916,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 990
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Tumbling_F",
@@ -1632,18 +2199,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 905356,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 863,
+      "bytes": 534668,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 863
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Tumbling_L",
@@ -1652,18 +2226,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 903100,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 908,
+      "bytes": 531404,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 908
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_Spear_Tumbling_R",
@@ -1672,18 +2253,25 @@
       "sourceGroup": "Frank_2Handed_Spear\\Animations\\Frank_Spear_RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 75,
-      "mappedBones": 70,
-      "bytes": 905596,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "82cbed463253825c5dbdf519e4a62d2fdc2b1ba22ce10a9b2dd80309e08ecf4b",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_82cbed463253.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.000353236936531092,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1065,
+      "bytes": 534636,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 5 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1065
+        "The armature 'FrankSourceRig' is missing 22 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'Spear_Bone01', 'Spear_Bone02', 'Spear_Root', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     }
   ]
 }

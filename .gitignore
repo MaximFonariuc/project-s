@@ -44,6 +44,8 @@ ExportedObj/
 *.svd
 *.pdb
 *.mdb
+__pycache__/
+*.py[cod]
 *.opendb
 *.VC.db
 
@@ -81,7 +83,8 @@ UMotionData
 # Local animation source libraries. Runtime-ready imports belong in Assets/_Game.
 /Reference/Elden/
 /Reference/Frank/
+/Reference/FrankAnim/
 
-# Frank source archives remain local under /Reference/Frank/. Runtime-ready
+# Frank source archives remain local under /Reference/FrankAnim/. Runtime-ready
 # Humanoid FBXs and their import metadata under Assets/_Game/Animations/Frank
 # are versioned through Git LFS so their validated Unity imports are reproducible.

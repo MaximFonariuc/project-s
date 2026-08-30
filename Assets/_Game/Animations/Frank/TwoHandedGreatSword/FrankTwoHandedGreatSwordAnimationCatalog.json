@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "pack": "TwoHandedGreatSword",
-  "rig": "Assets/_Game/Animations/Frank/Rig/FrankHumanoidAnimationRig.fbx",
+  "rigStrategy": "PerSourceBindPose",
   "animationType": "Humanoid",
   "clipCount": 75,
   "clips": [
@@ -12,18 +12,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 892364,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 87,
+      "bytes": 516140,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 87
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Run_BL",
@@ -32,18 +39,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 892700,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 207,
+      "bytes": 516092,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 207
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Run_BR",
@@ -52,18 +66,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 899676,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 125,
+      "bytes": 523820,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 125
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Run_F",
@@ -72,18 +93,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 899868,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 104,
+      "bytes": 524076,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 104
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Run_FL",
@@ -92,18 +120,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 893100,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 65,
+      "bytes": 516700,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 65
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Run_FR",
@@ -112,18 +147,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 891740,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 220,
+      "bytes": 515228,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 220
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Run_L",
@@ -132,18 +174,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 892124,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 278,
+      "bytes": 515820,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 278
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Run_R",
@@ -152,18 +201,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 891676,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 73,
+      "bytes": 515932,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 73
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_B",
@@ -172,18 +228,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 889500,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 148,
+      "bytes": 513228,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 148
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_BL",
@@ -192,18 +255,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 889772,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 95,
+      "bytes": 513564,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 95
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_BR",
@@ -212,18 +282,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 890844,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 104,
+      "bytes": 514300,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 104
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_F",
@@ -232,18 +309,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 890732,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 233,
+      "bytes": 513852,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 233
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_FL",
@@ -252,18 +336,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 889340,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 104,
+      "bytes": 513724,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 104
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_FR",
@@ -272,18 +363,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 889628,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 95,
+      "bytes": 512972,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 95
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_L",
@@ -292,18 +390,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 886972,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 209,
+      "bytes": 513004,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 209
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_8Way_Walk_R",
@@ -312,18 +417,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Locomotion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 887036,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 206,
+      "bytes": 513164,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 206
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Attack01",
@@ -332,18 +444,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 61,
       "frames": 61,
       "fps": 60.0,
+      "sourceFps": 61.0,
+      "durationSeconds": 1.0,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 948380,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 430,
+      "bytes": 548044,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 430
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Attack02",
@@ -352,29 +471,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 126,
       "frames": 126,
       "fps": 60.0,
+      "sourceFps": 60.480003356933594,
+      "durationSeconds": 2.083333217698226,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1327948,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1327,
+      "bytes": 779740,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 1,
-      "sourceKeyCorrections": [
-        {
-          "bone": "lowerarm_r",
-          "sourceFrame": 39,
-          "sourceTime": 0.644841234049451,
-          "incomingAngle": 53.38977555413612,
-          "outgoingAngle": 49.13584813431647,
-          "neighborAngle": 4.25394108019799,
-          "residualAngle": 51.2627997777097,
-          "classification": "isolated-key"
-        }
-      ],
-      "quaternionSignCorrectionCount": 1327
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Attack03",
@@ -383,18 +498,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 111,
       "frames": 111,
       "fps": 60.0,
+      "sourceFps": 60.54545211791992,
+      "durationSeconds": 1.833333406839765,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1240348,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1444,
+      "bytes": 720524,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1444
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Attack04",
@@ -403,18 +525,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 131,
       "frames": 131,
       "fps": 60.0,
+      "sourceFps": 60.4615364074707,
+      "durationSeconds": 2.166666740275119,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1356348,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1190,
+      "bytes": 795356,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1190
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Block",
@@ -423,18 +552,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Defense",
+      "sourceFrames": 31,
       "frames": 31,
       "fps": 60.0,
+      "sourceFps": 62.0,
+      "durationSeconds": 0.5,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 807708,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 12,
+      "bytes": 463804,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 12
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo01_1",
@@ -443,18 +579,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 81,
       "frames": 81,
       "fps": 60.0,
+      "sourceFps": 60.75,
+      "durationSeconds": 1.3333333333333333,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1070028,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 628,
+      "bytes": 618748,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 628
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo01_2",
@@ -463,18 +606,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 78,
       "frames": 78,
       "fps": 60.0,
+      "sourceFps": 60.77922058105469,
+      "durationSeconds": 1.2833333375175455,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1051772,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 653,
+      "bytes": 608300,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 653
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo01_3",
@@ -483,18 +633,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 76,
       "frames": 76,
       "fps": 60.0,
+      "sourceFps": 60.79999923706055,
+      "durationSeconds": 1.250000015685433,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1046796,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1001,
+      "bytes": 605836,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1001
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo01_4",
@@ -503,18 +660,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 103,
       "frames": 103,
       "fps": 60.0,
+      "sourceFps": 60.588233947753906,
+      "durationSeconds": 1.7000000377766145,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1192796,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1181,
+      "bytes": 690780,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1181
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo01_All",
@@ -523,18 +687,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 236,
       "frames": 236,
       "fps": 60.0,
+      "sourceFps": 60.25531768798828,
+      "durationSeconds": 3.9166667616300015,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1923244,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 2290,
+      "bytes": 1113724,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 2290
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo02_1",
@@ -543,18 +714,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 75,
       "frames": 75,
       "fps": 60.0,
+      "sourceFps": 60.81081008911133,
+      "durationSeconds": 1.2333333479704682,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1036844,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 766,
+      "bytes": 599548,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 766
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo02_2",
@@ -563,18 +741,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 73,
       "frames": 73,
       "fps": 60.0,
+      "sourceFps": 60.83333206176758,
+      "durationSeconds": 1.2000000250829415,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1012940,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1080,
+      "bytes": 585820,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1080
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo02_3",
@@ -583,18 +768,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 69,
       "frames": 69,
       "fps": 60.0,
+      "sourceFps": 60.882354736328125,
+      "durationSeconds": 1.1333332999163406,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 991228,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 901,
+      "bytes": 573244,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 901
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo02_4",
@@ -603,18 +795,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 92,
       "frames": 92,
       "fps": 60.0,
+      "sourceFps": 60.659339904785156,
+      "durationSeconds": 1.5166666855328328,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1135084,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1006,
+      "bytes": 656236,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1006
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo02_All",
@@ -623,18 +822,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 221,
       "frames": 221,
       "fps": 60.0,
+      "sourceFps": 60.27272415161133,
+      "durationSeconds": 3.666666856538486,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1840572,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 2655,
+      "bytes": 1065516,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 2655
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo03_1",
@@ -643,18 +849,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 81,
       "frames": 81,
       "fps": 60.0,
+      "sourceFps": 60.75,
+      "durationSeconds": 1.3333333333333333,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1073372,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 373,
+      "bytes": 620860,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 373
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo03_2",
@@ -663,18 +876,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 86,
       "frames": 86,
       "fps": 60.0,
+      "sourceFps": 60.70588302612305,
+      "durationSeconds": 1.4166666509569155,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1101068,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 717,
+      "bytes": 637148,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 717
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo03_3",
@@ -683,18 +903,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 141,
       "frames": 141,
       "fps": 60.0,
+      "sourceFps": 60.42857360839844,
+      "durationSeconds": 2.3333332491634993,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1400076,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1362,
+      "bytes": 810732,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1362
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo03_All",
@@ -703,18 +930,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 245,
       "frames": 245,
       "fps": 60.0,
+      "sourceFps": 60.24590301513672,
+      "durationSeconds": 4.066666573799118,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1970604,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1419,
+      "bytes": 1142108,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1419
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo04_1",
@@ -723,18 +957,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 96,
       "frames": 96,
       "fps": 60.0,
+      "sourceFps": 60.63157653808594,
+      "durationSeconds": 1.5833333962493497,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1158748,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 900,
+      "bytes": 670924,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 900
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo04_2",
@@ -743,18 +984,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 111,
       "frames": 111,
       "fps": 60.0,
+      "sourceFps": 60.54545211791992,
+      "durationSeconds": 1.833333406839765,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1240236,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1884,
+      "bytes": 722396,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1884
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo04_3",
@@ -763,29 +1011,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 147,
       "frames": 147,
       "fps": 60.0,
+      "sourceFps": 60.41095733642578,
+      "durationSeconds": 2.4333333964791173,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1444940,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 2362,
+      "bytes": 849660,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 1,
-      "sourceKeyCorrections": [
-        {
-          "bone": "lowerarm_r",
-          "sourceFrame": 45,
-          "sourceTime": 0.7448979785140155,
-          "incomingAngle": 53.389748233379464,
-          "outgoingAngle": 49.13609743622118,
-          "neighborAngle": 4.253585910361153,
-          "residualAngle": 51.26291247583101,
-          "classification": "isolated-key"
-        }
-      ],
-      "quaternionSignCorrectionCount": 2362
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Combo04_All",
@@ -794,29 +1038,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Attacks",
+      "sourceFrames": 276,
       "frames": 276,
       "fps": 60.0,
+      "sourceFps": 60.21818161010742,
+      "durationSeconds": 4.583333349170316,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 2160828,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 3312,
+      "bytes": 1268428,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 1,
-      "sourceKeyCorrections": [
-        {
-          "bone": "lowerarm_r",
-          "sourceFrame": 174,
-          "sourceTime": 2.8894927636073735,
-          "incomingAngle": 53.38819095024866,
-          "outgoingAngle": 49.13535636069623,
-          "neighborAngle": 4.252657004634045,
-          "residualAngle": 51.261741098388356,
-          "classification": "isolated-key"
-        }
-      ],
-      "quaternionSignCorrectionCount": 3312
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Die01",
@@ -825,18 +1065,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Death",
+      "sourceFrames": 56,
       "frames": 56,
       "fps": 60.0,
+      "sourceFps": 61.09090805053711,
+      "durationSeconds": 0.9166666822774072,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 932476,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1305,
+      "bytes": 544796,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1305
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Die02",
@@ -845,18 +1092,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Death",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 905404,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1061,
+      "bytes": 529532,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1061
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Die03",
@@ -865,18 +1119,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Death",
+      "sourceFrames": 57,
       "frames": 57,
       "fps": 60.0,
+      "sourceFps": 61.07143020629883,
+      "durationSeconds": 0.9333333083481823,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 942204,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1003,
+      "bytes": 554940,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1003
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Die04",
@@ -885,18 +1146,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Death",
+      "sourceFrames": 81,
       "frames": 81,
       "fps": 60.0,
+      "sourceFps": 60.75,
+      "durationSeconds": 1.3333333333333333,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1092716,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1877,
+      "bytes": 644700,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1877
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Die05",
@@ -905,18 +1173,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Death",
+      "sourceFrames": 85,
       "frames": 85,
       "fps": 60.0,
+      "sourceFps": 60.71428680419922,
+      "durationSeconds": 1.3999999748678773,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1111164,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1360,
+      "bytes": 658652,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1360
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Equip_Idle",
@@ -925,18 +1200,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 271,
       "frames": 271,
       "fps": 60.0,
+      "sourceFps": 60.22222137451172,
+      "durationSeconds": 4.500000063343682,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 2058172,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 869,
+      "bytes": 1188892,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 869
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Equip_Run01",
@@ -945,18 +1227,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 45,
       "frames": 45,
       "fps": 60.0,
+      "sourceFps": 61.3636360168457,
+      "durationSeconds": 0.7333333374776958,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 854156,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 241,
+      "bytes": 493068,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 241
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Equip_Run02",
@@ -965,18 +1254,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 45,
       "frames": 45,
       "fps": 60.0,
+      "sourceFps": 61.3636360168457,
+      "durationSeconds": 0.7333333374776958,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 860732,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 197,
+      "bytes": 499964,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 197
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Equip",
@@ -985,18 +1281,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Equipment",
+      "sourceFrames": 101,
       "frames": 101,
       "fps": 60.0,
+      "sourceFps": 60.60000228881836,
+      "durationSeconds": 1.6666666037178692,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1202492,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1195,
+      "bytes": 713212,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1195
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Evade_B",
@@ -1005,18 +1308,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 902572,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 798,
+      "bytes": 524604,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 798
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Evade_F",
@@ -1025,18 +1335,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 900124,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 642,
+      "bytes": 521484,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 642
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Evade_L",
@@ -1045,18 +1362,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 902668,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 706,
+      "bytes": 524588,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 706
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Evade_R",
@@ -1065,18 +1389,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 51,
       "frames": 51,
       "fps": 60.0,
+      "sourceFps": 61.20000076293945,
+      "durationSeconds": 0.8333333229447244,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 895884,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 629,
+      "bytes": 517212,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 629
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Getup01",
@@ -1085,18 +1416,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Recovery",
+      "sourceFrames": 81,
       "frames": 81,
       "fps": 60.0,
+      "sourceFps": 60.75,
+      "durationSeconds": 1.3333333333333333,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1084460,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1425,
+      "bytes": 639468,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1425
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Guard",
@@ -1105,18 +1443,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Defense",
+      "sourceFrames": 71,
       "frames": 71,
       "fps": 60.0,
+      "sourceFps": 60.85714340209961,
+      "durationSeconds": 1.1666666562195303,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 991596,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 0,
+      "bytes": 571596,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 0
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Hit_Knockback",
@@ -1125,18 +1470,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Reactions",
+      "sourceFrames": 61,
       "frames": 61,
       "fps": 60.0,
+      "sourceFps": 61.0,
+      "durationSeconds": 1.0,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 963436,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 676,
+      "bytes": 568476,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 676
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Hit_Knockdown_Loop",
@@ -1145,18 +1497,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Reactions",
+      "sourceFrames": 81,
       "frames": 81,
       "fps": 60.0,
+      "sourceFps": 60.75,
+      "durationSeconds": 1.3333333333333333,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1034060,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 25,
+      "bytes": 599932,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 25
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Hit_Knockdown",
@@ -1165,18 +1524,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Reactions",
+      "sourceFrames": 69,
       "frames": 69,
       "fps": 60.0,
+      "sourceFps": 60.882354736328125,
+      "durationSeconds": 1.1333332999163406,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1006540,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1583,
+      "bytes": 587292,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1583
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Hit01",
@@ -1185,18 +1551,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Reactions",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 829964,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 195,
+      "bytes": 480700,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 195
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Hit02",
@@ -1205,18 +1578,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Reactions",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 827516,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 157,
+      "bytes": 478172,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 157
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Hit03",
@@ -1225,18 +1605,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Reactions",
+      "sourceFrames": 47,
       "frames": 47,
       "fps": 60.0,
+      "sourceFps": 61.30434799194336,
+      "durationSeconds": 0.7666666645924815,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 867436,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 221,
+      "bytes": 501452,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 221
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Jump_ZeroHeight",
@@ -1245,18 +1632,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Air",
+      "sourceFrames": 61,
       "frames": 61,
       "fps": 60.0,
+      "sourceFps": 61.0,
+      "durationSeconds": 1.0,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 950540,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 601,
+      "bytes": 550636,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 601
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Jump",
@@ -1265,18 +1659,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Air",
+      "sourceFrames": 61,
       "frames": 61,
       "fps": 60.0,
+      "sourceFps": 61.0,
+      "durationSeconds": 1.0,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 952620,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 558,
+      "bytes": 551372,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 558
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Skill01",
@@ -1285,18 +1686,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Skills",
+      "sourceFrames": 181,
       "frames": 181,
       "fps": 60.0,
+      "sourceFps": 60.33333206176758,
+      "durationSeconds": 3.0000000632270276,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1631612,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 2260,
+      "bytes": 950268,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 2260
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Skill02",
@@ -1305,29 +1713,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Skills",
+      "sourceFrames": 221,
       "frames": 221,
       "fps": 60.0,
+      "sourceFps": 60.27272415161133,
+      "durationSeconds": 3.666666856538486,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1858220,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 2387,
+      "bytes": 1095244,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 1,
-      "sourceKeyCorrections": [
-        {
-          "bone": "lowerarm_r",
-          "sourceFrame": 122,
-          "sourceTime": 2.0241328348312004,
-          "incomingAngle": 53.38898325219242,
-          "outgoingAngle": 49.135619322979274,
-          "neighborAngle": 4.253394665064377,
-          "residualAngle": 51.26228068333278,
-          "classification": "isolated-key"
-        }
-      ],
-      "quaternionSignCorrectionCount": 2387
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Skill03",
@@ -1336,18 +1740,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Skills",
+      "sourceFrames": 221,
       "frames": 221,
       "fps": 60.0,
+      "sourceFps": 60.27272415161133,
+      "durationSeconds": 3.666666856538486,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1838908,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 1939,
+      "bytes": 1066204,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 1939
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Step_B",
@@ -1356,18 +1767,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 31,
       "frames": 31,
       "fps": 60.0,
+      "sourceFps": 62.0,
+      "durationSeconds": 0.5,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 807708,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 289,
+      "bytes": 463804,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 289
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Step_F",
@@ -1376,18 +1794,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 31,
       "frames": 31,
       "fps": 60.0,
+      "sourceFps": 62.0,
+      "durationSeconds": 0.5,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 807708,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 335,
+      "bytes": 463804,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 335
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Step_L",
@@ -1396,18 +1821,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 31,
       "frames": 31,
       "fps": 60.0,
+      "sourceFps": 62.0,
+      "durationSeconds": 0.5,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 807708,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 218,
+      "bytes": 463804,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 218
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Step_R",
@@ -1416,18 +1848,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Evasion",
+      "sourceFrames": 31,
       "frames": 31,
       "fps": 60.0,
+      "sourceFps": 62.0,
+      "durationSeconds": 0.5,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 807708,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 166,
+      "bytes": 463804,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 166
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Unequip_Idle",
@@ -1436,18 +1875,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 301,
       "frames": 301,
       "fps": 60.0,
+      "sourceFps": 60.20000076293945,
+      "durationSeconds": 4.999999936632936,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 2281772,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 66,
+      "bytes": 1353980,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 66
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Unequip_Run_Faster",
@@ -1456,18 +1902,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 37,
       "frames": 37,
       "fps": 60.0,
+      "sourceFps": 61.666664123535156,
+      "durationSeconds": 0.6000000247439833,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 804092,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 269,
+      "bytes": 464364,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 269
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Unequip_Run",
@@ -1476,18 +1929,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 41,
       "frames": 41,
       "fps": 60.0,
+      "sourceFps": 61.5,
+      "durationSeconds": 0.6666666666666666,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 831196,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 173,
+      "bytes": 479772,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 173
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Unequip_Walk_Faster",
@@ -1496,18 +1956,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 57,
       "frames": 57,
       "fps": 60.0,
+      "sourceFps": 61.07143020629883,
+      "durationSeconds": 0.9333333083481823,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 926588,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 161,
+      "bytes": 534892,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 161
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Unequip_Walk",
@@ -1516,18 +1983,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "InPlace",
       "category": "Equipment",
+      "sourceFrames": 65,
       "frames": 65,
       "fps": 60.0,
+      "sourceFps": 60.937496185302734,
+      "durationSeconds": 1.0666667334401752,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 967052,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 192,
+      "bytes": 558620,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 192
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     },
     {
       "name": "Frank_RPG_GreatSword_Unequip",
@@ -1536,18 +2010,25 @@
       "sourceGroup": "Frank_2Handed_GreatSword\\Animations\\IP+RM",
       "motion": "RootMotion",
       "category": "Equipment",
+      "sourceFrames": 71,
       "frames": 71,
       "fps": 60.0,
+      "sourceFps": 60.85714340209961,
+      "durationSeconds": 1.1666666562195303,
+      "resampledToTargetFps": true,
       "sourceBones": 91,
-      "mappedBones": 82,
-      "bytes": 1018444,
+      "bodyBones": 53,
+      "mappedBones": 53,
+      "skeletonFingerprint": "70e1281911a09d347fd51d95e0957042a9161672f6241382bc4c9f1a6c076324",
+      "rigAssetPath": "Assets/_Game/Animations/Frank/Rig/Source/FrankSourceRig_70e1281911a0.fbx",
+      "bindPoseMaxRotationErrorDegrees": 0.0,
+      "bindPoseMaxLocationError": 0.00041921172384454486,
+      "sourceTransformMutationCount": 0,
+      "quaternionHemisphereFlipCount": 884,
+      "bytes": 603500,
       "warnings": [
-        "The armature 'FrankHumanoidRig' is missing 9 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon']",
-        "1 bone(s) have parents that are not present in the PSA:\n['R_Slash_FX_Bone']"
-      ],
-      "sourceKeyCorrectionCount": 0,
-      "sourceKeyCorrections": [],
-      "quaternionSignCorrectionCount": 884
+        "The armature 'FrankSourceRig' is missing 38 bones that exist in the PSA:\n['B_Weapon_Back_Dum', 'Bone001', 'Bone002', 'Bone003', 'Bone004', 'Bone005', 'Bone006', 'Bone007', 'Bone008', 'Bone009', 'Bone010', 'Bone011', 'Bone012', 'Bone015', 'Bone016', 'Bone017', 'Bone018', 'Bone019', 'Cape_Root', 'GreatSword_Root', 'L_Hand_Weapon', 'R_Hand_Weapon', 'R_Slash_FX_Bone', 'calf_twist_01_l', 'calf_twist_01_r', 'ik_foot_l', 'ik_foot_r', 'ik_foot_root', 'ik_hand_gun', 'ik_hand_l', 'ik_hand_r', 'ik_hand_root', 'lowerarm_twist_01_l', 'lowerarm_twist_01_r', 'thigh_twist_01_l', 'thigh_twist_01_r', 'upperarm_twist_01_l', 'upperarm_twist_01_r']"
+      ]
     }
   ]
 }
