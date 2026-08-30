@@ -24,6 +24,26 @@ namespace ProjectS.Core.Editor.Animation
             public float Time { get; }
         }
 
+        private readonly struct MuscleRangeCorrection
+        {
+            public MuscleRangeCorrection(
+                string assetPath,
+                string property,
+                float minimum,
+                float maximum)
+            {
+                AssetPath = assetPath;
+                Property = property;
+                Minimum = minimum;
+                Maximum = maximum;
+            }
+
+            public string AssetPath { get; }
+            public string Property { get; }
+            public float Minimum { get; }
+            public float Maximum { get; }
+        }
+
         private static readonly Correction[] Corrections =
         {
             new(
@@ -61,12 +81,56 @@ namespace ProjectS.Core.Editor.Animation
                 "Left Foot Twist In-Out", 0.125f),
         };
 
-        internal static int CorrectionCount => Corrections.Length;
+        private static readonly MuscleRangeCorrection[] MuscleRangeCorrections =
+        {
+            new(
+                "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Air_Combo_1_IP.fbx",
+                "Left Foot Up-Down", -1f, 1f),
+            new(
+                "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Air_Combo_1_IP.fbx",
+                "Left Foot Twist In-Out", -1f, 1f),
+            new(
+                "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Air_Combo_1_IP.fbx",
+                "Right Foot Up-Down", -1f, 1f),
+            new(
+                "Assets/_Game/Animations/Frank/DualSwords/Animations/InPlace/Frank_RPG_Dual_Air_Combo_1_IP.fbx",
+                "Right Foot Twist In-Out", -1f, 1f),
+        };
+
+        internal static int CorrectionCount =>
+            Corrections.Length + MuscleRangeCorrections.Length;
 
         internal static int CorrectedClipCount => Corrections
             .Select(correction => correction.AssetPath)
+            .Concat(MuscleRangeCorrections.Select(correction => correction.AssetPath))
             .Distinct(StringComparer.Ordinal)
             .Count();
+
+        internal static bool TryGetAllowedMuscleRange(
+            string targetAssetPath,
+            string property,
+            out float minimum,
+            out float maximum)
+        {
+            foreach (var correction in MuscleRangeCorrections)
+            {
+                if (!string.Equals(
+                        targetAssetPath, correction.AssetPath, StringComparison.Ordinal)
+                    || !string.Equals(
+                        property, correction.Property, StringComparison.Ordinal))
+                {
+                    continue;
+                }
+
+                minimum = correction.Minimum;
+                maximum = correction.Maximum;
+                return true;
+            }
+
+            minimum = 0f;
+            maximum = 0f;
+            return false;
+        }
 
         private void OnPostprocessAnimation(GameObject root, AnimationClip clip)
         {
@@ -76,6 +140,14 @@ namespace ProjectS.Core.Editor.Animation
                     continue;
 
                 ApplyCorrection(clip, correction);
+            }
+
+            foreach (var correction in MuscleRangeCorrections)
+            {
+                if (!string.Equals(assetPath, correction.AssetPath, StringComparison.Ordinal))
+                    continue;
+
+                ApplyRangeCorrection(clip, correction);
             }
         }
 
@@ -121,6 +193,50 @@ namespace ProjectS.Core.Editor.Animation
                 curve, keyIndex, AnimationUtility.TangentMode.Linear);
             AnimationUtility.SetKeyLeftTangentMode(
                 curve, keyIndex + 1, AnimationUtility.TangentMode.Linear);
+            AnimationUtility.SetEditorCurve(clip, binding, curve);
+        }
+
+        private static void ApplyRangeCorrection(
+            AnimationClip clip,
+            MuscleRangeCorrection correction)
+        {
+            var binding = AnimationUtility.GetCurveBindings(clip)
+                .FirstOrDefault(candidate => string.Equals(
+                    candidate.propertyName, correction.Property, StringComparison.Ordinal));
+            if (string.IsNullOrEmpty(binding.propertyName))
+                throw new InvalidOperationException(
+                    $"Frank Humanoid range-correction curve is missing: "
+                    + $"{correction.AssetPath} / {correction.Property}");
+
+            var curve = AnimationUtility.GetEditorCurve(clip, binding);
+            var requiredScale = 1f;
+            foreach (var key in curve.keys)
+            {
+                if (key.value < correction.Minimum)
+                    requiredScale = Mathf.Max(
+                        requiredScale, key.value / correction.Minimum);
+                else if (key.value > correction.Maximum)
+                    requiredScale = Mathf.Max(
+                        requiredScale, key.value / correction.Maximum);
+            }
+
+            if (requiredScale <= 1f)
+                return;
+
+            var valueScale = 1f / requiredScale;
+            var keys = curve.keys;
+            for (var index = 0; index < keys.Length; index++)
+            {
+                var key = keys[index];
+                key.value *= valueScale;
+                if (!float.IsInfinity(key.inTangent))
+                    key.inTangent *= valueScale;
+                if (!float.IsInfinity(key.outTangent))
+                    key.outTangent *= valueScale;
+                keys[index] = key;
+            }
+
+            curve.keys = keys;
             AnimationUtility.SetEditorCurve(clip, binding, curve);
         }
     }

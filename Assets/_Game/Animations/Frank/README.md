@@ -59,7 +59,14 @@ Unity's Humanoid conversion produced 11 isolated muscle-space discontinuities
 in seven clips even though their source bone rotations were smooth. Those exact
 imported muscle keys are replaced by interpolation between their untouched
 neighbors in `FrankHumanoidRetargetPostprocessor`; no broad spike heuristic and
-no source-transform mutation is allowed. The validator and the
+no source-transform mutation is allowed. The same postprocessor constrains the
+four foot muscles of `Frank_RPG_Dual_Air_Combo_1_IP` to the normalized
+Humanoid range because Unity otherwise generates sustained values as high as
+`3.43` and turns the feet backwards. Each affected curve is scaled uniformly,
+preserving its timing and shape instead of flattening individual keys. This
+correction is restricted to that clip and does not alter the source PSA or
+generic FBX transforms. The validator checks the configured range after every
+import. The validator and the
 `Render Reported Pose Spikes` contact-sheet command provide the before/after QA
 boundary for this explicit correction list.
 
