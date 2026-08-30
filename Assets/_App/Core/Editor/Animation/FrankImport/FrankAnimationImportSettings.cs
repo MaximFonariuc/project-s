@@ -141,6 +141,9 @@ namespace ProjectS.Core.Editor.Animation
             for (var index = 0; index < clips.Length; index++)
             {
                 clips[index].name = clipName;
+                // Generated FBXs reserve frame zero for the exact source bind pose so
+                // Unity can build/copy a stable Avatar. Authored motion starts at frame one.
+                clips[index].firstFrame = 1f;
                 clips[index].loop = shouldLoop;
                 clips[index].loopTime = shouldLoop;
                 clips[index].loopPose = shouldLoop;

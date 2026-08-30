@@ -315,7 +315,7 @@ if ($failed.Count -gt 0) {
 }
 
 $sourceIntegrityAudit = [ordered]@{
-    schemaVersion = 3
+    schemaVersion = 4
     scannedClipCount = $conversionReport.Count
     skeletonCount = @($conversionReport.skeletonFingerprint | Sort-Object -Unique).Count
     sourceTransformMutationCount = ($conversionReport | Measure-Object -Property sourceTransformMutationCount -Sum).Sum
@@ -323,7 +323,9 @@ $sourceIntegrityAudit = [ordered]@{
     maximumBindPoseLocationError = ($conversionReport | Measure-Object -Property bindPoseMaxLocationError -Maximum).Maximum
     quaternionHemisphereFlipCount = ($conversionReport | Measure-Object -Property quaternionHemisphereFlipCount -Sum).Sum
     sourceEngine = 'Unreal Engine 4.23'
-    policy = 'Every clip is rebuilt on its own embedded source bind pose. Authored transforms are never clamped, smoothed, interpolated or repaired. Only equivalent q/-q quaternion notation may be normalized.'
+    calfRollCorrectionAxis = 'localX'
+    calfRollCorrectionDegrees = 180
+    policy = 'Every clip is rebuilt on its embedded source bind pose. Frame zero is reserved for Avatar matching and excluded from the Unity clip. Equivalent q/-q quaternion notation is normalized, and both Unreal calf rotations receive a deterministic 180-degree local-X basis conversion before Unity Humanoid retargeting. No positions are clamped, smoothed or interpolated.'
 }
 $sourceIntegrityAudit | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $sourceIntegrityReportPath -Encoding utf8
 
@@ -350,13 +352,18 @@ foreach ($pack in $sourceSets.Pack) {
             bindPoseMaxRotationErrorDegrees = $_.bindPoseMaxRotationErrorDegrees
             bindPoseMaxLocationError = $_.bindPoseMaxLocationError
             sourceTransformMutationCount = $_.sourceTransformMutationCount
+            referencePoseFrames = $_.referencePoseFrames
+            authoredAnimationStartFrame = $_.authoredAnimationStartFrame
+            authoredAnimationEndFrame = $_.authoredAnimationEndFrame
+            calfRollCorrectionAxis = $_.calfRollCorrectionAxis
+            calfRollCorrectionDegrees = $_.calfRollCorrectionDegrees
             quaternionHemisphereFlipCount = $_.quaternionHemisphereFlipCount
             bytes = $_.bytes
             warnings = $_.warnings
         }
     })
     $catalog = [ordered]@{
-        schemaVersion = 3
+        schemaVersion = 4
         pack = $pack
         rigStrategy = 'PerSourceBindPose'
         animationType = 'Humanoid'

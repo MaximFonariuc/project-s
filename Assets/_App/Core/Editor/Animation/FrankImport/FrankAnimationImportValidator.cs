@@ -17,6 +17,8 @@ namespace ProjectS.Core.Editor.Animation
         private const float IsolatedCurveNeighborBridge = 0.2f;
         private const float ConfirmedPoseJumpDegrees = 35f;
         private const float ConfirmedPoseNeighborBridgeDegrees = 20f;
+        private const float PreviewLowerLegTwistParityTolerance = 0.025f;
+        private const int PreviewParitySamples = 17;
         private const int MaxRecordedKeyIssuesPerClip = 32;
 
         [Serializable]
@@ -49,6 +51,7 @@ namespace ProjectS.Core.Editor.Animation
             public int invalidCurveKeyCount;
             public int humanoidCurveSpikeCandidateCount;
             public int confirmedPoseSpikeCount;
+            public float previewLowerLegTwistMaxDelta;
             public List<ClipRecord> clips = new();
         }
 
@@ -227,8 +230,12 @@ namespace ProjectS.Core.Editor.Animation
                 return record;
             }
 
-            var clips = AssetDatabase.LoadAllAssetsAtPath(path)
+            var importedClips = AssetDatabase.LoadAllAssetsAtPath(path)
                 .OfType<AnimationClip>()
+                .ToArray();
+            var previewClip = importedClips.FirstOrDefault(
+                clip => clip.name.StartsWith("__preview__", StringComparison.Ordinal));
+            var clips = importedClips
                 .Where(clip => !clip.name.StartsWith("__preview__", StringComparison.Ordinal))
                 .ToArray();
             foreach (var clip in clips)
@@ -281,6 +288,17 @@ namespace ProjectS.Core.Editor.Animation
                 }
                 if (clips.Any(clip => clip.frameRate <= 0f || clip.frameRate > 60.01f))
                     failures.Add("clip frame rate is outside the supported 1-60 FPS range");
+                if (importer.clipAnimations.Any(clip => clip.firstFrame < 0.999f))
+                    failures.Add("clip includes the generated Avatar reference frame");
+                record.previewLowerLegTwistMaxDelta = MeasurePreviewLowerLegTwistParity(
+                    clips.FirstOrDefault(), previewClip);
+                if (record.previewLowerLegTwistMaxDelta
+                    > PreviewLowerLegTwistParityTolerance)
+                {
+                    failures.Add(
+                        "runtime and Inspector preview lower-leg rotations diverge by "
+                        + $"{record.previewLowerLegTwistMaxDelta:F4}");
+                }
             }
             if (clips.Length != 1)
                 failures.Add($"expected one clip, found {clips.Length}");
@@ -296,6 +314,50 @@ namespace ProjectS.Core.Editor.Animation
             record.valid = failures.Count == 0;
             record.error = string.Join("; ", failures);
             return record;
+        }
+
+        private static float MeasurePreviewLowerLegTwistParity(
+            AnimationClip runtimeClip,
+            AnimationClip previewClip)
+        {
+            if (runtimeClip == null || previewClip == null || runtimeClip.frameRate <= 0f)
+                return 999f;
+
+            var maximumDelta = 0f;
+            var comparedCurveCount = 0;
+            var referenceFrameDuration = 1f / runtimeClip.frameRate;
+            foreach (var propertyName in new[]
+                     {
+                         "Left Lower Leg Twist In-Out",
+                         "Right Lower Leg Twist In-Out",
+                     })
+            {
+                var runtimeBinding = AnimationUtility.GetCurveBindings(runtimeClip)
+                    .FirstOrDefault(binding => binding.propertyName == propertyName);
+                var previewBinding = AnimationUtility.GetCurveBindings(previewClip)
+                    .FirstOrDefault(binding => binding.propertyName == propertyName);
+                var runtimeCurve = AnimationUtility.GetEditorCurve(runtimeClip, runtimeBinding);
+                var previewCurve = AnimationUtility.GetEditorCurve(previewClip, previewBinding);
+                if (runtimeCurve == null || previewCurve == null)
+                    continue;
+
+                comparedCurveCount++;
+                for (var sampleIndex = 0; sampleIndex < PreviewParitySamples; sampleIndex++)
+                {
+                    var normalizedTime = sampleIndex / (PreviewParitySamples - 1f);
+                    var runtimeTime = runtimeClip.length * normalizedTime;
+                    var previewTime = Mathf.Min(
+                        previewClip.length,
+                        runtimeTime + referenceFrameDuration);
+                    maximumDelta = Mathf.Max(
+                        maximumDelta,
+                        Mathf.Abs(
+                            runtimeCurve.Evaluate(runtimeTime)
+                            - previewCurve.Evaluate(previewTime)));
+                }
+            }
+
+            return comparedCurveCount > 0 ? maximumDelta : 999f;
         }
 
         private static void ValidateCurveKeys(

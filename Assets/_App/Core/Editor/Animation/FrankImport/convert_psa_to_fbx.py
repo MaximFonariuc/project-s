@@ -1,10 +1,12 @@
-"""Convert UE Viewer PSA sequences to FBX without changing authored poses.
+"""Convert UE Viewer PSA sequences to Unity-compatible Humanoid FBX files.
 
 Each Frank source set has its own bind pose. The converter reconstructs a
 Humanoid-compatible armature from the reference transform embedded in every
 PSA instead of applying every sequence to one unrelated shared rig. Source
 keys are validated and quaternion signs may be normalized to the same
-hemisphere, but authored transforms are never clamped, smoothed or repaired.
+hemisphere. A deterministic local-axis normalization is applied to both calf
+bones because Unreal and Unity Humanoid interpret their longitudinal roll in
+opposite directions; positions and the authored motion are otherwise kept.
 """
 
 from __future__ import annotations
@@ -18,6 +20,7 @@ import sys
 import traceback
 
 import bpy
+from bpy_extras import anim_utils
 from mathutils import Matrix, Quaternion, Vector
 
 
@@ -101,6 +104,10 @@ _REQUIRED_BODY_BONES = {
 
 _MAX_BIND_ROTATION_ERROR_DEGREES = 0.01
 _MAX_BIND_LOCATION_ERROR = 0.01
+_REFERENCE_POSE_FRAME = 0.0
+_AUTHORED_ANIMATION_FRAME_OFFSET = 1.0
+_CALF_ROLL_BONES = ("calf_l", "calf_r")
+_CALF_ROLL_CORRECTION = Quaternion((1.0, 0.0, 0.0), math.pi)
 
 
 def _parse_arguments() -> argparse.Namespace:
@@ -387,6 +394,80 @@ def _select_only(armature) -> None:
     bpy.context.view_layer.objects.active = armature
 
 
+def _prepend_reference_pose(armature, action) -> None:
+    """Keep the FBX skeleton bind pose separate from the first authored pose.
+
+    Blender's FBX exporter uses the pose evaluated at the first exported frame
+    as the node defaults.  Exporting a PSA action from frame zero therefore made
+    Unity compare the source Avatar bind pose against the first attack frame.
+    Shift authored keys by one frame and reserve frame zero for pose-basis
+    identity so Copy From Other Avatar sees an identical skeleton definition.
+    """
+
+    animation_data = armature.animation_data_create()
+    animation_data.action = action
+    if len(action.slots) > 0:
+        animation_data.action_slot = action.slots[0]
+
+    channelbag = anim_utils.action_get_channelbag_for_slot(
+        action, animation_data.action_slot
+    )
+    if channelbag is None:
+        raise RuntimeError(f"Animation {action.name} has no action channel bag.")
+    for fcurve in channelbag.fcurves:
+        for key in fcurve.keyframe_points:
+            key.co.x += _AUTHORED_ANIMATION_FRAME_OFFSET
+            key.handle_left.x += _AUTHORED_ANIMATION_FRAME_OFFSET
+            key.handle_right.x += _AUTHORED_ANIMATION_FRAME_OFFSET
+        fcurve.update()
+
+    bpy.context.scene.frame_set(int(_REFERENCE_POSE_FRAME))
+    for pose_bone in armature.pose.bones:
+        pose_bone.rotation_mode = "QUATERNION"
+        pose_bone.location = Vector((0.0, 0.0, 0.0))
+        pose_bone.rotation_quaternion = Quaternion((1.0, 0.0, 0.0, 0.0))
+        pose_bone.scale = Vector((1.0, 1.0, 1.0))
+        pose_bone.keyframe_insert(
+            data_path="location", frame=_REFERENCE_POSE_FRAME, group=pose_bone.name
+        )
+        pose_bone.keyframe_insert(
+            data_path="rotation_quaternion",
+            frame=_REFERENCE_POSE_FRAME,
+            group=pose_bone.name,
+        )
+        pose_bone.keyframe_insert(
+            data_path="scale", frame=_REFERENCE_POSE_FRAME, group=pose_bone.name
+        )
+
+
+def _normalize_unreal_calf_roll(armature, authored_frame_count: int) -> int:
+    """Convert Unreal calf roll to the local basis expected by Unity Humanoid.
+
+    The correction is intentionally applied only to authored frames. Frame zero
+    remains the unmodified source bind pose used by Unity when matching the
+    copied Avatar. Post-multiplication rotates around each calf's own X axis;
+    it does not change the knee trajectory or any joint translation.
+    """
+
+    corrected_samples = 0
+    scene = bpy.context.scene
+    for bone_name in _CALF_ROLL_BONES:
+        pose_bone = armature.pose.bones.get(bone_name)
+        if pose_bone is None:
+            raise RuntimeError(f"PSA is missing calf bone required by Unity: {bone_name}")
+        pose_bone.rotation_mode = "QUATERNION"
+        for frame in range(1, authored_frame_count + 1):
+            scene.frame_set(frame)
+            pose_bone.rotation_quaternion = (
+                pose_bone.rotation_quaternion.copy() @ _CALF_ROLL_CORRECTION
+            )
+            pose_bone.keyframe_insert(
+                data_path="rotation_quaternion", frame=frame, group=pose_bone.name
+            )
+            corrected_samples += 1
+    return corrected_samples
+
+
 def _export_fbx(
     armature,
     output_path: pathlib.Path,
@@ -491,6 +572,10 @@ def _convert_job(
         action = bpy.data.actions.get(sequence_name)
         if action is None:
             raise RuntimeError(f"PSA importer did not create action {sequence_name}")
+        _prepend_reference_pose(armature, action)
+        calf_roll_correction_samples = _normalize_unreal_calf_roll(
+            armature, int(sequence.frame_count)
+        )
         animation_data = armature.animation_data_create()
         animation_data.action = action
         if len(action.slots) > 0:
@@ -511,6 +596,9 @@ def _convert_job(
             "fps": float(target_fps),
             "sourceFps": float(sequence.fps),
             "durationSeconds": float(sequence.frame_count) / float(sequence.fps),
+            "referencePoseFrames": 1,
+            "authoredAnimationStartFrame": 1,
+            "authoredAnimationEndFrame": int(sequence.frame_count),
             "resampledToTargetFps": abs(float(sequence.fps) - target_fps) > 1e-4,
             "sourceBones": len(source_names),
             "bodyBones": len(records),
@@ -519,7 +607,9 @@ def _convert_job(
             "rigAssetPath": rig_asset_path,
             "bindPoseMaxRotationErrorDegrees": max_rotation_error,
             "bindPoseMaxLocationError": max_location_error,
-            "sourceTransformMutationCount": 0,
+            "sourceTransformMutationCount": calf_roll_correction_samples,
+            "calfRollCorrectionAxis": "localX",
+            "calfRollCorrectionDegrees": 180,
             "quaternionHemisphereFlipCount": reader.quaternion_hemisphere_flips[
                 sequence_name
             ],

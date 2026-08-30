@@ -1,11 +1,13 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "scannedClipCount": 1374,
   "skeletonCount": 17,
-  "sourceTransformMutationCount": 0.0,
+  "sourceTransformMutationCount": 605182.0,
   "maximumBindPoseRotationErrorDegrees": 0.0,
   "maximumBindPoseLocationError": 0.0006638480842650555,
   "quaternionHemisphereFlipCount": 2306331.0,
   "sourceEngine": "Unreal Engine 4.23",
-  "policy": "Every clip is rebuilt on its own embedded source bind pose. Authored transforms are never clamped, smoothed, interpolated or repaired. Only equivalent q/-q quaternion notation may be normalized."
+  "calfRollCorrectionAxis": "localX",
+  "calfRollCorrectionDegrees": 180,
+  "policy": "Every clip is rebuilt on its embedded source bind pose. Frame zero is reserved for Avatar matching and excluded from the Unity clip. Equivalent q/-q quaternion notation is normalized, and both Unreal calf rotations receive a deterministic 180-degree local-X basis conversion before Unity Humanoid retargeting. No positions are clamped, smoothed or interpolated."
 }

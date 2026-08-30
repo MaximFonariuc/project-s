@@ -61,42 +61,12 @@ namespace ProjectS.Core.Editor.Animation
 
         private void OnPostprocessAnimation(GameObject root, AnimationClip clip)
         {
-            if (FrankAnimationImportSettings.IsGeneratedClip(assetPath))
-                NeutralizeInvalidLowerLegTwist(clip);
-
             foreach (var correction in Corrections)
             {
                 if (!string.Equals(assetPath, correction.AssetPath, StringComparison.Ordinal))
                     continue;
 
                 ApplyCorrection(clip, correction);
-            }
-        }
-
-        private static void NeutralizeInvalidLowerLegTwist(AnimationClip clip)
-        {
-            // UE mannequin calf rolls become near-180-degree Humanoid muscle twists after
-            // retargeting, although the authored knee bend and joint trajectory are valid.
-            // A lower leg is a hinge in this source library; axial rotation belongs to the
-            // thigh/foot chains and retaining this generated curve inverts the whole leg.
-            foreach (var binding in AnimationUtility.GetCurveBindings(clip))
-            {
-                if (!string.Equals(
-                        binding.propertyName, "Left Lower Leg Twist In-Out", StringComparison.Ordinal)
-                    && !string.Equals(
-                        binding.propertyName, "Right Lower Leg Twist In-Out", StringComparison.Ordinal))
-                {
-                    continue;
-                }
-
-                var curve = AnimationUtility.GetEditorCurve(clip, binding);
-                if (curve == null)
-                    continue;
-                var keys = curve.keys;
-                for (var index = 0; index < keys.Length; index++)
-                    keys[index].value = 0f;
-                curve.keys = keys;
-                AnimationUtility.SetEditorCurve(clip, binding, curve);
             }
         }
 
