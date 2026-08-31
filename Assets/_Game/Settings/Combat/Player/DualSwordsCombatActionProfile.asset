@@ -660,6 +660,8 @@ MonoBehaviour:
     _targetActionId: skill.special
   - _commandId: attack.heavy
     _targetActionId: attack.heavy
+  - _commandId: attack.launcher
+    _targetActionId: attack.launcher
   _transitions:
   - _sourceActionId: combo.ground.0
     _commandId: attack.light
@@ -859,3 +861,25 @@ MonoBehaviour:
     _useInputWindow: 1
     _inputStart: 0.67
     _inputEnd: 0.86
+  - _sourceActionId: combo.ground.2
+    _commandId: attack.heavy
+    _targetActionId: attack.heavy
+    _window: 1
+    _condition: 0
+    _useAcceptanceWindow: 1
+    _acceptanceStart: 0.54
+    _acceptanceEnd: 0.72
+    _useInputWindow: 0
+    _inputStart: 0
+    _inputEnd: 0.75
+  - _sourceActionId: combo.ground.2
+    _commandId: attack.launcher
+    _targetActionId: attack.launcher
+    _window: 1
+    _condition: 1
+    _useAcceptanceWindow: 1
+    _acceptanceStart: 0.52
+    _acceptanceEnd: 0.76
+    _useInputWindow: 0
+    _inputStart: 0
+    _inputEnd: 0.75

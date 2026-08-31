@@ -171,6 +171,8 @@ reaction, disable, or another interruption.
   remains the sole owner of persistent `CurrentWeapon`.
 - Weapon transitions, three-step ground/air light combos, a grounded heavy,
   a timing-sampled `Light -> pause -> Light` finisher, the first grounded named
-  special and the launcher-to-air-chase route are implemented. The pause
-  finisher currently reuses the heavy presentation slot; additional named
-  skills remain deferred.
+  special and the launcher-to-air-chase route are implemented. Dual Swords can
+  start a launcher directly from `Ready`; every completed ground-light step can
+  also cancel into heavy, while a confirmed hit can cancel into the launcher.
+  The pause finisher currently reuses the heavy presentation slot; additional
+  named skills remain deferred.

@@ -90,9 +90,11 @@ classDiagram
   authored cone; this does not mutate hard lock-on or camera state.
 - `CharacterMotor` and `CharacterMovement` remain the only authorities for
   position, collision, slopes and grounding.
-- The current profile contains independent grounded and airborne
+- The current Dual Swords profile contains independent grounded and airborne
   `attack.light` branches, grounded named `attack.heavy` and `skill.special`
-  actions, and a hit-confirmed `attack.launcher -> movement.air-chase` route.
-  Environment-specific entries share semantic commands without device checks.
+  actions, a direct grounded launcher entry, and a hit-confirmed
+  `attack.launcher -> movement.air-chase` route. Every ground-light step exposes
+  the same heavy and hit-confirmed launcher cancels; environment-specific
+  entries share semantic commands without device checks.
 - Air actions use motor-owned `MinimumVelocity` and planar intents for a bounded
   air hang. Animator root motion never becomes position authority.
