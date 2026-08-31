@@ -125,7 +125,7 @@ classDiagram
 - `PlayerCombatActionId` идентифицирует узел moveset: `combo.0`, `combo.1`, `air.combo.0`.
 - `PlayerCombatAnimationId` выбирает named animation slot (`attack.heavy`, `skill.special`) и не определяет gameplay transition.
 - `PlayerCombatPresentation` сообщает animation adapter, как отобразить уже выбранное действие: combo index либо named `PlayerCombatAnimationId`.
-- `CombatActionDefinition` хранит immutable timeline и impact: hitbox, damage, stagger, knockback, reaction id, chain/cancel, recovery, movement, invulnerability, commit, completion и cooldown.
+- `CombatActionDefinition` хранит immutable timeline и impact: hitbox, damage, stagger, knockback, reaction id, chain/cancel, recovery, movement, invulnerability, commit, completion и cooldown. Ненулевой gameplay impact требует включённого hitbox window; иначе профиль отклоняется до Play Mode вместо тихого запуска физически непопадающей атаки.
 - `PlayerCombatActionProfile.OnValidate` собирает полный immutable graph в Editor и сразу сообщает об ошибочных id, переходах, временных окнах и impact-конфигурации. `PlayerCombatActionGraphCompiler` выполняет ту же fail-fast проверку при runtime composition, но больше не смешивает её с hot-path lookup.
 - Compiler обходит граф от всех entry rules и отклоняет каждый недостижимый
   action. Будущий или отключённый узел не может оставаться молчаливыми данными

@@ -148,6 +148,8 @@ namespace _App
 
     internal readonly struct CombatHitDefinition
     {
+        private const float ImpactTolerance = 0.0001f;
+
         public int Damage { get; }
         public float StaggerDamage { get; }
         public float Knockback { get; }
@@ -155,6 +157,14 @@ namespace _App
         public CombatReactionId ReactionId { get; }
         public CombatHitStop HitStop { get; }
         public CombatHitRepeatPolicy RepeatPolicy { get; }
+        public bool HasGameplayImpact =>
+            Damage > 0 ||
+            StaggerDamage > ImpactTolerance ||
+            Knockback > ImpactTolerance ||
+            Mathf.Abs(VerticalKnockback) > ImpactTolerance ||
+            ReactionId.IsValid ||
+            HitStop.IsEnabled ||
+            RepeatPolicy.AllowsRepeatedHits;
 
         public CombatHitDefinition(
             int damage,

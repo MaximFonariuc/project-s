@@ -96,11 +96,10 @@ namespace _App
             ValidateWindow(cancelWindow, completionTime, nameof(cancelWindow));
             ValidateWindow(movementConstraintWindow, completionTime, nameof(movementConstraintWindow));
             ValidateWindow(invulnerabilityWindow, completionTime, nameof(invulnerabilityWindow));
-            if (hitDefinition.RepeatPolicy.AllowsRepeatedHits &&
-                !hitboxWindow.IsEnabled)
+            if (!hitboxWindow.IsEnabled && hitDefinition.HasGameplayImpact)
             {
                 throw new ArgumentException(
-                    "A repeated-hit policy requires an enabled hitbox window.",
+                    "A combat action with gameplay impact requires an enabled hitbox window.",
                     nameof(hitDefinition));
             }
 
