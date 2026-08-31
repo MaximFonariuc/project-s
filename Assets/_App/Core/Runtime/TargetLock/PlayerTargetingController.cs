@@ -199,7 +199,7 @@ namespace _App
             {
                 _actor.SetRotationMode(_rotationModeBeforeLock);
             }
-            TargetChanged?.Invoke(null);
+            SafeEvent.Publish(TargetChanged, null, _actor.Root);
         }
 
         public bool TryGetAttackAssistTarget(
@@ -455,7 +455,7 @@ namespace _App
             _currentTargetObject = target as UnityEngine.Object;
             _hasTarget = true;
             CurrentTarget = target.TargetRoot;
-            TargetChanged?.Invoke(CurrentTarget);
+            SafeEvent.Publish(TargetChanged, CurrentTarget, _actor.Root);
         }
     }
 }

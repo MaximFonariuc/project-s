@@ -161,6 +161,10 @@ Concrete-ссылка `CombatTarget -> Health` считается временн
 его `Enable/Disable` lifecycle, а `ClearTarget` остаётся teardown-операцией,
 которая всегда освобождает rotation policy.
 
+`TargetChanged` публикуется после подтверждённой смены target/rotation mode через
+изолированный read-event. Ошибка UI/camera consumer логируется на player root и
+не может отменить lock либо помешать остальным subscribers.
+
 ## Почему интерфейсы, а не abstract controller
 
 Сменяемая граница проходит по операциям, состоянию и описанию цели, а не по inheritance tree. Soft targeting, aim assist либо genre-specific selection могут реализовать command/state ports без наследования physics lifecycle текущего controller. Другой вид target authoring может реализовать `ICombatTarget`, не заставляя lock-on знать про конкретного персонажа.
