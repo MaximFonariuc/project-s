@@ -3,6 +3,13 @@ using UnityEngine;
 
 namespace _App
 {
+    public enum CombatHitOutcome
+    {
+        Damaged = 0,
+        Blocked = 1,
+        Parried = 2
+    }
+
     public readonly struct CombatActionId : IEquatable<CombatActionId>
     {
         public string Value { get; }
@@ -281,6 +288,7 @@ namespace _App
     {
         public AttackExecutionId ExecutionId { get; }
         public CombatActionId ActionId { get; }
+        public CombatHitOutcome Outcome { get; }
         public int Damage { get; }
         public float StaggerDamage { get; }
         public float Knockback { get; }
@@ -296,6 +304,7 @@ namespace _App
         internal CombatHitResult(
             AttackExecutionId executionId,
             CombatActionId actionId,
+            CombatHitOutcome outcome,
             int damage,
             float staggerDamage,
             float knockback,
@@ -310,6 +319,7 @@ namespace _App
         {
             ExecutionId = executionId;
             ActionId = actionId;
+            Outcome = outcome;
             Damage = damage;
             StaggerDamage = staggerDamage;
             Knockback = knockback;
@@ -321,6 +331,30 @@ namespace _App
             Source = source;
             Target = target;
             HitZoneId = hitZoneId;
+        }
+
+        internal CombatHitResult AsDefenseOutcome(CombatHitOutcome outcome)
+        {
+            if (outcome is not (CombatHitOutcome.Blocked or CombatHitOutcome.Parried))
+            {
+                throw new ArgumentOutOfRangeException(nameof(outcome));
+            }
+
+            return new CombatHitResult(
+                ExecutionId,
+                ActionId,
+                outcome,
+                0,
+                0.0f,
+                0.0f,
+                0.0f,
+                CombatReactionId.None,
+                HitStop,
+                Point,
+                Direction,
+                Source,
+                Target,
+                HitZoneId);
         }
     }
 
@@ -354,7 +388,9 @@ namespace _App
         string HitZoneId { get; }
         float DamageMultiplier { get; }
 
-        bool TryApplyHit(in CombatHitResult hit);
+        bool TryResolveHit(
+            in CombatHitResult proposedHit,
+            out CombatHitResult resolvedHit);
     }
 
     internal interface ICombatHitResolver

@@ -50,16 +50,29 @@ namespace _App
             ResolveReferences();
         }
 
-        bool ICombatHitTarget.TryApplyHit(in CombatHitResult hit)
+        bool ICombatHitTarget.TryResolveHit(
+            in CombatHitResult proposedHit,
+            out CombatHitResult resolvedHit)
         {
-            if (hit.Damage <= 0 || _damageMultiplier <= 0f)
+            if (proposedHit.Damage <= 0 || _damageMultiplier <= 0f)
             {
+                resolvedHit = default;
                 return false;
             }
 
-            return _rig != null
-                ? _rig.TryApplyHit(in hit)
-                : _health != null && _health.TryApplyHit(in hit);
+            if (_rig != null)
+            {
+                return _rig.TryResolveHit(in proposedHit, out resolvedHit);
+            }
+
+            if (_health != null && _health.TryApplyHit(in proposedHit))
+            {
+                resolvedHit = proposedHit;
+                return true;
+            }
+
+            resolvedHit = default;
+            return false;
         }
 
         public void SetColliderEnabled(bool enabled)

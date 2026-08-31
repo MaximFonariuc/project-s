@@ -24,9 +24,18 @@ namespace _App
             }
         }
 
-        internal bool TryApplyHit(in CombatHitResult hit)
+        internal bool TryResolveHit(
+            in CombatHitResult proposedHit,
+            out CombatHitResult resolvedHit)
         {
-            return _health != null && _health.TryApplyHit(in hit);
+            if (_health != null && _health.TryApplyHit(in proposedHit))
+            {
+                resolvedHit = proposedHit;
+                return true;
+            }
+
+            resolvedHit = default;
+            return false;
         }
 
         public void SetHurtboxesEnabled(bool enabled)

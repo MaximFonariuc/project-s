@@ -103,7 +103,8 @@ namespace _App
 
         private void OnHitResolved(CombatHitResult hit)
         {
-            if (!_enabled || !IsLocalSource(hit.Source) || hit.Damage <= 0 ||
+            if (!_enabled || hit.Outcome != CombatHitOutcome.Damaged ||
+                !IsLocalSource(hit.Source) || hit.Damage <= 0 ||
                 string.IsNullOrEmpty(hit.ActionId.Value))
             {
                 return;

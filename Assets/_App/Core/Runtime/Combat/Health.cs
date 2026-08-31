@@ -32,7 +32,8 @@ namespace _App
 
         internal bool TryApplyHit(in CombatHitResult hit)
         {
-            if (!IsAlive || IsDamageImmune || hit.Damage <= 0)
+            if (!IsAlive || IsDamageImmune ||
+                hit.Outcome != CombatHitOutcome.Damaged || hit.Damage <= 0)
             {
                 return false;
             }

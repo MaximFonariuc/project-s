@@ -41,9 +41,10 @@ namespace _App
             Vector3 direction = candidate.Direction.sqrMagnitude > 0.0001f
                 ? candidate.Direction.normalized
                 : execution.Source.transform.forward;
-            result = new CombatHitResult(
+            var proposedHit = new CombatHitResult(
                 execution.Id,
                 execution.ActionId,
+                CombatHitOutcome.Damaged,
                 damage,
                 definition.StaggerDamage,
                 definition.Knockback,
@@ -56,7 +57,7 @@ namespace _App
                 target.Owner,
                 target.HitZoneId);
 
-            if (!target.TryApplyHit(in result))
+            if (!target.TryResolveHit(in proposedHit, out result))
             {
                 result = default;
                 return false;

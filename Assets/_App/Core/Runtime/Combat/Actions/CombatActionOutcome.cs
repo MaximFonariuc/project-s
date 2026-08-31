@@ -49,7 +49,8 @@ namespace _App
         {
             if (!IsTracking ||
                 hit.ExecutionId != ExecutionId ||
-                hit.ActionId != _combatActionId)
+                hit.ActionId != _combatActionId ||
+                hit.Outcome != CombatHitOutcome.Damaged)
             {
                 return false;
             }
