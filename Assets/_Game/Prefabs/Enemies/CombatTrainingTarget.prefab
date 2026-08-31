@@ -1028,6 +1028,8 @@ GameObject:
   - component: {fileID: 2974541075970454963}
   - component: {fileID: 1809471061997952984}
   - component: {fileID: 2118146269933399997}
+  - component: {fileID: 8811571643654951780}
+  - component: {fileID: 5689077119398614107}
   m_Layer: 7
   m_Name: CombatTrainingTarget
   m_TagString: Untagged
@@ -1210,6 +1212,54 @@ MonoBehaviour:
   _aimPoint: {fileID: 5024209813379241017}
   _aimCollider: {fileID: 761981607231819327}
   _health: {fileID: 6032431483796332789}
+--- !u!114 &8811571643654951780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6065133867398282554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab7a7455e97e4814d8419c12a5f700ec, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  _health: {fileID: 6032431483796332789}
+  _reactionHost: {fileID: 1809471061997952984}
+  _targetRig: {fileID: 0}
+  _attackOrigin: {fileID: 5566560537023341474}
+  _automatic: 1
+  _attack:
+    _initialDelay: 1.25
+    _windupDuration: 0.65
+    _activeDuration: 0.18
+    _recoveryDuration: 0.7
+    _cooldownDuration: 1.2
+    _range: 2.4
+    _windupLeash: 0.75
+    _damage: 10
+    _staggerDamage: 12
+    _knockback: 2.5
+    _reaction: 0
+    _useHitStop: 1
+    _hitStopDuration: 0.07
+    _hitStopTimeScale: 0.1
+--- !u!114 &5689077119398614107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6065133867398282554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f919b895d8c8244826f57435cfeff6, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  _attacker: {fileID: 8811571643654951780}
+  _lineWidth: 0.045
+  _windupColor: {r: 1, g: 0.45, b: 0.05, a: 0.85}
+  _activeColor: {r: 1, g: 0.08, b: 0.03, a: 1}
 --- !u!1 &6301183989958189046
 GameObject:
   m_ObjectHideFlags: 0

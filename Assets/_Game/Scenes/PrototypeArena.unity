@@ -4672,6 +4672,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat Training Target
       objectReference: {fileID: 0}
+    - target: {fileID: 8811571643654951780, guid: 1694343dc91dcf048b46e3e8f4be6d35, type: 3}
+      propertyPath: _targetRig
+      value:
+      objectReference: {fileID: 5700940806182977515}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30646,6 +30650,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
+--- !u!114 &5700940806182977515 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3624406737342499035, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
+  m_PrefabInstance: {fileID: 5700940806182977514}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 240f5b836d201824cad1a9d778689955, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!114 &5700940806182977519 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5823435522177661927, guid: b8c6f80160fe67040bd1a307571fe051, type: 3}
