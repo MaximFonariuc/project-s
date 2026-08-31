@@ -41,6 +41,7 @@ classDiagram
         +BuildActions(actions)
         +BuildEntries(entries, actions)
         +BuildTransitions(transitions, actions)
+        +ValidateReachability(actions, entries, transitions)
     }
     class PlayerCombatEntryRule {
         +CommandId PlayerCombatCommandId
@@ -126,7 +127,13 @@ classDiagram
 - `PlayerCombatPresentation` сообщает animation adapter, как отобразить уже выбранное действие: combo index либо named `PlayerCombatAnimationId`.
 - `CombatActionDefinition` хранит immutable timeline и impact: hitbox, damage, stagger, knockback, reaction id, chain/cancel, recovery, movement, invulnerability, commit, completion и cooldown.
 - `PlayerCombatActionProfile.OnValidate` собирает полный immutable graph в Editor и сразу сообщает об ошибочных id, переходах, временных окнах и impact-конфигурации. `PlayerCombatActionGraphCompiler` выполняет ту же fail-fast проверку при runtime composition, но больше не смешивает её с hot-path lookup.
+- Compiler обходит граф от всех entry rules и отклоняет каждый недостижимый
+  action. Будущий или отключённый узел не может оставаться молчаливыми данными
+  внутри активного moveset: его нужно либо подключить переходом, либо удалить.
 - Стандартный `hit.launcher` требует положительный vertical knockback, а `hit.slam` — отрицательный. Пользовательские reaction id остаются открытыми и классифицируются reaction-системой получателя.
+- По умолчанию один execution подтверждает цель один раз независимо от числа
+  клинков и hurtbox colliders. Multi-hit action явно задаёт ограничение числа
+  попаданий и минимальный scaled-time interval; hit stop замораживает этот interval.
 - `CombatActionExecutor` удерживает отдельный damage-immunity lease только внутри authored invulnerability window. Он не восстанавливает сохранённый boolean, поэтому не может снять иммунитет, которым одновременно владеет dodge или другой gameplay flow.
 - `MovementIntent.AllowJump / AllowDodge` являются policies текущего action, а
   не отдельными временными окнами. Executor передаёт разрешения locomotion только
@@ -178,10 +185,12 @@ transition condition, но дожила в buffer до completion и имеет 
 
 ## Authoring и обязательный профиль
 
-`PlayerCombatActionProfile` содержит единственный graph authoring: actions,
-entries, transitions, input-buffer policies и weapon-transition timeline.
+`PlayerCombatLoadoutProfile` является корнем combat authoring: он хранит общие
+input-buffer policies, weapon-transition timeline и список weapon movesets.
+Каждый moveset ссылается на отдельный `PlayerCombatActionProfile` с actions,
+entries и transitions, а также на optional Animator Override Controller.
 Параллельного legacy catalog и runtime prototype fallback больше нет.
-`PlayerCombatComposition` прекращает сборку scope с явной ошибкой, если профиль
+`PlayerCombatComposition` прекращает сборку scope с явной ошибкой, если loadout
 не назначен на Player. Поэтому потерянная prefab-ссылка не запускает другой
 moveset с несовпадающими таймингами и не маскируется до первого нажатия input.
 
@@ -197,10 +206,11 @@ serialized profile не требует migration и не меняет текущ
 
 ### Текущая конфигурация Player
 
-`Assets/_Game/Settings/Combat/Player/PlayerCombatActionProfile.asset` назначен на
-`Assets/_Game/Prefabs/Character/Player.prefab` и является штатным authoring-профилем игрока.
-Он содержит две environment-specific ветки команды `attack.light` и одну
-named action:
+`Assets/_Game/Settings/Combat/Player/PlayerCombatLoadoutProfile.asset` назначен
+на `Assets/_Game/Prefabs/Character/Player.prefab`. Он компилирует отдельные
+`UnarmedCombatActionProfile.asset` и `DualSwordsCombatActionProfile.asset`.
+Оба профиля содержат две environment-specific ветки команды `attack.light` и
+named actions:
 
 - три наземных actions `combo.ground.0 → 1 → 2`;
 - поздний `attack.light` после `combo.ground.0` входит в
@@ -211,12 +221,13 @@ named action:
   любого наземного light-combo step;
 - наземную `skill.special`, доступную отдельным entry и из cancel window любого
   наземного light-combo step; её cancel window возвращает в `combo.ground.0`.
-- hit-confirm ветку `combo.ground.0/1 → attack.launcher → movement.air-chase →
-  combo.air.0`. У `attack.launcher` нет entry rule: команда `attack.launcher`
-  принимается только в cancel window попавшего light action. Переход из launcher
-  также требует его подтверждённого попадания; air chase затем принимает новый
-  `attack.light` в chain window и переносит launcher target в воздушную combo как
-  приоритетный motion-context, не меняя глобальный lock-on.
+- hit-confirm ветку `combo.ground.* → attack.launcher → movement.air-chase →
+  combo.air.0`. Dual Swords допускает launcher также напрямую из `Ready` и после
+  попадания любого из трёх ground-light steps. Unarmed не имеет launcher entry и
+  сохраняет cancel только у первых двух steps. Переход из launcher в air chase
+  требует его подтверждённого попадания; air chase затем принимает новый
+  `attack.light` и переносит launcher target в воздушную combo как приоритетный
+  motion-context, не меняя глобальный lock-on.
 
 Grounded и Airborne entries не конфликтуют: `PlayerCombatActionGraph` выбирает
 ветку по подтверждённому movement mode персонажа. Поэтому `attack.heavy` и
@@ -232,10 +243,12 @@ Input buffer настроен на четыре команды и при пер�
 окна gravity снова полностью принадлежит character motor. Gameplay graph не хранит
 ссылки на клипы: animation adapter передаёт ground/air combo index либо
 `PlayerCombatAnimationId` и ожидаемую длительность в общий Animator contract.
-Текущий `attack.heavy` отображается существующим `BaseAttack4`, а
-`skill.special` — `Base Layer.Attack.Skill`; hit/cancel/cooldown остаются
-gameplay-authoring data. Launcher переиспользует `BaseAttack3`, а air chase —
-`Locomotion/Jump/Jump/JumpRunning`; структура `XController` при этом не меняется.
+Текущий `attack.heavy` отображается существующим `BaseAttack4`,
+`skill.special` — `Base Layer.Attack.Skill`, а launcher — отдельным универсальным
+`Base Layer.Attack.Launcher` slot. Air chase использует
+`Locomotion/Jump/Jump/JumpRunning`; hit/cancel/cooldown остаются
+gameplay-authoring data. Dual Swords Animator override заменяет те же стабильные
+slots Frank-клипами и не меняет gameplay ids.
 Heavy и special могут переходить друг в друга только
 через собственные cancel windows.
 
@@ -245,7 +258,7 @@ Heavy и special могут переходить друг в друга толь
 
 ```text
 PlayerInputAdapter -> PlayerCombatCommandId
-PlayerCombatController -> PlayerCombatActionGraph
+PlayerCombatActionPipeline -> PlayerCombatActionGraph
 PlayerCombatController -> ICombatHitEvents
 PlayerCombatActionGraph -> CombatActionDefinition
 PlayerCombatActionProfile -> PlayerCombatActionGraph (build only)

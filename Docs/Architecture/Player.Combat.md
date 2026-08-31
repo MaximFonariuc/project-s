@@ -27,12 +27,12 @@ pause-finisher только из-за позднего consumption.
 
 | Step | Duration | Hitbox | Chain | Cancel | Damage | Motor distance |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0 | 1.20 s | 0.28–0.50 | 0.50–0.76 | 0.50–0.90 | 10 | 0.55 m |
-| 1 | 1.40 s | 0.30–0.50 | 0.52–0.78 | 0.52–0.90 | 12 | 0.75 m |
-| 2 | 1.50 s | 0.35–0.55 | disabled | 0.64–0.92 | 15 | 0.70 m |
+| 0 | 1.267 s | 0.27–0.46 | 0.44–0.72 | 0.44–0.86 | 10 | 0.55 m |
+| 1 | 1.000 s | 0.18–0.38 | 0.36–0.66 | 0.36–0.84 | 12 | 0.75 m |
+| 2 | 1.067 s | 0.16–0.34 | disabled | 0.52–0.86 | 15 | 0.70 m |
 
 `attack.heavy` не является четвёртым combo step. Это самостоятельная наземная
-action с duration `1.32 s`, hitbox `0.24–0.45`, damage `24` и motor distance
+action с duration `1.933 s`, hitbox `0.40–0.58`, damage `24` и motor distance
 `0.90 m`; она отображается через существующий `BaseAttack4` slot.
 `combo.ground.pause-finisher` является отдельным graph node без entry rule, но
 на текущем vertical slice переиспользует тот же presentation/timeline, чтобы не
@@ -49,9 +49,11 @@ action с duration `1.32 s`, hitbox `0.24–0.45`, damage `24` и motor distance
 
 ### Launcher и air chase
 
-Кнопка `1 / LB` публикует `attack.launcher`. Это не самостоятельный entry:
-launcher доступен только из cancel window `combo.ground.0` или
-`combo.ground.1` после подтверждённого попадания. Он наносит `14` damage,
+Кнопка `1 / LB` публикует `attack.launcher`. В активном Dual Swords moveset это
+самостоятельный grounded entry, а также hit-confirm cancel из каждого шага
+`combo.ground.0/1/2`. Unarmed profile сохраняет более строгий вариант без entry
+и разрешает launcher только после попадания первых двух light steps. Сам launcher
+наносит `14` damage,
 передаёт цели горизонтальную скорость `0.35 m/s` и отдельную вертикальную
 скорость `6.5 m/s`. Target-local reaction немедленно входит в `Airborne`.
 
@@ -298,10 +300,12 @@ sequenceDiagram
 `OnHit` читает только подтверждённый `CombatHitResult` текущих execution/action ids.
 `OnWhiff` становится определённым лишь после закрытия hitbox-window, поэтому ранний
 buffered input не может принять отсутствие ещё не завершившегося попадания за промах.
-Обычные combo/cancel routes текущего профиля используют `Any`, а переходы из
-первых двух ground-light actions в `attack.launcher` требуют `OnHit`. Поэтому
-отдельной entry-команды Launcher нет: промах не может запустить launcher, а
-подтверждённое попадание открывает его только внутри authored acceptance window.
+Обычные combo/cancel routes используют `Any`, а переходы из ground-light actions
+в `attack.launcher` требуют `OnHit`. В Unarmed profile это первые два шага и
+отдельного launcher entry нет. Dual Swords добавляет третий hit-confirm cancel и
+самостоятельный grounded entry той же команды. Поэтому промах light action не
+может воспользоваться cancel route, но прямой Dual Swords launcher остаётся
+доступным из `Ready` как отдельное правило графа.
 
 Для ground/air combo `PlayerCombatController` передаёт adapter целую
 `PlayerCombatAction`. `PlayerCombatAnimationAdapter` в одном месте преобразует

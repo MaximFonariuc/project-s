@@ -105,9 +105,10 @@ classDiagram
   правильного animation override. Отмена до commit возвращает предыдущий
   loadout; отмена после sheathe сохраняет `Unarmed` как последний подтверждённый
   результат.
-- Один action execution передаётся всем активным клинкам. Фильтр
-  `CombatAttackExecution` всё равно разрешает поразить одну цель только один раз
-  за атаку, даже если её пересекли оба меча.
+- Один action execution передаётся всем активным клинкам. По умолчанию фильтр
+  `CombatAttackExecution` разрешает поразить одну цель только один раз за атаку,
+  даже если её пересекли оба меча. Multi-hit является явной bounded policy
+  конкретного action, а не побочным эффектом количества hitbox colliders.
 - `PlayerWeaponLoadout` содержит scene/prefab references, но не runtime progress.
   Combat profile и Animator Override Controller остаются отдельными границами.
 - Для нового оружия добавляется `PlayerWeaponBinding` с одним или несколькими

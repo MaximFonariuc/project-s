@@ -7,7 +7,8 @@
 Граница решает четыре задачи:
 
 - связывает попадание с конкретным `AttackExecutionId` и `PlayerCombatActionId`;
-- запрещает повторно поразить одного actor несколькими hurtbox в рамках одного execution;
+- применяет per-action repeat policy: по умолчанию запрещает повторно поразить
+  одного actor несколькими hurtbox в рамках одного execution;
 - применяет multiplier зоны к базовому damage;
 - публикует событие только после того, как `Health` действительно принял удар.
 
@@ -28,14 +29,19 @@ classDiagram
         +VerticalKnockback float
         +ReactionId CombatReactionId
         +HitStop CombatHitStop
+        +RepeatPolicy CombatHitRepeatPolicy
+    }
+    class CombatHitRepeatPolicy {
+        +IntervalSeconds float
+        +MaxHitsPerTarget int
     }
     class CombatAttackExecution {
         +Id AttackExecutionId
         +ActionId PlayerCombatActionId
         +IsActive bool
         +Begin(...)
-        +CanHitTarget(targetId) bool
-        +RegisterConfirmedTarget(targetId)
+        +CanHitTarget(targetId, scaledTime) bool
+        +RegisterConfirmedTarget(targetId, scaledTime)
         +End()
     }
     class Weapon {
@@ -108,6 +114,7 @@ classDiagram
     }
 
     CombatActionDefinition *-- CombatHitDefinition
+    CombatHitDefinition *-- CombatHitRepeatPolicy
     CombatAttackExecution --> CombatActionDefinition : snapshots impact
     PlayerWeaponLoadout --> Weapon : samples active hitboxes
     Weapon *-- WeaponHitboxSweep
@@ -144,13 +151,13 @@ sequenceDiagram
     Loadout->>Weapon: SampleSweptHitbox()
     Weapon->>Hurtbox: trigger or interpolated shape overlap
     Weapon->>Resolver: TryResolve(candidate)
-    Resolver->>Execution: CanHitTarget(actor root id)
+    Resolver->>Execution: CanHitTarget(actor root id, scaled time)
     Resolver->>Resolver: scale damage by zone multiplier
     Resolver->>Hurtbox: TryApplyHit(result)
     Hurtbox->>Health: TryApplyHit(result)
     Health-->>Resolver: accepted / rejected
     alt accepted
-        Resolver->>Execution: RegisterConfirmedTarget(actor root id)
+        Resolver->>Execution: RegisterConfirmedTarget(actor root id, scaled time)
         Resolver-->>Events: HitResolved(result)
         Events-->>Combat: confirmed result
         Combat->>Session: record matching execution outcome
@@ -159,7 +166,12 @@ sequenceDiagram
     Session->>Execution: End()
 ```
 
-`Health.Damaged`, `Health.Died` и глобальный для gameplay scope `ICombatHitEvents.HitResolved` получают один и тот же immutable result. Событие resolver означает подтверждённое попадание; overlap, иммунитет или уже поражённая в этом execution цель событие не создают. Actor добавляется в множество execution только после принятого damage: overlap во время i-frame не «съедает» удар навсегда и может быть повторно проверен, пока hitbox остаётся открытым.
+`Health.Damaged`, `Health.Died` и глобальный для gameplay scope
+`ICombatHitEvents.HitResolved` получают один и тот же immutable result. Событие
+resolver означает подтверждённое попадание; overlap, иммунитет или запрещённое
+repeat policy повторение событие не создают. Target record обновляется только
+после принятого damage: overlap во время i-frame не «съедает» удар навсегда и
+может быть повторно проверен, пока hitbox остаётся открытым.
 
 ## Ownership и зависимости
 
@@ -174,7 +186,11 @@ Health.Damaged -> target-local reaction / incoming hit stop
 
 - `CombatActionSession` владеет lifecycle execution: новый id на каждое фактически запущенное action, завершение при completion, chain transition, interruption, cancellation и disable.
 - `PlayerCombatController` принимает `ICombatHitEvents` и передаёт result через `PlayerCombatActionPipeline` активной session; `CombatActionOutcome` принимает только совпадающие execution/action ids. Outcome используется graph conditions и не изменяет результат damage resolution.
-- `CombatAttackExecution` владеет множеством уже поражённых actor root. Оно не находится в `Weapon`, поэтому смена collider или несколько зон тела не меняют правило одного попадания.
+- `CombatAttackExecution` владеет record каждого поражённого actor root: числом
+  подтверждённых попаданий и scaled time последнего. По умолчанию второй hit
+  запрещён; multi-hit action должен явно задать положительный interval и bounded
+  maximum. Эти records не находятся в `Weapon`, поэтому смена collider или
+  несколько зон тела не меняют policy.
 - `Weapon` принадлежит scene/prefab и знает только Physics, активный execution и resolver. Он не хранит damage, cooldown, combo или reaction rules.
 - `WeaponHitboxSweep` интерполирует предыдущую и текущую форму
   `CapsuleCollider`, `SphereCollider` либо `BoxCollider` и выполняет bounded
@@ -189,7 +205,11 @@ Health.Damaged -> target-local reaction / incoming hit stop
 - `Hurtbox` предоставляет zone metadata и путь к владельцу здоровья. Он не вычисляет итог атаки.
 - Movement capsule не является `Hurtbox`: попадания принимает только compound body rig, поэтому физический порядок overlap не подменяет выбранную зону тела.
 - `Health` — единственный owner текущего здоровья и подсчёта активных immunity leases. Lease очищается идемпотентно; отключение Health инвалидирует старые leases.
-- `CombatHitResolver` имеет scoped lifecycle и регистрируется только в `PlayerCombatComposition`. Публичный read-port `ICombatHitEvents` не разрешает внешним системам создавать попадания.
+- `CombatHitResolver` имеет scoped lifecycle, получает `ICombatClock` через
+  composition и регистрируется только в `PlayerCombatComposition`. Scaled clock
+  синхронизирует repeat interval с action timeline и не выдаёт бесплатные hits
+  во время hit stop. Публичный read-port `ICombatHitEvents` не разрешает внешним
+  системам создавать попадания.
 
 ## Расширение
 
