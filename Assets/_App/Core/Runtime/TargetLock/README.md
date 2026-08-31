@@ -55,6 +55,10 @@ classDiagram
   `TargetId`.
 - Attack assist is a separate one-shot query inside an authored distance and
   cone. It never mutates hard lock, camera state or the actor rotation policy.
+- Combat motion caches a confirmed target contract once per action. A dead,
+  disabled or destroyed carried target is rejected without component searches
+  in the frame loop; policies that allow fallback may then use hard lock or the
+  one-shot attack-assist target instead of chasing a stale transform.
 - `CombatTarget` owns scene references for the root, aim point and optional
   health gate. A dead or disabled target is not targetable.
 - Physics queries use the `Enemy` layer, bounded reusable buffers and explicit

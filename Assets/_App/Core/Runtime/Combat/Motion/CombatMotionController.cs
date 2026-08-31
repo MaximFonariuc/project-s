@@ -13,6 +13,9 @@ namespace _App
 
         private CombatMotionDefinition _definition;
         private Transform _previousConfirmedHitTarget;
+        private ICombatTarget _previousConfirmedCombatTarget;
+        private UnityEngine.Object _previousConfirmedCombatTargetObject;
+        private bool _hasPreviousConfirmedTargetContract;
         private ICombatTarget _assistedTarget;
         private UnityEngine.Object _assistedTargetObject;
         private Transform _sampledHeightTarget;
@@ -52,6 +55,7 @@ namespace _App
 
             _definition = definition;
             _previousConfirmedHitTarget = previousConfirmedHitTarget;
+            CachePreviousConfirmedTarget();
             _actionDuration = actionDuration;
             float motionDuration = actionDuration * (definition.Window.End - definition.Window.Start);
             _planarSpeed = definition.OverridePlanarVelocity && motionDuration > 0.0f
@@ -122,6 +126,9 @@ namespace _App
             _motor.ClearActionMotion();
             _definition = default;
             _previousConfirmedHitTarget = null;
+            _previousConfirmedCombatTarget = null;
+            _previousConfirmedCombatTargetObject = null;
+            _hasPreviousConfirmedTargetContract = false;
             _assistedTarget = null;
             _assistedTargetObject = null;
             _sampledHeightTarget = null;
@@ -222,14 +229,12 @@ namespace _App
                 return false;
             }
 
-            Vector3 aimPosition;
-            if (_definition.UsesPreviousConfirmedHitTarget &&
-                _previousConfirmedHitTarget != null)
-            {
-                target = _previousConfirmedHitTarget;
-                aimPosition = _previousConfirmedHitTarget.position;
-            }
-            else if (_definition.AllowsTargetFallback)
+            target = null;
+            Vector3 aimPosition = default;
+            bool hasPreviousTarget =
+                _definition.UsesPreviousConfirmedHitTarget &&
+                TryGetPreviousConfirmedTarget(out target, out aimPosition);
+            if (!hasPreviousTarget && _definition.AllowsTargetFallback)
             {
                 if (_targeting.IsTargetLocked && _targeting.CurrentTarget != null)
                 {
@@ -249,7 +254,7 @@ namespace _App
                     return FailTarget(out target, out direction, out distance, out height);
                 }
             }
-            else
+            else if (!hasPreviousTarget)
             {
                 return FailTarget(out target, out direction, out distance, out height);
             }
@@ -268,7 +273,7 @@ namespace _App
         {
             if (!_definition.AllowTargetAssist ||
                 !_definition.AllowsTargetFallback ||
-                _previousConfirmedHitTarget != null ||
+                HasAvailablePreviousConfirmedTarget() ||
                 _targeting.IsTargetLocked ||
                 !_targetingQuery.TryGetAttackAssistTarget(
                     _motor.Position,
@@ -288,6 +293,68 @@ namespace _App
 
             _assistedTarget = target;
             _assistedTargetObject = targetObject;
+        }
+
+        private void CachePreviousConfirmedTarget()
+        {
+            _previousConfirmedCombatTarget = null;
+            _previousConfirmedCombatTargetObject = null;
+            _hasPreviousConfirmedTargetContract = false;
+            if (_previousConfirmedHitTarget == null)
+            {
+                return;
+            }
+
+            ICombatTarget target =
+                _previousConfirmedHitTarget.GetComponent<ICombatTarget>() ??
+                _previousConfirmedHitTarget.GetComponentInChildren<ICombatTarget>(true);
+            UnityEngine.Object targetObject = target as UnityEngine.Object;
+            if (targetObject == null)
+            {
+                return;
+            }
+
+            _previousConfirmedCombatTarget = target;
+            _previousConfirmedCombatTargetObject = targetObject;
+            _hasPreviousConfirmedTargetContract = true;
+        }
+
+        private bool TryGetPreviousConfirmedTarget(
+            out Transform target,
+            out Vector3 aimPosition)
+        {
+            if (!HasAvailablePreviousConfirmedTarget())
+            {
+                target = null;
+                aimPosition = default;
+                return false;
+            }
+
+            if (_hasPreviousConfirmedTargetContract)
+            {
+                target = _previousConfirmedCombatTarget.TargetRoot;
+                aimPosition = _previousConfirmedCombatTarget.AimPosition;
+                return true;
+            }
+
+            target = _previousConfirmedHitTarget;
+            aimPosition = _previousConfirmedHitTarget.position;
+            return true;
+        }
+
+        private bool HasAvailablePreviousConfirmedTarget()
+        {
+            if (_previousConfirmedHitTarget == null ||
+                !_previousConfirmedHitTarget.gameObject.activeInHierarchy)
+            {
+                return false;
+            }
+
+            return !_hasPreviousConfirmedTargetContract ||
+                   (_previousConfirmedCombatTargetObject != null &&
+                    _previousConfirmedCombatTarget != null &&
+                    _previousConfirmedCombatTarget.IsTargetable &&
+                    _previousConfirmedCombatTarget.TargetRoot != null);
         }
 
         private static bool FailTarget(
