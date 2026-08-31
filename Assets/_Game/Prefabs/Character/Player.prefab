@@ -642,6 +642,7 @@ MonoBehaviour:
   _combatLoadoutProfile: {fileID: 11400000, guid: b1e3238a37b750940aa0aad995e11121, type: 2}
   _reactionProfile: {fileID: 11400000, guid: c842a637289f9e843bc9cd45c2ee569d, type: 2}
   _combatFeedbackProfile: {fileID: 11400000, guid: b02f264d05f656d49a38eeac93d86cbf, type: 2}
+  _combatStyleProfile: {fileID: 11400000, guid: 4584db41a1ac9864f85eea34e9ef446c, type: 2}
   _animator: {fileID: 7171206776534285674}
   _weaponLoadout: {fileID: 5257711893400669966}
 --- !u!114 &2682915441297644400

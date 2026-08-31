@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd9e1402a9e98a479f6e7a438b914d1, type: 3}
+  m_Name: PlayerCombatStyleProfile
+  m_EditorClassIdentifier:
+  _pointsPerHit: 20
+  _pointsPerDamage: 1.5
+  _repeatActionMultiplier: 0.65
+  _minimumVarietyMultiplier: 0.25
+  _recentActionWindow: 6
+  _heavyMultiplier: 1.2
+  _launcherMultiplier: 1.35
+  _slamMultiplier: 1.4
+  _decayDelay: 2.5
+  _scoreDecayPerSecond: 140
+  _incomingDamageRetention: 0.35
+  _rankC: 180
+  _rankB: 420
+  _rankA: 760
+  _rankS: 1150
+  _rankSS: 1650
+  _rankSSS: 2250

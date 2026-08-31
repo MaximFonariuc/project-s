@@ -40,6 +40,9 @@ namespace _App
         [Header("Combat Feedback")]
         [SerializeField] private CombatFeedbackProfile _combatFeedbackProfile;
 
+        [Header("Combat Style")]
+        [SerializeField] private CombatStyleProfile _combatStyleProfile;
+
         [Header("AnimationController")]
         [SerializeField] private Animator _animator;
         [SerializeField] private PlayerWeaponLoadout _weaponLoadout;
@@ -54,6 +57,7 @@ namespace _App
         internal PlayerCombatLoadoutProfile CombatLoadoutProfile => _combatLoadoutProfile;
         internal CharacterReactionProfile ReactionProfile => _reactionProfile;
         internal CombatFeedbackProfile CombatFeedbackProfile => _combatFeedbackProfile;
+        internal CombatStyleProfile CombatStyleProfile => _combatStyleProfile;
         internal CinemachineThirdPersonFollow FollowCameraPrefab => _followCamera;
         internal Transform FollowTarget => _followTarget;
         internal PlayerCameraSettings CameraSettings => new PlayerCameraSettings(
@@ -104,6 +108,14 @@ namespace _App
             {
                 Debug.LogError(
                     $"{nameof(ThirdPersonController)} requires a combat feedback profile.",
+                    this);
+                valid = false;
+            }
+
+            if (_combatStyleProfile == null)
+            {
+                Debug.LogError(
+                    $"{nameof(ThirdPersonController)} requires a combat style profile.",
                     this);
                 valid = false;
             }

@@ -14,6 +14,7 @@ namespace _App
         private readonly GameplayTimeScaleController _gameplayTime;
         private readonly CombatHitStopController _hitStop;
         private readonly CombatFeedbackController _feedback;
+        private readonly CombatStyleController _style;
         private readonly PlayerTraversalController _traversal;
         private readonly PlayerSimulationPauseController _simulationPause;
 
@@ -31,6 +32,7 @@ namespace _App
             GameplayTimeScaleController gameplayTime,
             CombatHitStopController hitStop,
             CombatFeedbackController feedback,
+            CombatStyleController style,
             PlayerTraversalController traversal,
             PlayerSimulationPauseController simulationPause)
         {
@@ -46,6 +48,7 @@ namespace _App
             _gameplayTime = gameplayTime ?? throw new ArgumentNullException(nameof(gameplayTime));
             _hitStop = hitStop ?? throw new ArgumentNullException(nameof(hitStop));
             _feedback = feedback ?? throw new ArgumentNullException(nameof(feedback));
+            _style = style ?? throw new ArgumentNullException(nameof(style));
             _traversal = traversal ?? throw new ArgumentNullException(nameof(traversal));
             _simulationPause = simulationPause ?? throw new ArgumentNullException(nameof(simulationPause));
         }
@@ -70,6 +73,7 @@ namespace _App
                 _reaction.Enable();
                 _hitStop.Enable();
                 _feedback.Enable();
+                _style.Enable();
                 _traversal.Enable();
                 _simulationPause.Enable();
                 _input.Enable();
@@ -92,6 +96,7 @@ namespace _App
             _reaction.StateChanged -= OnReactionStateChanged;
             _simulationPause.Disable();
             _traversal.Disable();
+            _style.Disable();
             _feedback.Disable();
             _hitStop.Disable();
             _reaction.Disable();
@@ -115,6 +120,7 @@ namespace _App
             _gameplayTime.Tick(unscaledDeltaTime);
             _reaction.Tick(scaledDeltaTime);
             _combat.Tick(scaledDeltaTime);
+            _style.Tick(scaledDeltaTime);
             _traversal.Tick();
             _locomotion.SetMovementIntent(
                 _reaction.BlocksActions
