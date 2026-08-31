@@ -219,8 +219,8 @@ MonoBehaviour:
       _invulnerabilityEnd: 0
       _damage: 10
       _staggerDamage: 8
-      _knockback: 0.25
-      _verticalKnockback: 0
+      _knockback: 0
+      _verticalKnockback: 3.5
       _reactionId: hit.light
       _hitStopDuration: 0.055
       _hitStopTimeScale: 0
@@ -252,8 +252,8 @@ MonoBehaviour:
       _allowTargetAssist: 0
       _targetAssistDistance: 5
       _targetAssistAngle: 55
-      _trackTargetHeight: 0
-      _targetHeightOffset: 0
+      _trackTargetHeight: 1
+      _targetHeightOffset: -0.15
       _targetHeightTolerance: 0.1
       _targetHeightCorrectionSpeed: 6
       _maxTargetVerticalSpeed: 8
@@ -280,8 +280,8 @@ MonoBehaviour:
       _invulnerabilityEnd: 0
       _damage: 12
       _staggerDamage: 10
-      _knockback: 0.35
-      _verticalKnockback: 0
+      _knockback: 0
+      _verticalKnockback: 3.5
       _reactionId: hit.light
       _hitStopDuration: 0.055
       _hitStopTimeScale: 0
@@ -313,8 +313,8 @@ MonoBehaviour:
       _allowTargetAssist: 0
       _targetAssistDistance: 5
       _targetAssistAngle: 55
-      _trackTargetHeight: 0
-      _targetHeightOffset: 0
+      _trackTargetHeight: 1
+      _targetHeightOffset: -0.15
       _targetHeightTolerance: 0.1
       _targetHeightCorrectionSpeed: 6
       _maxTargetVerticalSpeed: 8
@@ -374,8 +374,8 @@ MonoBehaviour:
       _allowTargetAssist: 0
       _targetAssistDistance: 5
       _targetAssistAngle: 55
-      _trackTargetHeight: 0
-      _targetHeightOffset: 0
+      _trackTargetHeight: 1
+      _targetHeightOffset: -0.15
       _targetHeightTolerance: 0.1
       _targetHeightCorrectionSpeed: 6
       _maxTargetVerticalSpeed: 8
@@ -508,8 +508,8 @@ MonoBehaviour:
     _animationId: attack.launcher
     _action:
       _useHitboxWindow: 1
-      _hitboxStart: 0.28
-      _hitboxEnd: 0.48
+      _hitboxStart: 0.24
+      _hitboxEnd: 0.58
       _useChainWindow: 1
       _chainStart: 0.52
       _chainEnd: 0.78
@@ -546,14 +546,14 @@ MonoBehaviour:
       _combatMotionStart: 0
       _combatMotionEnd: 0.42
       _overridePlanarVelocity: 1
-      _combatMotionDistance: 0.45
+      _combatMotionDistance: 1.25
       _verticalMotionMode: 0
       _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
       _overrideVerticalVelocityOnImpulse: 1
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
-      _targetStoppingDistance: 0.75
+      _targetStoppingDistance: 0.5
       _allowTargetAssist: 1
       _targetAssistDistance: 4.5
       _targetAssistAngle: 50
