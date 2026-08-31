@@ -90,6 +90,11 @@ namespace _App
 
         public void Tick()
         {
+            if (!_enabled)
+            {
+                return;
+            }
+
             UpdateTargetSwitchInput();
 
             if (!_hasTarget)
@@ -114,6 +119,11 @@ namespace _App
 
         public bool ToggleLock()
         {
+            if (!_enabled)
+            {
+                return false;
+            }
+
             if (_hasTarget)
             {
                 ClearTarget();
@@ -125,6 +135,11 @@ namespace _App
 
         public bool TryAcquireTarget()
         {
+            if (!_enabled)
+            {
+                return false;
+            }
+
             if (IsTargetLocked)
             {
                 return true;
@@ -148,6 +163,11 @@ namespace _App
 
         public bool SwitchTarget(int direction)
         {
+            if (!_enabled)
+            {
+                return false;
+            }
+
             if (!IsTargetLocked)
             {
                 return TryAcquireTarget();
@@ -190,7 +210,7 @@ namespace _App
             out ICombatTarget target)
         {
             target = null;
-            if (maxDistance <= 0.0f || maxAngle <= 0.0f)
+            if (!_enabled || maxDistance <= 0.0f || maxAngle <= 0.0f)
             {
                 return false;
             }
