@@ -131,6 +131,8 @@ namespace _App
 
         public CombatHitStop(float duration, float timeScale)
         {
+            CombatActionNumeric.RequireFinite(duration, nameof(duration));
+            CombatActionNumeric.RequireFinite(timeScale, nameof(timeScale));
             if (duration <= 0.0f)
             {
                 throw new ArgumentOutOfRangeException(nameof(duration));
@@ -175,6 +177,9 @@ namespace _App
             CombatHitStop hitStop,
             CombatHitRepeatPolicy repeatPolicy)
         {
+            CombatActionNumeric.RequireFinite(staggerDamage, nameof(staggerDamage));
+            CombatActionNumeric.RequireFinite(knockback, nameof(knockback));
+            CombatActionNumeric.RequireFinite(verticalKnockback, nameof(verticalKnockback));
             if (damage < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(damage));
@@ -212,6 +217,7 @@ namespace _App
 
         public CombatHitRepeatPolicy(float intervalSeconds, int maxHitsPerTarget)
         {
+            CombatActionNumeric.RequireFinite(intervalSeconds, nameof(intervalSeconds));
             if (intervalSeconds <= 0.0f)
             {
                 throw new ArgumentOutOfRangeException(nameof(intervalSeconds));

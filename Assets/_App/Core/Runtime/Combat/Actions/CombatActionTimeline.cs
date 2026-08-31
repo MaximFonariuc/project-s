@@ -3,6 +3,19 @@ using UnityEngine;
 
 namespace _App
 {
+    internal static class CombatActionNumeric
+    {
+        public static void RequireFinite(float value, string parameterName)
+        {
+            if (float.IsNaN(value) || float.IsInfinity(value))
+            {
+                throw new ArgumentOutOfRangeException(
+                    parameterName,
+                    "Combat action values must be finite.");
+            }
+        }
+    }
+
     internal readonly struct NormalizedActionWindow
     {
         public static NormalizedActionWindow Disabled => default;
@@ -13,6 +26,8 @@ namespace _App
 
         public NormalizedActionWindow(float start, float end)
         {
+            CombatActionNumeric.RequireFinite(start, nameof(start));
+            CombatActionNumeric.RequireFinite(end, nameof(end));
             if (start < 0.0f || start > 1.0f)
             {
                 throw new ArgumentOutOfRangeException(nameof(start));
@@ -76,6 +91,14 @@ namespace _App
             PlayerMovementIntent movementIntent,
             CombatMotionDefinition motion)
         {
+            CombatActionNumeric.RequireFinite(durationSeconds, nameof(durationSeconds));
+            CombatActionNumeric.RequireFinite(recoveryStart, nameof(recoveryStart));
+            CombatActionNumeric.RequireFinite(completionTime, nameof(completionTime));
+            CombatActionNumeric.RequireFinite(commitTime, nameof(commitTime));
+            CombatActionNumeric.RequireFinite(cooldown, nameof(cooldown));
+            CombatActionNumeric.RequireFinite(
+                movementIntent.TranslationScale,
+                nameof(movementIntent));
             if (durationSeconds <= 0.0f)
             {
                 throw new ArgumentOutOfRangeException(nameof(durationSeconds));

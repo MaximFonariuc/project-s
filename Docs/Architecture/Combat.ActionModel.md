@@ -126,6 +126,9 @@ classDiagram
 - `PlayerCombatAnimationId` выбирает named animation slot (`attack.heavy`, `skill.special`) и не определяет gameplay transition.
 - `PlayerCombatPresentation` сообщает animation adapter, как отобразить уже выбранное действие: combo index либо named `PlayerCombatAnimationId`.
 - `CombatActionDefinition` хранит immutable timeline и impact: hitbox, damage, stagger, knockback, reaction id, chain/cancel, recovery, movement, invulnerability, commit, completion и cooldown. Ненулевой gameplay impact требует включённого hitbox window; иначе профиль отклоняется до Play Mode вместо тихого запуска физически непопадающей атаки.
+- Все float-параметры timeline, impact и combat motion обязаны быть конечными:
+  `NaN`/`Infinity` отклоняются при сборке profile и не могут превратить action в
+  бесконечно активное состояние либо записать невалидную скорость в motor.
 - `PlayerCombatActionProfile.OnValidate` собирает полный immutable graph в Editor и сразу сообщает об ошибочных id, переходах, временных окнах и impact-конфигурации. `PlayerCombatActionGraphCompiler` выполняет ту же fail-fast проверку при runtime composition, но больше не смешивает её с hot-path lookup.
 - Compiler обходит граф от всех entry rules и отклоняет каждый недостижимый
   action. Будущий или отключённый узел не может оставаться молчаливыми данными

@@ -65,6 +65,26 @@ namespace _App
             float targetHeightCorrectionSpeed,
             float maxTargetVerticalSpeed)
         {
+            CombatActionNumeric.RequireFinite(planarDistance, nameof(planarDistance));
+            CombatActionNumeric.RequireFinite(verticalVelocity, nameof(verticalVelocity));
+            CombatActionNumeric.RequireFinite(verticalImpulse, nameof(verticalImpulse));
+            CombatActionNumeric.RequireFinite(
+                targetStoppingDistance,
+                nameof(targetStoppingDistance));
+            CombatActionNumeric.RequireFinite(
+                targetAssistDistance,
+                nameof(targetAssistDistance));
+            CombatActionNumeric.RequireFinite(targetAssistAngle, nameof(targetAssistAngle));
+            CombatActionNumeric.RequireFinite(targetHeightOffset, nameof(targetHeightOffset));
+            CombatActionNumeric.RequireFinite(
+                targetHeightTolerance,
+                nameof(targetHeightTolerance));
+            CombatActionNumeric.RequireFinite(
+                targetHeightCorrectionSpeed,
+                nameof(targetHeightCorrectionSpeed));
+            CombatActionNumeric.RequireFinite(
+                maxTargetVerticalSpeed,
+                nameof(maxTargetVerticalSpeed));
             if (!window.IsEnabled)
             {
                 throw new ArgumentException("Combat motion requires an enabled action window.", nameof(window));
