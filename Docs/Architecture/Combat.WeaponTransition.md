@@ -112,6 +112,9 @@ sequenceDiagram
   общем scoped `CombatActionExecutor`.
 - Каждый шаг имеет собственный commit flag. Callback применяется не более
   одного раза, даже если frame наблюдается повторно.
+- Commit callback является транзакционным: если физический rig отклоняет
+  применение оружия исключением, session восстанавливает предыдущий committed
+  weapon и `finally` возвращает соответствующий animation loadout.
 - При sheathe commit подтверждённым состоянием становится `Unarmed`. Поэтому
   отменённый следующий draw не возвращает оружие в руку самопроизвольно.
 - Incoming animation loadout применяется перед draw только как presentation

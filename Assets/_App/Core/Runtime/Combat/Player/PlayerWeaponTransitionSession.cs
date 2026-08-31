@@ -116,9 +116,20 @@ namespace _App
                 return CombatActionDirective.Continue;
             }
 
+            EWeaponType previousWeapon = _committedWeapon;
             _commitApplied = true;
             _committedWeapon = _pendingWeapon;
-            _commitHandler?.Invoke(_pendingWeapon);
+            try
+            {
+                _commitHandler?.Invoke(_pendingWeapon);
+            }
+            catch
+            {
+                _committedWeapon = previousWeapon;
+                _commitApplied = false;
+                throw;
+            }
+
             return CombatActionDirective.Continue;
         }
 
