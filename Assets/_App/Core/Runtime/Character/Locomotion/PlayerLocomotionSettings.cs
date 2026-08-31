@@ -8,6 +8,7 @@ namespace _App
         public float RunSpeed { get; }
         public float SprintSpeed { get; }
         public float DodgeDuration { get; }
+        public float JumpInputBufferDuration { get; }
         public float DodgeInputBufferDuration { get; }
 
         public PlayerLocomotionSettings(
@@ -15,12 +16,14 @@ namespace _App
             float runSpeed,
             float sprintSpeed,
             float dodgeDuration,
+            float jumpInputBufferDuration,
             float dodgeInputBufferDuration)
         {
             WalkSpeed = walkSpeed;
             RunSpeed = runSpeed;
             SprintSpeed = sprintSpeed;
             DodgeDuration = Math.Max(0.0f, dodgeDuration);
+            JumpInputBufferDuration = Math.Max(0.0f, jumpInputBufferDuration);
             DodgeInputBufferDuration = Math.Max(0.0f, dodgeInputBufferDuration);
         }
 
@@ -48,6 +51,7 @@ namespace _App
                 runSpeed,
                 sprint?.MaxSpeed ?? runSpeed,
                 dodge?.Duration ?? 0.0f,
+                character.JumpMaxPreGroundedTime,
                 dodge?.InputBufferDuration ?? 0.0f);
         }
     }

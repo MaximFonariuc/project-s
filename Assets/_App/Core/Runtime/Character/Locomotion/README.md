@@ -9,6 +9,7 @@ classDiagram
         +Snapshot PlayerLocomotionSnapshot
     }
     class PlayerLocomotionSettings {
+        +JumpInputBufferDuration float
         +DodgeInputBufferDuration float
     }
     class ICharacterMotor
@@ -42,6 +43,11 @@ classDiagram
   measured in unscaled time, matching combat input and preventing hit stop from
   extending the player's real input window; locomotion simulation remains
   scaled.
+- Jump press uses the character's existing pre-grounded input window as its
+  unscaled buffer duration. A press near the end of a combat lockout is retried
+  when movement policy allows jumping again; releasing before acceptance still
+  produces the existing short-jump path instead of cancelling the intent.
+  Simultaneous accepted dodge keeps priority and clears the jump request.
 - Dodge displacement is motor-owned impulse/duration movement; Animator root
   motion is disabled.
 - Dodge invulnerability is a normalized gameplay window from `DodgeSettings`.

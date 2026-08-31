@@ -31,6 +31,7 @@ namespace _App
         private readonly IPlayerLocomotionPresentation _presentation;
         private readonly PlayerLocomotionRuntime _runtime;
         private readonly IStateMachine<PlayerLocomotionStateId> _stateMachine;
+        private readonly float _jumpInputBufferDuration;
         private readonly float _dodgeInputBufferDuration;
 
         private PlayerMovementIntent _movementIntent = PlayerMovementIntent.Unrestricted;
@@ -39,6 +40,8 @@ namespace _App
         private bool _sprintHeld;
         private bool _jumpHeld;
         private PendingJumpSignals _pendingJumpSignals;
+        private bool _jumpRequested;
+        private float _jumpRequestTimeRemaining;
         private bool _dodgeRequested;
         private float _dodgeRequestTimeRemaining;
         private bool _enabled;
@@ -66,8 +69,13 @@ namespace _App
             _movementReference = movementReference ?? throw new ArgumentNullException(nameof(movementReference));
             _presentation = presentation ?? throw new ArgumentNullException(nameof(presentation));
             _runtime = runtime ?? throw new ArgumentNullException(nameof(runtime));
-            _dodgeInputBufferDuration = settings?.DodgeInputBufferDuration ??
-                                        throw new ArgumentNullException(nameof(settings));
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            _jumpInputBufferDuration = settings.JumpInputBufferDuration;
+            _dodgeInputBufferDuration = settings.DodgeInputBufferDuration;
             _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
         }
 
@@ -106,6 +114,7 @@ namespace _App
             _sprintHeld = false;
             _jumpHeld = false;
             _pendingJumpSignals = PendingJumpSignals.None;
+            ClearJumpRequest();
             _dodgeRequested = false;
             _dodgeRequestTimeRemaining = 0.0f;
             _movementIntent = PlayerMovementIntent.Unrestricted;
@@ -377,9 +386,21 @@ namespace _App
             bool dodgeRequested = _dodgeRequested;
             _pendingJumpSignals = PendingJumpSignals.None;
 
+            if ((jumpSignals & PendingJumpSignals.Started) != 0)
+            {
+                _jumpHeld = true;
+                QueueJumpRequest();
+            }
+
+            if ((jumpSignals & PendingJumpSignals.Canceled) != 0)
+            {
+                _jumpHeld = false;
+            }
+
             if (dodgeRequested && TryConsumeDodgeRequest())
             {
                 ClearDodgeRequest();
+                ClearJumpRequest();
                 // A release still has to terminate an existing jump/glide hold,
                 // but a dodge accepted in this tick owns action priority over a
                 // simultaneous jump press.
@@ -402,9 +423,19 @@ namespace _App
                 }
             }
 
-            if ((jumpSignals & PendingJumpSignals.Started) != 0)
+            if (_jumpRequested && TryConsumeJumpRequest())
             {
-                ApplyJumpSignal(InputSignalPhase.Started);
+                ClearJumpRequest();
+            }
+            else if (_jumpRequested)
+            {
+                _jumpRequestTimeRemaining = Mathf.Max(
+                    0.0f,
+                    _jumpRequestTimeRemaining - Mathf.Max(0.0f, unscaledDeltaTime));
+                if (_jumpRequestTimeRemaining <= 0.0f)
+                {
+                    ClearJumpRequest();
+                }
             }
 
             if ((jumpSignals & PendingJumpSignals.Performed) != 0)
@@ -422,24 +453,11 @@ namespace _App
         {
             switch (phase)
             {
-                case InputSignalPhase.Started when _movementIntent.AllowJump && !_motor.IsDodging:
-                    _jumpHeld = true;
-                    if (_motor.IsGrounded && !_motor.IsSwimming && !_motor.IsCrouched)
-                    {
-                        BeginJumpStartup();
-                    }
-                    else
-                    {
-                        _motor.PressJump(false);
-                    }
-                    break;
-
                 case InputSignalPhase.Performed when _movementIntent.AllowJump && !_motor.IsSwimming && !_motor.IsDodging:
                     _actions.StartGliding();
                     break;
 
                 case InputSignalPhase.Canceled:
-                    _jumpHeld = false;
                     _actions.StopGliding();
                     if (!_runtime.JumpStarting)
                     {
@@ -447,6 +465,38 @@ namespace _App
                     }
                     break;
             }
+        }
+
+        private bool TryConsumeJumpRequest()
+        {
+            if (!_movementIntent.AllowJump || _motor.IsDodging ||
+                _motor.IsSwimming || _motor.IsCrouched)
+            {
+                return false;
+            }
+
+            if (_motor.IsGrounded)
+            {
+                BeginJumpStartup();
+            }
+            else
+            {
+                _motor.PressJump(false);
+            }
+
+            return true;
+        }
+
+        private void QueueJumpRequest()
+        {
+            _jumpRequested = true;
+            _jumpRequestTimeRemaining = _jumpInputBufferDuration;
+        }
+
+        private void ClearJumpRequest()
+        {
+            _jumpRequested = false;
+            _jumpRequestTimeRemaining = 0.0f;
         }
 
         private void BeginJumpStartup()
