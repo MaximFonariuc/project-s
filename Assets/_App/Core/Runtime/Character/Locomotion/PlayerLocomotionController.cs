@@ -31,6 +31,7 @@ namespace _App
         private readonly IPlayerLocomotionPresentation _presentation;
         private readonly PlayerLocomotionRuntime _runtime;
         private readonly IStateMachine<PlayerLocomotionStateId> _stateMachine;
+        private readonly bool _canJump;
         private readonly float _jumpInputBufferDuration;
         private readonly float _dodgeInputBufferDuration;
 
@@ -46,6 +47,7 @@ namespace _App
         private float _dodgeRequestTimeRemaining;
         private bool _enabled;
 
+        public event Action GroundJumpIntentAccepted;
         public event Action JumpAccepted;
         public event Action DodgeAccepted;
 
@@ -74,6 +76,7 @@ namespace _App
                 throw new ArgumentNullException(nameof(settings));
             }
 
+            _canJump = settings.CanJump;
             _jumpInputBufferDuration = settings.JumpInputBufferDuration;
             _dodgeInputBufferDuration = settings.DodgeInputBufferDuration;
             _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
@@ -197,6 +200,7 @@ namespace _App
         public void Dispose()
         {
             Disable();
+            GroundJumpIntentAccepted = null;
             JumpAccepted = null;
             DodgeAccepted = null;
         }
@@ -487,7 +491,7 @@ namespace _App
 
         private bool TryConsumeJumpRequest()
         {
-            if (!_movementIntent.AllowJump || _motor.IsDodging ||
+            if (!_canJump || !_movementIntent.AllowJump || _motor.IsDodging ||
                 _motor.IsSwimming || _motor.IsCrouched)
             {
                 return false;
@@ -495,7 +499,12 @@ namespace _App
 
             if (_motor.IsGrounded)
             {
-                BeginJumpStartup();
+                if (!BeginJumpStartup())
+                {
+                    return false;
+                }
+
+                SafeEvent.Publish(GroundJumpIntentAccepted, null);
             }
             else
             {
@@ -517,15 +526,16 @@ namespace _App
             _jumpRequestTimeRemaining = 0.0f;
         }
 
-        private void BeginJumpStartup()
+        private bool BeginJumpStartup()
         {
             if (_runtime.JumpStarting)
             {
-                return;
+                return false;
             }
 
             _runtime.JumpStarting = true;
             _runtime.JumpStartupTimeRemaining = JumpStartupSeconds;
+            return true;
         }
 
         private void UpdateJumpStartup(float deltaTime)

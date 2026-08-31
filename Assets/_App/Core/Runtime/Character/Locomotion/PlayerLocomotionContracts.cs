@@ -151,6 +151,7 @@ namespace _App
 
     public interface IPlayerLocomotionEvents
     {
+        event Action GroundJumpIntentAccepted;
         event Action JumpAccepted;
         event Action DodgeAccepted;
     }

@@ -139,7 +139,9 @@ reaction, disable, or another interruption.
   combat commands resolve afterwards. An accepted dodge clears commands already
   queued for that frame, so defensive movement wins a simultaneous `Ready`
   input without bypassing a closed action cancel window. A motor-confirmed jump
-  still interrupts active combat through the same cleanup boundary.
+  still interrupts active combat through the same cleanup boundary; accepted
+  ground-jump startup reserves locomotion before its anticipation delay so a
+  same-frame attack cannot cancel the jump before takeoff.
 - `PlayerCombatAvailability` owns live actor/reaction admission checks and the
   scaled-time cooldown dictionary. It asks the animation port only whether the
   semantic presentation exists; it does not run the graph or mutate combat

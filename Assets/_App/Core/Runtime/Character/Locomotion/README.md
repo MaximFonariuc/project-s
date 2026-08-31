@@ -9,6 +9,7 @@ classDiagram
         +Snapshot PlayerLocomotionSnapshot
     }
     class PlayerLocomotionSettings {
+        +CanJump bool
         +JumpInputBufferDuration float
         +DodgeInputBufferDuration float
     }
@@ -48,6 +49,9 @@ classDiagram
   when movement policy allows jumping again; releasing before acceptance still
   produces the existing short-jump path instead of cancelling the intent.
   Simultaneous accepted dodge keeps priority and clears the jump request.
+- Ground jump startup publishes a separate accepted-intent edge before its
+  authored anticipation delay. Combat uses that edge for same-frame arbitration;
+  the existing `JumpAccepted` edge remains the motor-confirmed takeoff signal.
 - Dodge displacement is motor-owned impulse/duration movement; Animator root
   motion is disabled.
 - Dodge invulnerability is a normalized gameplay window from `DodgeSettings`.

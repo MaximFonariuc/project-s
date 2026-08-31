@@ -7,6 +7,7 @@ namespace _App
         public float WalkSpeed { get; }
         public float RunSpeed { get; }
         public float SprintSpeed { get; }
+        public bool CanJump { get; }
         public float DodgeDuration { get; }
         public float JumpInputBufferDuration { get; }
         public float DodgeInputBufferDuration { get; }
@@ -15,6 +16,7 @@ namespace _App
             float walkSpeed,
             float runSpeed,
             float sprintSpeed,
+            bool canJump,
             float dodgeDuration,
             float jumpInputBufferDuration,
             float dodgeInputBufferDuration)
@@ -22,6 +24,7 @@ namespace _App
             WalkSpeed = walkSpeed;
             RunSpeed = runSpeed;
             SprintSpeed = sprintSpeed;
+            CanJump = canJump;
             DodgeDuration = Math.Max(0.0f, dodgeDuration);
             JumpInputBufferDuration = Math.Max(0.0f, jumpInputBufferDuration);
             DodgeInputBufferDuration = Math.Max(0.0f, dodgeInputBufferDuration);
@@ -50,6 +53,7 @@ namespace _App
                 walk?.MaxSpeed ?? runSpeed,
                 runSpeed,
                 sprint?.MaxSpeed ?? runSpeed,
+                character.CanEverJump,
                 dodge?.Duration ?? 0.0f,
                 character.JumpMaxPreGroundedTime,
                 dodge?.InputBufferDuration ?? 0.0f);
