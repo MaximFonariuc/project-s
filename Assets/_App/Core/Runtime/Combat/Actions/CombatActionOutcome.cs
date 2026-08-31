@@ -5,6 +5,8 @@ namespace _App
 {
     internal sealed class CombatActionOutcome
     {
+        private CombatActionId _combatActionId;
+
         public AttackExecutionId ExecutionId { get; private set; }
         public PlayerCombatActionId ActionId { get; private set; }
         public int ConfirmedHitCount { get; private set; }
@@ -38,6 +40,7 @@ namespace _App
 
             ExecutionId = executionId;
             ActionId = actionId;
+            _combatActionId = new CombatActionId(actionId.Value);
             ConfirmedHitCount = 0;
             LastConfirmedTarget = null;
         }
@@ -46,7 +49,7 @@ namespace _App
         {
             if (!IsTracking ||
                 hit.ExecutionId != ExecutionId ||
-                hit.ActionId != ActionId)
+                hit.ActionId != _combatActionId)
             {
                 return false;
             }
@@ -60,6 +63,7 @@ namespace _App
         {
             ExecutionId = default;
             ActionId = default;
+            _combatActionId = default;
             ConfirmedHitCount = 0;
             LastConfirmedTarget = null;
         }

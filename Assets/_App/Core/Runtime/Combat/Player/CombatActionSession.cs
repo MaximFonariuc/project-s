@@ -194,7 +194,7 @@ namespace _App
             {
                 _attackExecution.Begin(
                     new AttackExecutionId(_nextAttackExecutionId),
-                    action.Id,
+                    new CombatActionId(action.Id.Value),
                     action.Definition.HitDefinition,
                     _actor.Root.gameObject);
                 _outcome.Begin(_attackExecution.Id, action.Id);

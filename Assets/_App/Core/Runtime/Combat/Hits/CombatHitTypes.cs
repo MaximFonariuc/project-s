@@ -3,6 +3,50 @@ using UnityEngine;
 
 namespace _App
 {
+    public readonly struct CombatActionId : IEquatable<CombatActionId>
+    {
+        public string Value { get; }
+        public bool IsValid => !string.IsNullOrEmpty(Value);
+
+        public CombatActionId(string value)
+        {
+            Value = CombatIdentifier.RequireCanonical(
+                value,
+                "Combat action id",
+                nameof(value));
+        }
+
+        public bool Equals(CombatActionId other)
+        {
+            return string.Equals(Value, other.Value, StringComparison.Ordinal);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is CombatActionId other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return Value != null ? StringComparer.Ordinal.GetHashCode(Value) : 0;
+        }
+
+        public override string ToString()
+        {
+            return Value ?? string.Empty;
+        }
+
+        public static bool operator ==(CombatActionId left, CombatActionId right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(CombatActionId left, CombatActionId right)
+        {
+            return !left.Equals(right);
+        }
+    }
+
     public readonly struct AttackExecutionId : IEquatable<AttackExecutionId>
     {
         public ulong Value { get; }
@@ -236,7 +280,7 @@ namespace _App
     public readonly struct CombatHitResult
     {
         public AttackExecutionId ExecutionId { get; }
-        public PlayerCombatActionId ActionId { get; }
+        public CombatActionId ActionId { get; }
         public int Damage { get; }
         public float StaggerDamage { get; }
         public float Knockback { get; }
@@ -251,7 +295,7 @@ namespace _App
 
         internal CombatHitResult(
             AttackExecutionId executionId,
-            PlayerCombatActionId actionId,
+            CombatActionId actionId,
             int damage,
             float staggerDamage,
             float knockback,

@@ -11,7 +11,7 @@ namespace _App
         private readonly Dictionary<int, TargetHitRecord> _targetHits = new();
 
         public AttackExecutionId Id { get; private set; }
-        public PlayerCombatActionId ActionId { get; private set; }
+        public CombatActionId ActionId { get; private set; }
         public CombatHitDefinition HitDefinition { get; private set; }
         public GameObject Source { get; private set; }
         public int SourceRootId { get; private set; }
@@ -19,7 +19,7 @@ namespace _App
 
         public void Begin(
             AttackExecutionId id,
-            PlayerCombatActionId actionId,
+            CombatActionId actionId,
             CombatHitDefinition hitDefinition,
             GameObject source)
         {
@@ -34,7 +34,7 @@ namespace _App
                 throw new ArgumentException("Attack execution id must be valid.", nameof(id));
             }
 
-            if (string.IsNullOrEmpty(actionId.Value))
+            if (!actionId.IsValid)
             {
                 throw new ArgumentException(
                     "Attack execution requires a valid action id.",

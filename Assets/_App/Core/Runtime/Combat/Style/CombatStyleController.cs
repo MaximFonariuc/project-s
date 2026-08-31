@@ -9,7 +9,7 @@ namespace _App
         private readonly Health _localHealth;
         private readonly Transform _localRoot;
         private readonly CombatStyleSettings _settings;
-        private readonly PlayerCombatActionId[] _recentActions;
+        private readonly CombatActionId[] _recentActions;
 
         private float _score;
         private float _timeSinceAward;
@@ -37,7 +37,7 @@ namespace _App
                 ? localActor.Root
                 : throw new ArgumentNullException(nameof(localActor));
             _settings = settings ?? throw new ArgumentNullException(nameof(settings));
-            _recentActions = new PlayerCombatActionId[_settings.RecentActionWindow];
+            _recentActions = new CombatActionId[_settings.RecentActionWindow];
         }
 
         public void Enable()
@@ -159,7 +159,7 @@ namespace _App
                 : 1.0f;
         }
 
-        private int CountRecent(PlayerCombatActionId actionId)
+        private int CountRecent(CombatActionId actionId)
         {
             int count = 0;
             for (int i = 0; i < _recentActionCount; i++)
@@ -173,7 +173,7 @@ namespace _App
             return count;
         }
 
-        private void RecordRecent(PlayerCombatActionId actionId)
+        private void RecordRecent(CombatActionId actionId)
         {
             _recentActions[_nextRecentAction] = actionId;
             _nextRecentAction = (_nextRecentAction + 1) % _recentActions.Length;
