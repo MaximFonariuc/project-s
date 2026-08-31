@@ -211,7 +211,7 @@ namespace _App
 
             CharacterReactionSnapshot snapshot = CurrentSnapshot;
             _presentation.Present(in snapshot);
-            ReactionStarted?.Invoke(snapshot);
+            SafeEvent.Publish(ReactionStarted, snapshot, _health);
         }
 
         private void OnRevived()
@@ -266,7 +266,7 @@ namespace _App
             ApplyKnockback(in hit);
             CharacterReactionSnapshot snapshot = CurrentSnapshot;
             _presentation.Present(in snapshot);
-            ReactionStarted?.Invoke(snapshot);
+            SafeEvent.Publish(ReactionStarted, snapshot, _health);
         }
 
         private void ReturnToStable()
@@ -342,7 +342,7 @@ namespace _App
 
             CharacterReactionSnapshot snapshot = CurrentSnapshot;
             _presentation.Present(in snapshot);
-            ReactionStarted?.Invoke(snapshot);
+            SafeEvent.Publish(ReactionStarted, snapshot, _health);
         }
 
         private void ApplyKnockback(in CombatHitResult hit)
@@ -483,7 +483,7 @@ namespace _App
             CharacterReactionStateId previous,
             CharacterReactionStateId current)
         {
-            StateChanged?.Invoke(current);
+            SafeEvent.Publish(StateChanged, current, _health);
         }
     }
 }

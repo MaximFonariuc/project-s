@@ -290,6 +290,9 @@ vertical impact сохраняет тип `Slam` в snapshot до подтвер
   сбрасывает animation driver вместе с parameters/layer weights; повторный enable
   не наследует частично подавленную reaction pose.
 - `PlayerActorController` подписывается до запуска reaction state machine. Любой non-stable state синхронно прерывает Combat и Traversal и блокирует locomotion intent; `Stable` восстанавливает актуальный combat movement intent.
+- `StateChanged` и `ReactionStarted` публикуют уже подтверждённое состояние через
+  изолированные read-events: ошибка UI/animation consumer логируется на actor
+  `Health`, но не блокирует gameplay lifecycle и остальных subscribers.
 - При таком прерывании Combat освобождает animation ownership без crossfade в
   `Move`; reaction presentation в том же синхронном вызове делает единственный
   прямой переход из текущей attack pose. Это исключает двойной
