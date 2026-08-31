@@ -198,6 +198,23 @@ namespace _App
                 renderQueue = (int)RenderQueue.Transparent,
                 enableInstancing = true
             };
+            material.SetOverrideTag("RenderType", "Transparent");
+            SetFloatIfPresent(material, "_Surface", 1.0f);
+            SetFloatIfPresent(material, "_Blend", 0.0f);
+            SetFloatIfPresent(material, "_BlendOp", (float)BlendOp.Add);
+            SetFloatIfPresent(material, "_SrcBlend", (float)BlendMode.SrcAlpha);
+            SetFloatIfPresent(material, "_DstBlend", (float)BlendMode.OneMinusSrcAlpha);
+            SetFloatIfPresent(material, "_SrcBlendAlpha", (float)BlendMode.One);
+            SetFloatIfPresent(
+                material,
+                "_DstBlendAlpha",
+                (float)BlendMode.OneMinusSrcAlpha);
+            SetFloatIfPresent(material, "_ZWrite", 0.0f);
+            SetFloatIfPresent(material, "_AlphaClip", 0.0f);
+            SetFloatIfPresent(material, "_AlphaToMask", 0.0f);
+            material.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+            material.DisableKeyword("_ALPHATEST_ON");
+            material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
             if (material.HasProperty("_BaseColor"))
             {
                 material.SetColor("_BaseColor", Color.white);
@@ -213,6 +230,17 @@ namespace _App
             }
 
             return material;
+        }
+
+        private static void SetFloatIfPresent(
+            Material material,
+            string propertyName,
+            float value)
+        {
+            if (material.HasProperty(propertyName))
+            {
+                material.SetFloat(propertyName, value);
+            }
         }
 
         private void Sample(float now, bool force)
@@ -287,10 +315,12 @@ namespace _App
                 float freshness = Mathf.Clamp01(1.0f - (now - _times[i]) / _lifetime);
                 Color color = Color.Lerp(_tailColor, _headColor, freshness);
                 color.a *= freshness;
+                Color baseColor = color;
+                baseColor.a = 0.0f;
                 int vertex = i * 2;
                 _vertices[vertex] = _bases[i];
                 _vertices[vertex + 1] = _tips[i];
-                _colors[vertex] = color;
+                _colors[vertex] = baseColor;
                 _colors[vertex + 1] = color;
             }
 
