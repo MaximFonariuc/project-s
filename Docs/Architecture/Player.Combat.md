@@ -4,6 +4,11 @@
 
 `PlayerCombatController` принимает семантические команды, владеет subscriptions, operation lifecycle и persistent weapon state. `PlayerCombatActionPipeline` выполняет уже определённые combat actions: обращается к action graph, потребляет contextual input buffer, ведёт action chain и публикует combo/hit-window state. `PlayerCombatCommandInbox` изолирует pre-tick FIFO, `PlayerCombatOperationLifetime` — cancellation ownership attack/weapon операций, а `PlayerCombatAvailability` отвечает за live admission rules и cooldown history. Animator и weapon rig остаются presentation/scene adapters.
 
+Публичные read-events изолированы от gameplay transaction: исключение одного
+presentation/UI subscriber логируется отдельно, не блокирует остальных
+подписчиков и не может сорвать weapon commit, phase transition либо закрытие
+hit window.
+
 Подробная граница admission/cooldown описана в
 `Docs/Architecture/Combat.ActionAvailability.md`.
 

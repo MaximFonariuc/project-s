@@ -370,12 +370,12 @@ namespace _App
             }
 
             CurrentWeapon = weaponType;
-            WeaponChanged?.Invoke(weaponType);
+            PublishSafely(WeaponChanged, weaponType);
         }
 
         private void OnStateChanged(PlayerCombatPhase previous, PlayerCombatPhase current)
         {
-            PhaseChanged?.Invoke(current);
+            PublishSafely(PhaseChanged, current);
         }
 
         private void OnCombatActionRequested(PlayerCombatCommandId commandId)
@@ -405,12 +405,33 @@ namespace _App
 
         private void OnActiveComboIndexChanged(int? comboIndex)
         {
-            ActiveComboIndexChanged?.Invoke(comboIndex);
+            PublishSafely(ActiveComboIndexChanged, comboIndex);
         }
 
         private void OnHitWindowChanged(bool open)
         {
-            HitWindowChanged?.Invoke(open);
+            PublishSafely(HitWindowChanged, open);
+        }
+
+        private void PublishSafely<T>(Action<T> handlers, T value)
+        {
+            if (handlers == null)
+            {
+                return;
+            }
+
+            Delegate[] subscriptions = handlers.GetInvocationList();
+            for (int i = 0; i < subscriptions.Length; i++)
+            {
+                try
+                {
+                    ((Action<T>)subscriptions[i]).Invoke(value);
+                }
+                catch (Exception exception)
+                {
+                    Debug.LogException(exception, _actor.Root);
+                }
+            }
         }
 
         private void ThrowIfDisposed()
