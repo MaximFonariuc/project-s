@@ -63,13 +63,35 @@ namespace _App
             }
 
             execution.RegisterConfirmedTarget(target.TargetId, hitTime);
-            HitResolved?.Invoke(result);
+            PublishResolved(in result);
             return true;
         }
 
         public void Dispose()
         {
             HitResolved = null;
+        }
+
+        private void PublishResolved(in CombatHitResult result)
+        {
+            Action<CombatHitResult> handlers = HitResolved;
+            if (handlers == null)
+            {
+                return;
+            }
+
+            Delegate[] subscriptions = handlers.GetInvocationList();
+            for (int i = 0; i < subscriptions.Length; i++)
+            {
+                try
+                {
+                    ((Action<CombatHitResult>)subscriptions[i]).Invoke(result);
+                }
+                catch (Exception exception)
+                {
+                    Debug.LogException(exception, result.Source);
+                }
+            }
         }
     }
 }
