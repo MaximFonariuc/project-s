@@ -16,6 +16,12 @@ namespace _App
         [SerializeField] private CombatFeedbackAuthoring _defaultFeedback =
             CombatFeedbackAuthoring.CreateDefault();
 
+        [Header("Defense Outcomes")]
+        [SerializeField] private CombatFeedbackAuthoring _blockedFeedback =
+            CombatFeedbackAuthoring.CreateBlocked();
+        [SerializeField] private CombatFeedbackAuthoring _parriedFeedback =
+            CombatFeedbackAuthoring.CreateParried();
+
         [Header("Reaction Overrides")]
         [SerializeField] private List<CombatFeedbackAuthoring> _reactionOverrides = new();
 
@@ -25,6 +31,12 @@ namespace _App
             {
                 throw new InvalidOperationException(
                     $"Combat feedback profile '{name}' has no default feedback.");
+            }
+
+            if (_blockedFeedback == null || _parriedFeedback == null)
+            {
+                throw new InvalidOperationException(
+                    $"Combat feedback profile '{name}' requires block and parry feedback.");
             }
 
             var overrides = new List<CombatFeedbackDefinition>(
@@ -47,6 +59,8 @@ namespace _App
             return new CombatFeedbackSettings(
                 _cameraImpulseDuration,
                 _defaultFeedback.Build(requireReactionId: false),
+                _blockedFeedback.Build(requireReactionId: false),
+                _parriedFeedback.Build(requireReactionId: false),
                 overrides);
         }
 
@@ -90,6 +104,11 @@ namespace _App
         [SerializeField, Range(0.25f, 2.0f)] private float _audioPitchMin = 0.96f;
         [SerializeField, Range(0.25f, 2.0f)] private float _audioPitchMax = 1.04f;
 
+        [Header("Hit Stop")]
+        [SerializeField] private bool _overrideHitStop;
+        [SerializeField, Min(0.001f)] private float _hitStopDuration = 0.06f;
+        [SerializeField, Range(0.0f, 1.0f)] private float _hitStopTimeScale = 0.1f;
+
         internal CombatFeedbackDefinition Build(bool requireReactionId)
         {
             CombatReactionId reactionId;
@@ -114,6 +133,9 @@ namespace _App
                 reactionId = new CombatReactionId(_reactionId);
             }
 
+            CombatHitStop hitStopOverride = _overrideHitStop
+                ? new CombatHitStop(_hitStopDuration, _hitStopTimeScale)
+                : CombatHitStop.Disabled;
             return new CombatFeedbackDefinition(
                 reactionId,
                 _cameraImpulse,
@@ -126,12 +148,48 @@ namespace _App
                 _audioClip,
                 _audioVolume,
                 _audioPitchMin,
-                _audioPitchMax);
+                _audioPitchMax,
+                _overrideHitStop,
+                hitStopOverride);
         }
 
         internal static CombatFeedbackAuthoring CreateDefault()
         {
             return new CombatFeedbackAuthoring();
+        }
+
+        internal static CombatFeedbackAuthoring CreateBlocked()
+        {
+            return new CombatFeedbackAuthoring
+            {
+                _cameraImpulse = 0.06f,
+                _particleCount = 10,
+                _particleSpeed = 2.6f,
+                _particleScatter = 0.55f,
+                _particleLifetime = 0.18f,
+                _particleSize = 0.035f,
+                _particleColor = new Color(0.55f, 0.82f, 1.0f, 1.0f),
+                _overrideHitStop = true,
+                _hitStopDuration = 0.045f,
+                _hitStopTimeScale = 0.18f
+            };
+        }
+
+        internal static CombatFeedbackAuthoring CreateParried()
+        {
+            return new CombatFeedbackAuthoring
+            {
+                _cameraImpulse = 0.14f,
+                _particleCount = 18,
+                _particleSpeed = 3.8f,
+                _particleScatter = 0.72f,
+                _particleLifetime = 0.24f,
+                _particleSize = 0.05f,
+                _particleColor = new Color(0.72f, 0.96f, 1.0f, 1.0f),
+                _overrideHitStop = true,
+                _hitStopDuration = 0.09f,
+                _hitStopTimeScale = 0.02f
+            };
         }
     }
 }

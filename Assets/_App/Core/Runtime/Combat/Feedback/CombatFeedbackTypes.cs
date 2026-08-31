@@ -18,6 +18,8 @@ namespace _App
         public float AudioVolume { get; }
         public float AudioPitchMin { get; }
         public float AudioPitchMax { get; }
+        public bool OverridesHitStop { get; }
+        public CombatHitStop HitStopOverride { get; }
 
         public bool HasParticles => ParticleCount > 0;
         public bool HasAudio => AudioClip != null && AudioVolume > 0.0f;
@@ -34,7 +36,9 @@ namespace _App
             AudioClip audioClip,
             float audioVolume,
             float audioPitchMin,
-            float audioPitchMax)
+            float audioPitchMax,
+            bool overridesHitStop,
+            CombatHitStop hitStopOverride)
         {
             RequireFinite(cameraImpulse, nameof(cameraImpulse));
             RequireFinite(particleSpeed, nameof(particleSpeed));
@@ -89,6 +93,13 @@ namespace _App
                 throw new ArgumentOutOfRangeException(nameof(audioPitchMin));
             }
 
+            if (overridesHitStop != hitStopOverride.IsEnabled)
+            {
+                throw new ArgumentException(
+                    "Hit-stop override flag and value must describe the same policy.",
+                    nameof(hitStopOverride));
+            }
+
             ReactionId = reactionId;
             CameraImpulse = cameraImpulse;
             ParticleCount = particleCount;
@@ -101,6 +112,8 @@ namespace _App
             AudioVolume = audioVolume;
             AudioPitchMin = audioPitchMin;
             AudioPitchMax = audioPitchMax;
+            OverridesHitStop = overridesHitStop;
+            HitStopOverride = hitStopOverride;
         }
 
         private static void RequireFinite(float value, string parameterName)
@@ -120,10 +133,14 @@ namespace _App
 
         public float CameraImpulseDuration { get; }
         public CombatFeedbackDefinition Default { get; }
+        public CombatFeedbackDefinition Blocked { get; }
+        public CombatFeedbackDefinition Parried { get; }
 
         public CombatFeedbackSettings(
             float cameraImpulseDuration,
             CombatFeedbackDefinition defaultFeedback,
+            CombatFeedbackDefinition blockedFeedback,
+            CombatFeedbackDefinition parriedFeedback,
             IReadOnlyList<CombatFeedbackDefinition> overrides)
         {
             CombatActionNumeric.RequireFinite(
@@ -135,11 +152,19 @@ namespace _App
             }
 
             Default = defaultFeedback ?? throw new ArgumentNullException(nameof(defaultFeedback));
+            Blocked = blockedFeedback ?? throw new ArgumentNullException(nameof(blockedFeedback));
+            Parried = parriedFeedback ?? throw new ArgumentNullException(nameof(parriedFeedback));
             if (Default.ReactionId.IsValid)
             {
                 throw new ArgumentException(
                     "The default combat feedback must not have a reaction id.",
                     nameof(defaultFeedback));
+            }
+
+            if (Blocked.ReactionId.IsValid || Parried.ReactionId.IsValid)
+            {
+                throw new ArgumentException(
+                    "Defense feedback must be selected by hit outcome, not reaction id.");
             }
 
             CameraImpulseDuration = cameraImpulseDuration;
@@ -171,11 +196,38 @@ namespace _App
             }
         }
 
-        public CombatFeedbackDefinition Resolve(CombatReactionId reactionId)
+        public CombatFeedbackDefinition Resolve(in CombatHitResult hit)
         {
+            if (hit.Outcome == CombatHitOutcome.Blocked)
+            {
+                return Blocked;
+            }
+
+            if (hit.Outcome == CombatHitOutcome.Parried)
+            {
+                return Parried;
+            }
+
+            if (hit.Outcome != CombatHitOutcome.Damaged)
+            {
+                throw new ArgumentOutOfRangeException(
+                    nameof(hit),
+                    hit.Outcome,
+                    "Unsupported combat hit outcome.");
+            }
+
+            CombatReactionId reactionId = hit.ReactionId;
             return reactionId.IsValid && _overrides.TryGetValue(reactionId, out var definition)
                 ? definition
                 : Default;
+        }
+
+        public CombatHitStop ResolveHitStop(in CombatHitResult hit)
+        {
+            CombatFeedbackDefinition definition = Resolve(in hit);
+            return definition.OverridesHitStop
+                ? definition.HitStopOverride
+                : hit.HitStop;
         }
     }
 }

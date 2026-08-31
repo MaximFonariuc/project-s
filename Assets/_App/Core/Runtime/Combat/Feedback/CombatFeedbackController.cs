@@ -7,6 +7,7 @@ namespace _App
     {
         private readonly ICombatHitEvents _outgoingHits;
         private readonly Health _localHealth;
+        private readonly IPlayerDefenseState _localDefense;
         private readonly Transform _localRoot;
         private readonly CombatFeedbackSettings _settings;
         private readonly CombatImpactPresentation _presentation;
@@ -16,6 +17,7 @@ namespace _App
         public CombatFeedbackController(
             ICombatHitEvents outgoingHits,
             Health localHealth,
+            IPlayerDefenseState localDefense,
             IPlayerCombatActor localActor,
             CombatFeedbackSettings settings,
             CombatImpactPresentation presentation)
@@ -24,6 +26,8 @@ namespace _App
             _localHealth = localHealth != null
                 ? localHealth
                 : throw new ArgumentNullException(nameof(localHealth));
+            _localDefense = localDefense ??
+                throw new ArgumentNullException(nameof(localDefense));
             _localRoot = localActor?.Root != null
                 ? localActor.Root
                 : throw new ArgumentNullException(nameof(localActor));
@@ -40,6 +44,7 @@ namespace _App
 
             _outgoingHits.HitResolved += OnOutgoingHitResolved;
             _localHealth.Damaged += OnIncomingHitResolved;
+            _localDefense.Defended += OnIncomingDefenseResolved;
             _enabled = true;
         }
 
@@ -52,6 +57,7 @@ namespace _App
 
             _outgoingHits.HitResolved -= OnOutgoingHitResolved;
             _localHealth.Damaged -= OnIncomingHitResolved;
+            _localDefense.Defended -= OnIncomingDefenseResolved;
             _presentation.Stop();
             _enabled = false;
         }
@@ -79,9 +85,18 @@ namespace _App
             }
         }
 
+        private void OnIncomingDefenseResolved(PlayerDefenseResult result)
+        {
+            if (_enabled)
+            {
+                CombatHitResult hit = result.Hit;
+                Present(in hit);
+            }
+        }
+
         private void Present(in CombatHitResult hit)
         {
-            CombatFeedbackDefinition definition = _settings.Resolve(hit.ReactionId);
+            CombatFeedbackDefinition definition = _settings.Resolve(in hit);
             _presentation.Play(in hit, definition);
         }
 

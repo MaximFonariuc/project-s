@@ -26,6 +26,41 @@ MonoBehaviour:
     _audioVolume: 0.8
     _audioPitchMin: 0.96
     _audioPitchMax: 1.04
+    _overrideHitStop: 0
+    _hitStopDuration: 0.06
+    _hitStopTimeScale: 0.1
+  _blockedFeedback:
+    _reactionId:
+    _cameraImpulse: 0.06
+    _particleCount: 10
+    _particleSpeed: 2.6
+    _particleScatter: 0.55
+    _particleLifetime: 0.18
+    _particleSize: 0.035
+    _particleColor: {r: 0.55, g: 0.82, b: 1, a: 1}
+    _audioClip: {fileID: 0}
+    _audioVolume: 0.8
+    _audioPitchMin: 0.96
+    _audioPitchMax: 1.04
+    _overrideHitStop: 1
+    _hitStopDuration: 0.045
+    _hitStopTimeScale: 0.18
+  _parriedFeedback:
+    _reactionId:
+    _cameraImpulse: 0.14
+    _particleCount: 18
+    _particleSpeed: 3.8
+    _particleScatter: 0.72
+    _particleLifetime: 0.24
+    _particleSize: 0.05
+    _particleColor: {r: 0.72, g: 0.96, b: 1, a: 1}
+    _audioClip: {fileID: 0}
+    _audioVolume: 0.8
+    _audioPitchMin: 0.96
+    _audioPitchMax: 1.04
+    _overrideHitStop: 1
+    _hitStopDuration: 0.09
+    _hitStopTimeScale: 0.02
   _reactionOverrides:
   - _reactionId: hit.light
     _cameraImpulse: 0.08
@@ -39,6 +74,9 @@ MonoBehaviour:
     _audioVolume: 0.8
     _audioPitchMin: 0.97
     _audioPitchMax: 1.03
+    _overrideHitStop: 0
+    _hitStopDuration: 0.06
+    _hitStopTimeScale: 0.1
   - _reactionId: hit.heavy
     _cameraImpulse: 0.16
     _particleCount: 14
@@ -51,6 +89,9 @@ MonoBehaviour:
     _audioVolume: 0.9
     _audioPitchMin: 0.92
     _audioPitchMax: 1
+    _overrideHitStop: 0
+    _hitStopDuration: 0.06
+    _hitStopTimeScale: 0.1
   - _reactionId: hit.launcher
     _cameraImpulse: 0.13
     _particleCount: 12
@@ -63,6 +104,9 @@ MonoBehaviour:
     _audioVolume: 0.86
     _audioPitchMin: 0.96
     _audioPitchMax: 1.04
+    _overrideHitStop: 0
+    _hitStopDuration: 0.06
+    _hitStopTimeScale: 0.1
   - _reactionId: hit.slam
     _cameraImpulse: 0.2
     _particleCount: 18
@@ -75,3 +119,6 @@ MonoBehaviour:
     _audioVolume: 1
     _audioPitchMin: 0.88
     _audioPitchMax: 0.98
+    _overrideHitStop: 0
+    _hitStopDuration: 0.06
+    _hitStopTimeScale: 0.1

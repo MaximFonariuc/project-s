@@ -78,7 +78,9 @@ classDiagram
   treated as a guarded hit.
 - A guarded hit remains a confirmed contact and resolves to `Blocked` or
   `Parried`, but carries zero damage, stagger, knockback and reaction. The
-  original hit-stop request is preserved for presentation feedback.
+  original hit-stop request remains in the result as fallback metadata;
+  `CombatFeedbackSettings` can replace it per defensive outcome without
+  changing the gameplay decision.
 - An unguarded or rear hit is delegated to `Health` unchanged. `Health` remains
   a temporary vitality owner and has no knowledge of guard rules.
 - While guarding, translation is scaled to `0.35`, facing remains fixed for
