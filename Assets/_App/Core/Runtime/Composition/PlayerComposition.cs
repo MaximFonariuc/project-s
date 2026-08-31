@@ -16,12 +16,14 @@ namespace _App
 
             if (!player.TryGetComponent(out Character character) ||
                 !player.TryGetComponent(out Health health) ||
+                !player.TryGetComponent(out BodyColliderRig bodyColliderRig) ||
                 player.CharacterFeatures == null ||
                 player.PlayerAnimator == null ||
                 player.PlayerAnimator.runtimeAnimatorController == null)
             {
                 throw new InvalidOperationException(
-                    "Player requires Character, Health, CharacterFeatureSet and a configured Animator Controller.");
+                    "Player requires Character, Health, BodyColliderRig, " +
+                    "CharacterFeatureSet and a configured Animator Controller.");
             }
 
             player.CharacterFeatures.ValidateConfiguration();
@@ -53,6 +55,7 @@ namespace _App
                 .As<IPlayerActorTransform>()
                 .As<IPlayerTargetingActor>()
                 .As<IPlayerCombatActor>()
+                .As<IPlayerDefenseActor>()
                 .As<IDamageImmunityTarget>()
                 .As<IPlayerTraversalActor>();
 
@@ -83,6 +86,7 @@ namespace _App
             builder.RegisterPlayerCombatStyle();
             builder.RegisterPlayerLocomotion(player.CharacterFeatures);
             builder.RegisterPlayerReaction(player);
+            builder.RegisterPlayerDefense(player, bodyColliderRig);
             builder.RegisterPlayerTraversal(player.CharacterFeatures);
             builder.Register<PlayerActorController>(Lifetime.Scoped);
             builder.RegisterComponent(player);

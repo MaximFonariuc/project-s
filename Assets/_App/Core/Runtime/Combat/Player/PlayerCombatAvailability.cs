@@ -7,23 +7,28 @@ namespace _App
     {
         private readonly IPlayerCombatActor _actor;
         private readonly ICharacterReactionState _reactionState;
+        private readonly IPlayerDefenseState _defenseState;
         private readonly IPlayerCombatAnimation _animation;
         private readonly ICombatClock _clock;
         private readonly ECharacterType _characterType;
         private readonly Dictionary<PlayerCombatCooldownKey, float> _lastUseTime = new();
 
         public bool CanEnterAction =>
-            !_reactionState.BlocksActions && _actor.CanAttack;
+            !_reactionState.BlocksActions && !_defenseState.IsGuarding &&
+            _actor.CanAttack;
 
         public bool CanBufferEntry =>
-            _reactionState.CurrentState != CharacterReactionStateId.Dead;
+            _reactionState.CurrentState != CharacterReactionStateId.Dead &&
+            !_defenseState.IsGuarding;
 
         public bool CanSwitchWeapon =>
-            !_reactionState.BlocksActions && !_actor.IsFalling;
+            !_reactionState.BlocksActions && !_defenseState.IsGuarding &&
+            !_actor.IsFalling;
 
         public PlayerCombatAvailability(
             IPlayerCombatActor actor,
             ICharacterReactionState reactionState,
+            IPlayerDefenseState defenseState,
             IPlayerCombatAnimation animation,
             ICombatClock clock,
             ECharacterType characterType)
@@ -31,6 +36,8 @@ namespace _App
             _actor = actor ?? throw new ArgumentNullException(nameof(actor));
             _reactionState = reactionState ??
                 throw new ArgumentNullException(nameof(reactionState));
+            _defenseState = defenseState ??
+                throw new ArgumentNullException(nameof(defenseState));
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _clock = clock ?? throw new ArgumentNullException(nameof(clock));
             _characterType = characterType;

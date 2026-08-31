@@ -10,6 +10,8 @@ namespace _App
         [SerializeField] private Health _health;
         [SerializeField] private List<Hurtbox> _zones = new List<Hurtbox>();
 
+        private ICombatHitReceiver _hitReceiver;
+
         public bool IsAlive => _health != null && _health.IsAlive;
         public GameObject Owner => _health != null ? _health.gameObject : gameObject;
         public IReadOnlyList<Hurtbox> Zones => _zones;
@@ -28,6 +30,13 @@ namespace _App
             in CombatHitResult proposedHit,
             out CombatHitResult resolvedHit)
         {
+            if (_hitReceiver != null)
+            {
+                return _hitReceiver.TryReceiveHit(
+                    in proposedHit,
+                    out resolvedHit);
+            }
+
             if (_health != null && _health.TryApplyHit(in proposedHit))
             {
                 resolvedHit = proposedHit;
@@ -36,6 +45,30 @@ namespace _App
 
             resolvedHit = default;
             return false;
+        }
+
+        internal void SetHitReceiver(ICombatHitReceiver hitReceiver)
+        {
+            if (hitReceiver == null)
+            {
+                throw new System.ArgumentNullException(nameof(hitReceiver));
+            }
+
+            if (_hitReceiver != null && !ReferenceEquals(_hitReceiver, hitReceiver))
+            {
+                throw new System.InvalidOperationException(
+                    $"{nameof(BodyColliderRig)} on '{name}' already has a hit receiver.");
+            }
+
+            _hitReceiver = hitReceiver;
+        }
+
+        internal void ClearHitReceiver(ICombatHitReceiver hitReceiver)
+        {
+            if (ReferenceEquals(_hitReceiver, hitReceiver))
+            {
+                _hitReceiver = null;
+            }
         }
 
         public void SetHurtboxesEnabled(bool enabled)

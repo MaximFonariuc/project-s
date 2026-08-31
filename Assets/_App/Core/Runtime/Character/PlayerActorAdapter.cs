@@ -7,6 +7,7 @@ namespace _App
         IPlayerActorTransform,
         IPlayerTargetingActor,
         IPlayerCombatActor,
+        IPlayerDefenseActor,
         IDamageImmunityTarget,
         IPlayerTraversalActor
     {
@@ -16,7 +17,10 @@ namespace _App
         public Transform Root => _character.transform;
         public Vector3 Position => _character.transform.position;
         public Vector3 Forward => _character.transform.forward;
+        public Vector3 Up => _character.GetUpVector();
         public bool CanAttack => _health.IsAlive && _character.CanAttack();
+        public bool CanDefend => _health.IsAlive && _character.IsWalking() &&
+                                 !_character.IsCrouched() && !_character.IsDodging();
         public bool IsFalling => _character.IsFalling();
         public bool IsClimbing => _character.IsClimbing();
         public ERotationMode RotationMode => _character.RotationMode;

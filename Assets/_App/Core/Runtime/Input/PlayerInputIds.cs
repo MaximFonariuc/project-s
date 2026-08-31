@@ -43,6 +43,8 @@ namespace _App
             InputActionId.Parse("4e695762-e03c-46ed-a6d2-454c4cdc144a");
         public static readonly InputActionId Dodge =
             InputActionId.Parse("e27ccac5-1a1e-4b67-b1b0-cb3334592ea7");
+        public static readonly InputActionId Guard =
+            InputActionId.Parse("011cbc68-23e6-4188-9239-dfd68a3d854f");
         public static readonly InputActionId SwitchCombatState =
             InputActionId.Parse("bd9b320c-e267-45ac-b8ff-642d70dca51c");
         public static readonly InputActionId SpecialAttack =

@@ -21,10 +21,15 @@ classDiagram
     }
     class ICombatHitTarget {
         <<interface>>
-        +TryApplyHit(result) bool
+        +TryResolveHit(proposed, resolved) bool
+    }
+    class ICombatHitReceiver {
+        <<interface>>
+        +TryReceiveHit(proposed, resolved) bool
     }
     class CombatHitResult
     class Hurtbox
+    class BodyColliderRig
     class Health
 
     CombatAttackExecution --> AttackExecutionId
@@ -33,7 +38,9 @@ classDiagram
     CombatHitResolver --> ICombatHitTarget
     CombatHitResolver --> CombatHitResult : accepted outcome only
     ICombatHitTarget <|.. Hurtbox
-    Hurtbox --> Health
+    Hurtbox --> BodyColliderRig
+    BodyColliderRig --> ICombatHitReceiver : optional gameplay policy
+    BodyColliderRig --> Health : fallback
 ```
 
 - `CombatActionId` identifies the semantic action that produced a hit without
@@ -46,5 +53,7 @@ classDiagram
 - Only `Damaged` reaches `Health`, hit-confirm transitions and style scoring.
   Defensive outcomes remain confirmed contacts for repeat filtering and
   presentation without pretending that health damage occurred.
-- `Hurtbox` identifies the hit zone and delegates health ownership; it never
-  calculates damage or chooses a reaction.
+- `Hurtbox` identifies the hit zone and delegates target ownership; it never
+  calculates damage or chooses a reaction. `BodyColliderRig` forwards to an
+  attached gameplay receiver such as Player defense, then falls back to
+  `Health` when no receiver owns the contact.

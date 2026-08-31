@@ -393,6 +393,13 @@ namespace _App
             out CombatHitResult resolvedHit);
     }
 
+    internal interface ICombatHitReceiver
+    {
+        bool TryReceiveHit(
+            in CombatHitResult proposedHit,
+            out CombatHitResult resolvedHit);
+    }
+
     internal interface ICombatHitResolver
     {
         bool TryResolve(

@@ -37,6 +37,9 @@ namespace _App
         [Header("Combat Reactions")]
         [SerializeField] private CharacterReactionProfile _reactionProfile;
 
+        [Header("Combat Defense")]
+        [SerializeField] private PlayerDefenseProfile _defenseProfile;
+
         [Header("Combat Feedback")]
         [SerializeField] private CombatFeedbackProfile _combatFeedbackProfile;
 
@@ -56,6 +59,7 @@ namespace _App
         internal EWeaponType StartingWeapon => _startingWeapon;
         internal PlayerCombatLoadoutProfile CombatLoadoutProfile => _combatLoadoutProfile;
         internal CharacterReactionProfile ReactionProfile => _reactionProfile;
+        internal PlayerDefenseProfile DefenseProfile => _defenseProfile;
         internal CombatFeedbackProfile CombatFeedbackProfile => _combatFeedbackProfile;
         internal CombatStyleProfile CombatStyleProfile => _combatStyleProfile;
         internal CinemachineThirdPersonFollow FollowCameraPrefab => _followCamera;
@@ -108,6 +112,14 @@ namespace _App
             {
                 Debug.LogError(
                     $"{nameof(ThirdPersonController)} requires a combat feedback profile.",
+                    this);
+                valid = false;
+            }
+
+            if (_defenseProfile == null)
+            {
+                Debug.LogError(
+                    $"{nameof(ThirdPersonController)} requires a defense profile.",
                     this);
                 valid = false;
             }

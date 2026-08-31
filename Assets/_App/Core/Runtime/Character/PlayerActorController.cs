@@ -10,6 +10,7 @@ namespace _App
         private readonly PlayerTargetingController _targeting;
         private readonly PlayerCameraController _camera;
         private readonly PlayerCombatController _combat;
+        private readonly PlayerDefenseController _defense;
         private readonly CharacterReactionController _reaction;
         private readonly GameplayTimeScaleController _gameplayTime;
         private readonly CombatHitStopController _hitStop;
@@ -28,6 +29,7 @@ namespace _App
             PlayerTargetingController targeting,
             PlayerCameraController camera,
             PlayerCombatController combat,
+            PlayerDefenseController defense,
             CharacterReactionController reaction,
             GameplayTimeScaleController gameplayTime,
             CombatHitStopController hitStop,
@@ -44,6 +46,7 @@ namespace _App
             _targeting = targeting ?? throw new ArgumentNullException(nameof(targeting));
             _camera = camera ?? throw new ArgumentNullException(nameof(camera));
             _combat = combat ?? throw new ArgumentNullException(nameof(combat));
+            _defense = defense ?? throw new ArgumentNullException(nameof(defense));
             _reaction = reaction ?? throw new ArgumentNullException(nameof(reaction));
             _gameplayTime = gameplayTime ?? throw new ArgumentNullException(nameof(gameplayTime));
             _hitStop = hitStop ?? throw new ArgumentNullException(nameof(hitStop));
@@ -70,6 +73,7 @@ namespace _App
                 _targeting.Enable();
                 _camera.Enable();
                 _combat.Enable();
+                _defense.Enable();
                 _reaction.Enable();
                 _hitStop.Enable();
                 _feedback.Enable();
@@ -100,6 +104,7 @@ namespace _App
             _feedback.Disable();
             _hitStop.Disable();
             _reaction.Disable();
+            _defense.Disable();
             _combat.Disable();
             _camera.Disable();
             _targeting.Disable();
@@ -120,11 +125,16 @@ namespace _App
             _gameplayTime.Tick(unscaledDeltaTime);
             _reaction.Tick(scaledDeltaTime);
             _combat.Advance(scaledDeltaTime);
+            _defense.Tick(
+                !_reaction.BlocksActions &&
+                _combat.Phase == PlayerCombatPhase.Ready);
             _traversal.Tick();
             _locomotion.SetMovementIntent(
                 _reaction.BlocksActions
                     ? PlayerMovementIntent.Locked
-                    : _combat.MovementIntent);
+                    : _defense.IsGuarding
+                        ? _defense.MovementIntent
+                        : _combat.MovementIntent);
             _locomotion.Tick(scaledDeltaTime, unscaledDeltaTime);
             _combat.ResolveCommands();
             _style.Tick(scaledDeltaTime);
@@ -159,6 +169,7 @@ namespace _App
             }
 
             _combat.InterruptAttack(CombatActionEndReason.Reaction);
+            _defense.Interrupt();
             if (state == CharacterReactionStateId.Dead)
             {
                 _combat.DiscardPendingCommands();

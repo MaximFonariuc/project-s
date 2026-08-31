@@ -11,6 +11,7 @@ namespace _App
         event Action<InputSignalPhase> WalkChanged;
         event Action<InputSignalPhase> SprintChanged;
         event Action<InputSignalPhase> JumpChanged;
+        event Action<InputSignalPhase> GuardChanged;
         event Action PauseRequested;
         event Action InverseGravityRequested;
         event Action CursorRequested;

@@ -14,6 +14,7 @@ namespace _App
         public event Action<InputSignalPhase> WalkChanged;
         public event Action<InputSignalPhase> SprintChanged;
         public event Action<InputSignalPhase> JumpChanged;
+        public event Action<InputSignalPhase> GuardChanged;
         public event Action PauseRequested;
         public event Action InverseGravityRequested;
         public event Action CursorRequested;
@@ -113,6 +114,10 @@ namespace _App
             else if (action == PlayerInputIds.Sprint)
             {
                 SprintChanged?.Invoke(signal.Phase);
+            }
+            else if (action == PlayerInputIds.Guard)
+            {
+                GuardChanged?.Invoke(signal.Phase);
             }
             else if (signal.Phase == InputSignalPhase.Performed)
             {

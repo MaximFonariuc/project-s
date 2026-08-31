@@ -37,6 +37,7 @@ namespace _App
                 resolver => new PlayerCombatAvailability(
                     resolver.Resolve<IPlayerCombatActor>(),
                     resolver.Resolve<ICharacterReactionState>(),
+                    resolver.Resolve<IPlayerDefenseState>(),
                     resolver.Resolve<IPlayerCombatAnimation>(),
                     resolver.Resolve<ICombatClock>(),
                     player.CharacterType),
@@ -92,6 +93,7 @@ namespace _App
                         resolver.Resolve<IPlayerCombatActor>(),
                         resolver.Resolve<PlayerCombatAvailability>(),
                         resolver.Resolve<IPlayerLocomotionEvents>(),
+                        resolver.Resolve<IPlayerDefenseState>(),
                         resolver.Resolve<IPlayerCombatAnimation>(),
                         resolver.Resolve<IPlayerWeaponRig>(),
                         resolver.Resolve<PlayerCombatMovesetCatalog>(),

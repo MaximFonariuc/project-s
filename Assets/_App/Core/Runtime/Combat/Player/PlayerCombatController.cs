@@ -18,6 +18,7 @@ namespace _App
         private readonly IPlayerCombatActor _actor;
         private readonly PlayerCombatAvailability _availability;
         private readonly IPlayerLocomotionEvents _locomotionEvents;
+        private readonly IPlayerDefenseState _defenseState;
         private readonly IPlayerCombatAnimation _animation;
         private readonly IPlayerWeaponRig _weaponRig;
         private readonly PlayerCombatMovesetCatalog _movesets;
@@ -70,6 +71,7 @@ namespace _App
             IPlayerCombatActor actor,
             PlayerCombatAvailability availability,
             IPlayerLocomotionEvents locomotionEvents,
+            IPlayerDefenseState defenseState,
             IPlayerCombatAnimation animation,
             IPlayerWeaponRig weaponRig,
             PlayerCombatMovesetCatalog movesets,
@@ -86,6 +88,7 @@ namespace _App
             _actor = actor ?? throw new ArgumentNullException(nameof(actor));
             _availability = availability ?? throw new ArgumentNullException(nameof(availability));
             _locomotionEvents = locomotionEvents ?? throw new ArgumentNullException(nameof(locomotionEvents));
+            _defenseState = defenseState ?? throw new ArgumentNullException(nameof(defenseState));
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _weaponRig = weaponRig ?? throw new ArgumentNullException(nameof(weaponRig));
             _movesets = movesets ?? throw new ArgumentNullException(nameof(movesets));
@@ -133,6 +136,7 @@ namespace _App
                 _locomotionEvents.GroundJumpIntentAccepted += OnGroundJumpIntentAccepted;
                 _locomotionEvents.JumpAccepted += OnJumpAccepted;
                 _locomotionEvents.DodgeAccepted += OnDodgeAccepted;
+                _defenseState.GuardStarted += OnGuardStarted;
                 _outgoingHits.HitResolved += OnOutgoingHitResolved;
             }
             catch
@@ -154,6 +158,7 @@ namespace _App
             _locomotionEvents.GroundJumpIntentAccepted -= OnGroundJumpIntentAccepted;
             _locomotionEvents.JumpAccepted -= OnJumpAccepted;
             _locomotionEvents.DodgeAccepted -= OnDodgeAccepted;
+            _defenseState.GuardStarted -= OnGuardStarted;
             _outgoingHits.HitResolved -= OnOutgoingHitResolved;
             _stateMachine.StateChanged -= OnStateChanged;
             _enabled = false;
@@ -428,6 +433,12 @@ namespace _App
         }
 
         private void OnDodgeAccepted()
+        {
+            InterruptAttack();
+            DiscardPendingCommands();
+        }
+
+        private void OnGuardStarted()
         {
             InterruptAttack();
             DiscardPendingCommands();
