@@ -209,6 +209,23 @@ namespace _App
             return score >= RankC ? CombatStyleRank.C : CombatStyleRank.D;
         }
 
+        public float GetRankProgress(float score)
+        {
+            CombatStyleRank rank = ResolveRank(score);
+            return rank switch
+            {
+                CombatStyleRank.None => 0.0f,
+                CombatStyleRank.D => Mathf.InverseLerp(0.0f, RankC, score),
+                CombatStyleRank.C => Mathf.InverseLerp(RankC, RankB, score),
+                CombatStyleRank.B => Mathf.InverseLerp(RankB, RankA, score),
+                CombatStyleRank.A => Mathf.InverseLerp(RankA, RankS, score),
+                CombatStyleRank.S => Mathf.InverseLerp(RankS, RankSS, score),
+                CombatStyleRank.SS => Mathf.InverseLerp(RankSS, RankSSS, score),
+                CombatStyleRank.SSS => 1.0f,
+                _ => 0.0f
+            };
+        }
+
         private static void RequireFinite(float value, string parameterName)
         {
             if (float.IsNaN(value) || float.IsInfinity(value))

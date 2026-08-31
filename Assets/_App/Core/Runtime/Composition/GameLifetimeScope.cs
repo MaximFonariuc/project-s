@@ -13,6 +13,7 @@ namespace _App
     {
         [SerializeField] private ThirdPersonController _player;
         [SerializeField] private InputActionAsset _inputActions;
+        [SerializeField] private CombatStyleHudView _combatStyleHud;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -30,6 +31,11 @@ namespace _App
             builder.Register<IInputService, InputRouter>(Lifetime.Scoped);
             builder.Register<IPlayerInput, PlayerInputAdapter>(Lifetime.Scoped);
             builder.RegisterPlayer(_player);
+            if (_combatStyleHud != null)
+            {
+                builder.RegisterComponent(_combatStyleHud);
+                builder.RegisterEntryPoint<CombatStylePresenter>(Lifetime.Scoped);
+            }
         }
     }
 }

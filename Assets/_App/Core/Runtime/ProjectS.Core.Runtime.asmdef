@@ -11,6 +11,7 @@
         "UniTask",
         "Unity.Cinemachine",
         "Unity.InputSystem",
+        "Unity.TextMeshPro",
         "VContainer"
     ],
     "includePlatforms": [],
