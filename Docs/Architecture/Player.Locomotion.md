@@ -244,6 +244,10 @@ owner не снимает иммунитет второго. `Disable`, внеш
 
 Animation, Camera, VFX и последующие read-only consumers должны получать locomotion-результат через snapshot либо узкий consumer-specific port. Они не читают `Character`, input и state machine независимо и поэтому не создают конкурирующие копии состояния. `PlayerLocomotionAnimationAdapter` обнаруживает смену presentation state по последовательным snapshot и отправляет dodge request в `PlayerAnimationCoordinator`; сами locomotion states больше не зависят от animation presentation.
 
+`JumpAccepted` и `DodgeAccepted` публикуются после подтверждения motor/action и
+изолируют subscribers. Ошибка одного consumer не блокирует combat interruption
+и остальные реакции на уже принятое locomotion-действие.
+
 ## Направление зависимостей
 
 ```mermaid

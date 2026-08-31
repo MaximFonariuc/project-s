@@ -170,7 +170,7 @@ namespace _App
 
         private void OnMotorJumped()
         {
-            JumpAccepted?.Invoke();
+            SafeEvent.Publish(JumpAccepted, null);
         }
 
         private void RefreshMovementDirections()
@@ -496,7 +496,7 @@ namespace _App
             }
 
             _runtime.DodgeBackwards = backwards;
-            DodgeAccepted?.Invoke();
+            SafeEvent.Publish(DodgeAccepted, null);
             return true;
         }
     }
