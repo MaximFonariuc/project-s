@@ -129,6 +129,10 @@ reaction, disable, or another interruption.
   semantic input arrives. Timeline advancement cannot move a press into a
   different rapid/delayed branch during a slow frame; commands received together
   while Ready are still bound deterministically to the first action they start.
+- A valid entry pressed while `Ready` is temporarily blocked by dodge or a
+  reaction uses the same unscaled input-buffer rules as combo transitions. It
+  is retried when the actor becomes available and expires normally instead of
+  leaking into a later revive or unrelated action.
 - `PlayerCombatAvailability` owns live actor/reaction admission checks and the
   scaled-time cooldown dictionary. It asks the animation port only whether the
   semantic presentation exists; it does not run the graph or mutate combat

@@ -85,18 +85,20 @@ namespace _App
         public PlayerCombatCommandId CommandId { get; }
         public PlayerCombatActionId SourceActionId { get; }
         public float SourceNormalizedTime { get; }
+        public bool HasSourceAction { get; }
 
-        public PlayerCombatCommandSample(
+        private PlayerCombatCommandSample(
             PlayerCombatCommandId commandId,
             PlayerCombatActionId sourceActionId,
-            float sourceNormalizedTime)
+            float sourceNormalizedTime,
+            bool hasSourceAction)
         {
             if (string.IsNullOrEmpty(commandId.Value))
             {
                 throw new ArgumentException("Combat command sample requires a command id.", nameof(commandId));
             }
 
-            if (string.IsNullOrEmpty(sourceActionId.Value))
+            if (hasSourceAction && string.IsNullOrEmpty(sourceActionId.Value))
             {
                 throw new ArgumentException("Combat command sample requires a source action id.", nameof(sourceActionId));
             }
@@ -109,6 +111,28 @@ namespace _App
             CommandId = commandId;
             SourceActionId = sourceActionId;
             SourceNormalizedTime = sourceNormalizedTime;
+            HasSourceAction = hasSourceAction;
+        }
+
+        public static PlayerCombatCommandSample Entry(PlayerCombatCommandId commandId)
+        {
+            return new PlayerCombatCommandSample(
+                commandId,
+                default,
+                0.0f,
+                false);
+        }
+
+        public static PlayerCombatCommandSample Transition(
+            PlayerCombatCommandId commandId,
+            PlayerCombatActionId sourceActionId,
+            float sourceNormalizedTime)
+        {
+            return new PlayerCombatCommandSample(
+                commandId,
+                sourceActionId,
+                sourceNormalizedTime,
+                true);
         }
     }
 

@@ -187,6 +187,14 @@ namespace _App
             _actionExecutor.Advance(scaledDeltaTime);
             ConsumeQueuedCommands();
 
+            if (_actionPipeline.TryConsumeBufferedReadyEntry(
+                    Phase,
+                    CurrentWeapon,
+                    out PlayerCombatAction bufferedAction))
+            {
+                StartAction(bufferedAction);
+            }
+
             if (_commandInbox.ConsumeWeaponSwitchRequest())
             {
                 ToggleWeaponAsync(_preferredWeapon).Forget();
@@ -203,7 +211,10 @@ namespace _App
                     CurrentWeapon,
                     out PlayerCombatAction action))
             {
-                return false;
+                return _actionPipeline.TryBufferReadyEntry(
+                    in request,
+                    Phase,
+                    CurrentWeapon);
             }
 
             if (action == null)
@@ -211,9 +222,14 @@ namespace _App
                 return true;
             }
 
+            StartAction(action);
+            return true;
+        }
+
+        private void StartAction(PlayerCombatAction action)
+        {
             CancellationTokenSource cancellation = BeginAction();
             RunActionPipelineAsync(action, cancellation).Forget();
-            return true;
         }
 
         private void ConsumeQueuedCommands()

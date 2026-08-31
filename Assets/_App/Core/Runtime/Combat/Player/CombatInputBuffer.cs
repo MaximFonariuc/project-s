@@ -29,10 +29,18 @@ namespace _App
             float sourceNormalizedTime)
         {
             return _buffer.TryEnqueue(
-                new PlayerCombatCommandSample(
+                PlayerCombatCommandSample.Transition(
                     commandId,
                     sourceActionId,
                     sourceNormalizedTime),
+                _clock.UnscaledTime,
+                _settings.GetWriteOptions(commandId));
+        }
+
+        public bool StoreEntry(PlayerCombatCommandId commandId)
+        {
+            return _buffer.TryEnqueue(
+                PlayerCombatCommandSample.Entry(commandId),
                 _clock.UnscaledTime,
                 _settings.GetWriteOptions(commandId));
         }

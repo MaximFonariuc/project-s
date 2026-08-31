@@ -22,10 +22,14 @@ namespace _App
             _bufferedTransitionPredicate;
         private readonly InputBufferEntryPredicate<PlayerCombatCommandSample>
             _bufferedEntryPredicate;
+        private readonly InputBufferEntryPredicate<PlayerCombatCommandSample>
+            _bufferedReadyEntryPredicate;
         private readonly CombatActionFrameHandler _combatFrameHandler;
         private PlayerCombatAction _acceptedBufferedAction;
         private PlayerCombatActionGraph _activeActionGraph;
+        private PlayerCombatActionGraph _readyEntryGraph;
         private EWeaponType _activeWeapon;
+        private EWeaponType _readyEntryWeapon;
 
         public event Action<int?> ActiveComboIndexChanged;
         public event Action<bool> HitWindowChanged;
@@ -59,6 +63,7 @@ namespace _App
             _characterType = characterType;
             _bufferedTransitionPredicate = CanAcceptBufferedTransition;
             _bufferedEntryPredicate = CanAcceptBufferedEntry;
+            _bufferedReadyEntryPredicate = CanAcceptBufferedReadyEntry;
             _combatFrameHandler = ObserveCombatFrame;
             _actionSession.HitWindowChanged += OnHitWindowChanged;
         }
@@ -105,6 +110,65 @@ namespace _App
                        GetEnvironment(),
                        out initialAction) &&
                    _availability.CanUseAction(initialAction, weapon);
+        }
+
+        public bool TryBufferReadyEntry(
+            in PlayerCombatCommandRequest request,
+            PlayerCombatPhase phase,
+            EWeaponType weapon)
+        {
+            if (phase != PlayerCombatPhase.Ready || request.HasSourceAction ||
+                !_movesets.TryGet(weapon, out PlayerCombatMoveset moveset) ||
+                !moveset.ActionGraph.TryResolveEntry(
+                    request.CommandId,
+                    GetEnvironment(),
+                    out _))
+            {
+                return false;
+            }
+
+            return _inputBuffer.StoreEntry(request.CommandId);
+        }
+
+        public bool TryConsumeBufferedReadyEntry(
+            PlayerCombatPhase phase,
+            EWeaponType weapon,
+            out PlayerCombatAction action)
+        {
+            action = null;
+            if (phase != PlayerCombatPhase.Ready || !_availability.CanEnterAction ||
+                !_movesets.TryGet(weapon, out PlayerCombatMoveset moveset))
+            {
+                return false;
+            }
+
+            _readyEntryGraph = moveset.ActionGraph;
+            _readyEntryWeapon = weapon;
+            try
+            {
+                if (!_inputBuffer.TryConsume(
+                        _bufferedReadyEntryPredicate,
+                        out PlayerCombatCommandSample command) ||
+                    !_readyEntryGraph.TryResolveEntry(
+                        command.CommandId,
+                        GetEnvironment(),
+                        out action) ||
+                    !_availability.CanUseAction(action, weapon))
+                {
+                    action = null;
+                    return false;
+                }
+
+                // A Ready entry commits one intentional command. Remaining
+                // samples were authored before this action became available.
+                _inputBuffer.Clear();
+                return true;
+            }
+            finally
+            {
+                _readyEntryGraph = null;
+                _readyEntryWeapon = EWeaponType.None;
+            }
         }
 
         public async UniTask ExecuteAsync(
@@ -253,7 +317,8 @@ namespace _App
         {
             PlayerCombatCommandSample command = entry.Action;
             CombatActionFrame currentFrame = _actionSession.CurrentFrame;
-            return _availability.CanEnterAction &&
+            return command.HasSourceAction &&
+                   _availability.CanEnterAction &&
                    ActiveActionGraph.TryResolveTransition(
                        _actionSession.Action,
                        in command,
@@ -267,12 +332,25 @@ namespace _App
         private bool CanAcceptBufferedEntry(
             in InputBufferEntry<PlayerCombatCommandSample> entry)
         {
-            return _availability.CanEnterAction &&
+            return entry.Action.HasSourceAction &&
+                   _availability.CanEnterAction &&
                    ActiveActionGraph.TryResolveEntry(
                        entry.Action.CommandId,
                        GetEnvironment(),
                        out PlayerCombatAction target) &&
                    _availability.CanUseAction(target, _activeWeapon);
+        }
+
+        private bool CanAcceptBufferedReadyEntry(
+            in InputBufferEntry<PlayerCombatCommandSample> entry)
+        {
+            return !entry.Action.HasSourceAction &&
+                   _readyEntryGraph != null &&
+                   _readyEntryGraph.TryResolveEntry(
+                       entry.Action.CommandId,
+                       GetEnvironment(),
+                       out PlayerCombatAction target) &&
+                   _availability.CanUseAction(target, _readyEntryWeapon);
         }
 
         private bool TryConsumeBufferedEntry(out PlayerCombatAction action)
