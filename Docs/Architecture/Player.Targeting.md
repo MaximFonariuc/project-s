@@ -155,7 +155,11 @@ Targeting зависит от read-only camera orientation и узкой actor b
 
 Concrete-ссылка `CombatTarget -> Health` считается временным техническим долгом prototype flow. При реализации `Character Stats and Resources` она заменяется узким read-only life-state port; `ICombatTarget` и алгоритм выбора цели при этом меняться не должны.
 
-Старые `PlayerTargetLockSystem` и дублирующий `TargetLockSystem`, напрямую управлявшие `CinemachineCamera.LookAt`, удалены. Отдельная legacy-ветка enemy targeting в `TargetLockSystemBase` пока не входит в player targeting flow.
+Старые `PlayerTargetLockSystem`, `TargetLockSystem` и неиспользуемая inheritance-
+ветка `TargetLockSystemBase` удалены. `PlayerTargetingController` является
+единственным owner выбора цели; command/query entry points ничего не меняют вне
+его `Enable/Disable` lifecycle, а `ClearTarget` остаётся teardown-операцией,
+которая всегда освобождает rotation policy.
 
 ## Почему интерфейсы, а не abstract controller
 
