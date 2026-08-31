@@ -33,6 +33,7 @@ namespace _App
         private readonly PlayerCombatCommandInbox _commandInbox =
             new PlayerCombatCommandInbox(CommandInboxCapacity);
         private bool _enabled;
+        private bool _disposed;
 
         public event Action<PlayerCombatPhase> PhaseChanged;
         public event Action<EWeaponType> WeaponChanged;
@@ -109,26 +110,35 @@ namespace _App
 
         public void Enable()
         {
+            ThrowIfDisposed();
             if (_enabled)
             {
                 return;
             }
 
-            _animation.ApplyLoadout(_characterType, CurrentWeapon);
-            CommitWeapon(CurrentWeapon);
-
-            _stateMachine.StateChanged += OnStateChanged;
-            if (!_stateMachine.IsRunning)
-            {
-                _stateMachine.Start<PlayerCombatReadyState>();
-            }
-
-            _input.CombatActionRequested += OnCombatActionRequested;
-            _input.SwitchCombatStateRequested += OnSwitchWeaponRequested;
-            _locomotionEvents.JumpAccepted += OnJumpAccepted;
-            _locomotionEvents.DodgeAccepted += OnDodgeAccepted;
-            _outgoingHits.HitResolved += OnOutgoingHitResolved;
             _enabled = true;
+            try
+            {
+                _animation.ApplyLoadout(_characterType, CurrentWeapon);
+                CommitWeapon(CurrentWeapon);
+
+                _stateMachine.StateChanged += OnStateChanged;
+                if (!_stateMachine.IsRunning)
+                {
+                    _stateMachine.Start<PlayerCombatReadyState>();
+                }
+
+                _input.CombatActionRequested += OnCombatActionRequested;
+                _input.SwitchCombatStateRequested += OnSwitchWeaponRequested;
+                _locomotionEvents.JumpAccepted += OnJumpAccepted;
+                _locomotionEvents.DodgeAccepted += OnDodgeAccepted;
+                _outgoingHits.HitResolved += OnOutgoingHitResolved;
+            }
+            catch
+            {
+                Disable();
+                throw;
+            }
         }
 
         public void Disable()
@@ -282,6 +292,11 @@ namespace _App
 
         public void Dispose()
         {
+            if (_disposed)
+            {
+                return;
+            }
+
             Disable();
             _actionPipeline.ActiveComboIndexChanged -= OnActiveComboIndexChanged;
             _actionPipeline.HitWindowChanged -= OnHitWindowChanged;
@@ -289,6 +304,7 @@ namespace _App
             WeaponChanged = null;
             ActiveComboIndexChanged = null;
             HitWindowChanged = null;
+            _disposed = true;
         }
 
         private async UniTaskVoid RunActionPipelineAsync(
@@ -395,6 +411,14 @@ namespace _App
         private void OnHitWindowChanged(bool open)
         {
             HitWindowChanged?.Invoke(open);
+        }
+
+        private void ThrowIfDisposed()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(nameof(PlayerCombatController));
+            }
         }
 
     }

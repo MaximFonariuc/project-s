@@ -94,9 +94,11 @@ Graph environment, transition window и hit outcome проверяются до 
 
 ## Cooldown ownership
 
-Cooldown записывается после штатного завершения action либо принятого graph
-transition. Cancellation, reaction interruption, disable и landing до этой
-границы timestamp не создают — это сохраняет прежнюю семантику controller.
+Cooldown записывается сразу после того, как semantic presentation успешно
+запущена, до старта gameplay session. С этого момента action считается
+committed: dodge, reaction, disable, landing или иной interruption не обходят
+стоимость уже начатого действия. Если presentation slot отсутствует и action не
+стартовала, timestamp не создаётся.
 
 Dictionary принадлежит scoped `PlayerCombatAvailability` и не очищается при
 обычном disable/enable controller. Он исчезает вместе с gameplay scope. Время

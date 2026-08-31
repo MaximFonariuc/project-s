@@ -120,6 +120,12 @@ Execution и outcome также отклоняют повторный `Begin`, �
 authoring profile обнаруживается при компиляции graph, а не превращается в
 несопоставимый runtime key.
 
+`PlayerCombatController.Enable` является транзакционной lifecycle boundary:
+controller помечает себя активным до подписок и при любой ошибке запуска проходит
+тот же `Disable`, что и обычное выключение. Поэтому частичная подписка либо
+запущенная state machine не переживают неудачный enable. После `Dispose` повторный
+enable отклоняется явно.
+
 `CombatActionEndReason` описывает причину завершения без набора несогласованных
 boolean flags:
 
