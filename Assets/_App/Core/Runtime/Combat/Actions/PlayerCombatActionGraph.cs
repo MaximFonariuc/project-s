@@ -63,6 +63,10 @@ namespace _App
             _transitions = PlayerCombatActionGraphCompiler.BuildTransitions(
                 transitions,
                 _actions);
+            PlayerCombatActionGraphCompiler.ValidateReachability(
+                _actions,
+                _entries,
+                _transitions);
         }
 
         public bool TryResolveEntry(

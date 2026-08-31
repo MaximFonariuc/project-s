@@ -76,6 +76,9 @@ classDiagram
 - `PlayerCombatActionProfile.OnValidate` builds the complete immutable graph in
   the Editor, so duplicate ids, invalid transitions, timelines and impact data
   fail at authoring time instead of first appearing during gameplay composition.
+- Graph compilation also walks every entry and transition. An orphaned action
+  that cannot be reached from any command entry is rejected instead of remaining
+  as silent, untestable authoring data.
 - An action profile is weapon-specific and owns no runtime state, input-buffer
   policy or draw/sheathe timing. `PlayerCombatLoadoutProfile` owns those shared
   policies and maps each weapon to its profile and optional Animator override.

@@ -166,6 +166,101 @@ namespace _App
             return lookup;
         }
 
+        public static void ValidateReachability(
+            IReadOnlyDictionary<PlayerCombatActionId, PlayerCombatAction> actions,
+            IReadOnlyDictionary<PlayerCombatCommandId, List<PlayerCombatActionId>> entries,
+            IReadOnlyDictionary<
+                PlayerCombatTransitionKey,
+                List<PlayerCombatTransitionRule>> transitions)
+        {
+            if (actions == null)
+            {
+                throw new ArgumentNullException(nameof(actions));
+            }
+
+            if (entries == null)
+            {
+                throw new ArgumentNullException(nameof(entries));
+            }
+
+            if (transitions == null)
+            {
+                throw new ArgumentNullException(nameof(transitions));
+            }
+
+            var reachable = new HashSet<PlayerCombatActionId>();
+            var pending = new Queue<PlayerCombatActionId>();
+            foreach (List<PlayerCombatActionId> entryActions in entries.Values)
+            {
+                for (int i = 0; i < entryActions.Count; i++)
+                {
+                    if (reachable.Add(entryActions[i]))
+                    {
+                        pending.Enqueue(entryActions[i]);
+                    }
+                }
+            }
+
+            var outgoing = new Dictionary<
+                PlayerCombatActionId,
+                List<PlayerCombatActionId>>();
+            foreach (List<PlayerCombatTransitionRule> rules in transitions.Values)
+            {
+                for (int i = 0; i < rules.Count; i++)
+                {
+                    PlayerCombatTransitionRule rule = rules[i];
+                    if (!outgoing.TryGetValue(
+                            rule.SourceActionId,
+                            out List<PlayerCombatActionId> targets))
+                    {
+                        targets = new List<PlayerCombatActionId>();
+                        outgoing.Add(rule.SourceActionId, targets);
+                    }
+
+                    targets.Add(rule.TargetActionId);
+                }
+            }
+
+            while (pending.Count > 0)
+            {
+                PlayerCombatActionId source = pending.Dequeue();
+                if (!outgoing.TryGetValue(
+                        source,
+                        out List<PlayerCombatActionId> targets))
+                {
+                    continue;
+                }
+
+                for (int i = 0; i < targets.Count; i++)
+                {
+                    if (reachable.Add(targets[i]))
+                    {
+                        pending.Enqueue(targets[i]);
+                    }
+                }
+            }
+
+            if (reachable.Count == actions.Count)
+            {
+                return;
+            }
+
+            var unreachable = new List<string>();
+            foreach (PlayerCombatActionId actionId in actions.Keys)
+            {
+                if (!reachable.Contains(actionId))
+                {
+                    unreachable.Add(actionId.ToString());
+                }
+            }
+
+            unreachable.Sort(StringComparer.Ordinal);
+            throw new ArgumentException(
+                "Combat graph contains actions that cannot be reached from any entry: " +
+                string.Join(", ", unreachable) + ".",
+                nameof(actions));
+        }
+
         private static void EnsureTransitionDoesNotOverlap(
             in PlayerCombatTransitionRule transition,
             IReadOnlyList<PlayerCombatTransitionRule> candidates,
