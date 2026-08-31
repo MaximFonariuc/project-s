@@ -173,6 +173,11 @@ repeat policy повторение событие не создают. Target re
 после принятого damage: overlap во время i-frame не «съедает» удар навсегда и
 может быть повторно проверен, пока hitbox остаётся открытым.
 
+`Health` сначала атомарно изменяет `CurrentHealth`, затем независимо публикует
+`Damaged` и, при достижении нуля, `Died`. Исключение reaction/presentation
+subscriber логируется и не может оставить мёртвого actor без death event;
+`Revived` использует ту же изоляцию.
+
 Подписчики `HitResolved` являются независимыми read-consumers. Исключение VFX,
 audio, camera либо UI adapter логируется на source actor, но не блокирует
 остальные подписки и не отменяет уже применённый damage, action outcome или hit

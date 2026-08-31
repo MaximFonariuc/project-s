@@ -38,11 +38,11 @@ namespace _App
             }
 
             CurrentHealth = Mathf.Max(0, CurrentHealth - hit.Damage);
-            Damaged?.Invoke(hit);
+            PublishSafely(Damaged, in hit);
 
             if (!IsAlive)
             {
-                Died?.Invoke(hit);
+                PublishSafely(Died, in hit);
             }
 
             return true;
@@ -55,7 +55,7 @@ namespace _App
 
             if (wasDead)
             {
-                Revived?.Invoke();
+                PublishSafely(Revived);
             }
         }
 
@@ -79,6 +79,50 @@ namespace _App
             }
 
             _damageImmunityLeaseCount--;
+        }
+
+        private void PublishSafely(
+            Action<CombatHitResult> handlers,
+            in CombatHitResult hit)
+        {
+            if (handlers == null)
+            {
+                return;
+            }
+
+            Delegate[] subscriptions = handlers.GetInvocationList();
+            for (int i = 0; i < subscriptions.Length; i++)
+            {
+                try
+                {
+                    ((Action<CombatHitResult>)subscriptions[i]).Invoke(hit);
+                }
+                catch (Exception exception)
+                {
+                    Debug.LogException(exception, this);
+                }
+            }
+        }
+
+        private void PublishSafely(Action handlers)
+        {
+            if (handlers == null)
+            {
+                return;
+            }
+
+            Delegate[] subscriptions = handlers.GetInvocationList();
+            for (int i = 0; i < subscriptions.Length; i++)
+            {
+                try
+                {
+                    ((Action)subscriptions[i]).Invoke();
+                }
+                catch (Exception exception)
+                {
+                    Debug.LogException(exception, this);
+                }
+            }
         }
 
         private sealed class DamageImmunityLease : IDisposable
