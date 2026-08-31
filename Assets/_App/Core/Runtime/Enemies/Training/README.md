@@ -16,6 +16,12 @@ classDiagram
     class CombatTrainingAttackTelegraph {
         <<presentation adapter>>
     }
+    class CombatTrainingAttackerAnimationAdapter {
+        <<presentation adapter>>
+    }
+    class CharacterAnimationHost {
+        <<single animation owner>>
+    }
     class ICombatAttackOutcomeReceiver {
         <<interface>>
         +OnAttackOutcome(hit)
@@ -36,6 +42,8 @@ classDiagram
     Hurtbox --> Health : confirmed hit
     CombatTrainingAttacker --> CharacterReactionHost : interruption gate
     CombatTrainingAttackTelegraph --> CombatTrainingAttacker : read-only snapshot
+    CombatTrainingAttackerAnimationAdapter --> CombatTrainingAttacker : read-only snapshot
+    CombatTrainingAttackerAnimationAdapter --> CharacterAnimationHost
 ```
 
 - The actor owns a fixed `Waiting -> Windup -> Active -> Recovery` loop plus a
@@ -57,6 +65,11 @@ classDiagram
 - The telegraph reads a snapshot and renders a runtime range ring: orange/red
   describes windup/active and pulsing cyan describes the parry punish window.
   It never applies damage or changes attack timing.
+- The animation adapter observes the same phase and requests the existing
+  Humanoid `Reaction/HitStun` slot once on entry to `ParryStagger`. It does not
+  add Animator states or transitions. Damage/death reactions can replace it at
+  the shared coordinator's reaction priority, and normal phase exit releases
+  ownership without forcing a transition.
 - `CombatActionId` belongs to the shared hit boundary. Player graph identifiers
   are converted only when a player action begins, so enemy/test attacks do not
   depend on player combo types.

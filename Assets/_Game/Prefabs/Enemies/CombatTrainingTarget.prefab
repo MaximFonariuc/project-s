@@ -1030,6 +1030,8 @@ GameObject:
   - component: {fileID: 2118146269933399997}
   - component: {fileID: 8811571643654951780}
   - component: {fileID: 5689077119398614107}
+  - component: {fileID: 1754604257975026636}
+  - component: {fileID: 3929082192320441113}
   m_Layer: 7
   m_Name: CombatTrainingTarget
   m_TagString: Untagged
@@ -1193,7 +1195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 6032431483796332789}
-  _animator: {fileID: 9160350341515989739}
+  _animationHost: {fileID: 1754604257975026636}
   _profile: {fileID: 11400000, guid: c842a637289f9e843bc9cd45c2ee569d, type: 2}
   _impactMotorSource: {fileID: 2974541075970454963}
 --- !u!114 &2118146269933399997
@@ -1262,6 +1264,34 @@ MonoBehaviour:
   _windupColor: {r: 1, g: 0.45, b: 0.05, a: 0.85}
   _activeColor: {r: 1, g: 0.08, b: 0.03, a: 1}
   _parryStaggerColor: {r: 0.05, g: 0.8, b: 1, a: 0.9}
+--- !u!114 &1754604257975026636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6065133867398282554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2546c6d258dd3914e88ef995f3e67598, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  _animator: {fileID: 9160350341515989739}
+--- !u!114 &3929082192320441113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6065133867398282554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d3ed26bd9554045a1bee1f4abcdbea, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  _attacker: {fileID: 8811571643654951780}
+  _animationHost: {fileID: 1754604257975026636}
+  _reactionHost: {fileID: 1809471061997952984}
 --- !u!1 &6301183989958189046
 GameObject:
   m_ObjectHideFlags: 0

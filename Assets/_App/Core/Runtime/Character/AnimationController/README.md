@@ -23,6 +23,10 @@ classDiagram
         +Cancel(source)
         +ReleaseAll(source)
     }
+    class CharacterAnimationHost {
+        <<scene-owned composition>>
+        +Animator Animator
+    }
     class ICharacterAnimationDriver
     class ICharacterLookAnimationDriver
     class CharacterLookFrame
@@ -30,17 +34,26 @@ classDiagram
     class PlayerCombatAnimationAdapter
     class CharacterReactionAnimationAdapter
     class PlayerDefenseAnimationAdapter
+    class CombatTrainingAttackerAnimationAdapter
 
     PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     CharacterReactionAnimationAdapter --> PlayerAnimationCoordinator
     PlayerDefenseAnimationAdapter --> PlayerAnimationCoordinator
+    CombatTrainingAttackerAnimationAdapter --> PlayerAnimationCoordinator
+    CharacterAnimationHost *-- PlayerAnimationCoordinator
+    CharacterAnimationHost *-- ICharacterAnimationDriver
     PlayerAnimationCoordinator --> PlayerAnimatorActions
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
     ICharacterLookAnimationDriver --> CharacterLookFrame
 ```
 
 - The coordinator owns finite-action priority, action source and playback speed.
+- `CharacterAnimationHost` is the single Animator-driver owner for scene-owned
+  characters without a VContainer scope. Adapters share its coordinator instead
+  of constructing competing drivers for the same Animator. The Player keeps the
+  same single-owner rule through its scoped composition root and therefore does
+  not add this host component.
 - Normal completion and interruption are distinct: `ReleaseAll` calls the
   driver's non-disruptive `CompleteAction`, while `Cancel` requests a visual
   exit. This keeps action-scoped look policy and layer ownership bounded by the

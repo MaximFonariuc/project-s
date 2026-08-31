@@ -22,6 +22,9 @@ classDiagram
     class CharacterReactionHost {
         <<standalone composition root>>
     }
+    class CharacterAnimationHost {
+        <<single animation owner>>
+    }
     class RigidbodyCharacterImpactMotor
     class XController
 
@@ -35,6 +38,8 @@ classDiagram
     CharacterReactionAnimationAdapter --> PlayerAnimationCoordinator
     PlayerAnimationCoordinator --> XController : ActionId 4
     CharacterReactionHost --> CharacterReactionController
+    CharacterReactionHost --> CharacterAnimationHost
+    CharacterAnimationHost --> PlayerAnimationCoordinator
     CharacterReactionHost --> RigidbodyCharacterImpactMotor
 ```
 
@@ -50,9 +55,11 @@ classDiagram
   idempotently.
 - `CharacterReactionStateMachineFactory` creates the same state topology for the
   VContainer-owned Player controller and standalone character hosts.
-- `CharacterReactionHost` is a local composition root for scene/prefab actors
-  that do not yet have their own VContainer scope. It does not duplicate poise,
-  timers or transition rules.
+- `CharacterReactionHost` is a local reaction composition root for scene/prefab
+  actors that do not yet have their own VContainer scope. It does not duplicate
+  poise, timers or transition rules. Animator ownership belongs to the adjacent
+  `CharacterAnimationHost`, allowing other presentation adapters to share the
+  same driver without writing to Animator independently.
 - `XController` maps semantic action id `4` to nine required slots:
   `Reaction/HitStun`, `Reaction/HitStun_Back`, `Reaction/HitStun_Left`,
   `Reaction/HitStun_Right`, `Reaction/Knockdown`, `Reaction/Airborne`,

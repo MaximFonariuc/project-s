@@ -1,5 +1,4 @@
 using System;
-using ModularAnimation;
 using ModularStateMachine;
 using UnityEngine;
 
@@ -7,18 +6,15 @@ namespace _App
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Health))]
+    [RequireComponent(typeof(CharacterAnimationHost))]
     [AddComponentMenu("Project S/Combat/Character Reaction Host")]
     public sealed class CharacterReactionHost : MonoBehaviour
     {
-        private static readonly CharacterLookFrame NeutralLookFrame =
-            new CharacterLookFrame(0.0f, 0.0f);
-
         [SerializeField] private Health _health;
-        [SerializeField] private Animator _animator;
+        [SerializeField] private CharacterAnimationHost _animationHost;
         [SerializeField] private CharacterReactionProfile _profile;
         [SerializeField] private MonoBehaviour _impactMotorSource;
 
-        private XControllerCharacterAnimationDriver _animationDriver;
         private IStateMachine<CharacterReactionStateId> _stateMachine;
         private CharacterReactionController _reaction;
 
@@ -27,11 +23,13 @@ namespace _App
         private void Awake()
         {
             ResolveMissingReferences();
-            if (_health == null || _animator == null ||
+            if (_health == null || _animationHost == null ||
+                !_animationHost.TryGetAnimation(out PlayerAnimationCoordinator animation) ||
                 _impactMotorSource is not ICharacterImpactMotor impactMotor)
             {
                 Debug.LogError(
-                    "Character Reaction Host requires Health, Animator and an ICharacterImpactMotor MonoBehaviour.",
+                    "Character Reaction Host requires Health, Character Animation Host " +
+                    "and an ICharacterImpactMotor MonoBehaviour.",
                     this);
                 enabled = false;
                 return;
@@ -40,8 +38,6 @@ namespace _App
             CharacterReactionSettings settings = _profile != null
                 ? _profile.CreateSettings()
                 : CharacterReactionSettings.CreateDefaults();
-            _animationDriver = new XControllerCharacterAnimationDriver(_animator);
-            var animation = new PlayerAnimationCoordinator(_animationDriver);
             var presentation = new CharacterReactionAnimationAdapter(animation);
             _stateMachine = CharacterReactionStateMachineFactory.Create();
             _reaction = new CharacterReactionController(
@@ -60,28 +56,20 @@ namespace _App
 
         private void Update()
         {
-            float deltaTime = Time.deltaTime;
-            _reaction?.Tick(deltaTime);
-            if (_animationDriver != null)
-            {
-                _animationDriver.ApplyLook(in NeutralLookFrame, deltaTime);
-            }
+            _reaction?.Tick(Time.deltaTime);
         }
 
         private void OnDisable()
         {
             _reaction?.Disable();
-            _animationDriver?.Reset();
         }
 
         private void OnDestroy()
         {
             _reaction?.Dispose();
             (_stateMachine as IDisposable)?.Dispose();
-            _animationDriver?.Dispose();
             _reaction = null;
             _stateMachine = null;
-            _animationDriver = null;
         }
 
         private void Reset()
@@ -96,12 +84,12 @@ namespace _App
 
         public void Configure(
             Health health,
-            Animator animator,
+            CharacterAnimationHost animationHost,
             CharacterReactionProfile profile,
             MonoBehaviour impactMotorSource)
         {
             _health = health;
-            _animator = animator;
+            _animationHost = animationHost;
             _profile = profile;
             _impactMotorSource = impactMotorSource;
         }
@@ -113,9 +101,9 @@ namespace _App
                 _health = GetComponent<Health>();
             }
 
-            if (_animator == null)
+            if (_animationHost == null)
             {
-                _animator = GetComponentInChildren<Animator>(true);
+                _animationHost = GetComponent<CharacterAnimationHost>();
             }
 
             if (_impactMotorSource == null)
