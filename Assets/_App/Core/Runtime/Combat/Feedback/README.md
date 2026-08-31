@@ -53,6 +53,10 @@ classDiagram
 - Hit stop remains a separate gameplay-time concern. Particles, audio and the
   camera impulse are triggered from the same confirmed result but never request
   or release time scale themselves.
+- The gameplay camera and its Cinemachine brain advance in unscaled time, so
+  aiming and the impact impulse remain responsive during hit stop. Impact
+  particles intentionally use scaled time: the newly emitted streaks hold on
+  the contact frame and resume when gameplay time is restored.
 - `WeaponTrailRenderer` is a bounded runtime ribbon sampled from the authored
   blade collider. `Weapon` starts and ends sampling with its gameplay hitbox
   window, so cancel, reaction, weapon switch and disable cannot leave a trail
