@@ -176,6 +176,24 @@ namespace _App
             return _stateMachine.IsRunning && _motor.TryInvertGravity();
         }
 
+        internal void InterruptActions()
+        {
+            if (!_enabled)
+            {
+                return;
+            }
+
+            _jumpHeld = false;
+            _pendingJumpSignals = PendingJumpSignals.None;
+            ClearJumpRequest();
+            ClearDodgeRequest();
+            CancelJumpStartup();
+            _motor.ReleaseJump();
+            _motor.SetMovementDirection(Vector3.zero);
+            _runtime.DodgeBackwards = false;
+            _actions.Interrupt();
+        }
+
         public void Dispose()
         {
             Disable();

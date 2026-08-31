@@ -7,6 +7,7 @@ namespace _App
     {
         void Enable();
         void Disable();
+        void Interrupt();
         void StartGliding();
         void StopGliding();
         bool TryDodge(Vector3 worldDirection, bool backwards);
@@ -80,9 +81,16 @@ namespace _App
                 return;
             }
 
+            Interrupt();
             _glide?.Disable();
             _dodge?.Disable();
             _enabled = false;
+        }
+
+        public void Interrupt()
+        {
+            _glide?.Interrupt();
+            _dodge?.Interrupt();
         }
 
         public void StartGliding()

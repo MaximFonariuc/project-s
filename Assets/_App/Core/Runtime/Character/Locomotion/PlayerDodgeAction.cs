@@ -67,19 +67,24 @@ namespace _App
 
             _character.BeforeSimulationUpdated -= OnBeforeSimulationUpdated;
             _character.CustomMovementModeUpdated -= OnCustomMovementModeUpdated;
+            Interrupt();
+            _enabled = false;
+        }
+
+        public void Interrupt()
+        {
             _requestPending = false;
+            _exitPending = false;
             ReleaseDamageImmunity();
 
             if (_character.IsDodging())
             {
                 ExitDodge();
-            }
-            else
-            {
-                _elapsed = 0.0f;
+                return;
             }
 
-            _enabled = false;
+            _elapsed = 0.0f;
+            _requestedBackwards = false;
         }
 
         public bool TryRequest(Vector3 worldDirection, bool backwards)

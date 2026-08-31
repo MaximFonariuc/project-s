@@ -46,9 +46,14 @@ namespace _App
             }
 
             _character.BeforeSimulationUpdated -= OnBeforeSimulationUpdated;
+            Interrupt();
+            _enabled = false;
+        }
+
+        public void Interrupt()
+        {
             _inputHeld = false;
             EndGlide();
-            _enabled = false;
         }
 
         public void Start()
