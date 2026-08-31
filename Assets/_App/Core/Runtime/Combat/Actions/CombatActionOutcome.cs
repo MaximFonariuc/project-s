@@ -16,6 +16,12 @@ namespace _App
             AttackExecutionId executionId,
             PlayerCombatActionId actionId)
         {
+            if (IsTracking)
+            {
+                throw new InvalidOperationException(
+                    "A combat action outcome is already tracking an execution.");
+            }
+
             if (!executionId.IsValid)
             {
                 throw new ArgumentException(

@@ -2,15 +2,41 @@ using System;
 
 namespace _App
 {
+    internal static class CombatIdentifier
+    {
+        public static string RequireCanonical(
+            string value,
+            string identifierKind,
+            string parameterName)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentException(
+                    $"{identifierKind} cannot be empty.",
+                    parameterName);
+            }
+
+            if (!string.Equals(value, value.Trim(), StringComparison.Ordinal))
+            {
+                throw new ArgumentException(
+                    $"{identifierKind} cannot contain leading or trailing whitespace.",
+                    parameterName);
+            }
+
+            return value;
+        }
+    }
+
     public readonly struct PlayerCombatCommandId : IEquatable<PlayerCombatCommandId>
     {
         public string Value { get; }
 
         public PlayerCombatCommandId(string value)
         {
-            Value = !string.IsNullOrWhiteSpace(value)
-                ? value
-                : throw new ArgumentException("Combat command id cannot be empty.", nameof(value));
+            Value = CombatIdentifier.RequireCanonical(
+                value,
+                "Combat command id",
+                nameof(value));
         }
 
         public bool Equals(PlayerCombatCommandId other)
@@ -92,9 +118,10 @@ namespace _App
 
         public PlayerCombatActionId(string value)
         {
-            Value = !string.IsNullOrWhiteSpace(value)
-                ? value
-                : throw new ArgumentException("Combat action id cannot be empty.", nameof(value));
+            Value = CombatIdentifier.RequireCanonical(
+                value,
+                "Combat action id",
+                nameof(value));
         }
 
         public bool Equals(PlayerCombatActionId other)
@@ -134,9 +161,10 @@ namespace _App
 
         public PlayerCombatAnimationId(string value)
         {
-            Value = !string.IsNullOrWhiteSpace(value)
-                ? value
-                : throw new ArgumentException("Combat animation id cannot be empty.", nameof(value));
+            Value = CombatIdentifier.RequireCanonical(
+                value,
+                "Combat animation id",
+                nameof(value));
         }
 
         public bool Equals(PlayerCombatAnimationId other)
@@ -280,6 +308,13 @@ namespace _App
             PlayerCombatPresentation presentation,
             CombatActionDefinition definition)
         {
+            if (string.IsNullOrEmpty(id.Value))
+            {
+                throw new ArgumentException(
+                    "Combat action requires a valid id.",
+                    nameof(id));
+            }
+
             if (environment == PlayerCombatEnvironment.None)
             {
                 throw new ArgumentOutOfRangeException(nameof(environment));

@@ -23,9 +23,22 @@ namespace _App
             CombatHitDefinition hitDefinition,
             GameObject source)
         {
+            if (IsActive)
+            {
+                throw new InvalidOperationException(
+                    "An attack execution is already active.");
+            }
+
             if (!id.IsValid)
             {
                 throw new ArgumentException("Attack execution id must be valid.", nameof(id));
+            }
+
+            if (string.IsNullOrEmpty(actionId.Value))
+            {
+                throw new ArgumentException(
+                    "Attack execution requires a valid action id.",
+                    nameof(actionId));
             }
 
             Source = source != null

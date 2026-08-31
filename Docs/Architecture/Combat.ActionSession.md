@@ -114,6 +114,12 @@ sequenceDiagram
 completion, graph transition, landing, cancellation и исключении. Поэтому
 hitbox и per-action hit filtering не могут пережить свою action.
 
+Execution и outcome также отклоняют повторный `Begin`, пока предыдущий lifecycle
+не завершён. Action, command, animation и reaction ids принимаются только в
+каноническом виде без начальных/конечных пробелов: невидимая опечатка в
+authoring profile обнаруживается при компиляции graph, а не превращается в
+несопоставимый runtime key.
+
 `CombatActionEndReason` описывает причину завершения без набора несогласованных
 boolean flags:
 

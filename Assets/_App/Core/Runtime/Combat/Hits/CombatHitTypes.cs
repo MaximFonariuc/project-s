@@ -55,9 +55,10 @@ namespace _App
 
         public CombatReactionId(string value)
         {
-            Value = !string.IsNullOrWhiteSpace(value)
-                ? value.Trim()
-                : throw new ArgumentException("Combat reaction id cannot be empty.", nameof(value));
+            Value = CombatIdentifier.RequireCanonical(
+                value,
+                "Combat reaction id",
+                nameof(value));
         }
 
         public bool Equals(CombatReactionId other)
