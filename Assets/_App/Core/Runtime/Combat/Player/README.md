@@ -132,7 +132,8 @@ reaction, disable, or another interruption.
 - A valid entry pressed while `Ready` is temporarily blocked by dodge or a
   reaction uses the same unscaled input-buffer rules as combo transitions. It
   is retried when the actor becomes available and expires normally instead of
-  leaking into a later revive or unrelated action.
+  leaking into an unrelated action. `Dead` is not a temporary admission lock:
+  entering it clears pending commands and input received while dead is rejected.
 - `PlayerCombatAvailability` owns live actor/reaction admission checks and the
   scaled-time cooldown dictionary. It asks the animation port only whether the
   semantic presentation exists; it does not run the graph or mutate combat

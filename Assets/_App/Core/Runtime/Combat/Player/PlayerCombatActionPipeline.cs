@@ -118,6 +118,7 @@ namespace _App
             EWeaponType weapon)
         {
             if (phase != PlayerCombatPhase.Ready || request.HasSourceAction ||
+                !_availability.CanBufferEntry ||
                 !_movesets.TryGet(weapon, out PlayerCombatMoveset moveset) ||
                 !moveset.ActionGraph.TryResolveEntry(
                     request.CommandId,
@@ -255,6 +256,11 @@ namespace _App
             _activeActionGraph = null;
             _activeWeapon = EWeaponType.None;
             SetActiveComboIndex(null);
+        }
+
+        public void ClearBufferedInput()
+        {
+            _inputBuffer.Clear();
         }
 
         public void Dispose()

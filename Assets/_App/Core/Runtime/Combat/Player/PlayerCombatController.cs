@@ -306,6 +306,12 @@ namespace _App
             ReturnToReady();
         }
 
+        internal void DiscardPendingCommands()
+        {
+            _commandInbox.Clear();
+            _actionPipeline.ClearBufferedInput();
+        }
+
         public void Dispose()
         {
             if (_disposed)

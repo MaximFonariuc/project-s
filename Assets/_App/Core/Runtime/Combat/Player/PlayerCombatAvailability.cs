@@ -15,6 +15,9 @@ namespace _App
         public bool CanEnterAction =>
             !_reactionState.BlocksActions && _actor.CanAttack;
 
+        public bool CanBufferEntry =>
+            _reactionState.CurrentState != CharacterReactionStateId.Dead;
+
         public bool CanSwitchWeapon =>
             !_reactionState.BlocksActions && !_actor.IsFalling;
 

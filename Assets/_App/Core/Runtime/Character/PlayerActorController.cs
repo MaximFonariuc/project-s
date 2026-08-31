@@ -158,6 +158,11 @@ namespace _App
             }
 
             _combat.InterruptAttack(CombatActionEndReason.Reaction);
+            if (state == CharacterReactionStateId.Dead)
+            {
+                _combat.DiscardPendingCommands();
+            }
+
             _traversal.Interrupt();
             _locomotion.InterruptActions();
             _locomotion.SetMovementIntent(PlayerMovementIntent.Locked);
