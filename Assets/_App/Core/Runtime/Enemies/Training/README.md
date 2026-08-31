@@ -65,11 +65,17 @@ classDiagram
 - The telegraph reads a snapshot and renders a runtime range ring: orange/red
   describes windup/active and pulsing cyan describes the parry punish window.
   It never applies damage or changes attack timing.
-- The animation adapter observes the same phase and requests the existing
-  Humanoid `Reaction/HitStun` slot once on entry to `ParryStagger`. It does not
-  add Animator states or transitions. Damage/death reactions can replace it at
-  the shared coordinator's reaction priority, and normal phase exit releases
-  ownership without forcing a transition.
+- The animation adapter enters the existing Humanoid `Attack/BaseAttack1` once
+  at `Windup`. Its `0.45 / 0.32 / 0.90 s` gameplay phases place the active hit
+  at normalized `0.27...0.46`, matching the current semantic clip window while
+  keeping a deliberately readable windup. The driver stretches the complete
+  clip over the same `1.67 s` action without moving gameplay authority into the
+  Animator.
+- On entry to `ParryStagger`, that adapter requests the existing
+  `Reaction/HitStun` slot at higher priority. It adds no Animator states or
+  transitions. Damage/death reactions may replace it through the same shared
+  coordinator, and normal phase exit releases ownership without forcing a
+  transition.
 - `CombatActionId` belongs to the shared hit boundary. Player graph identifiers
   are converted only when a player action begins, so enemy/test attacks do not
   depend on player combo types.

@@ -40,9 +40,9 @@ namespace _App
     {
         [Header("Timeline")]
         [SerializeField, Min(0.0f)] private float _initialDelay = 1.25f;
-        [SerializeField, Min(0.01f)] private float _windupDuration = 0.65f;
-        [SerializeField, Min(0.01f)] private float _activeDuration = 0.18f;
-        [SerializeField, Min(0.01f)] private float _recoveryDuration = 0.70f;
+        [SerializeField, Min(0.01f)] private float _windupDuration = 0.45f;
+        [SerializeField, Min(0.01f)] private float _activeDuration = 0.32f;
+        [SerializeField, Min(0.01f)] private float _recoveryDuration = 0.90f;
         [SerializeField, Min(0.0f)] private float _cooldownDuration = 1.20f;
         [SerializeField, Min(0.01f)] private float _parryStaggerDuration = 1.0f;
 
@@ -138,6 +138,8 @@ namespace _App
         public float RecoveryDuration { get; }
         public float CooldownDuration { get; }
         public float ParryStaggerDuration { get; }
+        public float ActionDuration =>
+            WindupDuration + ActiveDuration + RecoveryDuration;
         public float Range { get; }
         public float WindupLeash { get; }
         public CombatHitDefinition Hit { get; }

@@ -38,6 +38,8 @@ namespace _App
             CalculateNormalizedTime(),
             _hasConfirmedHit);
         public float AttackRange => _initialized ? _definition.Range : 0.0f;
+        public float AttackActionDuration =>
+            _initialized ? _definition.ActionDuration : 0.0f;
         public float ParryStaggerDuration =>
             _initialized ? _definition.ParryStaggerDuration : 0.0f;
         public BodyColliderRig Target => _targetRig;

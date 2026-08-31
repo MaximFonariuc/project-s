@@ -54,6 +54,10 @@ classDiagram
   of constructing competing drivers for the same Animator. The Player keeps the
   same single-owner rule through its scoped composition root and therefore does
   not add this host component.
+- `CombatTrainingAttackerAnimationAdapter` demonstrates the same boundary for a
+  scene-owned actor: it maps confirmed attack phases to existing semantic
+  action/reaction slots, while gameplay remains the sole owner of windup, hit
+  and recovery timing.
 - Normal completion and interruption are distinct: `ReleaseAll` calls the
   driver's non-disruptive `CompleteAction`, while `Cancel` requests a visual
   exit. This keeps action-scoped look policy and layer ownership bounded by the

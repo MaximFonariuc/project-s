@@ -15,6 +15,7 @@ namespace _App
 
         private PlayerAnimationCoordinator _animation;
         private CombatTrainingAttackPhase? _observedPhase;
+        private bool _ownsAttackPresentation;
         private bool _ownsParryPresentation;
 
         private void Awake()
@@ -50,6 +51,7 @@ namespace _App
             }
 
             ReleaseParryPresentationIfOwned();
+            ReleaseAttackPresentation(true);
             _observedPhase = null;
         }
 
@@ -75,34 +77,93 @@ namespace _App
                 return;
             }
 
+            CombatTrainingAttackPhase? previousPhase = _observedPhase;
             bool wasParryStagger =
-                _observedPhase == CombatTrainingAttackPhase.ParryStagger;
+                previousPhase == CombatTrainingAttackPhase.ParryStagger;
             _observedPhase = snapshot.Phase;
 
             if (snapshot.Phase == CombatTrainingAttackPhase.ParryStagger)
             {
-                AnimationPlayback playback = _animation.CrossFade(
-                    PlayerAnimationSource.Reaction,
-                    PlayerAnimationSlots.Reaction(
-                        CharacterReactionStateId.HitStun),
-                    _attacker.ParryStaggerDuration);
-                if (!playback.IsValid)
-                {
-                    Debug.LogWarning(
-                        "Training parry stagger has no compatible reaction state.",
-                        this);
-                }
-                else
-                {
-                    _ownsParryPresentation = true;
-                }
-
+                _ownsAttackPresentation = false;
+                PlayParryStagger();
                 return;
             }
 
             if (wasParryStagger)
             {
                 ReleaseParryPresentationIfOwned();
+            }
+
+            if (snapshot.Phase == CombatTrainingAttackPhase.Windup)
+            {
+                PlayAttack();
+                return;
+            }
+
+            if (previousPhase.HasValue &&
+                IsAttackPhase(previousPhase.Value) &&
+                !IsAttackPhase(snapshot.Phase))
+            {
+                bool completedNormally =
+                    previousPhase == CombatTrainingAttackPhase.Recovery &&
+                    snapshot.Phase == CombatTrainingAttackPhase.Waiting;
+                ReleaseAttackPresentation(!completedNormally);
+            }
+        }
+
+        private void PlayAttack()
+        {
+            var request = new AnimationActionRequest(
+                PlayerAnimatorActions.LightAttack,
+                0,
+                _attacker.AttackActionDuration);
+            if (_animation.TryPlayAction(
+                    PlayerAnimationSource.Combat,
+                    in request,
+                    out _))
+            {
+                _ownsAttackPresentation = true;
+                return;
+            }
+
+            Debug.LogWarning(
+                "Training attack has no compatible BaseAttack1 state.",
+                this);
+        }
+
+        private void PlayParryStagger()
+        {
+            AnimationPlayback playback = _animation.CrossFade(
+                PlayerAnimationSource.Reaction,
+                PlayerAnimationSlots.Reaction(
+                    CharacterReactionStateId.HitStun),
+                _attacker.ParryStaggerDuration);
+            if (playback.IsValid)
+            {
+                _ownsParryPresentation = true;
+                return;
+            }
+
+            Debug.LogWarning(
+                "Training parry stagger has no compatible reaction state.",
+                this);
+        }
+
+        private void ReleaseAttackPresentation(bool interrupted)
+        {
+            if (!_ownsAttackPresentation || _animation == null)
+            {
+                return;
+            }
+
+            _ownsAttackPresentation = false;
+            if (interrupted)
+            {
+                _animation.Cancel(PlayerAnimationSource.Combat);
+            }
+            else
+            {
+                _animation.ReleaseAll(PlayerAnimationSource.Combat);
             }
         }
 
@@ -120,6 +181,13 @@ namespace _App
             }
 
             _animation.ReleaseAll(PlayerAnimationSource.Reaction);
+        }
+
+        private static bool IsAttackPhase(CombatTrainingAttackPhase phase)
+        {
+            return phase is CombatTrainingAttackPhase.Windup or
+                CombatTrainingAttackPhase.Active or
+                CombatTrainingAttackPhase.Recovery;
         }
 
         private void ResolveReferences()

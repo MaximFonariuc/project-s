@@ -1233,9 +1233,9 @@ MonoBehaviour:
   _automatic: 1
   _attack:
     _initialDelay: 1.25
-    _windupDuration: 0.65
-    _activeDuration: 0.18
-    _recoveryDuration: 0.7
+    _windupDuration: 0.45
+    _activeDuration: 0.32
+    _recoveryDuration: 0.9
     _cooldownDuration: 1.2
     _parryStaggerDuration: 1
     _range: 2.4
