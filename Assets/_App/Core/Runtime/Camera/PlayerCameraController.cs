@@ -299,7 +299,7 @@ namespace _App
             }
 
             Mode = mode;
-            ModeChanged?.Invoke(mode);
+            SafeEvent.Publish(ModeChanged, mode, _actor.Root);
         }
 
         private static float NormalizeAngle(float angle)

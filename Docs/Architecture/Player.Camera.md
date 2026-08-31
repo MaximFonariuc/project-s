@@ -6,6 +6,10 @@ Player Camera владеет только состоянием камеры иг
 
 `CinemachineThirdPersonFollow` остаётся техническим adapter. Collision и obstacle avoidance берутся из настроенного camera prefab; gameplay-код не обращается к Cinemachine API.
 
+`ModeChanged` публикуется как изолированный read-event уже после подтверждённой
+смены camera state. Ошибка presentation/UI consumer логируется на player root и
+не прерывает camera lifecycle.
+
 ## Дерево классов
 
 ```mermaid
