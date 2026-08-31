@@ -74,24 +74,7 @@ namespace _App
 
         private void PublishResolved(in CombatHitResult result)
         {
-            Action<CombatHitResult> handlers = HitResolved;
-            if (handlers == null)
-            {
-                return;
-            }
-
-            Delegate[] subscriptions = handlers.GetInvocationList();
-            for (int i = 0; i < subscriptions.Length; i++)
-            {
-                try
-                {
-                    ((Action<CombatHitResult>)subscriptions[i]).Invoke(result);
-                }
-                catch (Exception exception)
-                {
-                    Debug.LogException(exception, result.Source);
-                }
-            }
+            SafeEvent.Publish(HitResolved, result, result.Source);
         }
     }
 }
