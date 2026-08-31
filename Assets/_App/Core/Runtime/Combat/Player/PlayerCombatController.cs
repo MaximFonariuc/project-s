@@ -179,12 +179,27 @@ namespace _App
 
         public void Tick(float scaledDeltaTime)
         {
+            Advance(scaledDeltaTime);
+            ResolveCommands();
+        }
+
+        internal void Advance(float scaledDeltaTime)
+        {
             if (!_enabled)
             {
                 return;
             }
 
             _actionExecutor.Advance(scaledDeltaTime);
+        }
+
+        internal void ResolveCommands()
+        {
+            if (!_enabled)
+            {
+                return;
+            }
+
             ConsumeQueuedCommands();
 
             if (_actionPipeline.TryConsumeBufferedReadyEntry(
@@ -413,11 +428,13 @@ namespace _App
         private void OnDodgeAccepted()
         {
             InterruptAttack();
+            DiscardPendingCommands();
         }
 
         private void OnJumpAccepted()
         {
             InterruptAttack();
+            DiscardPendingCommands();
         }
 
         private void OnOutgoingHitResolved(CombatHitResult hit)

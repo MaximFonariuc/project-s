@@ -119,14 +119,15 @@ namespace _App
 
             _gameplayTime.Tick(unscaledDeltaTime);
             _reaction.Tick(scaledDeltaTime);
-            _combat.Tick(scaledDeltaTime);
-            _style.Tick(scaledDeltaTime);
+            _combat.Advance(scaledDeltaTime);
             _traversal.Tick();
             _locomotion.SetMovementIntent(
                 _reaction.BlocksActions
                     ? PlayerMovementIntent.Locked
                     : _combat.MovementIntent);
             _locomotion.Tick(scaledDeltaTime, unscaledDeltaTime);
+            _combat.ResolveCommands();
+            _style.Tick(scaledDeltaTime);
             _targeting.Tick(unscaledDeltaTime);
             _camera.TickPresentation(scaledDeltaTime);
         }

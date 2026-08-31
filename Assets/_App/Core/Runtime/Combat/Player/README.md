@@ -134,6 +134,12 @@ reaction, disable, or another interruption.
   is retried when the actor becomes available and expires normally instead of
   leaking into an unrelated action. `Dead` is not a temporary admission lock:
   entering it clears pending commands and input received while dead is rejected.
+- Actor update has an explicit arbitration boundary: combat advances its
+  current timeline first, locomotion evaluates that frame's cancel policy, and
+  combat commands resolve afterwards. An accepted dodge clears commands already
+  queued for that frame, so defensive movement wins a simultaneous `Ready`
+  input without bypassing a closed action cancel window. A motor-confirmed jump
+  still interrupts active combat through the same cleanup boundary.
 - `PlayerCombatAvailability` owns live actor/reaction admission checks and the
   scaled-time cooldown dictionary. It asks the animation port only whether the
   semantic presentation exists; it does not run the graph or mutate combat
