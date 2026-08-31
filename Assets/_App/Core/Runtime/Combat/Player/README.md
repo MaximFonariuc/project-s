@@ -23,6 +23,9 @@ classDiagram
     class PlayerAnimatorLoadout
     class AnimatorOverrideController
     class CombatActionSession
+    class ICombatAttackOutcomeReceiver {
+        <<interface>>
+    }
     class PlayerWeaponTransitionSession
     class PlayerCombatAvailability {
         +CanEnterAction bool
@@ -61,6 +64,7 @@ classDiagram
     PlayerAnimatorLoadout --> PlayerCombatMovesetCatalog : controller by equipped weapon
     PlayerCombatActionPipeline --> IPlayerCombatAnimation
     PlayerCombatActionPipeline --> CombatActionSession
+    CombatActionSession ..|> ICombatAttackOutcomeReceiver
     PlayerCombatController --> PlayerWeaponTransitionSession
     PlayerCombatController --> PlayerCombatAvailability
     IPlayerCombatAnimation <|.. PlayerCombatAnimationAdapter
@@ -125,6 +129,10 @@ reaction, disable, or another interruption.
   combo index, action-to-action execution, confirmed-target carry and landing
   termination. `PlayerCombatController` owns input subscriptions, operation
   lifetime and persistent weapon state.
+- `CombatActionSession` receives the accepted outcome of its own execution.
+  `Parried` is an explicit end reason: the hit window closes and the running
+  action is interrupted immediately. `Blocked` remains a confirmed contact but
+  does not silently cancel the authored attack recovery.
 - The command inbox captures the source action and its normalized time when the
   semantic input arrives. Timeline advancement cannot move a press into a
   different rapid/delayed branch during a slow frame; commands received together

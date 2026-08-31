@@ -13,6 +13,7 @@ namespace _App
         Landed,
         Interrupted,
         Reaction,
+        Parried,
         Cancelled,
         Disabled,
         Failed
@@ -38,7 +39,9 @@ namespace _App
     internal delegate CombatActionEndReason CombatActionFrameHandler(
         in CombatActionFrame frame);
 
-    internal sealed class CombatActionSession : ICombatActionObserver
+    internal sealed class CombatActionSession :
+        ICombatActionObserver,
+        ICombatAttackOutcomeReceiver
     {
         private readonly IPlayerCombatActor _actor;
         private readonly IPlayerWeaponRig _weaponRig;
@@ -172,6 +175,18 @@ namespace _App
             return CombatActionDirective.Interrupt;
         }
 
+        void ICombatAttackOutcomeReceiver.OnAttackOutcome(in CombatHitResult hit)
+        {
+            if (!IsActive || !_attackExecution.IsActive ||
+                hit.ExecutionId != _attackExecution.Id ||
+                hit.Outcome != CombatHitOutcome.Parried)
+            {
+                return;
+            }
+
+            Abort(CombatActionEndReason.Parried);
+        }
+
         private void Begin(
             PlayerCombatAction action,
             EWeaponType weaponType,
@@ -196,7 +211,8 @@ namespace _App
                     new AttackExecutionId(_nextAttackExecutionId),
                     new CombatActionId(action.Id.Value),
                     action.Definition.HitDefinition,
-                    _actor.Root.gameObject);
+                    _actor.Root.gameObject,
+                    this);
                 _outcome.Begin(_attackExecution.Id, action.Id);
             }
             catch

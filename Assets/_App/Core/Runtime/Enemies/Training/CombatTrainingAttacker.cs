@@ -6,7 +6,9 @@ namespace _App
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Health))]
     [AddComponentMenu("Project S/Enemies/Combat Training Attacker")]
-    public sealed class CombatTrainingAttacker : MonoBehaviour
+    public sealed class CombatTrainingAttacker :
+        MonoBehaviour,
+        ICombatAttackOutcomeReceiver
     {
         private static readonly CombatActionId TrainingActionId =
             new CombatActionId("training.attack.basic");
@@ -107,6 +109,14 @@ namespace _App
                     TickActive();
                     break;
                 case CombatTrainingAttackPhase.Recovery:
+                    if (_remaining <= 0.0f)
+                    {
+                        EnterPhase(
+                            CombatTrainingAttackPhase.Waiting,
+                            _definition.CooldownDuration);
+                    }
+                    break;
+                case CombatTrainingAttackPhase.ParryStagger:
                     if (_remaining <= 0.0f)
                     {
                         EnterPhase(
@@ -232,8 +242,24 @@ namespace _App
                 new AttackExecutionId(_nextExecutionId),
                 TrainingActionId,
                 _definition.Hit,
-                gameObject);
+                gameObject,
+                this);
             _hasConfirmedHit = false;
+        }
+
+        void ICombatAttackOutcomeReceiver.OnAttackOutcome(in CombatHitResult hit)
+        {
+            if (!_initialized || _phase != CombatTrainingAttackPhase.Active ||
+                !_execution.IsActive || hit.ExecutionId != _execution.Id ||
+                hit.Outcome != CombatHitOutcome.Parried)
+            {
+                return;
+            }
+
+            EndExecution();
+            EnterPhase(
+                CombatTrainingAttackPhase.ParryStagger,
+                _definition.ParryStaggerDuration);
         }
 
         private void TryResolveHit()

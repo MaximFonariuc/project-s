@@ -8,7 +8,8 @@ namespace _App
         Waiting,
         Windup,
         Active,
-        Recovery
+        Recovery,
+        ParryStagger
     }
 
     public enum CombatTrainingAttackReaction
@@ -43,6 +44,7 @@ namespace _App
         [SerializeField, Min(0.01f)] private float _activeDuration = 0.18f;
         [SerializeField, Min(0.01f)] private float _recoveryDuration = 0.70f;
         [SerializeField, Min(0.0f)] private float _cooldownDuration = 1.20f;
+        [SerializeField, Min(0.01f)] private float _parryStaggerDuration = 1.0f;
 
         [Header("Reach")]
         [SerializeField, Min(0.1f)] private float _range = 2.4f;
@@ -67,6 +69,9 @@ namespace _App
             float active = RequirePositive(_activeDuration, nameof(_activeDuration));
             float recovery = RequirePositive(_recoveryDuration, nameof(_recoveryDuration));
             float cooldown = RequireNonNegative(_cooldownDuration, nameof(_cooldownDuration));
+            float parryStagger = RequirePositive(
+                _parryStaggerDuration,
+                nameof(_parryStaggerDuration));
             float range = RequirePositive(_range, nameof(_range));
             float leash = RequireNonNegative(_windupLeash, nameof(_windupLeash));
             float stagger = RequireNonNegative(_staggerDamage, nameof(_staggerDamage));
@@ -96,6 +101,7 @@ namespace _App
                 active,
                 recovery,
                 cooldown,
+                parryStagger,
                 range,
                 leash,
                 hit);
@@ -131,6 +137,7 @@ namespace _App
         public float ActiveDuration { get; }
         public float RecoveryDuration { get; }
         public float CooldownDuration { get; }
+        public float ParryStaggerDuration { get; }
         public float Range { get; }
         public float WindupLeash { get; }
         public CombatHitDefinition Hit { get; }
@@ -141,6 +148,7 @@ namespace _App
             float activeDuration,
             float recoveryDuration,
             float cooldownDuration,
+            float parryStaggerDuration,
             float range,
             float windupLeash,
             CombatHitDefinition hit)
@@ -150,6 +158,7 @@ namespace _App
             ActiveDuration = activeDuration;
             RecoveryDuration = recoveryDuration;
             CooldownDuration = cooldownDuration;
+            ParryStaggerDuration = parryStaggerDuration;
             Range = range;
             WindupLeash = windupLeash;
             Hit = hit;

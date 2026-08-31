@@ -14,6 +14,7 @@ namespace _App
         [SerializeField, Min(0.001f)] private float _lineWidth = 0.045f;
         [SerializeField] private Color _windupColor = new(1.0f, 0.45f, 0.05f, 0.85f);
         [SerializeField] private Color _activeColor = new(1.0f, 0.08f, 0.03f, 1.0f);
+        [SerializeField] private Color _parryStaggerColor = new(0.05f, 0.8f, 1.0f, 0.9f);
 
         private LineRenderer _line;
         private Material _material;
@@ -35,7 +36,8 @@ namespace _App
 
             CombatTrainingAttackSnapshot snapshot = _attacker.Snapshot;
             bool visible = snapshot.Phase == CombatTrainingAttackPhase.Windup ||
-                           snapshot.Phase == CombatTrainingAttackPhase.Active;
+                           snapshot.Phase == CombatTrainingAttackPhase.Active ||
+                           snapshot.Phase == CombatTrainingAttackPhase.ParryStagger;
             _line.enabled = visible;
             if (!visible)
             {
@@ -43,12 +45,8 @@ namespace _App
             }
 
             float progress = snapshot.NormalizedTime;
-            float radiusScale = snapshot.Phase == CombatTrainingAttackPhase.Windup
-                ? Mathf.Lerp(0.35f, 1.0f, progress)
-                : 1.0f;
-            Color color = snapshot.Phase == CombatTrainingAttackPhase.Active
-                ? _activeColor
-                : Color.Lerp(_windupColor, _activeColor, progress);
+            float radiusScale = ResolveRadiusScale(snapshot.Phase, progress);
+            Color color = ResolveColor(snapshot.Phase, progress);
             _line.startColor = color;
             _line.endColor = color;
             if (_material != null && _material.HasProperty("_BaseColor"))
@@ -56,6 +54,34 @@ namespace _App
                 _material.SetColor("_BaseColor", color);
             }
             BuildCircle(_attacker.AttackRange * radiusScale);
+        }
+
+        private float ResolveRadiusScale(
+            CombatTrainingAttackPhase phase,
+            float progress)
+        {
+            if (phase == CombatTrainingAttackPhase.Windup)
+            {
+                return Mathf.Lerp(0.35f, 1.0f, progress);
+            }
+
+            return phase == CombatTrainingAttackPhase.ParryStagger
+                ? 1.0f + Mathf.Sin(progress * Mathf.PI * 4.0f) * 0.06f
+                : 1.0f;
+        }
+
+        private Color ResolveColor(
+            CombatTrainingAttackPhase phase,
+            float progress)
+        {
+            if (phase == CombatTrainingAttackPhase.Active)
+            {
+                return _activeColor;
+            }
+
+            return phase == CombatTrainingAttackPhase.ParryStagger
+                ? _parryStaggerColor
+                : Color.Lerp(_windupColor, _activeColor, progress);
         }
 
         private void OnDestroy()

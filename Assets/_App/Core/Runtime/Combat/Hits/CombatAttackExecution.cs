@@ -17,11 +17,14 @@ namespace _App
         public int SourceRootId { get; private set; }
         public bool IsActive { get; private set; }
 
+        private ICombatAttackOutcomeReceiver _outcomeReceiver;
+
         public void Begin(
             AttackExecutionId id,
             CombatActionId actionId,
             CombatHitDefinition hitDefinition,
-            GameObject source)
+            GameObject source,
+            ICombatAttackOutcomeReceiver outcomeReceiver)
         {
             if (IsActive)
             {
@@ -41,13 +44,18 @@ namespace _App
                     nameof(actionId));
             }
 
-            Source = source != null
+            GameObject validSource = source != null
                 ? source
                 : throw new ArgumentNullException(nameof(source));
+            ICombatAttackOutcomeReceiver validOutcomeReceiver = outcomeReceiver ??
+                throw new ArgumentNullException(nameof(outcomeReceiver));
+
+            Source = validSource;
             Id = id;
             ActionId = actionId;
             HitDefinition = hitDefinition;
-            SourceRootId = source.transform.root.gameObject.GetInstanceID();
+            SourceRootId = validSource.transform.root.gameObject.GetInstanceID();
+            _outcomeReceiver = validOutcomeReceiver;
             IsActive = true;
             _targetHits.Clear();
         }
@@ -84,11 +92,23 @@ namespace _App
             _targetHits[targetId] = new TargetHitRecord(count, scaledTime);
         }
 
+        public void NotifyOutcome(in CombatHitResult hit)
+        {
+            if (!IsActive || hit.ExecutionId != Id || hit.ActionId != ActionId ||
+                hit.Source != Source)
+            {
+                return;
+            }
+
+            _outcomeReceiver.OnAttackOutcome(in hit);
+        }
+
         public void End()
         {
             IsActive = false;
             Source = null;
             SourceRootId = 0;
+            _outcomeReceiver = null;
             _targetHits.Clear();
         }
 

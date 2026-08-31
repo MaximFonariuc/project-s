@@ -64,6 +64,7 @@ namespace _App
             }
 
             execution.RegisterConfirmedTarget(target.TargetId, hitTime);
+            execution.NotifyOutcome(in result);
             PublishResolved(in result);
             return true;
         }

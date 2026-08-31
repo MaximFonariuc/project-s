@@ -1235,6 +1235,7 @@ MonoBehaviour:
     _activeDuration: 0.18
     _recoveryDuration: 0.7
     _cooldownDuration: 1.2
+    _parryStaggerDuration: 1
     _range: 2.4
     _windupLeash: 0.75
     _damage: 10
@@ -1260,6 +1261,7 @@ MonoBehaviour:
   _lineWidth: 0.045
   _windupColor: {r: 1, g: 0.45, b: 0.05, a: 0.85}
   _activeColor: {r: 1, g: 0.08, b: 0.03, a: 1}
+  _parryStaggerColor: {r: 0.05, g: 0.8, b: 1, a: 0.9}
 --- !u!1 &6301183989958189046
 GameObject:
   m_ObjectHideFlags: 0

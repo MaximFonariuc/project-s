@@ -400,6 +400,11 @@ namespace _App
             out CombatHitResult resolvedHit);
     }
 
+    internal interface ICombatAttackOutcomeReceiver
+    {
+        void OnAttackOutcome(in CombatHitResult hit);
+    }
+
     internal interface ICombatHitResolver
     {
         bool TryResolve(

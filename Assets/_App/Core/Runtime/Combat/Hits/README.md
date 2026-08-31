@@ -12,8 +12,9 @@ classDiagram
         +Value ulong
     }
     class CombatAttackExecution {
-        +Begin(executionId, actionId, hit, source)
+        +Begin(executionId, actionId, hit, source, outcomeReceiver)
         +CanHitTarget(targetId, time) bool
+        +NotifyOutcome(hit)
         +End()
     }
     class CombatHitResolver {
@@ -27,6 +28,10 @@ classDiagram
         <<interface>>
         +TryReceiveHit(proposed, resolved) bool
     }
+    class ICombatAttackOutcomeReceiver {
+        <<interface>>
+        +OnAttackOutcome(hit)
+    }
     class CombatHitResult
     class Hurtbox
     class BodyColliderRig
@@ -34,6 +39,7 @@ classDiagram
 
     CombatAttackExecution --> AttackExecutionId
     CombatAttackExecution --> CombatActionId
+    CombatAttackExecution --> ICombatAttackOutcomeReceiver : accepted source outcome
     CombatHitResolver --> CombatAttackExecution
     CombatHitResolver --> ICombatHitTarget
     CombatHitResolver --> CombatHitResult : accepted outcome only
@@ -47,6 +53,11 @@ classDiagram
   depending on the player combo graph. Player actions convert their local id at
   execution start; enemy actions can provide their own stable ids.
 - `CombatAttackExecution` owns per-target repeat filtering for one activation.
+- Every execution has one explicit source-side outcome receiver. The resolver
+  notifies it synchronously after the target accepts and repeat filtering is
+  committed, so `Parried` can close the active hitbox before another physics
+  contact is processed. This is a direct owner callback, not a global event or
+  a scene lookup.
 - `CombatHitResolver` produces a result only after the target accepts the
   contact. `CombatHitOutcome` distinguishes `Damaged`, `Blocked` and `Parried`;
   rejection (immunity, dead target or invalid contact) still produces no result.
