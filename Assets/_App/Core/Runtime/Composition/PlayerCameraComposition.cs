@@ -18,14 +18,16 @@ namespace _App
 
             PlayerCameraSettings settings = player.CameraSettings;
             builder.Register(
-                    _ => new CinemachineCameraRig(
+                    resolver => new CinemachineCameraRig(
                         player.FollowCameraPrefab,
                         player.FollowTarget,
-                        settings.DefaultDistance),
+                        settings.DefaultDistance,
+                        resolver.Resolve<CombatFeedbackSettings>().CameraImpulseDuration),
                     Lifetime.Scoped)
                 .AsSelf()
                 .As<IPlayerCameraRig>()
-                .As<ICameraOrientation>();
+                .As<ICameraOrientation>()
+                .As<ICameraImpactFeedback>();
 
             builder.Register<IPlayerCameraPresentation>(
                 resolver => new PlayerCameraAnimationAdapter(

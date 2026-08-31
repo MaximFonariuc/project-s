@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96720a7d690c504e8865ea7266c25cd, type: 3}
+  m_Name: PlayerCombatFeedbackProfile
+  m_EditorClassIdentifier:
+  _cameraImpulseDuration: 0.12
+  _defaultFeedback:
+    _reactionId:
+    _cameraImpulse: 0.07
+    _particleCount: 7
+    _particleSpeed: 2.2
+    _particleScatter: 0.75
+    _particleLifetime: 0.18
+    _particleSize: 0.035
+    _particleColor: {r: 1, g: 0.72, b: 0.22, a: 1}
+    _audioClip: {fileID: 0}
+    _audioVolume: 0.8
+    _audioPitchMin: 0.96
+    _audioPitchMax: 1.04
+  _reactionOverrides:
+  - _reactionId: hit.light
+    _cameraImpulse: 0.08
+    _particleCount: 8
+    _particleSpeed: 2.5
+    _particleScatter: 0.72
+    _particleLifetime: 0.18
+    _particleSize: 0.035
+    _particleColor: {r: 1, g: 0.78, b: 0.28, a: 1}
+    _audioClip: {fileID: 0}
+    _audioVolume: 0.8
+    _audioPitchMin: 0.97
+    _audioPitchMax: 1.03
+  - _reactionId: hit.heavy
+    _cameraImpulse: 0.16
+    _particleCount: 14
+    _particleSpeed: 3.2
+    _particleScatter: 0.8
+    _particleLifetime: 0.22
+    _particleSize: 0.05
+    _particleColor: {r: 1, g: 0.42, b: 0.12, a: 1}
+    _audioClip: {fileID: 0}
+    _audioVolume: 0.9
+    _audioPitchMin: 0.92
+    _audioPitchMax: 1
+  - _reactionId: hit.launcher
+    _cameraImpulse: 0.13
+    _particleCount: 12
+    _particleSpeed: 3
+    _particleScatter: 0.85
+    _particleLifetime: 0.22
+    _particleSize: 0.045
+    _particleColor: {r: 0.82, g: 0.92, b: 1, a: 1}
+    _audioClip: {fileID: 0}
+    _audioVolume: 0.86
+    _audioPitchMin: 0.96
+    _audioPitchMax: 1.04
+  - _reactionId: hit.slam
+    _cameraImpulse: 0.2
+    _particleCount: 18
+    _particleSpeed: 3.8
+    _particleScatter: 0.9
+    _particleLifetime: 0.25
+    _particleSize: 0.06
+    _particleColor: {r: 1, g: 0.26, b: 0.08, a: 1}
+    _audioClip: {fileID: 0}
+    _audioVolume: 1
+    _audioPitchMin: 0.88
+    _audioPitchMax: 0.98

@@ -77,4 +77,9 @@ namespace _App
     {
         void Tick(bool hasTarget, Vector3 targetPosition, float deltaTime);
     }
+
+    internal interface ICameraImpactFeedback
+    {
+        void EmitImpact(Vector3 worldPoint, Vector3 impactDirection, float strength);
+    }
 }

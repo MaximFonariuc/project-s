@@ -28,7 +28,11 @@ namespace _App
             PlayerCombatLoadoutProfile combatLoadout = player.CombatLoadoutProfile ??
                 throw new InvalidOperationException(
                     $"Player '{player.name}' requires a combat loadout profile.");
+            CombatFeedbackProfile combatFeedback = player.CombatFeedbackProfile ??
+                throw new InvalidOperationException(
+                    $"Player '{player.name}' requires a combat feedback profile.");
             PlayerCombatMovesetCatalog movesets = combatLoadout.CreateMovesetCatalog();
+            CombatFeedbackSettings feedbackSettings = combatFeedback.CreateSettings();
             if (!movesets.Supports(player.StartingWeapon))
             {
                 throw new InvalidOperationException(
@@ -39,6 +43,7 @@ namespace _App
             builder.RegisterComponent(character);
             builder.RegisterComponent(health);
             builder.RegisterInstance(movesets);
+            builder.RegisterInstance(feedbackSettings);
             builder.Register<PlayerActorAdapter>(Lifetime.Scoped)
                 .As<IPlayerActorTransform>()
                 .As<IPlayerTargetingActor>()
@@ -69,6 +74,7 @@ namespace _App
             builder.RegisterPlayerCamera(player);
             builder.RegisterPlayerCombat(player);
             builder.RegisterPlayerHitStop();
+            builder.RegisterPlayerCombatFeedback();
             builder.RegisterPlayerLocomotion(player.CharacterFeatures);
             builder.RegisterPlayerReaction(player);
             builder.RegisterPlayerTraversal(player.CharacterFeatures);

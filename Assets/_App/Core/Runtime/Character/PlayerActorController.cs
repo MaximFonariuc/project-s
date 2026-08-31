@@ -13,6 +13,7 @@ namespace _App
         private readonly CharacterReactionController _reaction;
         private readonly GameplayTimeScaleController _gameplayTime;
         private readonly CombatHitStopController _hitStop;
+        private readonly CombatFeedbackController _feedback;
         private readonly PlayerTraversalController _traversal;
         private readonly PlayerSimulationPauseController _simulationPause;
 
@@ -29,6 +30,7 @@ namespace _App
             CharacterReactionController reaction,
             GameplayTimeScaleController gameplayTime,
             CombatHitStopController hitStop,
+            CombatFeedbackController feedback,
             PlayerTraversalController traversal,
             PlayerSimulationPauseController simulationPause)
         {
@@ -43,6 +45,7 @@ namespace _App
             _reaction = reaction ?? throw new ArgumentNullException(nameof(reaction));
             _gameplayTime = gameplayTime ?? throw new ArgumentNullException(nameof(gameplayTime));
             _hitStop = hitStop ?? throw new ArgumentNullException(nameof(hitStop));
+            _feedback = feedback ?? throw new ArgumentNullException(nameof(feedback));
             _traversal = traversal ?? throw new ArgumentNullException(nameof(traversal));
             _simulationPause = simulationPause ?? throw new ArgumentNullException(nameof(simulationPause));
         }
@@ -66,6 +69,7 @@ namespace _App
                 _combat.Enable();
                 _reaction.Enable();
                 _hitStop.Enable();
+                _feedback.Enable();
                 _traversal.Enable();
                 _simulationPause.Enable();
                 _input.Enable();
@@ -88,6 +92,7 @@ namespace _App
             _reaction.StateChanged -= OnReactionStateChanged;
             _simulationPause.Disable();
             _traversal.Disable();
+            _feedback.Disable();
             _hitStop.Disable();
             _reaction.Disable();
             _combat.Disable();
