@@ -8,17 +8,20 @@ namespace _App
         public float RunSpeed { get; }
         public float SprintSpeed { get; }
         public float DodgeDuration { get; }
+        public float DodgeInputBufferDuration { get; }
 
         public PlayerLocomotionSettings(
             float walkSpeed,
             float runSpeed,
             float sprintSpeed,
-            float dodgeDuration)
+            float dodgeDuration,
+            float dodgeInputBufferDuration)
         {
             WalkSpeed = walkSpeed;
             RunSpeed = runSpeed;
             SprintSpeed = sprintSpeed;
             DodgeDuration = Math.Max(0.0f, dodgeDuration);
+            DodgeInputBufferDuration = Math.Max(0.0f, dodgeInputBufferDuration);
         }
 
         internal static PlayerLocomotionSettings From(
@@ -44,7 +47,8 @@ namespace _App
                 walk?.MaxSpeed ?? runSpeed,
                 runSpeed,
                 sprint?.MaxSpeed ?? runSpeed,
-                dodge?.Duration ?? 0.0f);
+                dodge?.Duration ?? 0.0f,
+                dodge?.InputBufferDuration ?? 0.0f);
         }
     }
 }

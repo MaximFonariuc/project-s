@@ -8,6 +8,9 @@ classDiagram
     class PlayerLocomotionController {
         +Snapshot PlayerLocomotionSnapshot
     }
+    class PlayerLocomotionSettings {
+        +DodgeInputBufferDuration float
+    }
     class ICharacterMotor
     class PlayerLocomotionAnimationAdapter
     class PlayerCharacterAnimationPresenter
@@ -15,6 +18,7 @@ classDiagram
     class ICharacterAnimationDriver
 
     PlayerLocomotionController --> ICharacterMotor
+    PlayerLocomotionController --> PlayerLocomotionSettings
     PlayerLocomotionController --> PlayerLocomotionAnimationAdapter
     PlayerLocomotionAnimationAdapter --> PlayerCharacterAnimationPresenter
     PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator : dodge edge
@@ -31,6 +35,13 @@ classDiagram
   settings ScriptableObject.
 - `PlayerLocomotionAnimationAdapter` sends a finite semantic action only on the
   rising edge of dodge and releases ownership on exit.
+- A dodge request remains owned by `PlayerLocomotionController` for the short
+  duration configured by `DodgeSettings`. This lets a press immediately before
+  an attack cancel window execute as soon as the window opens; an early or
+  disabled request expires and cannot leak into a later action. Its lifetime is
+  measured in unscaled time, matching combat input and preventing hit stop from
+  extending the player's real input window; locomotion simulation remains
+  scaled.
 - Dodge displacement is motor-owned impulse/duration movement; Animator root
   motion is disabled.
 - Dodge invulnerability is a normalized gameplay window from `DodgeSettings`.

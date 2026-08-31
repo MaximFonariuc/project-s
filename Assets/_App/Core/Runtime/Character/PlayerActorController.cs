@@ -126,7 +126,7 @@ namespace _App
                 _reaction.BlocksActions
                     ? PlayerMovementIntent.Locked
                     : _combat.MovementIntent);
-            _locomotion.Tick(scaledDeltaTime);
+            _locomotion.Tick(scaledDeltaTime, unscaledDeltaTime);
             _targeting.Tick();
             _camera.TickPresentation(scaledDeltaTime);
         }

@@ -8,6 +8,7 @@ namespace _App
         [SerializeField] private bool _canEverDodge = true;
         [SerializeField] private float _dodgeImpulse = 10.0f;
         [SerializeField, Min(0.01f)] private float _dodgeDuration = 0.35f;
+        [SerializeField, Min(0.0f)] private float _inputBufferDuration = 0.12f;
 
         [Header("Invulnerability Window")]
         [SerializeField] private bool _useInvulnerability = true;
@@ -17,6 +18,7 @@ namespace _App
         public bool IsEnabled => _canEverDodge;
         public float Impulse => _dodgeImpulse;
         public float Duration => Mathf.Max(0.01f, _dodgeDuration);
+        public float InputBufferDuration => Mathf.Max(0.0f, _inputBufferDuration);
         public bool HasInvulnerability =>
             _useInvulnerability && InvulnerabilityEnd > InvulnerabilityStart;
         public float InvulnerabilityStart => Mathf.Clamp01(_invulnerabilityStart);
@@ -25,6 +27,7 @@ namespace _App
         private void OnValidate()
         {
             _dodgeDuration = Mathf.Max(0.01f, _dodgeDuration);
+            _inputBufferDuration = Mathf.Max(0.0f, _inputBufferDuration);
             _invulnerabilityStart = Mathf.Clamp01(_invulnerabilityStart);
             _invulnerabilityEnd = Mathf.Clamp(
                 _invulnerabilityEnd,

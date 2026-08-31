@@ -15,6 +15,7 @@ MonoBehaviour:
   _canEverDodge: 1
   _dodgeImpulse: 6
   _dodgeDuration: 0.78
+  _inputBufferDuration: 0.12
   _useInvulnerability: 1
   _invulnerabilityStart: 0.08
   _invulnerabilityEnd: 0.58

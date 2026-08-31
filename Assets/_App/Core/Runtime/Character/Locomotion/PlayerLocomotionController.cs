@@ -31,6 +31,7 @@ namespace _App
         private readonly IPlayerLocomotionPresentation _presentation;
         private readonly PlayerLocomotionRuntime _runtime;
         private readonly IStateMachine<PlayerLocomotionStateId> _stateMachine;
+        private readonly float _dodgeInputBufferDuration;
 
         private PlayerMovementIntent _movementIntent = PlayerMovementIntent.Unrestricted;
         private PlayerLocomotionSnapshot _snapshot = PlayerLocomotionSnapshot.Invalid;
@@ -39,6 +40,7 @@ namespace _App
         private bool _jumpHeld;
         private PendingJumpSignals _pendingJumpSignals;
         private bool _dodgeRequested;
+        private float _dodgeRequestTimeRemaining;
         private bool _enabled;
 
         public event Action JumpAccepted;
@@ -55,6 +57,7 @@ namespace _App
             IPlayerMovementReference movementReference,
             IPlayerLocomotionPresentation presentation,
             PlayerLocomotionRuntime runtime,
+            PlayerLocomotionSettings settings,
             IStateMachine<PlayerLocomotionStateId> stateMachine)
         {
             _input = input ?? throw new ArgumentNullException(nameof(input));
@@ -63,6 +66,8 @@ namespace _App
             _movementReference = movementReference ?? throw new ArgumentNullException(nameof(movementReference));
             _presentation = presentation ?? throw new ArgumentNullException(nameof(presentation));
             _runtime = runtime ?? throw new ArgumentNullException(nameof(runtime));
+            _dodgeInputBufferDuration = settings?.DodgeInputBufferDuration ??
+                                        throw new ArgumentNullException(nameof(settings));
             _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
         }
 
@@ -102,6 +107,7 @@ namespace _App
             _jumpHeld = false;
             _pendingJumpSignals = PendingJumpSignals.None;
             _dodgeRequested = false;
+            _dodgeRequestTimeRemaining = 0.0f;
             _movementIntent = PlayerMovementIntent.Unrestricted;
             CancelJumpStartup();
             _motor.ReleaseJump();
@@ -125,15 +131,15 @@ namespace _App
             _movementIntent = movementIntent;
         }
 
-        public void Tick(float deltaTime)
+        public void Tick(float scaledDeltaTime, float unscaledDeltaTime)
         {
             if (!_enabled)
             {
                 return;
             }
 
-            ConsumePendingActionInput();
-            UpdateJumpStartup(deltaTime);
+            ConsumePendingActionInput(unscaledDeltaTime);
+            UpdateJumpStartup(scaledDeltaTime);
             RefreshMovementDirections();
             PlayerLocomotionStateId stateId = ResolveState();
             if (_stateMachine.IsRunning)
@@ -145,15 +151,15 @@ namespace _App
                 StartStateMachine(stateId);
             }
 
-            _stateMachine.Tick(deltaTime);
+            _stateMachine.Tick(scaledDeltaTime);
 
             if (_movementIntent.FaceMoveDirection && _runtime.RawMoveDirection.sqrMagnitude > MoveThresholdSqr)
             {
-                _motor.FaceDirection(_runtime.RawMoveDirection, deltaTime);
+                _motor.FaceDirection(_runtime.RawMoveDirection, scaledDeltaTime);
             }
 
             _snapshot = CreateSnapshot(stateId);
-            _presentation.Present(_snapshot, deltaTime);
+            _presentation.Present(_snapshot, scaledDeltaTime);
         }
 
         public bool TryInvertGravity()
@@ -365,15 +371,15 @@ namespace _App
             };
         }
 
-        private void ConsumePendingActionInput()
+        private void ConsumePendingActionInput(float unscaledDeltaTime)
         {
             PendingJumpSignals jumpSignals = _pendingJumpSignals;
             bool dodgeRequested = _dodgeRequested;
             _pendingJumpSignals = PendingJumpSignals.None;
-            _dodgeRequested = false;
 
             if (dodgeRequested && TryConsumeDodgeRequest())
             {
+                ClearDodgeRequest();
                 // A release still has to terminate an existing jump/glide hold,
                 // but a dodge accepted in this tick owns action priority over a
                 // simultaneous jump press.
@@ -383,6 +389,17 @@ namespace _App
                 }
 
                 return;
+            }
+
+            if (dodgeRequested)
+            {
+                _dodgeRequestTimeRemaining = Mathf.Max(
+                    0.0f,
+                    _dodgeRequestTimeRemaining - Mathf.Max(0.0f, unscaledDeltaTime));
+                if (_dodgeRequestTimeRemaining <= 0.0f)
+                {
+                    ClearDodgeRequest();
+                }
             }
 
             if ((jumpSignals & PendingJumpSignals.Started) != 0)
@@ -476,6 +493,13 @@ namespace _App
         private void OnDodgeRequested()
         {
             _dodgeRequested = true;
+            _dodgeRequestTimeRemaining = _dodgeInputBufferDuration;
+        }
+
+        private void ClearDodgeRequest()
+        {
+            _dodgeRequested = false;
+            _dodgeRequestTimeRemaining = 0.0f;
         }
 
         private bool TryConsumeDodgeRequest()
