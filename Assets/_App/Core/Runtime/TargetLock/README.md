@@ -50,6 +50,9 @@ classDiagram
 
 - Hard lock is explicit player state. It owns the selected target and the
   temporary actor rotation mode, restoring the previous mode when lock is lost.
+- Hard lock tolerates a brief line-of-sight interruption, measured in unscaled
+  time, so a thin pillar does not cause camera flicker. Sustained occlusion
+  clears the target and restores the actor's previous rotation mode.
 - Acquisition and target switching score visible `ICombatTarget` instances in
   camera space. Multiple colliders belonging to one target are deduplicated by
   `TargetId`.

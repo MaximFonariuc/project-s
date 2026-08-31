@@ -13,6 +13,7 @@ namespace _App
         public const float MaxLockDistance = 25.0f;
 
         private const float MaxViewAngle = 35.0f;
+        private const float LostLineOfSightGraceDuration = 0.75f;
         private const float TargetSwitchActuationThreshold = 0.65f;
         private const float TargetSwitchReleaseThreshold = 0.35f;
         private const int InitialBufferSize = 8;
@@ -29,6 +30,7 @@ namespace _App
         private ICombatTarget _currentTarget;
         private UnityEngine.Object _currentTargetObject;
         private ERotationMode _rotationModeBeforeLock;
+        private float _lostLineOfSightTime;
         private bool _hasTarget;
         private bool _targetSwitchArmed;
         private bool _enabled;
@@ -72,6 +74,7 @@ namespace _App
 
             _input.LockOnRequested += OnLockOnRequested;
             _targetSwitchArmed = false;
+            _lostLineOfSightTime = 0.0f;
             _enabled = true;
         }
 
@@ -88,7 +91,7 @@ namespace _App
             ClearTarget();
         }
 
-        public void Tick()
+        public void Tick(float unscaledDeltaTime)
         {
             if (!_enabled)
             {
@@ -112,6 +115,19 @@ namespace _App
 
             float maxDistanceSqr = MaxLockDistance * MaxLockDistance;
             if ((CurrentTarget.position - _actor.Position).sqrMagnitude > maxDistanceSqr)
+            {
+                ClearTarget();
+                return;
+            }
+
+            if (HasLineOfSight(_camera.Position, _currentTarget))
+            {
+                _lostLineOfSightTime = 0.0f;
+                return;
+            }
+
+            _lostLineOfSightTime += Mathf.Max(0.0f, unscaledDeltaTime);
+            if (_lostLineOfSightTime >= LostLineOfSightGraceDuration)
             {
                 ClearTarget();
             }
@@ -195,6 +211,7 @@ namespace _App
             CurrentTarget = null;
             _currentTarget = null;
             _currentTargetObject = null;
+            _lostLineOfSightTime = 0.0f;
             if (_actor.RotationMode == ERotationMode.OrientToViewAndMovement)
             {
                 _actor.SetRotationMode(_rotationModeBeforeLock);
@@ -454,6 +471,7 @@ namespace _App
             _currentTarget = target;
             _currentTargetObject = target as UnityEngine.Object;
             _hasTarget = true;
+            _lostLineOfSightTime = 0.0f;
             CurrentTarget = target.TargetRoot;
             SafeEvent.Publish(TargetChanged, CurrentTarget, _actor.Root);
         }
