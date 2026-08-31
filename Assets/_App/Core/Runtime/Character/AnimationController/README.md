@@ -13,6 +13,9 @@ classDiagram
         +AirAttack AnimationActionId
         +SpecialAttack AnimationActionId
         +HeavyAttack AnimationActionId
+        +Guard AnimationActionId
+        +Block AnimationActionId
+        +Parry AnimationActionId
     }
     class PlayerAnimationCoordinator {
         +TryPlayAction(source, request, playback) bool
@@ -26,10 +29,12 @@ classDiagram
     class PlayerLocomotionAnimationAdapter
     class PlayerCombatAnimationAdapter
     class CharacterReactionAnimationAdapter
+    class PlayerDefenseAnimationAdapter
 
     PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator
     PlayerCombatAnimationAdapter --> PlayerAnimationCoordinator
     CharacterReactionAnimationAdapter --> PlayerAnimationCoordinator
+    PlayerDefenseAnimationAdapter --> PlayerAnimationCoordinator
     PlayerAnimationCoordinator --> PlayerAnimatorActions
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
     ICharacterLookAnimationDriver --> CharacterLookFrame
@@ -44,7 +49,8 @@ classDiagram
 - Dodge uses action ID `1` with forward/backward variants. Ground light attacks
   use action ID `2` and variants `0...2`; air light attacks use action ID `5`
   and variants `0...2`; the named grounded special uses action ID `6`, variant
-  `0`; the named grounded heavy uses action ID `7`, variant `0`.
+  `0`; the named grounded heavy uses action ID `7`, variant `0`. Defense uses
+  action IDs `10...12` for guard, block and parry.
 - The restored `XController` has no semantic action parameters. The adapter
   enters its existing Roll and Attack states with short fixed-time crossfades;
   the existing clips, state hierarchy and exit transitions are unchanged.
@@ -55,6 +61,16 @@ classDiagram
   force a state change after normal completion.
 - Weapon-specific Animator Override Controllers are optional. A loadout without
   an override keeps the base `XController` and its existing clip table.
+- `Reaction/Guard`, `Reaction/Block` and `Reaction/Parry` are stable controller
+  slots without graph transitions. `PlayerDefenseAnimationAdapter` enters them
+  from confirmed gameplay events; release and impact completion explicitly
+  return presentation ownership. The `DualSwords` override maps those stable
+  slots to the current Frank Humanoid clips, so another weapon can replace the
+  clips without changing state names or gameplay code.
+- Defense has priority `250`: it overrides locomotion and combat presentation,
+  while traversal, reactions and death can interrupt it. `BodyLook` and
+  `HeadLook` weights damp to zero during defense clips to avoid additive pose
+  distortion, then recover through the existing look controller.
 - Targeting supplies local yaw/pitch degrees through `CharacterLookFrame`.
   XController splits that request into slower limited body motion and faster
   residual head motion, with action- and airborne-specific attenuation.

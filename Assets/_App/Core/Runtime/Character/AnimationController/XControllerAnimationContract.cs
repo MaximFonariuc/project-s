@@ -75,6 +75,9 @@ namespace _App
         public const string DeadHeavyStatePath =
             "Base Layer.Reaction.Dead_2";
         public const string GetUpStatePath = "Base Layer.Reaction.GetUp";
+        public const string GuardStatePath = "Base Layer.Reaction.Guard";
+        public const string BlockStatePath = "Base Layer.Reaction.Block";
+        public const string ParryStatePath = "Base Layer.Reaction.Parry";
         public const string WeaponWaitingStatePath =
             "SwitchWeapon Layer.Waiting";
         public const string WeaponSheatheStatePath =
@@ -140,7 +143,10 @@ namespace _App
                     GetUpStatePath,
                     HitStunBackStatePath,
                     HitStunLeftStatePath,
-                    HitStunRightStatePath
+                    HitStunRightStatePath,
+                    GuardStatePath,
+                    BlockStatePath,
+                    ParryStatePath
                 });
 
         private static readonly IReadOnlyList<string> LightAttackStates =
@@ -272,6 +278,36 @@ namespace _App
             if (action == PlayerAnimatorActions.AirChase && variant == 0)
             {
                 statePath = AirChaseStatePath;
+                return true;
+            }
+
+            statePath = null;
+            return false;
+        }
+
+        internal static bool TryGetDefenseActionStatePath(
+            AnimationActionId action,
+            int variant,
+            out string statePath,
+            out float normalizedTimeOffset)
+        {
+            normalizedTimeOffset = 0.0f;
+            if (action == PlayerAnimatorActions.Guard && variant is 0 or 1)
+            {
+                statePath = GuardStatePath;
+                normalizedTimeOffset = variant == 1 ? 1.0f : 0.0f;
+                return true;
+            }
+
+            if (action == PlayerAnimatorActions.Block && variant == 0)
+            {
+                statePath = BlockStatePath;
+                return true;
+            }
+
+            if (action == PlayerAnimatorActions.Parry && variant == 0)
+            {
+                statePath = ParryStatePath;
                 return true;
             }
 

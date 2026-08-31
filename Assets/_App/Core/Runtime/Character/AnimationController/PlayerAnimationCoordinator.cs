@@ -8,6 +8,7 @@ namespace _App
     {
         Locomotion,
         Combat,
+        Defense,
         Traversal,
         Reaction,
         Death
@@ -27,6 +28,9 @@ namespace _App
         public static readonly AnimationActionId HeavyAttack = new AnimationActionId(7);
         public static readonly AnimationActionId Launcher = new AnimationActionId(8);
         public static readonly AnimationActionId AirChase = new AnimationActionId(9);
+        public static readonly AnimationActionId Guard = new AnimationActionId(10);
+        public static readonly AnimationActionId Block = new AnimationActionId(11);
+        public static readonly AnimationActionId Parry = new AnimationActionId(12);
 
         public const float WeaponTransitionDuration = 1.00f;
         public const float HitStunDuration = 0.40f;
@@ -34,6 +38,9 @@ namespace _App
         public const float GetUpDuration = 1.8333334f;
         public const float AirborneReactionDuration = 0.45f;
         public const float DeathDuration = 2.40f;
+        public const float GuardDuration = 1.1666667f;
+        public const float BlockDuration = 0.50f;
+        public const float ParryDuration = 1.50f;
 
         public static bool TryCreate(
             AnimationSlotId slot,
@@ -265,6 +272,7 @@ namespace _App
                 PlayerAnimationSource.Death => 500,
                 PlayerAnimationSource.Reaction => 400,
                 PlayerAnimationSource.Traversal => 300,
+                PlayerAnimationSource.Defense => 250,
                 PlayerAnimationSource.Combat => 200,
                 PlayerAnimationSource.Locomotion => 100,
                 _ => throw new ArgumentOutOfRangeException(nameof(source), source, null)

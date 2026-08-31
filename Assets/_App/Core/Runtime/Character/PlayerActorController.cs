@@ -11,6 +11,7 @@ namespace _App
         private readonly PlayerCameraController _camera;
         private readonly PlayerCombatController _combat;
         private readonly PlayerDefenseController _defense;
+        private readonly PlayerDefenseAnimationAdapter _defenseAnimation;
         private readonly CharacterReactionController _reaction;
         private readonly GameplayTimeScaleController _gameplayTime;
         private readonly CombatHitStopController _hitStop;
@@ -30,6 +31,7 @@ namespace _App
             PlayerCameraController camera,
             PlayerCombatController combat,
             PlayerDefenseController defense,
+            PlayerDefenseAnimationAdapter defenseAnimation,
             CharacterReactionController reaction,
             GameplayTimeScaleController gameplayTime,
             CombatHitStopController hitStop,
@@ -47,6 +49,8 @@ namespace _App
             _camera = camera ?? throw new ArgumentNullException(nameof(camera));
             _combat = combat ?? throw new ArgumentNullException(nameof(combat));
             _defense = defense ?? throw new ArgumentNullException(nameof(defense));
+            _defenseAnimation = defenseAnimation ??
+                throw new ArgumentNullException(nameof(defenseAnimation));
             _reaction = reaction ?? throw new ArgumentNullException(nameof(reaction));
             _gameplayTime = gameplayTime ?? throw new ArgumentNullException(nameof(gameplayTime));
             _hitStop = hitStop ?? throw new ArgumentNullException(nameof(hitStop));
@@ -73,6 +77,7 @@ namespace _App
                 _targeting.Enable();
                 _camera.Enable();
                 _combat.Enable();
+                _defenseAnimation.Enable();
                 _defense.Enable();
                 _reaction.Enable();
                 _hitStop.Enable();
@@ -105,6 +110,7 @@ namespace _App
             _hitStop.Disable();
             _reaction.Disable();
             _defense.Disable();
+            _defenseAnimation.Disable();
             _combat.Disable();
             _camera.Disable();
             _targeting.Disable();
@@ -128,6 +134,7 @@ namespace _App
             _defense.Tick(
                 !_reaction.BlocksActions &&
                 _combat.Phase == PlayerCombatPhase.Ready);
+            _defenseAnimation.Tick(scaledDeltaTime);
             _traversal.Tick();
             _locomotion.SetMovementIntent(
                 _reaction.BlocksActions

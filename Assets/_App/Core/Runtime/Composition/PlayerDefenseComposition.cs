@@ -27,6 +27,7 @@ namespace _App
                     Lifetime.Scoped)
                 .AsSelf()
                 .As<IPlayerDefenseState>();
+            builder.Register<PlayerDefenseAnimationAdapter>(Lifetime.Scoped);
         }
     }
 }

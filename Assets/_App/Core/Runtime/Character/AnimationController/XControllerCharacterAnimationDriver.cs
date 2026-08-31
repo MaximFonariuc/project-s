@@ -21,6 +21,7 @@ namespace _App
         private const float DodgeCrossFadeSeconds = 0.10f;
         private const float AttackCrossFadeSeconds = 0.12f;
         private const float WeaponCrossFadeSeconds = 0.15f;
+        private const float DefenseCrossFadeSeconds = 0.10f;
         private const float ActionCancelCrossFadeSeconds = 0.12f;
         private const float AttackBodyLookWeight = 0.15f;
         private const float AttackHeadLookWeight = 0.35f;
@@ -134,7 +135,8 @@ namespace _App
                     out int layerIndex,
                     out int stateHash,
                     out string statePath,
-                    out float crossFadeSeconds))
+                    out float crossFadeSeconds,
+                    out float normalizedTimeOffset))
             {
                 return AnimationActionPlayback.Invalid;
             }
@@ -146,7 +148,7 @@ namespace _App
                 stateHash,
                 crossFadeSeconds,
                 layerIndex,
-                0.0f);
+                normalizedTimeOffset);
             SetActionPresentationPolicy(request.Action, layerIndex, stateHash);
 
             _nextSequence++;
@@ -262,7 +264,8 @@ namespace _App
             float bodyWeight;
             float headWeight;
             if (action == PlayerAnimatorActions.Dodge ||
-                action == PlayerAnimatorActions.Reaction)
+                action == PlayerAnimatorActions.Reaction ||
+                IsDefenseAction(action))
             {
                 bodyWeight = 0.0f;
                 headWeight = 0.0f;
@@ -300,6 +303,13 @@ namespace _App
                    action == PlayerAnimatorActions.SpecialAttack ||
                    action == PlayerAnimatorActions.HeavyAttack ||
                    action == PlayerAnimatorActions.Launcher;
+        }
+
+        private static bool IsDefenseAction(AnimationActionId action)
+        {
+            return action == PlayerAnimatorActions.Guard ||
+                   action == PlayerAnimatorActions.Block ||
+                   action == PlayerAnimatorActions.Parry;
         }
 
         private void ClearActionPresentationPolicy()
@@ -469,9 +479,11 @@ namespace _App
             out int layerIndex,
             out int stateHash,
             out string statePath,
-            out float crossFadeSeconds)
+            out float crossFadeSeconds,
+            out float normalizedTimeOffset)
         {
             layerIndex = XControllerAnimationContract.BaseLayerIndex;
+            normalizedTimeOffset = 0.0f;
             if (XControllerAnimationContract.TryGetCombatActionStatePath(
                     request.Action,
                     request.Variant,
@@ -480,6 +492,18 @@ namespace _App
                 statePath = combatStatePath;
                 stateHash = Animator.StringToHash(combatStatePath);
                 crossFadeSeconds = AttackCrossFadeSeconds;
+                return _animator.HasState(layerIndex, stateHash);
+            }
+
+            if (XControllerAnimationContract.TryGetDefenseActionStatePath(
+                    request.Action,
+                    request.Variant,
+                    out string defenseStatePath,
+                    out normalizedTimeOffset))
+            {
+                statePath = defenseStatePath;
+                stateHash = Animator.StringToHash(defenseStatePath);
+                crossFadeSeconds = DefenseCrossFadeSeconds;
                 return _animator.HasState(layerIndex, stateHash);
             }
 
@@ -521,6 +545,7 @@ namespace _App
                 stateHash = 0;
                 statePath = null;
                 crossFadeSeconds = 0.0f;
+                normalizedTimeOffset = 0.0f;
                 return false;
             }
 

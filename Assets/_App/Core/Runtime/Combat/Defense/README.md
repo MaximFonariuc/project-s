@@ -42,6 +42,12 @@ classDiagram
     }
     class BodyColliderRig
     class Health
+    class PlayerDefenseAnimationAdapter {
+        +Enable()
+        +Disable()
+        +Tick(deltaTime)
+    }
+    class PlayerAnimationCoordinator
     class PlayerCombatAvailability
     class PlayerActorController
 
@@ -52,8 +58,11 @@ classDiagram
     ICombatHitReceiver <|.. PlayerDefenseController
     BodyColliderRig --> ICombatHitReceiver : optional runtime delegate
     PlayerDefenseController --> Health : unguarded hit
+    PlayerDefenseController --> PlayerDefenseAnimationAdapter : confirmed events
+    PlayerDefenseAnimationAdapter --> PlayerAnimationCoordinator : presentation only
     PlayerDefenseController --> PlayerCombatAvailability : defense state
-    PlayerActorController --> PlayerDefenseController : lifecycle and tick
+    PlayerActorController --> PlayerDefenseController : gameplay lifecycle and tick
+    PlayerActorController --> PlayerDefenseAnimationAdapter : presentation lifecycle and tick
 ```
 
 - `Guard` is a semantic Player action. The current asset binds it to keyboard
@@ -80,3 +89,11 @@ classDiagram
 - `BodyColliderRig` owns exactly one optional runtime hit receiver. Defense
   attaches on enable and detaches on disable, so scene reload and VContainer
   scope disposal cannot leave a stale delegate.
+- `PlayerDefenseAnimationAdapter` observes `GuardStarted`, `GuardEnded` and
+  confirmed defense results. It cannot decide whether defense succeeded and
+  never changes health, combat phase or locomotion state.
+- A block or parry presentation is allowed to finish even if guard is released
+  during the clip. Holding guard returns to the final guard pose; releasing it
+  returns to locomotion after the impact clip completes. Presentation time is
+  scaled, so hit stop freezes the visual without extending the unscaled parry
+  window.
