@@ -5,7 +5,14 @@ namespace _App
 {
     internal sealed class CombatHitResolver : ICombatHitResolver, ICombatHitEvents, IDisposable
     {
+        private readonly ICombatClock _clock;
+
         public event Action<CombatHitResult> HitResolved;
+
+        public CombatHitResolver(ICombatClock clock)
+        {
+            _clock = clock ?? throw new ArgumentNullException(nameof(clock));
+        }
 
         public bool TryResolve(
             CombatAttackExecution execution,
@@ -25,7 +32,8 @@ namespace _App
             int damage = definition.Damage > 0
                 ? Mathf.Max(1, Mathf.RoundToInt(definition.Damage * target.DamageMultiplier))
                 : 0;
-            if (damage <= 0 || !execution.CanHitTarget(target.TargetId))
+            float hitTime = _clock.ScaledTime;
+            if (damage <= 0 || !execution.CanHitTarget(target.TargetId, hitTime))
             {
                 return false;
             }
@@ -54,7 +62,7 @@ namespace _App
                 return false;
             }
 
-            execution.RegisterConfirmedTarget(target.TargetId);
+            execution.RegisterConfirmedTarget(target.TargetId, hitTime);
             HitResolved?.Invoke(result);
             return true;
         }

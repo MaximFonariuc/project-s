@@ -82,6 +82,9 @@ classDiagram
 - Standard `hit.launcher` and `hit.slam` ids validate the sign of vertical
   knockback. Custom reaction ids remain open and are classified by the target
   reaction system at runtime.
+- Hit filtering is once per target and action by default. A multi-hit action can
+  opt into a bounded repeat count and scaled-time interval; hit stop freezes that
+  interval instead of generating extra contacts while gameplay time is paused.
 - Each invulnerability window owns a disposable lease. Overlapping combat and
   dodge windows compose without one action clearing another owner's immunity.
 - `CombatMotionController` creates collision-safe velocity intents from an

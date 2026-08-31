@@ -6,7 +6,9 @@ namespace _App
 {
     internal sealed class CombatAttackExecution
     {
-        private readonly HashSet<int> _hitTargets = new HashSet<int>();
+        private const float HitIntervalTolerance = 0.0001f;
+
+        private readonly Dictionary<int, TargetHitRecord> _targetHits = new();
 
         public AttackExecutionId Id { get; private set; }
         public PlayerCombatActionId ActionId { get; private set; }
@@ -34,22 +36,39 @@ namespace _App
             HitDefinition = hitDefinition;
             SourceRootId = source.transform.root.gameObject.GetInstanceID();
             IsActive = true;
-            _hitTargets.Clear();
+            _targetHits.Clear();
         }
 
-        public bool CanHitTarget(int targetId)
+        public bool CanHitTarget(int targetId, float scaledTime)
         {
-            return IsActive &&
-                   targetId != SourceRootId &&
-                   !_hitTargets.Contains(targetId);
-        }
-
-        public void RegisterConfirmedTarget(int targetId)
-        {
-            if (CanHitTarget(targetId))
+            if (!IsActive || targetId == SourceRootId)
             {
-                _hitTargets.Add(targetId);
+                return false;
             }
+
+            if (!_targetHits.TryGetValue(targetId, out TargetHitRecord record))
+            {
+                return true;
+            }
+
+            CombatHitRepeatPolicy repeat = HitDefinition.RepeatPolicy;
+            return repeat.AllowsRepeatedHits &&
+                   record.Count < repeat.MaxHitsPerTarget &&
+                   scaledTime - record.LastHitTime + HitIntervalTolerance >=
+                   repeat.IntervalSeconds;
+        }
+
+        public void RegisterConfirmedTarget(int targetId, float scaledTime)
+        {
+            if (!CanHitTarget(targetId, scaledTime))
+            {
+                return;
+            }
+
+            int count = _targetHits.TryGetValue(targetId, out TargetHitRecord record)
+                ? record.Count + 1
+                : 1;
+            _targetHits[targetId] = new TargetHitRecord(count, scaledTime);
         }
 
         public void End()
@@ -57,7 +76,19 @@ namespace _App
             IsActive = false;
             Source = null;
             SourceRootId = 0;
-            _hitTargets.Clear();
+            _targetHits.Clear();
+        }
+
+        private readonly struct TargetHitRecord
+        {
+            public int Count { get; }
+            public float LastHitTime { get; }
+
+            public TargetHitRecord(int count, float lastHitTime)
+            {
+                Count = count;
+                LastHitTime = lastHitTime;
+            }
         }
     }
 }

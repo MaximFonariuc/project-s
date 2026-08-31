@@ -96,6 +96,14 @@ namespace _App
             ValidateWindow(cancelWindow, completionTime, nameof(cancelWindow));
             ValidateWindow(movementConstraintWindow, completionTime, nameof(movementConstraintWindow));
             ValidateWindow(invulnerabilityWindow, completionTime, nameof(invulnerabilityWindow));
+            if (hitDefinition.RepeatPolicy.AllowsRepeatedHits &&
+                !hitboxWindow.IsEnabled)
+            {
+                throw new ArgumentException(
+                    "A repeated-hit policy requires an enabled hitbox window.",
+                    nameof(hitDefinition));
+            }
+
             if ((movementIntent.AllowJump || movementIntent.AllowDodge) &&
                 !cancelWindow.IsEnabled)
             {

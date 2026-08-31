@@ -271,6 +271,12 @@ namespace _App
         [SerializeField, Min(0.0f)] private float _hitStopDuration = 0.06f;
         [SerializeField, Range(0.0f, 1.0f)] private float _hitStopTimeScale;
 
+        [Header("Repeat Hits")]
+        [Tooltip("Allows this action to hit the same target more than once.")]
+        [SerializeField] private bool _allowRepeatedHits;
+        [SerializeField, Min(0.01f)] private float _repeatHitInterval = 0.18f;
+        [SerializeField, Range(2, 16)] private int _maxHitsPerTarget = 4;
+
         [Header("Lifecycle")]
         [SerializeField, Min(0.01f)] private float _durationSeconds = 1.3f;
         [SerializeField, Range(0.0f, 1.0f)] private float _recoveryStart = 0.6f;
@@ -347,7 +353,12 @@ namespace _App
                         : new CombatReactionId(_reactionId),
                     _hitStopDuration > 0.0f
                         ? new CombatHitStop(_hitStopDuration, _hitStopTimeScale)
-                        : CombatHitStop.Disabled),
+                        : CombatHitStop.Disabled,
+                    _allowRepeatedHits
+                        ? new CombatHitRepeatPolicy(
+                            _repeatHitInterval,
+                            _maxHitsPerTarget)
+                        : CombatHitRepeatPolicy.OncePerAction),
                 Mathf.Max(0.01f, _durationSeconds),
                 _recoveryStart,
                 _completionTime,

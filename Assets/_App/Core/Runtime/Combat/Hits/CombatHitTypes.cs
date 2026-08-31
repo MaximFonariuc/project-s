@@ -153,6 +153,7 @@ namespace _App
         public float VerticalKnockback { get; }
         public CombatReactionId ReactionId { get; }
         public CombatHitStop HitStop { get; }
+        public CombatHitRepeatPolicy RepeatPolicy { get; }
 
         public CombatHitDefinition(
             int damage,
@@ -160,7 +161,8 @@ namespace _App
             float knockback,
             float verticalKnockback,
             CombatReactionId reactionId,
-            CombatHitStop hitStop)
+            CombatHitStop hitStop,
+            CombatHitRepeatPolicy repeatPolicy)
         {
             if (damage < 0)
             {
@@ -185,6 +187,32 @@ namespace _App
             VerticalKnockback = verticalKnockback;
             ReactionId = reactionId;
             HitStop = hitStop;
+            RepeatPolicy = repeatPolicy;
+        }
+    }
+
+    internal readonly struct CombatHitRepeatPolicy
+    {
+        public static CombatHitRepeatPolicy OncePerAction => default;
+
+        public bool AllowsRepeatedHits => MaxHitsPerTarget > 1;
+        public float IntervalSeconds { get; }
+        public int MaxHitsPerTarget { get; }
+
+        public CombatHitRepeatPolicy(float intervalSeconds, int maxHitsPerTarget)
+        {
+            if (intervalSeconds <= 0.0f)
+            {
+                throw new ArgumentOutOfRangeException(nameof(intervalSeconds));
+            }
+
+            if (maxHitsPerTarget <= 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(maxHitsPerTarget));
+            }
+
+            IntervalSeconds = intervalSeconds;
+            MaxHitsPerTarget = maxHitsPerTarget;
         }
     }
 
