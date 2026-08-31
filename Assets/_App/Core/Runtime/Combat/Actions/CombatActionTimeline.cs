@@ -103,6 +103,13 @@ namespace _App
                     nameof(hitDefinition));
             }
 
+            if (hitboxWindow.IsEnabled && hitDefinition.Damage <= 0)
+            {
+                throw new ArgumentException(
+                    "A damage hitbox requires positive damage.",
+                    nameof(hitDefinition));
+            }
+
             if ((movementIntent.AllowJump || movementIntent.AllowDodge) &&
                 !cancelWindow.IsEnabled)
             {

@@ -203,6 +203,11 @@ Health.Damaged -> target-local reaction / incoming hit stop
   `Hitbox`; movement capsule, environment и weapon geometry не заполняют overlap
   buffer. Переполнение bounded buffer выдаёт одно предупреждение за activation.
 - `Hurtbox` предоставляет zone metadata и путь к владельцу здоровья. Он не вычисляет итог атаки.
+- Текущий resolver является damage pipeline: action с включённым hitbox обязана
+  иметь положительный base damage. Нулевая damage-атака не может притворяться
+  рабочим hit и отклоняется при сборке profile. Будущий guard/parry либо
+  stagger-only контакт должен получить отдельный явный resolver contract, а не
+  обходить это правило.
 - Movement capsule не является `Hurtbox`: попадания принимает только compound body rig, поэтому физический порядок overlap не подменяет выбранную зону тела.
 - `Health` — единственный owner текущего здоровья и подсчёта активных immunity leases. Lease очищается идемпотентно; отключение Health инвалидирует старые leases.
 - `CombatHitResolver` имеет scoped lifecycle, получает `ICombatClock` через
