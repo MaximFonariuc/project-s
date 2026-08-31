@@ -1822,6 +1822,7 @@ MonoBehaviour:
     m_Bits: 256
   _triggerInteraction: 2
   _maxSweepSteps: 8
+  _trail: {fileID: 0}
 --- !u!1 &6259878511723785107
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,6 +2012,7 @@ GameObject:
   - component: {fileID: 2854685979814448132}
   - component: {fileID: 2622462728040635144}
   - component: {fileID: 2687246746938096876}
+  - component: {fileID: 6530810466681403675}
   m_Layer: 6
   m_Name: DualSwordPrototype_Left
   m_TagString: Untagged
@@ -2077,6 +2079,26 @@ MonoBehaviour:
     m_Bits: 256
   _triggerInteraction: 2
   _maxSweepSteps: 8
+  _trail: {fileID: 6530810466681403675}
+--- !u!114 &6530810466681403675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6646336805387104713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2292e7653b24747a8f963a716b4eb6, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  _bladeCollider: {fileID: 2622462728040635144}
+  _lifetime: 0.14
+  _maxSamples: 24
+  _minimumSampleDistance: 0.0125
+  _endpointInset: 0.025
+  _headColor: {r: 0.8, g: 0.95, b: 1, a: 0.8}
+  _tailColor: {r: 0.15, g: 0.55, b: 1, a: 0}
 --- !u!1 &6839095307486156204
 GameObject:
   m_ObjectHideFlags: 0
@@ -2532,6 +2554,7 @@ MonoBehaviour:
     m_Bits: 256
   _triggerInteraction: 2
   _maxSweepSteps: 8
+  _trail: {fileID: 0}
 --- !u!1 &8852654604836842645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,6 +2597,7 @@ GameObject:
   - component: {fileID: 4247093410235562643}
   - component: {fileID: 7181005981218156373}
   - component: {fileID: 1089583841516544873}
+  - component: {fileID: 2384299887022447595}
   m_Layer: 6
   m_Name: DualSwordPrototype_Right
   m_TagString: Untagged
@@ -2640,6 +2664,26 @@ MonoBehaviour:
     m_Bits: 256
   _triggerInteraction: 2
   _maxSweepSteps: 8
+  _trail: {fileID: 2384299887022447595}
+--- !u!114 &2384299887022447595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140097491596382452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2292e7653b24747a8f963a716b4eb6, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  _bladeCollider: {fileID: 7181005981218156373}
+  _lifetime: 0.14
+  _maxSamples: 24
+  _minimumSampleDistance: 0.0125
+  _endpointInset: 0.025
+  _headColor: {r: 0.8, g: 0.95, b: 1, a: 0.8}
+  _tailColor: {r: 0.15, g: 0.55, b: 1, a: 0}
 --- !u!1 &9182343639657279201
 GameObject:
   m_ObjectHideFlags: 0

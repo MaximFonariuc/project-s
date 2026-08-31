@@ -9,6 +9,7 @@ namespace _App
         [SerializeField] private QueryTriggerInteraction _triggerInteraction =
             QueryTriggerInteraction.Collide;
         [SerializeField, Range(1, 12)] private int _maxSweepSteps = 8;
+        [SerializeField] private WeaponTrailRenderer _trail;
 
         private CombatAttackExecution _execution;
         private ICombatHitResolver _resolver;
@@ -27,6 +28,11 @@ namespace _App
             if (_hitbox == null)
             {
                 _hitbox = GetComponent<Collider>();
+            }
+
+            if (_trail == null)
+            {
+                _trail = GetComponent<WeaponTrailRenderer>();
             }
 
             if (_hitbox != null)
@@ -55,6 +61,7 @@ namespace _App
                 _hitbox.enabled = true;
                 _reportedSweepSaturation = false;
                 _sweep?.Begin();
+                _trail?.Begin();
             }
         }
 
@@ -68,6 +75,7 @@ namespace _App
             _execution = null;
             _resolver = null;
             _sweep?.Reset();
+            _trail?.End();
         }
 
         internal void SampleSweptHitbox()
@@ -90,6 +98,7 @@ namespace _App
         private void OnDisable()
         {
             DisableHitbox();
+            _trail?.Clear();
         }
 
         private void OnTriggerEnter(Collider other)

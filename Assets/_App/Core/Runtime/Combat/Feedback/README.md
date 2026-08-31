@@ -19,6 +19,8 @@ classDiagram
     class CinemachineCameraRig
     class ParticleSystem
     class AudioSource
+    class Weapon
+    class WeaponTrailRenderer
 
     CombatHitResolver ..|> ICombatHitEvents
     CombatFeedbackController --> ICombatHitEvents : confirmed outgoing hits
@@ -30,6 +32,7 @@ classDiagram
     ICameraImpactFeedback <|.. CinemachineCameraRig
     CombatImpactPresentation --> ParticleSystem
     CombatImpactPresentation --> AudioSource
+    Weapon --> WeaponTrailRenderer : gameplay hit-window intent
 ```
 
 - `CombatHitResult` is the only trigger. A hitbox overlap, Animator state or
@@ -50,3 +53,9 @@ classDiagram
 - Hit stop remains a separate gameplay-time concern. Particles, audio and the
   camera impulse are triggered from the same confirmed result but never request
   or release time scale themselves.
+- `WeaponTrailRenderer` is a bounded runtime ribbon sampled from the authored
+  blade collider. `Weapon` starts and ends sampling with its gameplay hitbox
+  window, so cancel, reaction, weapon switch and disable cannot leave a trail
+  emitting. Existing samples fade on scaled time and therefore hold naturally
+  during hit stop. The mesh, material and sample buffers are allocated once per
+  equipped blade and released with the weapon lifecycle.
