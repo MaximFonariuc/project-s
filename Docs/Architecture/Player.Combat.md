@@ -86,8 +86,10 @@ action с duration `1.933 s`, hitbox `0.40–0.58`, damage `24` и motor distanc
 
 Начало chain windows выбрано по измеренному pose seam retargeted clips, а не по
 произвольному общему значению. Steps `0` и `1` используют
-`MinimumVelocity(-1.5 m/s)` для ограниченного air hang до `0.58` normalized
-time. Finisher `combo.air.2` вместо hang задаёт контролируемый dive игрока
+`MinimumVelocity(0 m/s)` для полного air hang до `0.90` normalized time —
+границы completion каждого step. Политика сохраняет начатый подъём, но сразу
+останавливает падение и не возвращает gravity до перехода в следующий step либо
+завершения action. Finisher `combo.air.2` вместо hang задаёт контролируемый dive игрока
 `OverrideVelocity(-9 m/s)` и цели signed impact `VerticalKnockback(-12 m/s)`.
 Его planar knockback ограничен `0.35 m/s`, поэтому цель вбивается вниз, а не
 вылетает из contact pair. После подтверждённого приземления цель проходит
