@@ -62,6 +62,11 @@ classDiagram
   driver's non-disruptive `CompleteAction`, while `Cancel` requests a visual
   exit. This keeps action-scoped look policy and layer ownership bounded by the
   gameplay lifecycle.
+- Cross-layer preemption is explicit. A reaction/death entering the base layer
+  while a tracked sheathe/draw is active or finishing also returns
+  `SwitchWeapon Layer` to `Waiting`, preventing a stale upper-body weapon pose
+  from overlaying the higher-priority action. Driver reset enforces the same
+  neutral state.
 - It does not own clips, Animator states, transitions or blend durations.
 - Dodge uses action ID `1` with forward/backward variants. Ground light attacks
   use action ID `2` and variants `0...2`; air light attacks use action ID `5`

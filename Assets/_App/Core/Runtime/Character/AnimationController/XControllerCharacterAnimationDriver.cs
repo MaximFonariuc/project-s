@@ -141,6 +141,7 @@ namespace _App
                 return AnimationActionPlayback.Invalid;
             }
 
+            NeutralizeReplacedActionLayer(layerIndex);
             ClearReleasedActionTracking();
             _actionPlaybackRate = ResolveActionPlaybackRate(in request, statePath);
             ApplyPlaybackRate();
@@ -177,17 +178,15 @@ namespace _App
                 return;
             }
 
-            int cancelledLayerIndex = _actionLayerIndex;
+            bool cancelSwitchWeaponLayer =
+                _actionLayerIndex == _switchWeaponLayerIndex ||
+                _releasedActionLayerIndex == _switchWeaponLayerIndex;
             ResetActionPlaybackRate();
             ClearActionPresentationPolicy();
 
-            if (cancelledLayerIndex == _switchWeaponLayerIndex)
+            if (cancelSwitchWeaponLayer)
             {
-                _animator.CrossFadeInFixedTime(
-                    WeaponWaitingStateHash,
-                    ActionCancelCrossFadeSeconds,
-                    _switchWeaponLayerIndex,
-                    0.0f);
+                ReturnSwitchWeaponLayerToWaiting();
             }
             else if (_animator.HasState(
                          XControllerAnimationContract.BaseLayerIndex,
@@ -231,6 +230,7 @@ namespace _App
             _wasGrounded = true;
             _lookPose.Reset();
             ClearActionPresentationPolicy();
+            ReturnSwitchWeaponLayerToWaiting();
         }
 
         public void Dispose()
@@ -317,6 +317,36 @@ namespace _App
             _lookPose.SetActionWeights(1.0f, 1.0f);
             _actionLayerIndex = -1;
             _actionStateHash = 0;
+        }
+
+        private void NeutralizeReplacedActionLayer(int nextLayerIndex)
+        {
+            if (nextLayerIndex == _switchWeaponLayerIndex ||
+                (_actionLayerIndex != _switchWeaponLayerIndex &&
+                 _releasedActionLayerIndex != _switchWeaponLayerIndex))
+            {
+                return;
+            }
+
+            // Weapon presentation lives on an upper-body layer. A higher
+            // priority base-layer action (reaction/death) cannot replace it by
+            // crossfading the base layer alone, so explicitly remove the stale
+            // overlay before transferring ownership.
+            ReturnSwitchWeaponLayerToWaiting();
+        }
+
+        private void ReturnSwitchWeaponLayerToWaiting()
+        {
+            if (_switchWeaponLayerIndex < 0)
+            {
+                return;
+            }
+
+            _animator.CrossFadeInFixedTime(
+                WeaponWaitingStateHash,
+                ActionCancelCrossFadeSeconds,
+                _switchWeaponLayerIndex,
+                0.0f);
         }
 
         private void ReleaseActionPlaybackPolicy()

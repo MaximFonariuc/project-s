@@ -111,6 +111,11 @@ classDiagram
   active until Animator has actually left the action state. Interruption calls
   `CancelAction`, releases both immediately and requests an explicit visual exit
   from the active Animator layer.
+- Finite actions can live on different Animator layers. When a base-layer
+  reaction or death replaces an active/released weapon transition, the driver
+  explicitly crossfades `SwitchWeapon Layer` to `Waiting` before transferring
+  ownership. A stale upper-body sheathe/draw pose therefore cannot continue on
+  top of the higher-priority reaction.
 - Coordinator construction and actor disable both execute a full driver reset
   after feature owners stop. This clears stale look values, action ownership,
   per-source playback speed and Animator speed before a later re-enable; camera
@@ -157,6 +162,12 @@ and cancellation; it never selects a clip. `CancelAction` returns base-layer
 dodge/attack/reaction actions to `Move` and weapon-layer actions to `Waiting`.
 `CompleteAction` does not force a transition and lets the controller finish its
 authored exit.
+
+Cross-layer replacement is the exception to that non-disruptive rule: a
+higher-priority base-layer action cannot replace an upper-body state through a
+base-layer crossfade. The driver detects this boundary and neutralizes the
+tracked weapon layer; `Reset` performs the same neutralization for disable and
+re-enable lifecycle safety.
 
 Combat exits use normalized transition duration. For every semantic action
 slot, `exitTime + transitionDuration` equals the gameplay
