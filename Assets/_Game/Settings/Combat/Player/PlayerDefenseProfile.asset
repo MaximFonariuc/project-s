@@ -16,3 +16,4 @@ MonoBehaviour:
   _parryWindowSeconds: 0.12
   _parryRecoverySeconds: 0.35
   _movementScale: 0.35
+  _blockPushbackSpeed: 1.75

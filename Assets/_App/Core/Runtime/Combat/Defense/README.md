@@ -47,6 +47,11 @@ classDiagram
         +Disable()
         +Tick(deltaTime)
     }
+    class PlayerDefenseImpactController {
+        +Enable()
+        +Disable()
+    }
+    class ICharacterImpactMotor
     class PlayerAnimationCoordinator
     class PlayerCombatAvailability
     class PlayerActorController
@@ -59,6 +64,8 @@ classDiagram
     BodyColliderRig --> ICombatHitReceiver : optional runtime delegate
     PlayerDefenseController --> Health : unguarded hit
     PlayerDefenseController --> PlayerDefenseAnimationAdapter : confirmed events
+    PlayerDefenseController --> PlayerDefenseImpactController : confirmed events
+    PlayerDefenseImpactController --> ICharacterImpactMotor : block pushback
     PlayerDefenseAnimationAdapter --> PlayerAnimationCoordinator : presentation only
     PlayerDefenseController --> PlayerCombatAvailability : defense state
     PlayerActorController --> PlayerDefenseController : gameplay lifecycle and tick
@@ -81,6 +88,11 @@ classDiagram
   original hit-stop request remains in the result as fallback metadata;
   `CombatFeedbackSettings` can replace it per defensive outcome without
   changing the gameplay decision.
+- A confirmed block produces one authored `1.75 m/s` planar pushback through
+  `PlayerDefenseImpactController`. The adapter derives an away direction from
+  the accepted hit and submits velocity to `ICharacterImpactMotor`; it never
+  writes the Transform or owns collision. A successful parry keeps the defender
+  planted while the existing source-side recoil moves and staggers the attacker.
 - An unguarded or rear hit is delegated to `Health` unchanged. `Health` remains
   a temporary vitality owner and has no knowledge of guard rules.
 - While guarding, translation is scaled to `0.35`, facing remains fixed for

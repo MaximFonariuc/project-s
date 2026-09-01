@@ -12,6 +12,7 @@ namespace _App
         [SerializeField, Min(0.0f)] private float _parryWindowSeconds = 0.12f;
         [SerializeField, Min(0.0f)] private float _parryRecoverySeconds = 0.35f;
         [SerializeField, Range(0.0f, 1.0f)] private float _movementScale = 0.35f;
+        [SerializeField, Min(0.0f)] private float _blockPushbackSpeed = 1.75f;
 
         internal PlayerDefenseSettings CreateSettings()
         {
@@ -19,7 +20,8 @@ namespace _App
                 _guardArcDegrees,
                 _parryWindowSeconds,
                 _parryRecoverySeconds,
-                _movementScale);
+                _movementScale,
+                _blockPushbackSpeed);
         }
 
         private void OnValidate()
@@ -30,6 +32,7 @@ namespace _App
                 _parryWindowSeconds,
                 _parryRecoverySeconds);
             _movementScale = Mathf.Clamp01(_movementScale);
+            _blockPushbackSpeed = Mathf.Max(0.0f, _blockPushbackSpeed);
         }
     }
 
@@ -39,17 +42,20 @@ namespace _App
         public double ParryWindowSeconds { get; }
         public double ParryRecoverySeconds { get; }
         public PlayerMovementIntent MovementIntent { get; }
+        public float BlockPushbackSpeed { get; }
 
         public PlayerDefenseSettings(
             float guardArcDegrees,
             float parryWindowSeconds,
             float parryRecoverySeconds,
-            float movementScale)
+            float movementScale,
+            float blockPushbackSpeed)
         {
             RequireFinite(guardArcDegrees, nameof(guardArcDegrees));
             RequireFinite(parryWindowSeconds, nameof(parryWindowSeconds));
             RequireFinite(parryRecoverySeconds, nameof(parryRecoverySeconds));
             RequireFinite(movementScale, nameof(movementScale));
+            RequireFinite(blockPushbackSpeed, nameof(blockPushbackSpeed));
             if (guardArcDegrees <= 0.0f || guardArcDegrees > 360.0f)
             {
                 throw new ArgumentOutOfRangeException(nameof(guardArcDegrees));
@@ -66,6 +72,11 @@ namespace _App
                 throw new ArgumentOutOfRangeException(nameof(movementScale));
             }
 
+            if (blockPushbackSpeed < 0.0f)
+            {
+                throw new ArgumentOutOfRangeException(nameof(blockPushbackSpeed));
+            }
+
             GuardArcDegrees = guardArcDegrees;
             ParryWindowSeconds = parryWindowSeconds;
             ParryRecoverySeconds = parryRecoverySeconds;
@@ -74,6 +85,7 @@ namespace _App
                 true,
                 true,
                 false);
+            BlockPushbackSpeed = blockPushbackSpeed;
         }
 
         private static void RequireFinite(float value, string parameterName)

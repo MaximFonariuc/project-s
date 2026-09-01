@@ -13,6 +13,7 @@ namespace _App
         private readonly PlayerAttackRecoilController _attackRecoil;
         private readonly PlayerAttackRecoilAnimationAdapter _attackRecoilAnimation;
         private readonly PlayerDefenseController _defense;
+        private readonly PlayerDefenseImpactController _defenseImpact;
         private readonly PlayerDefenseAnimationAdapter _defenseAnimation;
         private readonly CharacterReactionController _reaction;
         private readonly GameplayTimeScaleController _gameplayTime;
@@ -35,6 +36,7 @@ namespace _App
             PlayerAttackRecoilController attackRecoil,
             PlayerAttackRecoilAnimationAdapter attackRecoilAnimation,
             PlayerDefenseController defense,
+            PlayerDefenseImpactController defenseImpact,
             PlayerDefenseAnimationAdapter defenseAnimation,
             CharacterReactionController reaction,
             GameplayTimeScaleController gameplayTime,
@@ -57,6 +59,8 @@ namespace _App
             _attackRecoilAnimation = attackRecoilAnimation ??
                 throw new ArgumentNullException(nameof(attackRecoilAnimation));
             _defense = defense ?? throw new ArgumentNullException(nameof(defense));
+            _defenseImpact = defenseImpact ??
+                throw new ArgumentNullException(nameof(defenseImpact));
             _defenseAnimation = defenseAnimation ??
                 throw new ArgumentNullException(nameof(defenseAnimation));
             _reaction = reaction ?? throw new ArgumentNullException(nameof(reaction));
@@ -90,6 +94,7 @@ namespace _App
                 _combat.Enable();
                 _defenseAnimation.Enable();
                 _defense.Enable();
+                _defenseImpact.Enable();
                 _reaction.Enable();
                 _hitStop.Enable();
                 _feedback.Enable();
@@ -121,6 +126,7 @@ namespace _App
             _feedback.Disable();
             _hitStop.Disable();
             _reaction.Disable();
+            _defenseImpact.Disable();
             _defense.Disable();
             _defenseAnimation.Disable();
             _combat.Disable();
