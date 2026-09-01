@@ -94,6 +94,8 @@ hit stop. Cooldown actions использует scaled gameplay time.
 Если transition был принят на catch-up hitbox pulse, его применение откладывается
 на один frame ради `LateUpdate` sweep. Команды, пришедшие в этот короткий
 интервал, всё ещё имеют старый `SourceActionId` и очищаются при commit edge.
+Внешний подтверждённый `Guard/Dodge/Jump` не является graph transition и имеет
+приоритет над catch-up hit: отменённая игроком атака не выдаёт позднее попадание.
 
 На completion boundary команда, которая не стала transition, но всё ещё жива,
 повторно проверяется через entry rules графа для актуального Grounded/Airborne
@@ -147,10 +149,11 @@ Gameplay input buffer также
 принятым через transition либо completion entry handoff. Dodge остаётся отдельным
 locomotion event, но его допустимость берётся из `AllowDodge && CancelWindow`
 текущего combat action. Прыжок использует симметричную policy
-`AllowJump && CancelWindow`; combat прерывается только после фактического
-`Character.Jumped`, опубликованного как `JumpAccepted`. Перенос dodge/item/jump в
-единый action graph не требуется, пока им не нужны собственные ветвящиеся
-transitions и buffering semantics.
+`AllowJump && CancelWindow`: наземный прыжок прерывает combat после принятия
+jump startup (`GroundJumpIntentAccepted`), а `JumpAccepted` подтверждает
+фактический motor jump. Повторная boundary идемпотентна. Перенос
+dodge/item/jump в единый action graph не требуется, пока им не нужны собственные
+ветвящиеся transitions и buffering semantics.
 Guard является удерживаемым semantic input, а не элементом combat buffer. Во
 время action он допускается по независимой policy
 `AllowGuard && CancelWindow`; до открытия окна удержание сохраняется у defense

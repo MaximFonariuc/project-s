@@ -148,6 +148,7 @@ classDiagram
     }
     class IPlayerLocomotionEvents {
         <<confirmed event port>>
+        +GroundJumpIntentAccepted
         +JumpAccepted
         +DodgeAccepted
     }
@@ -245,9 +246,12 @@ owner не снимает иммунитет второго. `Disable`, внеш
 
 Animation, Camera, VFX и последующие read-only consumers должны получать locomotion-результат через snapshot либо узкий consumer-specific port. Они не читают `Character`, input и state machine независимо и поэтому не создают конкурирующие копии состояния. `PlayerLocomotionAnimationAdapter` обнаруживает смену presentation state по последовательным snapshot и отправляет dodge request в `PlayerAnimationCoordinator`; сами locomotion states больше не зависят от animation presentation.
 
-`JumpAccepted` и `DodgeAccepted` публикуются после подтверждения motor/action и
-изолируют subscribers. Ошибка одного consumer не блокирует combat interruption
-и остальные реакции на уже принятое locomotion-действие.
+`GroundJumpIntentAccepted` публикуется после прохождения grounded/movement gates
+и фиксации jump startup. `JumpAccepted` подтверждает последующий
+`Character.Jumped`; повторная combat boundary безопасно идемпотентна.
+`DodgeAccepted` публикуется только после принятия запроса `PlayerDodgeAction`.
+События изолируют subscribers: ошибка одного consumer не блокирует остальные
+реакции на уже принятое locomotion-действие.
 
 ## Направление зависимостей
 
@@ -278,9 +282,9 @@ flowchart LR
 - Во время combat action `AllowJump / AllowDodge / AllowGuard` становятся true
   только внутри его `CancelWindow`. Locomotion и defense проверяют intent до
   запуска действия, а combat получает назад только подтверждённые
-  `JumpAccepted / DodgeAccepted / GuardStarted` и прерывает текущий action.
-  `JumpAccepted` публикуется из фактического `Character.Jumped`,
-  поэтому отклонённая motor-ом попытка не создаёт ложный cancel.
+  `GroundJumpIntentAccepted / JumpAccepted / DodgeAccepted / GuardStarted` и
+  прерывает текущий action. Наземный jump cancel происходит при принятом startup,
+  до импульса motor, чтобы animation handoff не задерживался на startup window.
 - Camera участвует только как basis для camera-relative направления через отдельный adapter; locomotion не зависит от Cinemachine API.
 - Traversal запрашивает инверсию gravity через `IPlayerLocomotionCommands` и меняет camera orientation только после подтверждения команды.
 - `PlayerActorController` немедленно передаёт `PlayerMovementIntent.Locked` при non-stable reaction и удерживает ограничения во время traversal. Поэтому jump/dodge callbacks не проходят между межfeature transition и следующим locomotion tick.
