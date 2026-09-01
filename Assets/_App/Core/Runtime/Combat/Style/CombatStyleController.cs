@@ -74,22 +74,35 @@ namespace _App
             }
 
             float deltaTime = Mathf.Max(0.0f, scaledDeltaTime);
+            float previousTimeSinceAward = _timeSinceAward;
             _timeSinceAward += deltaTime;
             if (_timeSinceAward < _settings.DecayDelay)
             {
                 return;
             }
 
+            bool chainExpired = _comboHitCount > 0;
+            if (chainExpired)
+            {
+                ClearChain();
+            }
+
+            float decayStart = Mathf.Max(
+                previousTimeSinceAward,
+                _settings.DecayDelay);
+            float decayDeltaTime = Mathf.Max(
+                0.0f,
+                _timeSinceAward - decayStart);
             float previousScore = _score;
             _score = Mathf.Max(
                 0.0f,
-                _score - _settings.ScoreDecayPerSecond * deltaTime);
+                _score - _settings.ScoreDecayPerSecond * decayDeltaTime);
             if (_score <= 0.0f)
             {
                 ClearChain();
             }
 
-            if (!Mathf.Approximately(previousScore, _score))
+            if (chainExpired || !Mathf.Approximately(previousScore, _score))
             {
                 PublishChanged();
             }

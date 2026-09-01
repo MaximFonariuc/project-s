@@ -60,6 +60,11 @@ classDiagram
 - Delay and decay use scaled gameplay time. Hit stop therefore freezes style
   decay together with the action timeline instead of consuming the grace
   period in real time.
+- The hit chain and recent-action variety expire when the decay delay is
+  crossed, while the accumulated style score continues to decay independently.
+  A later encounter therefore starts a new combo and does not inherit the old
+  repetition penalty. The first decay frame consumes only the portion of its
+  delta that lies beyond the delay boundary.
 - `ICombatStyleState` is the future UI boundary. A Passive View presenter may
   subscribe to `Changed`, but UI must not mutate score or combat state.
 - Enable, disable and scope disposal own all subscriptions. Disable returns the
