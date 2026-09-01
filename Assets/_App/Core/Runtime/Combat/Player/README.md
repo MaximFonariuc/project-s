@@ -184,7 +184,9 @@ reaction, disable, or another interruption.
 - The first two air steps follow the confirmed target while clamping descent to
   their authored `MinimumVelocity`. The third step is a slam: target-height
   tracking is disabled so its exact `-9 m/s` actor descent and `-12 m/s` target
-  impact cannot be replaced by a height-correction velocity.
+  impact cannot be replaced by a height-correction velocity. Its action supports
+  both environments so the landing frame does not terminate the authored impact
+  phase; graph topology still permits entry only from the airborne combo.
 - The named `skill.special` presentation maps to semantic action
   `SpecialAttack`, variant `0`, then to the existing `Attack/Skill` state. Its
   legality, hit window, cancel window and cooldown remain graph-owned.

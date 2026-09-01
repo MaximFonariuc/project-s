@@ -135,5 +135,7 @@ classDiagram
   air hang. Animator root motion never becomes position authority.
 - The Dual Swords slam preserves its authored wind-up: exact downward velocity
   starts at normalized `0.08`, shortly before the `0.11` contact window. This
-  keeps the blade active before a root-aligned actor can land while retaining
-  the full animation anticipation.
+  retains the clip's anticipation before the descent commits. The finisher is
+  valid in both airborne and grounded environments: it must start through the
+  airborne combo edge, but landing does not cancel its impact phase before the
+  blades reach the target.

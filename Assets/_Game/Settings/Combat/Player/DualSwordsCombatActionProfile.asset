@@ -324,7 +324,7 @@ MonoBehaviour:
       _targetHeightCorrectionSpeed: 6
       _maxTargetVerticalSpeed: 8
   - _id: combo.air.2
-    _environment: 2
+    _environment: 3
     _presentation: 2
     _comboIndex: 2
     _animationId: skill.special
