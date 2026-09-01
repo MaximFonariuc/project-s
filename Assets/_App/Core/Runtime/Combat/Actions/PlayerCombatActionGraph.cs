@@ -128,6 +128,28 @@ namespace _App
             return false;
         }
 
+        public bool HasConditionalTransition(
+            PlayerCombatActionId sourceActionId,
+            PlayerCombatCommandId commandId)
+        {
+            if (!_transitions.TryGetValue(
+                    new PlayerCombatTransitionKey(sourceActionId, commandId),
+                    out List<PlayerCombatTransitionRule> candidates))
+            {
+                return false;
+            }
+
+            for (int i = 0; i < candidates.Count; i++)
+            {
+                if (candidates[i].Condition != PlayerCombatTransitionCondition.Any)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private static bool IsWindowOpen(
             in PlayerCombatTransitionRule transition,
             in CombatActionFrame frame,

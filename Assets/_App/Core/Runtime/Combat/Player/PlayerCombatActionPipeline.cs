@@ -357,10 +357,18 @@ namespace _App
         private bool CanAcceptBufferedEntry(
             in InputBufferEntry<PlayerCombatCommandSample> entry)
         {
-            return entry.Action.HasSourceAction &&
+            PlayerCombatCommandSample command = entry.Action;
+            return command.HasSourceAction &&
+                   // A command captured for an OnHit/OnWhiff edge keeps that
+                   // meaning until its source action ends. Letting it degrade
+                   // into a normal entry would turn a failed confirm into a
+                   // delayed standalone attack.
+                   !ActiveActionGraph.HasConditionalTransition(
+                       command.SourceActionId,
+                       command.CommandId) &&
                    _availability.CanEnterAction &&
                    ActiveActionGraph.TryResolveEntry(
-                       entry.Action.CommandId,
+                       command.CommandId,
                        GetEnvironment(),
                        out PlayerCombatAction target) &&
                    _availability.CanUseAction(target, _activeWeapon);

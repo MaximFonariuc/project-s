@@ -199,7 +199,10 @@ reaction, disable, or another interruption.
 - A command that is still alive in the input buffer at action completion is
   resolved again through the graph's entry rules. This lets a late recovery
   input start the next valid ground/air action instead of being cleared merely
-  because it missed the previous action's chain or cancel window.
+  because it missed the previous action's chain or cancel window. Commands
+  captured for conditional `OnHit` or `OnWhiff` edges are the exception: a
+  failed condition consumes their source context and cannot silently degrade
+  into a standalone entry after recovery.
 - An airborne-only action is interrupted as soon as the actor lands. The
   session closes its hitbox and releases combat motion; the controller
   crossfades the Animator back to locomotion instead of letting an aerial clip
