@@ -34,6 +34,7 @@ namespace _App
         private float _lostLineOfSightTime;
         private bool _hasTarget;
         private bool _targetSwitchArmed;
+        private bool _reportedBufferSaturation;
         private bool _enabled;
 
         public event Action<Transform> TargetChanged;
@@ -423,6 +424,17 @@ namespace _App
 
                 if (hits < _overlapBuffer.Length || _overlapBuffer.Length >= MaxBufferSize)
                 {
+                    if (hits >= _overlapBuffer.Length &&
+                        _overlapBuffer.Length >= MaxBufferSize &&
+                        !_reportedBufferSaturation)
+                    {
+                        _reportedBufferSaturation = true;
+                        Debug.LogWarning(
+                            "Player targeting filled its maximum overlap buffer. " +
+                            "Narrow the Enemy layer density or increase the bounded limit.",
+                            _actor.Root);
+                    }
+
                     return hits;
                 }
 
