@@ -164,6 +164,12 @@ reaction, disable, or another interruption.
   rules once the motor confirms the jump. Weapon switching is rejected during
   the same reservation instead of briefly starting a transition that takeoff
   would immediately cancel.
+- A dodge press buffered immediately before the cancel boundary is consumed on
+  the first legal frame. Combat closes before character simulation enters dodge;
+  an attack pressed during the dodge may use the Ready-entry buffer, but cannot
+  start until locomotion returns control. A held guard likewise waits for the
+  first legal cancel frame, while combat commands received during active guard
+  are rejected rather than replayed after guard release.
 - Accepted dodge startup is also a locomotion reservation. It closes combat and
   weapon-switch admission until character simulation confirms dodge mode, so a
   fast render Update cannot insert a ground attack between input acceptance and
