@@ -452,7 +452,7 @@ namespace _App
 
         private void OnGuardStarted()
         {
-            InterruptAttack();
+            InterruptAttack(CombatActionEndReason.Defense);
             DiscardPendingCommands();
         }
 

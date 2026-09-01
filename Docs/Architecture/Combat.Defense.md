@@ -129,6 +129,9 @@ Recovery имеет приоритет над удерживаемой защи�
   stale delegate после reload/destroy не остаётся.
 - Presentation и pushback adapters подписаны только на подтверждённый
   `Defended`; они не могут изменить damage outcome или defense state.
+- При допустимом attack cancel combat освобождает animation ownership без
+  промежуточного `CancelAction` в locomotion. Следующий синхронный Defense
+  request создаёт прямой `Attack -> Guard` переход в том же simulation tick.
 
 Текущие численные значения и краткое описание runtime integration находятся в
 `Assets/_App/Core/Runtime/Combat/Defense/README.md`.

@@ -132,6 +132,9 @@ classDiagram
 - `PlayerDefenseAnimationAdapter` observes `GuardStarted`, `GuardEnded` and
   confirmed defense results. It cannot decide whether defense succeeded and
   never changes health, combat phase or locomotion state.
+- An authored attack-to-guard cancel releases Combat animation ownership without
+  first crossfading to locomotion. The subsequent Defense request therefore
+  produces one direct `Attack -> Guard` transition in the same simulation tick.
 - A block or parry presentation is allowed to finish even if guard is released
   during the clip. Holding guard returns to the final guard pose; releasing it
   returns to locomotion after the impact clip completes. Presentation time is

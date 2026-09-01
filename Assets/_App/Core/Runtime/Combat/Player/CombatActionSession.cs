@@ -13,6 +13,7 @@ namespace _App
         Landed,
         Interrupted,
         Reaction,
+        Defense,
         Parried,
         Cancelled,
         Disabled,
