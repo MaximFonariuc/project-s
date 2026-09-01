@@ -128,6 +128,9 @@ classDiagram
   captured earlier, but it cannot close the source execution before its final
   active frame has been sampled. This keeps rapid input responsive without
   shortening a strike's effective contact window.
+- Ground motion stopping distance is authored per clip reach. The second Dual
+  Swords light step uses `0.70 m`; sharing the longer steps' `0.80 m` boundary
+  suppresses its approach before the shorter transverse swing can make contact.
 - Air actions use motor-owned `MinimumVelocity` and planar intents for a bounded
   air hang. Animator root motion never becomes position authority.
 - The Dual Swords slam preserves its authored wind-up: exact downward velocity

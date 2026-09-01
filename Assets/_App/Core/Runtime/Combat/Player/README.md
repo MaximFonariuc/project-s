@@ -217,6 +217,10 @@ reaction, disable, or another interruption.
   saturation, up to a hard limit of 256. Compound hurtbox crowds therefore do
   not silently lose contacts at the two-character boundary, while the hot path
   remains allocation-free after its observed density has been accommodated.
+- Weapon colliders are gameplay volumes rather than exact mesh shells. The
+  current Dual Swords capsules use a `0.14` local radius (`0.07 m` at the
+  character's `0.5` visual scale), enough to cover the measured transverse
+  swing gap without replacing action-specific reach or target filtering.
 - `Cancel()` asks the XController adapter to crossfade to locomotion when
   gameplay interrupts an action. Normal completion lets the controller use its
   authored exit transition.

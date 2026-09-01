@@ -128,7 +128,7 @@ MonoBehaviour:
       _overrideVerticalVelocityOnImpulse: 1
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
-      _targetStoppingDistance: 0.8
+      _targetStoppingDistance: 0.7
       _allowTargetAssist: 1
       _targetAssistDistance: 4.5
       _targetAssistAngle: 50
