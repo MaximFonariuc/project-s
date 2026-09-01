@@ -8,26 +8,35 @@ namespace _App
     public sealed class PlayerAttackRecoilAuthoring
     {
         [SerializeField, Min(0.01f)] private float _parryDuration = 0.55f;
+        [SerializeField, Min(0.0f)] private float _planarSpeed = 2.75f;
 
         internal PlayerAttackRecoilSettings Build()
         {
-            return new PlayerAttackRecoilSettings(_parryDuration);
+            return new PlayerAttackRecoilSettings(_parryDuration, _planarSpeed);
         }
     }
 
     internal sealed class PlayerAttackRecoilSettings
     {
         public float ParryDuration { get; }
+        public float PlanarSpeed { get; }
 
-        public PlayerAttackRecoilSettings(float parryDuration)
+        public PlayerAttackRecoilSettings(float parryDuration, float planarSpeed)
         {
             CombatActionNumeric.RequireFinite(parryDuration, nameof(parryDuration));
+            CombatActionNumeric.RequireFinite(planarSpeed, nameof(planarSpeed));
             if (parryDuration <= 0.0f)
             {
                 throw new ArgumentOutOfRangeException(nameof(parryDuration));
             }
 
+            if (planarSpeed < 0.0f)
+            {
+                throw new ArgumentOutOfRangeException(nameof(planarSpeed));
+            }
+
             ParryDuration = parryDuration;
+            PlanarSpeed = planarSpeed;
         }
     }
 
@@ -78,6 +87,7 @@ namespace _App
     {
         private readonly CombatActionSession _actionSession;
         private readonly IPlayerCombatActor _actor;
+        private readonly ICharacterImpactMotor _impactMotor;
         private readonly PlayerAttackRecoilSettings _settings;
         private readonly Transform _eventContext;
 
@@ -95,11 +105,14 @@ namespace _App
         public PlayerAttackRecoilController(
             CombatActionSession actionSession,
             IPlayerCombatActor actor,
+            ICharacterImpactMotor impactMotor,
             PlayerAttackRecoilSettings settings)
         {
             _actionSession = actionSession ??
                 throw new ArgumentNullException(nameof(actionSession));
             _actor = actor ?? throw new ArgumentNullException(nameof(actor));
+            _impactMotor = impactMotor ??
+                throw new ArgumentNullException(nameof(impactMotor));
             _settings = settings ?? throw new ArgumentNullException(nameof(settings));
             _eventContext = actor.Root;
         }
@@ -180,12 +193,34 @@ namespace _App
                     -hit.Direction,
                     up,
                     _actor.Forward);
+            ApplyPlanarRecoil(in hit);
             _remainingDuration = _settings.ParryDuration;
             _snapshot = new PlayerAttackRecoilSnapshot(
                 in hit,
                 direction,
                 _remainingDuration);
             SafeEvent.Publish(Started, _snapshot, _eventContext);
+        }
+
+        private void ApplyPlanarRecoil(in CombatHitResult hit)
+        {
+            if (_settings.PlanarSpeed <= 0.0f)
+            {
+                return;
+            }
+
+            Vector3 up = _impactMotor.Up;
+            Vector3 away = Vector3.ProjectOnPlane(-hit.Direction, up);
+            if (away.sqrMagnitude <= 0.0001f)
+            {
+                away = Vector3.ProjectOnPlane(-_actor.Forward, up);
+            }
+
+            if (away.sqrMagnitude > 0.0001f)
+            {
+                _impactMotor.ApplyKnockback(
+                    away.normalized * _settings.PlanarSpeed);
+            }
         }
 
         private void EndRecoil(PlayerAttackRecoilEndReason reason)

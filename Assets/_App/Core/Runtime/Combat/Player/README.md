@@ -23,6 +23,8 @@ classDiagram
     class PlayerAnimatorLoadout
     class AnimatorOverrideController
     class CombatActionSession
+    class PlayerAttackRecoilController
+    class ICharacterImpactMotor
     class ICombatAttackOutcomeReceiver {
         <<interface>>
     }
@@ -65,6 +67,8 @@ classDiagram
     PlayerCombatActionPipeline --> IPlayerCombatAnimation
     PlayerCombatActionPipeline --> CombatActionSession
     CombatActionSession ..|> ICombatAttackOutcomeReceiver
+    CombatActionSession --> PlayerAttackRecoilController : confirmed parry
+    PlayerAttackRecoilController --> ICharacterImpactMotor : bounded planar recoil
     PlayerCombatController --> PlayerWeaponTransitionSession
     PlayerCombatController --> PlayerCombatAvailability
     IPlayerCombatAnimation <|.. PlayerCombatAnimationAdapter
@@ -133,6 +137,12 @@ reaction, disable, or another interruption.
   `Parried` is an explicit end reason: the hit window closes and the running
   action is interrupted immediately. `Blocked` remains a confirmed contact but
   does not silently cancel the authored attack recovery.
+- A confirmed parry also enters a separate source-side recoil state. It locks
+  movement and new actions for the authored `0.55 s`, drives the shared
+  reaction presentation, and submits one `2.75 m/s` planar impulse away from
+  the defender through `ICharacterImpactMotor`. Collision, grounding and the
+  resulting velocity remain owned by `CharacterMotor`; combat never writes the
+  Transform directly.
 - The command inbox captures the source action and its normalized time when the
   semantic input arrives. Timeline advancement cannot move a press into a
   different rapid/delayed branch during a slow frame; commands received together

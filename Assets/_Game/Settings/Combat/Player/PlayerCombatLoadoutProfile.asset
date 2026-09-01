@@ -94,6 +94,7 @@ MonoBehaviour:
         _duplicatePolicy: 2
   _attackRecoil:
     _parryDuration: 0.55
+    _planarSpeed: 2.75
   _movesets:
   - _weaponType: 1
     _actionProfile: {fileID: 11400000, guid: facf8498f1d76a741b2d741f46205645, type: 2}
