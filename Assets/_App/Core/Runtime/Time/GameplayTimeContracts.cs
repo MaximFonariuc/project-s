@@ -7,18 +7,23 @@ namespace _App
 
         public GameplayTimeScaleRequest(float duration, float scale)
         {
-            if (duration <= 0.0f)
+            if (!IsFinite(duration) || duration <= 0.0f)
             {
                 throw new System.ArgumentOutOfRangeException(nameof(duration));
             }
 
-            if (scale < 0.0f || scale > 1.0f)
+            if (!IsFinite(scale) || scale < 0.0f || scale > 1.0f)
             {
                 throw new System.ArgumentOutOfRangeException(nameof(scale));
             }
 
             Duration = duration;
             Scale = scale;
+        }
+
+        private static bool IsFinite(float value)
+        {
+            return !float.IsNaN(value) && !float.IsInfinity(value);
         }
     }
 

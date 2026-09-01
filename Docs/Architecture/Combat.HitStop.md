@@ -183,6 +183,10 @@ sequenceDiagram
 ## Lifecycle и границы
 
 - `GameplayTimeScaleController.Enable` захватывает baseline scale; `Disable` и `Dispose` всегда его восстанавливают.
+- `GameplayTimeScaleRequest` отклоняет неположительные и не finite duration,
+  а также scale вне `0...1` или `NaN/Infinity`. `Tick` аналогично отклоняет
+  не finite delta, поэтому повреждённое числовое значение не может рассинхронизировать
+  fixed-capacity slots и `_activeRequestCount`.
 - `CombatHitStopController.Enable/Disable` симметрично управляет двумя target-specific subscriptions.
 - `ICombatHitEvents` является global resolver stream, поэтому его callback принимает только result, чей `Source` равен local actor root либо является его дочерним объектом. Входящий hit приходит через local `Health.Damaged` ровно один раз.
 - VContainer registrations находятся только в `PlayerHitStopComposition`; runtime-код не вызывает `Resolve`.

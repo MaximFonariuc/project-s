@@ -109,6 +109,12 @@ namespace _App
 
         public void Tick(float unscaledDeltaTime)
         {
+            if (float.IsNaN(unscaledDeltaTime) ||
+                float.IsInfinity(unscaledDeltaTime))
+            {
+                throw new ArgumentOutOfRangeException(nameof(unscaledDeltaTime));
+            }
+
             if (!IsActive || unscaledDeltaTime <= 0.0f)
             {
                 return;
