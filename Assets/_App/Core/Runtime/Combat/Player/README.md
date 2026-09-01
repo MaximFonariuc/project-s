@@ -164,6 +164,11 @@ reaction, disable, or another interruption.
   rules once the motor confirms the jump. Weapon switching is rejected during
   the same reservation instead of briefly starting a transition that takeoff
   would immediately cancel.
+- Landing has the inverse handoff rule. An input already buffered against an
+  active air action is re-evaluated once against the grounded entry graph before
+  the air session releases animation ownership. A valid command therefore
+  crossfades directly into its ground action; an invalid or expired command is
+  discarded and locomotion resumes normally.
 - `PlayerCombatAvailability` owns live actor/reaction admission checks and the
   scaled-time cooldown dictionary. It asks the animation port only whether the
   semantic presentation exists; it does not run the graph or mutate combat

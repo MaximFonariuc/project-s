@@ -26,6 +26,7 @@ namespace _App
             _bufferedReadyEntryPredicate;
         private readonly CombatActionFrameHandler _combatFrameHandler;
         private PlayerCombatAction _acceptedBufferedAction;
+        private PlayerCombatCommandId _acceptedBufferedCommandId;
         private PlayerCombatActionGraph _activeActionGraph;
         private PlayerCombatActionGraph _readyEntryGraph;
         private EWeaponType _activeWeapon;
@@ -199,7 +200,7 @@ namespace _App
                     // Recording cooldown after the session would let dodge, jump,
                     // reaction or disable interruptions bypass the action cost.
                     _availability.RecordUse(action, weapon);
-                    _acceptedBufferedAction = null;
+                    ClearAcceptedTransition();
                     EnterExecuting(action);
                     SetActiveComboIndex(
                         action.Presentation.Kind is
@@ -218,6 +219,12 @@ namespace _App
 
                     if (sessionResult.EndReason == CombatActionEndReason.Landed)
                     {
+                        previousConfirmedHitTarget = null;
+                        if (TryResolveLandingEntry(out action))
+                        {
+                            continue;
+                        }
+
                         _animation.Cancel();
                         break;
                     }
@@ -227,12 +234,13 @@ namespace _App
                         // A parry invalidates every successor authored against the
                         // interrupted source action. Fresh input may be buffered
                         // later while the independent recoil state is active.
-                        _acceptedBufferedAction = null;
+                        ClearAcceptedTransition();
                         _inputBuffer.Clear();
                         break;
                     }
 
                     PlayerCombatAction acceptedAction = _acceptedBufferedAction;
+                    ClearAcceptedTransition();
                     Transform nextMotionTarget = ResolveNextMotionTarget(
                         acceptedAction,
                         previousConfirmedHitTarget,
@@ -248,7 +256,7 @@ namespace _App
             }
             finally
             {
-                _acceptedBufferedAction = null;
+                ClearAcceptedTransition();
                 _activeActionGraph = null;
                 _activeWeapon = EWeaponType.None;
             }
@@ -262,7 +270,7 @@ namespace _App
         public void Reset()
         {
             _inputBuffer.Clear();
-            _acceptedBufferedAction = null;
+            ClearAcceptedTransition();
             _activeActionGraph = null;
             _activeWeapon = EWeaponType.None;
             SetActiveComboIndex(null);
@@ -322,6 +330,7 @@ namespace _App
             // samples were authored against the old action and must not leak
             // through the next node as a fresh entry.
             _inputBuffer.Clear();
+            _acceptedBufferedCommandId = command.CommandId;
 
             return frame.IsHitboxCatchUpPulse
                 ? CombatActionEndReason.None
@@ -389,6 +398,35 @@ namespace _App
 
             action = null;
             return false;
+        }
+
+        private bool TryResolveLandingEntry(out PlayerCombatAction action)
+        {
+            if (_acceptedBufferedAction == null)
+            {
+                return TryConsumeBufferedEntry(out action);
+            }
+
+            PlayerCombatCommandId commandId = _acceptedBufferedCommandId;
+            ClearAcceptedTransition();
+            if (_availability.CanEnterAction &&
+                ActiveActionGraph.TryResolveEntry(
+                    commandId,
+                    GetEnvironment(),
+                    out action) &&
+                _availability.CanUseAction(action, _activeWeapon))
+            {
+                return true;
+            }
+
+            action = null;
+            return false;
+        }
+
+        private void ClearAcceptedTransition()
+        {
+            _acceptedBufferedAction = null;
+            _acceptedBufferedCommandId = default;
         }
 
         private bool TryStoreDuringActiveAction(
