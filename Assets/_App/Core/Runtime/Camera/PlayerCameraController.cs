@@ -286,6 +286,11 @@ namespace _App
 
         private void SetCursorActive(bool active)
         {
+            if (IsCursorActive != active)
+            {
+                ResetAngularSmoothing();
+            }
+
             IsCursorActive = active;
             Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = active;
@@ -299,7 +304,14 @@ namespace _App
             }
 
             Mode = mode;
+            ResetAngularSmoothing();
             SafeEvent.Publish(ModeChanged, mode, _actor.Root);
+        }
+
+        private void ResetAngularSmoothing()
+        {
+            _yawSmoothVelocity = 0.0f;
+            _pitchSmoothVelocity = 0.0f;
         }
 
         private static float NormalizeAngle(float angle)

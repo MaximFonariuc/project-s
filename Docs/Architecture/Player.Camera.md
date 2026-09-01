@@ -127,6 +127,11 @@ flowchart LR
 
 `FreeLook` интегрирует look input в yaw/pitch с ограничением pitch. `TargetLock` плавно ориентирует follow target на `AimPosition`. При потере цели controller автоматически возвращается в `FreeLook`.
 
+Переход между `FreeLook` и `TargetLock`, а также вход или выход из cursor mode,
+обнуляет только velocity углового smoothing. Текущие yaw/pitch сохраняются,
+поэтому камера продолжает из фактической позы, но не наследует импульс старой
+цели при следующем lock-on.
+
 Camera follow/look origin задаётся отдельным root-relative transform и не может
 находиться внутри Animator hierarchy. Иначе поза головы двигает источник, из
 которого вычисляется следующая поза головы, создавая feedback-loop и скачки
