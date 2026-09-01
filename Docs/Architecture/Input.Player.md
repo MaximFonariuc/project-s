@@ -94,11 +94,11 @@ flowchart LR
   `rightStick/x` для gamepad и `stick/x` для joystick. Колесо меняет цель только
   при активном lock-on; в free-look оно продолжает управлять zoom камеры.
 - Light attack использует `ЛКМ / X`, heavy attack — `ПКМ / RT`.
-  Удержание `Shift` превращает как `ЛКМ`, так и `ПКМ` в `skill.special`; direct
+  Удержание `Alt` превращает как `ЛКМ`, так и `ПКМ` в `skill.special`; direct
   gamepad binding special остаётся на `D-pad Down`. Adapter разрешает modifier
   до публикации команды, поэтому обычная и special-атака не запускаются вместе.
 - Launcher использует `F / LB` и публикует `attack.launcher`.
-- Guard/parry использует `Q / LT`, dodge — `Left Alt / RB`.
+- Guard/parry использует `Q / LT`, dodge — `Shift / RB`.
 - Prototype debug controls изолированы от gameplay bindings: inversion gravity
   использует `F10`, управление cursor lock — `F11`.
 

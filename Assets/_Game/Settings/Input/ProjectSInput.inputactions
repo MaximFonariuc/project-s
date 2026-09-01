@@ -576,7 +576,7 @@
                 {
                     "name": "",
                     "id": "089aba26-d534-40af-be7a-c422e00a8e6f",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Keyboard>/alt",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -609,7 +609,7 @@
                 {
                     "name": "",
                     "id": "10e10b14-c690-49f5-bf4c-584b4a70031a",
-                    "path": "<Keyboard>/leftAlt",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
