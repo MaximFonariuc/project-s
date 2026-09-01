@@ -366,12 +366,12 @@ MonoBehaviour:
       _allowGuard: 0
       _faceMoveDirection: 1
       _useCombatMotion: 1
-      _combatMotionStart: 0.08
+      _combatMotionStart: 0
       _combatMotionEnd: 0.55
       _overridePlanarVelocity: 1
       _combatMotionDistance: 0.45
       _verticalMotionMode: 1
-      _combatVerticalVelocity: -9
+      _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
       _overrideVerticalVelocityOnImpulse: 1
       _faceCombatTarget: 1

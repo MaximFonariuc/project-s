@@ -371,7 +371,7 @@ MonoBehaviour:
       _overridePlanarVelocity: 1
       _combatMotionDistance: 0.45
       _verticalMotionMode: 1
-      _combatVerticalVelocity: -9
+      _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
       _overrideVerticalVelocityOnImpulse: 1
       _faceCombatTarget: 1

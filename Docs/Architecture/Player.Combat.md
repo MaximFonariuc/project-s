@@ -91,10 +91,11 @@ action с duration `1.933 s`, hitbox `0.40–0.58`, damage `24` и motor distanc
 поэтому серия остаётся на одной высоте. Если продолжения нет, gravity возвращается
 во время recovery вместо долгого зависания до completion. Вертикальный height
 tracking цели для этих steps отключён; planar/facing assist сохраняется.
-Finisher `combo.air.2` вместо hang задаёт контролируемый dive игрока
-`OverrideVelocity(-9 m/s)` и цели signed impact `VerticalKnockback(-12 m/s)`.
-Его planar knockback ограничен `0.35 m/s`, поэтому цель вбивается вниз, а не
-вылетает из contact pair. После подтверждённого приземления цель проходит
+Finisher `combo.air.2` удерживает игрока через `OverrideVelocity(0 m/s)` до
+`0.55`, затем возвращает gravity и начинает естественное падение с нулевой
+начальной вертикальной скорости. Только цель получает signed impact
+`VerticalKnockback(-12 m/s)`. Его planar knockback ограничен `0.35 m/s`, поэтому
+цель вбивается вниз, а не вылетает из contact pair. После подтверждённого приземления цель проходит
 `Airborne → Knockdown → GetUp`; приземление игрока завершает airborne action и
 возвращает locomotion authority. Planar и vertical displacement по-прежнему
 исполняет motor; Animator root motion отключён.
