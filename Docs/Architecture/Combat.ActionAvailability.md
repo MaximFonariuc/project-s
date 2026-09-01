@@ -38,6 +38,13 @@ classDiagram
     class ICharacterReactionState {
         +BlocksActions bool
     }
+    class IPlayerDefenseState {
+        +IsGuarding bool
+        +BlocksActions bool
+    }
+    class IPlayerAttackRecoilState {
+        +IsActive bool
+    }
     class IPlayerCombatAnimation {
         +CanPlayAction(character, weapon, action) bool
     }
@@ -56,6 +63,8 @@ classDiagram
     PlayerCombatActionPipeline --> PlayerCombatAvailability
     PlayerCombatAvailability --> IPlayerCombatActor : live actor gate
     PlayerCombatAvailability --> ICharacterReactionState : live reaction gate
+    PlayerCombatAvailability --> IPlayerDefenseState : guard / impact recovery gate
+    PlayerCombatAvailability --> IPlayerAttackRecoilState : source parry recoil gate
     PlayerCombatAvailability --> IPlayerCombatAnimation : presentation support
     PlayerCombatAvailability --> ICombatClock : cooldown time policy
     PlayerCombatAvailability --> PlayerCombatAction
@@ -71,11 +80,21 @@ weapon и combat-action contracts. Это не универсальный мод
 `CanEnterAction` вычисляется из актуального состояния при каждом обращении:
 
 - reaction state не блокирует действия;
+- ни Guard, ни block/parry impact recovery не активны;
+- source-side parry recoil не активен;
 - actor допускает атаку в текущем movement mode.
+
+`CanBufferEntry` отделён от немедленного admission. Он отклоняет команды во
+время удерживаемого Guard и после смерти, но позволяет сохранить поздний ввод
+во время hit reaction, dodge, block/parry recovery либо source-side recoil.
+Команда всё равно запускается только после `CanEnterAction`; её lifetime
+остаётся ограничен общим unscaled input buffer.
 
 `CanSwitchWeapon` сохраняет отдельную политику существующего поведения:
 
 - reaction state не блокирует действия;
+- ни Guard, ни block/parry impact recovery не активны;
+- source-side parry recoil не активен;
 - actor не находится в воздухе.
 
 Проверки `targetWeapon`, combat phase и lifecycle `enabled` остаются у публичного

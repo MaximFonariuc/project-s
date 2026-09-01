@@ -192,6 +192,10 @@ classDiagram
     class ICharacterReactionState {
         +BlocksActions bool
     }
+    class IPlayerDefenseState {
+        +IsGuarding bool
+        +BlocksActions bool
+    }
     class IPlayerLocomotionEvents {
         +JumpAccepted
         +DodgeAccepted
@@ -234,6 +238,7 @@ classDiagram
     PlayerCombatController --> IPlayerWeaponRig
     PlayerCombatController --> IPlayerCombatActor
     PlayerCombatAvailability --> ICharacterReactionState : reaction gate
+    PlayerCombatAvailability --> IPlayerDefenseState : guard / impact recovery gate
     PlayerCombatAvailability --> IPlayerAttackRecoilState : recoil gate
     PlayerCombatAvailability --> IPlayerCombatActor : actor gate
     PlayerCombatAvailability --> IPlayerCombatAnimation : presentation support
@@ -448,3 +453,11 @@ event и не отменяет атаку.
 modes и по-прежнему блокирует crouch и dodge. Поэтому воздушная ветка доступна
 после реального перехода locomotion в `Falling`, а climbing/custom modes не обходят
 actor gate.
+
+Guard и подтверждённые block/parry recovery не входят в combat state machine.
+Их единственный owner — `PlayerDefenseController`; combat читает только
+`IPlayerDefenseState.BlocksActions`. Пока recovery активен, новый action не
+стартует, но команда, введённая после отпускания Guard, может жить в shared
+unscaled buffer и начать entry в первый доступный тик. Recovery и defense
+presentation используют одни и те же authored durations, поэтому Animator не
+удерживает персонажа визуально после открытия gameplay admission.
