@@ -270,13 +270,14 @@ namespace _App
                 return FailTarget(out target, out direction, out distance, out height);
             }
 
-            Vector3 offset = aimPosition - _motor.Position;
-            Vector3 planarOffset = Vector3.ProjectOnPlane(offset, _motor.Up);
+            Vector3 planarOffset = Vector3.ProjectOnPlane(
+                aimPosition - _motor.Position,
+                _motor.Up);
             distance = planarOffset.magnitude;
             direction = distance > DirectionEpsilon
                 ? planarOffset / distance
                 : Vector3.zero;
-            height = Vector3.Dot(offset, _motor.Up);
+            height = Vector3.Dot(target.position - _motor.Position, _motor.Up);
             return true;
         }
 

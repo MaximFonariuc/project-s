@@ -111,6 +111,10 @@ classDiagram
   an ascending target but cannot exceed the authored falling-speed limit.
   `OverrideVelocity` remains an exact command and is rejected when combined
   with tracking, preventing a profile from silently replacing a slam velocity.
+- Combat facing and planar approach use the target aim point, while vertical
+  tracking aligns actor roots. `TargetHeightOffset` therefore describes an
+  intentional root/pivot difference instead of accidentally lifting an actor
+  to a humanoid target's head or chest aim marker.
 - `CharacterMotor` and `CharacterMovement` remain the only authorities for
   position, collision, slopes and grounding.
 - The current Dual Swords profile contains independent grounded and airborne
@@ -126,3 +130,7 @@ classDiagram
   shortening a strike's effective contact window.
 - Air actions use motor-owned `MinimumVelocity` and planar intents for a bounded
   air hang. Animator root motion never becomes position authority.
+- The Dual Swords slam preserves its authored wind-up: exact downward velocity
+  starts at normalized `0.08`, shortly before the `0.11` contact window. This
+  keeps the blade active before a root-aligned actor can land while retaining
+  the full animation anticipation.
