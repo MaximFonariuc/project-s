@@ -138,7 +138,7 @@ classDiagram
   клинков и hurtbox colliders. Multi-hit action явно задаёт ограничение числа
   попаданий и минимальный scaled-time interval; hit stop замораживает этот interval.
 - `CombatActionExecutor` удерживает отдельный damage-immunity lease только внутри authored invulnerability window. Он не восстанавливает сохранённый boolean, поэтому не может снять иммунитет, которым одновременно владеет dodge или другой gameplay flow.
-- `MovementIntent.AllowJump / AllowDodge` являются policies текущего action, а
+- `MovementIntent.AllowJump / AllowDodge / AllowGuard` являются policies текущего action, а
   не отдельными временными окнами. Executor передаёт разрешения locomotion только
   при одновременно открытом `CancelWindow`; action с разрешённым movement cancel
   и выключенным cancel window отклоняется при построении definition.

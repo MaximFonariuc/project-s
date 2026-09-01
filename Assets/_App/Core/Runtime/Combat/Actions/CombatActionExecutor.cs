@@ -39,6 +39,7 @@ namespace _App
                     movement.TranslationScale,
                     _definition.MovementIntent.AllowJump && _currentFrame.CanCancel,
                     _definition.MovementIntent.AllowDodge && _currentFrame.CanCancel,
+                    _definition.MovementIntent.AllowGuard && _currentFrame.CanCancel,
                     movement.FaceMoveDirection);
             }
         }

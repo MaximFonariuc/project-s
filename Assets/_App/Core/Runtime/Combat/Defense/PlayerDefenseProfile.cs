@@ -111,6 +111,7 @@ namespace _App
                 movementScale,
                 true,
                 true,
+                true,
                 false);
             BlockPushbackSpeed = blockPushbackSpeed;
             BlockRecoverySeconds = blockRecoverySeconds;

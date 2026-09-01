@@ -291,6 +291,8 @@ namespace _App
         [SerializeField] private bool _allowJump;
         [Tooltip("Allows locomotion dodge only while this action's Cancel Window is open.")]
         [SerializeField] private bool _allowDodge = true;
+        [Tooltip("Allows guard entry only while this action's Cancel Window is open.")]
+        [SerializeField] private bool _allowGuard = true;
         [SerializeField] private bool _faceMoveDirection = true;
 
         [Header("Combat Motion")]
@@ -369,6 +371,7 @@ namespace _App
                     _translationScale,
                     _allowJump,
                     _allowDodge,
+                    _allowGuard,
                     _faceMoveDirection),
                 _useCombatMotion
                     ? new CombatMotionDefinition(
@@ -419,6 +422,7 @@ namespace _App
                 _commitTime = 0.5f,
                 _translationScale = 1.0f,
                 _allowDodge = false,
+                _allowGuard = false,
                 _faceMoveDirection = false,
                 _useCombatMotion = false
             };

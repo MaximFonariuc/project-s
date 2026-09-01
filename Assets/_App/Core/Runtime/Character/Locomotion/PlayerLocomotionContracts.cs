@@ -81,23 +81,28 @@ namespace _App
 
     public readonly struct PlayerMovementIntent
     {
-        public static PlayerMovementIntent Unrestricted => new PlayerMovementIntent(1.0f, true, true, false);
-        public static PlayerMovementIntent Locked => new PlayerMovementIntent(0.0f, false, false, false);
+        public static PlayerMovementIntent Unrestricted =>
+            new PlayerMovementIntent(1.0f, true, true, true, false);
+        public static PlayerMovementIntent Locked =>
+            new PlayerMovementIntent(0.0f, false, false, false, false);
 
         public float TranslationScale { get; }
         public bool AllowJump { get; }
         public bool AllowDodge { get; }
+        public bool AllowGuard { get; }
         public bool FaceMoveDirection { get; }
 
         public PlayerMovementIntent(
             float translationScale,
             bool allowJump,
             bool allowDodge,
+            bool allowGuard,
             bool faceMoveDirection)
         {
             TranslationScale = Mathf.Clamp01(translationScale);
             AllowJump = allowJump;
             AllowDodge = allowDodge;
+            AllowGuard = allowGuard;
             FaceMoveDirection = faceMoveDirection;
         }
     }

@@ -68,10 +68,10 @@ classDiagram
 - `CombatActionSession` surrounds one graph action with its execution id,
   confirmed outcome and hitbox lifecycle. The executor remains the lower-level
   timeline/motion mechanism; session end reason explains why the action stopped.
-- `Allow Jump` and `Allow Dodge` are action policies, not free-form movement
-  flags: locomotion receives them only while the authored `CancelWindow` is
-  open. Startup, hit-confirm and committed recovery therefore cannot be
-  bypassed accidentally.
+- `Allow Jump`, `Allow Dodge` and `Allow Guard` are action policies, not
+  free-form escape flags. They become effective only while the authored
+  `CancelWindow` is open. Startup, hit-confirm and committed recovery therefore
+  cannot be bypassed accidentally.
 - Startup is transactional: if a motion or immunity adapter fails while an
   execution is beginning, `Abort` rolls the partial state back and leaves no
   stale motion intent or active execution id.

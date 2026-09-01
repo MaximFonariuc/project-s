@@ -114,6 +114,10 @@ Recovery имеет приоритет над удерживаемой защи�
 - `BlocksActions` закрывает combat, weapon switch и traversal. После отпускания
   Guard поздний combat input можно сохранить в buffer, но исполнить только после
   завершения recovery.
+- Guard не является безусловным animation cancel. Из активной атаки он входит
+  только при `MovementIntent.AllowGuard && CancelWindow`; до открытия окна
+  удержание защёлкивается в defense owner, но не прерывает startup или hitbox.
+  Из `Ready` Guard выигрывает same-frame arbitration у ещё не исполненной атаки.
 
 ## Lifecycle
 

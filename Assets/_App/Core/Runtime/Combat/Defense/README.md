@@ -121,8 +121,11 @@ classDiagram
 - While guarding, translation is scaled to `0.35`, facing remains fixed for
   strafe movement, and jump/dodge stay admissible. An accepted jump or dodge
   exits guard in the same simulation tick.
-- Starting guard interrupts an active attack and clears pending combat input.
-  Attacks and weapon switching cannot start or buffer while guard is active.
+- Guard entered from `Ready` wins same-frame arbitration and clears pending
+  combat input. During an attack it can enter only when that action explicitly
+  enables `Allow Guard` and its authored `CancelWindow` is open; startup and
+  committed recovery remain protected. Attacks and weapon switching cannot
+  start or buffer while guard is active.
 - `BodyColliderRig` owns exactly one optional runtime hit receiver. Defense
   attaches on enable and detaches on disable, so scene reload and VContainer
   scope disposal cannot leave a stale delegate.

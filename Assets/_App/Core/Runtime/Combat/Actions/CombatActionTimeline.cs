@@ -133,11 +133,12 @@ namespace _App
                     nameof(hitDefinition));
             }
 
-            if ((movementIntent.AllowJump || movementIntent.AllowDodge) &&
+            if ((movementIntent.AllowJump || movementIntent.AllowDodge ||
+                 movementIntent.AllowGuard) &&
                 !cancelWindow.IsEnabled)
             {
                 throw new ArgumentException(
-                    "A movement-cancel-enabled combat action requires a cancel window.",
+                    "A cancel-enabled combat action requires a cancel window.",
                     nameof(movementIntent));
             }
 

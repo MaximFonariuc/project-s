@@ -53,6 +53,7 @@ MonoBehaviour:
       _translationScale: 0.2
       _allowJump: 0
       _allowDodge: 1
+      _allowGuard: 1
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
@@ -114,6 +115,7 @@ MonoBehaviour:
       _translationScale: 0.16
       _allowJump: 0
       _allowDodge: 1
+      _allowGuard: 1
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
@@ -175,6 +177,7 @@ MonoBehaviour:
       _translationScale: 0.12
       _allowJump: 0
       _allowDodge: 1
+      _allowGuard: 1
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
@@ -236,6 +239,7 @@ MonoBehaviour:
       _translationScale: 0.12
       _allowJump: 0
       _allowDodge: 0
+      _allowGuard: 0
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
@@ -297,6 +301,7 @@ MonoBehaviour:
       _translationScale: 0.12
       _allowJump: 0
       _allowDodge: 0
+      _allowGuard: 0
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
@@ -358,6 +363,7 @@ MonoBehaviour:
       _translationScale: 0.12
       _allowJump: 0
       _allowDodge: 0
+      _allowGuard: 0
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
@@ -419,6 +425,7 @@ MonoBehaviour:
       _translationScale: 0.08
       _allowJump: 0
       _allowDodge: 1
+      _allowGuard: 1
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
@@ -480,6 +487,7 @@ MonoBehaviour:
       _translationScale: 0.08
       _allowJump: 0
       _allowDodge: 1
+      _allowGuard: 1
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
@@ -541,6 +549,7 @@ MonoBehaviour:
       _translationScale: 0.08
       _allowJump: 0
       _allowDodge: 0
+      _allowGuard: 0
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
@@ -602,6 +611,7 @@ MonoBehaviour:
       _translationScale: 0
       _allowJump: 0
       _allowDodge: 0
+      _allowGuard: 0
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
@@ -663,6 +673,7 @@ MonoBehaviour:
       _translationScale: 0.08
       _allowJump: 0
       _allowDodge: 1
+      _allowGuard: 1
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0

@@ -35,6 +35,7 @@ classDiagram
         +TranslationScale float
         +AllowJump bool
         +AllowDodge bool
+        +AllowGuard bool
         +FaceMoveDirection bool
     }
     class PlayerLocomotionSnapshot {
@@ -273,11 +274,12 @@ flowchart LR
   их до ближайшего locomotion tick, получает уже актуальный `PlayerMovementIntent`
   и затем детерминированно потребляет. При одновременном jump+dodge приоритет имеет
   dodge; jump release всё равно освобождает существующий hold/glide.
-- Combat не вызывает `Character.SetMovementDirection`, `Jump` или `Dodge`. Он передаёт ограниченный intent: масштаб translation, разрешение jump/dodge и запрос разворота по input.
-- Во время combat action `AllowJump / AllowDodge` становятся true только внутри
-  его `CancelWindow`. Locomotion проверяет intent до запуска действия, а combat
-  получает назад только подтверждённые `JumpAccepted / DodgeAccepted` и прерывает
-  текущий action. `JumpAccepted` публикуется из фактического `Character.Jumped`,
+- Combat не вызывает `Character.SetMovementDirection`, `Jump`, `Dodge` или Guard. Он передаёт ограниченный intent: масштаб translation, разрешение jump/dodge/guard и запрос разворота по input.
+- Во время combat action `AllowJump / AllowDodge / AllowGuard` становятся true
+  только внутри его `CancelWindow`. Locomotion и defense проверяют intent до
+  запуска действия, а combat получает назад только подтверждённые
+  `JumpAccepted / DodgeAccepted / GuardStarted` и прерывает текущий action.
+  `JumpAccepted` публикуется из фактического `Character.Jumped`,
   поэтому отклонённая motor-ом попытка не создаёт ложный cancel.
 - Camera участвует только как basis для camera-relative направления через отдельный adapter; locomotion не зависит от Cinemachine API.
 - Traversal запрашивает инверсию gravity через `IPlayerLocomotionCommands` и меняет camera orientation только после подтверждения команды.

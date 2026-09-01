@@ -47,6 +47,7 @@ MonoBehaviour:
     _translationScale: 1
     _allowJump: 0
     _allowDodge: 0
+    _allowGuard: 0
     _faceMoveDirection: 0
     _useCombatMotion: 0
     _combatMotionStart: 0

@@ -32,8 +32,8 @@ pause-finisher только из-за позднего consumption.
 
 | Step | Duration | Hitbox | Chain | Cancel | Damage | Motor distance |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0 | 1.267 s | 0.27–0.46 | 0.44–0.72 | 0.44–0.86 | 10 | 0.55 m |
-| 1 | 1.000 s | 0.18–0.38 | 0.36–0.66 | 0.36–0.84 | 12 | 0.75 m |
+| 0 | 1.267 s | 0.27–0.46 | 0.46–0.72 | 0.46–0.86 | 10 | 0.55 m |
+| 1 | 1.000 s | 0.18–0.38 | 0.38–0.66 | 0.38–0.84 | 12 | 0.75 m |
 | 2 | 1.067 s | 0.16–0.34 | disabled | 0.52–0.86 | 15 | 0.70 m |
 
 `attack.heavy` не является четвёртым combo step. Это самостоятельная наземная
@@ -393,13 +393,13 @@ ground/air combo step и возвращается в `null` при named action,
 interruption и disable. Поэтому UI/debug consumers не выводят active combo из
 неоднозначной пары `Phase + 0`.
 
-`Allow Jump / Allow Dodge` в action profile не открывают locomotion-cancel на
+`Allow Jump / Allow Dodge / Allow Guard` в action profile не открывают cancel на
 всей длительности атаки. `CombatActionExecutor` совмещает эти policies с текущим
 `CancelWindow` и только затем публикует соответствующие разрешения. Locomotion
-остаётся владельцем jump/dodge; после подтверждённого `DodgeAccepted` combat
-либо фактического `JumpAccepted` он закрывает hitbox, motion, outcome и animation
-action через обычную interruption boundary. Неудачная попытка прыжка не создаёт
-event и не отменяет атаку.
+остаётся владельцем jump/dodge, а `PlayerDefenseController` — guard entry. После
+подтверждённого dodge/jump либо допустимого `GuardStarted` combat закрывает
+hitbox, motion, outcome и animation action через обычную interruption boundary.
+Неудачная попытка или ввод до окна action не отменяют.
 
 ## Lifecycle
 

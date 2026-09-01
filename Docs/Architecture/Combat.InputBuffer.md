@@ -151,3 +151,7 @@ locomotion event, но его допустимость берётся из `Allo
 `Character.Jumped`, опубликованного как `JumpAccepted`. Перенос dodge/item/jump в
 единый action graph не требуется, пока им не нужны собственные ветвящиеся
 transitions и buffering semantics.
+Guard является удерживаемым semantic input, а не элементом combat buffer. Во
+время action он допускается по независимой policy
+`AllowGuard && CancelWindow`; до открытия окна удержание сохраняется у defense
+owner и не обрывает startup либо hitbox.

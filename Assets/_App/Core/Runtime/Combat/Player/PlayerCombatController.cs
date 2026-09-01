@@ -68,6 +68,7 @@ namespace _App
                     intent.TranslationScale,
                     intent.AllowJump,
                     intent.AllowDodge,
+                    intent.AllowGuard,
                     false);
             }
         }

@@ -156,7 +156,8 @@ namespace _App
                 scaledDeltaTime,
                 !_reaction.BlocksActions &&
                 !_attackRecoil.IsActive &&
-                _combat.Phase == PlayerCombatPhase.Ready);
+                (_combat.Phase == PlayerCombatPhase.Ready ||
+                 _combat.MovementIntent.AllowGuard));
             _defenseAnimation.Tick(scaledDeltaTime);
             _traversal.Tick();
             _locomotion.SetMovementIntent(
