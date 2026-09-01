@@ -35,7 +35,7 @@ classDiagram
         +Dodge
         +TargetSwitch
         +Launcher
-        +SkillFlashStance
+        +SpecialModifier
     }
     class PlayerCombatCommandId {
         <<Project S semantic id>>
@@ -90,13 +90,17 @@ flowchart LR
 - `PlayerInputIds` — project configuration. GUID остаются стабильными после rename action/map.
 - `GameLifetimeScope` — единственное место, где встречаются VContainer, Unity source и project asset.
 - UI prompts могут подписаться на `ActiveDeviceChanged`, не выполняя device polling.
-- `TargetSwitch` передаёт нормализованную семантическую ось: `Z/C` для keyboard, `rightStick/x` для gamepad и `stick/x` для joystick. Gameplay не знает, какое устройство создало направление.
-- Light attack использует `ЛКМ / X`, heavy attack — `ПКМ / RT`, а
-  `skill.special` — `3 / D-pad Down`. Adapter переводит все три действия в
-  разные `PlayerCombatCommandId`; gameplay не сравнивает control path.
-- Launcher использует существующий binding `1 / LB` и публикует
-  `attack.launcher`. В `.inputactions` его authoring name пока остаётся legacy
-  `SkillBoneCrash`, но gameplay опирается на стабильный GUID и не знает это имя.
+- `TargetSwitch` передаёт семантическую ось: `scroll/y` для mouse,
+  `rightStick/x` для gamepad и `stick/x` для joystick. Колесо меняет цель только
+  при активном lock-on; в free-look оно продолжает управлять zoom камеры.
+- Light attack использует `ЛКМ / X`, heavy attack — `ПКМ / RT`.
+  Удержание `Shift` превращает как `ЛКМ`, так и `ПКМ` в `skill.special`; direct
+  gamepad binding special остаётся на `D-pad Down`. Adapter разрешает modifier
+  до публикации команды, поэтому обычная и special-атака не запускаются вместе.
+- Launcher использует `F / LB` и публикует `attack.launcher`.
+- Guard/parry использует `Q / LT`, dodge — `Left Alt / RB`.
+- Prototype debug controls изолированы от gameplay bindings: inversion gravity
+  использует `F10`, управление cursor lock — `F11`.
 
 ## От чего отказались
 

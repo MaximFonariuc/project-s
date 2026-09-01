@@ -115,7 +115,10 @@ namespace _App
                     ApplyFreeLookInput();
                 }
 
-                ApplyZoomInput();
+                if (!hasTarget)
+                {
+                    ApplyZoomInput();
+                }
                 _rig.SetOrientation(Quaternion.Euler(
                     _targetPitch,
                     _targetYaw,

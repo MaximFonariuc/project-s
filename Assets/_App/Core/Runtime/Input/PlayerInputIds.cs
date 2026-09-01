@@ -31,12 +31,10 @@ namespace _App
             InputActionId.Parse("19ec2b77-4857-4f9a-80c4-8732eda42644");
         public static readonly InputActionId Cursor =
             InputActionId.Parse("53128dc9-c047-4dad-9c4e-647ce57e9eb9");
-        // The Input Actions asset still carries the legacy SkillBoneCrash name.
-        // Keep its stable GUID while exposing the gameplay meaning used by Core.
         public static readonly InputActionId Launcher =
             InputActionId.Parse("365d05f1-d204-4f76-895c-1cd8937404b9");
-        public static readonly InputActionId SkillFlashStance =
-            InputActionId.Parse("b05e1097-622a-4a6b-b1de-035285359b05");
+        public static readonly InputActionId SpecialModifier =
+            InputActionId.Parse("a8d6ea77-e50c-4ceb-8495-55518ca1f03b");
         public static readonly InputActionId LockOn =
             InputActionId.Parse("928fc218-f281-4a43-b7df-69f46c823b8c");
         public static readonly InputActionId TargetSwitch =

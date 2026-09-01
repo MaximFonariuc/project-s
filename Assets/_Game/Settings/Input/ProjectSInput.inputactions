@@ -106,7 +106,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SkillBoneCrash",
+                    "name": "Launcher",
                     "type": "Button",
                     "id": "365d05f1-d204-4f76-895c-1cd8937404b9",
                     "expectedControlType": "Button",
@@ -115,13 +115,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SkillFlashStance",
+                    "name": "SpecialModifier",
                     "type": "Button",
-                    "id": "b05e1097-622a-4a6b-b1de-035285359b05",
+                    "id": "a8d6ea77-e50c-4ceb-8495-55518ca1f03b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "LockOn",
@@ -410,17 +410,6 @@
                 },
                 {
                     "name": "",
-                    "id": "b3c1c7f0-bd20-4ee7-a0f1-899b24bca6d7",
-                    "path": "<Keyboard>/enter",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f2e9ba44-c423-42a7-ad56-f20975884794",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
@@ -543,7 +532,7 @@
                 {
                     "name": "",
                     "id": "c1c7079c-9d56-4c09-8426-02b058f5f3fa",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/f10",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -554,7 +543,7 @@
                 {
                     "name": "",
                     "id": "66cd7a08-b3f3-4f6f-9678-b6b183e49f63",
-                    "path": "<Keyboard>/alt",
+                    "path": "<Keyboard>/f11",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -565,11 +554,11 @@
                 {
                     "name": "",
                     "id": "ef6cedff-fe59-4e0f-8400-f08777d87340",
-                    "path": "<Keyboard>/1",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "SkillBoneCrash",
+                    "action": "Launcher",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -580,18 +569,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "SkillBoneCrash",
+                    "action": "Launcher",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "7c422749-e800-470b-a756-4c77a07ae190",
-                    "path": "<Keyboard>/2",
+                    "id": "089aba26-d534-40af-be7a-c422e00a8e6f",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "SkillFlashStance",
+                    "action": "SpecialModifier",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -620,7 +609,7 @@
                 {
                     "name": "",
                     "id": "10e10b14-c690-49f5-bf4c-584b4a70031a",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Keyboard>/leftAlt",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -662,37 +651,15 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "1DAxis",
+                    "name": "",
                     "id": "5f306c6b-7658-4d67-aadf-62458e1578b2",
-                    "path": "1DAxis",
+                    "path": "<Mouse>/scroll/y",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "TargetSwitch",
-                    "isComposite": true,
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "Negative",
-                    "id": "301310af-bae7-43a4-b17f-a8101c00b3e1",
-                    "path": "<Keyboard>/z",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "TargetSwitch",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Positive",
-                    "id": "46caaeb1-80c5-452d-b00c-cd151f780da9",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "TargetSwitch",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
@@ -713,17 +680,6 @@
                     "processors": "",
                     "groups": "Joystick",
                     "action": "TargetSwitch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1cf59f28-b932-4bed-9373-264638f56b08",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "SpecialAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -763,7 +719,7 @@
                 {
                     "name": "",
                     "id": "72de918f-3405-4820-a3d7-91de6a37a644",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",

@@ -75,7 +75,6 @@ namespace _App
         public static readonly PlayerCombatCommandId LightAttack = new PlayerCombatCommandId("attack.light");
         public static readonly PlayerCombatCommandId HeavyAttack = new PlayerCombatCommandId("attack.heavy");
         public static readonly PlayerCombatCommandId Launcher = new PlayerCombatCommandId("attack.launcher");
-        public static readonly PlayerCombatCommandId FlashStance = new PlayerCombatCommandId("skill.flash-stance");
         public static readonly PlayerCombatCommandId Special = new PlayerCombatCommandId("skill.special");
 
     }

@@ -7,6 +7,7 @@ namespace _App
     public sealed class PlayerInputAdapter : IPlayerInput, IDisposable
     {
         private readonly IInputService _input;
+        private bool _specialModifierHeld;
         private bool _enabled;
 
         public event Action<PlayerCombatCommandId> CombatActionRequested;
@@ -69,6 +70,7 @@ namespace _App
             Look = Vector2.zero;
             Zoom = Vector2.zero;
             TargetSwitch = 0.0f;
+            _specialModifierHeld = false;
             _enabled = false;
         }
 
@@ -119,21 +121,29 @@ namespace _App
             {
                 GuardChanged?.Invoke(signal.Phase);
             }
+            else if (action == PlayerInputIds.SpecialModifier)
+            {
+                _specialModifierHeld = signal.Phase != InputSignalPhase.Canceled;
+            }
             else if (signal.Phase == InputSignalPhase.Performed)
             {
-                DispatchPerformed(action);
+                DispatchPerformed(action, signal.DeviceKind);
             }
         }
 
-        private void DispatchPerformed(InputActionId action)
+        private void DispatchPerformed(InputActionId action, InputDeviceKind deviceKind)
         {
             if (action == PlayerInputIds.Attack)
             {
-                CombatActionRequested?.Invoke(PlayerCombatCommandIds.LightAttack);
+                CombatActionRequested?.Invoke(ResolveMouseAttack(
+                    PlayerCombatCommandIds.LightAttack,
+                    deviceKind));
             }
             else if (action == PlayerInputIds.HeavyAttack)
             {
-                CombatActionRequested?.Invoke(PlayerCombatCommandIds.HeavyAttack);
+                CombatActionRequested?.Invoke(ResolveMouseAttack(
+                    PlayerCombatCommandIds.HeavyAttack,
+                    deviceKind));
             }
             else if (action == PlayerInputIds.Interact)
             {
@@ -155,10 +165,6 @@ namespace _App
             {
                 CombatActionRequested?.Invoke(PlayerCombatCommandIds.Launcher);
             }
-            else if (action == PlayerInputIds.SkillFlashStance)
-            {
-                CombatActionRequested?.Invoke(PlayerCombatCommandIds.FlashStance);
-            }
             else if (action == PlayerInputIds.SpecialAttack)
             {
                 CombatActionRequested?.Invoke(PlayerCombatCommandIds.Special);
@@ -175,6 +181,15 @@ namespace _App
             {
                 SwitchCombatStateRequested?.Invoke();
             }
+        }
+
+        private PlayerCombatCommandId ResolveMouseAttack(
+            PlayerCombatCommandId defaultCommand,
+            InputDeviceKind deviceKind)
+        {
+            return _specialModifierHeld && deviceKind == InputDeviceKind.KeyboardMouse
+                ? PlayerCombatCommandIds.Special
+                : defaultCommand;
         }
 
         private void UpdateActiveDevice(InputSignal signal)

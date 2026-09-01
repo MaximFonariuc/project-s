@@ -354,8 +354,9 @@ time Animator.
 Для named presentation тот же adapter читает `PlayerCombatAnimationId` из action
 и использует ожидаемую gameplay-длительность. Наземный `attack.heavy` отображается
 существующим `Attack/BaseAttack4`, а `skill.special` — `Attack/Skill`. ПКМ/RT
-выдают semantic command тяжёлой атаки; клавиша `3`/D-pad Down — special,
-независимо от control scheme.
+выдают semantic command тяжёлой атаки; `Shift+ЛКМ`, `Shift+ПКМ` и D-pad Down —
+special. Разрешение keyboard modifier выполняется в input adapter до публикации
+команды, поэтому combat graph остаётся независимым от control scheme.
 
 `CanPlayAction` проверяет только существование поддерживаемого presentation slot.
 Допустимость action по environment, cooldown, reaction state и graph transition

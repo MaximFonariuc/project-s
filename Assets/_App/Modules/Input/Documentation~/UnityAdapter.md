@@ -75,4 +75,4 @@ Runtime clone не изменяет исходный `.inputactions` asset и п
 3. Если action имеет gameplay-смысл Project S, его GUID добавляется в `PlayerInputIds`, а преобразование — в `PlayerInputAdapter`.
 4. Runtime переназначение выполняется через `IInputBindingOverrides`; JSON overrides передаётся Save-модулю без обратной зависимости.
 
-Control scheme не должен определять бизнес-смысл. Например, `SkillBoneCrash` существует как отдельный action; смысл больше не вычисляется из имени клавиши `1` или кнопки gamepad.
+Control scheme не должен определять бизнес-смысл. Например, `Launcher` существует как отдельный action; смысл не вычисляется из имени клавиши `F` или кнопки gamepad.
