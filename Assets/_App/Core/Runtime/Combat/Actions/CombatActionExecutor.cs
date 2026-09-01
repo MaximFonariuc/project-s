@@ -23,6 +23,7 @@ namespace _App
 
         public bool IsRunning => _activeExecutionId != 0;
         public CombatActionFrame CurrentFrame => _currentFrame;
+        public Transform SelectedMotionTarget => _motion.SelectedTarget;
         public PlayerMovementIntent MovementIntent
         {
             get

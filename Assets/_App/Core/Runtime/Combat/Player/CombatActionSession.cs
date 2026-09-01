@@ -25,16 +25,16 @@ namespace _App
     {
         public CombatActionRunResult RunResult { get; }
         public CombatActionEndReason EndReason { get; }
-        public GameObject LastConfirmedTarget { get; }
+        public GameObject PrimaryConfirmedTarget { get; }
 
         public CombatActionSessionResult(
             CombatActionRunResult runResult,
             CombatActionEndReason endReason,
-            GameObject lastConfirmedTarget)
+            GameObject primaryConfirmedTarget)
         {
             RunResult = runResult;
             EndReason = endReason;
-            LastConfirmedTarget = lastConfirmedTarget;
+            PrimaryConfirmedTarget = primaryConfirmedTarget;
         }
     }
 
@@ -112,7 +112,7 @@ namespace _App
                 return new CombatActionSessionResult(
                     runResult,
                     endReason,
-                    _outcome.LastConfirmedTarget);
+                    _outcome.PrimaryConfirmedTarget);
             }
             catch (OperationCanceledException)
             {
@@ -158,7 +158,9 @@ namespace _App
 
         public bool TryRecord(in CombatHitResult hit)
         {
-            return _outcome.TryRecord(in hit);
+            return _outcome.TryRecord(
+                in hit,
+                _executor.SelectedMotionTarget);
         }
 
         CombatActionDirective ICombatActionObserver.Observe(in CombatActionFrame frame)

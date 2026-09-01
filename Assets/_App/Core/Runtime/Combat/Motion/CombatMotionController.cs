@@ -27,6 +27,8 @@ namespace _App
         private bool _hasTargetHeightSample;
         private bool _isActive;
 
+        public Transform SelectedTarget { get; private set; }
+
         public CombatMotionController(
             ICharacterActionMotionMotor motor,
             IPlayerTargetingState targeting,
@@ -85,6 +87,11 @@ namespace _App
                 out Vector3 targetDirection,
                 out float targetDistance,
                 out float targetHeight);
+            if (hasTarget && target != null)
+            {
+                SelectedTarget = target;
+            }
+
             Vector3 forward = GetPlanarDirection(_motor.Forward);
             Vector3 motionForward = hasTarget && targetDirection.sqrMagnitude > DirectionEpsilon
                 ? targetDirection
@@ -132,6 +139,7 @@ namespace _App
             _assistedTarget = null;
             _assistedTargetObject = null;
             _sampledHeightTarget = null;
+            SelectedTarget = null;
             _actionDuration = 0.0f;
             _planarSpeed = 0.0f;
             _previousTargetHeight = 0.0f;

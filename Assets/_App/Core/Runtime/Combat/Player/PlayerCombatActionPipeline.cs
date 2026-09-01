@@ -244,7 +244,7 @@ namespace _App
                     Transform nextMotionTarget = ResolveNextMotionTarget(
                         acceptedAction,
                         previousConfirmedHitTarget,
-                        sessionResult.LastConfirmedTarget);
+                        sessionResult.PrimaryConfirmedTarget);
                     action = acceptedAction;
                     previousConfirmedHitTarget = nextMotionTarget;
                     if (action == null)

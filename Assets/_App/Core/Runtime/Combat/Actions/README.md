@@ -31,8 +31,14 @@ classDiagram
         +ExecuteAsync(action, weapon, target, observer, token)
         +Abort(reason)
     }
+    class CombatActionOutcome {
+        +PrimaryConfirmedTarget
+        +ConfirmedHitCount
+    }
     class CombatActionFrame
-    class CombatMotionController
+    class CombatMotionController {
+        +SelectedTarget Transform
+    }
     class IDamageImmunityTarget
     class ICharacterActionMotionMotor
     class IPlayerCombatTargetingQuery
@@ -47,6 +53,7 @@ classDiagram
     CombatActionExecutor --> CombatMotionController
     CombatActionExecutor --> IDamageImmunityTarget : window lease
     CombatActionSession --> CombatActionExecutor : owns one attack run
+    CombatActionSession --> CombatActionOutcome : deterministic hit result
     CombatMotionController --> ICharacterActionMotionMotor
     CombatMotionController --> IPlayerCombatTargetingQuery : one query per action
     ICharacterActionMotionMotor <|.. CharacterMotor
@@ -68,6 +75,10 @@ classDiagram
 - `CombatActionSession` surrounds one graph action with its execution id,
   confirmed outcome and hitbox lifecycle. The executor remains the lower-level
   timeline/motion mechanism; session end reason explains why the action stopped.
+- Multi-target actions select one confirmed successor target deterministically.
+  A target already selected by combat motion/lock-on wins when it was actually
+  hit; otherwise the closest confirmed target wins with a stable instance-id
+  tie-break. Physics overlap order therefore cannot redirect air chase.
 - `Allow Jump`, `Allow Dodge` and `Allow Guard` are action policies, not
   free-form escape flags. They become effective only while the authored
   `CancelWindow` is open. Startup, hit-confirm and committed recovery therefore
