@@ -185,7 +185,7 @@ The current action contract is:
 | --- | ---: | ---: | --- |
 | Dodge | 1 | 0 | `Locomotion/Roll/RollFront` |
 | Dodge | 1 | 1 | `Locomotion/Roll/RollBack` |
-| Light attack | 2 | 0...2 | `Attack/BaseAttack1...3` |
+| Light attack | 2 | 0...3 | `Attack/BaseAttack1...4` |
 | Air light attack | 5 | 0...2 | `Attack/AirAttack1...3` |
 | Grounded named special | 6 | 0 | `Attack/Skill` |
 | Grounded heavy attack | 7 | 0 | `Attack/BaseAttack4` |
@@ -347,6 +347,12 @@ remain authored in XController; an explicit gameplay cancellation uses a
 `0.12 s` crossfade back to locomotion. A new combo step or named special interrupts
 the current attack only after gameplay accepts its buffered command inside the
 configured chain/cancel window.
+
+The four ground-light slots are presentation capacity, not a global combo
+length. `DualSwords` reaches variants `0...2`; `Unarmed` reaches `0...3` through
+its own action graph. The Unarmed fourth step and its separately addressable
+heavy action currently share `BaseAttack4`, while remaining different gameplay
+actions.
 
 `AirAttack1...3` use standalone Humanoid `.anim` derivatives created from the
 Frank dual-sword zero-height source. The Frank catalog and all derived slots use

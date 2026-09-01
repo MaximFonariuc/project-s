@@ -20,17 +20,17 @@ MonoBehaviour:
     _animationId: skill.special
     _action:
       _useHitboxWindow: 1
-      _hitboxStart: 0.27
-      _hitboxEnd: 0.46
+      _hitboxStart: 0.28
+      _hitboxEnd: 0.5
       _useChainWindow: 1
-      _chainStart: 0.46
-      _chainEnd: 0.72
+      _chainStart: 0.5
+      _chainEnd: 0.76
       _useCancelWindow: 1
-      _cancelStart: 0.46
-      _cancelEnd: 0.86
+      _cancelStart: 0.5
+      _cancelEnd: 0.9
       _useMovementConstraintWindow: 1
       _movementConstraintStart: 0
-      _movementConstraintEnd: 0.74
+      _movementConstraintEnd: 0.78
       _useInvulnerabilityWindow: 0
       _invulnerabilityStart: 0
       _invulnerabilityEnd: 0
@@ -44,8 +44,8 @@ MonoBehaviour:
       _allowRepeatedHits: 0
       _repeatHitInterval: 0.18
       _maxHitsPerTarget: 4
-      _durationSeconds: 1.2666667
-      _recoveryStart: 0.68
+      _durationSeconds: 1.1666667
+      _recoveryStart: 0.72
       _completionTime: 0.96
       _hasCommit: 0
       _commitTime: 0.5
@@ -57,9 +57,9 @@ MonoBehaviour:
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
-      _combatMotionEnd: 0.34
+      _combatMotionEnd: 0.36
       _overridePlanarVelocity: 1
-      _combatMotionDistance: 0.55
+      _combatMotionDistance: 0.49
       _verticalMotionMode: 0
       _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
@@ -82,17 +82,17 @@ MonoBehaviour:
     _animationId: skill.special
     _action:
       _useHitboxWindow: 1
-      _hitboxStart: 0.18
-      _hitboxEnd: 0.38
+      _hitboxStart: 0.3
+      _hitboxEnd: 0.5
       _useChainWindow: 1
-      _chainStart: 0.38
-      _chainEnd: 0.66
+      _chainStart: 0.52
+      _chainEnd: 0.78
       _useCancelWindow: 1
-      _cancelStart: 0.38
-      _cancelEnd: 0.84
+      _cancelStart: 0.52
+      _cancelEnd: 0.9
       _useMovementConstraintWindow: 1
       _movementConstraintStart: 0
-      _movementConstraintEnd: 0.68
+      _movementConstraintEnd: 0.78
       _useInvulnerabilityWindow: 0
       _invulnerabilityStart: 0
       _invulnerabilityEnd: 0
@@ -106,8 +106,8 @@ MonoBehaviour:
       _allowRepeatedHits: 0
       _repeatHitInterval: 0.18
       _maxHitsPerTarget: 4
-      _durationSeconds: 1
-      _recoveryStart: 0.6
+      _durationSeconds: 1.1666667
+      _recoveryStart: 0.74
       _completionTime: 0.96
       _hasCommit: 0
       _commitTime: 0.5
@@ -119,9 +119,9 @@ MonoBehaviour:
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
-      _combatMotionEnd: 0.26
+      _combatMotionEnd: 0.4
       _overridePlanarVelocity: 1
-      _combatMotionDistance: 0.75
+      _combatMotionDistance: 0.29
       _verticalMotionMode: 0
       _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
@@ -144,17 +144,17 @@ MonoBehaviour:
     _animationId: skill.special
     _action:
       _useHitboxWindow: 1
-      _hitboxStart: 0.16
-      _hitboxEnd: 0.34
-      _useChainWindow: 0
-      _chainStart: 0
-      _chainEnd: 0
+      _hitboxStart: 0.35
+      _hitboxEnd: 0.55
+      _useChainWindow: 1
+      _chainStart: 0.56
+      _chainEnd: 0.82
       _useCancelWindow: 1
-      _cancelStart: 0.52
-      _cancelEnd: 0.86
+      _cancelStart: 0.64
+      _cancelEnd: 0.92
       _useMovementConstraintWindow: 1
       _movementConstraintStart: 0
-      _movementConstraintEnd: 0.62
+      _movementConstraintEnd: 0.78
       _useInvulnerabilityWindow: 0
       _invulnerabilityStart: 0
       _invulnerabilityEnd: 0
@@ -168,8 +168,8 @@ MonoBehaviour:
       _allowRepeatedHits: 0
       _repeatHitInterval: 0.18
       _maxHitsPerTarget: 4
-      _durationSeconds: 1.0666667
-      _recoveryStart: 0.54
+      _durationSeconds: 1.1666667
+      _recoveryStart: 0.76
       _completionTime: 0.96
       _hasCommit: 0
       _commitTime: 0.5
@@ -181,15 +181,77 @@ MonoBehaviour:
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
-      _combatMotionEnd: 0.25
+      _combatMotionEnd: 0.42
       _overridePlanarVelocity: 1
-      _combatMotionDistance: 0.7
+      _combatMotionDistance: 0.21
       _verticalMotionMode: 0
       _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
       _overrideVerticalVelocityOnImpulse: 1
       _faceCombatTarget: 1
       _combatMotionTargetSource: 0
+      _targetStoppingDistance: 0.8
+      _allowTargetAssist: 1
+      _targetAssistDistance: 4.5
+      _targetAssistAngle: 50
+      _trackTargetHeight: 0
+      _targetHeightOffset: 0
+      _targetHeightTolerance: 0.1
+      _targetHeightCorrectionSpeed: 6
+      _maxTargetVerticalSpeed: 8
+  - _id: combo.ground.3
+    _environment: 1
+    _presentation: 0
+    _comboIndex: 3
+    _animationId: skill.special
+    _action:
+      _useHitboxWindow: 1
+      _hitboxStart: 0.24
+      _hitboxEnd: 0.4
+      _useChainWindow: 0
+      _chainStart: 0
+      _chainEnd: 0
+      _useCancelWindow: 1
+      _cancelStart: 0.72
+      _cancelEnd: 0.94
+      _useMovementConstraintWindow: 1
+      _movementConstraintStart: 0
+      _movementConstraintEnd: 0.78
+      _useInvulnerabilityWindow: 0
+      _invulnerabilityStart: 0
+      _invulnerabilityEnd: 0
+      _damage: 24
+      _staggerDamage: 20
+      _knockback: 6.5
+      _verticalKnockback: 0
+      _reactionId: hit.heavy
+      _hitStopDuration: 0.08
+      _hitStopTimeScale: 0
+      _allowRepeatedHits: 0
+      _repeatHitInterval: 0.18
+      _maxHitsPerTarget: 4
+      _durationSeconds: 1.5
+      _recoveryStart: 0.8
+      _completionTime: 0.96
+      _hasCommit: 0
+      _commitTime: 0.5
+      _cooldown: 0
+      _translationScale: 0.08
+      _allowJump: 0
+      _allowDodge: 1
+      _allowGuard: 1
+      _faceMoveDirection: 1
+      _useCombatMotion: 1
+      _combatMotionStart: 0
+      _combatMotionEnd: 0.48
+      _overridePlanarVelocity: 1
+      _combatMotionDistance: 1.4
+      _verticalMotionMode: 0
+      _combatVerticalVelocity: 0
+      _combatVerticalImpulse: 0
+      _overrideVerticalVelocityOnImpulse: 1
+      _faceCombatTarget: 1
+      _combatMotionTargetSource: 2
       _targetStoppingDistance: 0.8
       _allowTargetAssist: 1
       _targetAssistDistance: 4.5
@@ -393,13 +455,13 @@ MonoBehaviour:
     _action:
       _useHitboxWindow: 1
       _hitboxStart: 0.24
-      _hitboxEnd: 0.68
+      _hitboxEnd: 0.62
       _useChainWindow: 0
       _chainStart: 0
       _chainEnd: 0
       _useCancelWindow: 1
       _cancelStart: 0.72
-      _cancelEnd: 0.9
+      _cancelEnd: 0.92
       _useMovementConstraintWindow: 1
       _movementConstraintStart: 0
       _movementConstraintEnd: 0.74
@@ -416,7 +478,7 @@ MonoBehaviour:
       _allowRepeatedHits: 0
       _repeatHitInterval: 0.18
       _maxHitsPerTarget: 4
-      _durationSeconds: 2
+      _durationSeconds: 1.6
       _recoveryStart: 0.72
       _completionTime: 0.97
       _hasCommit: 0
@@ -429,9 +491,9 @@ MonoBehaviour:
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
-      _combatMotionEnd: 0.66
+      _combatMotionEnd: 0.38
       _overridePlanarVelocity: 1
-      _combatMotionDistance: 0.75
+      _combatMotionDistance: 0.7
       _verticalMotionMode: 0
       _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
@@ -454,17 +516,17 @@ MonoBehaviour:
     _animationId: attack.heavy
     _action:
       _useHitboxWindow: 1
-      _hitboxStart: 0.4
-      _hitboxEnd: 0.58
+      _hitboxStart: 0.24
+      _hitboxEnd: 0.4
       _useChainWindow: 0
       _chainStart: 0
       _chainEnd: 0
       _useCancelWindow: 1
-      _cancelStart: 0.68
-      _cancelEnd: 0.9
+      _cancelStart: 0.72
+      _cancelEnd: 0.94
       _useMovementConstraintWindow: 1
       _movementConstraintStart: 0
-      _movementConstraintEnd: 0.66
+      _movementConstraintEnd: 0.78
       _useInvulnerabilityWindow: 0
       _invulnerabilityStart: 0
       _invulnerabilityEnd: 0
@@ -478,8 +540,8 @@ MonoBehaviour:
       _allowRepeatedHits: 0
       _repeatHitInterval: 0.18
       _maxHitsPerTarget: 4
-      _durationSeconds: 1.9333334
-      _recoveryStart: 0.68
+      _durationSeconds: 1.5
+      _recoveryStart: 0.8
       _completionTime: 0.96
       _hasCommit: 0
       _commitTime: 0.5
@@ -491,9 +553,9 @@ MonoBehaviour:
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
-      _combatMotionEnd: 0.52
+      _combatMotionEnd: 0.48
       _overridePlanarVelocity: 1
-      _combatMotionDistance: 0.9
+      _combatMotionDistance: 1.4
       _verticalMotionMode: 0
       _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
@@ -640,17 +702,17 @@ MonoBehaviour:
     _animationId: attack.heavy
     _action:
       _useHitboxWindow: 1
-      _hitboxStart: 0.4
-      _hitboxEnd: 0.58
+      _hitboxStart: 0.24
+      _hitboxEnd: 0.4
       _useChainWindow: 0
       _chainStart: 0
       _chainEnd: 0
       _useCancelWindow: 1
-      _cancelStart: 0.68
-      _cancelEnd: 0.9
+      _cancelStart: 0.72
+      _cancelEnd: 0.94
       _useMovementConstraintWindow: 1
       _movementConstraintStart: 0
-      _movementConstraintEnd: 0.66
+      _movementConstraintEnd: 0.78
       _useInvulnerabilityWindow: 0
       _invulnerabilityStart: 0
       _invulnerabilityEnd: 0
@@ -664,8 +726,8 @@ MonoBehaviour:
       _allowRepeatedHits: 0
       _repeatHitInterval: 0.18
       _maxHitsPerTarget: 4
-      _durationSeconds: 1.9333334
-      _recoveryStart: 0.68
+      _durationSeconds: 1.5
+      _recoveryStart: 0.8
       _completionTime: 0.96
       _hasCommit: 0
       _commitTime: 0.5
@@ -677,9 +739,9 @@ MonoBehaviour:
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
-      _combatMotionEnd: 0.52
+      _combatMotionEnd: 0.48
       _overridePlanarVelocity: 1
-      _combatMotionDistance: 0.9
+      _combatMotionDistance: 1.4
       _verticalMotionMode: 0
       _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
@@ -799,7 +861,7 @@ MonoBehaviour:
     _window: 1
     _condition: 0
     _useAcceptanceWindow: 1
-    _acceptanceStart: 0.46
+    _acceptanceStart: 0.5
     _acceptanceEnd: 0.6
     _useInputWindow: 0
     _inputStart: 0
@@ -810,8 +872,8 @@ MonoBehaviour:
     _window: 1
     _condition: 0
     _useAcceptanceWindow: 1
-    _acceptanceStart: 0.38
-    _acceptanceEnd: 0.54
+    _acceptanceStart: 0.52
+    _acceptanceEnd: 0.6
     _useInputWindow: 0
     _inputStart: 0
     _inputEnd: 0.75
@@ -854,7 +916,7 @@ MonoBehaviour:
     _window: 1
     _condition: 1
     _useAcceptanceWindow: 1
-    _acceptanceStart: 0.46
+    _acceptanceStart: 0.5
     _acceptanceEnd: 0.7
     _useInputWindow: 0
     _inputStart: 0
@@ -865,7 +927,7 @@ MonoBehaviour:
     _window: 1
     _condition: 1
     _useAcceptanceWindow: 1
-    _acceptanceStart: 0.38
+    _acceptanceStart: 0.52
     _acceptanceEnd: 0.66
     _useInputWindow: 0
     _inputStart: 0
@@ -903,3 +965,14 @@ MonoBehaviour:
     _useInputWindow: 1
     _inputStart: 0.67
     _inputEnd: 0.86
+  - _sourceActionId: combo.ground.2
+    _commandId: attack.light
+    _targetActionId: combo.ground.3
+    _window: 0
+    _condition: 0
+    _useAcceptanceWindow: 0
+    _acceptanceStart: 0.5
+    _acceptanceEnd: 0.75
+    _useInputWindow: 0
+    _inputStart: 0
+    _inputEnd: 0.75

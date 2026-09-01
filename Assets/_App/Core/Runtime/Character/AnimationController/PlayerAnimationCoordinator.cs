@@ -16,7 +16,9 @@ namespace _App
 
     internal static class PlayerAnimatorActions
     {
-        public const int LightAttackVariantCount = 3;
+        // Presentation capacity only. Each moveset's action graph decides how
+        // many of these variants are reachable in its combo chain.
+        public const int LightAttackVariantCount = 4;
         public const int AirAttackVariantCount = 3;
 
         public static readonly AnimationActionId Dodge = new AnimationActionId(1);

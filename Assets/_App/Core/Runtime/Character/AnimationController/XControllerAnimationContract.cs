@@ -164,7 +164,8 @@ namespace _App
                 {
                     Attack1StatePath,
                     Attack2StatePath,
-                    Attack3StatePath
+                    Attack3StatePath,
+                    Attack4StatePath
                 });
 
         private static readonly IReadOnlyList<string> ReactionStates =

@@ -130,6 +130,9 @@ authoring и не меняют словари во время gameplay.
 
 Новый input pattern добавляется новым semantic command и graph route. Gameplay
 не читает физическую кнопку и не просит Animator решить, какой удар следующий.
+Количество ударов также принадлежит graph: moveset с тремя steps просто не имеет
+четвёртого action/transition, а четырёхударный moveset добавляет их без изменения
+combat runtime или input-кода.
 
 ## Первый playable moveset
 

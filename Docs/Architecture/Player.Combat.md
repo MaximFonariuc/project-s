@@ -19,9 +19,10 @@ Combat не управляет motor напрямую. Он выдаёт тол�
 ### Ground
 
 Одна команда `attack.light` входит в `combo.ground.0`. Следующие команды сначала
-попадают в `CombatInputBuffer` и могут перейти только `0 → 1 → 2` внутри
-`ChainWindow` текущего action. После третьего action chain transition отсутствует:
-новая цепочка начинается только отдельным вводом, который остаётся жив на
+попадают в `CombatInputBuffer` и переходят к следующему action только внутри
+`ChainWindow` текущего action. Длина цепочки задаётся moveset graph: Dual Swords
+заканчивается на `0 → 1 → 2`, а Unarmed использует `0 → 1 → 2 → 3`. У финального
+action нет chain transition; новая цепочка начинается отдельным вводом на
 completion boundary.
 
 После первого light action timing самого второго нажатия разделяет две ветки:
@@ -30,15 +31,19 @@ rapid input до `0.63` идёт в `combo.ground.1`, а input после осо
 time получения команды, поэтому заранее намэшенный Light не превращается в
 pause-finisher только из-за позднего consumption.
 
+Текущие Unarmed values подогнаны под authored motion клипов `BaseAttack1...4`:
+
 | Step | Duration | Hitbox | Chain | Cancel | Damage | Motor distance |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0 | 1.267 s | 0.27–0.46 | 0.46–0.72 | 0.46–0.86 | 10 | 0.55 m |
-| 1 | 1.000 s | 0.18–0.38 | 0.38–0.66 | 0.38–0.84 | 12 | 0.75 m |
-| 2 | 1.067 s | 0.16–0.34 | disabled | 0.52–0.86 | 15 | 0.70 m |
+| 0 | 1.167 s | 0.28–0.50 | 0.50–0.76 | 0.50–0.90 | 10 | 0.49 m |
+| 1 | 1.167 s | 0.30–0.50 | 0.52–0.78 | 0.52–0.90 | 12 | 0.29 m |
+| 2 | 1.167 s | 0.35–0.55 | 0.56–0.82 | 0.64–0.92 | 15 | 0.21 m |
+| 3 | 1.500 s | 0.24–0.40 | disabled | 0.72–0.94 | 24 | 1.40 m |
 
 `attack.heavy` не является четвёртым combo step. Это самостоятельная наземная
-action с duration `1.933 s`, hitbox `0.40–0.58`, damage `24` и motor distance
-`0.90 m`; она отображается через существующий `BaseAttack4` slot.
+action. В Unarmed она имеет duration `1.500 s`, hitbox `0.24–0.40`, damage `24`
+и motor distance `1.40 m`; она отображается через существующий `BaseAttack4`
+slot, который сейчас также используется финальным `combo.ground.3`.
 `combo.ground.pause-finisher` является отдельным graph node без entry rule, но
 на текущем vertical slice переиспользует тот же presentation/timeline, чтобы не
 менять универсальный Animator до выбора отдельного клипа.

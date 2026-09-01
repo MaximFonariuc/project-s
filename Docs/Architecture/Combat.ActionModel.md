@@ -213,17 +213,19 @@ serialized profile не требует migration и не меняет текущ
 на `Assets/_Game/Prefabs/Character/Player.prefab`. Он компилирует отдельные
 `UnarmedCombatActionProfile.asset` и `DualSwordsCombatActionProfile.asset`.
 Оба профиля содержат две environment-specific ветки команды `attack.light` и
-named actions:
+named actions. Длина combo не является глобальным числом: её задаёт набор actions
+и transitions конкретного профиля. Сейчас конфигурация включает:
 
-- три наземных actions `combo.ground.0 → 1 → 2`;
+- четыре наземных actions `combo.ground.0 → 1 → 2 → 3` у Unarmed и три
+  `combo.ground.0 → 1 → 2` у Dual Swords;
 - поздний `attack.light` после `combo.ground.0` входит в
   `combo.ground.pause-finisher`; до отдельного presentation slot он намеренно
   переиспользует универсальную heavy-анимацию;
 - три воздушных actions `combo.air.0 → 1 → 2`;
-- самостоятельную наземную `attack.heavy`, доступную entry и из cancel window
-  любого наземного light-combo step;
-- наземную `skill.special`, доступную отдельным entry и из cancel window любого
-  наземного light-combo step; её cancel window возвращает в `combo.ground.0`.
+- самостоятельную наземную `attack.heavy`, доступную entry и из явно заданных
+  cancel transitions наземной light-combo;
+- наземную `skill.special`, доступную отдельным entry и из явно заданных cancel
+  transitions light-combo; её cancel window возвращает в `combo.ground.0`.
 - hit-confirm ветку `combo.ground.* → attack.launcher → movement.air-chase →
   combo.air.0`. Dual Swords допускает launcher также напрямую из `Ready` и после
   попадания любого из трёх ground-light steps. Unarmed не имеет launcher entry и

@@ -113,17 +113,18 @@ silently acquire an unrelated action graph.
 - Cooldowns are keyed by `(weapon, action id)`. Two movesets may reuse semantic
   ids such as `combo.ground.0` without leaking cooldown state into each other.
 - The initial loadout contains separate `UnarmedCombatActionProfile` and
-  `DualSwordsCombatActionProfile` assets. Their graphs intentionally begin as
-  copies, providing an explicit safe split for later weapon-specific tuning.
+  `DualSwordsCombatActionProfile` assets. Their graph topology and tuning are
+  independent: Unarmed currently has four ground-light steps, while DualSwords
+  has three.
 
 `PlayerCombatAvailability.RecordUse` is called immediately after the animation
 driver accepts an action. Cooldown therefore belongs to the accepted gameplay
 action and is not avoided when its session later ends through dodge, jump,
 reaction, disable, or another interruption.
 
-- The shared presentation resolver exposes three combo steps for every
-  compatible animation loadout and maps them to semantic action `LightAttack`,
-  variants `0...2`.
+- The shared presentation resolver exposes capacity for four ground combo steps
+  and maps them to semantic action `LightAttack`, variants `0...3`. A moveset
+  graph exposes only the actions and transitions it actually supports.
 - Gameplay passes one `PlayerCombatAction` through the narrow animation port.
   `PlayerCombatPresentationResolver` alone interprets `ComboStep`,
   `AirComboStep` and `NamedAnimation`; both the adapter and editor contract
@@ -183,7 +184,7 @@ reaction, disable, or another interruption.
   scaled-time cooldown dictionary. It asks the animation port only whether the
   semantic presentation exists; it does not run the graph or mutate combat
   phase.
-- The Animator Controller maps those variants to `BaseAttack1...3`; gameplay
+- The Animator Controller maps those variants to `BaseAttack1...4`; gameplay
   code has no clip reference.
 - The adapter exposes a separate three-step air track and maps it to semantic
   action `AirAttack`, variants `0...2`, then to `AirAttack1...3`.

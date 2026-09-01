@@ -68,7 +68,8 @@ classDiagram
   the same neutral state.
 - It does not own clips, Animator states, transitions or blend durations.
 - Dodge uses action ID `1` with forward/backward variants. Ground light attacks
-  use action ID `2` and variants `0...2`; air light attacks use action ID `5`
+  use action ID `2` and presentation variants `0...3`; each moveset graph decides
+  which prefix of that capacity is reachable. Air light attacks use action ID `5`
   and variants `0...2`; the named grounded special uses action ID `6`, variant
   `0`; the named grounded heavy uses action ID `7`, variant `0`. Defense uses
   action IDs `10...12` for guard, block and parry.
