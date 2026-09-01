@@ -172,9 +172,10 @@ reaction, disable, or another interruption.
   first legal cancel frame, while combat commands received during active guard
   are rejected rather than replayed after guard release.
 - Accepted dodge startup is also a locomotion reservation. It closes combat and
-  weapon-switch admission until character simulation confirms dodge mode, so a
+  weapon-switch admission before character simulation confirms dodge mode, so a
   fast render Update cannot insert a ground attack between input acceptance and
-  the following physics step.
+  the following physics step. Once confirmed, the active `Dodge` locomotion state
+  keeps weapon switching closed until locomotion exits the roll.
 - Landing has the inverse handoff rule. An input already buffered against an
   active air action is re-evaluated once against the grounded entry graph before
   the air session releases animation ownership. A valid command therefore

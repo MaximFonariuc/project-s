@@ -31,6 +31,7 @@ namespace _App
             !_attackRecoilState.IsActive &&
             !_locomotionState.BlocksActions &&
             !IsLocomotionActionStarting &&
+            !IsDodgeActive &&
             !_actor.IsFalling;
 
         public PlayerCombatAvailability(
@@ -61,6 +62,9 @@ namespace _App
             _locomotionState.Snapshot.IsValid &&
             (_locomotionState.Snapshot.IsJumpStarting ||
              _locomotionState.Snapshot.IsDodgeStarting);
+
+        private bool IsDodgeActive =>
+            _locomotionState.CurrentState == PlayerLocomotionStateId.Dodge;
 
         public bool CanUseAction(
             PlayerCombatAction action,

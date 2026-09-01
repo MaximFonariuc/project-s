@@ -102,7 +102,8 @@ input buffer.
 - reaction state не блокирует действия;
 - ни Guard, ни block/parry impact recovery не активны;
 - source-side parry recoil не активен;
-- ground-jump startup не зарезервирован;
+- jump/dodge startup не зарезервирован;
+- locomotion не находится в активном `Dodge`;
 - actor не находится в воздухе.
 
 Проверки `targetWeapon`, combat phase и lifecycle `enabled` остаются у публичного
