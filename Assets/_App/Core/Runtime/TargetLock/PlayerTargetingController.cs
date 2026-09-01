@@ -16,6 +16,7 @@ namespace _App
         private const float LostLineOfSightGraceDuration = 0.75f;
         private const float TargetSwitchActuationThreshold = 0.65f;
         private const float TargetSwitchReleaseThreshold = 0.35f;
+        private const float ScoreTieEpsilon = 0.0001f;
         private const int InitialBufferSize = 8;
         private const int MaxBufferSize = 128;
 
@@ -248,6 +249,7 @@ namespace _App
 
             _visitedTargets.Clear();
             float bestScore = float.MaxValue;
+            int bestTargetId = int.MaxValue;
             for (int i = 0; i < hits; i++)
             {
                 Collider candidateCollider = _overlapBuffer[i];
@@ -258,7 +260,8 @@ namespace _App
                     continue;
                 }
 
-                if (!_visitedTargets.Add(candidateTarget.TargetId))
+                int targetId = candidateTarget.TargetId;
+                if (!_visitedTargets.Add(targetId))
                 {
                     continue;
                 }
@@ -279,12 +282,13 @@ namespace _App
                 }
 
                 float score = angle / maxAngle + distance / maxDistance * 0.35f;
-                if (score >= bestScore)
+                if (!IsBetterCandidate(score, targetId, bestScore, bestTargetId))
                 {
                     continue;
                 }
 
                 bestScore = score;
+                bestTargetId = targetId;
                 target = candidateTarget;
             }
 
@@ -339,6 +343,7 @@ namespace _App
 
             _visitedTargets.Clear();
             float bestScore = float.MaxValue;
+            int bestTargetId = int.MaxValue;
             float currentHorizontal = IsTargetLocked
                 ? HorizontalViewPosition(AimPosition)
                 : 0.0f;
@@ -392,12 +397,13 @@ namespace _App
                     score = Mathf.Abs(signedOffset) + viewAngle * 0.01f;
                 }
 
-                if (score >= bestScore)
+                if (!IsBetterCandidate(score, targetId, bestScore, bestTargetId))
                 {
                     continue;
                 }
 
                 bestScore = score;
+                bestTargetId = targetId;
                 selectedTarget = candidateTarget;
             }
 
@@ -464,6 +470,21 @@ namespace _App
             }
 
             return Vector3.Dot(direction.normalized, _camera.Right);
+        }
+
+        private static bool IsBetterCandidate(
+            float score,
+            int targetId,
+            float bestScore,
+            int bestTargetId)
+        {
+            if (score < bestScore - ScoreTieEpsilon)
+            {
+                return true;
+            }
+
+            return Mathf.Abs(score - bestScore) <= ScoreTieEpsilon &&
+                   targetId < bestTargetId;
         }
 
         private void SetTarget(ICombatTarget target)
