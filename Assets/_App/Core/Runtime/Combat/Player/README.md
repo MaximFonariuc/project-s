@@ -213,6 +213,10 @@ reaction, disable, or another interruption.
   its separate hand hitboxes. `PlayerWeaponLoadout` samples active shapes once
   in `LateUpdate`; `Weapon` combines the bounded sweep with trigger callbacks
   and reports candidates to `CombatHitResolver`.
+- Swept overlap storage starts at 32 colliders and grows only after an actual
+  saturation, up to a hard limit of 256. Compound hurtbox crowds therefore do
+  not silently lose contacts at the two-character boundary, while the hot path
+  remains allocation-free after its observed density has been accommodated.
 - `Cancel()` asks the XController adapter to crossfade to locomotion when
   gameplay interrupts an action. Normal completion lets the controller use its
   authored exit transition.

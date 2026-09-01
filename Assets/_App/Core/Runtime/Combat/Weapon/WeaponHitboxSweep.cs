@@ -9,14 +9,15 @@ namespace _App
 
     internal sealed class WeaponHitboxSweep
     {
-        private const int OverlapCapacity = 32;
+        private const int InitialOverlapCapacity = 32;
+        private const int MaximumOverlapCapacity = 256;
         private const float MinimumStepDistance = 0.02f;
 
         private readonly Collider _hitbox;
         private readonly int _layerMask;
         private readonly QueryTriggerInteraction _triggerInteraction;
         private readonly int _maxSteps;
-        private readonly Collider[] _overlaps = new Collider[OverlapCapacity];
+        private Collider[] _overlaps = new Collider[InitialOverlapCapacity];
 
         private Vector3 _previousCenter;
         private Vector3 _previousPointA;
@@ -86,14 +87,11 @@ namespace _App
             for (int i = 1; i <= steps; i++)
             {
                 float t = i / (float)steps;
-                int count = Physics.OverlapCapsuleNonAlloc(
+                saturated |= QueryCapsule(
                     Vector3.Lerp(_previousPointA, pointA, t),
                     Vector3.Lerp(_previousPointB, pointB, t),
                     Mathf.Lerp(_previousRadius, radius, t),
-                    _overlaps,
-                    _layerMask,
-                    _triggerInteraction);
-                saturated |= Consume(count, consumer);
+                    consumer);
             }
 
             _previousPointA = pointA;
@@ -120,13 +118,10 @@ namespace _App
             for (int i = 1; i <= steps; i++)
             {
                 float t = i / (float)steps;
-                int count = Physics.OverlapSphereNonAlloc(
+                saturated |= QuerySphere(
                     Vector3.Lerp(_previousCenter, center, t),
                     Mathf.Lerp(_previousRadius, radius, t),
-                    _overlaps,
-                    _layerMask,
-                    _triggerInteraction);
-                saturated |= Consume(count, consumer);
+                    consumer);
             }
 
             _previousCenter = center;
@@ -159,14 +154,11 @@ namespace _App
             for (int i = 1; i <= steps; i++)
             {
                 float t = i / (float)steps;
-                int count = Physics.OverlapBoxNonAlloc(
+                saturated |= QueryBox(
                     Vector3.Lerp(_previousCenter, center, t),
                     Vector3.Lerp(_previousHalfExtents, halfExtents, t),
-                    _overlaps,
                     Quaternion.Slerp(_previousRotation, rotation, t),
-                    _layerMask,
-                    _triggerInteraction);
-                saturated |= Consume(count, consumer);
+                    consumer);
             }
 
             _previousCenter = center;
@@ -189,6 +181,82 @@ namespace _App
             }
 
             return count >= _overlaps.Length;
+        }
+
+        private bool QueryCapsule(
+            Vector3 pointA,
+            Vector3 pointB,
+            float radius,
+            IWeaponHitboxSweepConsumer consumer)
+        {
+            while (true)
+            {
+                int count = Physics.OverlapCapsuleNonAlloc(
+                    pointA,
+                    pointB,
+                    radius,
+                    _overlaps,
+                    _layerMask,
+                    _triggerInteraction);
+                if (count < _overlaps.Length || !TryGrowOverlapBuffer())
+                {
+                    return Consume(count, consumer);
+                }
+            }
+        }
+
+        private bool QuerySphere(
+            Vector3 center,
+            float radius,
+            IWeaponHitboxSweepConsumer consumer)
+        {
+            while (true)
+            {
+                int count = Physics.OverlapSphereNonAlloc(
+                    center,
+                    radius,
+                    _overlaps,
+                    _layerMask,
+                    _triggerInteraction);
+                if (count < _overlaps.Length || !TryGrowOverlapBuffer())
+                {
+                    return Consume(count, consumer);
+                }
+            }
+        }
+
+        private bool QueryBox(
+            Vector3 center,
+            Vector3 halfExtents,
+            Quaternion rotation,
+            IWeaponHitboxSweepConsumer consumer)
+        {
+            while (true)
+            {
+                int count = Physics.OverlapBoxNonAlloc(
+                    center,
+                    halfExtents,
+                    _overlaps,
+                    rotation,
+                    _layerMask,
+                    _triggerInteraction);
+                if (count < _overlaps.Length || !TryGrowOverlapBuffer())
+                {
+                    return Consume(count, consumer);
+                }
+            }
+        }
+
+        private bool TryGrowOverlapBuffer()
+        {
+            if (_overlaps.Length >= MaximumOverlapCapacity)
+            {
+                return false;
+            }
+
+            int capacity = Mathf.Min(_overlaps.Length * 2, MaximumOverlapCapacity);
+            System.Array.Resize(ref _overlaps, capacity);
+            return true;
         }
 
         private int CalculateSteps(float travel, float shapeRadius)
