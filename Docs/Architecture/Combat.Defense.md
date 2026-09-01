@@ -118,6 +118,11 @@ Recovery имеет приоритет над удерживаемой защи�
   только при `MovementIntent.AllowGuard && CancelWindow`; до открытия окна
   удержание защёлкивается в defense owner, но не прерывает startup или hitbox.
   Из `Ready` Guard выигрывает same-frame arbitration у ещё не исполненной атаки.
+- Guard presentation проигрывается на отдельном upper-body `Defense Layer`.
+  `Base Layer` продолжает владеть idle/walk/run/sprint, поэтому удержание защиты
+  не останавливает анимацию ног. Маска исключает root, ноги и IK; gameplay motor
+  и правила допуска движения от Animator не зависят. Block/Parry пока остаются
+  full-body реакциями и будут переноситься отдельно после настройки их UX.
 
 ## Lifecycle
 

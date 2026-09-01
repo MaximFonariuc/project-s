@@ -30,6 +30,7 @@ namespace _App
 
         public const string BaseLayerName = "Base Layer";
         public const string SwitchWeaponLayerName = "SwitchWeapon Layer";
+        public const string DefenseLayerName = "Defense Layer";
         public const string BodyLookLayerName = "BodyLook";
         public const string HeadLookLayerName = "HeadLook";
 
@@ -75,9 +76,10 @@ namespace _App
         public const string DeadHeavyStatePath =
             "Base Layer.Reaction.Dead_2";
         public const string GetUpStatePath = "Base Layer.Reaction.GetUp";
-        public const string GuardStatePath = "Base Layer.Reaction.Guard";
+        public const string GuardStatePath = "Defense Layer.Guard";
         public const string BlockStatePath = "Base Layer.Reaction.Block";
         public const string ParryStatePath = "Base Layer.Reaction.Parry";
+        public const string DefenseWaitingStatePath = "Defense Layer.Waiting";
         public const string WeaponWaitingStatePath =
             "SwitchWeapon Layer.Waiting";
         public const string WeaponSheatheStatePath =
@@ -144,9 +146,16 @@ namespace _App
                     HitStunBackStatePath,
                     HitStunLeftStatePath,
                     HitStunRightStatePath,
-                    GuardStatePath,
                     BlockStatePath,
                     ParryStatePath
+                });
+
+        private static readonly IReadOnlyList<string> DefenseLayerStates =
+            Array.AsReadOnly(
+                new[]
+                {
+                    DefenseWaitingStatePath,
+                    GuardStatePath
                 });
 
         private static readonly IReadOnlyList<string> LightAttackStates =
@@ -221,6 +230,9 @@ namespace _App
 
         public static IReadOnlyList<string> RequiredSwitchWeaponStatePaths =>
             SwitchWeaponStates;
+
+        public static IReadOnlyList<string> RequiredDefenseLayerStatePaths =>
+            DefenseLayerStates;
 
         public static bool TryGetCombatStatePath(
             PlayerCombatPresentationKind presentationKind,

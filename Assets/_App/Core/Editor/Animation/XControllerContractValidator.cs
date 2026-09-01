@@ -24,6 +24,8 @@ namespace _App.Editor.Animation
             "Assets/_Game/Animations/Masks/BodyLook.mask";
         private const string HeadLookMaskPath =
             "Assets/_Game/Animations/Masks/HeadLook.mask";
+        private const string DefenseMaskPath =
+            "Assets/_Game/Animations/Masks/DefenseUpperBody.mask";
         private const string MenuPath =
             "Tools/Animation/Validate XController Contract";
         private const float TransitionTimingTolerance = 0.005f;
@@ -54,6 +56,7 @@ namespace _App.Editor.Animation
             XControllerAnimationContract.DeadPrimaryStatePath,
             XControllerAnimationContract.DeadHeavyStatePath,
             XControllerAnimationContract.GetUpStatePath,
+            XControllerAnimationContract.GuardStatePath,
             XControllerAnimationContract.WeaponSheatheStatePath,
             XControllerAnimationContract.WeaponUnsheatheStatePath
         };
@@ -147,6 +150,12 @@ namespace _App.Editor.Animation
                 result);
             ValidateLayer(
                 layers,
+                XControllerAnimationContract.DefenseLayerName,
+                AnimatorLayerBlendingMode.Override,
+                true,
+                result);
+            ValidateLayer(
+                layers,
                 XControllerAnimationContract.BodyLookLayerName,
                 AnimatorLayerBlendingMode.Additive,
                 true,
@@ -169,6 +178,7 @@ namespace _App.Editor.Animation
                 HeadLookMaskPath,
                 AvatarMaskBodyPart.Head,
                 result);
+            ValidateDefenseMask(layers, result);
             ValidateDirectionalLookTree(
                 layers,
                 XControllerAnimationContract.BodyLookLayerName,
@@ -195,6 +205,10 @@ namespace _App.Editor.Animation
                 result);
             ValidateRequiredStates(
                 XControllerAnimationContract.RequiredSwitchWeaponStatePaths,
+                states,
+                result);
+            ValidateRequiredStates(
+                XControllerAnimationContract.RequiredDefenseLayerStatePaths,
                 states,
                 result);
             ValidateBaseLayerWriteDefaults(states, result);
@@ -250,9 +264,54 @@ namespace _App.Editor.Animation
 
             if (layer.stateMachine.defaultState == null ||
                 layer.stateMachine.defaultState.motion == null &&
-                layerName != XControllerAnimationContract.SwitchWeaponLayerName)
+                layerName != XControllerAnimationContract.SwitchWeaponLayerName &&
+                layerName != XControllerAnimationContract.DefenseLayerName)
             {
                 result.Error($"Layer '{layerName}' requires a default motion.");
+            }
+        }
+
+        private static void ValidateDefenseMask(
+            IReadOnlyList<AnimatorControllerLayer> layers,
+            ValidationResult result)
+        {
+            AnimatorControllerLayer layer = layers.FirstOrDefault(
+                candidate => candidate.name ==
+                    XControllerAnimationContract.DefenseLayerName);
+            if (layer == null)
+            {
+                return;
+            }
+
+            AvatarMask mask = AssetDatabase.LoadAssetAtPath<AvatarMask>(
+                DefenseMaskPath);
+            if (mask == null)
+            {
+                result.Error($"Missing defense Avatar Mask: {DefenseMaskPath}");
+                return;
+            }
+
+            if (layer.avatarMask != mask)
+            {
+                result.Error(
+                    $"Layer '{XControllerAnimationContract.DefenseLayerName}' " +
+                    $"must use '{DefenseMaskPath}'.");
+            }
+
+            for (int i = 0; i < (int)AvatarMaskBodyPart.LastBodyPart; i++)
+            {
+                var bodyPart = (AvatarMaskBodyPart)i;
+                bool expectedActive = bodyPart == AvatarMaskBodyPart.Body ||
+                                      bodyPart == AvatarMaskBodyPart.Head ||
+                                      bodyPart == AvatarMaskBodyPart.LeftArm ||
+                                      bodyPart == AvatarMaskBodyPart.RightArm ||
+                                      bodyPart == AvatarMaskBodyPart.LeftFingers ||
+                                      bodyPart == AvatarMaskBodyPart.RightFingers;
+                if (mask.GetHumanoidBodyPartActive(bodyPart) != expectedActive)
+                {
+                    result.Error(
+                        $"Mask '{DefenseMaskPath}' has an invalid {bodyPart} state.");
+                }
             }
         }
 

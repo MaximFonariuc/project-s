@@ -105,17 +105,18 @@ classDiagram
 - `PlayerCharacterAnimationPresenter` converts that snapshot to a rig-neutral
   locomotion frame.
 - `PlayerAnimationCoordinator` arbitrates finite action priority:
-  `Death > Reaction > Traversal > Combat > Locomotion`.
+  `Death > Reaction > Traversal > Defense > Combat > Locomotion`.
 - Normal completion calls `CompleteAction` and only releases transient
   presentation ownership. Playback rate and look-layer suppression remain
   active until Animator has actually left the action state. Interruption calls
   `CancelAction`, releases both immediately and requests an explicit visual exit
   from the active Animator layer.
-- Finite actions can live on different Animator layers. When a base-layer
-  reaction or death replaces an active/released weapon transition, the driver
-  explicitly crossfades `SwitchWeapon Layer` to `Waiting` before transferring
-  ownership. A stale upper-body sheathe/draw pose therefore cannot continue on
-  top of the higher-priority reaction.
+- Finite actions can live on different Animator layers. The driver explicitly
+  neutralizes the previously owned layer before transferring presentation
+  ownership: upper-body layers return to `Waiting`, while a replaced Base Layer
+  action returns to `Move`. A stale guard or weapon pose therefore cannot remain
+  over a higher-priority action, and an upper-body action entered after combat
+  cannot leave the old full-body attack underneath it.
 - Coordinator construction and actor disable both execute a full driver reset
   after feature owners stop. This clears stale look values, action ownership,
   per-source playback speed and Animator speed before a later re-enable; camera
@@ -159,15 +160,17 @@ restored XController has no semantic action parameters or entry transitions,
 so the Project S adapter maps an accepted semantic request to a known state and
 enters it with `CrossFadeInFixedTime`. Gameplay still owns acceptance, timing
 and cancellation; it never selects a clip. `CancelAction` returns base-layer
-dodge/attack/reaction actions to `Move` and weapon-layer actions to `Waiting`.
+dodge/attack/reaction actions to `Move` and upper-body defense/weapon actions to
+their own `Waiting` state.
 `CompleteAction` does not force a transition and lets the controller finish its
 authored exit.
 
 Cross-layer replacement is the exception to that non-disruptive rule: a
 higher-priority base-layer action cannot replace an upper-body state through a
-base-layer crossfade. The driver detects this boundary and neutralizes the
-tracked weapon layer; `Reset` performs the same neutralization for disable and
-re-enable lifecycle safety.
+base-layer crossfade. The inverse is also true when Guard replaces a full-body
+combat action. The driver detects both boundaries and neutralizes the tracked
+source layer; `Reset` performs the same cleanup for disable and re-enable
+lifecycle safety.
 
 Combat exits use normalized transition duration. For every semantic action
 slot, `exitTime + transitionDuration` equals the gameplay
@@ -188,6 +191,7 @@ The current action contract is:
 | Grounded heavy attack | 7 | 0 | `Attack/BaseAttack4` |
 | Launcher | 8 | 0 | `Attack/Launcher` |
 | Air chase | 9 | 0 | `Locomotion/Jump/Jump/JumpRunning` |
+| Guard enter/hold | 10 | 0/1 | `Defense Layer/Guard` |
 | Sheathe two-handed | 3 | 0 | `SwitchWeapon Layer/TwoHanded_Sheathe` |
 | Draw two-handed | 3 | 1 | `SwitchWeapon Layer/TwoHanded_Unsheathe` |
 | Hit reaction (front/fallback) | 4 | 0 | `Reaction/HitStun` |
@@ -219,6 +223,14 @@ continuous when presentation ownership changes and the body/head angle split
 cannot jump on attack or reaction entry. `BodyLook.mask` enables only the
 Humanoid Body channel; `HeadLook.mask` enables only Head. Root, limbs and IK are
 excluded from both additive layers.
+
+Guard is an upper-body override rather than a locomotion state. `Defense Layer`
+uses `DefenseUpperBody.mask`: Body, Head, both Arms and Fingers are enabled,
+while Root, Legs and IK are disabled. The Base Layer therefore remains the sole
+owner of idle/walk/run/sprint and continues evaluating the locomotion Blend Tree
+while the non-looping Guard clip enters and holds its final pose. Block and Parry
+remain full-body reaction slots until their moving variants are migrated
+deliberately.
 
 Both look layers use `SimpleDirectional2D` Blend Trees. Their horizontal and
 vertical parameters are evaluated together and each tree contains exactly one

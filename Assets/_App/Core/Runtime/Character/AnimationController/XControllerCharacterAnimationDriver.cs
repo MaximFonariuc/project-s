@@ -54,10 +54,13 @@ namespace _App
             XControllerAnimationContract.WeaponUnsheatheStatePath);
         private static readonly int WeaponWaitingStateHash = Animator.StringToHash(
             XControllerAnimationContract.WeaponWaitingStatePath);
+        private static readonly int DefenseWaitingStateHash = Animator.StringToHash(
+            XControllerAnimationContract.DefenseWaitingStatePath);
 
         private readonly Animator _animator;
         private readonly XControllerLookPoseController _lookPose;
         private readonly int _switchWeaponLayerIndex;
+        private readonly int _defenseLayerIndex;
         private readonly Dictionary<string, AnimationClip> _activeClipsBySlot =
             new Dictionary<string, AnimationClip>(StringComparer.Ordinal);
 
@@ -81,6 +84,8 @@ namespace _App
             _lookPose = new XControllerLookPoseController(_animator);
             _switchWeaponLayerIndex = _animator.GetLayerIndex(
                 XControllerAnimationContract.SwitchWeaponLayerName);
+            _defenseLayerIndex = _animator.GetLayerIndex(
+                XControllerAnimationContract.DefenseLayerName);
 
             ValidateAnimator();
             _animator.applyRootMotion = false;
@@ -192,6 +197,9 @@ namespace _App
             bool cancelSwitchWeaponLayer =
                 _actionLayerIndex == _switchWeaponLayerIndex ||
                 _releasedActionLayerIndex == _switchWeaponLayerIndex;
+            bool cancelDefenseLayer =
+                _actionLayerIndex == _defenseLayerIndex ||
+                _releasedActionLayerIndex == _defenseLayerIndex;
             ResetActionPlaybackRate();
             ClearActionPresentationPolicy();
 
@@ -199,17 +207,14 @@ namespace _App
             {
                 ReturnSwitchWeaponLayerToWaiting();
             }
-            else if (_animator.HasState(
-                         XControllerAnimationContract.BaseLayerIndex,
-                         MoveStateHash))
+            else if (cancelDefenseLayer)
             {
-                _animator.CrossFadeInFixedTime(
-                    MoveStateHash,
-                    ActionCancelCrossFadeSeconds,
-                    XControllerAnimationContract.BaseLayerIndex,
-                    0.0f);
+                ReturnDefenseLayerToWaiting();
             }
-
+            else
+            {
+                ReturnBaseLayerToMove();
+            }
         }
 
         public void SetPlaybackSpeed(float speed)
@@ -242,6 +247,7 @@ namespace _App
             _lookPose.Reset();
             ClearActionPresentationPolicy();
             ReturnSwitchWeaponLayerToWaiting();
+            ReturnDefenseLayerToWaiting();
         }
 
         public void Dispose()
@@ -332,18 +338,34 @@ namespace _App
 
         private void NeutralizeReplacedActionLayer(int nextLayerIndex)
         {
-            if (nextLayerIndex == _switchWeaponLayerIndex ||
-                (_actionLayerIndex != _switchWeaponLayerIndex &&
-                 _releasedActionLayerIndex != _switchWeaponLayerIndex))
+            NeutralizeLayer(_actionLayerIndex, nextLayerIndex);
+            if (_releasedActionLayerIndex != _actionLayerIndex)
+            {
+                NeutralizeLayer(_releasedActionLayerIndex, nextLayerIndex);
+            }
+        }
+
+        private void NeutralizeLayer(int previousLayerIndex, int nextLayerIndex)
+        {
+            if (previousLayerIndex < 0 || previousLayerIndex == nextLayerIndex)
             {
                 return;
             }
 
-            // Weapon presentation lives on an upper-body layer. A higher
-            // priority base-layer action (reaction/death) cannot replace it by
-            // crossfading the base layer alone, so explicitly remove the stale
-            // overlay before transferring ownership.
-            ReturnSwitchWeaponLayerToWaiting();
+            if (previousLayerIndex == _switchWeaponLayerIndex)
+            {
+                ReturnSwitchWeaponLayerToWaiting();
+            }
+            else if (previousLayerIndex == _defenseLayerIndex)
+            {
+                ReturnDefenseLayerToWaiting();
+            }
+            else if (previousLayerIndex == XControllerAnimationContract.BaseLayerIndex)
+            {
+                // Overlay actions cannot replace a full-body action by changing
+                // their own layer. Return the base layer to locomotion first.
+                ReturnBaseLayerToMove();
+            }
         }
 
         private void ReturnSwitchWeaponLayerToWaiting()
@@ -357,6 +379,36 @@ namespace _App
                 WeaponWaitingStateHash,
                 ActionCancelCrossFadeSeconds,
                 _switchWeaponLayerIndex,
+                0.0f);
+        }
+
+        private void ReturnDefenseLayerToWaiting()
+        {
+            if (_defenseLayerIndex < 0)
+            {
+                return;
+            }
+
+            _animator.CrossFadeInFixedTime(
+                DefenseWaitingStateHash,
+                ActionCancelCrossFadeSeconds,
+                _defenseLayerIndex,
+                0.0f);
+        }
+
+        private void ReturnBaseLayerToMove()
+        {
+            if (!_animator.HasState(
+                    XControllerAnimationContract.BaseLayerIndex,
+                    MoveStateHash))
+            {
+                return;
+            }
+
+            _animator.CrossFadeInFixedTime(
+                MoveStateHash,
+                ActionCancelCrossFadeSeconds,
+                XControllerAnimationContract.BaseLayerIndex,
                 0.0f);
         }
 
@@ -543,6 +595,10 @@ namespace _App
                     out normalizedTimeOffset))
             {
                 statePath = defenseStatePath;
+                if (request.Action == PlayerAnimatorActions.Guard)
+                {
+                    layerIndex = _defenseLayerIndex;
+                }
                 stateHash = Animator.StringToHash(defenseStatePath);
                 crossFadeSeconds = DefenseCrossFadeSeconds;
                 return _animator.HasState(layerIndex, stateHash);
@@ -623,6 +679,7 @@ namespace _App
             RequireLayer(XControllerAnimationContract.BodyLookLayerName);
             RequireLayer(XControllerAnimationContract.HeadLookLayerName);
             RequireLayer(XControllerAnimationContract.SwitchWeaponLayerName);
+            RequireLayer(XControllerAnimationContract.DefenseLayerName);
 
             IReadOnlyList<string> baseStates =
                 XControllerAnimationContract.RequiredBaseLayerStatePaths;
@@ -641,6 +698,17 @@ namespace _App
                 string statePath = switchWeaponStates[i];
                 RequireState(
                     _switchWeaponLayerIndex,
+                    Animator.StringToHash(statePath),
+                    statePath);
+            }
+
+            IReadOnlyList<string> defenseStates =
+                XControllerAnimationContract.RequiredDefenseLayerStatePaths;
+            for (int i = 0; i < defenseStates.Count; i++)
+            {
+                string statePath = defenseStates[i];
+                RequireState(
+                    _defenseLayerIndex,
                     Animator.StringToHash(statePath),
                     statePath);
             }

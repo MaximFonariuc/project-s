@@ -62,11 +62,10 @@ classDiagram
   driver's non-disruptive `CompleteAction`, while `Cancel` requests a visual
   exit. This keeps action-scoped look policy and layer ownership bounded by the
   gameplay lifecycle.
-- Cross-layer preemption is explicit. A reaction/death entering the base layer
-  while a tracked sheathe/draw is active or finishing also returns
-  `SwitchWeapon Layer` to `Waiting`, preventing a stale upper-body weapon pose
-  from overlaying the higher-priority action. Driver reset enforces the same
-  neutral state.
+- Cross-layer preemption is explicit. The driver returns a replaced upper-body
+  weapon/defense layer to `Waiting` and a replaced Base Layer action to `Move`,
+  preventing stale poses on both sides of the boundary. Driver reset enforces
+  the same neutral state.
 - It does not own clips, Animator states, transitions or blend durations.
 - Dodge uses action ID `1` with forward/backward variants. Ground light attacks
   use action ID `2` and variants `0...2`; air light attacks use action ID `5`
@@ -83,12 +82,13 @@ classDiagram
   force a state change after normal completion.
 - Weapon-specific Animator Override Controllers are optional. A loadout without
   an override keeps the base `XController` and its existing clip table.
-- `Reaction/Guard`, `Reaction/Block` and `Reaction/Parry` are stable controller
-  slots without graph transitions. `PlayerDefenseAnimationAdapter` enters them
-  from confirmed gameplay events; release and impact completion explicitly
-  return presentation ownership. The `DualSwords` override maps those stable
-  slots to the current Frank Humanoid clips, so another weapon can replace the
-  clips without changing state names or gameplay code.
+- `Defense Layer/Guard` is an upper-body override slot. Its mask excludes root,
+  legs and IK, so the Base Layer locomotion Blend Tree keeps presenting
+  idle/walk/run/sprint while Guard is held. The non-looping Guard clip enters
+  normally and variant `1` resumes its final hold pose after an impact.
+  `Reaction/Block` and `Reaction/Parry` remain full-body slots for now.
+  `PlayerDefenseAnimationAdapter` enters all three only from confirmed gameplay
+  events; release and impact completion explicitly return presentation ownership.
 - Defense has priority `250`: it overrides locomotion and combat presentation,
   while traversal, reactions and death can interrupt it. `BodyLook` and
   `HeadLook` weights damp to zero during defense clips to avoid additive pose
