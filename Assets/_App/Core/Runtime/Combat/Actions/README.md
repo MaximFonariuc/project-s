@@ -107,6 +107,13 @@ classDiagram
   authored distance and normalized window. Animation-derived trajectory assets
   are not used. Ground attacks may acquire one soft-assist target inside an
   authored cone; this does not mutate hard lock-on or camera state.
+- Soft assist is sampled once when an action begins, so a strike does not snap
+  between nearby actors mid-swing. If that target becomes inactive,
+  untargetable or is destroyed, `SelectedTarget` is cleared on the next
+  simulation tick and motion safely falls back to the actor's forward direction.
+  This validation continues after the authored motion window while the action
+  may still confirm hits. A later action performs a fresh query and may acquire
+  another target.
 - Target-height tracking composes with `MinimumVelocity`: correction may follow
   an ascending target but cannot exceed the authored falling-speed limit.
   `OverrideVelocity` remains an exact command and is rejected when combined

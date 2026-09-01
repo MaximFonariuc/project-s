@@ -53,6 +53,9 @@ classDiagram
   depending on the player combo graph. Player actions convert their local id at
   execution start; enemy actions can provide their own stable ids.
 - `CombatAttackExecution` owns per-target repeat filtering for one activation.
+- Every collider in a compound `BodyColliderRig` resolves to the same target
+  identity. A single-hit execution therefore damages that actor once even when
+  several generated hurtboxes overlap the weapon during the same sweep.
 - Every execution has one explicit source-side outcome receiver. The resolver
   notifies it synchronously after the target accepts and repeat filtering is
   committed, so `Parried` can close the active hitbox before another physics

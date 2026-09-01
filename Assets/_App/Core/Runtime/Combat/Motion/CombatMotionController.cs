@@ -18,6 +18,9 @@ namespace _App
         private bool _hasPreviousConfirmedTargetContract;
         private ICombatTarget _assistedTarget;
         private UnityEngine.Object _assistedTargetObject;
+        private ICombatTarget _selectedCombatTarget;
+        private UnityEngine.Object _selectedCombatTargetObject;
+        private bool _hasSelectedTargetContract;
         private Transform _sampledHeightTarget;
         private float _actionDuration;
         private float _planarSpeed;
@@ -78,6 +81,11 @@ namespace _App
 
             if (!_definition.Window.Contains(normalizedTime))
             {
+                if (!HasAvailableSelectedTarget())
+                {
+                    ClearSelectedTarget();
+                }
+
                 _motor.ClearActionMotion();
                 return;
             }
@@ -87,10 +95,7 @@ namespace _App
                 out Vector3 targetDirection,
                 out float targetDistance,
                 out float targetHeight);
-            if (hasTarget && target != null)
-            {
-                SelectedTarget = target;
-            }
+            SetSelectedTarget(hasTarget ? target : null);
 
             Vector3 forward = GetPlanarDirection(_motor.Forward);
             Vector3 motionForward = hasTarget && targetDirection.sqrMagnitude > DirectionEpsilon
@@ -139,7 +144,7 @@ namespace _App
             _assistedTarget = null;
             _assistedTargetObject = null;
             _sampledHeightTarget = null;
-            SelectedTarget = null;
+            ClearSelectedTarget();
             _actionDuration = 0.0f;
             _planarSpeed = 0.0f;
             _previousTargetHeight = 0.0f;
@@ -367,6 +372,57 @@ namespace _App
                     _previousConfirmedCombatTarget != null &&
                     _previousConfirmedCombatTarget.IsTargetable &&
                     _previousConfirmedCombatTarget.TargetRoot != null);
+        }
+
+        private void SetSelectedTarget(Transform target)
+        {
+            if (ReferenceEquals(SelectedTarget, target))
+            {
+                return;
+            }
+
+            ClearSelectedTarget();
+            SelectedTarget = target;
+            if (target == null)
+            {
+                return;
+            }
+
+            ICombatTarget combatTarget =
+                target.GetComponent<ICombatTarget>() ??
+                target.GetComponentInChildren<ICombatTarget>(true);
+            UnityEngine.Object targetObject = combatTarget as UnityEngine.Object;
+            if (targetObject == null)
+            {
+                return;
+            }
+
+            _selectedCombatTarget = combatTarget;
+            _selectedCombatTargetObject = targetObject;
+            _hasSelectedTargetContract = true;
+        }
+
+        private bool HasAvailableSelectedTarget()
+        {
+            if (SelectedTarget == null ||
+                !SelectedTarget.gameObject.activeInHierarchy)
+            {
+                return false;
+            }
+
+            return !_hasSelectedTargetContract ||
+                   (_selectedCombatTargetObject != null &&
+                    _selectedCombatTarget != null &&
+                    _selectedCombatTarget.IsTargetable &&
+                    _selectedCombatTarget.TargetRoot != null);
+        }
+
+        private void ClearSelectedTarget()
+        {
+            SelectedTarget = null;
+            _selectedCombatTarget = null;
+            _selectedCombatTargetObject = null;
+            _hasSelectedTargetContract = false;
         }
 
         private static bool FailTarget(
