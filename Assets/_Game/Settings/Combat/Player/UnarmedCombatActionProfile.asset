@@ -243,10 +243,10 @@ MonoBehaviour:
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
-      _combatMotionEnd: 0.9
+      _combatMotionEnd: 0.58
       _overridePlanarVelocity: 1
       _combatMotionDistance: 0.35
-      _verticalMotionMode: 2
+      _verticalMotionMode: 1
       _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
       _overrideVerticalVelocityOnImpulse: 1
@@ -305,10 +305,10 @@ MonoBehaviour:
       _faceMoveDirection: 1
       _useCombatMotion: 1
       _combatMotionStart: 0
-      _combatMotionEnd: 0.9
+      _combatMotionEnd: 0.58
       _overridePlanarVelocity: 1
       _combatMotionDistance: 0.35
-      _verticalMotionMode: 2
+      _verticalMotionMode: 1
       _combatVerticalVelocity: 0
       _combatVerticalImpulse: 0
       _overrideVerticalVelocityOnImpulse: 1
