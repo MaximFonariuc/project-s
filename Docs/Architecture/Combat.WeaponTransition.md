@@ -119,6 +119,12 @@ sequenceDiagram
   отменённый следующий draw не возвращает оружие в руку самопроизвольно.
 - Incoming animation loadout применяется перед draw только как presentation
   prerequisite. До commit он не меняет `CurrentWeapon` и `PlayerWeaponRig`.
+- Общий Animator contract содержит только `Draw` и `Sheathe`. Конкретные клипы
+  выбираются через override текущего `EWeaponType`; отдельных OneHanded и
+  TwoHanded state branches нет.
+- Замена compatible override сохраняет Animator parameters, активные состояния,
+  normalized time, веса слоёв и playback speed. Поэтому commit в `Unarmed` или
+  подготовка draw другого оружия не сбрасывают locomotion в Idle.
 - `Abort` завершает executor через его штатную cancellation boundary. `finally`
   очищает transient references и восстанавливает loadout последнего
   подтверждённого оружия при completion, failure, cancellation и disable.

@@ -118,8 +118,11 @@ state paths через `CrossFadeInFixedTime`.
 - `Base Layer.Attack.Skill` для самостоятельной special action;
 - `Base Layer.Reaction.HitStun`, `HitStun_Back`, `HitStun_Left`,
   `HitStun_Right`, `Knockdown`, `GetUp`, `Airborne`, `Dead_1`, `Dead_2`;
-- `SwitchWeapon Layer.Waiting`, `TwoHanded_Sheathe`,
-  `TwoHanded_Unsheathe`.
+- `SwitchWeapon Layer.Waiting`, `Sheathe`, `Draw`.
+
+`Draw` и `Sheathe` являются weapon-agnostic slots. Конкретный тип оружия
+подставляет свои клипы через совместимый `AnimatorOverrideController`; отдельные
+OneHanded/TwoHanded ветки в общем графе запрещены.
 
 Все имена объявлены один раз в `XControllerAnimationContract`. Driver и editor
 validator не поддерживают собственные копии строк.
@@ -199,14 +202,14 @@ pose под короткое gameplay-окно.
 
 ## Weapon overrides
 
-`AnimatorOverrideController` является опциональной таблицей замены motion для
-оружия. Его base controller обязан разрешаться в `XController`; граф, layers,
-parameters и state names не копируются. Если override для weapon type не задан,
-`PlayerAnimatorLoadout` оставляет базовый XController.
+Каждый вооружённый moveset обязан иметь `AnimatorOverrideController` как таблицу
+замены motion для своего типа оружия. Его base controller обязан разрешаться в
+`XController`; граф, layers, parameters и state names не копируются. Только
+`Unarmed` использует базовый XController напрямую.
 
 Текущий Player prefab содержит binding `DualHand → DualSwords.overrideController`.
-Остальные weapon types используют базовый XController, пока для них не появится
-полный совместимый набор semantic slots.
+Новый weapon type нельзя добавить в loadout, пока для него не создан полный
+совместимый набор semantic slots в override.
 
 ## Editor validation
 

@@ -83,9 +83,9 @@ namespace _App
         public const string WeaponWaitingStatePath =
             "SwitchWeapon Layer.Waiting";
         public const string WeaponSheatheStatePath =
-            "SwitchWeapon Layer.TwoHanded_Sheathe";
-        public const string WeaponUnsheatheStatePath =
-            "SwitchWeapon Layer.TwoHanded_Unsheathe";
+            "SwitchWeapon Layer.Sheathe";
+        public const string WeaponDrawStatePath =
+            "SwitchWeapon Layer.Draw";
 
         private static readonly IReadOnlyList<XControllerParameterRequirement>
             Parameters = Array.AsReadOnly(
@@ -207,7 +207,7 @@ namespace _App
                 {
                     WeaponWaitingStatePath,
                     WeaponSheatheStatePath,
-                    WeaponUnsheatheStatePath
+                    WeaponDrawStatePath
                 });
 
         public static IReadOnlyList<XControllerParameterRequirement>

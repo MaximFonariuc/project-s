@@ -58,7 +58,7 @@ namespace _App.Editor.Animation
             XControllerAnimationContract.GetUpStatePath,
             XControllerAnimationContract.GuardStatePath,
             XControllerAnimationContract.WeaponSheatheStatePath,
-            XControllerAnimationContract.WeaponUnsheatheStatePath
+            XControllerAnimationContract.WeaponDrawStatePath
         };
 
         private static readonly string[] StatesWithAuthoredExit =
@@ -1316,11 +1316,8 @@ namespace _App.Editor.Animation
 
                 if (animationOverride == null)
                 {
-                    ValidateBaseActionSynchronization(
-                        baseController,
-                        actionProfile,
-                        null,
-                        result);
+                    result.Error(
+                        $"{context} requires a weapon-specific Animator Override Controller.");
                     continue;
                 }
 

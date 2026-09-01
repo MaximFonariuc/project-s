@@ -50,8 +50,8 @@ namespace _App
             XControllerAnimationContract.ReactionStatePaths);
         private static readonly int WeaponSheatheStateHash = Animator.StringToHash(
             XControllerAnimationContract.WeaponSheatheStatePath);
-        private static readonly int WeaponUnsheatheStateHash = Animator.StringToHash(
-            XControllerAnimationContract.WeaponUnsheatheStatePath);
+        private static readonly int WeaponDrawStateHash = Animator.StringToHash(
+            XControllerAnimationContract.WeaponDrawStatePath);
         private static readonly int WeaponWaitingStateHash = Animator.StringToHash(
             XControllerAnimationContract.WeaponWaitingStatePath);
         private static readonly int DefenseWaitingStateHash = Animator.StringToHash(
@@ -619,11 +619,11 @@ namespace _App
                      request.Variant is 0 or 1)
             {
                 statePath = request.Variant == 1
-                    ? XControllerAnimationContract.WeaponUnsheatheStatePath
+                    ? XControllerAnimationContract.WeaponDrawStatePath
                     : XControllerAnimationContract.WeaponSheatheStatePath;
                 layerIndex = _switchWeaponLayerIndex;
                 stateHash = request.Variant == 1
-                    ? WeaponUnsheatheStateHash
+                    ? WeaponDrawStateHash
                     : WeaponSheatheStateHash;
                 crossFadeSeconds = WeaponCrossFadeSeconds;
             }

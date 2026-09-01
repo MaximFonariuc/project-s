@@ -192,8 +192,8 @@ The current action contract is:
 | Launcher | 8 | 0 | `Attack/Launcher` |
 | Air chase | 9 | 0 | `Locomotion/Jump/Jump/JumpRunning` |
 | Guard enter/hold | 10 | 0/1 | `Defense Layer/Guard` |
-| Sheathe two-handed | 3 | 0 | `SwitchWeapon Layer/TwoHanded_Sheathe` |
-| Draw two-handed | 3 | 1 | `SwitchWeapon Layer/TwoHanded_Unsheathe` |
+| Sheathe current weapon | 3 | 0 | `SwitchWeapon Layer/Sheathe` |
+| Draw target weapon | 3 | 1 | `SwitchWeapon Layer/Draw` |
 | Hit reaction (front/fallback) | 4 | 0 | `Reaction/HitStun` |
 | Reaction | 4 | 1 | `Reaction/Knockdown` |
 | Reaction | 4 | 2 | `Reaction/Airborne` |
@@ -293,21 +293,30 @@ without changing reaction state ownership or the animation-driver contract.
 
 ## Weapon override contract
 
-An equipped weapon may use an `AnimatorOverrideController` whose base controller
+Every equipped weapon uses an `AnimatorOverrideController` whose base controller
 is `XController`. Layers, parameters, state machines and state names therefore
-remain identical; only animation clips are replaced. A missing weapon-specific
-override intentionally falls back to the base controller.
+remain identical; only animation clips are replaced. `Unarmed` alone uses the
+base controller; a missing armed override is an invalid loadout.
 
 `PlayerAnimatorLoadout` owns runtime controller selection. It validates all
 configured overrides during scene composition and rejects a missing controller,
 duplicate weapon binding, or an override built on another base graph. `Unarmed`
-and every weapon without a configured override use `XController` directly.
+uses `XController` directly.
+Changing between the base controller and a compatible override preserves all
+Animator parameters, current normalized state time, layer weights and playback
+speed. Controller reassignment therefore cannot reset moving locomotion to the
+default idle pose.
 
 Draw selects the incoming animation loadout before its transition starts, but
 the gameplay weapon and rig change only at normalized commit time `0.50`.
 Sheathe keeps the outgoing loadout until the clip finishes, changes gameplay
 state at the same commit point, and returns to the base controller at completion.
 Cancellation restores the loadout for the weapon that actually reached commit.
+
+The common graph exposes only `SwitchWeapon Layer/Draw` and `Sheathe`. It has no
+OneHanded/TwoHanded branches. `EWeaponType` selects the weapon's
+`AnimatorOverrideController`, and that override supplies the concrete draw and
+sheathe clips for the same two stable slots.
 
 Weapon transitions run for `1.00 s`, matching the current draw/sheathe clips.
 Their Animator states start returning to `Waiting` at normalized time `0.90`
@@ -326,10 +335,9 @@ Unity technically keys the override by the source clip asset.
 
 The Player prefab references `XController.controller` as its base, starts with
 `DualHand`, and binds that weapon type to `DualSwords.overrideController`.
-Unsupported weapon types still use the base clip table through the explicit
-fallback. Additional weapon styles extend the serialized binding list without
-changing gameplay or Animator state names after a compatible override asset
-exists.
+Unsupported weapon types are rejected before entering gameplay state. Additional
+weapon styles extend the serialized binding list without changing gameplay or
+Animator state names after a compatible override asset exists.
 
 The DualSwords three-step ground light combo, standalone grounded
 `BaseAttack4` heavy, dedicated `Launcher`, three air attacks and grounded
@@ -379,10 +387,10 @@ For every Player weapon override it additionally resolves the actual clip behind
 each combat slot and compares its effective duration with the action profile
 within 20 ms. Hit, chain and recovery windows therefore cannot drift silently
 after a clip replacement.
-For the base-controller fallback it validates one clip per synchronized
+For the `Unarmed` base controller it validates one clip per synchronized
 attack/dodge state, authored state speed `1`, and a bounded automatic playback
-rate of `0.5..2.0`. This covers `Unarmed` and unsupported weapon loadouts without
-duplicating timing data in another ScriptableObject.
+rate of `0.5..2.0`. Armed loadouts must provide a compatible override instead of
+falling back to unrelated base clips.
 It additionally requires the Player prefab to reference that exact profile and
 builds its full graph, input-buffer settings and weapon-transition definition
 before comparing animation timings. A broken route or missing authoring block

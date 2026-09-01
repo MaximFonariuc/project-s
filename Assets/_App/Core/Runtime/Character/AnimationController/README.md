@@ -80,8 +80,12 @@ classDiagram
   branches.
 - Cancellation is explicit. Release only drops source ownership and does not
   force a state change after normal completion.
-- Weapon-specific Animator Override Controllers are optional. A loadout without
-  an override keeps the base `XController` and its existing clip table.
+- Every armed moveset requires a weapon-specific Animator Override Controller.
+  `Unarmed` alone uses the base `XController` clip table.
+- Weapon presentation uses the stable `SwitchWeapon Layer/Draw` and `Sheathe`
+  slots. `EWeaponType` selects their concrete clips through its loadout override;
+  the shared graph has no OneHanded/TwoHanded state branches. Compatible
+  controller swaps preserve locomotion parameters, layer playback and speed.
 - `Defense Layer/Guard` is an upper-body override slot. Its mask excludes root,
   legs and IK, so the Base Layer locomotion Blend Tree keeps presenting
   idle/walk/run/sprint while Guard is held. The non-looping Guard clip enters

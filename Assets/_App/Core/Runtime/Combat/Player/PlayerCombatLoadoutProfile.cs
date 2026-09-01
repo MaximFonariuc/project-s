@@ -35,6 +35,12 @@ namespace _App
                     "The Unarmed moveset must use the base Animator Controller.");
             }
 
+            if (_weaponType != EWeaponType.Unarmed && _animationOverride == null)
+            {
+                throw new InvalidOperationException(
+                    $"Combat moveset '{_weaponType}' requires an Animator Override Controller.");
+            }
+
             return new PlayerCombatMoveset(
                 _weaponType,
                 _actionProfile,

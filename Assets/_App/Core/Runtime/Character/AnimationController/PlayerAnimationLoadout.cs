@@ -10,6 +10,89 @@ namespace _App
     /// </summary>
     internal sealed class PlayerAnimatorLoadout : IDisposable
     {
+        private readonly struct ParameterSnapshot
+        {
+            public int NameHash { get; }
+            public AnimatorControllerParameterType Type { get; }
+            public float FloatValue { get; }
+            public int IntValue { get; }
+            public bool BoolValue { get; }
+
+            public ParameterSnapshot(
+                Animator animator,
+                AnimatorControllerParameter parameter)
+            {
+                NameHash = parameter.nameHash;
+                Type = parameter.type;
+                FloatValue = Type == AnimatorControllerParameterType.Float
+                    ? animator.GetFloat(NameHash)
+                    : 0.0f;
+                IntValue = Type == AnimatorControllerParameterType.Int
+                    ? animator.GetInteger(NameHash)
+                    : 0;
+                BoolValue = Type == AnimatorControllerParameterType.Bool
+                    ? animator.GetBool(NameHash)
+                    : false;
+            }
+
+            public void Restore(Animator animator)
+            {
+                switch (Type)
+                {
+                    case AnimatorControllerParameterType.Float:
+                        animator.SetFloat(NameHash, FloatValue);
+                        break;
+                    case AnimatorControllerParameterType.Int:
+                        animator.SetInteger(NameHash, IntValue);
+                        break;
+                    case AnimatorControllerParameterType.Bool:
+                        animator.SetBool(NameHash, BoolValue);
+                        break;
+                }
+            }
+        }
+
+        private readonly struct LayerSnapshot
+        {
+            public int StateHash { get; }
+            public float NormalizedTime { get; }
+            public float Weight { get; }
+
+            public LayerSnapshot(Animator animator, int layerIndex)
+            {
+                AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(
+                    layerIndex);
+                if (animator.IsInTransition(layerIndex))
+                {
+                    AnimatorStateInfo next = animator.GetNextAnimatorStateInfo(
+                        layerIndex);
+                    if (next.fullPathHash != 0)
+                    {
+                        state = next;
+                    }
+                }
+
+                StateHash = state.fullPathHash;
+                NormalizedTime = state.loop
+                    ? Mathf.Repeat(state.normalizedTime, 1.0f)
+                    : Mathf.Clamp01(state.normalizedTime);
+                Weight = animator.GetLayerWeight(layerIndex);
+            }
+
+            public void Restore(Animator animator, int layerIndex)
+            {
+                if (StateHash != 0 && animator.HasState(layerIndex, StateHash))
+                {
+                    animator.Play(StateHash, layerIndex, NormalizedTime);
+                }
+
+                if (layerIndex > 0)
+                {
+                    animator.SetLayerWeight(layerIndex, Weight);
+                }
+            }
+        }
+
         private readonly Animator _animator;
         private readonly RuntimeAnimatorController _baseController;
         private readonly Dictionary<EWeaponType, AnimatorOverrideController> _overrides;
@@ -43,10 +126,8 @@ namespace _App
                          weaponType,
                          out AnimatorOverrideController animationOverride))
             {
-                // An override is optional. The restored XController already owns
-                // the common locomotion, combat and weapon transition clips, so
-                // unsupported loadouts keep using its base clip table.
-                targetController = _baseController;
+                throw new InvalidOperationException(
+                    $"Weapon '{weaponType}' requires a compatible Animator Override Controller.");
             }
             else
             {
@@ -55,9 +136,7 @@ namespace _App
 
             if (_animator.runtimeAnimatorController != targetController)
             {
-                // Controllers share one base graph, so assigning the override keeps
-                // the current state machines and only changes their clip table.
-                _animator.runtimeAnimatorController = targetController;
+                ApplyControllerPreservingPlayback(targetController);
             }
         }
 
@@ -91,7 +170,8 @@ namespace _App
 
                 if (moveset.AnimationOverride == null)
                 {
-                    continue;
+                    throw new InvalidOperationException(
+                        $"Combat moveset '{moveset.WeaponType}' requires an Animator Override Controller.");
                 }
 
                 RuntimeAnimatorController bindingBase = ResolveBaseController(
@@ -111,6 +191,42 @@ namespace _App
             }
 
             return result;
+        }
+
+        private void ApplyControllerPreservingPlayback(
+            RuntimeAnimatorController targetController)
+        {
+            AnimatorControllerParameter[] parameters = _animator.parameters;
+            var parameterSnapshots = new ParameterSnapshot[parameters.Length];
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                parameterSnapshots[i] = new ParameterSnapshot(
+                    _animator,
+                    parameters[i]);
+            }
+
+            int layerCount = _animator.layerCount;
+            var layerSnapshots = new LayerSnapshot[layerCount];
+            for (int i = 0; i < layerCount; i++)
+            {
+                layerSnapshots[i] = new LayerSnapshot(_animator, i);
+            }
+
+            float playbackSpeed = _animator.speed;
+            _animator.runtimeAnimatorController = targetController;
+
+            for (int i = 0; i < parameterSnapshots.Length; i++)
+            {
+                parameterSnapshots[i].Restore(_animator);
+            }
+
+            int restoredLayerCount = Mathf.Min(layerCount, _animator.layerCount);
+            for (int i = 0; i < restoredLayerCount; i++)
+            {
+                layerSnapshots[i].Restore(_animator, i);
+            }
+
+            _animator.speed = playbackSpeed;
         }
 
         private static RuntimeAnimatorController ResolveBaseController(
