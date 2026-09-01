@@ -152,17 +152,25 @@ namespace _App
             _reaction.Tick(scaledDeltaTime);
             _attackRecoil.Tick(scaledDeltaTime);
             _combat.Advance(scaledDeltaTime);
+            bool externalActionLock =
+                _reaction.BlocksActions || _attackRecoil.IsActive;
+            PlayerMovementIntent nonDefenseMovementIntent = externalActionLock
+                ? PlayerMovementIntent.Locked
+                : _combat.MovementIntent;
+            PlayerLocomotionSnapshot locomotionSnapshot = _locomotion.Snapshot;
             _defense.Tick(
                 scaledDeltaTime,
-                !_reaction.BlocksActions &&
-                !_attackRecoil.IsActive &&
-                !_locomotion.Snapshot.IsJumpStarting &&
+                !externalActionLock &&
+                !locomotionSnapshot.IsJumpStarting &&
+                !locomotionSnapshot.IsDodgeStarting &&
+                !_locomotion.HasPriorityActionRequest(
+                    in nonDefenseMovementIntent) &&
                 (_combat.Phase == PlayerCombatPhase.Ready ||
                  _combat.MovementIntent.AllowGuard));
             _defenseAnimation.Tick(scaledDeltaTime);
             _traversal.Tick();
             _locomotion.SetMovementIntent(
-                _reaction.BlocksActions || _attackRecoil.IsActive
+                externalActionLock
                     ? PlayerMovementIntent.Locked
                     : _defense.BlocksActions
                         ? _defense.MovementIntent

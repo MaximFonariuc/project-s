@@ -22,6 +22,9 @@ namespace _App
         private bool _exitPending;
         private bool _enabled;
 
+        public bool CanRequest => _enabled && !_requestPending && CanEnterDodge;
+        public bool IsStarting => _requestPending;
+
         public PlayerDodgeAction(
             Character character,
             ICharacterMotor motor,
@@ -89,7 +92,7 @@ namespace _App
 
         public bool TryRequest(Vector3 worldDirection, bool backwards)
         {
-            if (!_enabled || _requestPending || !IsAllowed())
+            if (!CanRequest)
             {
                 return false;
             }
@@ -107,13 +110,11 @@ namespace _App
             return true;
         }
 
-        private bool IsAllowed()
-        {
-            return _canEverDodge &&
-                   !_character.IsCrouched() &&
-                   !_character.IsDodging() &&
-                   _character.IsWalking();
-        }
+        private bool CanEnterDodge =>
+            _canEverDodge &&
+            !_character.IsCrouched() &&
+            !_character.IsDodging() &&
+            _character.IsWalking();
 
         private void OnBeforeSimulationUpdated(float deltaTime)
         {
@@ -134,7 +135,7 @@ namespace _App
             }
 
             _requestPending = false;
-            if (IsAllowed())
+            if (CanEnterDodge)
             {
                 EnterDodge();
             }

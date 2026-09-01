@@ -146,6 +146,23 @@ namespace _App
             _movementIntent = movementIntent;
         }
 
+        internal bool HasPriorityActionRequest(in PlayerMovementIntent movementIntent)
+        {
+            if (!_enabled)
+            {
+                return false;
+            }
+
+            if (_dodgeRequested && CanConsumeDodgeRequest(in movementIntent))
+            {
+                return true;
+            }
+
+            bool jumpRequested = _jumpRequested ||
+                (_pendingJumpSignals & PendingJumpSignals.Started) != 0;
+            return jumpRequested && CanConsumeJumpRequest(in movementIntent);
+        }
+
         public void Tick(float scaledDeltaTime, float unscaledDeltaTime)
         {
             if (!_enabled)
@@ -369,6 +386,7 @@ namespace _App
                 planarVelocity.magnitude / maxSpeed,
                 _motor.IsGrounded,
                 _runtime.JumpStarting,
+                _actions.IsDodgeStarting,
                 _motor.IsCrouched,
                 stateId == PlayerLocomotionStateId.Dodge && _runtime.DodgeBackwards);
         }
@@ -495,8 +513,7 @@ namespace _App
 
         private bool TryConsumeJumpRequest()
         {
-            if (!_canJump || !_movementIntent.AllowJump || _motor.IsDodging ||
-                _motor.IsSwimming || _motor.IsCrouched)
+            if (!CanConsumeJumpRequest(in _movementIntent))
             {
                 return false;
             }
@@ -603,8 +620,7 @@ namespace _App
 
         private bool TryConsumeDodgeRequest()
         {
-            if (!_movementIntent.AllowDodge || _motor.IsFalling ||
-                _motor.IsSwimming || _motor.IsDodging)
+            if (!CanConsumeDodgeRequest(in _movementIntent))
             {
                 return false;
             }
@@ -621,6 +637,20 @@ namespace _App
             _runtime.DodgeBackwards = backwards;
             SafeEvent.Publish(DodgeAccepted, null);
             return true;
+        }
+
+        private bool CanConsumeJumpRequest(in PlayerMovementIntent movementIntent)
+        {
+            return _canJump && movementIntent.AllowJump && !_motor.IsDodging &&
+                   !_motor.IsSwimming && !_motor.IsCrouched &&
+                   (!_motor.IsGrounded || !_runtime.JumpStarting);
+        }
+
+        private bool CanConsumeDodgeRequest(in PlayerMovementIntent movementIntent)
+        {
+            return movementIntent.AllowDodge && !_motor.IsFalling &&
+                   !_motor.IsSwimming && !_motor.IsDodging &&
+                   _actions.CanDodge;
         }
     }
 }

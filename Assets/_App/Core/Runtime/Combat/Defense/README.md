@@ -126,6 +126,9 @@ classDiagram
   retained as held input but cannot create a competing gameplay or animation
   state while jump anticipation is active. Airborne admission remains rejected
   by the actor capability.
+- A pending dodge request has equivalent priority before the physics step enters
+  dodge mode. Same-frame `Guard + Dodge/Jump` input therefore produces no
+  transient Guard start/cancel pair and sends no contradictory Animator action.
 - Guard entered from `Ready` wins same-frame arbitration and clears pending
   combat input. During an attack it can enter only when that action explicitly
   enables `Allow Guard` and its authored `CancelWindow` is open; startup and

@@ -44,6 +44,7 @@ namespace _App
         public float NormalizedSpeed { get; }
         public bool IsGrounded { get; }
         public bool IsJumpStarting { get; }
+        public bool IsDodgeStarting { get; }
         public bool IsCrouched { get; }
         public bool DodgeBackwards { get; }
 
@@ -59,6 +60,7 @@ namespace _App
             float normalizedSpeed,
             bool isGrounded,
             bool isJumpStarting,
+            bool isDodgeStarting,
             bool isCrouched,
             bool dodgeBackwards)
         {
@@ -74,6 +76,7 @@ namespace _App
             NormalizedSpeed = Mathf.Clamp01(normalizedSpeed);
             IsGrounded = isGrounded;
             IsJumpStarting = isJumpStarting;
+            IsDodgeStarting = isDodgeStarting;
             IsCrouched = isCrouched;
             DodgeBackwards = dodgeBackwards;
         }

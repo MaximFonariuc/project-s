@@ -5,6 +5,9 @@ namespace _App
 {
     public interface IPlayerLocomotionActions
     {
+        bool CanDodge { get; }
+        bool IsDodgeStarting { get; }
+
         void Enable();
         void Disable();
         void Interrupt();
@@ -18,6 +21,9 @@ namespace _App
         private readonly PlayerDodgeAction _dodge;
         private readonly PlayerGlideAction _glide;
         private bool _enabled;
+
+        public bool CanDodge => _dodge?.CanRequest == true;
+        public bool IsDodgeStarting => _dodge?.IsStarting == true;
 
         public PlayerLocomotionActions(
             Character character,

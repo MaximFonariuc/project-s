@@ -164,6 +164,10 @@ reaction, disable, or another interruption.
   rules once the motor confirms the jump. Weapon switching is rejected during
   the same reservation instead of briefly starting a transition that takeoff
   would immediately cancel.
+- Accepted dodge startup is also a locomotion reservation. It closes combat and
+  weapon-switch admission until character simulation confirms dodge mode, so a
+  fast render Update cannot insert a ground attack between input acceptance and
+  the following physics step.
 - Landing has the inverse handoff rule. An input already buffered against an
   active air action is re-evaluated once against the grounded entry graph before
   the air session releases animation ownership. A valid command therefore

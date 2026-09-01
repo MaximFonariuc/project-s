@@ -18,7 +18,7 @@ namespace _App
         public bool CanEnterAction =>
             !_reactionState.BlocksActions && !_defenseState.BlocksActions &&
             !_attackRecoilState.IsActive &&
-            !IsGroundJumpStarting &&
+            !IsLocomotionActionStarting &&
             _actor.CanAttack;
 
         public bool CanBufferEntry =>
@@ -28,7 +28,7 @@ namespace _App
         public bool CanSwitchWeapon =>
             !_reactionState.BlocksActions && !_defenseState.BlocksActions &&
             !_attackRecoilState.IsActive &&
-            !IsGroundJumpStarting &&
+            !IsLocomotionActionStarting &&
             !_actor.IsFalling;
 
         public PlayerCombatAvailability(
@@ -55,9 +55,10 @@ namespace _App
             _characterType = characterType;
         }
 
-        private bool IsGroundJumpStarting =>
+        private bool IsLocomotionActionStarting =>
             _locomotionState.Snapshot.IsValid &&
-            _locomotionState.Snapshot.IsJumpStarting;
+            (_locomotionState.Snapshot.IsJumpStarting ||
+             _locomotionState.Snapshot.IsDodgeStarting);
 
         public bool CanUseAction(
             PlayerCombatAction action,

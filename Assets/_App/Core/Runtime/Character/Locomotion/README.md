@@ -54,6 +54,10 @@ classDiagram
   the reservation remains visible in the locomotion snapshot until the existing
   `JumpAccepted` edge confirms motor takeoff. A bounded `0.10 s` scaled timeout
   releases the reservation and jump input if physics rejects the request.
+- Dodge acceptance has the same explicit simulation boundary. The locomotion
+  snapshot exposes `IsDodgeStarting` from acceptance until the next character
+  simulation step enters the custom dodge mode. Combat, weapon switching and
+  Guard cannot claim that gap while the motor still reports `Walking`.
 - Dodge displacement is motor-owned impulse/duration movement; Animator root
   motion is disabled.
 - Dodge invulnerability is a normalized gameplay window from `DodgeSettings`.
