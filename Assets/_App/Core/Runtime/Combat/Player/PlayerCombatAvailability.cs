@@ -8,6 +8,7 @@ namespace _App
         private readonly IPlayerCombatActor _actor;
         private readonly ICharacterReactionState _reactionState;
         private readonly IPlayerDefenseState _defenseState;
+        private readonly IPlayerAttackRecoilState _attackRecoilState;
         private readonly IPlayerCombatAnimation _animation;
         private readonly ICombatClock _clock;
         private readonly ECharacterType _characterType;
@@ -15,6 +16,7 @@ namespace _App
 
         public bool CanEnterAction =>
             !_reactionState.BlocksActions && !_defenseState.IsGuarding &&
+            !_attackRecoilState.IsActive &&
             _actor.CanAttack;
 
         public bool CanBufferEntry =>
@@ -23,12 +25,14 @@ namespace _App
 
         public bool CanSwitchWeapon =>
             !_reactionState.BlocksActions && !_defenseState.IsGuarding &&
+            !_attackRecoilState.IsActive &&
             !_actor.IsFalling;
 
         public PlayerCombatAvailability(
             IPlayerCombatActor actor,
             ICharacterReactionState reactionState,
             IPlayerDefenseState defenseState,
+            IPlayerAttackRecoilState attackRecoilState,
             IPlayerCombatAnimation animation,
             ICombatClock clock,
             ECharacterType characterType)
@@ -38,6 +42,8 @@ namespace _App
                 throw new ArgumentNullException(nameof(reactionState));
             _defenseState = defenseState ??
                 throw new ArgumentNullException(nameof(defenseState));
+            _attackRecoilState = attackRecoilState ??
+                throw new ArgumentNullException(nameof(attackRecoilState));
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _clock = clock ?? throw new ArgumentNullException(nameof(clock));
             _characterType = characterType;

@@ -15,11 +15,14 @@ namespace _App
                     $"Player '{player.name}' requires a combat loadout profile.");
             CombatInputBufferSettings inputBufferSettings =
                 combatLoadout.CreateInputBufferSettings();
+            PlayerAttackRecoilSettings attackRecoilSettings =
+                combatLoadout.CreateAttackRecoilSettings();
             var weaponTransitionAction = new PlayerWeaponTransitionAction(
                 combatLoadout.CreateWeaponTransitionDefinition());
 
             builder.Register<ICombatClock, UnityCombatClock>(Lifetime.Scoped);
             builder.RegisterInstance(inputBufferSettings);
+            builder.RegisterInstance(attackRecoilSettings);
             builder.Register<CombatInputBuffer>(Lifetime.Scoped);
             builder.Register<CombatMotionController>(Lifetime.Scoped);
             builder.Register<CombatActionExecutor>(Lifetime.Scoped);
@@ -33,11 +36,16 @@ namespace _App
                     resolver.Resolve<PlayerAnimationCoordinator>(),
                     resolver.Resolve<PlayerAnimatorLoadout>()),
                 Lifetime.Scoped);
+            builder.Register<PlayerAttackRecoilController>(Lifetime.Scoped)
+                .AsSelf()
+                .As<IPlayerAttackRecoilState>();
+            builder.Register<PlayerAttackRecoilAnimationAdapter>(Lifetime.Scoped);
             builder.Register(
                 resolver => new PlayerCombatAvailability(
                     resolver.Resolve<IPlayerCombatActor>(),
                     resolver.Resolve<ICharacterReactionState>(),
                     resolver.Resolve<IPlayerDefenseState>(),
+                    resolver.Resolve<IPlayerAttackRecoilState>(),
                     resolver.Resolve<IPlayerCombatAnimation>(),
                     resolver.Resolve<ICombatClock>(),
                     player.CharacterType),
@@ -94,6 +102,7 @@ namespace _App
                         resolver.Resolve<PlayerCombatAvailability>(),
                         resolver.Resolve<IPlayerLocomotionEvents>(),
                         resolver.Resolve<IPlayerDefenseState>(),
+                        resolver.Resolve<IPlayerAttackRecoilState>(),
                         resolver.Resolve<IPlayerCombatAnimation>(),
                         resolver.Resolve<IPlayerWeaponRig>(),
                         resolver.Resolve<PlayerCombatMovesetCatalog>(),

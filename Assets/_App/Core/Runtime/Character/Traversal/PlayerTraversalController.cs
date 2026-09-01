@@ -16,6 +16,7 @@ namespace _App
         private readonly IPlayerCombatCommands _combatCommands;
         private readonly IPlayerCombatState _combatState;
         private readonly ICharacterReactionState _reactionState;
+        private readonly IPlayerAttackRecoilState _attackRecoilState;
         private readonly IPlayerLocomotionCommands _locomotion;
         private readonly IPlayerCameraCommands _camera;
 
@@ -33,6 +34,7 @@ namespace _App
             IPlayerCombatCommands combatCommands,
             IPlayerCombatState combatState,
             ICharacterReactionState reactionState,
+            IPlayerAttackRecoilState attackRecoilState,
             IPlayerLocomotionCommands locomotion,
             IPlayerCameraCommands camera)
         {
@@ -44,6 +46,8 @@ namespace _App
             _combatCommands = combatCommands ?? throw new ArgumentNullException(nameof(combatCommands));
             _combatState = combatState ?? throw new ArgumentNullException(nameof(combatState));
             _reactionState = reactionState ?? throw new ArgumentNullException(nameof(reactionState));
+            _attackRecoilState = attackRecoilState ??
+                throw new ArgumentNullException(nameof(attackRecoilState));
             _locomotion = locomotion ?? throw new ArgumentNullException(nameof(locomotion));
             _camera = camera ?? throw new ArgumentNullException(nameof(camera));
         }
@@ -90,6 +94,7 @@ namespace _App
         public bool TryInteract()
         {
             if (!_enabled || _interactionPending || _reactionState.BlocksActions ||
+                _attackRecoilState.IsActive ||
                 _combatState.Phase != PlayerCombatPhase.Ready ||
                 !_interactionProbe.HasInteractable())
             {
@@ -114,7 +119,8 @@ namespace _App
 
         public bool TryInvertGravity()
         {
-            if (!_enabled || !_locomotion.TryInvertGravity())
+            if (!_enabled || _attackRecoilState.IsActive ||
+                !_locomotion.TryInvertGravity())
             {
                 return false;
             }

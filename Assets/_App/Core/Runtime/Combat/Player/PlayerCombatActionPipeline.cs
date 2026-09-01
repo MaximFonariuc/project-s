@@ -222,6 +222,16 @@ namespace _App
                         break;
                     }
 
+                    if (sessionResult.EndReason == CombatActionEndReason.Parried)
+                    {
+                        // A parry invalidates every successor authored against the
+                        // interrupted source action. Fresh input may be buffered
+                        // later while the independent recoil state is active.
+                        _acceptedBufferedAction = null;
+                        _inputBuffer.Clear();
+                        break;
+                    }
+
                     PlayerCombatAction acceptedAction = _acceptedBufferedAction;
                     Transform nextMotionTarget = ResolveNextMotionTarget(
                         acceptedAction,

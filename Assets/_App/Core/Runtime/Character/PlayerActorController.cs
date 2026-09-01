@@ -10,6 +10,8 @@ namespace _App
         private readonly PlayerTargetingController _targeting;
         private readonly PlayerCameraController _camera;
         private readonly PlayerCombatController _combat;
+        private readonly PlayerAttackRecoilController _attackRecoil;
+        private readonly PlayerAttackRecoilAnimationAdapter _attackRecoilAnimation;
         private readonly PlayerDefenseController _defense;
         private readonly PlayerDefenseAnimationAdapter _defenseAnimation;
         private readonly CharacterReactionController _reaction;
@@ -30,6 +32,8 @@ namespace _App
             PlayerTargetingController targeting,
             PlayerCameraController camera,
             PlayerCombatController combat,
+            PlayerAttackRecoilController attackRecoil,
+            PlayerAttackRecoilAnimationAdapter attackRecoilAnimation,
             PlayerDefenseController defense,
             PlayerDefenseAnimationAdapter defenseAnimation,
             CharacterReactionController reaction,
@@ -48,6 +52,10 @@ namespace _App
             _targeting = targeting ?? throw new ArgumentNullException(nameof(targeting));
             _camera = camera ?? throw new ArgumentNullException(nameof(camera));
             _combat = combat ?? throw new ArgumentNullException(nameof(combat));
+            _attackRecoil = attackRecoil ??
+                throw new ArgumentNullException(nameof(attackRecoil));
+            _attackRecoilAnimation = attackRecoilAnimation ??
+                throw new ArgumentNullException(nameof(attackRecoilAnimation));
             _defense = defense ?? throw new ArgumentNullException(nameof(defense));
             _defenseAnimation = defenseAnimation ??
                 throw new ArgumentNullException(nameof(defenseAnimation));
@@ -71,11 +79,14 @@ namespace _App
             try
             {
                 _reaction.StateChanged += OnReactionStateChanged;
+                _attackRecoil.Started += OnAttackRecoilStarted;
                 _gameplayTime.Enable();
                 _movementPolicyLifecycle.Enable();
                 _locomotion.Enable();
                 _targeting.Enable();
                 _camera.Enable();
+                _attackRecoil.Enable();
+                _attackRecoilAnimation.Enable();
                 _combat.Enable();
                 _defenseAnimation.Enable();
                 _defense.Enable();
@@ -103,6 +114,7 @@ namespace _App
 
             _input.Disable();
             _reaction.StateChanged -= OnReactionStateChanged;
+            _attackRecoil.Started -= OnAttackRecoilStarted;
             _simulationPause.Disable();
             _traversal.Disable();
             _style.Disable();
@@ -112,6 +124,8 @@ namespace _App
             _defense.Disable();
             _defenseAnimation.Disable();
             _combat.Disable();
+            _attackRecoilAnimation.Disable();
+            _attackRecoil.Disable();
             _camera.Disable();
             _targeting.Disable();
             _locomotion.Disable();
@@ -130,14 +144,16 @@ namespace _App
 
             _gameplayTime.Tick(unscaledDeltaTime);
             _reaction.Tick(scaledDeltaTime);
+            _attackRecoil.Tick(scaledDeltaTime);
             _combat.Advance(scaledDeltaTime);
             _defense.Tick(
                 !_reaction.BlocksActions &&
+                !_attackRecoil.IsActive &&
                 _combat.Phase == PlayerCombatPhase.Ready);
             _defenseAnimation.Tick(scaledDeltaTime);
             _traversal.Tick();
             _locomotion.SetMovementIntent(
-                _reaction.BlocksActions
+                _reaction.BlocksActions || _attackRecoil.IsActive
                     ? PlayerMovementIntent.Locked
                     : _defense.IsGuarding
                         ? _defense.MovementIntent
@@ -175,6 +191,7 @@ namespace _App
                 return;
             }
 
+            _attackRecoil.Interrupt();
             _combat.InterruptAttack(CombatActionEndReason.Reaction);
             _defense.Interrupt();
             if (state == CharacterReactionStateId.Dead)
@@ -182,6 +199,14 @@ namespace _App
                 _combat.DiscardPendingCommands();
             }
 
+            _traversal.Interrupt();
+            _locomotion.InterruptActions();
+            _locomotion.SetMovementIntent(PlayerMovementIntent.Locked);
+        }
+
+        private void OnAttackRecoilStarted(PlayerAttackRecoilSnapshot snapshot)
+        {
+            _defense.Interrupt();
             _traversal.Interrupt();
             _locomotion.InterruptActions();
             _locomotion.SetMovementIntent(PlayerMovementIntent.Locked);

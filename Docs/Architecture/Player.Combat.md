@@ -2,7 +2,7 @@
 
 ## Ответственность
 
-`PlayerCombatController` принимает семантические команды, владеет subscriptions, operation lifecycle и persistent weapon state. `PlayerCombatActionPipeline` выполняет уже определённые combat actions: обращается к action graph, потребляет contextual input buffer, ведёт action chain и публикует combo/hit-window state. `PlayerCombatCommandInbox` изолирует pre-tick FIFO, `PlayerCombatOperationLifetime` — cancellation ownership attack/weapon операций, а `PlayerCombatAvailability` отвечает за live admission rules и cooldown history. Animator и weapon rig остаются presentation/scene adapters.
+`PlayerCombatController` принимает семантические команды, владеет subscriptions, operation lifecycle и persistent weapon state. `PlayerCombatActionPipeline` выполняет уже определённые combat actions: обращается к action graph, потребляет contextual input buffer, ведёт action chain и публикует combo/hit-window state. `PlayerCombatCommandInbox` изолирует pre-tick FIFO, `PlayerCombatOperationLifetime` — cancellation ownership attack/weapon операций, `PlayerAttackRecoilController` — потерю управления источником после подтверждённого парирования, а `PlayerCombatAvailability` отвечает за live admission rules и cooldown history. Animator и weapon rig остаются presentation/scene adapters.
 
 Публичные read-events изолированы от gameplay transaction: исключение одного
 presentation/UI subscriber логируется отдельно, не блокирует остальных
@@ -167,6 +167,18 @@ classDiagram
         +CanUseAction(action, weapon) bool
         +RecordUse(action)
     }
+    class IPlayerAttackRecoilState {
+        +Started(snapshot)
+        +Ended(reason)
+        +IsActive bool
+        +Snapshot PlayerAttackRecoilSnapshot
+    }
+    class PlayerAttackRecoilController {
+        +Enable()
+        +Tick(scaledDeltaTime)
+        +Interrupt()
+    }
+    class PlayerAttackRecoilAnimationAdapter
     class CombatInputBuffer
     class PlayerCombatCommandInbox {
         +TryEnqueue(commandId) bool
@@ -203,6 +215,7 @@ classDiagram
     PlayerCombatOperationLifetime --> PlayerWeaponTransitionSession : abort
     PlayerCombatOperationLifetime --> IPlayerCombatAnimation : cancel presentation
     PlayerCombatController --> PlayerCombatAvailability : admission / cooldown
+    PlayerCombatController --> IPlayerAttackRecoilState : discard pre-parry commands
     PlayerCombatController --> CombatActionExecutor : deterministic tick
     PlayerCombatActionPipeline --> PlayerCombatActionGraph
     PlayerCombatActionPipeline --> CombatActionSession : attack lifecycle
@@ -215,11 +228,13 @@ classDiagram
     PlayerWeaponTransitionSession --> CombatActionExecutor : transition timeline
     PlayerWeaponTransitionSession --> IPlayerCombatAnimation : play / restore loadout
     CombatActionSession *-- CombatActionOutcome
+    CombatActionSession --> PlayerAttackRecoilController : confirmed AttackParried
     PlayerCombatController *-- PlayerCombatCommandInbox : pre-tick commands
     PlayerCombatController --> IPlayerCombatAnimation
     PlayerCombatController --> IPlayerWeaponRig
     PlayerCombatController --> IPlayerCombatActor
     PlayerCombatAvailability --> ICharacterReactionState : reaction gate
+    PlayerCombatAvailability --> IPlayerAttackRecoilState : recoil gate
     PlayerCombatAvailability --> IPlayerCombatActor : actor gate
     PlayerCombatAvailability --> IPlayerCombatAnimation : presentation support
     PlayerCombatAvailability --> ICombatClock : scaled cooldown time
@@ -232,6 +247,10 @@ classDiagram
     PlayerCombatComposition ..> PlayerCombatController : constructs
     PlayerCombatComposition ..> PlayerCombatActionPipeline : constructs
     PlayerCombatComposition ..> PlayerWeaponTransitionSession : constructs
+    IPlayerAttackRecoilState <|.. PlayerAttackRecoilController
+    PlayerAttackRecoilAnimationAdapter --> IPlayerAttackRecoilState
+    PlayerAttackRecoilAnimationAdapter --> PlayerAnimationCoordinator : Reaction source
+    PlayerCombatComposition ..> PlayerAttackRecoilController : constructs
 ```
 
 ## State machine
@@ -257,6 +276,13 @@ stateDiagram-v2
 `IStateMachine<PlayerCombatPhase>` — единственный owner combat phase. Controller больше не хранит собственный mutable phase и не содержит отдельный ручной `CanChangePhase`. `ExecutingState` и `RecoveryState` получают текущий `PlayerCombatAction` как context, а `WeaponSwitchState` — целевое оружие.
 
 `RecoveryStart` является частью gameplay timeline, а не animation event. Поэтому transition в recovery остаётся определённым даже при смене Animator Controller или клипа.
+
+Парирование атаки не добавляет искусственный `ParryStagger` в эту state machine.
+`CombatActionSession` завершает action с причиной `Parried`, после чего combat phase
+возвращается в `Ready`, а независимый `PlayerAttackRecoilController` ещё `0.55 s`
+блокирует action admission и movement intent. Благодаря этому combat phase не
+дублирует reaction state, но публичный `Ready` не открывает управление раньше
+окончания наказания.
 
 ## Выполнение action
 
@@ -398,6 +424,22 @@ event и не отменяет атаку.
 - Входящая реакция передаёт session отдельную причину `Reaction`; jump/dodge и
   внешняя команда используют `Interrupted`. Все пути проходят через один
   session cleanup вместо ручного сброса execution/outcome в controller.
+- Подтверждённый `Parried` синхронно публикуется владельцу source recoil до
+  закрытия session. Старый accepted successor, combat buffer и pre-tick inbox
+  очищаются на этой границе, поэтому команда, записанная против прерванной
+  атаки, не может продолжить combo. Новый ввод, полученный уже во время recoil,
+  разрешено хранить как `Ready` entry и исполнить после снятия gate.
+- `PlayerAttackRecoilController` использует scaled delta time: hit stop замораживает
+  и наказание, и его presentation. Recoil блокирует attack, weapon switch,
+  guard, jump/dodge, traversal и locomotion translation. Подтверждённый damage
+  reaction или death прерывает recoil и получает более сильную presentation
+  authority.
+- `PlayerAttackRecoilAnimationAdapter` переиспользует directional HitStun slot
+  через общий `PlayerAnimationCoordinator` с source `Reaction`; отдельный Animator
+  и отдельная копия animation state не создаются. Обычное completion выполняет
+  короткий authored cancel в locomotion, потому что `XController.HitStun` сам не
+  имеет выхода. Входящий damage/death вместо этого только освобождает ownership,
+  позволяя следующей реакции сделать прямой переход без промежуточного `Move`.
 - Общий operation lifecycle, защита от запоздавшего async `finally` и порядок
   cancellation описаны в `Docs/Architecture/Combat.OperationLifetime.md`.
 - Входящая реакция не входит в combat state machine. `PlayerActorController` прерывает executing/recovery/weapon-switch action по подтверждённому reaction state, а `PlayerCombatAvailability` читает только `ICharacterReactionState.BlocksActions`, чтобы не принять новый action во время hit-stun/knockdown/airborne/death. Владельцем этих состояний остаётся `CharacterReactionController`.

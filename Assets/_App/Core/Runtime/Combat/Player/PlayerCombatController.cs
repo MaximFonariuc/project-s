@@ -19,6 +19,7 @@ namespace _App
         private readonly PlayerCombatAvailability _availability;
         private readonly IPlayerLocomotionEvents _locomotionEvents;
         private readonly IPlayerDefenseState _defenseState;
+        private readonly IPlayerAttackRecoilState _attackRecoilState;
         private readonly IPlayerCombatAnimation _animation;
         private readonly IPlayerWeaponRig _weaponRig;
         private readonly PlayerCombatMovesetCatalog _movesets;
@@ -51,6 +52,11 @@ namespace _App
         {
             get
             {
+                if (_attackRecoilState.IsActive)
+                {
+                    return PlayerMovementIntent.Locked;
+                }
+
                 PlayerMovementIntent intent = _actionExecutor.MovementIntent;
                 if (!intent.FaceMoveDirection ||
                     _actor.RotationMode == ERotationMode.OrientRotationToMovement)
@@ -72,6 +78,7 @@ namespace _App
             PlayerCombatAvailability availability,
             IPlayerLocomotionEvents locomotionEvents,
             IPlayerDefenseState defenseState,
+            IPlayerAttackRecoilState attackRecoilState,
             IPlayerCombatAnimation animation,
             IPlayerWeaponRig weaponRig,
             PlayerCombatMovesetCatalog movesets,
@@ -89,6 +96,8 @@ namespace _App
             _availability = availability ?? throw new ArgumentNullException(nameof(availability));
             _locomotionEvents = locomotionEvents ?? throw new ArgumentNullException(nameof(locomotionEvents));
             _defenseState = defenseState ?? throw new ArgumentNullException(nameof(defenseState));
+            _attackRecoilState = attackRecoilState ??
+                throw new ArgumentNullException(nameof(attackRecoilState));
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _weaponRig = weaponRig ?? throw new ArgumentNullException(nameof(weaponRig));
             _movesets = movesets ?? throw new ArgumentNullException(nameof(movesets));
@@ -137,6 +146,7 @@ namespace _App
                 _locomotionEvents.JumpAccepted += OnJumpAccepted;
                 _locomotionEvents.DodgeAccepted += OnDodgeAccepted;
                 _defenseState.GuardStarted += OnGuardStarted;
+                _attackRecoilState.Started += OnAttackRecoilStarted;
                 _outgoingHits.HitResolved += OnOutgoingHitResolved;
             }
             catch
@@ -159,6 +169,7 @@ namespace _App
             _locomotionEvents.JumpAccepted -= OnJumpAccepted;
             _locomotionEvents.DodgeAccepted -= OnDodgeAccepted;
             _defenseState.GuardStarted -= OnGuardStarted;
+            _attackRecoilState.Started -= OnAttackRecoilStarted;
             _outgoingHits.HitResolved -= OnOutgoingHitResolved;
             _stateMachine.StateChanged -= OnStateChanged;
             _enabled = false;
@@ -459,6 +470,13 @@ namespace _App
         private void OnOutgoingHitResolved(CombatHitResult hit)
         {
             _actionPipeline.TryRecord(in hit);
+        }
+
+        private void OnAttackRecoilStarted(PlayerAttackRecoilSnapshot snapshot)
+        {
+            // Commands captured before the parry belong to the interrupted
+            // action. Inputs received after this boundary may buffer normally.
+            DiscardPendingCommands();
         }
 
         private void OnActiveComboIndexChanged(int? comboIndex)

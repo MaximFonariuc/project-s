@@ -55,6 +55,7 @@ namespace _App
         private CombatActionEndReason _requestedEndReason;
 
         public event Action<bool> HitWindowChanged;
+        public event Action<CombatHitResult> AttackParried;
 
         public PlayerCombatAction Action { get; private set; }
         public CombatActionFrame CurrentFrame { get; private set; }
@@ -184,6 +185,7 @@ namespace _App
                 return;
             }
 
+            SafeEvent.Publish(AttackParried, hit, _actor.Root);
             Abort(CombatActionEndReason.Parried);
         }
 

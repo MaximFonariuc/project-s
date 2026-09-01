@@ -36,6 +36,11 @@ classDiagram
         +ExecuteAsync(action, weapon, target, observer, token)
         +Abort(reason)
         +TryRecord(hit) bool
+        +AttackParried(CombatHitResult)
+    }
+    class PlayerAttackRecoilController {
+        +IsActive bool
+        +Tick(scaledDeltaTime)
     }
     class PlayerCombatOperationLifetime {
         +Begin() CancellationTokenSource
@@ -79,6 +84,7 @@ classDiagram
     CombatActionSession *-- CombatActionOutcome
     CombatActionSession --> IPlayerWeaponRig : hitbox window
     CombatActionSession --> IPlayerCombatActor : execution source
+    CombatActionSession --> PlayerAttackRecoilController : confirmed source outcome
 ```
 
 ## Lifecycle
@@ -91,6 +97,7 @@ sequenceDiagram
     participant Executor as CombatActionExecutor
     participant Rig as IPlayerWeaponRig
     participant Graph as PlayerCombatActionGraph
+    participant Recoil as PlayerAttackRecoilController
 
     Combat->>Pipeline: ExecuteAsync(action, weapon, token)
     Pipeline->>Session: ExecuteAsync(action, weapon, target, frameHandler, token)
@@ -103,6 +110,11 @@ sequenceDiagram
         Session->>Rig: open / close authored hitbox window
         Session->>Pipeline: frameHandler(frame)
         Pipeline->>Graph: resolve transition
+    end
+    opt target confirms Parried
+        Session->>Recoil: AttackParried(hit)
+        Recoil->>Recoil: enter bounded source recoil
+        Session->>Executor: Abort()
     end
     Session->>Rig: CloseHitbox()
     Session->>Session: end execution + outcome
@@ -132,12 +144,18 @@ boolean flags:
 - `Completed` — timeline дошёл до completion boundary;
 - `Transitioned` — graph принял следующую action;
 - `Landed` — airborne-only action потеряла допустимый environment;
-- `Reaction`, `Interrupted`, `Cancelled`, `Disabled` — внешние lifecycle boundaries;
+- `Reaction`, `Parried`, `Interrupted`, `Cancelled`, `Disabled` — внешние lifecycle boundaries;
 - `Failed` — запуск или выполнение завершились исключением.
 
 Последняя подтверждённая цель копируется в immutable result до очистки outcome.
 Это позволяет переносить цель из launcher в air chase, не оставляя mutable
 outcome жить между actions.
+
+`Parried` отличается от обычного confirmed hit: session сначала синхронно
+сообщает source-side outcome владельцу `PlayerAttackRecoilController`, а затем
+закрывает hitbox и abort-ит timeline. Pipeline обязан завершить текущую chain и
+удалить successor, который был принят относительно прерванной action. Сам
+bounded recoil не принадлежит session и может пережить её возврат в `Ready`.
 
 ## Защита коротких окон от frame hitch
 

@@ -51,6 +51,7 @@ namespace _App
         [SerializeField] private CombatActionAuthoring _weaponTransition =
             CombatActionAuthoring.CreateDefaultWeaponTransition();
         [SerializeField] private CombatInputBufferAuthoring _inputBuffer = new();
+        [SerializeField] private PlayerAttackRecoilAuthoring _attackRecoil = new();
 
         [Header("Weapon Movesets")]
         [SerializeField] private List<PlayerCombatMovesetAuthoring> _movesets = new();
@@ -75,6 +76,17 @@ namespace _App
             }
 
             return _inputBuffer.Build();
+        }
+
+        internal PlayerAttackRecoilSettings CreateAttackRecoilSettings()
+        {
+            if (_attackRecoil == null)
+            {
+                throw new InvalidOperationException(
+                    $"Combat loadout '{name}' requires attack recoil settings.");
+            }
+
+            return _attackRecoil.Build();
         }
 
         internal PlayerCombatMovesetCatalog CreateMovesetCatalog()
@@ -105,6 +117,7 @@ namespace _App
             {
                 CreateWeaponTransitionDefinition();
                 CreateInputBufferSettings();
+                CreateAttackRecoilSettings();
                 CreateMovesetCatalog();
             }
             catch (Exception exception)
