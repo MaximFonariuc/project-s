@@ -17,6 +17,7 @@ namespace _App
         [SerializeField] private Health _health;
         [SerializeField] private Rigidbody _body;
         [SerializeField] private CharacterReactionHost _reactionHost;
+        [SerializeField] private CombatTrainingDefense _defense;
         [SerializeField] private BodyColliderRig _targetRig;
         [SerializeField] private Transform _attackOrigin;
         [SerializeField] private bool _automatic = true;
@@ -100,6 +101,12 @@ namespace _App
                 return;
             }
 
+            if (_defense != null && _defense.BlocksActions)
+            {
+                Interrupt();
+                return;
+            }
+
             float deltaTime = Mathf.Max(0.0f, Time.deltaTime);
             _remaining = Mathf.Max(0.0f, _remaining - deltaTime);
 
@@ -144,6 +151,7 @@ namespace _App
         {
             if (!_initialized || !_health.IsAlive ||
                 _reactionHost?.State is { BlocksActions: true } ||
+                (_defense != null && _defense.BlocksActions) ||
                 _phase is not (CombatTrainingAttackPhase.Waiting or
                     CombatTrainingAttackPhase.Windup))
             {
@@ -212,6 +220,11 @@ namespace _App
             {
                 Interrupt();
             }
+        }
+
+        internal void InterruptForDefense()
+        {
+            Interrupt();
         }
 
         private void TickWindup()
@@ -478,6 +491,11 @@ namespace _App
             if (_reactionHost == null)
             {
                 _reactionHost = GetComponent<CharacterReactionHost>();
+            }
+
+            if (_defense == null)
+            {
+                _defense = GetComponent<CombatTrainingDefense>();
             }
 
             if (_attackOrigin == null)

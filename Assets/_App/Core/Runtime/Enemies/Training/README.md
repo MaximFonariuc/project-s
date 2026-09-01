@@ -1,4 +1,4 @@
-# Combat training attacker
+# Combat training actor
 
 This tree closes the incoming-hit side of the current combat vertical slice. It
 is a deterministic test actor, not the foundation of the future enemy AI.
@@ -17,6 +17,14 @@ classDiagram
         <<presentation adapter>>
     }
     class CombatTrainingAttackerAnimationAdapter {
+        <<presentation adapter>>
+    }
+    class CombatTrainingDefense {
+        +Mode CombatTrainingDefenseMode
+        +Snapshot CombatTrainingDefenseSnapshot
+        +BlocksActions bool
+    }
+    class CombatTrainingDefenseAnimationAdapter {
         <<presentation adapter>>
     }
     class CharacterAnimationHost {
@@ -42,10 +50,17 @@ classDiagram
     BodyColliderRig *-- Hurtbox
     Hurtbox --> Health : confirmed hit
     CombatTrainingAttacker --> CharacterReactionHost : interruption gate
+    CombatTrainingAttacker --> CombatTrainingDefense : interruption gate
     CombatTrainingAttacker --> Rigidbody : yaw intent in FixedUpdate
     CombatTrainingAttackTelegraph --> CombatTrainingAttacker : read-only snapshot
     CombatTrainingAttackerAnimationAdapter --> CombatTrainingAttacker : read-only snapshot
     CombatTrainingAttackerAnimationAdapter --> CharacterAnimationHost
+    CombatTrainingDefense ..|> ICombatHitReceiver
+    CombatTrainingDefense --> BodyColliderRig : installs receiver
+    CombatTrainingDefense --> Health : applies accepted damage
+    CombatTrainingDefense --> CombatTrainingAttacker : interrupts own attack
+    CombatTrainingDefenseAnimationAdapter --> CombatTrainingDefense : read-only snapshot
+    CombatTrainingDefenseAnimationAdapter --> CharacterAnimationHost
 ```
 
 - The actor owns a fixed `Waiting -> Windup -> Active -> Recovery` loop plus a
@@ -84,8 +99,29 @@ classDiagram
 - On entry to `ParryStagger`, that adapter requests the existing
   `Reaction/HitStun` slot at higher priority. It adds no Animator states or
   transitions. Damage/death reactions may replace it through the same shared
-  coordinator, and normal phase exit releases ownership without forcing a
-  transition.
+  coordinator. Because the current `HitStun` state has no autonomous exit, a
+  normal training-stagger completion explicitly cancels the reaction source
+  back to `Move`; an active damage reaction keeps ownership.
+- `CombatTrainingDefense` is a deterministic receiver used to exercise the
+  complete outgoing-hit path without introducing enemy AI. Its default
+  `Cycle` policy repeats `Damaged -> Blocked -> Parried` for confirmed hits.
+  `Vulnerable`, `Block` and `Parry` modes remain available for focused manual
+  checks.
+- Block and parry only apply inside the authored `180 degree` frontal guard
+  arc. A rear hit remains damage, so facing is part of the same contract used
+  by player defense.
+- A defended hit returns the resolved `Blocked` or `Parried` outcome through
+  `CombatHitResolver`. This lets source-side systems react normally: in
+  particular, a player attack parried by the target closes its active session
+  and enters `PlayerAttackRecoilController` rather than relying on an Animator
+  callback.
+- The bounded `0.50 s` block and `0.75 s` parry states interrupt and gate the
+  target's own training attack. Their animation adapter uses the shared
+  `CharacterAnimationHost` Defense source and returns to locomotion when the
+  state ends; it never creates or owns another Animator.
+- Disabling the defense releases its `BodyColliderRig` receiver and resets the
+  cycle. Re-enabling installs the same explicit receiver again, preventing a
+  stale callback from surviving scene or prefab lifecycle changes.
 - `CombatActionId` belongs to the shared hit boundary. Player graph identifiers
   are converted only when a player action begins, so enemy/test attacks do not
   depend on player combo types.

@@ -180,7 +180,9 @@ namespace _App
                 return;
             }
 
-            _animation.ReleaseAll(PlayerAnimationSource.Reaction);
+            // HitStun in XController has no autonomous exit. A normal training
+            // stagger completion must request the authored crossfade to Move.
+            _animation.Cancel(PlayerAnimationSource.Reaction);
         }
 
         private static bool IsAttackPhase(CombatTrainingAttackPhase phase)
