@@ -464,6 +464,15 @@ namespace _App
 
         private void OnJumpAccepted()
         {
+            // Ground jump startup already established the locomotion boundary.
+            // While combat remains Ready, keep commands pressed during the
+            // anticipation window so they can be re-evaluated as airborne
+            // entries after the motor confirms takeoff.
+            if (Phase == PlayerCombatPhase.Ready)
+            {
+                return;
+            }
+
             InterruptAttack(CombatActionEndReason.Locomotion);
             DiscardPendingCommands();
         }

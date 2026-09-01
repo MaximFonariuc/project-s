@@ -35,6 +35,9 @@ classDiagram
         +CanAttack bool
         +IsFalling bool
     }
+    class IPlayerLocomotionState {
+        +Snapshot PlayerLocomotionSnapshot
+    }
     class ICharacterReactionState {
         +BlocksActions bool
     }
@@ -62,6 +65,7 @@ classDiagram
     PlayerCombatController --> PlayerCombatAvailability
     PlayerCombatActionPipeline --> PlayerCombatAvailability
     PlayerCombatAvailability --> IPlayerCombatActor : live actor gate
+    PlayerCombatAvailability --> IPlayerLocomotionState : jump-startup reservation
     PlayerCombatAvailability --> ICharacterReactionState : live reaction gate
     PlayerCombatAvailability --> IPlayerDefenseState : guard / impact recovery gate
     PlayerCombatAvailability --> IPlayerAttackRecoilState : source parry recoil gate
@@ -82,13 +86,16 @@ weapon и combat-action contracts. Это не универсальный мод
 - reaction state не блокирует действия;
 - ни Guard, ни block/parry impact recovery не активны;
 - source-side parry recoil не активен;
+- принятый ground-jump startup ещё не подтверждён motor как takeoff;
 - actor допускает атаку в текущем movement mode.
 
 `CanBufferEntry` отделён от немедленного admission. Он отклоняет команды во
 время удерживаемого Guard и после смерти, но позволяет сохранить поздний ввод
-во время hit reaction, dodge, block/parry recovery либо source-side recoil.
-Команда всё равно запускается только после `CanEnterAction`; её lifetime
-остаётся ограничен общим unscaled input buffer.
+во время jump startup, hit reaction, dodge, block/parry recovery либо
+source-side recoil. Команда, сохранённая во время jump startup, после takeoff
+повторно разрешается уже против airborne entry rules. Она всё равно запускается
+только после `CanEnterAction`; её lifetime остаётся ограничен общим unscaled
+input buffer.
 
 `CanSwitchWeapon` сохраняет отдельную политику существующего поведения:
 

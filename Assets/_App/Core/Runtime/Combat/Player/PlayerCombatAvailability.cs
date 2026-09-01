@@ -6,6 +6,7 @@ namespace _App
     internal sealed class PlayerCombatAvailability
     {
         private readonly IPlayerCombatActor _actor;
+        private readonly IPlayerLocomotionState _locomotionState;
         private readonly ICharacterReactionState _reactionState;
         private readonly IPlayerDefenseState _defenseState;
         private readonly IPlayerAttackRecoilState _attackRecoilState;
@@ -17,6 +18,7 @@ namespace _App
         public bool CanEnterAction =>
             !_reactionState.BlocksActions && !_defenseState.BlocksActions &&
             !_attackRecoilState.IsActive &&
+            !IsGroundJumpStarting &&
             _actor.CanAttack;
 
         public bool CanBufferEntry =>
@@ -30,6 +32,7 @@ namespace _App
 
         public PlayerCombatAvailability(
             IPlayerCombatActor actor,
+            IPlayerLocomotionState locomotionState,
             ICharacterReactionState reactionState,
             IPlayerDefenseState defenseState,
             IPlayerAttackRecoilState attackRecoilState,
@@ -38,6 +41,8 @@ namespace _App
             ECharacterType characterType)
         {
             _actor = actor ?? throw new ArgumentNullException(nameof(actor));
+            _locomotionState = locomotionState ??
+                throw new ArgumentNullException(nameof(locomotionState));
             _reactionState = reactionState ??
                 throw new ArgumentNullException(nameof(reactionState));
             _defenseState = defenseState ??
@@ -48,6 +53,10 @@ namespace _App
             _clock = clock ?? throw new ArgumentNullException(nameof(clock));
             _characterType = characterType;
         }
+
+        private bool IsGroundJumpStarting =>
+            _locomotionState.Snapshot.IsValid &&
+            _locomotionState.Snapshot.IsJumpStarting;
 
         public bool CanUseAction(
             PlayerCombatAction action,

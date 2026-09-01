@@ -51,7 +51,9 @@ classDiagram
   Simultaneous accepted dodge keeps priority and clears the jump request.
 - Ground jump startup publishes a separate accepted-intent edge before its
   authored anticipation delay. Combat uses that edge for same-frame arbitration;
-  the existing `JumpAccepted` edge remains the motor-confirmed takeoff signal.
+  the reservation remains visible in the locomotion snapshot until the existing
+  `JumpAccepted` edge confirms motor takeoff. A bounded `0.10 s` scaled timeout
+  releases the reservation and jump input if physics rejects the request.
 - Dodge displacement is motor-owned impulse/duration movement; Animator root
   motion is disabled.
 - Dodge invulnerability is a normalized gameplay window from `DodgeSettings`.

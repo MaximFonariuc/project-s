@@ -151,9 +151,12 @@ locomotion event, но его допустимость берётся из `Allo
 текущего combat action. Прыжок использует симметричную policy
 `AllowJump && CancelWindow`: наземный прыжок прерывает combat после принятия
 jump startup (`GroundJumpIntentAccepted`), а `JumpAccepted` подтверждает
-фактический motor jump. Повторная boundary идемпотентна. Перенос
-dodge/item/jump в единый action graph не требуется, пока им не нужны собственные
-ветвящиеся transitions и buffering semantics.
+фактический motor jump. Пока startup активен, новая action не входит немедленно:
+её Ready-entry сохраняется и после takeoff переоценивается в `Airborne`
+environment. `JumpAccepted` не очищает такой buffer, если combat уже `Ready`, но
+прерывает реально активную action. Перенос dodge/item/jump в единый action graph
+не требуется, пока им не нужны собственные ветвящиеся transitions и buffering
+semantics.
 Guard является удерживаемым semantic input, а не элементом combat buffer. Во
 время action он допускается по независимой policy
 `AllowGuard && CancelWindow`; до открытия окна удержание сохраняется у defense

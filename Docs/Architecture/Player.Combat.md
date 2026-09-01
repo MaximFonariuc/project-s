@@ -428,9 +428,9 @@ hitbox, motion, outcome и animation action через обычную interrupti
   owner cooldown timestamps. Disable/enable controller не сбрасывает cooldown,
   поэтому время действия ограничений совпадает с lifecycle gameplay scope.
 - Animator, graph authoring и input buffer не являются владельцами combat phase.
-- Входящая реакция передаёт session отдельную причину `Reaction`; jump/dodge и
-  внешняя команда используют `Interrupted`. Все пути проходят через один
-  session cleanup вместо ручного сброса execution/outcome в controller.
+- Входящая реакция передаёт session причину `Reaction`, defense — `Defense`, а
+  подтверждённый jump/dodge — `Locomotion`. Все пути проходят через один session
+  cleanup вместо ручного сброса execution/outcome в controller.
 - Подтверждённый `Parried` синхронно публикуется владельцу source recoil до
   закрытия session. Старый accepted successor, combat buffer и pre-tick inbox
   очищаются на этой границе, поэтому команда, записанная против прерванной

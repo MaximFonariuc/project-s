@@ -23,6 +23,7 @@ namespace _App
         private const float MoveThresholdSqr = 0.0001f;
         private const float AscendingThreshold = 0.05f;
         private const float JumpStartupSeconds = 0.12f;
+        private const float JumpTakeoffTimeoutSeconds = 0.10f;
 
         private readonly IPlayerInput _input;
         private readonly ICharacterMotor _motor;
@@ -40,6 +41,8 @@ namespace _App
         private bool _walkHeld;
         private bool _sprintHeld;
         private bool _jumpHeld;
+        private bool _jumpTakeoffPending;
+        private float _jumpTakeoffTimeRemaining;
         private PendingJumpSignals _pendingJumpSignals;
         private bool _jumpRequested;
         private float _jumpRequestTimeRemaining;
@@ -207,6 +210,7 @@ namespace _App
 
         private void OnMotorJumped()
         {
+            CancelJumpStartup();
             SafeEvent.Publish(JumpAccepted, null);
         }
 
@@ -551,14 +555,29 @@ namespace _App
                 return;
             }
 
-            _runtime.JumpStartupTimeRemaining -= Mathf.Max(0.0f, deltaTime);
+            float safeDeltaTime = Mathf.Max(0.0f, deltaTime);
+            if (_jumpTakeoffPending)
+            {
+                _jumpTakeoffTimeRemaining -= safeDeltaTime;
+                if (_jumpTakeoffTimeRemaining <= 0.0f)
+                {
+                    CancelJumpStartup();
+                    _motor.ReleaseJump();
+                }
+
+                return;
+            }
+
+            _runtime.JumpStartupTimeRemaining -= safeDeltaTime;
             if (_runtime.JumpStartupTimeRemaining > 0.0f)
             {
                 return;
             }
 
             bool releaseAfterSimulation = !_jumpHeld;
-            CancelJumpStartup();
+            _runtime.JumpStartupTimeRemaining = 0.0f;
+            _jumpTakeoffPending = true;
+            _jumpTakeoffTimeRemaining = JumpTakeoffTimeoutSeconds;
             _motor.PressJump(releaseAfterSimulation);
         }
 
@@ -566,6 +585,8 @@ namespace _App
         {
             _runtime.JumpStarting = false;
             _runtime.JumpStartupTimeRemaining = 0.0f;
+            _jumpTakeoffPending = false;
+            _jumpTakeoffTimeRemaining = 0.0f;
         }
 
         private void OnDodgeRequested()

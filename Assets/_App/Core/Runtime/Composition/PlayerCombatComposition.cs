@@ -43,6 +43,7 @@ namespace _App
             builder.Register(
                 resolver => new PlayerCombatAvailability(
                     resolver.Resolve<IPlayerCombatActor>(),
+                    resolver.Resolve<IPlayerLocomotionState>(),
                     resolver.Resolve<ICharacterReactionState>(),
                     resolver.Resolve<IPlayerDefenseState>(),
                     resolver.Resolve<IPlayerAttackRecoilState>(),
