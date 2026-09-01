@@ -1227,6 +1227,7 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier:
   _health: {fileID: 6032431483796332789}
+  _body: {fileID: 5485937798915001615}
   _reactionHost: {fileID: 1809471061997952984}
   _targetRig: {fileID: 0}
   _attackOrigin: {fileID: 5566560537023341474}
@@ -1240,6 +1241,8 @@ MonoBehaviour:
     _parryStaggerDuration: 1
     _range: 2.4
     _windupLeash: 0.75
+    _attackArcDegrees: 100
+    _turnRateDegrees: 540
     _damage: 10
     _staggerDamage: 12
     _knockback: 2.5

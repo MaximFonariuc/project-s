@@ -5,6 +5,7 @@ namespace _App
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Health))]
+    [RequireComponent(typeof(Rigidbody))]
     [AddComponentMenu("Project S/Enemies/Combat Training Attacker")]
     public sealed class CombatTrainingAttacker :
         MonoBehaviour,
@@ -14,6 +15,7 @@ namespace _App
             new CombatActionId("training.attack.basic");
 
         [SerializeField] private Health _health;
+        [SerializeField] private Rigidbody _body;
         [SerializeField] private CharacterReactionHost _reactionHost;
         [SerializeField] private BodyColliderRig _targetRig;
         [SerializeField] private Transform _attackOrigin;
@@ -38,6 +40,8 @@ namespace _App
             CalculateNormalizedTime(),
             _hasConfirmedHit);
         public float AttackRange => _initialized ? _definition.Range : 0.0f;
+        public float AttackArcDegrees =>
+            _initialized ? _definition.AttackArcDegrees : 0.0f;
         public float AttackActionDuration =>
             _initialized ? _definition.ActionDuration : 0.0f;
         public float ParryStaggerDuration =>
@@ -47,10 +51,11 @@ namespace _App
         private void Awake()
         {
             ResolveReferences();
-            if (_health == null || _attack == null)
+            if (_health == null || _body == null || _attack == null)
             {
                 Debug.LogError(
-                    $"{nameof(CombatTrainingAttacker)} requires Health and attack settings.",
+                    $"{nameof(CombatTrainingAttacker)} requires Health, Rigidbody " +
+                    "and attack settings.",
                     this);
                 enabled = false;
                 return;
@@ -133,6 +138,19 @@ namespace _App
             }
 
             PublishState();
+        }
+
+        private void FixedUpdate()
+        {
+            if (!_initialized || !_health.IsAlive ||
+                _reactionHost?.State is { BlocksActions: true } ||
+                _phase is not (CombatTrainingAttackPhase.Waiting or
+                    CombatTrainingAttackPhase.Windup))
+            {
+                return;
+            }
+
+            TurnTowardsTarget(Time.fixedDeltaTime);
         }
 
         private void OnDisable()
@@ -269,7 +287,7 @@ namespace _App
         private void TryResolveHit()
         {
             if (_resolver == null || !_execution.IsActive ||
-                !CanReachTarget(_definition.Range) ||
+                !CanHitTarget() ||
                 !TrySelectTarget(out ICombatHitTarget target))
             {
                 return;
@@ -331,6 +349,55 @@ namespace _App
 
             Vector3 offset = _targetRig.Owner.transform.position - GetAttackOrigin();
             return offset.sqrMagnitude <= range * range;
+        }
+
+        private bool CanHitTarget()
+        {
+            if (!CanReachTarget(_definition.Range) ||
+                _targetRig == null || _targetRig.Owner == null)
+            {
+                return false;
+            }
+
+            Vector3 up = transform.up;
+            Vector3 toTarget = Vector3.ProjectOnPlane(
+                _targetRig.Owner.transform.position - GetAttackOrigin(),
+                up);
+            if (toTarget.sqrMagnitude <= 0.0001f)
+            {
+                return true;
+            }
+
+            Vector3 forward = Vector3.ProjectOnPlane(transform.forward, up);
+            return forward.sqrMagnitude > 0.0001f &&
+                   Vector3.Dot(forward.normalized, toTarget.normalized) >=
+                   _definition.MinimumAttackDot;
+        }
+
+        private void TurnTowardsTarget(float deltaTime)
+        {
+            if (_body == null || _targetRig == null || _targetRig.Owner == null)
+            {
+                return;
+            }
+
+            Vector3 up = transform.up;
+            Vector3 direction = Vector3.ProjectOnPlane(
+                _targetRig.Owner.transform.position - transform.position,
+                up);
+            if (direction.sqrMagnitude <= 0.0001f)
+            {
+                return;
+            }
+
+            Quaternion targetRotation = Quaternion.LookRotation(
+                direction.normalized,
+                up);
+            Quaternion rotation = Quaternion.RotateTowards(
+                _body.rotation,
+                targetRotation,
+                _definition.TurnRateDegrees * Mathf.Max(0.0f, deltaTime));
+            _body.MoveRotation(rotation);
         }
 
         private Vector3 GetAttackOrigin()
@@ -401,6 +468,11 @@ namespace _App
             if (_health == null)
             {
                 _health = GetComponent<Health>();
+            }
+
+            if (_body == null)
+            {
+                _body = GetComponent<Rigidbody>();
             }
 
             if (_reactionHost == null)

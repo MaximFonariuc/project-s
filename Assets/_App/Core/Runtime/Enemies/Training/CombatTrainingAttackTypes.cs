@@ -49,6 +49,8 @@ namespace _App
         [Header("Reach")]
         [SerializeField, Min(0.1f)] private float _range = 2.4f;
         [SerializeField, Min(0.0f)] private float _windupLeash = 0.75f;
+        [SerializeField, Range(1.0f, 360.0f)] private float _attackArcDegrees = 100.0f;
+        [SerializeField, Min(1.0f)] private float _turnRateDegrees = 540.0f;
 
         [Header("Hit")]
         [SerializeField, Min(1)] private int _damage = 10;
@@ -74,6 +76,14 @@ namespace _App
                 nameof(_parryStaggerDuration));
             float range = RequirePositive(_range, nameof(_range));
             float leash = RequireNonNegative(_windupLeash, nameof(_windupLeash));
+            float attackArc = RequireRange(
+                _attackArcDegrees,
+                1.0f,
+                360.0f,
+                nameof(_attackArcDegrees));
+            float turnRate = RequirePositive(
+                _turnRateDegrees,
+                nameof(_turnRateDegrees));
             float stagger = RequireNonNegative(_staggerDamage, nameof(_staggerDamage));
             float knockback = RequireNonNegative(_knockback, nameof(_knockback));
             int damage = Mathf.Max(1, _damage);
@@ -104,6 +114,8 @@ namespace _App
                 parryStagger,
                 range,
                 leash,
+                attackArc,
+                turnRate,
                 hit);
         }
 
@@ -128,6 +140,21 @@ namespace _App
 
             return value;
         }
+
+        private static float RequireRange(
+            float value,
+            float minimum,
+            float maximum,
+            string parameterName)
+        {
+            CombatActionNumeric.RequireFinite(value, parameterName);
+            if (value < minimum || value > maximum)
+            {
+                throw new ArgumentOutOfRangeException(parameterName);
+            }
+
+            return value;
+        }
     }
 
     internal readonly struct CombatTrainingAttackDefinition
@@ -142,6 +169,9 @@ namespace _App
             WindupDuration + ActiveDuration + RecoveryDuration;
         public float Range { get; }
         public float WindupLeash { get; }
+        public float AttackArcDegrees { get; }
+        public float MinimumAttackDot { get; }
+        public float TurnRateDegrees { get; }
         public CombatHitDefinition Hit { get; }
 
         public CombatTrainingAttackDefinition(
@@ -153,6 +183,8 @@ namespace _App
             float parryStaggerDuration,
             float range,
             float windupLeash,
+            float attackArcDegrees,
+            float turnRateDegrees,
             CombatHitDefinition hit)
         {
             InitialDelay = initialDelay;
@@ -163,6 +195,10 @@ namespace _App
             ParryStaggerDuration = parryStaggerDuration;
             Range = range;
             WindupLeash = windupLeash;
+            AttackArcDegrees = attackArcDegrees;
+            MinimumAttackDot = Mathf.Cos(
+                attackArcDegrees * 0.5f * Mathf.Deg2Rad);
+            TurnRateDegrees = turnRateDegrees;
             Hit = hit;
         }
     }

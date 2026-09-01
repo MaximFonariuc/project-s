@@ -19,7 +19,7 @@ namespace _App
         private LineRenderer _line;
         private Material _material;
         private GameObject _visual;
-        private readonly Vector3[] _positions = new Vector3[SegmentCount + 1];
+        private readonly Vector3[] _positions = new Vector3[SegmentCount + 3];
 
         private void Awake()
         {
@@ -53,7 +53,15 @@ namespace _App
             {
                 _material.SetColor("_BaseColor", color);
             }
-            BuildCircle(_attacker.AttackRange * radiusScale);
+            float radius = _attacker.AttackRange * radiusScale;
+            if (snapshot.Phase == CombatTrainingAttackPhase.ParryStagger)
+            {
+                BuildCircle(radius);
+            }
+            else
+            {
+                BuildAttackArc(radius, _attacker.AttackArcDegrees);
+            }
         }
 
         private float ResolveRadiusScale(
@@ -160,6 +168,7 @@ namespace _App
 
         private void BuildCircle(float radius)
         {
+            _line.positionCount = SegmentCount + 1;
             for (int i = 0; i <= SegmentCount; i++)
             {
                 float angle = i / (float)SegmentCount * Mathf.PI * 2.0f;
@@ -169,6 +178,25 @@ namespace _App
                     Mathf.Sin(angle) * radius);
             }
 
+            _line.SetPositions(_positions);
+        }
+
+        private void BuildAttackArc(float radius, float arcDegrees)
+        {
+            _line.positionCount = SegmentCount + 3;
+            _positions[0] = Vector3.zero;
+            float halfArc = Mathf.Clamp(arcDegrees, 1.0f, 360.0f) * 0.5f;
+            for (int i = 0; i <= SegmentCount; i++)
+            {
+                float angle = Mathf.Lerp(-halfArc, halfArc, i / (float)SegmentCount) *
+                              Mathf.Deg2Rad;
+                _positions[i + 1] = new Vector3(
+                    Mathf.Sin(angle) * radius,
+                    0.0f,
+                    Mathf.Cos(angle) * radius);
+            }
+
+            _positions[SegmentCount + 2] = Vector3.zero;
             _line.SetPositions(_positions);
         }
 
