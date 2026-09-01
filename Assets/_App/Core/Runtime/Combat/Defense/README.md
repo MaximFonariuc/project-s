@@ -13,7 +13,7 @@ classDiagram
     class PlayerDefenseController {
         +Snapshot PlayerDefenseSnapshot
         +MovementIntent PlayerMovementIntent
-        +Tick(canEnterGuard)
+        +Tick(scaledDeltaTime, canEnterGuard)
         +Interrupt()
         +TryReceiveHit(proposed, resolved) bool
     }
@@ -55,6 +55,7 @@ classDiagram
     class PlayerAnimationCoordinator
     class PlayerCombatAvailability
     class PlayerActorController
+    class PlayerTraversalController
 
     IPlayerInput --> PlayerDefenseController
     PlayerDefenseProfile --> PlayerDefenseController : immutable settings
@@ -68,6 +69,7 @@ classDiagram
     PlayerDefenseImpactController --> ICharacterImpactMotor : block pushback
     PlayerDefenseAnimationAdapter --> PlayerAnimationCoordinator : presentation only
     PlayerDefenseController --> PlayerCombatAvailability : defense state
+    PlayerDefenseController --> PlayerTraversalController : action gate
     PlayerActorController --> PlayerDefenseController : gameplay lifecycle and tick
     PlayerActorController --> PlayerDefenseAnimationAdapter : presentation lifecycle and tick
 ```
@@ -93,6 +95,15 @@ classDiagram
   the accepted hit and submits velocity to `ICharacterImpactMotor`; it never
   writes the Transform or owns collision. A successful parry keeps the defender
   planted while the existing source-side recoil moves and staggers the attacker.
+- A block opens a `0.50 s` scaled recovery and a parry opens a `1.50 s` scaled
+  recovery, both owned by `PlayerDefenseController` and matched to their full
+  Humanoid presentation clips. Movement and new actions stay locked even if
+  Guard is released immediately; hit stop freezes recovery instead of consuming
+  it. Commands may remain buffered after release and resolve when recovery ends.
+  A new confirmed defense replaces both the gameplay outcome and presentation
+  timeline, preventing repeated impacts from drifting apart.
+  The same gate rejects traversal entry, so a climb cannot bypass guard or the
+  short block recovery.
 - An unguarded or rear hit is delegated to `Health` unchanged. `Health` remains
   a temporary vitality owner and has no knowledge of guard rules.
 - While guarding, translation is scaled to `0.35`, facing remains fixed for

@@ -153,6 +153,7 @@ namespace _App
             _attackRecoil.Tick(scaledDeltaTime);
             _combat.Advance(scaledDeltaTime);
             _defense.Tick(
+                scaledDeltaTime,
                 !_reaction.BlocksActions &&
                 !_attackRecoil.IsActive &&
                 _combat.Phase == PlayerCombatPhase.Ready);
@@ -161,7 +162,7 @@ namespace _App
             _locomotion.SetMovementIntent(
                 _reaction.BlocksActions || _attackRecoil.IsActive
                     ? PlayerMovementIntent.Locked
-                    : _defense.IsGuarding
+                    : _defense.BlocksActions
                         ? _defense.MovementIntent
                         : _combat.MovementIntent);
             _locomotion.Tick(scaledDeltaTime, unscaledDeltaTime);

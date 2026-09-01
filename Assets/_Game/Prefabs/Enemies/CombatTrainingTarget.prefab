@@ -1241,7 +1241,7 @@ MonoBehaviour:
     _activeDuration: 0.32
     _recoveryDuration: 0.9
     _cooldownDuration: 1.2
-    _parryStaggerDuration: 1
+    _parryStaggerDuration: 2
     _range: 2.4
     _windupLeash: 0.75
     _attackArcDegrees: 100

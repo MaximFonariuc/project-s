@@ -65,8 +65,9 @@ classDiagram
 
 - The actor owns a fixed `Waiting -> Windup -> Active -> Recovery` loop plus a
   source-side `Active -> ParryStagger -> Waiting` branch. The configured
-  one-second stagger is the deterministic punish window after a successful
-  player parry.
+  two-second stagger is the deterministic punish window after a successful
+  player parry. The player's full `1.50 s` parry recovery leaves a bounded
+  `0.50 s` counterattack window without cutting the Humanoid parry clip.
   Target choice, navigation and tactical decisions intentionally remain outside
   this test boundary.
 - A target `BodyColliderRig` is assigned explicitly by the scene. There is no

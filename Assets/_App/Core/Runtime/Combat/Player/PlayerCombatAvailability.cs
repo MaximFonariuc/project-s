@@ -15,7 +15,7 @@ namespace _App
         private readonly Dictionary<PlayerCombatCooldownKey, float> _lastUseTime = new();
 
         public bool CanEnterAction =>
-            !_reactionState.BlocksActions && !_defenseState.IsGuarding &&
+            !_reactionState.BlocksActions && !_defenseState.BlocksActions &&
             !_attackRecoilState.IsActive &&
             _actor.CanAttack;
 
@@ -24,7 +24,7 @@ namespace _App
             !_defenseState.IsGuarding;
 
         public bool CanSwitchWeapon =>
-            !_reactionState.BlocksActions && !_defenseState.IsGuarding &&
+            !_reactionState.BlocksActions && !_defenseState.BlocksActions &&
             !_attackRecoilState.IsActive &&
             !_actor.IsFalling;
 

@@ -44,7 +44,7 @@ namespace _App
         [SerializeField, Min(0.01f)] private float _activeDuration = 0.32f;
         [SerializeField, Min(0.01f)] private float _recoveryDuration = 0.90f;
         [SerializeField, Min(0.0f)] private float _cooldownDuration = 1.20f;
-        [SerializeField, Min(0.01f)] private float _parryStaggerDuration = 1.0f;
+        [SerializeField, Min(0.01f)] private float _parryStaggerDuration = 2.0f;
 
         [Header("Reach")]
         [SerializeField, Min(0.1f)] private float _range = 2.4f;

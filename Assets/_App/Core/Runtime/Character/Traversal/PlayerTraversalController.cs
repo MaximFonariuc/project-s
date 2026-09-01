@@ -17,6 +17,7 @@ namespace _App
         private readonly IPlayerCombatState _combatState;
         private readonly ICharacterReactionState _reactionState;
         private readonly IPlayerAttackRecoilState _attackRecoilState;
+        private readonly IPlayerDefenseState _defenseState;
         private readonly IPlayerLocomotionCommands _locomotion;
         private readonly IPlayerCameraCommands _camera;
 
@@ -35,6 +36,7 @@ namespace _App
             IPlayerCombatState combatState,
             ICharacterReactionState reactionState,
             IPlayerAttackRecoilState attackRecoilState,
+            IPlayerDefenseState defenseState,
             IPlayerLocomotionCommands locomotion,
             IPlayerCameraCommands camera)
         {
@@ -48,6 +50,8 @@ namespace _App
             _reactionState = reactionState ?? throw new ArgumentNullException(nameof(reactionState));
             _attackRecoilState = attackRecoilState ??
                 throw new ArgumentNullException(nameof(attackRecoilState));
+            _defenseState = defenseState ??
+                throw new ArgumentNullException(nameof(defenseState));
             _locomotion = locomotion ?? throw new ArgumentNullException(nameof(locomotion));
             _camera = camera ?? throw new ArgumentNullException(nameof(camera));
         }
@@ -94,7 +98,7 @@ namespace _App
         public bool TryInteract()
         {
             if (!_enabled || _interactionPending || _reactionState.BlocksActions ||
-                _attackRecoilState.IsActive ||
+                _attackRecoilState.IsActive || _defenseState.BlocksActions ||
                 _combatState.Phase != PlayerCombatPhase.Ready ||
                 !_interactionProbe.HasInteractable())
             {

@@ -18,6 +18,7 @@ namespace _App
 
         private readonly IPlayerDefenseState _defense;
         private readonly PlayerAnimationCoordinator _animation;
+        private readonly PlayerDefenseSettings _settings;
 
         private ImpactPresentation _impact;
         private float _impactTimeRemaining;
@@ -25,10 +26,12 @@ namespace _App
 
         public PlayerDefenseAnimationAdapter(
             IPlayerDefenseState defense,
-            PlayerAnimationCoordinator animation)
+            PlayerAnimationCoordinator animation,
+            PlayerDefenseSettings settings)
         {
             _defense = defense ?? throw new ArgumentNullException(nameof(defense));
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
+            _settings = settings ?? throw new ArgumentNullException(nameof(settings));
         }
 
         public void Enable()
@@ -106,11 +109,6 @@ namespace _App
 
         private void OnDefended(PlayerDefenseResult result)
         {
-            if (_impact != ImpactPresentation.None)
-            {
-                return;
-            }
-
             AnimationActionId action;
             float duration;
             switch (result.Outcome)
@@ -118,12 +116,12 @@ namespace _App
                 case CombatHitOutcome.Blocked:
                     _impact = ImpactPresentation.Block;
                     action = PlayerAnimatorActions.Block;
-                    duration = PlayerAnimatorActions.BlockDuration;
+                    duration = _settings.BlockRecoverySeconds;
                     break;
                 case CombatHitOutcome.Parried:
                     _impact = ImpactPresentation.Parry;
                     action = PlayerAnimatorActions.Parry;
-                    duration = PlayerAnimatorActions.ParryDuration;
+                    duration = _settings.ParryImpactRecoverySeconds;
                     break;
                 default:
                     return;

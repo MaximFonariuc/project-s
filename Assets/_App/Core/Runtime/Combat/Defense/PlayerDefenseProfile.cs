@@ -13,6 +13,8 @@ namespace _App
         [SerializeField, Min(0.0f)] private float _parryRecoverySeconds = 0.35f;
         [SerializeField, Range(0.0f, 1.0f)] private float _movementScale = 0.35f;
         [SerializeField, Min(0.0f)] private float _blockPushbackSpeed = 1.75f;
+        [SerializeField, Min(0.01f)] private float _blockRecoverySeconds = 0.50f;
+        [SerializeField, Min(0.01f)] private float _parryImpactRecoverySeconds = 1.50f;
 
         internal PlayerDefenseSettings CreateSettings()
         {
@@ -21,7 +23,9 @@ namespace _App
                 _parryWindowSeconds,
                 _parryRecoverySeconds,
                 _movementScale,
-                _blockPushbackSpeed);
+                _blockPushbackSpeed,
+                _blockRecoverySeconds,
+                _parryImpactRecoverySeconds);
         }
 
         private void OnValidate()
@@ -33,6 +37,10 @@ namespace _App
                 _parryRecoverySeconds);
             _movementScale = Mathf.Clamp01(_movementScale);
             _blockPushbackSpeed = Mathf.Max(0.0f, _blockPushbackSpeed);
+            _blockRecoverySeconds = Mathf.Max(0.01f, _blockRecoverySeconds);
+            _parryImpactRecoverySeconds = Mathf.Max(
+                0.01f,
+                _parryImpactRecoverySeconds);
         }
     }
 
@@ -43,19 +51,27 @@ namespace _App
         public double ParryRecoverySeconds { get; }
         public PlayerMovementIntent MovementIntent { get; }
         public float BlockPushbackSpeed { get; }
+        public float BlockRecoverySeconds { get; }
+        public float ParryImpactRecoverySeconds { get; }
 
         public PlayerDefenseSettings(
             float guardArcDegrees,
             float parryWindowSeconds,
             float parryRecoverySeconds,
             float movementScale,
-            float blockPushbackSpeed)
+            float blockPushbackSpeed,
+            float blockRecoverySeconds,
+            float parryImpactRecoverySeconds)
         {
             RequireFinite(guardArcDegrees, nameof(guardArcDegrees));
             RequireFinite(parryWindowSeconds, nameof(parryWindowSeconds));
             RequireFinite(parryRecoverySeconds, nameof(parryRecoverySeconds));
             RequireFinite(movementScale, nameof(movementScale));
             RequireFinite(blockPushbackSpeed, nameof(blockPushbackSpeed));
+            RequireFinite(blockRecoverySeconds, nameof(blockRecoverySeconds));
+            RequireFinite(
+                parryImpactRecoverySeconds,
+                nameof(parryImpactRecoverySeconds));
             if (guardArcDegrees <= 0.0f || guardArcDegrees > 360.0f)
             {
                 throw new ArgumentOutOfRangeException(nameof(guardArcDegrees));
@@ -77,6 +93,17 @@ namespace _App
                 throw new ArgumentOutOfRangeException(nameof(blockPushbackSpeed));
             }
 
+            if (blockRecoverySeconds <= 0.0f)
+            {
+                throw new ArgumentOutOfRangeException(nameof(blockRecoverySeconds));
+            }
+
+            if (parryImpactRecoverySeconds <= 0.0f)
+            {
+                throw new ArgumentOutOfRangeException(
+                    nameof(parryImpactRecoverySeconds));
+            }
+
             GuardArcDegrees = guardArcDegrees;
             ParryWindowSeconds = parryWindowSeconds;
             ParryRecoverySeconds = parryRecoverySeconds;
@@ -86,6 +113,8 @@ namespace _App
                 true,
                 false);
             BlockPushbackSpeed = blockPushbackSpeed;
+            BlockRecoverySeconds = blockRecoverySeconds;
+            ParryImpactRecoverySeconds = parryImpactRecoverySeconds;
         }
 
         private static void RequireFinite(float value, string parameterName)

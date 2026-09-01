@@ -39,8 +39,6 @@ namespace _App
         public const float AirborneReactionDuration = 0.45f;
         public const float DeathDuration = 2.40f;
         public const float GuardDuration = 1.1666667f;
-        public const float BlockDuration = 0.50f;
-        public const float ParryDuration = 1.50f;
 
         public static bool TryCreate(
             AnimationSlotId slot,

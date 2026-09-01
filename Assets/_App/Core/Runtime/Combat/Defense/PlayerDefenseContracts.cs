@@ -6,7 +6,9 @@ namespace _App
     public enum PlayerDefenseStateId
     {
         Inactive = 0,
-        Guarding = 1
+        Guarding = 1,
+        BlockRecovery = 2,
+        ParryRecovery = 3
     }
 
     public readonly struct PlayerDefenseSnapshot
@@ -16,14 +18,20 @@ namespace _App
         public bool IsValid { get; }
         public PlayerDefenseStateId State { get; }
         public bool IsParryWindowOpen { get; }
+        public bool IsImpactRecovering { get; }
+        public CombatHitOutcome ImpactOutcome { get; }
 
         internal PlayerDefenseSnapshot(
             PlayerDefenseStateId state,
-            bool isParryWindowOpen)
+            bool isParryWindowOpen,
+            bool isImpactRecovering,
+            CombatHitOutcome impactOutcome)
         {
             IsValid = true;
             State = state;
             IsParryWindowOpen = isParryWindowOpen;
+            IsImpactRecovering = isImpactRecovering;
+            ImpactOutcome = impactOutcome;
         }
     }
 
@@ -58,6 +66,7 @@ namespace _App
 
         PlayerDefenseSnapshot Snapshot { get; }
         bool IsGuarding { get; }
+        bool BlocksActions { get; }
         PlayerMovementIntent MovementIntent { get; }
     }
 }

@@ -25,6 +25,8 @@ namespace _App
         private bool _parryAvailable;
         private double _guardStartedAt;
         private double _nextParryAllowedAt;
+        private float _impactRecoveryRemaining;
+        private CombatHitOutcome _impactRecoveryOutcome;
         private bool _enabled;
 
         public event Action GuardStarted;
@@ -34,12 +36,27 @@ namespace _App
         public PlayerDefenseSnapshot Snapshot => _guarding
             ? new PlayerDefenseSnapshot(
                 PlayerDefenseStateId.Guarding,
-                IsParryWindowOpen())
-            : PlayerDefenseSnapshot.Inactive;
+                IsParryWindowOpen(),
+                IsImpactRecovering,
+                _impactRecoveryOutcome)
+            : IsImpactRecovering
+                ? new PlayerDefenseSnapshot(
+                    _impactRecoveryOutcome == CombatHitOutcome.Parried
+                        ? PlayerDefenseStateId.ParryRecovery
+                        : PlayerDefenseStateId.BlockRecovery,
+                    false,
+                    true,
+                    _impactRecoveryOutcome)
+                : PlayerDefenseSnapshot.Inactive;
         public bool IsGuarding => _guarding;
-        public PlayerMovementIntent MovementIntent => _guarding
-            ? _settings.MovementIntent
-            : PlayerMovementIntent.Unrestricted;
+        public bool BlocksActions => _guarding || IsImpactRecovering;
+        public PlayerMovementIntent MovementIntent => IsImpactRecovering
+            ? PlayerMovementIntent.Locked
+            : _guarding
+                ? _settings.MovementIntent
+                : PlayerMovementIntent.Unrestricted;
+
+        private bool IsImpactRecovering => _impactRecoveryRemaining > 0.0f;
 
         public PlayerDefenseController(
             IPlayerInput input,
@@ -81,6 +98,7 @@ namespace _App
                 _locomotion.GroundJumpIntentAccepted += OnLocomotionActionAccepted;
                 _guardHeld = false;
                 _nextParryAllowedAt = 0.0;
+                ClearImpactRecovery();
             }
             catch
             {
@@ -100,6 +118,7 @@ namespace _App
             _locomotion.DodgeAccepted -= OnLocomotionActionAccepted;
             _locomotion.GroundJumpIntentAccepted -= OnLocomotionActionAccepted;
             _guardHeld = false;
+            ClearImpactRecovery();
             ExitGuard();
             if (_bodyRig != null)
             {
@@ -109,11 +128,19 @@ namespace _App
             _enabled = false;
         }
 
-        public void Tick(bool canEnterGuard)
+        public void Tick(float scaledDeltaTime, bool canEnterGuard)
         {
             if (!_enabled)
             {
                 return;
+            }
+
+            _impactRecoveryRemaining = Mathf.Max(
+                0.0f,
+                _impactRecoveryRemaining - Mathf.Max(0.0f, scaledDeltaTime));
+            if (!IsImpactRecovering)
+            {
+                _impactRecoveryOutcome = default;
             }
 
             if (_guardHeld && canEnterGuard && _actor.CanDefend)
@@ -129,6 +156,7 @@ namespace _App
         public void Interrupt()
         {
             _guardHeld = false;
+            ClearImpactRecovery();
             ExitGuard();
         }
 
@@ -154,6 +182,11 @@ namespace _App
                 {
                     _parryAvailable = false;
                 }
+
+                _impactRecoveryOutcome = outcome;
+                _impactRecoveryRemaining = outcome == CombatHitOutcome.Parried
+                    ? _settings.ParryImpactRecoverySeconds
+                    : _settings.BlockRecoverySeconds;
 
                 resolvedHit = proposedHit.AsDefenseOutcome(outcome);
                 var defenseResult = new PlayerDefenseResult(outcome, in resolvedHit);
@@ -187,7 +220,14 @@ namespace _App
         private void OnLocomotionActionAccepted()
         {
             _guardHeld = false;
+            ClearImpactRecovery();
             ExitGuard();
+        }
+
+        private void ClearImpactRecovery()
+        {
+            _impactRecoveryRemaining = 0.0f;
+            _impactRecoveryOutcome = default;
         }
 
         private void EnterGuard()
