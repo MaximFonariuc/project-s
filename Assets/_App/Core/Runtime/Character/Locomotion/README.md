@@ -68,6 +68,9 @@ classDiagram
   Guard cannot claim that gap while the motor still reports `Walking`.
 - Dodge displacement is motor-owned impulse/duration movement; Animator root
   motion is disabled.
+- When dodge finishes after leaving the ground, locomotion follows the motor
+  directly into `Jump` for upward velocity or `Fall` for downward velocity.
+  Buffered input cannot leave the state machine stuck in `Dodge`.
 - Dodge invulnerability is a normalized gameplay window from `DodgeSettings`.
   `PlayerDodgeAction` owns a disposable immunity lease and releases it on the
   authored window end, reaction interruption, disable and normal dodge

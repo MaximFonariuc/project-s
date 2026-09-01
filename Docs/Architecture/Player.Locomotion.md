@@ -247,10 +247,13 @@ stateDiagram-v2
     Run --> Dodge: accepted dodge
     Dodge --> Idle: completed without input
     Dodge --> Run: completed with input
+    Dodge --> Jump: left ground with upward velocity
     Dodge --> Fall: left ground
 ```
 
 `Jump` начинается не по нажатию кнопки, а после подтверждения motor: `Character` должен перейти в `Falling` и получить восходящую скорость. По той же причине `Dodge` становится активным только после перехода `Character` в custom movement mode. State machine не дублирует физическое состояние заранее.
+Если перекат закончился уже вне поверхности, motor-authoritative handoff может
+вести из `Dodge` как в восходящий `Jump`, так и в нисходящий `Fall`.
 
 `Walk` и `Sprint` являются взаимоисключающими speed modes, а не отдельными locomotion states. Единственный runtime-owner скорости — `CharacterMotor`. При composition значения `WalkSpeedSettings`, `SprintSpeedSettings`, `DodgeSettings` и `LandingRecoverySettings` один раз переводятся в immutable `PlayerLocomotionSettings`; motor, controller и presentation adapter не читают authoring-каталог независимо.
 

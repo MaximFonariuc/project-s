@@ -62,6 +62,7 @@ namespace _App
                 .Transition(PlayerLocomotionStateId.Fall, PlayerLocomotionStateId.Landing)
                 .Transition(PlayerLocomotionStateId.Dodge, PlayerLocomotionStateId.Idle)
                 .Transition(PlayerLocomotionStateId.Dodge, PlayerLocomotionStateId.Run)
+                .Transition(PlayerLocomotionStateId.Dodge, PlayerLocomotionStateId.Jump)
                 .Transition(PlayerLocomotionStateId.Dodge, PlayerLocomotionStateId.Fall)
                 .Transition(PlayerLocomotionStateId.Dodge, PlayerLocomotionStateId.Landing)
                 .Transition(PlayerLocomotionStateId.Landing, PlayerLocomotionStateId.Idle)
