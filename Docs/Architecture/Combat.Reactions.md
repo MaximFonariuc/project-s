@@ -285,7 +285,11 @@ vertical impact сохраняет тип `Slam` в snapshot до подтвер
 - `CharacterReactionStateMachineFactory` задаёт ту же topology для player scope и standalone actor; `CharacterReactionHost` использует её в тренировочном prefab без второго набора reaction rules.
 - Standalone host подаёт нейтральный look frame в animation driver каждый presentation tick. Это применяет и восстанавливает сглаженные `BodyLook`/`HeadLook` layer weights у reaction/death; без owner этого tick action policy оставалась только внутренней целью driver.
 - `CombatTrainingTarget` адаптирует физику через `RigidbodyCharacterImpactMotor`; это prefab-local composition, а не новый global service.
-- `Enable` подписывает `Health`, запускает state machine и синхронизируется с текущим alive/dead состоянием.
+- `Enable` подписывает `Health`, запускает state machine и синхронизируется с
+  текущим alive/dead состоянием. Если `Health` уже мёртв после повторного
+  enable или пересоздания gameplay scope, controller заново публикует текущий
+  `Dead` snapshot только в presentation port. Gameplay-событие смерти при этом
+  не дублируется, а Animator не возвращается в locomotion при мёртвой модели.
 - `Disable` симметрично снимает подписки, останавливает machine и немедленно
   сбрасывает animation driver вместе с parameters/layer weights; повторный enable
   не наследует частично подавленную reaction pose.

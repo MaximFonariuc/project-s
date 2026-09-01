@@ -79,6 +79,8 @@ namespace _App
             {
                 _poise.Deplete();
                 _stateMachine.Start<CharacterDeadState, CombatHitResult>(default);
+                CharacterReactionSnapshot snapshot = CurrentSnapshot;
+                _presentation.Present(in snapshot);
             }
         }
 
