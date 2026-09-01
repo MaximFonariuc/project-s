@@ -17,18 +17,21 @@ namespace _App
 
         public bool IsValid { get; }
         public PlayerDefenseStateId State { get; }
+        public bool IsGuarding { get; }
         public bool IsParryWindowOpen { get; }
         public bool IsImpactRecovering { get; }
         public CombatHitOutcome ImpactOutcome { get; }
 
         internal PlayerDefenseSnapshot(
             PlayerDefenseStateId state,
+            bool isGuarding,
             bool isParryWindowOpen,
             bool isImpactRecovering,
             CombatHitOutcome impactOutcome)
         {
             IsValid = true;
             State = state;
+            IsGuarding = isGuarding;
             IsParryWindowOpen = isParryWindowOpen;
             IsImpactRecovering = isImpactRecovering;
             ImpactOutcome = impactOutcome;

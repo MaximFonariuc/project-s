@@ -33,20 +33,22 @@ namespace _App
         public event Action GuardEnded;
         public event Action<PlayerDefenseResult> Defended;
 
-        public PlayerDefenseSnapshot Snapshot => _guarding
+        public PlayerDefenseSnapshot Snapshot => IsImpactRecovering
             ? new PlayerDefenseSnapshot(
-                PlayerDefenseStateId.Guarding,
-                IsParryWindowOpen(),
-                IsImpactRecovering,
+                _impactRecoveryOutcome == CombatHitOutcome.Parried
+                    ? PlayerDefenseStateId.ParryRecovery
+                    : PlayerDefenseStateId.BlockRecovery,
+                _guarding,
+                false,
+                true,
                 _impactRecoveryOutcome)
-            : IsImpactRecovering
+            : _guarding
                 ? new PlayerDefenseSnapshot(
-                    _impactRecoveryOutcome == CombatHitOutcome.Parried
-                        ? PlayerDefenseStateId.ParryRecovery
-                        : PlayerDefenseStateId.BlockRecovery,
-                    false,
+                    PlayerDefenseStateId.Guarding,
                     true,
-                    _impactRecoveryOutcome)
+                    IsParryWindowOpen(),
+                    false,
+                    default)
                 : PlayerDefenseSnapshot.Inactive;
         public bool IsGuarding => _guarding;
         public bool BlocksActions => _guarding || IsImpactRecovering;

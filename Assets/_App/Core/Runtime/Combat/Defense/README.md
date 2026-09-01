@@ -17,6 +17,13 @@ classDiagram
         +Interrupt()
         +TryReceiveHit(proposed, resolved) bool
     }
+    class PlayerDefenseSnapshot {
+        +State PlayerDefenseStateId
+        +IsGuarding bool
+        +IsParryWindowOpen bool
+        +IsImpactRecovering bool
+        +ImpactOutcome CombatHitOutcome
+    }
     class PlayerDefenseProfile {
         <<ScriptableObject>>
         +guardArcDegrees
@@ -58,6 +65,7 @@ classDiagram
     class PlayerTraversalController
 
     IPlayerInput --> PlayerDefenseController
+    PlayerDefenseController --> PlayerDefenseSnapshot
     PlayerDefenseProfile --> PlayerDefenseController : immutable settings
     IPlayerDefenseActor --> PlayerDefenseController
     IPlayerLocomotionEvents --> PlayerDefenseController
@@ -104,6 +112,10 @@ classDiagram
   timeline, preventing repeated impacts from drifting apart.
   The same gate rejects traversal entry, so a climb cannot bypass guard or the
   short block recovery.
+- `PlayerDefenseSnapshot.State` is exclusive: impact recovery takes precedence
+  over the sustained guard pose. `IsGuarding` separately preserves whether the
+  guard is still held, so presentation and UI never need to infer two competing
+  primary states from `State=Guarding` plus a recovery flag.
 - An unguarded or rear hit is delegated to `Health` unchanged. `Health` remains
   a temporary vitality owner and has no knowledge of guard rules.
 - While guarding, translation is scaled to `0.35`, facing remains fixed for
