@@ -51,13 +51,13 @@ namespace _App
         {
             try
             {
-                if (reason is CombatActionEndReason.Reaction or
+                if (reason is CombatActionEndReason.Locomotion or
+                    CombatActionEndReason.Reaction or
                     CombatActionEndReason.Defense)
                 {
-                    // The replacement presentation is requested synchronously after
-                    // the gameplay state change. Relinquish Combat ownership without
-                    // an intermediate locomotion crossfade so the Animator receives
-                    // one direct Attack -> Reaction/Defense transition in this frame.
+                    // A confirmed gameplay boundary already owns the next
+                    // presentation. Relinquish Combat without an intermediate Move
+                    // crossfade so the Animator receives one direct transition.
                     _animation.Release();
                 }
                 else

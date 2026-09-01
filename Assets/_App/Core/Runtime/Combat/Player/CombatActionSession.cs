@@ -12,6 +12,7 @@ namespace _App
         Transitioned,
         Landed,
         Interrupted,
+        Locomotion,
         Reaction,
         Defense,
         Parried,

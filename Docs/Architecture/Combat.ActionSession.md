@@ -144,7 +144,10 @@ boolean flags:
 - `Completed` — timeline дошёл до completion boundary;
 - `Transitioned` — graph принял следующую action;
 - `Landed` — airborne-only action потеряла допустимый environment;
-- `Reaction`, `Parried`, `Interrupted`, `Cancelled`, `Disabled` — внешние lifecycle boundaries;
+- `Locomotion` — подтверждённый переход в dodge/jump, которому combat передаёт
+  animation ownership без промежуточного возврата в `Move`;
+- `Reaction`, `Defense`, `Parried`, `Interrupted`, `Cancelled`, `Disabled` —
+  остальные внешние lifecycle boundaries;
 - `Failed` — запуск или выполнение завершились исключением.
 
 Последняя подтверждённая цель копируется в immutable result до очистки outcome.

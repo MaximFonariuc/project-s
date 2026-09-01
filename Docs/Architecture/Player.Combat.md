@@ -400,6 +400,8 @@ interruption и disable. Поэтому UI/debug consumers не выводят a
 подтверждённого dodge/jump либо допустимого `GuardStarted` combat закрывает
 hitbox, motion, outcome и animation action через обычную interruption boundary.
 Неудачная попытка или ввод до окна action не отменяют.
+Подтверждённые locomotion cancels освобождают Combat animation ownership без
+промежуточного `Move`; dodge/jump presentation получает прямой handoff.
 
 ## Lifecycle
 

@@ -446,7 +446,7 @@ namespace _App
 
         private void OnDodgeAccepted()
         {
-            InterruptAttack();
+            InterruptAttack(CombatActionEndReason.Locomotion);
             DiscardPendingCommands();
         }
 
@@ -458,13 +458,13 @@ namespace _App
 
         private void OnGroundJumpIntentAccepted()
         {
-            InterruptAttack();
+            InterruptAttack(CombatActionEndReason.Locomotion);
             DiscardPendingCommands();
         }
 
         private void OnJumpAccepted()
         {
-            InterruptAttack();
+            InterruptAttack(CombatActionEndReason.Locomotion);
             DiscardPendingCommands();
         }
 

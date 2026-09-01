@@ -50,11 +50,11 @@ classDiagram
   запоздавший `finally` старой UniTask получает `false` от `TryComplete`.
 - `Cancel` вызывает обе session boundaries даже при отсутствии token source,
   чтобы частично начатая session не пережила disable/interruption.
-- `Reaction` и `Defense` освобождают Combat animation ownership через `Release`,
-  не выполняя промежуточный crossfade в locomotion. Следующий синхронный
-  presentation request делает один прямой переход `Attack -> Reaction/Guard`.
-  Обычные interruption, jump/dodge cancel и disable сохраняют `Cancel` с
-  возвратом в `Move`.
+- `Locomotion`, `Reaction` и `Defense` освобождают Combat animation ownership
+  через `Release`, не выполняя промежуточный crossfade в `Move`. Подтверждённый
+  dodge/jump либо следующий синхронный presentation request делает прямой
+  переход `Attack -> Dodge/Jump/Reaction/Guard`. Обычные interruption и disable
+  сохраняют `Cancel` с возвратом в `Move`.
 - Вложенные `finally` гарантируют abort и dispose, даже если один callback
   cancellation/animation выбросил исключение.
 
