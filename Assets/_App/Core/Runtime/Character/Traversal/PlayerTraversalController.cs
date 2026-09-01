@@ -19,6 +19,7 @@ namespace _App
         private readonly IPlayerAttackRecoilState _attackRecoilState;
         private readonly IPlayerDefenseState _defenseState;
         private readonly IPlayerLocomotionCommands _locomotion;
+        private readonly IPlayerLocomotionState _locomotionState;
         private readonly IPlayerCameraCommands _camera;
 
         private int _interactionVersion;
@@ -38,6 +39,7 @@ namespace _App
             IPlayerAttackRecoilState attackRecoilState,
             IPlayerDefenseState defenseState,
             IPlayerLocomotionCommands locomotion,
+            IPlayerLocomotionState locomotionState,
             IPlayerCameraCommands camera)
         {
             _input = input ?? throw new ArgumentNullException(nameof(input));
@@ -53,6 +55,8 @@ namespace _App
             _defenseState = defenseState ??
                 throw new ArgumentNullException(nameof(defenseState));
             _locomotion = locomotion ?? throw new ArgumentNullException(nameof(locomotion));
+            _locomotionState = locomotionState ??
+                throw new ArgumentNullException(nameof(locomotionState));
             _camera = camera ?? throw new ArgumentNullException(nameof(camera));
         }
 
@@ -99,6 +103,7 @@ namespace _App
         {
             if (!_enabled || _interactionPending || _reactionState.BlocksActions ||
                 _attackRecoilState.IsActive || _defenseState.BlocksActions ||
+                _locomotionState.BlocksActions ||
                 _combatState.Phase != PlayerCombatPhase.Ready ||
                 !_interactionProbe.HasInteractable())
             {
@@ -124,6 +129,7 @@ namespace _App
         public bool TryInvertGravity()
         {
             if (!_enabled || _attackRecoilState.IsActive ||
+                _locomotionState.BlocksActions ||
                 !_locomotion.TryInvertGravity())
             {
                 return false;

@@ -28,6 +28,7 @@ namespace ModularAnimation
         public bool IsJumpStarting { get; }
         public CharacterGait Gait { get; }
         public CharacterLocomotionMode Mode { get; }
+        public bool IsMovementLocked { get; }
 
         public CharacterLocomotionFrame(
             float forwardSpeed,
@@ -37,7 +38,8 @@ namespace ModularAnimation
             bool isGrounded,
             bool isJumpStarting,
             CharacterGait gait,
-            CharacterLocomotionMode mode)
+            CharacterLocomotionMode mode,
+            bool isMovementLocked = false)
         {
             ForwardSpeed = forwardSpeed;
             LateralSpeed = lateralSpeed;
@@ -47,6 +49,7 @@ namespace ModularAnimation
             IsJumpStarting = isJumpStarting;
             Gait = gait;
             Mode = mode;
+            IsMovementLocked = isMovementLocked;
         }
     }
 

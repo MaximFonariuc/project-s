@@ -25,6 +25,7 @@ classDiagram
     class PlayerLocomotionController {
         +CurrentState PlayerLocomotionStateId
         +Snapshot PlayerLocomotionSnapshot
+        +BlocksActions bool
         +Enable()
         +Disable()
         +SetMovementIntent(intent)
@@ -53,10 +54,12 @@ classDiagram
         +IsGrounded bool
         +IsCrouched bool
         +DodgeBackwards bool
+        +Landing PlayerLanding
     }
     class ICharacterMotor {
         <<motor port>>
         +Jumped
+        +Landed(impactSpeed)
         +IsGrounded bool
         +IsFalling bool
         +IsDodging bool
@@ -64,6 +67,7 @@ classDiagram
         +MaxSpeed float
         +Velocity Vector3
         +SetMovementDirection(direction)
+        +StopPlanarMovement()
         +SnapFacingDirection(direction)
         +PressJump()
         +SetSpeedMode(mode)
@@ -103,6 +107,23 @@ classDiagram
         +WalkSpeed float
         +RunSpeed float
         +SprintSpeed float
+        +MediumLandingImpactSpeed float
+        +HardLandingImpactSpeed float
+        +ResolveLanding(impactSpeed) PlayerLanding
+    }
+    class LandingRecoverySettings {
+        <<ScriptableObject authoring>>
+        +MediumImpactSpeed float
+        +HardImpactSpeed float
+        +MediumRecoveryDuration float
+        +HardRecoveryDuration float
+    }
+    class PlayerLanding {
+        <<immutable result>>
+        +Type PlayerLandingType
+        +ImpactSpeed float
+        +RecoveryDuration float
+        +BlocksActions bool
     }
     class CharacterMotor {
         <<adapter>>
@@ -137,6 +158,7 @@ classDiagram
     class PlayerJumpState
     class PlayerFallState
     class PlayerDodgeState
+    class PlayerLandingState
     class IPlayerLocomotionPresentation {
         <<presentation port>>
         +Present(snapshot, deltaTime)
@@ -151,6 +173,7 @@ classDiagram
         +GroundJumpIntentAccepted
         +JumpAccepted
         +DodgeAccepted
+        +Landed PlayerLanding
     }
     class PlayerLocomotionAnimationAdapter
     class PlayerCharacterAnimationPresenter
@@ -167,6 +190,7 @@ classDiagram
     PlayerLocomotionController --> IStateMachine~PlayerLocomotionStateId~
     PlayerLocomotionController --> IPlayerLocomotionPresentation
     PlayerLocomotionController --> PlayerLocomotionSnapshot : publishes
+    PlayerLocomotionController --> PlayerLanding : classifies
     IPlayerLocomotionCommands <|.. PlayerLocomotionController
     IPlayerLocomotionEvents <|.. PlayerLocomotionController
     ICharacterMotor <|.. CharacterMotor
@@ -179,6 +203,7 @@ classDiagram
     PlayerActorAdapter --> Health : delegates
     CharacterMotor --> Character
     CharacterMotor --> PlayerLocomotionSettings
+    PlayerLocomotionSettings --> LandingRecoverySettings : snapshots values
     Character --> CharacterMovement
     IPlayerMovementReference <|.. CameraRelativeMovementReference
     CameraRelativeMovementReference --> ICameraOrientation
@@ -193,6 +218,7 @@ classDiagram
     PlayerLocomotionState <|-- PlayerJumpState
     PlayerLocomotionState <|-- PlayerFallState
     PlayerLocomotionState <|-- PlayerDodgeState
+    PlayerLocomotionState <|-- PlayerLandingState
     PlayerLocomotionComposition ..> PlayerLocomotionController : constructs
     PlayerLocomotionComposition ..> CharacterMotor : constructs
     PlayerLocomotionComposition ..> PlayerLocomotionActions : constructs
@@ -213,6 +239,10 @@ stateDiagram-v2
     Fall --> Jump: additional jump
     Fall --> Idle: landed without input
     Fall --> Run: landed with input
+    Fall --> Landing: medium / hard impact
+    Landing --> Idle: recovery completed, no input
+    Landing --> Run: recovery completed, input held
+    Landing --> Fall: lost ground during recovery
     Idle --> Dodge: accepted dodge
     Run --> Dodge: accepted dodge
     Dodge --> Idle: completed without input
@@ -222,7 +252,40 @@ stateDiagram-v2
 
 `Jump` начинается не по нажатию кнопки, а после подтверждения motor: `Character` должен перейти в `Falling` и получить восходящую скорость. По той же причине `Dodge` становится активным только после перехода `Character` в custom movement mode. State machine не дублирует физическое состояние заранее.
 
-`Walk` и `Sprint` являются взаимоисключающими speed modes, а не отдельными locomotion states. Единственный runtime-owner скорости — `CharacterMotor`. При composition значения `WalkSpeedSettings`, `SprintSpeedSettings` и длительность `DodgeSettings` один раз переводятся в immutable `PlayerLocomotionSettings`; motor и presentation adapter не читают authoring-каталог независимо.
+`Walk` и `Sprint` являются взаимоисключающими speed modes, а не отдельными locomotion states. Единственный runtime-owner скорости — `CharacterMotor`. При composition значения `WalkSpeedSettings`, `SprintSpeedSettings`, `DodgeSettings` и `LandingRecoverySettings` один раз переводятся в immutable `PlayerLocomotionSettings`; motor, controller и presentation adapter не читают authoring-каталог независимо.
+
+## Приземление и recovery
+
+`CharacterMovement` подтверждает столкновение с поверхностью, после чего
+`Character.Landed` передаёт velocity контакта в `CharacterMotor`. Motor переводит
+её в положительную скорость удара вдоль локальной `Up`; высота падения намеренно
+не используется, потому что одна и та же высота даёт разные последствия при
+другой gravity, начальной velocity или движущейся платформе.
+
+`PlayerLocomotionSettings` классифицирует impact как `Soft / Medium / Hard`.
+Текущий профиль использует строгие пороги `> 7 / > 10 m/s`, совпадающие с
+conditions текущего XController. `Soft` только публикует
+подтверждённое событие и не ухудшает отзывчивость. `Medium` удерживает recovery
+`0.64 s`, `Hard` — `0.95 s`; это gameplay timings начала выхода из текущих
+`LandMedium` и `LandHard`, а не чтение длины клипа из Animator.
+
+Во время blocking recovery единственный owner — `PlayerLocomotionController`:
+
+- активен явный `Landing` state;
+- motor немедленно удаляет остаточную planar velocity и получает нулевое
+  movement direction; pending combat action motion тоже очищается и не может
+  вернуть translation в следующем physics step;
+- jump, dodge, guard, combat entry, weapon switch и traversal отклоняются, но
+  bounded combat/input buffers могут дождаться конца recovery;
+- поворот по movement input заблокирован;
+- animation frame получает `IsMovementLocked`, поэтому XController немедленно
+  обнуляет stale `MovementType / MovementDirection` и не использует ошибочный
+  ранний выход из landing state;
+- scaled timer останавливается вместе с gameplay/Animator при hit stop.
+
+Если поверхность исчезла, recovery отменяется и state переходит в `Fall`.
+Reaction/recoil или `Disable` также очищают landing ownership, поэтому старый
+recovery не переживает прерывание и повторное включение объекта.
 
 ## Dodge и i-frames
 
@@ -240,7 +303,7 @@ owner не снимает иммунитет второго. `Disable`, внеш
 
 ## Locomotion snapshot
 
-`PlayerLocomotionController` один раз за frame собирает immutable `PlayerLocomotionSnapshot` после подтверждения motor state и выполнения state-machine tick. Snapshot содержит фактическую velocity, локальные forward/lateral/vertical компоненты, normalized speed, gait, locomotion mode и подтверждённое состояние `Idle / Run / Jump / Fall / Dodge`.
+`PlayerLocomotionController` один раз за frame собирает immutable `PlayerLocomotionSnapshot` после подтверждения motor state и выполнения state-machine tick. Snapshot содержит фактическую velocity, локальные forward/lateral/vertical компоненты, normalized speed, gait, locomotion mode, подтверждённое состояние `Idle / Run / Jump / Fall / Dodge / Landing` и semantic landing result.
 
 До первого tick и после `Disable` snapshot имеет `IsValid == false`; consumers не должны трактовать default enum values как подтверждённое состояние.
 
@@ -310,7 +373,7 @@ flowchart LR
 
 ## Текущая граница
 
-В core locomotion входят `Idle / Run / Jump / Fall / Dodge`, camera-relative ground/air input, walk/run/sprint и variable jump/glide. Swimming является отдельной movement policy, а ladder — отдельным Traversal feature и не входит в locomotion API.
+В core locomotion входят `Idle / Run / Jump / Fall / Dodge / Landing`, camera-relative ground/air input, walk/run/sprint, variable jump/glide и impact-based landing recovery. Swimming является отдельной movement policy, а ladder — отдельным Traversal feature и не входит в locomotion API.
 
 Кандидат на `_Modules/CharacterMotion` появляется только после того, как:
 

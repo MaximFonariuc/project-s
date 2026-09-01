@@ -18,6 +18,7 @@ namespace _App
         public bool CanEnterAction =>
             !_reactionState.BlocksActions && !_defenseState.BlocksActions &&
             !_attackRecoilState.IsActive &&
+            !_locomotionState.BlocksActions &&
             !IsLocomotionActionStarting &&
             _actor.CanAttack;
 
@@ -28,6 +29,7 @@ namespace _App
         public bool CanSwitchWeapon =>
             !_reactionState.BlocksActions && !_defenseState.BlocksActions &&
             !_attackRecoilState.IsActive &&
+            !_locomotionState.BlocksActions &&
             !IsLocomotionActionStarting &&
             !_actor.IsFalling;
 

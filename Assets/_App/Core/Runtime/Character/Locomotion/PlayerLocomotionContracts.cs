@@ -9,7 +9,37 @@ namespace _App
         Run,
         Jump,
         Fall,
-        Dodge
+        Dodge,
+        Landing
+    }
+
+    public enum PlayerLandingType
+    {
+        None,
+        Soft,
+        Medium,
+        Hard
+    }
+
+    public readonly struct PlayerLanding
+    {
+        public static PlayerLanding None => default;
+
+        public PlayerLandingType Type { get; }
+        public float ImpactSpeed { get; }
+        public float RecoveryDuration { get; }
+        public bool IsValid => Type != PlayerLandingType.None;
+        public bool BlocksActions => RecoveryDuration > 0.0f;
+
+        public PlayerLanding(
+            PlayerLandingType type,
+            float impactSpeed,
+            float recoveryDuration)
+        {
+            Type = type;
+            ImpactSpeed = Mathf.Max(0.0f, impactSpeed);
+            RecoveryDuration = Mathf.Max(0.0f, recoveryDuration);
+        }
     }
 
     public enum PlayerSpeedMode
@@ -47,6 +77,9 @@ namespace _App
         public bool IsDodgeStarting { get; }
         public bool IsCrouched { get; }
         public bool DodgeBackwards { get; }
+        public PlayerLanding Landing { get; }
+        public bool IsLandingRecovering =>
+            State == PlayerLocomotionStateId.Landing && Landing.BlocksActions;
 
         public PlayerLocomotionSnapshot(
             PlayerLocomotionStateId state,
@@ -62,7 +95,8 @@ namespace _App
             bool isJumpStarting,
             bool isDodgeStarting,
             bool isCrouched,
-            bool dodgeBackwards)
+            bool dodgeBackwards,
+            PlayerLanding landing)
         {
             IsValid = true;
             State = state;
@@ -79,6 +113,7 @@ namespace _App
             IsDodgeStarting = isDodgeStarting;
             IsCrouched = isCrouched;
             DodgeBackwards = dodgeBackwards;
+            Landing = landing;
         }
     }
 
@@ -113,6 +148,7 @@ namespace _App
     public interface ICharacterMotor
     {
         event Action Jumped;
+        event Action<float> Landed;
 
         bool IsGrounded { get; }
         bool IsFalling { get; }
@@ -129,6 +165,7 @@ namespace _App
         Vector3 Velocity { get; }
 
         void SetMovementDirection(Vector3 worldDirection);
+        void StopPlanarMovement();
         void FaceDirection(Vector3 worldDirection, float deltaTime);
         void SnapFacingDirection(Vector3 worldDirection);
         void PressJump(bool releaseAfterSimulation);
@@ -162,6 +199,7 @@ namespace _App
         event Action GroundJumpIntentAccepted;
         event Action JumpAccepted;
         event Action DodgeAccepted;
+        event Action<PlayerLanding> Landed;
     }
 
     public interface IPlayerLocomotionState
@@ -169,6 +207,7 @@ namespace _App
         PlayerLocomotionStateId? CurrentState { get; }
         PlayerSpeedMode SpeedMode { get; }
         PlayerLocomotionSnapshot Snapshot { get; }
+        bool BlocksActions { get; }
     }
 
     public interface IPlayerLocomotionCommands

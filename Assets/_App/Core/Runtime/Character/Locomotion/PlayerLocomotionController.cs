@@ -31,6 +31,7 @@ namespace _App
         private readonly IPlayerMovementReference _movementReference;
         private readonly IPlayerLocomotionPresentation _presentation;
         private readonly PlayerLocomotionRuntime _runtime;
+        private readonly PlayerLocomotionSettings _settings;
         private readonly IStateMachine<PlayerLocomotionStateId> _stateMachine;
         private readonly bool _canJump;
         private readonly float _jumpInputBufferDuration;
@@ -48,15 +49,19 @@ namespace _App
         private float _jumpRequestTimeRemaining;
         private bool _dodgeRequested;
         private float _dodgeRequestTimeRemaining;
+        private PlayerLanding _landing;
+        private float _landingRecoveryRemaining;
         private bool _enabled;
 
         public event Action GroundJumpIntentAccepted;
         public event Action JumpAccepted;
         public event Action DodgeAccepted;
+        public event Action<PlayerLanding> Landed;
 
         public PlayerLocomotionStateId? CurrentState => _stateMachine.CurrentStateId;
         public PlayerSpeedMode SpeedMode => _runtime.SpeedMode;
         public PlayerLocomotionSnapshot Snapshot => _snapshot;
+        public bool BlocksActions => _landingRecoveryRemaining > 0.0f;
 
         public PlayerLocomotionController(
             IPlayerInput input,
@@ -74,14 +79,11 @@ namespace _App
             _movementReference = movementReference ?? throw new ArgumentNullException(nameof(movementReference));
             _presentation = presentation ?? throw new ArgumentNullException(nameof(presentation));
             _runtime = runtime ?? throw new ArgumentNullException(nameof(runtime));
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
+            _settings = settings ?? throw new ArgumentNullException(nameof(settings));
 
-            _canJump = settings.CanJump;
-            _jumpInputBufferDuration = settings.JumpInputBufferDuration;
-            _dodgeInputBufferDuration = settings.DodgeInputBufferDuration;
+            _canJump = _settings.CanJump;
+            _jumpInputBufferDuration = _settings.JumpInputBufferDuration;
+            _dodgeInputBufferDuration = _settings.DodgeInputBufferDuration;
             _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
         }
 
@@ -98,6 +100,7 @@ namespace _App
             _input.JumpChanged += OnJumpChanged;
             _input.DodgeRequested += OnDodgeRequested;
             _motor.Jumped += OnMotorJumped;
+            _motor.Landed += OnMotorLanded;
 
             _enabled = true;
             ApplySpeedMode();
@@ -115,6 +118,7 @@ namespace _App
             _input.JumpChanged -= OnJumpChanged;
             _input.DodgeRequested -= OnDodgeRequested;
             _motor.Jumped -= OnMotorJumped;
+            _motor.Landed -= OnMotorLanded;
 
             _walkHeld = false;
             _sprintHeld = false;
@@ -124,6 +128,7 @@ namespace _App
             _dodgeRequested = false;
             _dodgeRequestTimeRemaining = 0.0f;
             _movementIntent = PlayerMovementIntent.Unrestricted;
+            ClearLanding();
             CancelJumpStartup();
             _motor.ReleaseJump();
             _actions.StopGliding();
@@ -172,6 +177,7 @@ namespace _App
 
             ConsumePendingActionInput(unscaledDeltaTime);
             UpdateJumpStartup(scaledDeltaTime);
+            UpdateLandingRecovery(scaledDeltaTime);
             RefreshMovementDirections();
             PlayerLocomotionStateId stateId = ResolveState();
             if (_stateMachine.IsRunning)
@@ -185,13 +191,18 @@ namespace _App
 
             _stateMachine.Tick(scaledDeltaTime);
 
-            if (_movementIntent.FaceMoveDirection && _runtime.RawMoveDirection.sqrMagnitude > MoveThresholdSqr)
+            if (!BlocksActions && _movementIntent.FaceMoveDirection &&
+                _runtime.RawMoveDirection.sqrMagnitude > MoveThresholdSqr)
             {
                 _motor.FaceDirection(_runtime.RawMoveDirection, scaledDeltaTime);
             }
 
             _snapshot = CreateSnapshot(stateId);
             _presentation.Present(_snapshot, scaledDeltaTime);
+            if (_landing.IsValid && !_landing.BlocksActions)
+            {
+                _landing = PlayerLanding.None;
+            }
         }
 
         public bool TryInvertGravity()
@@ -210,6 +221,7 @@ namespace _App
             _pendingJumpSignals = PendingJumpSignals.None;
             ClearJumpRequest();
             ClearDodgeRequest();
+            ClearLanding();
             CancelJumpStartup();
             _motor.ReleaseJump();
             _motor.SetMovementDirection(Vector3.zero);
@@ -223,6 +235,7 @@ namespace _App
             GroundJumpIntentAccepted = null;
             JumpAccepted = null;
             DodgeAccepted = null;
+            Landed = null;
         }
 
         private void OnMotorJumped()
@@ -231,19 +244,42 @@ namespace _App
             SafeEvent.Publish(JumpAccepted, null);
         }
 
+        private void OnMotorLanded(float impactSpeed)
+        {
+            PlayerLanding landing = _settings.ResolveLanding(impactSpeed);
+            _landing = landing;
+            _landingRecoveryRemaining = landing.RecoveryDuration;
+            if (landing.BlocksActions)
+            {
+                CancelJumpStartup();
+                _motor.ReleaseJump();
+                _actions.StopGliding();
+                _runtime.EffectiveMoveDirection = Vector3.zero;
+                _runtime.DodgeBackwards = false;
+                _motor.StopPlanarMovement();
+            }
+
+            SafeEvent.Publish(Landed, landing, null);
+        }
+
         private void RefreshMovementDirections()
         {
             bool cameraRelative = _motor.RotationMode != ERotationMode.None;
             _runtime.RawMoveDirection = _movementReference.ToWorldDirection(_input.Move, _motor.Up, cameraRelative);
 
             bool traversalOwnsMovement = _motor.IsClimbing;
-            _runtime.EffectiveMoveDirection = traversalOwnsMovement
+            _runtime.EffectiveMoveDirection = traversalOwnsMovement || BlocksActions
                 ? Vector3.zero
                 : _runtime.RawMoveDirection * _movementIntent.TranslationScale;
         }
 
         private PlayerLocomotionStateId ResolveState()
         {
+            if (BlocksActions)
+            {
+                return PlayerLocomotionStateId.Landing;
+            }
+
             if (_motor.IsDodging)
             {
                 return PlayerLocomotionStateId.Dodge;
@@ -281,6 +317,9 @@ namespace _App
                 case PlayerLocomotionStateId.Dodge:
                     _stateMachine.Start<PlayerDodgeState>();
                     break;
+                case PlayerLocomotionStateId.Landing:
+                    _stateMachine.Start<PlayerLandingState>();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(stateId), stateId, null);
             }
@@ -309,6 +348,9 @@ namespace _App
                     break;
                 case PlayerLocomotionStateId.Dodge:
                     _stateMachine.ChangeState<PlayerDodgeState>();
+                    break;
+                case PlayerLocomotionStateId.Landing:
+                    _stateMachine.ChangeState<PlayerLandingState>();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(stateId), stateId, null);
@@ -388,7 +430,8 @@ namespace _App
                 _runtime.JumpStarting,
                 _actions.IsDodgeStarting,
                 _motor.IsCrouched,
-                stateId == PlayerLocomotionStateId.Dodge && _runtime.DodgeBackwards);
+                stateId == PlayerLocomotionStateId.Dodge && _runtime.DodgeBackwards,
+                _landing);
         }
 
         private PlayerLocomotionMode ResolveMode()
@@ -497,7 +540,8 @@ namespace _App
         {
             switch (phase)
             {
-                case InputSignalPhase.Performed when _movementIntent.AllowJump && !_motor.IsSwimming && !_motor.IsDodging:
+                case InputSignalPhase.Performed when !BlocksActions &&
+                    _movementIntent.AllowJump && !_motor.IsSwimming && !_motor.IsDodging:
                     _actions.StartGliding();
                     break;
 
@@ -641,16 +685,45 @@ namespace _App
 
         private bool CanConsumeJumpRequest(in PlayerMovementIntent movementIntent)
         {
-            return _canJump && movementIntent.AllowJump && !_motor.IsDodging &&
+            return !BlocksActions && _canJump && movementIntent.AllowJump &&
+                   !_motor.IsDodging &&
                    !_motor.IsSwimming && !_motor.IsCrouched &&
                    (!_motor.IsGrounded || !_runtime.JumpStarting);
         }
 
         private bool CanConsumeDodgeRequest(in PlayerMovementIntent movementIntent)
         {
-            return movementIntent.AllowDodge && !_motor.IsFalling &&
+            return !BlocksActions && movementIntent.AllowDodge && !_motor.IsFalling &&
                    !_motor.IsSwimming && !_motor.IsDodging &&
                    _actions.CanDodge;
+        }
+
+        private void UpdateLandingRecovery(float deltaTime)
+        {
+            if (!BlocksActions)
+            {
+                return;
+            }
+
+            if (!_motor.IsGrounded || _motor.IsFalling)
+            {
+                ClearLanding();
+                return;
+            }
+
+            _landingRecoveryRemaining = Mathf.Max(
+                0.0f,
+                _landingRecoveryRemaining - Mathf.Max(0.0f, deltaTime));
+            if (_landingRecoveryRemaining <= 0.0f)
+            {
+                _landing = PlayerLanding.None;
+            }
+        }
+
+        private void ClearLanding()
+        {
+            _landing = PlayerLanding.None;
+            _landingRecoveryRemaining = 0.0f;
         }
     }
 }

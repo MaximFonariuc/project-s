@@ -161,6 +161,7 @@ namespace _App
             _defense.Tick(
                 scaledDeltaTime,
                 !externalActionLock &&
+                !_locomotion.BlocksActions &&
                 !locomotionSnapshot.IsJumpStarting &&
                 !locomotionSnapshot.IsDodgeStarting &&
                 !_locomotion.HasPriorityActionRequest(

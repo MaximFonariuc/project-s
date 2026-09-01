@@ -7,12 +7,17 @@ immutable snapshot.
 classDiagram
     class PlayerLocomotionController {
         +Snapshot PlayerLocomotionSnapshot
+        +BlocksActions bool
     }
     class PlayerLocomotionSettings {
         +CanJump bool
         +JumpInputBufferDuration float
         +DodgeInputBufferDuration float
+        +MediumLandingImpactSpeed float
+        +HardLandingImpactSpeed float
     }
+    class LandingRecoverySettings
+    class PlayerLandingState
     class ICharacterMotor
     class PlayerLocomotionAnimationAdapter
     class PlayerCharacterAnimationPresenter
@@ -21,13 +26,16 @@ classDiagram
 
     PlayerLocomotionController --> ICharacterMotor
     PlayerLocomotionController --> PlayerLocomotionSettings
+    PlayerLocomotionSettings --> LandingRecoverySettings
+    PlayerLocomotionController --> PlayerLandingState
     PlayerLocomotionController --> PlayerLocomotionAnimationAdapter
     PlayerLocomotionAnimationAdapter --> PlayerCharacterAnimationPresenter
     PlayerLocomotionAnimationAdapter --> PlayerAnimationCoordinator : dodge edge
     PlayerCharacterAnimationPresenter --> ICharacterAnimationDriver
 ```
 
-- `PlayerLocomotionController` owns `Idle`, `Run`, `Jump`, `Fall` and `Dodge`.
+- `PlayerLocomotionController` owns `Idle`, `Run`, `Jump`, `Fall`, `Dodge` and
+  impact-based `Landing` recovery.
 - `PlayerCharacterAnimationPresenter` continuously writes planar speed in world
   units, normalized speed, vertical speed, grounded state, gait and locomotion
   mode. The current Mecanim blend tree uses planar speed thresholds `0/3/5/10`
@@ -67,5 +75,12 @@ classDiagram
   reaction knockback is applied.
 - Damage immunity uses shared leases, so a dodge window and an overlapping
   combat-action window cannot clear each other's ownership.
+- `CharacterMotor` forwards confirmed landing impact speed. `Soft` landing is
+  non-blocking; current `Medium` (`> 7 m/s`) and `Hard` (`> 10 m/s`) landings
+  lock translation/actions for `0.64s` and `0.95s`. The motor removes residual
+  planar velocity, while animation receives an immediate movement-parameter
+  lock so `LandMedium`/`LandHard` can reach their authored exit phase.
+- Landing recovery uses scaled gameplay time, is cancelled when ground is lost,
+  and is cleared by reaction interruption, disable and disposal.
 - Swimming and climbing enum values remain reserved, but no corresponding
   animation states are implemented yet.

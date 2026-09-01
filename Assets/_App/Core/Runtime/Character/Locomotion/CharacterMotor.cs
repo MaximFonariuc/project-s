@@ -21,6 +21,7 @@ namespace _App
         private bool _releaseJumpAfterSimulation;
 
         public event Action Jumped;
+        public event Action<float> Landed;
 
         public bool IsGrounded => _character.IsGrounded();
         public bool IsFalling => _character.IsFalling();
@@ -49,12 +50,22 @@ namespace _App
             _runSpeed = settings.RunSpeed;
             _sprintSpeed = settings.SprintSpeed;
             _character.Jumped += OnJumped;
+            _character.Landed += OnLanded;
             _character.AfterSimulationUpdated += OnAfterSimulationUpdated;
         }
 
         public void SetMovementDirection(Vector3 worldDirection)
         {
             _character.SetMovementDirection(Vector3.ClampMagnitude(worldDirection, 1.0f));
+        }
+
+        public void StopPlanarMovement()
+        {
+            Vector3 up = Up.normalized;
+            Vector3 velocity = _character.GetVelocity();
+            ClearActionMotion();
+            _character.SetMovementDirection(Vector3.zero);
+            _character.SetVelocity(up * Vector3.Dot(velocity, up));
         }
 
         public void FaceDirection(Vector3 worldDirection, float deltaTime)
@@ -159,13 +170,22 @@ namespace _App
             ClearActionMotion();
             _releaseJumpAfterSimulation = false;
             _character.Jumped -= OnJumped;
+            _character.Landed -= OnLanded;
             _character.AfterSimulationUpdated -= OnAfterSimulationUpdated;
             Jumped = null;
+            Landed = null;
         }
 
         private void OnJumped()
         {
             Jumped?.Invoke();
+        }
+
+        private void OnLanded(Vector3 landingVelocity)
+        {
+            Vector3 up = Up.normalized;
+            float impactSpeed = Mathf.Max(0.0f, -Vector3.Dot(landingVelocity, up));
+            Landed?.Invoke(impactSpeed);
         }
 
         private void OnAfterSimulationUpdated(float deltaTime)

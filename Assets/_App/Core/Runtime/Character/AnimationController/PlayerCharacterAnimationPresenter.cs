@@ -22,7 +22,8 @@ namespace _App
                 snapshot.IsGrounded,
                 snapshot.IsJumpStarting,
                 ResolveGait(snapshot.SpeedMode),
-                ResolveMode(snapshot.Mode));
+                ResolveMode(snapshot.Mode),
+                snapshot.IsLandingRecovering);
 
             _driver.ApplyLocomotion(frame, deltaTime);
         }

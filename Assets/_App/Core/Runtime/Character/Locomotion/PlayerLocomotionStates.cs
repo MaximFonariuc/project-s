@@ -86,4 +86,16 @@ namespace _App
         {
         }
     }
+
+    internal sealed class PlayerLandingState : PlayerLocomotionState
+    {
+        protected override bool AppliesMovement => false;
+
+        public PlayerLandingState(
+            ICharacterMotor motor,
+            PlayerLocomotionRuntime runtime)
+            : base(motor, runtime)
+        {
+        }
+    }
 }

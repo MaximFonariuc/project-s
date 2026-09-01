@@ -108,16 +108,27 @@ namespace _App
             float movementDirection = ResolveMovementDirection(frame, planarSpeed);
             float fallingVelocity = ResolveFallingVelocity(frame);
 
-            _animator.SetFloat(
-                MovementTypeHash,
-                movementType,
-                GaitDampSeconds,
-                safeDeltaTime);
-            _animator.SetFloat(
-                MovementDirectionHash,
-                movementDirection,
-                DirectionDampSeconds,
-                safeDeltaTime);
+            if (frame.IsMovementLocked)
+            {
+                // Landing recovery must neutralize these parameters immediately.
+                // XController has input-driven exits from landing states, so normal
+                // damping would allow stale movement to skip the recovery clip.
+                _animator.SetFloat(MovementTypeHash, 0.0f);
+                _animator.SetFloat(MovementDirectionHash, 0.0f);
+            }
+            else
+            {
+                _animator.SetFloat(
+                    MovementTypeHash,
+                    movementType,
+                    GaitDampSeconds,
+                    safeDeltaTime);
+                _animator.SetFloat(
+                    MovementDirectionHash,
+                    movementDirection,
+                    DirectionDampSeconds,
+                    safeDeltaTime);
+            }
             // This value drives transition direction and landing thresholds;
             // damping would delay the jump/fall sign change and soften impacts.
             _animator.SetFloat(FallingDurationHash, fallingVelocity);
