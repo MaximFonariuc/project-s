@@ -107,6 +107,10 @@ classDiagram
   authored distance and normalized window. Animation-derived trajectory assets
   are not used. Ground attacks may acquire one soft-assist target inside an
   authored cone; this does not mutate hard lock-on or camera state.
+- Target-height tracking composes with `MinimumVelocity`: correction may follow
+  an ascending target but cannot exceed the authored falling-speed limit.
+  `OverrideVelocity` remains an exact command and is rejected when combined
+  with tracking, preventing a profile from silently replacing a slam velocity.
 - `CharacterMotor` and `CharacterMovement` remain the only authorities for
   position, collision, slopes and grounding.
 - The current Dual Swords profile contains independent grounded and airborne

@@ -125,6 +125,14 @@ namespace _App
                 throw new ArgumentOutOfRangeException(nameof(maxTargetVerticalSpeed));
             }
 
+            if (trackTargetHeight &&
+                verticalMode == CharacterActionVerticalMode.OverrideVelocity)
+            {
+                throw new ArgumentException(
+                    "Exact vertical velocity cannot be combined with target-height tracking.",
+                    nameof(trackTargetHeight));
+            }
+
             Window = window;
             OverridePlanarVelocity = overridePlanarVelocity;
             PlanarDistance = OverridePlanarVelocity ? planarDistance : 0.0f;

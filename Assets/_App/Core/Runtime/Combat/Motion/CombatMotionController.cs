@@ -203,11 +203,14 @@ namespace _App
                 heightError = 0.0f;
             }
 
-            mode = CharacterActionVerticalMode.OverrideVelocity;
-            velocity = Mathf.Clamp(
+            float trackingVelocity = Mathf.Clamp(
                 targetVerticalSpeed + heightError * _definition.TargetHeightCorrectionSpeed,
                 -_definition.MaxTargetVerticalSpeed,
                 _definition.MaxTargetVerticalSpeed);
+            mode = CharacterActionVerticalMode.OverrideVelocity;
+            velocity = _definition.VerticalMode == CharacterActionVerticalMode.MinimumVelocity
+                ? Mathf.Max(trackingVelocity, _definition.VerticalVelocity)
+                : trackingVelocity;
             _previousTargetHeight = sampledTargetHeight;
             _previousNormalizedTime = normalizedTime;
         }

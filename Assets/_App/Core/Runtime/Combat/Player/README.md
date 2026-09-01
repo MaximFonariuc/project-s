@@ -181,6 +181,10 @@ reaction, disable, or another interruption.
   code has no clip reference.
 - The adapter exposes a separate three-step air track and maps it to semantic
   action `AirAttack`, variants `0...2`, then to `AirAttack1...3`.
+- The first two air steps follow the confirmed target while clamping descent to
+  their authored `MinimumVelocity`. The third step is a slam: target-height
+  tracking is disabled so its exact `-9 m/s` actor descent and `-12 m/s` target
+  impact cannot be replaced by a height-correction velocity.
 - The named `skill.special` presentation maps to semantic action
   `SpecialAttack`, variant `0`, then to the existing `Attack/Skill` state. Its
   legality, hit window, cancel window and cooldown remain graph-owned.

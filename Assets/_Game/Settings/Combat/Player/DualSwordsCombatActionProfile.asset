@@ -380,7 +380,7 @@ MonoBehaviour:
       _allowTargetAssist: 0
       _targetAssistDistance: 5
       _targetAssistAngle: 55
-      _trackTargetHeight: 1
+      _trackTargetHeight: 0
       _targetHeightOffset: -0.15
       _targetHeightTolerance: 0.1
       _targetHeightCorrectionSpeed: 6
