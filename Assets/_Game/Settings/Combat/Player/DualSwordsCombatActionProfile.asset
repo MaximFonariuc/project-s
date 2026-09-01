@@ -23,10 +23,10 @@ MonoBehaviour:
       _hitboxStart: 0.27
       _hitboxEnd: 0.46
       _useChainWindow: 1
-      _chainStart: 0.44
+      _chainStart: 0.46
       _chainEnd: 0.72
       _useCancelWindow: 1
-      _cancelStart: 0.44
+      _cancelStart: 0.46
       _cancelEnd: 0.86
       _useMovementConstraintWindow: 1
       _movementConstraintStart: 0
@@ -84,10 +84,10 @@ MonoBehaviour:
       _hitboxStart: 0.18
       _hitboxEnd: 0.38
       _useChainWindow: 1
-      _chainStart: 0.36
+      _chainStart: 0.38
       _chainEnd: 0.66
       _useCancelWindow: 1
-      _cancelStart: 0.36
+      _cancelStart: 0.38
       _cancelEnd: 0.84
       _useMovementConstraintWindow: 1
       _movementConstraintStart: 0
@@ -790,7 +790,7 @@ MonoBehaviour:
     _window: 1
     _condition: 0
     _useAcceptanceWindow: 1
-    _acceptanceStart: 0.44
+    _acceptanceStart: 0.46
     _acceptanceEnd: 0.6
     _useInputWindow: 0
     _inputStart: 0
@@ -801,7 +801,7 @@ MonoBehaviour:
     _window: 1
     _condition: 0
     _useAcceptanceWindow: 1
-    _acceptanceStart: 0.36
+    _acceptanceStart: 0.38
     _acceptanceEnd: 0.54
     _useInputWindow: 0
     _inputStart: 0
@@ -845,7 +845,7 @@ MonoBehaviour:
     _window: 1
     _condition: 1
     _useAcceptanceWindow: 1
-    _acceptanceStart: 0.44
+    _acceptanceStart: 0.46
     _acceptanceEnd: 0.7
     _useInputWindow: 0
     _inputStart: 0
@@ -856,7 +856,7 @@ MonoBehaviour:
     _window: 1
     _condition: 1
     _useAcceptanceWindow: 1
-    _acceptanceStart: 0.36
+    _acceptanceStart: 0.38
     _acceptanceEnd: 0.66
     _useInputWindow: 0
     _inputStart: 0

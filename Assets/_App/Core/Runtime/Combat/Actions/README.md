@@ -104,5 +104,10 @@ classDiagram
   `attack.launcher -> movement.air-chase` route. Every ground-light step exposes
   the same heavy and hit-confirmed launcher cancels; environment-specific
   entries share semantic commands without device checks.
+- The first two ground-light nodes open their chain and combat-cancel windows
+  at the exact end of the authored hitbox window. A buffered successor may be
+  captured earlier, but it cannot close the source execution before its final
+  active frame has been sampled. This keeps rapid input responsive without
+  shortening a strike's effective contact window.
 - Air actions use motor-owned `MinimumVelocity` and planar intents for a bounded
   air hang. Animator root motion never becomes position authority.
