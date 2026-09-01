@@ -28,6 +28,7 @@ namespace _App
         public bool CanSwitchWeapon =>
             !_reactionState.BlocksActions && !_defenseState.BlocksActions &&
             !_attackRecoilState.IsActive &&
+            !IsGroundJumpStarting &&
             !_actor.IsFalling;
 
         public PlayerCombatAvailability(

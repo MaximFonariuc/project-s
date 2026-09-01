@@ -161,7 +161,9 @@ reaction, disable, or another interruption.
   ground-jump startup reserves locomotion for the full anticipation window, so
   a new ground action cannot replace it before takeoff. A combat input pressed
   after that reservation is buffered and re-evaluated against airborne entry
-  rules once the motor confirms the jump.
+  rules once the motor confirms the jump. Weapon switching is rejected during
+  the same reservation instead of briefly starting a transition that takeoff
+  would immediately cancel.
 - `PlayerCombatAvailability` owns live actor/reaction admission checks and the
   scaled-time cooldown dictionary. It asks the animation port only whether the
   semantic presentation exists; it does not run the graph or mutate combat
