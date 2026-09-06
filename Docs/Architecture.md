@@ -11,7 +11,7 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 
 Допустимое направление зависимостей: `_App/Core -> _App/Modules`. `_Game` связывает компоненты и content через Unity serialization; `_Modules` рассматриваются как внешние зависимости.
 
-Физическое направление ссылок закреплено assemblies `ProjectS.Core.Runtime` и `ProjectS.Core.Editor`. Их дерево, разрешённые package references и сохранённый технический долг описаны в `Docs/Architecture/Core.Assemblies.md`.
+Физическое направление ссылок закреплено assemblies `ProjectS.Core.Runtime` и `ProjectS.Core.Editor`, а EditMode-покрытие чистых ядер — `ProjectS.Core.Tests` (состав описан в `Docs/Architecture/Core.Tests.md`). Их дерево, разрешённые package references и сохранённый технический долг описаны в `Docs/Architecture/Core.Assemblies.md`.
 
 ## Выделенные сущности и владельцы состояния
 
