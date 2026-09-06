@@ -146,6 +146,17 @@ classDiagram
   slot cannot silently update only one side.
 - `CombatActionDefinition.DurationSeconds` owns gameplay action duration. No
   combat rule reads clip length or Animator normalized time.
+- Expected durations handed to the driver are authored, not baked into code.
+  Reaction lengths come from `CharacterReactionProfile`, the guard pose length
+  from `PlayerDefenseProfile.GuardClipSeconds`, and the weapon transition reuses
+  the authored `DurationSeconds` of its own combat action, so gameplay and
+  presentation cannot drift apart. The only remaining constant is the death
+  length, which has no authored counterpart because both death paths clear the
+  remaining duration before presenting.
+- `PlayerAnimatorActions` resolves a slot through a table built once at static
+  initialization from the same predicates it used to evaluate per call. Lookup is
+  allocation-free; an unmapped slot still returns `false` and the caller decides
+  how to degrade.
 - Root motion is disabled. Dodge and attack movement go through
   `CharacterMotor`, including normal collision sweeps and grounding.
 - Dodge presentation receives its expected duration from the same immutable
