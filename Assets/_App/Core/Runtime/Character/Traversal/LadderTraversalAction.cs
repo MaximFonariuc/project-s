@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using ModularAnimation;
 using UnityEngine;
+using ModularCharacterMovement;
 
 namespace _App
 {

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using ModularCharacterMovement;
 
 namespace _App
 {
