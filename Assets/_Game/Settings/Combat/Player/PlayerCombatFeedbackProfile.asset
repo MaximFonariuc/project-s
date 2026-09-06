@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b96720a7d690c504e8865ea7266c25cd, type: 3}
   m_Name: PlayerCombatFeedbackProfile
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   _cameraImpulseDuration: 0.12
   _defaultFeedback:
-    _reactionId:
+    _reactionId: 
     _cameraImpulse: 0.07
     _particleCount: 7
     _particleSpeed: 2.2
@@ -22,7 +22,7 @@ MonoBehaviour:
     _particleLifetime: 0.18
     _particleSize: 0.035
     _particleColor: {r: 1, g: 0.72, b: 0.22, a: 1}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 3acb430676fdc9943a00c12abd0ac525, type: 3}
     _audioVolume: 0.8
     _audioPitchMin: 0.96
     _audioPitchMax: 1.04
@@ -30,7 +30,7 @@ MonoBehaviour:
     _hitStopDuration: 0.06
     _hitStopTimeScale: 0.1
   _blockedFeedback:
-    _reactionId:
+    _reactionId: 
     _cameraImpulse: 0.06
     _particleCount: 10
     _particleSpeed: 2.6
@@ -38,7 +38,7 @@ MonoBehaviour:
     _particleLifetime: 0.18
     _particleSize: 0.035
     _particleColor: {r: 0.55, g: 0.82, b: 1, a: 1}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 4d999f73d88497c4ab085315dc19c8d1, type: 3}
     _audioVolume: 0.8
     _audioPitchMin: 0.96
     _audioPitchMax: 1.04
@@ -46,7 +46,7 @@ MonoBehaviour:
     _hitStopDuration: 0.045
     _hitStopTimeScale: 0.18
   _parriedFeedback:
-    _reactionId:
+    _reactionId: 
     _cameraImpulse: 0.14
     _particleCount: 18
     _particleSpeed: 3.8
@@ -54,7 +54,7 @@ MonoBehaviour:
     _particleLifetime: 0.24
     _particleSize: 0.05
     _particleColor: {r: 0.72, g: 0.96, b: 1, a: 1}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 04a3a82f1d799ab49aa165292658c7dc, type: 3}
     _audioVolume: 0.8
     _audioPitchMin: 0.96
     _audioPitchMax: 1.04
@@ -70,7 +70,7 @@ MonoBehaviour:
     _particleLifetime: 0.18
     _particleSize: 0.035
     _particleColor: {r: 1, g: 0.78, b: 0.28, a: 1}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 3acb430676fdc9943a00c12abd0ac525, type: 3}
     _audioVolume: 0.8
     _audioPitchMin: 0.97
     _audioPitchMax: 1.03
@@ -85,7 +85,7 @@ MonoBehaviour:
     _particleLifetime: 0.22
     _particleSize: 0.05
     _particleColor: {r: 1, g: 0.42, b: 0.12, a: 1}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 95f267098f2103f42a66287dd8fbf2c8, type: 3}
     _audioVolume: 0.9
     _audioPitchMin: 0.92
     _audioPitchMax: 1
@@ -100,7 +100,7 @@ MonoBehaviour:
     _particleLifetime: 0.22
     _particleSize: 0.045
     _particleColor: {r: 0.82, g: 0.92, b: 1, a: 1}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 1e820220224331f4da343b552e01100c, type: 3}
     _audioVolume: 0.86
     _audioPitchMin: 0.96
     _audioPitchMax: 1.04
@@ -115,7 +115,7 @@ MonoBehaviour:
     _particleLifetime: 0.25
     _particleSize: 0.06
     _particleColor: {r: 1, g: 0.26, b: 0.08, a: 1}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 124c5764c98db44458104b732cf04882, type: 3}
     _audioVolume: 1
     _audioPitchMin: 0.88
     _audioPitchMax: 0.98
