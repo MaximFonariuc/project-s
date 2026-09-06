@@ -146,7 +146,7 @@ namespace _App
             var request = new AnimationActionRequest(
                 PlayerAnimatorActions.Guard,
                 resumeHoldPose ? 1 : 0,
-                PlayerAnimatorActions.GuardDuration);
+                _settings.GuardClipSeconds);
             _animation.TryPlayAction(
                 PlayerAnimationSource.Defense,
                 in request,

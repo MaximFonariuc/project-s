@@ -35,8 +35,6 @@ namespace _App
         public static readonly AnimationActionId Block = new AnimationActionId(11);
         public static readonly AnimationActionId Parry = new AnimationActionId(12);
 
-        public const float WeaponTransitionDuration = 1.00f;
-        public const float GuardDuration = 1.1666667f;
 
         public const float DeathDuration = 2.40f;
 
