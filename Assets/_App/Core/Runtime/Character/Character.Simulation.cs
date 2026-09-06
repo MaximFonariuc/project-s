@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using ModularCharacterMovement;
 
 namespace _App
 {

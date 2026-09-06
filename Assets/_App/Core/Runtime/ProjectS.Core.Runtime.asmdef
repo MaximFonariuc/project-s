@@ -2,10 +2,11 @@
     "name": "ProjectS.Core.Runtime",
     "rootNamespace": "_App",
     "references": [
-        "ModularInput.Core",
-        "ModularInput.Unity",
         "ModularAnimation.Core",
         "ModularAnimation.Unity",
+        "ModularCharacterMovement",
+        "ModularInput.Core",
+        "ModularInput.Unity",
         "ModularStateMachine.Core",
         "ModularStateMachine.VContainer",
         "UniTask",
