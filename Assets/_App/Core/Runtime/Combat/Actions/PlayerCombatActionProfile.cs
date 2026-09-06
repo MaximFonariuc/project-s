@@ -143,7 +143,8 @@ namespace _App
         [SerializeField] private PlayerCombatPresentationKind _presentation =
             PlayerCombatPresentationKind.ComboStep;
         [SerializeField, Min(0)] private int _comboIndex;
-        [SerializeField] private string _animationId = "skill.special";
+        [Tooltip("Only used by NamedAnimation. Leave empty for combo steps.")]
+        [SerializeField] private string _animationId = string.Empty;
         [SerializeField] private CombatActionAuthoring _action =
             CombatActionAuthoring.CreateDefaultAttack();
 
@@ -165,6 +166,16 @@ namespace _App
                         new PlayerCombatAnimationId(_animationId)),
                 _ => throw new ArgumentOutOfRangeException(nameof(_presentation), _presentation, null)
             };
+
+            if (!PlayerCombatPresentationResolver.TryResolve(
+                    in presentation,
+                    out _,
+                    out _))
+            {
+                throw new InvalidOperationException(
+                    $"Combat action '{_id}' has an unresolvable presentation " +
+                    $"({_presentation}, comboIndex {_comboIndex}, animationId '{_animationId}').");
+            }
 
             return new PlayerCombatAction(
                 new PlayerCombatActionId(_id),
