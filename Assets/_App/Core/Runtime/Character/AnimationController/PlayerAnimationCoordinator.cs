@@ -34,11 +34,24 @@ namespace _App
         public static readonly AnimationActionId Guard = new AnimationActionId(10);
         public static readonly AnimationActionId Block = new AnimationActionId(11);
         public static readonly AnimationActionId Parry = new AnimationActionId(12);
+        public static readonly AnimationActionId LadderTraversal = new AnimationActionId(13);
 
 
         public const float DeathDuration = 2.40f;
 
         private const float CallerSuppliedDuration = 0.0f;
+
+        private static readonly AnimationSlotId[] LadderSlots =
+        {
+            PlayerAnimationSlots.LadderEnterTopFront,
+            PlayerAnimationSlots.LadderEnterTopBack,
+            PlayerAnimationSlots.LadderEnterBottom,
+            PlayerAnimationSlots.LadderIdle,
+            PlayerAnimationSlots.LadderAscend,
+            PlayerAnimationSlots.LadderDescend,
+            PlayerAnimationSlots.LadderExitTop,
+            PlayerAnimationSlots.LadderExitBottom
+        };
 
         private static readonly Dictionary<AnimationSlotId, AnimationActionRequest>
             RequestsBySlot = BuildRequestTable();
@@ -56,6 +69,11 @@ namespace _App
             Register(table, PlayerAnimationSlots.DodgeForward);
             Register(table, PlayerAnimationSlots.DodgeBackward);
             Register(table, PlayerAnimationSlots.HeavyDeath);
+            for (int i = 0; i < LadderSlots.Length; i++)
+            {
+                Register(table, LadderSlots[i]);
+            }
+
 
             foreach (CharacterReactionStateId state in
                      Enum.GetValues(typeof(CharacterReactionStateId)))
@@ -90,6 +108,18 @@ namespace _App
             AnimationSlotId slot,
             out AnimationActionRequest request)
         {
+            for (int i = 0; i < LadderSlots.Length; i++)
+            {
+                if (slot == LadderSlots[i])
+                {
+                    request = new AnimationActionRequest(
+                        LadderTraversal,
+                        i,
+                        CallerSuppliedDuration);
+                    return true;
+                }
+            }
+
             if (slot == PlayerAnimationSlots.DodgeForward)
             {
                 request = new AnimationActionRequest(Dodge, 0, 1.0f);
