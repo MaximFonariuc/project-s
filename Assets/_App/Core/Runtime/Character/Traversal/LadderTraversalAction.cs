@@ -20,11 +20,24 @@ namespace _App
 		private CancellationTokenSource _stepCts;
 		private CancellationTokenSource _lifecycleCts;
 		private bool _enabled;
+		private bool _reportedMissingPresentation;
 
 		private const float STEP_HEIGHT = 0.52f;
 		private const float EXIT_CLIMB_FRAMES = 35f;
 		private const float EXIT_MOVE_FRAMES = 15f;
 		private const float EXIT_TOTAL_FRAMES = 55f;
+
+		private static readonly AnimationSlotId[] RequiredPresentationSlots =
+		{
+			PlayerAnimationSlots.LadderEnterTopFront,
+			PlayerAnimationSlots.LadderEnterTopBack,
+			PlayerAnimationSlots.LadderEnterBottom,
+			PlayerAnimationSlots.LadderIdle,
+			PlayerAnimationSlots.LadderAscend,
+			PlayerAnimationSlots.LadderDescend,
+			PlayerAnimationSlots.LadderExitTop,
+			PlayerAnimationSlots.LadderExitBottom
+		};
 		
 		private float SpeedFactor =>
 			_locomotionState.SpeedMode == PlayerSpeedMode.Sprint ? 1.5f : 1.0f;
@@ -48,7 +61,7 @@ namespace _App
 
 		private bool CanClimb()
 		{
-			if (_character.IsCrouched())
+			if (_character.IsCrouched() || !HasLadderPresentation())
 			{
 				return false;
 			}
@@ -125,6 +138,10 @@ namespace _App
 			}
 			catch (OperationCanceledException)
 			{
+			}
+			catch (Exception exception)
+			{
+				AbortClimb(exception);
 			}
 		}
 
@@ -274,6 +291,10 @@ namespace _App
 			catch (OperationCanceledException)
 			{
 			}
+			catch (Exception exception)
+			{
+				AbortClimb(exception);
+			}
 		}
 
 		private async UniTask Step(int direction)
@@ -312,6 +333,10 @@ namespace _App
 				}
 			}
 			catch (OperationCanceledException) { }
+			catch (Exception exception)
+			{
+				AbortClimb(exception);
+			}
 			finally
 			{
 				if (ReferenceEquals(_stepCts, stepCancellation))
@@ -414,6 +439,37 @@ namespace _App
 			CancelOperations();
 			RestoreTraversalState();
 			_lifecycleCts = new CancellationTokenSource();
+		}
+
+		private void AbortClimb(Exception exception)
+		{
+			Debug.LogException(exception, _character);
+			RestoreTraversalState();
+		}
+
+		private bool HasLadderPresentation()
+		{
+			for (int i = 0; i < RequiredPresentationSlots.Length; i++)
+			{
+				if (_animation.Supports(RequiredPresentationSlots[i]))
+				{
+					continue;
+				}
+
+				if (!_reportedMissingPresentation)
+				{
+					_reportedMissingPresentation = true;
+					Debug.LogWarning(
+						"Ladder traversal is enabled but the animation backend does not " +
+						$"support slot '{RequiredPresentationSlots[i]}'. Climbing is disabled " +
+						"until the slot is mapped.",
+						_character);
+				}
+
+				return false;
+			}
+
+			return true;
 		}
 
 		private AnimationPlayback Play(AnimationSlotId slot)
