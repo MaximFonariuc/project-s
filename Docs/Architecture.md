@@ -50,6 +50,8 @@ Player Combat и его state machine описаны в `Docs/Architecture/Playe
 
 Character Reaction, poise, hit-stun/knockdown/airborne/death state machine и её границы с Health, Combat, Locomotion и Animation описаны в `Docs/Architecture/Combat.Reactions.md`.
 
+Combat Feedback, процедурная презентация удара и текущее наполнение звуками описаны в `Docs/Architecture/Combat.Feedback.md`.
+
 Combat Hit Stop, единый owner `Time.timeScale`, правила агрегации freeze-запросов и поведение scaled/unscaled systems описаны в `Docs/Architecture/Combat.HitStop.md`.
 
 Player Traversal, interaction flow и ownership локальной simulation pause описаны в `Docs/Architecture/Player.Traversal.md`.
