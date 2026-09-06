@@ -15,6 +15,7 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 
 ## Выделенные сущности и владельцы состояния
 
+- **Player Action Arbitration** — `PlayerActionArbitration` содержит чистые решения кадра: наличие внешнего лока, допуск защиты и итоговый movement intent локомоции. Координатор их только применяет, поэтому правила проверяются тестами и не размазаны по `Tick`.
 - **Player Actor** — `ThirdPersonController` остаётся Unity-host для serialized references и делегирует lifecycle/frame ticks scoped-координатору `PlayerActorController`. Координатор также согласует подтверждённые reaction transitions с Combat, Traversal и Locomotion, не дублируя их state. `PlayerActorAdapter` изолирует Camera, Targeting, Combat и Traversal от большого legacy-класса `Character` через consumer-specific порты.
 - **Player Locomotion** — `PlayerLocomotionController` владеет semantic movement intent и машиной `Idle / Run / Jump / Fall / Dodge`, а также публикует единый immutable `PlayerLocomotionSnapshot`. `PlayerDodgeAction` владеет motor displacement и нормализованным i-frame window через общий immunity lease. `CharacterMotor` является портом к существующим `Character` и `CharacterMovement`, не переписывая проверенную collision physics.
 - **Player Input** — gameplay зависит от project-specific порта `IPlayerInput`. `PlayerInputAdapter` переводит сигналы независимого `IInputService` в семантические команды игрока, а `UnityInputSource` остаётся инфраструктурной деталью composition root.
