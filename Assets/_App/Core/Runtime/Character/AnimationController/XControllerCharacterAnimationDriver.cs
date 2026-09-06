@@ -48,6 +48,9 @@ namespace _App
             XControllerAnimationContract.RollBackwardStatePath);
         private static readonly int[] ReactionStateHashes = CreateStateHashes(
             XControllerAnimationContract.ReactionStatePaths);
+
+        private static readonly int[] TraversalStateHashes = CreateStateHashes(
+            XControllerAnimationContract.TraversalStatePaths);
         private static readonly int WeaponSheatheStateHash = Animator.StringToHash(
             XControllerAnimationContract.WeaponSheatheStatePath);
         private static readonly int WeaponDrawStateHash = Animator.StringToHash(
@@ -626,6 +629,15 @@ namespace _App
                     ? WeaponDrawStateHash
                     : WeaponSheatheStateHash;
                 crossFadeSeconds = WeaponCrossFadeSeconds;
+            }
+            else if (request.Action == PlayerAnimatorActions.LadderTraversal &&
+                     request.Variant >= 0 &&
+                     request.Variant < TraversalStateHashes.Length)
+            {
+                statePath = XControllerAnimationContract.TraversalStatePaths[
+                    request.Variant];
+                stateHash = TraversalStateHashes[request.Variant];
+                crossFadeSeconds = DodgeCrossFadeSeconds;
             }
             else if (request.Action == PlayerAnimatorActions.Reaction &&
                      request.Variant >= 0 &&

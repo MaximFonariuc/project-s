@@ -13,6 +13,7 @@ namespace _App
 		private readonly PlayerAnimationCoordinator _animation;
 		private readonly IPlayerLocomotionState _locomotionState;
 		private readonly LayerMask _ladderMask;
+		private readonly float[] _slotDurations;
 
 		private Ladder _activeLadder;
 		private EClimbingState _climbingState;
@@ -58,6 +59,17 @@ namespace _App
 			}
 
 			_ladderMask = settings.LadderMask;
+			_slotDurations = new[]
+			{
+				settings.EnterTopFrontSeconds,
+				settings.EnterTopBackSeconds,
+				settings.EnterBottomSeconds,
+				settings.IdleSeconds,
+				settings.AscendSeconds,
+				settings.DescendSeconds,
+				settings.ExitTopSeconds,
+				settings.ExitBottomSeconds
+			};
 		}
 
 		private bool CanClimb()
@@ -448,6 +460,19 @@ namespace _App
 			RestoreTraversalState();
 		}
 
+		private float ResolveSlotDuration(AnimationSlotId slot)
+		{
+			for (int i = 0; i < RequiredPresentationSlots.Length; i++)
+			{
+				if (RequiredPresentationSlots[i] == slot)
+				{
+					return _slotDurations[i];
+				}
+			}
+
+			return 0.0f;
+		}
+
 		private bool HasLadderPresentation()
 		{
 			for (int i = 0; i < RequiredPresentationSlots.Length; i++)
@@ -477,7 +502,8 @@ namespace _App
 		{
 			AnimationPlayback playback = _animation.CrossFade(
 				PlayerAnimationSource.Traversal,
-				slot);
+				slot,
+				ResolveSlotDuration(slot));
 			if (!playback.IsValid || playback.Duration <= 0.0f)
 			{
 				throw new InvalidOperationException(

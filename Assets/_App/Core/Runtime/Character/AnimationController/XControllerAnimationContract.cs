@@ -87,6 +87,23 @@ namespace _App
         public const string WeaponDrawStatePath =
             "SwitchWeapon Layer.Draw";
 
+        public const string LadderEnterTopFrontStatePath =
+            "Base Layer.Ladder.Ladder_Enter_Top_Front";
+        public const string LadderEnterTopBackStatePath =
+            "Base Layer.Ladder.Ladder_Enter_Top_Back";
+        public const string LadderEnterBottomStatePath =
+            "Base Layer.Ladder.Ladder_Enter_Bottom";
+        public const string LadderIdleStatePath =
+            "Base Layer.Ladder.Ladder_Idle";
+        public const string LadderAscendStatePath =
+            "Base Layer.Ladder.Ladder_Ascend";
+        public const string LadderDescendStatePath =
+            "Base Layer.Ladder.Ladder_Descend";
+        public const string LadderExitTopStatePath =
+            "Base Layer.Ladder.Ladder_Exit_Top";
+        public const string LadderExitBottomStatePath =
+            "Base Layer.Ladder.Ladder_Exit_Bottom";
+
         private static readonly IReadOnlyList<XControllerParameterRequirement>
             Parameters = Array.AsReadOnly(
                 new[]
@@ -148,6 +165,20 @@ namespace _App
                     HitStunRightStatePath,
                     BlockStatePath,
                     ParryStatePath
+                });
+
+        private static readonly IReadOnlyList<string> TraversalStates =
+            Array.AsReadOnly(
+                new[]
+                {
+                    LadderEnterTopFrontStatePath,
+                    LadderEnterTopBackStatePath,
+                    LadderEnterBottomStatePath,
+                    LadderIdleStatePath,
+                    LadderAscendStatePath,
+                    LadderDescendStatePath,
+                    LadderExitTopStatePath,
+                    LadderExitBottomStatePath
                 });
 
         private static readonly IReadOnlyList<string> DefenseLayerStates =
@@ -225,6 +256,9 @@ namespace _App
 
         public static IReadOnlyList<string> ReactionStatePaths =>
             ReactionStates;
+
+        public static IReadOnlyList<string> TraversalStatePaths =>
+            TraversalStates;
 
         public static IReadOnlyList<string> HitStunStatePaths =>
             HitStunStates;
