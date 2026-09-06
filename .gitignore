@@ -88,3 +88,6 @@ UMotionData
 # Frank source archives remain local under /Reference/FrankAnim/. Runtime-ready
 # Humanoid FBXs and their import metadata under Assets/_Game/Animations/Frank
 # are versioned through Git LFS so their validated Unity imports are reproducible.
+
+# Animation exporter log written to the project root by the FBX export tool.
+/notify.log
