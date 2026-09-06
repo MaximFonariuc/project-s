@@ -21,7 +21,9 @@ Assets/_App/Core/
 │   ├── Time/
 │   └── UI/
 ├── Editor/                          # ProjectS.Core.Editor
-└── Tests/EditMode/                  # ProjectS.Core.Tests
+└── Tests/
+    ├── EditMode/                    # ProjectS.Core.Tests
+    └── PlayMode/                    # ProjectS.Core.PlayModeTests
 ```
 
 `ProjectS.Core.Runtime` остаётся одной feature-oriented assembly. Дробить её на assembly для каждой папки запрещено, пока конкретная feature не получила стабильный публичный контракт и независимый lifecycle.
@@ -53,7 +55,7 @@ flowchart LR
 
 `_App/Modules` не ссылается на `ProjectS.Core.Runtime`. Сторонние `_Modules` рассматриваются как внешние зависимости; адаптеры Project S к ним должны находиться в Core.
 
-`ProjectS.Core.Tests` — editor-only assembly с `UNITY_INCLUDE_TESTS` в define constraints, поэтому в player build она не попадает. Runtime открывает ей internals через `InternalsVisibleTo` в `Runtime/AssemblyInfo.cs`: это единственное исключение, и оно нужно, чтобы покрывать внутреннюю боевую и анимационную логику без расширения публичного API. Ни Runtime, ни Editor на тесты не ссылаются. Что покрыто — в `Docs/Architecture/Core.Tests.md`.
+`ProjectS.Core.Tests` и `ProjectS.Core.PlayModeTests` — тестовые assembly с `UNITY_INCLUDE_TESTS` в define constraints, поэтому в player build они не попадают. Runtime открывает ей internals через `InternalsVisibleTo` в `Runtime/AssemblyInfo.cs`: это единственное исключение, и оно нужно, чтобы покрывать внутреннюю боевую и анимационную логику без расширения публичного API. PlayMode-сборка обходится публичным API `ModularCharacterMovement`. Ни Runtime, ни Editor на тесты не ссылаются. Что покрыто — в `Docs/Architecture/Core.Tests.md`.
 
 Editor assembly может зависеть от Runtime, но Runtime не зависит от `ProjectS.Core.Editor`. Исключение — узкий код под `#if UNITY_EDITOR` внутри того же partial runtime-типа, когда перенос в другую assembly технически разорвал бы partial class. В Core такого кода сейчас нет; единственный пример живёт в модуле `ModularCharacterMovement` (`CharacterMovement.Editor.cs`).
 
