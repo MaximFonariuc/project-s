@@ -35,12 +35,11 @@ namespace _App
         public static readonly AnimationActionId Parry = new AnimationActionId(12);
 
         public const float WeaponTransitionDuration = 1.00f;
-        public const float HitStunDuration = 0.40f;
-        public const float KnockdownDuration = 0.80f;
-        public const float GetUpDuration = 1.8333334f;
-        public const float AirborneReactionDuration = 0.45f;
-        public const float DeathDuration = 2.40f;
         public const float GuardDuration = 1.1666667f;
+
+        public const float DeathDuration = 2.40f;
+
+        private const float CallerSuppliedDuration = 0.0f;
 
         public static bool TryCreate(
             AnimationSlotId slot,
@@ -63,7 +62,7 @@ namespace _App
                     CharacterReactionStateId.HitStun,
                     CharacterReactionDirection.Back))
             {
-                request = new AnimationActionRequest(Reaction, 6, HitStunDuration);
+                request = new AnimationActionRequest(Reaction, 6, CallerSuppliedDuration);
                 return true;
             }
 
@@ -72,7 +71,7 @@ namespace _App
                     CharacterReactionStateId.HitStun,
                     CharacterReactionDirection.Left))
             {
-                request = new AnimationActionRequest(Reaction, 7, HitStunDuration);
+                request = new AnimationActionRequest(Reaction, 7, CallerSuppliedDuration);
                 return true;
             }
 
@@ -81,25 +80,25 @@ namespace _App
                     CharacterReactionStateId.HitStun,
                     CharacterReactionDirection.Right))
             {
-                request = new AnimationActionRequest(Reaction, 8, HitStunDuration);
+                request = new AnimationActionRequest(Reaction, 8, CallerSuppliedDuration);
                 return true;
             }
 
             if (IsReactionSlot(slot, CharacterReactionStateId.HitStun))
             {
-                request = new AnimationActionRequest(Reaction, 0, HitStunDuration);
+                request = new AnimationActionRequest(Reaction, 0, CallerSuppliedDuration);
                 return true;
             }
 
             if (IsReactionSlot(slot, CharacterReactionStateId.Knockdown))
             {
-                request = new AnimationActionRequest(Reaction, 1, KnockdownDuration);
+                request = new AnimationActionRequest(Reaction, 1, CallerSuppliedDuration);
                 return true;
             }
 
             if (IsReactionSlot(slot, CharacterReactionStateId.Airborne))
             {
-                request = new AnimationActionRequest(Reaction, 2, AirborneReactionDuration);
+                request = new AnimationActionRequest(Reaction, 2, CallerSuppliedDuration);
                 return true;
             }
 
@@ -117,7 +116,7 @@ namespace _App
 
             if (IsReactionSlot(slot, CharacterReactionStateId.GetUp))
             {
-                request = new AnimationActionRequest(Reaction, 4, GetUpDuration);
+                request = new AnimationActionRequest(Reaction, 4, CallerSuppliedDuration);
                 return true;
             }
 
@@ -210,6 +209,13 @@ namespace _App
                     request.Action,
                     request.Variant,
                     expectedDurationOverride);
+            }
+            else if (request.ExpectedDuration <= 0.0f)
+            {
+                Debug.LogError(
+                    $"Animation slot '{slot}' requires a caller-supplied duration " +
+                    $"but {source} passed none.");
+                return AnimationPlayback.Invalid;
             }
 
             return TryPlayAction(source, in request, out AnimationActionPlayback action)
