@@ -171,3 +171,28 @@ Traversal вызывает `IPlayerLocomotionCommands.TryInvertGravity`. Тол�
 Последняя связь вынесена в `PlayerPhysicsVolumeAnimationAdapter`, который симметрично подписывается и отписывается вместе с lifecycle host.
 
 `PlayerTraversalComposition` регистрирует probe, traversal controller, pause controller и один scoped `PlayerSimulationGate`. Scene/prefab wiring не требуется.
+
+## Ladder presentation binding
+
+`LadderTraversalAction` играет восемь слотов: вход сверху спереди и сзади, вход снизу,
+idle, подъём, спуск, выход сверху и снизу. Они замаплены в `PlayerAnimatorActions` на
+действие `LadderTraversal` с вариантами 0..7, а `XControllerAnimationContract.TraversalStatePaths`
+задаёт соответствующие состояния `Base Layer.Ladder.*`. Длительности клипов авторятся в
+`LadderTraversalSettings` и передаются в `CrossFade` как duration override — константы
+длин в коде не хранятся.
+
+`CanClimb` отказывает, если хотя бы один из восьми слотов не поддерживается бэкендом,
+и один раз пишет предупреждение. Это защита: лазание захватывает movement mode,
+rotation mode и ground constraint с первого кадра, поэтому отсутствующая презентация
+должна отклонить действие до захвата, а не посреди него. Любая иная ошибка внутри
+climb-потоков возвращает состояние через `AbortClimb`.
+
+Проверено в play mode: вход снизу, переход в `Ladder_Idle` и подъём отрабатывают,
+персонаж поднимается по лестнице с проигрыванием клипов.
+
+**Незакрытое:** выход сверху не завершается. Фаза подъёма exit-последовательности
+отрабатывает и поднимает персонажа на `topY + STEP_HEIGHT * 1.5`, но movement mode
+остаётся `Custom/Climbing`, а `_climbingState` — `Grabbed`. Причина в самой
+exit-последовательности, а не в привязке анимации: `Step` передаёт в
+`PlayExitAndRelease` собственный step-token, время жизни которого короче
+последовательности. До починки выход сверху считать неработающим.
