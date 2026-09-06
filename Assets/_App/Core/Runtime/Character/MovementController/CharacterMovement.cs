@@ -66,6 +66,8 @@ namespace _App
 
         private bool _detectCollisions = true;
 
+        private bool _reportedRejectedMove;
+
         private readonly CharacterGroundingState _grounding = new CharacterGroundingState();
 
         private Vector3 _constraintPlaneNormal;
@@ -555,6 +557,18 @@ namespace _App
             _forces.Clear();
         }
 
+        private void ReportRejectedMove(string rejectedInput)
+        {
+            if (_reportedRejectedMove)
+                return;
+
+            _reportedRejectedMove = true;
+            Debug.LogError(
+                $"{nameof(CharacterMovement)} rejected a non-finite move ({rejectedInput}). " +
+                "Velocity and accumulated forces were reset. Further occurrences are not reported.",
+                this);
+        }
+
         public void AddForce(Vector3 force, ForceMode forceMode = ForceMode.Force)
         {
             _forces.Add(force, forceMode, Rigidbody.mass);
@@ -595,6 +609,20 @@ namespace _App
 
         public CollisionFlags Move(Vector3 newVelocity, float deltaTime)
         {
+            if (!IsFinite(newVelocity))
+            {
+                ReportRejectedMove($"velocity {newVelocity.ToString("F4")}");
+                _velocity = Vector3.zero;
+                _forces.Clear();
+                return CollisionFlags;
+            }
+
+            if (!IsFinite(deltaTime) || deltaTime < 0.0f)
+            {
+                ReportRejectedMove($"deltaTime {deltaTime}");
+                return CollisionFlags;
+            }
+
             UpdateCachedFields();
 
             ClearCollisionResults();
