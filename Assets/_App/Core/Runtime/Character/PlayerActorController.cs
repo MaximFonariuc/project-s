@@ -152,30 +152,35 @@ namespace _App
             _reaction.Tick(scaledDeltaTime);
             _attackRecoil.Tick(scaledDeltaTime);
             _combat.Advance(scaledDeltaTime);
-            bool externalActionLock =
-                _reaction.BlocksActions || _attackRecoil.IsActive;
-            PlayerMovementIntent nonDefenseMovementIntent = externalActionLock
-                ? PlayerMovementIntent.Locked
-                : _combat.MovementIntent;
+            bool externalActionLock = PlayerActionArbitration.HasExternalActionLock(
+                _reaction.BlocksActions,
+                _attackRecoil.IsActive);
+            PlayerMovementIntent combatMovementIntent = _combat.MovementIntent;
+            PlayerMovementIntent nonDefenseMovementIntent =
+                PlayerActionArbitration.ResolveNonDefenseIntent(
+                    externalActionLock,
+                    in combatMovementIntent);
             PlayerLocomotionSnapshot locomotionSnapshot = _locomotion.Snapshot;
             _defense.Tick(
                 scaledDeltaTime,
-                !externalActionLock &&
-                !_locomotion.BlocksActions &&
-                !locomotionSnapshot.IsJumpStarting &&
-                !locomotionSnapshot.IsDodgeStarting &&
-                !_locomotion.HasPriorityActionRequest(
-                    in nonDefenseMovementIntent) &&
-                (_combat.Phase == PlayerCombatPhase.Ready ||
-                 _combat.MovementIntent.AllowGuard));
+                PlayerActionArbitration.CanStartDefense(
+                    externalActionLock,
+                    _locomotion.BlocksActions,
+                    locomotionSnapshot.IsJumpStarting,
+                    locomotionSnapshot.IsDodgeStarting,
+                    _locomotion.HasPriorityActionRequest(in nonDefenseMovementIntent),
+                    _combat.Phase,
+                    combatMovementIntent.AllowGuard));
             _defenseAnimation.Tick(scaledDeltaTime);
             _traversal.Tick();
+            PlayerMovementIntent defenseMovementIntent = _defense.MovementIntent;
+            PlayerMovementIntent settledCombatIntent = _combat.MovementIntent;
             _locomotion.SetMovementIntent(
-                externalActionLock
-                    ? PlayerMovementIntent.Locked
-                    : _defense.BlocksActions
-                        ? _defense.MovementIntent
-                        : _combat.MovementIntent);
+                PlayerActionArbitration.ResolveLocomotionIntent(
+                    externalActionLock,
+                    _defense.BlocksActions,
+                    in defenseMovementIntent,
+                    in settledCombatIntent));
             _locomotion.Tick(scaledDeltaTime, unscaledDeltaTime);
             _combat.ResolveCommands();
             _style.Tick(scaledDeltaTime);
