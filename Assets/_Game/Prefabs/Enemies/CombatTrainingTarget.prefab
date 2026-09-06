@@ -1034,6 +1034,8 @@ GameObject:
   - component: {fileID: 3929082192320441113}
   - component: {fileID: 5045876234301533164}
   - component: {fileID: 5043549715279115722}
+  - component: {fileID: 8393368337352685518}
+  - component: {fileID: 7147626262446753731}
   m_Layer: 7
   m_Name: CombatTrainingTarget
   m_TagString: Untagged
@@ -1149,8 +1151,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 240f5b836d201824cad1a9d778689955, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _health: {fileID: 6032431483796332789}
   _zones:
   - {fileID: 7305724124473894465}
@@ -1194,8 +1196,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bceb0da527bd765478b3d30ae4f08f26, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _health: {fileID: 6032431483796332789}
   _animationHost: {fileID: 1754604257975026636}
   _profile: {fileID: 11400000, guid: c842a637289f9e843bc9cd45c2ee569d, type: 2}
@@ -1263,8 +1265,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31f919b895d8c8244826f57435cfeff6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _attacker: {fileID: 8811571643654951780}
   _lineWidth: 0.045
   _windupColor: {r: 1, g: 0.45, b: 0.05, a: 0.85}
@@ -1280,8 +1282,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2546c6d258dd3914e88ef995f3e67598, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _animator: {fileID: 9160350341515989739}
 --- !u!114 &3929082192320441113
 MonoBehaviour:
@@ -1293,8 +1295,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6d3ed26bd9554045a1bee1f4abcdbea, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _attacker: {fileID: 8811571643654951780}
   _animationHost: {fileID: 1754604257975026636}
   _reactionHost: {fileID: 1809471061997952984}
@@ -1308,8 +1310,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77cd6a4430a8f8943a95ea5b0f52d013, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _health: {fileID: 6032431483796332789}
   _bodyRig: {fileID: 4498397526815185927}
   _attacker: {fileID: 8811571643654951780}
@@ -1327,10 +1329,51 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3853e58498beae2439103c7abdadf882, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _defense: {fileID: 5045876234301533164}
   _animationHost: {fileID: 1754604257975026636}
+--- !u!114 &8393368337352685518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6065133867398282554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4200f1faffa948e498eb5b50fd32d326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attacker: {fileID: 8811571643654951780}
+  _health: {fileID: 6032431483796332789}
+  _body: {fileID: 5485937798915001615}
+  _impactMotor: {fileID: 2974541075970454963}
+  _reactionHost: {fileID: 1809471061997952984}
+  _defense: {fileID: 5045876234301533164}
+  _approach:
+    _moveSpeed: 2.4
+    _acceleration: 14
+    _gait: 1
+    _approachRangeRatio: 0.8
+    _retreatRangeRatio: 0.45
+    _pursuitRange: 20
+--- !u!114 &7147626262446753731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6065133867398282554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3fc1536e4e6da4dad00825f8b2ab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _approach: {fileID: 8393368337352685518}
+  _animationHost: {fileID: 1754604257975026636}
+  _reactionHost: {fileID: 1809471061997952984}
+  _gait: 1
 --- !u!1 &6301183989958189046
 GameObject:
   m_ObjectHideFlags: 0
