@@ -11,14 +11,15 @@ Assets/_App/Core/
 │   ├── Combat/
 │   ├── Common/
 │   ├── Composition/
-│   ├── Diagnostics/
-│   ├── Enemy/
+│   ├── Enemies/
 │   ├── Enums/
 │   ├── Environment/
 │   ├── IK/
 │   ├── Input/
 │   ├── Settings/CharacterFeatures/   # immutable feature authoring data
-│   └── TargetLock/
+│   ├── TargetLock/
+│   ├── Time/
+│   └── UI/
 └── Editor/                          # ProjectS.Core.Editor
 ```
 
@@ -33,6 +34,7 @@ flowchart LR
 
     Runtime --> InputCore["ModularInput.Core"]
     Runtime --> InputUnity["ModularInput.Unity"]
+    Runtime --> MovementCore["ModularCharacterMovement"]
     Runtime --> StateCore["ModularStateMachine.Core"]
     Runtime --> StateDI["ModularStateMachine.VContainer"]
 
@@ -43,17 +45,19 @@ flowchart LR
 
     InputCore -. "forbidden" .-> Runtime
     InputUnity -. "forbidden" .-> Runtime
+    MovementCore -. "forbidden" .-> Runtime
     StateCore -. "forbidden" .-> Runtime
     StateDI -. "forbidden" .-> Runtime
 ```
 
 `_App/Modules` не ссылается на `ProjectS.Core.Runtime`. Сторонние `_Modules` рассматриваются как внешние зависимости; адаптеры Project S к ним должны находиться в Core.
 
-Editor assembly может зависеть от Runtime, но Runtime не зависит от `ProjectS.Core.Editor`. Исключение — узкий код под `#if UNITY_EDITOR` внутри того же partial runtime-типа, когда перенос в другую assembly технически разорвал бы partial class. Сейчас таким исключением является `CharacterMovement.Editor.cs`.
+Editor assembly может зависеть от Runtime, но Runtime не зависит от `ProjectS.Core.Editor`. Исключение — узкий код под `#if UNITY_EDITOR` внутри того же partial runtime-типа, когда перенос в другую assembly технически разорвал бы partial class. В Core такого кода сейчас нет; единственный пример живёт в модуле `ModularCharacterMovement` (`CharacterMovement.Editor.cs`).
 
 ## Текущие зависимости Runtime
 
 - `ModularInput.Core` и `ModularInput.Unity` — семантический input и Unity Input System adapter;
+- `ModularCharacterMovement` — решатель коллизий капсулы, grounding и движущиеся платформы;
 - `ModularStateMachine.Core` и `ModularStateMachine.VContainer` — locomotion state machine и DI-регистрация;
 - `VContainer` — composition root и injection;
 - `UniTask` — существующие асинхронные gameplay-операции;
@@ -64,7 +68,6 @@ Editor assembly может зависеть от Runtime, но Runtime не за
 
 ## Зафиксированный технический долг
 
-- `Diagnostics/TestSystem`, `ITestable` и `MonoSingleton` сохранены, потому что `TestSystem` сериализован в `Assets/Scenes/Demo Scene.unity`. Новый gameplay-код не должен использовать эту singleton-границу.
 - `Common` содержит уже используемые малые helpers, ранее лежавшие в общей папке `Utils`. Новые универсальные helpers без доказанного общего владельца сюда не добавляются.
 - `Enemy` и старый `TargetLock` продолжают компилироваться для сохранения проекта, но не входят в текущий приоритет single-player locomotion.
 - Наличие одной Core assembly не означает, что все классы являются публичным API. Внутренние типы следует делать `internal` по мере локального рефакторинга и проверки всех consumers.

@@ -5,7 +5,7 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 ## Физические границы проекта
 
 - `Assets/_App/Core` — first-party код, который знает о Project S: gameplay, presentation adapters, composition и editor tooling.
-- `Assets/_App/Modules` — наши независимые архитектурные модули. Сейчас здесь находятся `Input`, `StateMachine` и `Animation`; они не ссылаются на `Core` и `_Game`.
+- `Assets/_App/Modules` — наши независимые архитектурные модули. Сейчас здесь находятся `Input`, `StateMachine`, `Animation` и `CharacterMovement`; они не ссылаются на `Core` и `_Game`.
 - `Assets/_Game` — сцены, prefabs, модели, анимации, материалы, настройки и другой игровой контент без first-party скриптов.
 - `Assets/_Modules` — импортированные сторонние расширения. Интеграционный код Project S остаётся в `_App`, а vendor-код не изменяется без явно задокументированного patch.
 
@@ -25,7 +25,7 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 - **Player Targeting** — `PlayerTargetingController` владеет lock-on state и выбором цели. Camera и будущий Combat читают его через `IPlayerTargetingState`, не управляя target selection.
 - **Player Camera** — `PlayerCameraController` владеет free-look/target-lock режимом, zoom, shoulder и framing state. `CinemachineCameraRig` является заменяемым presentation adapter, а locomotion читает только `ICameraOrientation`.
 - **Player Traversal** — `PlayerTraversalController` владеет interaction/climb workflow и согласованием gravity inversion между locomotion и camera. `PlayerSimulationGate` объединяет persistent pause request и временные traversal locks, оставаясь единственным владельцем вызова `Character.Pause` в player flow.
-- **Character Simulation** — `Character` остаётся совместимым Unity facade и владельцем movement mode/fixed-step, но runtime state прыжка, реестр physics volumes и cancellable simulation loop имеют отдельных внутренних owners. Collision solving остаётся в `CharacterMovement`; детали и class tree описаны в `Docs/Architecture/Character.Simulation.md`.
+- **Character Simulation** — `Character` остаётся совместимым Unity facade и владельцем movement mode/fixed-step, но runtime state прыжка, реестр physics volumes и cancellable simulation loop имеют отдельных внутренних owners. Collision solving вынесено в независимый модуль `ModularCharacterMovement`; детали и class tree описаны в `Docs/Architecture/Character.Simulation.md`, а границы модуля — в `Assets/_App/Modules/CharacterMovement/README.md`.
 - **Character Features** — `CharacterFeatureSet` является только authoring-каталогом включённых настроек. Общая runtime ability-система, generic lookup и factories удалены; поведение принадлежит Locomotion, Traversal и Movement Policies.
 - **Character Movement Policies** — scoped owner подключает опциональные fly/swim/gravity/ground/landing rules к явным simulation events `Character` и симметрично освобождает subscriptions.
 - **Authoring data** — `CharacterFeatureSet` и gameplay-профили остаются ScriptableObject-конфигурацией, а runtime progress хранится только в экземплярах controllers/actions/policies. Animation clips и transitions принадлежат Animator Controller, а не отдельному SO-каталогу.
@@ -35,6 +35,8 @@ Project S остаётся feature-oriented monolith. MVC/MVVM не исполь
 `GameLifetimeScope` — composition root gameplay-сцены. Он регистрирует input boundary и делегирует player wiring в `PlayerComposition`; Camera, Targeting, Combat, Locomotion и Traversal имеют отдельные composition-блоки внутри той же Composition-области. Регистрации не просачиваются в gameplay-код, а локальные prefab/scene ссылки остаются serialized references.
 
 Input выделен в независимый first-party module boundary. Его class trees и зависимости описаны в `Assets/_App/Modules/Input/Documentation~`, а Project S adapter — в `Docs/Architecture/Input.Player.md`.
+
+Решатель перемещения капсулы выделен в `Assets/_App/Modules/CharacterMovement`. Модуль зависит только от Unity engine modules, не ссылается на Core и содержит собственные вектор-хелперы вместо `Common/Extensions.cs`. Поведенческая модель написана по образцу `UCharacterMovementComponent` из Unreal Engine, поэтому внутри сохранён его словарь констант; это собственный код проекта, а не сторонний ассет.
 
 Общее синхронное ядро конечных машин состояний выделено в `Assets/_App/Modules/StateMachine`. Core не зависит от Unity или DI container; VContainer используется отдельной integration assembly только в composition root. Диаграммы, lifecycle и package boundary описаны в `Assets/_App/Modules/StateMachine/Documentation~`.
 
@@ -64,4 +66,4 @@ Anti-corruption boundary между feature controllers и legacy `Character`, �
 
 Animation layer arbitration и gameplay interruption между Reaction, Traversal, Combat и Locomotion централизованно согласованы. Следующий state scope следует выбирать из реального gameplay-приоритета, а не расширять общий player coordinator заранее.
 
-`Assets/Scenes/Demo Scene.unity` сохраняется как reference-сцена без переноса её содержимого. Рабочая сцена находится в `Assets/_Game/Scenes/PrototypeArena.unity` и является стартовой сценой разработки.
+Рабочая сцена находится в `Assets/_Game/Scenes/PrototypeArena.unity` и является единственной сценой в build settings и стартовой сценой разработки.
