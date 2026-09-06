@@ -86,7 +86,8 @@ namespace ModularStateMachine
                 return false;
             }
 
-            return _transitions.TryGetValue(new TransitionKey(CurrentStateId.Value, targetStateId), out IStateTransitionGuard guard) &&
+            return _transitions.TryGetValue(new TransitionKey(CurrentStateId.Value, targetStateId),
+                       out IStateTransitionGuard guard) &&
                    (guard == null || guard.CanTransition);
         }
 
