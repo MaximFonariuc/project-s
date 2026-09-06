@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ModularAnimation;
 using UnityEngine;
 
@@ -41,7 +42,53 @@ namespace _App
 
         private const float CallerSuppliedDuration = 0.0f;
 
+        private static readonly Dictionary<AnimationSlotId, AnimationActionRequest>
+            RequestsBySlot = BuildRequestTable();
+
         public static bool TryCreate(
+            AnimationSlotId slot,
+            out AnimationActionRequest request)
+        {
+            return RequestsBySlot.TryGetValue(slot, out request);
+        }
+
+        private static Dictionary<AnimationSlotId, AnimationActionRequest> BuildRequestTable()
+        {
+            var table = new Dictionary<AnimationSlotId, AnimationActionRequest>();
+            Register(table, PlayerAnimationSlots.DodgeForward);
+            Register(table, PlayerAnimationSlots.DodgeBackward);
+            Register(table, PlayerAnimationSlots.HeavyDeath);
+
+            foreach (CharacterReactionStateId state in
+                     Enum.GetValues(typeof(CharacterReactionStateId)))
+            {
+                Register(table, PlayerAnimationSlots.Reaction(state));
+                foreach (CharacterReactionKind kind in
+                         Enum.GetValues(typeof(CharacterReactionKind)))
+                {
+                    Register(table, PlayerAnimationSlots.Reaction(kind, state));
+                    foreach (CharacterReactionDirection direction in
+                             Enum.GetValues(typeof(CharacterReactionDirection)))
+                    {
+                        Register(table, PlayerAnimationSlots.Reaction(kind, state, direction));
+                    }
+                }
+            }
+
+            return table;
+        }
+
+        private static void Register(
+            Dictionary<AnimationSlotId, AnimationActionRequest> table,
+            AnimationSlotId slot)
+        {
+            if (!table.ContainsKey(slot) && Resolve(slot, out AnimationActionRequest request))
+            {
+                table.Add(slot, request);
+            }
+        }
+
+        private static bool Resolve(
             AnimationSlotId slot,
             out AnimationActionRequest request)
         {
