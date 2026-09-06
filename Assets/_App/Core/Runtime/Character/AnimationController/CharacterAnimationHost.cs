@@ -59,6 +59,19 @@ namespace _App
             _animator = animator;
         }
 
+        internal bool TryApplyLocomotion(
+            in CharacterLocomotionFrame frame,
+            float deltaTime)
+        {
+            if (!TryGetAnimation(out _) || _driver == null)
+            {
+                return false;
+            }
+
+            _driver.ApplyLocomotion(in frame, deltaTime);
+            return true;
+        }
+
         internal bool TryGetAnimation(out PlayerAnimationCoordinator animation)
         {
             if (_animation != null)
