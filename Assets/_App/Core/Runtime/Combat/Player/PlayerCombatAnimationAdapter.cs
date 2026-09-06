@@ -75,6 +75,7 @@ namespace _App
         public bool TryPlayWeaponTransition(
             EWeaponType weaponType,
             bool draw,
+            float durationSeconds,
             out AnimationActionPlayback playback)
         {
             ThrowIfDisposed();
@@ -87,7 +88,7 @@ namespace _App
             var request = new AnimationActionRequest(
                 PlayerAnimatorActions.WeaponTransition,
                 draw ? 1 : 0,
-                PlayerAnimatorActions.WeaponTransitionDuration);
+                durationSeconds);
             return _animation.TryPlayAction(
                 PlayerAnimationSource.Combat,
                 in request,

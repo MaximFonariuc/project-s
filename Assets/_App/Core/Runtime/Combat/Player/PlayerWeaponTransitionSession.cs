@@ -144,7 +144,11 @@ namespace _App
                 _animation.ApplyLoadout(_characterType, animationWeapon);
             }
 
-            if (!_animation.TryPlayWeaponTransition(animationWeapon, draw, out _))
+            if (!_animation.TryPlayWeaponTransition(
+                    animationWeapon,
+                    draw,
+                    _transitionAction.Definition.DurationSeconds,
+                    out _))
             {
                 return false;
             }

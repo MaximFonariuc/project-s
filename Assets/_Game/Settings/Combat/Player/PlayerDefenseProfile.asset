@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ba039f230c6d074fb00f421f16b887b, type: 3}
   m_Name: PlayerDefenseProfile
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   _guardArcDegrees: 140
   _parryWindowSeconds: 0.12
   _parryRecoverySeconds: 0.35
@@ -19,3 +19,4 @@ MonoBehaviour:
   _blockPushbackSpeed: 1.75
   _blockRecoverySeconds: 0.5
   _parryImpactRecoverySeconds: 1.5
+  _guardClipSeconds: 1.1666667

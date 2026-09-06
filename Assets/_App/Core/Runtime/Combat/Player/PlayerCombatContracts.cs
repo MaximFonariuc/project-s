@@ -49,6 +49,7 @@ namespace _App
         bool TryPlayWeaponTransition(
             EWeaponType weaponType,
             bool draw,
+            float durationSeconds,
             out AnimationActionPlayback playback);
         void Release();
         void Cancel();
