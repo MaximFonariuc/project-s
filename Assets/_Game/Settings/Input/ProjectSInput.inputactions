@@ -109,7 +109,7 @@
                     "name": "Launcher",
                     "type": "Button",
                     "id": "365d05f1-d204-4f76-895c-1cd8937404b9",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -172,7 +172,7 @@
                     "name": "HeavyAttack",
                     "type": "Button",
                     "id": "94ebb6d3-4374-46e5-87f4-6bf34e2f7107",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
