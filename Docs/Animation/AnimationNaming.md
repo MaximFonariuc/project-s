@@ -52,6 +52,7 @@ Assets/_Game/Animations/Character/
 | `Idle` | `Loco_Idle` |
 | `Idle_Wait_C` | `Loco_Idle_Alt` |
 | `WalkFront` / `WalkBack` | `Loco_Walk_F` / `Loco_Walk_B` |
+| — | `Loco_Jog_F` / `Loco_Jog_B` |
 | `RunFront` / `RunBack` | `Loco_Run_F` / `Loco_Run_B` |
 | `SprintFront` / `SprintBack` | `Loco_Sprint_F` / `Loco_Sprint_B` |
 | `JumpIdle` / `JumpWalking` / `JumpRunning` / `JumpSprinting` | `Jump_Rise_Idle` / `Jump_Rise_Walk` / `Jump_Rise_Run` / `Jump_Rise_Sprint` |
@@ -72,9 +73,17 @@ Assets/_Game/Animations/Character/
 
 - Имя описывает роль в игре, а не источник и не автора. `CLazy@`, `Frank_RPG_`, `SK_Mannequin@` в рабочем слое не встречаются.
 - Одно имя — один клип. Двух `SprintFront` с разной длиной существовать не должно.
+- Ступень локомоции называется по роли в дереве скоростей, а не по названию исходного клипа. `Loco_Run_F` собран из `Mvm_Dash`, потому что на скорости бега мотора нужен именно этот темп шага; таблица ступеней и их авторские скорости лежат в `Docs/Architecture/Player.Animation.md`.
 - Все клипы рабочего слоя не несут корневого перемещения: root motion выключен, дистанция действия задаётся авторски. Подробности в `Docs/Architecture/Player.Animation.md`.
 - Переименование и перемещение выполняются только через `AssetDatabase`, чтобы GUID сохранился. После каждой партии проверяется, что `XController`, override-контроллеры и `EnemyController` не потеряли ссылок.
 - Состояния Animator сохраняют свои имена из `XControllerAnimationContract`: переименовывается клип, а не состояние. Контракт кода и имена ассетов — независимые вещи.
+- Независимость имён держится не сама собой. Драйвер ищет активный клип по слоту, поэтому связь «состояние → имя клипа» объявляется в `XControllerAnimationContract.TryGetClipSlot` и проверяется валидатором. Переименовал клип боевого состояния — поправь таблицу, иначе синхронизация темпа молча выключится.
+
+## Сборка рабочего слоя
+
+`Tools/Animation/Rebuild Curated Clips` пересобирает `.anim` рабочего слоя из исходных FBX по манифесту в `CuratedAnimationClipBuilder`. Манифест хранит путь к источнику, имя клипа внутри него и флаг зацикливания, то есть является записью происхождения: по нему видно, из чего собран каждый курируемый клип.
+
+Пересборка идёт через `CopySerialized` в существующий ассет, поэтому GUID и все ссылки сохраняются. Добавление клипа — это строка в манифесте, а не ручное копирование в Project-окне.
 
 ## Порядок применения
 
