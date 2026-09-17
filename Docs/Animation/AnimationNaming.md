@@ -1,0 +1,84 @@
+# Правила именования и раскладки анимаций
+
+Документ фиксирует, как называются и где лежат анимационные клипы Project S. Правило вводится начиная с Unarmed и локомоции; остальные оружия приводятся к нему по мере работы над ними.
+
+## Два слоя: источники и рабочий набор
+
+**Слой источников** — импортированные паки как есть: `Clazy/`, `Frank/`, `AmplifyAnimationPack/`, `Knight/`, `SwordMan/`, `2Handed/`, `Shared/External/`. Они не переименовываются, не перекладываются и не редактируются. Обновление пака не должно затирать нашу работу.
+
+**Рабочий слой** — курируемые `.anim`-ассеты, собранные из источников. Только на них ссылаются `XController` и override-контроллеры. Контроллер никогда не указывает на клип внутри vendor-FBX напрямую.
+
+Причина разделения техническая: `.anim` — самостоятельный ассет со своим GUID, его можно переименовать и переместить через `AssetDatabase`, и все ссылки уцелеют. Клип внутри FBX переименовывается только правкой импортёра, что меняет внутренние идентификаторы и рвёт ссылки. Поэтому имя живёт на рабочем слое, а не на источнике.
+
+## Раскладка
+
+```text
+Assets/_Game/Animations/Character/
+├── Controllers/
+│   ├── XController.controller
+│   └── Weapons/
+│       └── <Weapon>.overrideController
+├── Shared/                    # одинаково для всех типов оружия, не переопределяется
+│   ├── Locomotion/
+│   ├── Jump/
+│   ├── Dodge/
+│   ├── Reaction/
+│   └── Traversal/
+└── Weapons/
+    └── <Weapon>/              # шаблон, одинаковый для каждого оружия
+        ├── Ground/
+        ├── Air/
+        └── Defense/
+```
+
+`Shared` — прямое следствие цели «одинаковый мувсет с любым оружием»: ходьба, бег, прыжок, падение, приземление, уворот и реакции берутся отсюда всегда и никогда не попадают в override. Пооружейно переопределяются только `Ground`, `Air` и `Defense`.
+
+Новое оружие добавляется копированием шаблона `Weapons/<Weapon>/` и заполнением тех же имён. Чего у оружия нет — остаётся незаполненным и деградирует до общего варианта, а не ломает набор.
+
+## Имя клипа
+
+```text
+<Категория>_<Действие>[_<Вариант>][_<Направление>]
+```
+
+Категории рабочего слоя: `Loco`, `Jump`, `Dodge`, `React`, `Trav` и имя оружия для боевых клипов (`Unarmed`, `Dual`, …).
+
+Направление: `F`, `B`, `L`, `R` и диагонали `FL`, `FR`, `BL`, `BR`. Вариант — свободное короткое слово в PascalCase (`Short`, `Hard`, `Alt`, `Loop`).
+
+Порядковый номер шага комбо идёт цифрой без разделителя категории: `Unarmed_Combo_1`.
+
+| Было | Стало |
+| --- | --- |
+| `Idle` | `Loco_Idle` |
+| `Idle_Wait_C` | `Loco_Idle_Alt` |
+| `WalkFront` / `WalkBack` | `Loco_Walk_F` / `Loco_Walk_B` |
+| `RunFront` / `RunBack` | `Loco_Run_F` / `Loco_Run_B` |
+| `SprintFront` / `SprintBack` | `Loco_Sprint_F` / `Loco_Sprint_B` |
+| `JumpIdle` / `JumpWalking` / `JumpRunning` / `JumpSprinting` | `Jump_Rise_Idle` / `Jump_Rise_Walk` / `Jump_Rise_Run` / `Jump_Rise_Sprint` |
+| `FallShort` / `FallLarge` | `Jump_Fall_Short` / `Jump_Fall_Long` |
+| `LandSoft` / `LandMedium` / `LandHard` | `Jump_Land_Soft` / `Jump_Land_Medium` / `Jump_Land_Hard` |
+| `AirDashFront` / `AirDashBack` | `Jump_AirDash_F` / `Jump_AirDash_B` |
+| `RollFront` / `RollBack` | `Dodge_Roll_F` / `Dodge_Roll_B` |
+| `LightHit` | `React_Hit_F` и далее по направлениям |
+| `Revive` | `React_GetUp` |
+| `Dam_StandDie` / `Dam_TurnDie` | `React_Death_Stand` / `React_Death_Turn` |
+| `BaseAttack1…4` | `Unarmed_Combo_1…4` |
+| `AirAttack1…3` | `Unarmed_Air_1…3` |
+| `Launcher` | `Unarmed_Launcher` |
+| `Skill` | `Unarmed_Special` |
+| `Guard` / `Block` / `Parry` | `Unarmed_Guard` / `Unarmed_Block` / `Unarmed_Parry` |
+
+## Правила
+
+- Имя описывает роль в игре, а не источник и не автора. `CLazy@`, `Frank_RPG_`, `SK_Mannequin@` в рабочем слое не встречаются.
+- Одно имя — один клип. Двух `SprintFront` с разной длиной существовать не должно.
+- Все клипы рабочего слоя не несут корневого перемещения: root motion выключен, дистанция действия задаётся авторски. Подробности в `Docs/Architecture/Player.Animation.md`.
+- Переименование и перемещение выполняются только через `AssetDatabase`, чтобы GUID сохранился. После каждой партии проверяется, что `XController`, override-контроллеры и `EnemyController` не потеряли ссылок.
+- Состояния Animator сохраняют свои имена из `XControllerAnimationContract`: переименовывается клип, а не состояние. Контракт кода и имена ассетов — независимые вещи.
+
+## Порядок применения
+
+1. `Shared/Locomotion`, `Shared/Jump`, `Shared/Dodge` — база, от которой зависят все оружия.
+2. `Weapons/Unarmed` — эталонный набор.
+3. `Shared/Reaction`, `Shared/Traversal`.
+4. Остальные оружия по мере работы над ними.

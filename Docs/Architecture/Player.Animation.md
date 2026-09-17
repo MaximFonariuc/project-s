@@ -157,8 +157,19 @@ classDiagram
   initialization from the same predicates it used to evaluate per call. Lookup is
   allocation-free; an unmapped slot still returns `false` and the caller decides
   how to degrade.
-- Root motion is disabled. Dodge and attack movement go through
-  `CharacterMotor`, including normal collision sweeps and grounding.
+- Root motion is disabled for every clip in the working set, attacks included.
+  Dodge and attack movement go through `CharacterMotor`, including normal
+  collision sweeps and grounding.
+- Action travel is authored in `CombatMotionDefinition` and derived from the
+  source clip's own root curve, so a move covers the distance its animator
+  intended while the motor keeps authority. Baked root motion is rejected for
+  three reasons: it cannot honour target assist, it would give the same logical
+  attack a different reach per weapon because override clips carry different
+  baked displacement, and it couples reach to the playback rate the driver
+  already stretches between 0.5x and 2.0x.
+- Clips that ship both a travelling and an in-place variant are wired through the
+  in-place one. A discarded root curve still animates a lunge the character never
+  makes, which reads as a snap back to origin.
 - Dodge presentation receives its expected duration from the same immutable
   `PlayerLocomotionSettings` snapshot as gameplay composition. The validator
   checks every active weapon override's forward/back evade clips against that
@@ -416,3 +427,5 @@ Every authored combat action must also map to an explicit XController state, and
 all timed exits from that state must agree with its gameplay completion boundary.
 Unsupported presentation slots and ambiguous completion transitions are
 validation errors rather than silent skips.
+
+Именование и раскладка анимационных клипов описаны в `Docs/Animation/AnimationNaming.md`.
