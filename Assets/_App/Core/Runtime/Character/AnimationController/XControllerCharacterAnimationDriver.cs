@@ -16,6 +16,8 @@ namespace _App
         IDisposable
     {
         private const float GaitDampSeconds = 0.33f;
+        private const float StopEntrySpeed = 2.0f;
+        private const float StopSettledSpeed = 0.35f;
         private const float DirectionDampSeconds = 0.12f;
         private const float DirectionEpsilon = 0.0001f;
         private const float DodgeCrossFadeSeconds = 0.12f;
@@ -36,6 +38,8 @@ namespace _App
             XControllerAnimationContract.MovementDirectionParameterName);
         private static readonly int MovementTypeHash = Animator.StringToHash(
             XControllerAnimationContract.MovementTypeParameterName);
+        private static readonly int StoppingHash = Animator.StringToHash(
+            XControllerAnimationContract.StoppingParameterName);
         private static readonly int FallingDurationHash = Animator.StringToHash(
             XControllerAnimationContract.FallingDurationParameterName);
         private static readonly int SpeedMultiplierHash = Animator.StringToHash(
@@ -81,6 +85,7 @@ namespace _App
         private int _releasedActionLayerIndex = -1;
         private int _releasedActionStateHash;
         private bool _wasGrounded = true;
+        private float _lastPlanarSpeed;
         private bool _disposed;
 
         public XControllerCharacterAnimationDriver(Animator animator)
@@ -145,6 +150,7 @@ namespace _App
             // damping would delay the jump/fall sign change and soften impacts.
             _animator.SetFloat(FallingDurationHash, fallingVelocity);
             _animator.SetBool(OnGroundHash, frame.IsGrounded);
+            TryTriggerStop(in frame, planarSpeed);
             _wasGrounded = frame.IsGrounded;
             _lookPose.SetGrounded(frame.IsGrounded);
         }
@@ -249,7 +255,9 @@ namespace _App
             _timePlaybackRate = 1.0f;
             ClearReleasedActionTracking();
             ApplyPlaybackRate();
+            _animator.ResetTrigger(StoppingHash);
             _lastAirborneVerticalSpeed = 0.0f;
+            _lastPlanarSpeed = 0.0f;
             _wasGrounded = true;
             _lookPose.Reset();
             ClearActionPresentationPolicy();
@@ -266,6 +274,25 @@ namespace _App
 
             Reset();
             _disposed = true;
+        }
+
+        private void TryTriggerStop(
+            in CharacterLocomotionFrame frame,
+            float planarSpeed)
+        {
+            bool settled = _lastPlanarSpeed >= StopEntrySpeed &&
+                           planarSpeed < StopSettledSpeed &&
+                           frame.IsGrounded &&
+                           _wasGrounded &&
+                           !frame.IsMovementLocked &&
+                           _actionLayerIndex < 0 &&
+                           _releasedActionLayerIndex < 0;
+            if (settled)
+            {
+                _animator.SetTrigger(StoppingHash);
+            }
+
+            _lastPlanarSpeed = planarSpeed;
         }
 
         private static float ResolveMovementDirection(
