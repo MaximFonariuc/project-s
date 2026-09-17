@@ -11,8 +11,6 @@ namespace _App.Editor.Animation
     {
         private const string MenuPath = "Tools/Animation/Rebuild Curated Clips";
         private const string Shared = "Assets/_Game/Animations/Character/Shared/";
-        private const string Pack =
-            "Assets/_Game/Animations/Clazy/Animations/P1_CLazyMovement/";
         private const string Legacy = "Assets/_Game/Animations/Character/2. Basic/";
         private const string Attack =
             "Assets/_Game/Animations/Clazy/Animations/P4_CLazyAttack/";
@@ -41,56 +39,6 @@ namespace _App.Editor.Animation
 
         private static readonly CuratedClip[] Manifest =
         {
-            new CuratedClip(
-                Pack + "Mvm_Idle/CLazy@Idle_Wait_B.FBX",
-                "Idle_Wait_B",
-                Shared + "Locomotion/Loco_Idle.anim",
-                true),
-            new CuratedClip(
-                Pack + "Mvm_Idle/CLazy@Idle_Wait_C.FBX",
-                "Idle_Wait_C",
-                Shared + "Locomotion/Loco_Idle_Alt.anim",
-                true),
-            new CuratedClip(
-                Pack + "Mvm_8way_Walk/CLazy@Mvm_Walk.FBX",
-                "Mvm_Walk",
-                Shared + "Locomotion/Loco_Walk_F.anim",
-                true),
-            new CuratedClip(
-                Pack + "Mvm_8way_Walk/CLazy@Mvm_Walk_Back.FBX",
-                "Mvm_Walk_Back",
-                Shared + "Locomotion/Loco_Walk_B.anim",
-                true),
-            new CuratedClip(
-                Pack + "Mvm_8way_Jog/CLazy@Mvm_Jog.FBX",
-                "Mvm_Jog",
-                Shared + "Locomotion/Loco_Jog_F.anim",
-                true),
-            new CuratedClip(
-                Legacy + "Movement/3. Run/CLazy@Mvm_Jog_Back.FBX",
-                "RunBack",
-                Shared + "Locomotion/Loco_Jog_B.anim",
-                true),
-            new CuratedClip(
-                Legacy + "Movement/4. Sprint/CLazy@Mvm_Dash.FBX",
-                "SprintFront",
-                Shared + "Locomotion/Loco_Run_F.anim",
-                true),
-            new CuratedClip(
-                Pack + "Mvm_8way_Dash/CLazy@Mvm_Dash_Back.FBX",
-                "Mvm_Dash_Back",
-                Shared + "Locomotion/Loco_Run_B.anim",
-                true),
-            new CuratedClip(
-                Pack + "Mvm_8way_Boost/CLazy@Mvm_Boost.FBX",
-                "Mvm_Boost",
-                Shared + "Locomotion/Loco_Sprint_F.anim",
-                true),
-            new CuratedClip(
-                Pack + "Mvm_8way_Boost/CLazy@Mvm_Boost_Back.FBX",
-                "Mvm_Boost_Back",
-                Shared + "Locomotion/Loco_Sprint_B.anim",
-                true),
             new CuratedClip(
                 Legacy + "Jump/Jumping/JumpIdle.fbx",
                 "JumpIdle",
