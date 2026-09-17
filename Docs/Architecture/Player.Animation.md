@@ -227,10 +227,51 @@ The current action contract is:
 | Hit reaction (source right) | 4 | 8 | `Reaction/HitStun_Right` |
 
 The controller consumes its historical `MovementType`, `MovementDirection`,
-`FallingDuration`, `OnGround` and `SpeedMultiplier` parameters. `BodyLookX/Y`
+`FallingDuration`, `OnGround` and `SpeedMultiplier` parameters, plus
+`MoveSpeed` and `LocomotionRate` described below. `BodyLookX/Y`
 and `HeadLookX/Y` drive the additive `BodyLook` and `HeadLook` layers from the
 camera/targeting presentation path. Jump anticipation remains gameplay-owned
 regardless of the current animation graph.
+
+## Locomotion cadence
+
+The locomotion tree blends on `MoveSpeed`, the planar motor speed in metres per
+second, and not on a gait index. Each tier threshold equals the ground speed its
+clip was authored at, so the blend position and the clip the player sees always
+describe the same speed.
+
+| Tier | Forward clip | m/s | Backward clip | m/s |
+| --- | --- | ---: | --- | ---: |
+| 0 | `Loco_Idle` | 0.000 | — | — |
+| 1 | `Loco_Walk_F` | 1.823 | `Loco_Walk_B` | 1.422 |
+| 2 | `Loco_Jog_F` | 2.963 | `Loco_Jog_B` | 2.428 |
+| 3 | `Loco_Run_F` | 6.982 | `Loco_Run_B` | 3.744 |
+| 4 | `Loco_Sprint_F` | 9.293 | `Loco_Sprint_B` | 4.724 |
+
+Thresholds alone are not enough, because the motor does not stop at them. The
+`Move` state therefore scales playback with `LocomotionRate`, which
+`XControllerAnimationContract.ResolveLocomotionRate` derives as the ratio of the
+actual speed to the authored speed interpolated at the same blend position. The
+result is `1.0` wherever the motor speed falls inside the tier range, which is
+the entire authored gameplay range: walk `3.0`, run `5.0` and sprint `10.0` m/s
+all play their clip at native rate. Below the slowest travelling tier the rate
+drops so a slow walk does not skate; above the fastest tier it rises, clamped to
+`[0.5, 2.0]` like every other synchronised playback rate.
+
+The idle tier is excluded from that interpolation on purpose. Blending idle into
+a walk reduces pose amplitude rather than stride length, so treating it as a
+zero-speed sample would report a stride the feet do not actually have. Rate is
+resolved against the slowest travelling tier instead.
+
+Backward motion carries its own authored speeds because the backward clips cover
+far less ground. Only backpedalling near sprint speed saturates the upper clamp,
+which the `OrientToViewAndMovement` rotation mode reaches solely during a
+locked-on retreat.
+
+The tier table lives in the contract so that
+`XControllerContractValidator` can assert the Animator thresholds still match
+the numbers the driver computes against. A clip swapped for one with a different
+authored speed fails validation instead of silently reintroducing foot sliding.
 
 The body receives a smaller share of the requested angle and follows it more
 slowly; the head receives the remaining angle and reacts faster. Losing a
@@ -346,12 +387,37 @@ through a `0.10 s` fixed-duration blend. The combat executor is advanced once
 by `PlayerActorController`'s gameplay tick; async weapon/action workflows await
 completion but never advance time themselves.
 
-The source motions assigned to `RollFront`, `RollBack`, `BaseAttack1...3`,
-`BaseAttack4`, `Launcher`, `AirAttack1...3` and `Skill`
-are unique override slots. Do not reuse one source clip for two semantically
-different states because a single override would then replace both usages.
-Replacement clip names follow the same slot names for readability, although
-Unity technically keys the override by the source clip asset.
+The source motions assigned to the dodge, ground combo, heavy, launcher, air
+combo and special states are unique override slots. Do not reuse one source clip
+for two semantically different states because a single override would then
+replace both usages.
+
+Animator state names and clip slot names are deliberately independent: states
+keep the historical XController names, while clips follow
+`Docs/Animation/AnimationNaming.md`. The mapping between them is declared once,
+in `XControllerAnimationContract.TryGetClipSlot`:
+
+| State | Clip slot |
+| --- | --- |
+| `Attack/BaseAttack1...4` | `Unarmed_Combo_1...4` |
+| `Attack/AirAttack1...3` | `Unarmed_Air_1...3` |
+| `Attack/Launcher` | `Unarmed_Launcher` |
+| `Attack/Skill` | `Unarmed_Special` |
+| `Locomotion/Jump/Jump/JumpRunning` | `Jump_Rise_Run` |
+| `Locomotion/Roll/RollFront` / `RollBack` | `Dodge_Roll_F` / `Dodge_Roll_B` |
+
+That table is load-bearing, not documentation. `ResolveActionPlaybackRate`
+resolves the currently active override through it to learn the real clip length
+before stretching an action to its gameplay duration; without it the driver
+would silently fall back to rate `1.0` and every action would drift from its
+authored timing. The validator asserts each listed state actually carries its
+declared slot clip.
+
+Dodges are shared across weapons, so an override that replaces `Dodge_Roll_F` or
+`Dodge_Roll_B` fails validation. The base clip is stretched to the gameplay
+`DodgeSettings` duration at runtime, which is why the dodge states keep speed
+`1.0` and the validator only checks that the implied rate stays inside
+`[0.5, 2.0]`.
 
 ## Current content
 
