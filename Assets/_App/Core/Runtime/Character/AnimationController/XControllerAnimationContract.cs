@@ -49,6 +49,10 @@ namespace _App
             "Base Layer.Locomotion.Roll.RollFront";
         public const string RollBackwardStatePath =
             "Base Layer.Locomotion.Roll.RollBack";
+        public const string AirDashForwardStatePath =
+            "Base Layer.Locomotion.Jump.AirDash.AirDashFront";
+        public const string AirDashBackwardStatePath =
+            "Base Layer.Locomotion.Jump.AirDash.AirDashBack";
         public const string Attack1StatePath = "Base Layer.Attack.BaseAttack1";
         public const string Attack2StatePath = "Base Layer.Attack.BaseAttack2";
         public const string Attack3StatePath = "Base Layer.Attack.BaseAttack3";
@@ -151,7 +155,9 @@ namespace _App
                 { SpecialAttackStatePath, "Unarmed_Special" },
                 { AirChaseStatePath, "Jump_Rise_Run" },
                 { RollForwardStatePath, "Dodge_Roll_F" },
-                { RollBackwardStatePath, "Dodge_Roll_B" }
+                { RollBackwardStatePath, "Dodge_Roll_B" },
+                { AirDashForwardStatePath, "Jump_AirDash_F" },
+                { AirDashBackwardStatePath, "Jump_AirDash_B" }
             };
         private static readonly IReadOnlyList<string> BaseLayerStates =
             Array.AsReadOnly(

@@ -27,6 +27,7 @@ namespace _App
         public bool IsFalling => _character.IsFalling();
         public bool IsJumping => _character.IsJumping();
         public bool IsDodging => _character.IsDodging();
+        public bool IsAirDashing => _character.IsAirDashing();
         public bool IsSwimming => _character.IsSwimming();
         public bool IsClimbing => _character.IsClimbing();
         public bool IsFlying => _character.IsFlying();
