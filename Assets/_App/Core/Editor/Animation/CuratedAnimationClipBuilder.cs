@@ -14,6 +14,10 @@ namespace _App.Editor.Animation
         private const string Pack =
             "Assets/_Game/Animations/Clazy/Animations/P1_CLazyMovement/";
         private const string Legacy = "Assets/_Game/Animations/Character/2. Basic/";
+        private const string Attack =
+            "Assets/_Game/Animations/Clazy/Animations/P4_CLazyAttack/";
+        private const string Weapons =
+            "Assets/_Game/Animations/Character/Weapons/";
 
         private readonly struct CuratedClip
         {
@@ -161,6 +165,11 @@ namespace _App.Editor.Animation
                 Legacy + "Jump/AirDash/AirDashBack.FBX",
                 "AirDashBack",
                 Shared + "Jump/Jump_AirDash_B.anim",
+                false),
+            new CuratedClip(
+                Attack + "Attack_Punch_Run/CLazy@Attack_Hand_PwR.FBX",
+                "Attack_Hand_PwR",
+                Weapons + "Unarmed/Ground/Unarmed_Special.anim",
                 false)
         };
 
