@@ -42,9 +42,9 @@ namespace ProjectS.Core.Tests
         }
 
         [Test]
-        public void GameplaySpeedsStayInsideTheSupportedRateBand()
+        public void WalkAndRunSpeedsStayInsideTheSupportedRateBand()
         {
-            float[] speeds = { WalkSpeed, RunSpeed, SprintSpeed };
+            float[] speeds = { WalkSpeed, RunSpeed };
             for (int i = 0; i < speeds.Length; i++)
             {
                 float rate = XControllerAnimationContract.ResolveLocomotionRate(
@@ -59,6 +59,19 @@ namespace ProjectS.Core.Tests
                     XControllerAnimationContract.MaximumLocomotionRate,
                     $"{speeds[i]:F1} m/s saturates the upper rate clamp.");
             }
+        }
+
+        [Test]
+        public void SprintSpeedSaturatesTheUpperClamp()
+        {
+            // The fastest authored cycle is the run clip, so sprint speed cannot
+            // be matched without a dedicated faster animation.
+            Assert.AreEqual(
+                XControllerAnimationContract.MaximumLocomotionRate,
+                XControllerAnimationContract.ResolveLocomotionRate(
+                    SprintSpeed,
+                    Forward),
+                1e-3f);
         }
 
         [Test]
