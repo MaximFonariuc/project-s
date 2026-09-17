@@ -11,15 +11,25 @@ namespace _App
 
         public InputBufferOptions BufferOptions { get; }
         public InputBufferWriteOptions DefaultWriteOptions { get; }
+        public float ChargeHoldSeconds { get; }
 
         public CombatInputBufferSettings(
             InputBufferOptions bufferOptions,
             InputBufferWriteOptions defaultWriteOptions,
-            Dictionary<PlayerCombatCommandId, InputBufferWriteOptions> overrides)
+            Dictionary<PlayerCombatCommandId, InputBufferWriteOptions> overrides,
+            float chargeHoldSeconds)
         {
             BufferOptions = bufferOptions;
             DefaultWriteOptions = defaultWriteOptions;
             _overrides = overrides ?? throw new ArgumentNullException(nameof(overrides));
+            if (chargeHoldSeconds <= 0.0f)
+            {
+                throw new ArgumentOutOfRangeException(
+                    nameof(chargeHoldSeconds),
+                    "Charge hold threshold must be positive.");
+            }
+
+            ChargeHoldSeconds = chargeHoldSeconds;
         }
 
         public InputBufferWriteOptions GetWriteOptions(PlayerCombatCommandId commandId)
@@ -40,6 +50,7 @@ namespace _App
             InputBufferSelectionPolicy.OldestFirst;
         [SerializeField] private CombatBufferedActionRuleAuthoring _defaultRule = new();
         [SerializeField] private List<CombatBufferedActionOverrideAuthoring> _actionOverrides = new();
+        [SerializeField, Min(0.05f)] private float _chargeHoldSeconds = 0.3f;
 
         internal CombatInputBufferSettings Build()
         {
@@ -71,7 +82,8 @@ namespace _App
             return new CombatInputBufferSettings(
                 new InputBufferOptions(_capacity, _overflowPolicy, _selectionPolicy),
                 _defaultRule.Build(),
-                overrides);
+                overrides,
+                _chargeHoldSeconds);
         }
     }
 
