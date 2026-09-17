@@ -29,10 +29,10 @@ namespace _App.Editor.Animation
         private const string MenuPath =
             "Tools/Animation/Validate XController Contract";
         private const float TransitionTimingTolerance = 0.005f;
-        private const float DodgeDurationToleranceSeconds = 0.05f;
         private const float CombatClipDurationToleranceSeconds = 0.02f;
         private const float ReactionClipDurationToleranceSeconds = 0.02f;
         private const float ActionStateSpeedTolerance = 0.001f;
+        private const float LocomotionThresholdTolerance = 0.001f;
         private const float MinimumSynchronizedPlaybackRate = 0.5f;
         private const float MaximumSynchronizedPlaybackRate = 2.0f;
 
@@ -368,10 +368,12 @@ namespace _App.Editor.Animation
                 return;
             }
 
-            float expected = parameter.name ==
-                XControllerAnimationContract.SpeedMultiplierParameterName
-                ? 1.0f
-                : 0.0f;
+            bool isMultiplier =
+                parameter.name ==
+                XControllerAnimationContract.SpeedMultiplierParameterName ||
+                parameter.name ==
+                XControllerAnimationContract.LocomotionRateParameterName;
+            float expected = isMultiplier ? 1.0f : 0.0f;
             if (!Mathf.Approximately(parameter.defaultFloat, expected))
             {
                 result.Error(
@@ -486,30 +488,43 @@ namespace _App.Editor.Animation
 
             if (gaitTree.blendType != BlendTreeType.Simple1D ||
                 gaitTree.blendParameter !=
-                XControllerAnimationContract.MovementTypeParameterName)
+                XControllerAnimationContract.MoveSpeedParameterName)
             {
                 result.Error(
                     "Locomotion gait tree must use Simple1D with " +
-                    $"'{XControllerAnimationContract.MovementTypeParameterName}'.");
+                    $"'{XControllerAnimationContract.MoveSpeedParameterName}'.");
             }
 
-            ChildMotion[] gaits = gaitTree.children;
-            float[] expectedThresholds = { 0.0f, 1.0f, 2.0f, 3.0f };
-            if (gaits.Length != expectedThresholds.Length)
+            if (!moveState.speedParameterActive ||
+                moveState.speedParameter !=
+                XControllerAnimationContract.LocomotionRateParameterName)
             {
                 result.Error(
-                    "Locomotion gait tree requires Idle, Walk, Run and Sprint " +
-                    $"children; found {gaits.Length}.");
+                    "Locomotion Move state must scale playback with " +
+                    $"'{XControllerAnimationContract.LocomotionRateParameterName}'; " +
+                    "otherwise clip cadence cannot follow motor speed.");
+            }
+
+            IReadOnlyList<XControllerLocomotionTier> tiers =
+                XControllerAnimationContract.LocomotionTiers;
+            ChildMotion[] gaits = gaitTree.children;
+            if (gaits.Length != tiers.Count)
+            {
+                result.Error(
+                    $"Locomotion gait tree requires {tiers.Count} speed tiers; " +
+                    $"found {gaits.Length}.");
                 return;
             }
 
             for (int i = 0; i < gaits.Length; i++)
             {
-                if (!Mathf.Approximately(gaits[i].threshold, expectedThresholds[i]))
+                if (Mathf.Abs(gaits[i].threshold - tiers[i].ForwardSpeed) >
+                    LocomotionThresholdTolerance)
                 {
                     result.Error(
                         $"Locomotion gait child {i} requires threshold " +
-                        $"{expectedThresholds[i]:F1}, found {gaits[i].threshold:F3}.");
+                        $"{tiers[i].ForwardSpeed:F3} to match the authored clip " +
+                        $"speed, found {gaits[i].threshold:F3}.");
                 }
 
                 if (gaits[i].motion == null)
@@ -549,12 +564,12 @@ namespace _App.Editor.Animation
                 return;
             }
 
-            if (!Mathf.Approximately(directions[0].threshold, -0.5f) ||
-                !Mathf.Approximately(directions[1].threshold, 0.5f))
+            if (!Mathf.Approximately(directions[0].threshold, -1.0f) ||
+                !Mathf.Approximately(directions[1].threshold, 1.0f))
             {
                 result.Error(
                     $"Locomotion gait child {gaitIndex} direction thresholds must " +
-                    "be -0.5 and 0.5.");
+                    "be -1.0 and 1.0.");
             }
 
             if (directions[0].motion == null || directions[1].motion == null)
@@ -1857,7 +1872,17 @@ namespace _App.Editor.Animation
             }
 
             AnimationClip clip = clips.First();
-            string clipSlot = statePath.Substring(statePath.LastIndexOf('.') + 1);
+            if (!XControllerAnimationContract.TryGetClipSlot(
+                    statePath,
+                    out string clipSlot))
+            {
+                result.Error(
+                    $"Base state '{statePath}' for {usage} has no clip slot in " +
+                    "XControllerAnimationContract; runtime synchronization cannot " +
+                    "resolve its active override.");
+                return;
+            }
+
             if (!string.Equals(clip.name, clipSlot, StringComparison.Ordinal))
             {
                 result.Error(
@@ -1924,20 +1949,61 @@ namespace _App.Editor.Animation
                 animationOverride.overridesCount);
             animationOverride.GetOverrides(overrides);
 
-            ValidateDodgeClipDuration(
+            ValidateDodgeSlot(
                 animationOverride,
                 overrides,
                 baseController,
-                "RollFront",
                 XControllerAnimationContract.RollForwardStatePath,
                 gameplayDuration,
                 result);
+            ValidateDodgeSlot(
+                animationOverride,
+                overrides,
+                baseController,
+                XControllerAnimationContract.RollBackwardStatePath,
+                gameplayDuration,
+                result);
+        }
+
+        private static void ValidateDodgeSlot(
+            AnimatorOverrideController animationOverride,
+            IReadOnlyList<KeyValuePair<AnimationClip, AnimationClip>> overrides,
+            AnimatorController baseController,
+            string statePath,
+            float gameplayDuration,
+            ValidationResult result)
+        {
+            if (!XControllerAnimationContract.TryGetClipSlot(
+                    statePath,
+                    out string clipSlot))
+            {
+                result.Error(
+                    $"Dodge state '{statePath}' has no clip slot in " +
+                    "XControllerAnimationContract.");
+                return;
+            }
+
+            for (int i = 0; i < overrides.Count; i++)
+            {
+                KeyValuePair<AnimationClip, AnimationClip> pair = overrides[i];
+                if (pair.Key != null &&
+                    pair.Key.name == clipSlot &&
+                    pair.Value != null)
+                {
+                    result.Error(
+                        $"Override '{animationOverride.name}' replaces dodge slot " +
+                        $"'{clipSlot}' with '{pair.Value.name}'. Dodges are shared " +
+                        "across weapons and must stay on the base clip.");
+                    return;
+                }
+            }
+
             ValidateDodgeClipDuration(
                 animationOverride,
                 overrides,
                 baseController,
-                "RollBack",
-                XControllerAnimationContract.RollBackwardStatePath,
+                clipSlot,
+                statePath,
                 gameplayDuration,
                 result);
         }
@@ -1985,14 +2051,26 @@ namespace _App.Editor.Animation
                 return;
             }
 
-            float visualDuration = clip.length / state.speed;
-            if (Mathf.Abs(visualDuration - gameplayDuration) >
-                DodgeDurationToleranceSeconds)
+            if (Mathf.Abs(state.speed - 1.0f) > ActionStateSpeedTolerance)
+            {
+                result.Error(
+                    $"Dodge state '{statePath}' must keep speed 1.0; " +
+                    "XControllerCharacterAnimationDriver stretches the clip to the " +
+                    "gameplay duration at runtime.");
+                return;
+            }
+
+            float playbackRate = clip.length / gameplayDuration;
+            if (playbackRate < MinimumSynchronizedPlaybackRate ||
+                playbackRate > MaximumSynchronizedPlaybackRate)
             {
                 result.Error(
                     $"Override '{animationOverride.name}' dodge slot " +
-                    $"'{sourceClipName}' lasts {visualDuration:F3}s, but gameplay " +
-                    $"DodgeSettings lasts {gameplayDuration:F3}s.");
+                    $"'{sourceClipName}' lasts {clip.length:F3}s against a " +
+                    $"{gameplayDuration:F3}s gameplay dodge, requiring playback rate " +
+                    $"{playbackRate:F3}; supported range is " +
+                    $"{MinimumSynchronizedPlaybackRate:F1}-" +
+                    $"{MaximumSynchronizedPlaybackRate:F1}.");
             }
         }
 
