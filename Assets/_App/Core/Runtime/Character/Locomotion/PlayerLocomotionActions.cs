@@ -7,6 +7,8 @@ namespace _App
     {
         bool CanDodge { get; }
         bool IsDodgeStarting { get; }
+        bool CanAirDash { get; }
+        bool IsAirDashStarting { get; }
 
         void Enable();
         void Disable();
@@ -14,16 +16,21 @@ namespace _App
         void StartGliding();
         void StopGliding();
         bool TryDodge(Vector3 worldDirection, bool backwards);
+        bool TryAirDash(Vector3 worldDirection, bool backwards);
+        void RestoreAirDashCharges();
     }
 
     internal sealed class PlayerLocomotionActions : IPlayerLocomotionActions
     {
         private readonly PlayerDodgeAction _dodge;
+        private readonly PlayerAirDashAction _airDash;
         private readonly PlayerGlideAction _glide;
         private bool _enabled;
 
         public bool CanDodge => _dodge?.CanRequest == true;
         public bool IsDodgeStarting => _dodge?.IsStarting == true;
+        public bool CanAirDash => _airDash?.CanRequest == true;
+        public bool IsAirDashStarting => _airDash?.IsStarting == true;
 
         public PlayerLocomotionActions(
             Character character,
@@ -61,6 +68,15 @@ namespace _App
                     dodgeSettings);
             }
 
+            AirDashSettings airDashSettings = features.GetEnabled<AirDashSettings>();
+            if (airDashSettings != null)
+            {
+                _airDash = new PlayerAirDashAction(
+                    character,
+                    damageImmunity,
+                    airDashSettings);
+            }
+
             GlideSettings glideSettings = features.GetEnabled<GlideSettings>();
             if (glideSettings != null)
             {
@@ -76,6 +92,7 @@ namespace _App
             }
 
             _dodge?.Enable();
+            _airDash?.Enable();
             _glide?.Enable();
             _enabled = true;
         }
@@ -89,6 +106,7 @@ namespace _App
 
             Interrupt();
             _glide?.Disable();
+            _airDash?.Disable();
             _dodge?.Disable();
             _enabled = false;
         }
@@ -96,6 +114,7 @@ namespace _App
         public void Interrupt()
         {
             _glide?.Interrupt();
+            _airDash?.Interrupt();
             _dodge?.Interrupt();
         }
 
@@ -112,6 +131,16 @@ namespace _App
         public bool TryDodge(Vector3 worldDirection, bool backwards)
         {
             return _dodge?.TryRequest(worldDirection, backwards) == true;
+        }
+
+        public bool TryAirDash(Vector3 worldDirection, bool backwards)
+        {
+            return _airDash?.TryRequest(worldDirection, backwards) == true;
+        }
+
+        public void RestoreAirDashCharges()
+        {
+            _airDash?.RestoreCharges();
         }
     }
 }

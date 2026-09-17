@@ -15,6 +15,7 @@ namespace _App
         public float HardLandingImpactSpeed { get; }
         public float MediumLandingRecoveryDuration { get; }
         public float HardLandingRecoveryDuration { get; }
+        public float AirDashDuration { get; }
 
         public PlayerLocomotionSettings(
             float walkSpeed,
@@ -24,6 +25,7 @@ namespace _App
             float dodgeDuration,
             float jumpInputBufferDuration,
             float dodgeInputBufferDuration,
+            float airDashDuration = 0.0f,
             float mediumLandingImpactSpeed = 7.0f,
             float hardLandingImpactSpeed = 10.0f,
             float mediumLandingRecoveryDuration = 0.64f,
@@ -36,6 +38,7 @@ namespace _App
             DodgeDuration = Math.Max(0.0f, dodgeDuration);
             JumpInputBufferDuration = Math.Max(0.0f, jumpInputBufferDuration);
             DodgeInputBufferDuration = Math.Max(0.0f, dodgeInputBufferDuration);
+            AirDashDuration = Math.Max(0.0f, airDashDuration);
             MediumLandingImpactSpeed = Math.Max(0.0f, mediumLandingImpactSpeed);
             HardLandingImpactSpeed = Math.Max(
                 MediumLandingImpactSpeed,
@@ -88,6 +91,7 @@ namespace _App
             WalkSpeedSettings walk = features.GetEnabled<WalkSpeedSettings>();
             SprintSpeedSettings sprint = features.GetEnabled<SprintSpeedSettings>();
             DodgeSettings dodge = features.GetEnabled<DodgeSettings>();
+            AirDashSettings airDash = features.GetEnabled<AirDashSettings>();
             LandingRecoverySettings landing =
                 features.GetEnabled<LandingRecoverySettings>();
 
@@ -99,6 +103,7 @@ namespace _App
                 dodge?.Duration ?? 0.0f,
                 character.JumpMaxPreGroundedTime,
                 dodge?.InputBufferDuration ?? 0.0f,
+                airDash?.Duration ?? 0.0f,
                 landing?.MediumImpactSpeed ?? 7.0f,
                 landing?.HardImpactSpeed ?? 10.0f,
                 landing?.MediumRecoveryDuration ?? 0.64f,

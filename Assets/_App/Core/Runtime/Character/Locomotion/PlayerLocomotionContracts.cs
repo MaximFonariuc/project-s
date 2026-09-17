@@ -10,7 +10,8 @@ namespace _App
         Jump,
         Fall,
         Dodge,
-        Landing
+        Landing,
+        AirDash
     }
 
     public enum PlayerLandingType
@@ -154,6 +155,7 @@ namespace _App
         bool IsFalling { get; }
         bool IsJumping { get; }
         bool IsDodging { get; }
+        bool IsAirDashing { get; }
         bool IsSwimming { get; }
         bool IsClimbing { get; }
         bool IsFlying { get; }

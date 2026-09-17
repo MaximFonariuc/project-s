@@ -16,5 +16,6 @@ namespace _App
         Climbing = 1,
         Dodging = 2,
         Sliding = 3,
+        AirDashing = 4,
     }
 }

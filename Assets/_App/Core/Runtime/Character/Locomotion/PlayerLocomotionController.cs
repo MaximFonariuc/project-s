@@ -249,6 +249,7 @@ namespace _App
             PlayerLanding landing = _settings.ResolveLanding(impactSpeed);
             _landing = landing;
             _landingRecoveryRemaining = landing.RecoveryDuration;
+            _actions.RestoreAirDashCharges();
             if (landing.BlocksActions)
             {
                 CancelJumpStartup();
@@ -283,6 +284,11 @@ namespace _App
             if (_motor.IsDodging)
             {
                 return PlayerLocomotionStateId.Dodge;
+            }
+
+            if (_motor.IsAirDashing)
+            {
+                return PlayerLocomotionStateId.AirDash;
             }
 
             if (_motor.IsFalling)
@@ -664,7 +670,8 @@ namespace _App
 
         private bool TryConsumeDodgeRequest()
         {
-            if (!CanConsumeDodgeRequest(in _movementIntent))
+            bool airborne = CanConsumeAirDashRequest(in _movementIntent);
+            if (!airborne && !CanConsumeDodgeRequest(in _movementIntent))
             {
                 return false;
             }
@@ -673,7 +680,10 @@ namespace _App
             bool backwards = _input.Move.y < -0.5f &&
                              _motor.RotationMode == ERotationMode.OrientToViewAndMovement;
 
-            if (!_actions.TryDodge(_runtime.RawMoveDirection, backwards))
+            bool accepted = airborne
+                ? _actions.TryAirDash(_runtime.RawMoveDirection, backwards)
+                : _actions.TryDodge(_runtime.RawMoveDirection, backwards);
+            if (!accepted)
             {
                 return false;
             }
@@ -696,6 +706,13 @@ namespace _App
             return !BlocksActions && movementIntent.AllowDodge && !_motor.IsFalling &&
                    !_motor.IsSwimming && !_motor.IsDodging &&
                    _actions.CanDodge;
+        }
+
+        private bool CanConsumeAirDashRequest(in PlayerMovementIntent movementIntent)
+        {
+            return !BlocksActions && movementIntent.AllowDodge && _motor.IsFalling &&
+                   !_motor.IsSwimming && !_motor.IsDodging &&
+                   _actions.CanAirDash;
         }
 
         private void UpdateLandingRecovery(float deltaTime)

@@ -35,6 +35,7 @@ namespace _App
         public static readonly AnimationActionId Block = new AnimationActionId(11);
         public static readonly AnimationActionId Parry = new AnimationActionId(12);
         public static readonly AnimationActionId LadderTraversal = new AnimationActionId(13);
+        public static readonly AnimationActionId AirDash = new AnimationActionId(14);
 
 
         public const float DeathDuration = 2.40f;
@@ -68,6 +69,8 @@ namespace _App
             var table = new Dictionary<AnimationSlotId, AnimationActionRequest>();
             Register(table, PlayerAnimationSlots.DodgeForward);
             Register(table, PlayerAnimationSlots.DodgeBackward);
+            Register(table, PlayerAnimationSlots.AirDashForward);
+            Register(table, PlayerAnimationSlots.AirDashBackward);
             Register(table, PlayerAnimationSlots.HeavyDeath);
             for (int i = 0; i < LadderSlots.Length; i++)
             {
@@ -129,6 +132,18 @@ namespace _App
             if (slot == PlayerAnimationSlots.DodgeBackward)
             {
                 request = new AnimationActionRequest(Dodge, 1, 1.0f);
+                return true;
+            }
+
+            if (slot == PlayerAnimationSlots.AirDashForward)
+            {
+                request = new AnimationActionRequest(AirDash, 0, CallerSuppliedDuration);
+                return true;
+            }
+
+            if (slot == PlayerAnimationSlots.AirDashBackward)
+            {
+                request = new AnimationActionRequest(AirDash, 1, CallerSuppliedDuration);
                 return true;
             }
 

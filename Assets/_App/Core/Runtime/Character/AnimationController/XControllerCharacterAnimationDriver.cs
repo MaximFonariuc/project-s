@@ -46,6 +46,10 @@ namespace _App
             XControllerAnimationContract.RollForwardStatePath);
         private static readonly int RollBackwardStateHash = Animator.StringToHash(
             XControllerAnimationContract.RollBackwardStatePath);
+        private static readonly int AirDashForwardStateHash = Animator.StringToHash(
+            XControllerAnimationContract.AirDashForwardStatePath);
+        private static readonly int AirDashBackwardStateHash = Animator.StringToHash(
+            XControllerAnimationContract.AirDashBackwardStatePath);
         private static readonly int[] ReactionStateHashes = CreateStateHashes(
             XControllerAnimationContract.ReactionStatePaths);
 
@@ -488,7 +492,8 @@ namespace _App
             string statePath)
         {
             if ((!IsAttackAction(request.Action) &&
-                 request.Action != PlayerAnimatorActions.Dodge) ||
+                 request.Action != PlayerAnimatorActions.Dodge &&
+                 request.Action != PlayerAnimatorActions.AirDash) ||
                 request.ExpectedDuration <= 0.0f ||
                 string.IsNullOrEmpty(statePath))
             {
@@ -622,6 +627,17 @@ namespace _App
                 stateHash = request.Variant == 1
                     ? RollBackwardStateHash
                     : RollForwardStateHash;
+                crossFadeSeconds = DodgeCrossFadeSeconds;
+            }
+            else if (request.Action == PlayerAnimatorActions.AirDash &&
+                     request.Variant is 0 or 1)
+            {
+                statePath = request.Variant == 1
+                    ? XControllerAnimationContract.AirDashBackwardStatePath
+                    : XControllerAnimationContract.AirDashForwardStatePath;
+                stateHash = request.Variant == 1
+                    ? AirDashBackwardStateHash
+                    : AirDashForwardStateHash;
                 crossFadeSeconds = DodgeCrossFadeSeconds;
             }
             else if (request.Action == PlayerAnimatorActions.WeaponTransition &&
