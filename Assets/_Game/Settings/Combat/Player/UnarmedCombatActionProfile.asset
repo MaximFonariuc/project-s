@@ -988,3 +988,14 @@ MonoBehaviour:
     _useInputWindow: 0
     _inputStart: 0
     _inputEnd: 0.75
+  - _sourceActionId: attack.heavy
+    _commandId: attack.heavy.charged
+    _targetActionId: skill.special
+    _window: 1
+    _condition: 0
+    _useAcceptanceWindow: 0
+    _acceptanceStart: 0.5
+    _acceptanceEnd: 0.75
+    _useInputWindow: 0
+    _inputStart: 0
+    _inputEnd: 0.75

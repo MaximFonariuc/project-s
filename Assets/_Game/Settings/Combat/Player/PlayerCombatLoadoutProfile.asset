@@ -93,6 +93,12 @@ MonoBehaviour:
         _lifetime: 0.45
         _priority: 15
         _duplicatePolicy: 2
+    - _commandId: attack.heavy.charged
+      _rule:
+        _lifetime: 0.9
+        _priority: 25
+        _duplicatePolicy: 2
+    _chargeHoldSeconds: 0.3
   _attackRecoil:
     _parryDuration: 0.55
     _planarSpeed: 2.75
