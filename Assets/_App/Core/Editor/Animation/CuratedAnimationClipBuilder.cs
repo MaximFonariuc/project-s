@@ -118,6 +118,11 @@ namespace _App.Editor.Animation
                 Attack + "Attack_Punch_Run/CLazy@Attack_Hand_PwR.FBX",
                 "Attack_Hand_PwR",
                 Weapons + "Unarmed/Ground/Unarmed_Special.anim",
+                false),
+            new CuratedClip(
+                Attack + "Attack_Punch_Run/CLazy@Attack_Hand_Ready.FBX",
+                "Attack_Hand_Ready",
+                Weapons + "Unarmed/Defense/Unarmed_Guard.anim",
                 false)
         };
 
