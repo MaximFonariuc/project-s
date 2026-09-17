@@ -16,7 +16,6 @@ namespace _App
         IDisposable
     {
         private const float GaitDampSeconds = 0.33f;
-        private const float MoveSpeedDampSeconds = 0.06f;
         private const float DirectionDampSeconds = 0.12f;
         private const float DirectionEpsilon = 0.0001f;
         private const float DodgeCrossFadeSeconds = 0.10f;
@@ -37,10 +36,6 @@ namespace _App
             XControllerAnimationContract.MovementDirectionParameterName);
         private static readonly int MovementTypeHash = Animator.StringToHash(
             XControllerAnimationContract.MovementTypeParameterName);
-        private static readonly int MoveSpeedHash = Animator.StringToHash(
-            XControllerAnimationContract.MoveSpeedParameterName);
-        private static readonly int LocomotionRateHash = Animator.StringToHash(
-            XControllerAnimationContract.LocomotionRateParameterName);
         private static readonly int FallingDurationHash = Animator.StringToHash(
             XControllerAnimationContract.FallingDurationParameterName);
         private static readonly int SpeedMultiplierHash = Animator.StringToHash(
@@ -128,8 +123,6 @@ namespace _App
                 // damping would allow stale movement to skip the recovery clip.
                 _animator.SetFloat(MovementTypeHash, 0.0f);
                 _animator.SetFloat(MovementDirectionHash, 0.0f);
-                _animator.SetFloat(MoveSpeedHash, 0.0f);
-                _animator.SetFloat(LocomotionRateHash, 1.0f);
             }
             else
             {
@@ -143,16 +136,6 @@ namespace _App
                     movementDirection,
                     DirectionDampSeconds,
                     safeDeltaTime);
-                _animator.SetFloat(
-                    MoveSpeedHash,
-                    planarSpeed,
-                    MoveSpeedDampSeconds,
-                    safeDeltaTime);
-                _animator.SetFloat(
-                    LocomotionRateHash,
-                    XControllerAnimationContract.ResolveLocomotionRate(
-                        planarSpeed,
-                        movementDirection));
             }
             // This value drives transition direction and landing thresholds;
             // damping would delay the jump/fall sign change and soften impacts.
@@ -255,8 +238,6 @@ namespace _App
 
             _animator.SetFloat(MovementTypeHash, 0.0f);
             _animator.SetFloat(MovementDirectionHash, 0.0f);
-            _animator.SetFloat(MoveSpeedHash, 0.0f);
-            _animator.SetFloat(LocomotionRateHash, 1.0f);
             _animator.SetFloat(FallingDurationHash, 0.0f);
             _animator.SetFloat(SpeedMultiplierHash, 1.0f);
             _animator.SetBool(OnGroundHash, true);

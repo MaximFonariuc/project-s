@@ -32,7 +32,6 @@ namespace _App.Editor.Animation
         private const float CombatClipDurationToleranceSeconds = 0.02f;
         private const float ReactionClipDurationToleranceSeconds = 0.02f;
         private const float ActionStateSpeedTolerance = 0.001f;
-        private const float LocomotionThresholdTolerance = 0.001f;
         private const float MinimumSynchronizedPlaybackRate = 0.5f;
         private const float MaximumSynchronizedPlaybackRate = 2.0f;
 
@@ -368,12 +367,10 @@ namespace _App.Editor.Animation
                 return;
             }
 
-            bool isMultiplier =
-                parameter.name ==
-                XControllerAnimationContract.SpeedMultiplierParameterName ||
-                parameter.name ==
-                XControllerAnimationContract.LocomotionRateParameterName;
-            float expected = isMultiplier ? 1.0f : 0.0f;
+            float expected = parameter.name ==
+                XControllerAnimationContract.SpeedMultiplierParameterName
+                ? 1.0f
+                : 0.0f;
             if (!Mathf.Approximately(parameter.defaultFloat, expected))
             {
                 result.Error(
@@ -488,43 +485,37 @@ namespace _App.Editor.Animation
 
             if (gaitTree.blendType != BlendTreeType.Simple1D ||
                 gaitTree.blendParameter !=
-                XControllerAnimationContract.MoveSpeedParameterName)
+                XControllerAnimationContract.MovementTypeParameterName)
             {
                 result.Error(
                     "Locomotion gait tree must use Simple1D with " +
-                    $"'{XControllerAnimationContract.MoveSpeedParameterName}'.");
+                    $"'{XControllerAnimationContract.MovementTypeParameterName}'.");
             }
 
-            if (!moveState.speedParameterActive ||
-                moveState.speedParameter !=
-                XControllerAnimationContract.LocomotionRateParameterName)
+            if (moveState.speedParameterActive)
             {
                 result.Error(
-                    "Locomotion Move state must scale playback with " +
-                    $"'{XControllerAnimationContract.LocomotionRateParameterName}'; " +
-                    "otherwise clip cadence cannot follow motor speed.");
+                    "Locomotion Move state must not scale playback with a " +
+                    "parameter; every gait clip plays at its authored rate.");
             }
 
-            IReadOnlyList<XControllerLocomotionTier> tiers =
-                XControllerAnimationContract.LocomotionTiers;
             ChildMotion[] gaits = gaitTree.children;
-            if (gaits.Length != tiers.Count)
+            float[] expectedThresholds = { 0.0f, 1.0f, 2.0f, 3.0f };
+            if (gaits.Length != expectedThresholds.Length)
             {
                 result.Error(
-                    $"Locomotion gait tree requires {tiers.Count} speed tiers; " +
-                    $"found {gaits.Length}.");
+                    "Locomotion gait tree requires Idle, Walk, Run and Sprint " +
+                    $"children; found {gaits.Length}.");
                 return;
             }
 
             for (int i = 0; i < gaits.Length; i++)
             {
-                if (Mathf.Abs(gaits[i].threshold - tiers[i].ForwardSpeed) >
-                    LocomotionThresholdTolerance)
+                if (!Mathf.Approximately(gaits[i].threshold, expectedThresholds[i]))
                 {
                     result.Error(
                         $"Locomotion gait child {i} requires threshold " +
-                        $"{tiers[i].ForwardSpeed:F3} to match the authored clip " +
-                        $"speed, found {gaits[i].threshold:F3}.");
+                        $"{expectedThresholds[i]:F1}, found {gaits[i].threshold:F3}.");
                 }
 
                 if (gaits[i].motion == null)
@@ -564,12 +555,12 @@ namespace _App.Editor.Animation
                 return;
             }
 
-            if (!Mathf.Approximately(directions[0].threshold, -1.0f) ||
-                !Mathf.Approximately(directions[1].threshold, 1.0f))
+            if (!Mathf.Approximately(directions[0].threshold, -0.5f) ||
+                !Mathf.Approximately(directions[1].threshold, 0.5f))
             {
                 result.Error(
                     $"Locomotion gait child {gaitIndex} direction thresholds must " +
-                    "be -1.0 and 1.0.");
+                    "be -0.5 and 0.5.");
             }
 
             if (directions[0].motion == null || directions[1].motion == null)
