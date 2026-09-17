@@ -244,19 +244,21 @@ describe the same speed.
 | --- | --- | ---: | --- | ---: |
 | 0 | `Loco_Idle` | 0.000 | — | — |
 | 1 | `Loco_Walk_F` | 1.823 | `Loco_Walk_B` | 1.422 |
-| 2 | `Loco_Jog_F` | 2.963 | `Loco_Jog_B` | 2.428 |
-| 3 | `Loco_Run_F` | 6.982 | `Loco_Run_B` | 3.744 |
-| 4 | `Loco_Sprint_F` | 9.293 | `Loco_Sprint_B` | 4.724 |
+| 2 | `Loco_Run_F` | 2.963 | `Loco_Run_B` | 2.428 |
 
 Thresholds alone are not enough, because the motor does not stop at them. The
 `Move` state therefore scales playback with `LocomotionRate`, which
 `XControllerAnimationContract.ResolveLocomotionRate` derives as the ratio of the
-actual speed to the authored speed interpolated at the same blend position. The
-result is `1.0` wherever the motor speed falls inside the tier range, which is
-the entire authored gameplay range: walk `3.0`, run `5.0` and sprint `10.0` m/s
-all play their clip at native rate. Below the slowest travelling tier the rate
-drops so a slow walk does not skate; above the fastest tier it rises, clamped to
-`[0.5, 2.0]` like every other synchronised playback rate.
+actual speed to the authored speed interpolated at the same blend position.
+Below the slowest travelling tier the rate drops so a slow walk does not skate;
+above the fastest tier it rises, clamped to `[0.5, 2.0]` like every other
+synchronised playback rate.
+
+The run clip is the fastest cycle the set has, so the gameplay sprint speed of
+`10.0` m/s saturates that clamp: the feet cover `5.93` m/s against `10.0` m/s of
+travel. The set holds no dedicated sprint animation — `Loco_Sprint_F/B` are
+byte-copies of the run clips and are therefore not wired into the tree. Closing
+that gap needs a genuinely faster cycle, not a tuning change.
 
 The idle tier is excluded from that interpolation on purpose. Blending idle into
 a walk reduces pose amplitude rather than stride length, so treating it as a
@@ -421,8 +423,9 @@ Dodges are shared across weapons, so an override that replaces `Dodge_Roll_F` or
 
 ## Current content
 
-The Player prefab references `XController.controller` as its base, starts with
-`DualHand`, and binds that weapon type to `DualSwords.overrideController`.
+The Player prefab references `XController.controller` as its base and starts
+with `Unarmed`, which runs on that base controller directly. `DualHand` is bound
+to `DualSwords.overrideController` and is reached by switching weapons.
 Unsupported weapon types are rejected before entering gameplay state. Additional
 weapon styles extend the serialized binding list without changing gameplay or
 Animator state names after a compatible override asset exists.

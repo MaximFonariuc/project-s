@@ -219,7 +219,8 @@ normalized time. Поэтому hitbox, chain и cancel windows принадле
 через `CharacterMotor` и проходят обычные collision sweeps. Draw/Putup также не
 передают root delta в gameplay.
 
-Player стартует с `EWeaponType.DualHand`; привязанный override выбирается
+Player стартует с `EWeaponType.Unarmed` и работает на базовом контроллере без
+override; `DualHand` подключается сменой оружия, и его override выбирает
 `PlayerAnimatorLoadout`. `PlayerWeaponLoadout` содержит два независимых
 DualSwords attachment и два capsule hitbox. Геометрия клинков пока прототипная,
 но hand-hitbox fallback удалён: экипированное оружие всегда использует свои

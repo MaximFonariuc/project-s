@@ -6,7 +6,7 @@
 - `ProjectS.Core.PlayModeTests` (`PlayMode/`) — решатель перемещения на настоящих коллайдерах.
 
 Запуск: Test Runner либо `run_tests` через Unity MCP с соответствующим `mode` и `assembly_names`.
-Текущее состояние — 101 EditMode и 11 PlayMode тестов, все проходят.
+Текущее состояние — 102 EditMode и 11 PlayMode тестов, все проходят.
 
 ## Что покрыто и зачем
 
