@@ -184,9 +184,7 @@ namespace _App
                 {
                     new XControllerLocomotionTier(0.0f, 0.0f),
                     new XControllerLocomotionTier(1.823f, 1.422f),
-                    new XControllerLocomotionTier(2.963f, 2.428f),
-                    new XControllerLocomotionTier(6.982f, 3.744f),
-                    new XControllerLocomotionTier(9.293f, 4.724f)
+                    new XControllerLocomotionTier(2.963f, 2.428f)
                 });
 
         private static readonly IReadOnlyList<string> BaseLayerStates =
