@@ -320,6 +320,7 @@ namespace _App.Editor.Animation
             switch (bindingCount)
             {
                 case 130:
+                case 193:
                     return "CLazy";
                 case 137:
                     return "Knight";
