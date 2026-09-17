@@ -18,7 +18,7 @@ namespace _App
         private const float GaitDampSeconds = 0.33f;
         private const float DirectionDampSeconds = 0.12f;
         private const float DirectionEpsilon = 0.0001f;
-        private const float DodgeCrossFadeSeconds = 0.10f;
+        private const float DodgeCrossFadeSeconds = 0.12f;
         private const float AttackCrossFadeSeconds = 0.12f;
         private const float WeaponCrossFadeSeconds = 0.15f;
         private const float DefenseCrossFadeSeconds = 0.10f;

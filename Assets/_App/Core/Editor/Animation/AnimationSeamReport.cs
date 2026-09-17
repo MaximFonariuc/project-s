@@ -19,7 +19,7 @@ namespace _App.Editor.Animation
         private const string OutputPath = "Docs/Animation/AnimationSeams.csv";
         private const string MenuPath = "Tools/Animation/Report Animation Seams";
         private const float ActionCrossFadeSeconds = 0.12f;
-        private const float DodgeCrossFadeSeconds = 0.08f;
+        private const float DodgeCrossFadeSeconds = 0.12f;
         private const float ChainExitTime = 0.84f;
 
         private readonly struct Seam
@@ -199,8 +199,22 @@ namespace _App.Editor.Animation
             {
                 AnimatorState action = states[actionPath];
                 float fade = FadeSeconds(actionPath);
-                AddSeam(seams, sampler, "enter", move, action, fade, 1.0f);
-                AddSeam(seams, sampler, "exit", action, move, fade, 1.0f);
+                AddSeam(
+                    seams,
+                    sampler,
+                    "enter",
+                    move,
+                    action,
+                    AuthoredFadeSeconds(move, action, fade),
+                    1.0f);
+                AddSeam(
+                    seams,
+                    sampler,
+                    "exit",
+                    action,
+                    move,
+                    AuthoredFadeSeconds(action, move, fade),
+                    1.0f);
             }
 
             foreach (KeyValuePair<string, string> chain in ChainPairs())
@@ -297,6 +311,58 @@ namespace _App.Editor.Animation
             }
         }
 
+        private static float AuthoredFadeSeconds(
+            AnimatorState from,
+            AnimatorState to,
+            float driverFade)
+        {
+            foreach (AnimatorStateTransition transition in from.transitions)
+            {
+                bool reachesTarget = transition.destinationState == to ||
+                    (transition.destinationStateMachine != null &&
+                     ContainsState(transition.destinationStateMachine, to));
+                if (!reachesTarget)
+                {
+                    continue;
+                }
+
+                return transition.hasFixedDuration
+                    ? transition.duration
+                    : transition.duration * Mathf.Max(0.01f, LengthOf(from.motion));
+            }
+
+            return driverFade;
+        }
+
+        private static bool ContainsState(
+            AnimatorStateMachine stateMachine,
+            AnimatorState state)
+        {
+            foreach (ChildAnimatorState child in stateMachine.states)
+            {
+                if (child.state == state)
+                {
+                    return true;
+                }
+            }
+
+            foreach (ChildAnimatorStateMachine child in stateMachine.stateMachines)
+            {
+                if (ContainsState(child.stateMachine, state))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static float LengthOf(Motion motion)
+        {
+            List<AnimationClip> clips = ResolveClips(motion);
+            return clips.Count > 0 ? clips[0].length : 1.0f;
+        }
+
         private static float FadeSeconds(string targetPath)
         {
             return targetPath.StartsWith("Base Layer.Locomotion.Roll.", StringComparison.Ordinal)
@@ -313,50 +379,140 @@ namespace _App.Editor.Animation
             float transitionSeconds,
             float exitTime)
         {
-            AnimationClip fromClip = ResolveClip(from.motion);
-            AnimationClip toClip = ResolveClip(to.motion);
-            ComparePoses(
-                sampler,
-                fromClip,
-                toClip,
-                exitTime,
-                out float peakDegrees,
-                out string peakBone,
-                out float meanDegrees);
+            List<AnimationClip> fromClips = ResolveClips(from.motion);
+            List<AnimationClip> toClips = ResolveClips(to.motion);
+            if (fromClips.Count == 0 || toClips.Count == 0)
+            {
+                return;
+            }
+
+            string gait = PreferredGait(from.name) ?? PreferredGait(to.name);
+            if (gait != null)
+            {
+                FilterByGait(fromClips, gait);
+                FilterByGait(toClips, gait);
+            }
+
+            AnimationClip bestFrom = fromClips[0];
+            AnimationClip bestTo = toClips[0];
+            float bestPeak = float.MaxValue;
+            string bestBone = "none";
+            float bestMean = 0.0f;
+
+            foreach (AnimationClip fromCandidate in fromClips)
+            {
+                foreach (AnimationClip toCandidate in toClips)
+                {
+                    ComparePoses(
+                        sampler,
+                        fromCandidate,
+                        toCandidate,
+                        exitTime,
+                        out float peak,
+                        out string bone,
+                        out float mean);
+                    if (peak >= bestPeak)
+                    {
+                        continue;
+                    }
+
+                    bestPeak = peak;
+                    bestBone = bone;
+                    bestMean = mean;
+                    bestFrom = fromCandidate;
+                    bestTo = toCandidate;
+                }
+            }
 
             seams.Add(new Seam(
                 kind,
                 from.name,
                 to.name,
-                fromClip,
-                toClip,
+                bestFrom,
+                bestTo,
                 transitionSeconds,
-                peakDegrees,
-                peakBone,
-                meanDegrees));
+                bestPeak,
+                bestBone,
+                bestMean));
         }
 
         private static AnimationClip ResolveClip(Motion motion)
         {
+            List<AnimationClip> clips = ResolveClips(motion);
+            return clips.Count > 0 ? clips[0] : null;
+        }
+
+        private static string PreferredGait(string stateName)
+        {
+            if (stateName.EndsWith("Sprint", StringComparison.Ordinal) ||
+                stateName.EndsWith("Sprinting", StringComparison.Ordinal))
+            {
+                return "Loco_Sprint";
+            }
+
+            if (stateName.EndsWith("Run", StringComparison.Ordinal) ||
+                stateName.EndsWith("Running", StringComparison.Ordinal))
+            {
+                return "Loco_Run";
+            }
+
+            if (stateName.EndsWith("Walk", StringComparison.Ordinal) ||
+                stateName.EndsWith("Walking", StringComparison.Ordinal))
+            {
+                return "Loco_Walk";
+            }
+
+            if (stateName.EndsWith("Idle", StringComparison.Ordinal) ||
+                stateName.EndsWith("Default", StringComparison.Ordinal) ||
+                stateName.EndsWith("Soft", StringComparison.Ordinal) ||
+                stateName.EndsWith("Medium", StringComparison.Ordinal) ||
+                stateName.EndsWith("Hard", StringComparison.Ordinal))
+            {
+                return "Loco_Idle";
+            }
+
+            return null;
+        }
+
+        private static void FilterByGait(List<AnimationClip> clips, string gait)
+        {
+            var matches = clips
+                .Where(clip => clip.name.StartsWith(gait, StringComparison.Ordinal))
+                .ToList();
+            if (matches.Count == 0)
+            {
+                return;
+            }
+
+            clips.Clear();
+            clips.AddRange(matches);
+        }
+
+        private static List<AnimationClip> ResolveClips(Motion motion)
+        {
+            var clips = new List<AnimationClip>();
+            Collect(motion, clips);
+            return clips;
+        }
+
+        private static void Collect(Motion motion, List<AnimationClip> clips)
+        {
             switch (motion)
             {
                 case AnimationClip clip:
-                    return clip;
-                case BlendTree tree:
-                {
-                    foreach (ChildMotion child in tree.children)
+                    if (!clips.Contains(clip))
                     {
-                        AnimationClip resolved = ResolveClip(child.motion);
-                        if (resolved != null)
-                        {
-                            return resolved;
-                        }
+                        clips.Add(clip);
                     }
 
-                    return null;
-                }
-                default:
-                    return null;
+                    return;
+                case BlendTree tree:
+                    foreach (ChildMotion child in tree.children)
+                    {
+                        Collect(child.motion, clips);
+                    }
+
+                    return;
             }
         }
 
