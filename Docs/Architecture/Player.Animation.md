@@ -160,13 +160,14 @@ classDiagram
 - Root motion is disabled for every clip in the working set, attacks included.
   Dodge and attack movement go through `CharacterMotor`, including normal
   collision sweeps and grounding.
-- Action travel is authored in `CombatMotionDefinition` and derived from the
-  source clip's own root curve, so a move covers the distance its animator
-  intended while the motor keeps authority. Baked root motion is rejected for
-  three reasons: it cannot honour target assist, it would give the same logical
-  attack a different reach per weapon because override clips carry different
-  baked displacement, and it couples reach to the playback rate the driver
-  already stretches between 0.5x and 2.0x.
+- Action travel is authored in `CombatMotionDefinition` and owns its own numbers.
+  The source clip's root curve is reference material, not the target: reach is a
+  balance value tuned against how the move should play, so a deliberate gap
+  between the two is expected rather than drift to be corrected. Baked root
+  motion is rejected for three reasons: it cannot honour target assist, it would
+  give the same logical attack a different reach per weapon because override
+  clips carry different baked displacement, and it couples reach to the playback
+  rate the driver already stretches between 0.5x and 2.0x.
 - Clips that ship both a travelling and an in-place variant are wired through the
   in-place one. A discarded root curve still animates a lunge the character never
   makes, which reads as a snap back to origin.
