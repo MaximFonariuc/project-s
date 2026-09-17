@@ -316,16 +316,19 @@ namespace _App.Editor.Animation
                 return "none";
             }
 
-            string path = AssetDatabase.GetAssetPath(clip);
-            const string root = "Assets/_Game/Animations/";
-            if (!path.StartsWith(root, StringComparison.Ordinal))
+            int bindingCount = AnimationUtility.GetCurveBindings(clip).Length;
+            switch (bindingCount)
             {
-                return path;
+                case 130:
+                    return "CLazy";
+                case 137:
+                    return "Knight";
+                case 181:
+                case 182:
+                    return "Frank";
+                default:
+                    return "rig" + bindingCount.ToString(CultureInfo.InvariantCulture);
             }
-
-            string relative = path.Substring(root.Length);
-            int separator = relative.IndexOf('/');
-            return separator > 0 ? relative.Substring(0, separator) : relative;
         }
 
         private static void WriteReport(List<Seam> seams)
