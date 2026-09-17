@@ -30,11 +30,9 @@ enter;Move;HitStun_Back;Loco_Idle;LightHit;CLazy;Knight;0.1200;0.8973;3.2865;yes
 enter;Move;HitStun_Left;Loco_Idle;LightHit;CLazy;Knight;0.1200;0.8973;3.3709;yes
 enter;Move;HitStun_Right;Loco_Idle;LightHit;CLazy;Knight;0.1200;0.8973;3.3709;yes
 enter;Move;Knockdown;Loco_Idle;LightHit;CLazy;Knight;0.1200;0.8973;3.2865;yes
-exit;Skill;Move;Unarmed_Special;Loco_Idle;Knight;CLazy;0.1200;0.7164;0.1604;yes
 enter;Move;BaseAttack4;Loco_Idle;Unarmed_Combo_4;CLazy;CLazy;0.1200;0.7030;5.4919;no
 enter;Move;BaseAttack2;Loco_Idle;Unarmed_Combo_2;CLazy;CLazy;0.1200;0.6953;0.6847;no
 enter;Move;BaseAttack3;Loco_Idle;Unarmed_Combo_3;CLazy;CLazy;0.1200;0.6953;3.5653;no
-enter;Move;Skill;Loco_Idle;Unarmed_Special;CLazy;Knight;0.1200;0.6953;0.3863;yes
 enter;Move;JumpIdle;Loco_Idle;Jump_Rise_Idle;CLazy;CLazy;0.1200;0.6791;3.3953;no
 chain;BaseAttack1;BaseAttack2;Unarmed_Combo_1;Unarmed_Combo_2;CLazy;CLazy;0.1200;0.6537;1.0637;no
 exit;LandRun;Move;Jump_Land_Run;Loco_Idle;CLazy;CLazy;0.1200;0.5610;1.5741;no
@@ -57,11 +55,13 @@ enter;Move;LandSoft;Loco_Idle;Jump_Land_Soft;CLazy;CLazy;0.1200;0.4925;3.0412;no
 enter;Move;LandWalk;Loco_Idle;Jump_Land_Walk;CLazy;CLazy;0.1200;0.4856;1.6737;no
 enter;Move;Dead_1;Loco_Idle;Dam_StandDie;CLazy;CLazy;0.1200;0.4733;13.5082;no
 enter;Move;Dead_2;Loco_Idle;Dam_TurnDie;CLazy;CLazy;0.1200;0.4693;13.3746;no
+exit;Skill;Move;Unarmed_Special;Loco_Idle;CLazy;CLazy;0.1200;0.4645;2.4538;no
 exit;LandDefault;Move;Jump_Land_Idle;Loco_Idle;CLazy;CLazy;0.1200;0.4529;0.1999;no
 exit;LandWalk;Move;Jump_Land_Walk;Loco_Idle;CLazy;CLazy;0.1200;0.4513;0.8600;no
 exit;LandHard;Move;Jump_Land_Hard;Loco_Idle;CLazy;CLazy;0.1200;0.4506;0.2267;no
 exit;LandMedium;Move;Jump_Land_Medium;Loco_Idle;CLazy;CLazy;0.1200;0.4506;0.1072;no
 exit;LandSoft;Move;Jump_Land_Soft;Loco_Idle;CLazy;CLazy;0.1200;0.4505;0.1265;no
+enter;Move;Skill;Loco_Idle;Unarmed_Special;CLazy;CLazy;0.1200;0.4217;5.2353;no
 exit;Dead_1;Move;Dam_StandDie;Loco_Idle;CLazy;CLazy;0.1200;0.4130;0.6249;no
 exit;Dead_2;Move;Dam_TurnDie;Loco_Idle;CLazy;CLazy;0.1200;0.3748;0.7195;no
 enter;Move;RollFront;Loco_Idle;Dodge_Roll_F;CLazy;CLazy;0.0800;0.3280;6.1886;no
