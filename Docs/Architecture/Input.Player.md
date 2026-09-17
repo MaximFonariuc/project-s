@@ -4,6 +4,16 @@
 
 Project S не получает raw controls. `PlayerInputAdapter` переводит стабильные GUID действий из generic Input-модуля в команды уровня игры. Боевые bindings становятся единым `CombatActionRequested(PlayerCombatCommandId)`, а locomotion/UI сигналы сохраняют собственные typed events. Это anti-corruption layer между переиспользуемой инфраструктурой и gameplay.
 
+## Удержание
+
+Тяжёлая атака удерживаемая, поэтому адаптер сообщает по ней две фазы: `CombatActionRequested` на нажатии и `CombatActionReleased` на отпускании. Нажатие по-прежнему запускает обычную тяжёлую атаку сразу — заряд не добавляет задержки вводу.
+
+Длительность удержания адаптер не измеряет. Время принадлежит боевому слою, у которого уже есть `ICombatClock`, поэтому порог считает `CombatChargeTracker`: при отпускании он сравнивает удержание с `CombatInputBufferSettings.ChargeHoldSeconds` и выдаёт `attack.heavy.charged` отдельной командой.
+
+Модификатор special перенаправляет ту же кнопку на `skill.special`. Такое нажатие не считается зарядом, иначе отпускание модифицированной кнопки выдавало бы заряженную тяжёлую атаку, которую игрок не запрашивал.
+
+Заряженная команда — необязательное улучшение, а не отдельная ветка ввода. Если у оружия нет контента под неё, в графе просто нет перехода, принимающего `attack.heavy.charged`, и отпускание ничего не меняет.
+
 ## Дерево классов
 
 ```mermaid
@@ -17,6 +27,7 @@ classDiagram
         +Zoom Vector2
         +TargetSwitch float
         +CombatActionRequested(commandId)
+        +CombatActionReleased(commandId)
         +JumpChanged
         +Enable()
         +Disable()

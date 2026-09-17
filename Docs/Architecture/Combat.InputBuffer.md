@@ -107,6 +107,8 @@ environment по-прежнему не позволяют потребить к�
 
 `CombatInputBufferAuthoring` задаёт capacity, overflow, selection, lifetime, priority и duplicate rules. Override адресуется строковым semantic command id (`attack.light`, `attack.heavy`, `skill.special`). Добавление новой команды не требует изменения generic `InputBuffer<TAction>`.
 
+Здесь же лежит `ChargeHoldSeconds` — порог, после которого удержание тяжёлой атаки превращается в `attack.heavy.charged`. Это настройка ввода, а не свойство конкретного действия, поэтому она одна на loadout, а не на каждый `CombatActionDefinition`. Порог применяет `CombatChargeTracker`, описанный в `Input.Player.md`.
+
 Настройки являются обязательной частью назначенного `PlayerCombatActionProfile`.
 Runtime не подменяет отсутствующий authoring скрытым набором prototype defaults:
 неполный профиль отклоняется при сборке gameplay scope/валидации asset.
