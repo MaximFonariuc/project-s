@@ -226,6 +226,42 @@ DualSwords attachment и два capsule hitbox. Геометрия клинко�
 явно настроенные hitboxes.
 
 
+## Эталонный набор Unarmed
+
+`Unarmed` собирается на базовом `XController` без override, поэтому его граф
+одновременно является шаблоном структуры для остальных оружий. Двенадцать
+действий складываются в такие цепочки:
+
+| Цепочка | Маршрут | Окно |
+| --- | --- | --- |
+| Базовая серия | `combo.ground.0` → `1` → `2` → `3` по `attack.light` | Chain |
+| Отложенный финишер | `combo.ground.0` → `combo.ground.pause-finisher` | Cancel, приём `0.67–0.86` |
+| Тяжёлая ветка | `combo.ground.0` / `1` → `attack.heavy` | Cancel, приём `0.50–0.60` |
+| Заряженная тяжёлая | `attack.heavy` → `skill.special` по `attack.heavy.charged` | Cancel |
+| Special из серии | `combo.ground.0` / `1` / `2` → `skill.special` | Cancel |
+| Возврат в серию | `skill.special` / `attack.heavy` → `combo.ground.0` | Cancel |
+| Лаунчер по попаданию | `combo.ground.0` / `1` → `attack.launcher` | Cancel, только `OnHit` |
+| Догон в воздух | `attack.launcher` → `movement.air-chase` | Chain, только `OnHit` |
+| Воздушная серия | `movement.air-chase` → `combo.air.0` → `1` → `2` | Chain |
+| Вход в воздухе | `attack.light` в airborne-окружении → `combo.air.0` | Entry |
+
+Два входа на `attack.light` не конфликтуют, потому что `combo.ground.0` и
+`combo.air.0` объявлены в разных окружениях; компилятор проверяет именно это.
+
+Отложенный финишер и тяжёлая ветка стартуют из одного действия по разным
+командам и разным окнам приёма, поэтому серия ветвится не отдельной кнопкой, а
+ритмом нажатия. Это и есть основной способ набирать глубину без роста числа
+сочетаний клавиш.
+
+Заряженная тяжёлая — единственная цепочка, зависящая от удержания. Порог задан
+в `CombatInputBufferSettings.ChargeHoldSeconds`, а команда получает собственный
+buffer lifetime `0.9 s`: окно отмены `attack.heavy` открывается позже порога
+заряда, и без увеличенного lifetime раннее отпускание терялось бы.
+
+У `DualSwords` маршрута для `attack.heavy.charged` нет. Это не пробел, а рабочий
+случай деградации: команда приходит, граф не имеет принимающего перехода, и
+удержание просто ничего не меняет.
+
 ## Animation boundary
 
 Animator отвечает за позу, blend и визуальный выход. Combo graph отвечает за
