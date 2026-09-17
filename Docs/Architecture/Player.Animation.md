@@ -227,53 +227,33 @@ The current action contract is:
 | Hit reaction (source right) | 4 | 8 | `Reaction/HitStun_Right` |
 
 The controller consumes its historical `MovementType`, `MovementDirection`,
-`FallingDuration`, `OnGround` and `SpeedMultiplier` parameters, plus
-`MoveSpeed` and `LocomotionRate` described below. `BodyLookX/Y`
+`FallingDuration`, `OnGround` and `SpeedMultiplier` parameters. `BodyLookX/Y`
 and `HeadLookX/Y` drive the additive `BodyLook` and `HeadLook` layers from the
 camera/targeting presentation path. Jump anticipation remains gameplay-owned
 regardless of the current animation graph.
 
-## Locomotion cadence
+## Locomotion selection
 
-The locomotion tree blends on `MoveSpeed`, the planar motor speed in metres per
-second, and not on a gait index. Each tier threshold equals the ground speed its
-clip was authored at, so the blend position and the clip the player sees always
-describe the same speed.
+The locomotion tree blends on `MovementType`, the gait index, with thresholds
+`0` idle, `1` walk, `2` run and `3` sprint. Each gait owns a nested
+`MovementDirection` tree that picks the backward or forward clip at `-0.5` and
+`0.5`. The `Move` state carries no speed parameter: every clip plays at its
+authored rate.
 
-| Tier | Forward clip | m/s | Backward clip | m/s |
-| --- | --- | ---: | --- | ---: |
-| 0 | `Loco_Idle` | 0.000 | — | — |
-| 1 | `Loco_Walk_F` | 1.823 | `Loco_Walk_B` | 1.422 |
-| 2 | `Loco_Run_F` | 2.963 | `Loco_Run_B` | 2.428 |
+Gait selection and clip cadence are deliberately separate concerns here, and
+only selection is solved. Because the gait index — not the motor speed — chooses
+the tier, the clip the player sees always matches the movement mode they asked
+for. The cost is that the clips were authored slower than the motor moves, so
+the feet under-run the ground: walk travels `3.0` m/s against a `1.823` m/s
+cycle, run `5.0` against `2.963`, and sprint `10.0` against the same `2.963`
+because `Loco_Sprint_F/B` are copies of the run clips.
 
-Thresholds alone are not enough, because the motor does not stop at them. The
-`Move` state therefore scales playback with `LocomotionRate`, which
-`XControllerAnimationContract.ResolveLocomotionRate` derives as the ratio of the
-actual speed to the authored speed interpolated at the same blend position.
-Below the slowest travelling tier the rate drops so a slow walk does not skate;
-above the fastest tier it rises, clamped to `[0.5, 2.0]` like every other
-synchronised playback rate.
-
-The run clip is the fastest cycle the set has, so the gameplay sprint speed of
-`10.0` m/s saturates that clamp: the feet cover `5.93` m/s against `10.0` m/s of
-travel. The set holds no dedicated sprint animation — `Loco_Sprint_F/B` are
-byte-copies of the run clips and are therefore not wired into the tree. Closing
-that gap needs a genuinely faster cycle, not a tuning change.
-
-The idle tier is excluded from that interpolation on purpose. Blending idle into
-a walk reduces pose amplitude rather than stride length, so treating it as a
-zero-speed sample would report a stride the feet do not actually have. Rate is
-resolved against the slowest travelling tier instead.
-
-Backward motion carries its own authored speeds because the backward clips cover
-far less ground. Only backpedalling near sprint speed saturates the upper clamp,
-which the `OrientToViewAndMovement` rotation mode reaches solely during a
-locked-on retreat.
-
-The tier table lives in the contract so that
-`XControllerContractValidator` can assert the Animator thresholds still match
-the numbers the driver computes against. A clip swapped for one with a different
-authored speed fails validation instead of silently reintroducing foot sliding.
+Scaling playback to close that gap was tried and reverted. Driving the blend by
+metres per second instead of gait index made the walk clip unreachable, since
+the gameplay walk speed of `3.0` m/s sits above the run clip's authored `2.963`,
+and stretching the run clip to sprint speed needed a rate the eye reads as
+comical. Any future attempt needs faster source cycles first; retiming the
+existing ones is not enough.
 
 The body receives a smaller share of the requested angle and follows it more
 slowly; the head receives the remaining angle and reacts faster. Losing a
