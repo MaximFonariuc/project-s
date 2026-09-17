@@ -8,9 +8,11 @@ namespace _App
     {
         private readonly IInputService _input;
         private bool _specialModifierHeld;
+        private bool _heavyAttackHeld;
         private bool _enabled;
 
         public event Action<PlayerCombatCommandId> CombatActionRequested;
+        public event Action<PlayerCombatCommandId> CombatActionReleased;
         public event Action InteractRequested;
         public event Action<InputSignalPhase> WalkChanged;
         public event Action<InputSignalPhase> SprintChanged;
@@ -71,6 +73,7 @@ namespace _App
             Zoom = Vector2.zero;
             TargetSwitch = 0.0f;
             _specialModifierHeld = false;
+            _heavyAttackHeld = false;
             _enabled = false;
         }
 
@@ -125,9 +128,36 @@ namespace _App
             {
                 _specialModifierHeld = signal.Phase != InputSignalPhase.Canceled;
             }
+            else if (action == PlayerInputIds.HeavyAttack)
+            {
+                DispatchHeavyAttack(signal);
+            }
             else if (signal.Phase == InputSignalPhase.Performed)
             {
                 DispatchPerformed(action, signal.DeviceKind);
+            }
+        }
+
+        private void DispatchHeavyAttack(InputSignal signal)
+        {
+            if (signal.Phase == InputSignalPhase.Performed)
+            {
+                PlayerCombatCommandId command = ResolveMouseAttack(
+                    PlayerCombatCommandIds.HeavyAttack,
+                    signal.DeviceKind);
+
+                // Only the heavy attack itself can be charged. The special
+                // modifier retargets the same button, so a modified press must
+                // not leave a pending hold behind.
+                _heavyAttackHeld = command == PlayerCombatCommandIds.HeavyAttack;
+                CombatActionRequested?.Invoke(command);
+                return;
+            }
+
+            if (signal.Phase == InputSignalPhase.Canceled && _heavyAttackHeld)
+            {
+                _heavyAttackHeld = false;
+                CombatActionReleased?.Invoke(PlayerCombatCommandIds.HeavyAttack);
             }
         }
 
@@ -137,12 +167,6 @@ namespace _App
             {
                 CombatActionRequested?.Invoke(ResolveMouseAttack(
                     PlayerCombatCommandIds.LightAttack,
-                    deviceKind));
-            }
-            else if (action == PlayerInputIds.HeavyAttack)
-            {
-                CombatActionRequested?.Invoke(ResolveMouseAttack(
-                    PlayerCombatCommandIds.HeavyAttack,
                     deviceKind));
             }
             else if (action == PlayerInputIds.Interact)

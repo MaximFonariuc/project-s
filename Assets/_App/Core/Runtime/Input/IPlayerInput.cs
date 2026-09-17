@@ -7,6 +7,7 @@ namespace _App
     public interface IPlayerInput
     {
         event Action<PlayerCombatCommandId> CombatActionRequested;
+        event Action<PlayerCombatCommandId> CombatActionReleased;
         event Action InteractRequested;
         event Action<InputSignalPhase> WalkChanged;
         event Action<InputSignalPhase> SprintChanged;

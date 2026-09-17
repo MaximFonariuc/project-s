@@ -29,6 +29,7 @@ namespace _App
         private readonly PlayerWeaponTransitionSession _weaponTransitionSession;
         private readonly PlayerCombatOperationLifetime _operationLifetime;
         private readonly IStateMachine<PlayerCombatPhase> _stateMachine;
+        private readonly CombatChargeTracker _chargeTracker;
         private readonly EWeaponType _preferredWeapon;
         private readonly ECharacterType _characterType;
         private readonly Action<EWeaponType> _weaponCommitHandler;
@@ -89,6 +90,7 @@ namespace _App
             PlayerWeaponTransitionSession weaponTransitionSession,
             PlayerCombatOperationLifetime operationLifetime,
             IStateMachine<PlayerCombatPhase> stateMachine,
+            CombatChargeTracker chargeTracker,
             ECharacterType characterType,
             EWeaponType startingWeapon)
         {
@@ -111,6 +113,8 @@ namespace _App
             _operationLifetime = operationLifetime ??
                 throw new ArgumentNullException(nameof(operationLifetime));
             _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
+            _chargeTracker = chargeTracker ??
+                throw new ArgumentNullException(nameof(chargeTracker));
             _preferredWeapon = startingWeapon == EWeaponType.None
                 ? EWeaponType.Unarmed
                 : startingWeapon;
@@ -142,6 +146,7 @@ namespace _App
                 }
 
                 _input.CombatActionRequested += OnCombatActionRequested;
+                _input.CombatActionReleased += OnCombatActionReleased;
                 _input.SwitchCombatStateRequested += OnSwitchWeaponRequested;
                 _locomotionEvents.GroundJumpIntentAccepted += OnGroundJumpIntentAccepted;
                 _locomotionEvents.JumpAccepted += OnJumpAccepted;
@@ -165,7 +170,9 @@ namespace _App
             }
 
             _input.CombatActionRequested -= OnCombatActionRequested;
+            _input.CombatActionReleased -= OnCombatActionReleased;
             _input.SwitchCombatStateRequested -= OnSwitchWeaponRequested;
+            _chargeTracker.Clear();
             _locomotionEvents.GroundJumpIntentAccepted -= OnGroundJumpIntentAccepted;
             _locomotionEvents.JumpAccepted -= OnJumpAccepted;
             _locomotionEvents.DodgeAccepted -= OnDodgeAccepted;
@@ -436,7 +443,21 @@ namespace _App
 
         private void OnCombatActionRequested(PlayerCombatCommandId commandId)
         {
+            _chargeTracker.NotePressed(commandId);
             TryExecute(commandId);
+        }
+
+        private void OnCombatActionReleased(PlayerCombatCommandId commandId)
+        {
+            // A charged variant is an optional upgrade: the press already started
+            // the normal action, and a weapon without charged content simply has
+            // no graph transition accepting this command.
+            if (_chargeTracker.TryResolveRelease(
+                    commandId,
+                    out PlayerCombatCommandId chargedCommandId))
+            {
+                TryExecute(chargedCommandId);
+            }
         }
 
         private void OnSwitchWeaponRequested()
