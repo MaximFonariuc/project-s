@@ -19,6 +19,18 @@ namespace _App
         }
     }
 
+    public readonly struct XControllerLocomotionTier
+    {
+        public float ForwardSpeed { get; }
+        public float BackwardSpeed { get; }
+
+        public XControllerLocomotionTier(float forwardSpeed, float backwardSpeed)
+        {
+            ForwardSpeed = forwardSpeed;
+            BackwardSpeed = backwardSpeed;
+        }
+    }
+
     /// <summary>
     /// Stable Project S contract shared by the runtime driver and editor
     /// validation. It describes names only; gameplay state remains outside
@@ -27,6 +39,10 @@ namespace _App
     public static class XControllerAnimationContract
     {
         public const int BaseLayerIndex = 0;
+        public const float MinimumLocomotionRate = 0.5f;
+        public const float MaximumLocomotionRate = 2.0f;
+
+        private const float LocomotionSpeedEpsilon = 0.0001f;
 
         public const string BaseLayerName = "Base Layer";
         public const string SwitchWeaponLayerName = "SwitchWeapon Layer";
@@ -37,6 +53,8 @@ namespace _App
         public const string OnGroundParameterName = "OnGround";
         public const string MovementDirectionParameterName = "MovementDirection";
         public const string MovementTypeParameterName = "MovementType";
+        public const string MoveSpeedParameterName = "MoveSpeed";
+        public const string LocomotionRateParameterName = "LocomotionRate";
         public const string FallingDurationParameterName = "FallingDuration";
         public const string SpeedMultiplierParameterName = "SpeedMultiplier";
         public const string BodyLookXParameterName = "BodyLookX";
@@ -118,6 +136,12 @@ namespace _App
                         MovementTypeParameterName,
                         AnimatorControllerParameterType.Float),
                     new XControllerParameterRequirement(
+                        MoveSpeedParameterName,
+                        AnimatorControllerParameterType.Float),
+                    new XControllerParameterRequirement(
+                        LocomotionRateParameterName,
+                        AnimatorControllerParameterType.Float),
+                    new XControllerParameterRequirement(
                         FallingDurationParameterName,
                         AnimatorControllerParameterType.Float),
                     new XControllerParameterRequirement(
@@ -135,6 +159,34 @@ namespace _App
                     new XControllerParameterRequirement(
                         HeadLookYParameterName,
                         AnimatorControllerParameterType.Float)
+                });
+
+        private static readonly IReadOnlyDictionary<string, string> ClipSlots =
+            new Dictionary<string, string>(StringComparer.Ordinal)
+            {
+                { Attack1StatePath, "Unarmed_Combo_1" },
+                { Attack2StatePath, "Unarmed_Combo_2" },
+                { Attack3StatePath, "Unarmed_Combo_3" },
+                { Attack4StatePath, "Unarmed_Combo_4" },
+                { AirAttack1StatePath, "Unarmed_Air_1" },
+                { AirAttack2StatePath, "Unarmed_Air_2" },
+                { AirAttack3StatePath, "Unarmed_Air_3" },
+                { LauncherStatePath, "Unarmed_Launcher" },
+                { SpecialAttackStatePath, "Unarmed_Special" },
+                { AirChaseStatePath, "Jump_Rise_Run" },
+                { RollForwardStatePath, "Dodge_Roll_F" },
+                { RollBackwardStatePath, "Dodge_Roll_B" }
+            };
+
+        private static readonly IReadOnlyList<XControllerLocomotionTier>
+            LocomotionSpeedTiers = Array.AsReadOnly(
+                new[]
+                {
+                    new XControllerLocomotionTier(0.0f, 0.0f),
+                    new XControllerLocomotionTier(1.823f, 1.422f),
+                    new XControllerLocomotionTier(2.963f, 2.428f),
+                    new XControllerLocomotionTier(6.982f, 3.744f),
+                    new XControllerLocomotionTier(9.293f, 4.724f)
                 });
 
         private static readonly IReadOnlyList<string> BaseLayerStates =
@@ -248,6 +300,9 @@ namespace _App
         public static IReadOnlyList<string> RequiredBaseLayerStatePaths =>
             BaseLayerStates;
 
+        public static IReadOnlyList<XControllerLocomotionTier> LocomotionTiers =>
+            LocomotionSpeedTiers;
+
         public static IReadOnlyList<string> LightAttackStatePaths =>
             LightAttackStates;
 
@@ -268,6 +323,83 @@ namespace _App
 
         public static IReadOnlyList<string> RequiredDefenseLayerStatePaths =>
             DefenseLayerStates;
+
+        public static float ResolveLocomotionRate(
+            float planarSpeed,
+            float movementDirection)
+        {
+            if (planarSpeed <= LocomotionSpeedEpsilon)
+            {
+                return 1.0f;
+            }
+
+            float authoredSpeed = ResolveAuthoredSpeed(planarSpeed, movementDirection);
+            if (authoredSpeed <= LocomotionSpeedEpsilon)
+            {
+                return 1.0f;
+            }
+
+            return Mathf.Clamp(
+                planarSpeed / authoredSpeed,
+                MinimumLocomotionRate,
+                MaximumLocomotionRate);
+        }
+
+        public static float ResolveAuthoredSpeed(
+            float planarSpeed,
+            float movementDirection)
+        {
+            float backwardWeight = Mathf.Clamp01((1.0f - movementDirection) * 0.5f);
+
+            // The idle tier contributes pose amplitude rather than stride, so the
+            // rate is resolved against the slowest travelling tier instead of
+            // interpolating down to a standstill.
+            XControllerLocomotionTier slowest = LocomotionSpeedTiers[1];
+            if (planarSpeed <= slowest.ForwardSpeed)
+            {
+                return Mathf.Lerp(
+                    slowest.ForwardSpeed,
+                    slowest.BackwardSpeed,
+                    backwardWeight);
+            }
+
+            for (int i = 2; i < LocomotionSpeedTiers.Count; i++)
+            {
+                XControllerLocomotionTier upper = LocomotionSpeedTiers[i];
+                if (planarSpeed > upper.ForwardSpeed)
+                {
+                    continue;
+                }
+
+                XControllerLocomotionTier lower = LocomotionSpeedTiers[i - 1];
+                float span = upper.ForwardSpeed - lower.ForwardSpeed;
+                float blend = span > LocomotionSpeedEpsilon
+                    ? (planarSpeed - lower.ForwardSpeed) / span
+                    : 0.0f;
+                return Mathf.Lerp(
+                    Mathf.Lerp(lower.ForwardSpeed, upper.ForwardSpeed, blend),
+                    Mathf.Lerp(lower.BackwardSpeed, upper.BackwardSpeed, blend),
+                    backwardWeight);
+            }
+
+            XControllerLocomotionTier fastest =
+                LocomotionSpeedTiers[LocomotionSpeedTiers.Count - 1];
+            return Mathf.Lerp(
+                fastest.ForwardSpeed,
+                fastest.BackwardSpeed,
+                backwardWeight);
+        }
+
+        public static bool TryGetClipSlot(string statePath, out string clipSlot)
+        {
+            if (statePath != null && ClipSlots.TryGetValue(statePath, out clipSlot))
+            {
+                return true;
+            }
+
+            clipSlot = null;
+            return false;
+        }
 
         public static bool TryGetCombatStatePath(
             PlayerCombatPresentationKind presentationKind,
