@@ -135,6 +135,16 @@ namespace _App.Editor.Animation
                 Movement + "Mvm_8way_JogStop/CLazy@Mvm_JogStop.FBX",
                 "Mvm_JogStop",
                 Shared + "Locomotion/Loco_Stop_Run.anim",
+                false),
+            new CuratedClip(
+                Movement + "Mvm_Start_Walk/CLazy@Mvm_Walk_Start_Fwd.FBX",
+                "Mvm_Walk_Start_Fwd",
+                Shared + "Locomotion/Loco_Start_Walk.anim",
+                false),
+            new CuratedClip(
+                Movement + "Mvm_Start_Jog/CLazy@Mvm_Jog_Start_Fwd.FBX",
+                "Mvm_Jog_Start_Fwd",
+                Shared + "Locomotion/Loco_Start_Run.anim",
                 false)
         };
 
