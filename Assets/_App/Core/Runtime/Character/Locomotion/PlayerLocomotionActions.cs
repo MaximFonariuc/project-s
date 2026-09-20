@@ -15,6 +15,7 @@ namespace _App
         void Interrupt();
         void StartGliding();
         void StopGliding();
+        void SetDodgeContinuationSpeed(float speed);
         bool TryDodge(Vector3 worldDirection, bool backwards);
         bool TryAirDash(Vector3 worldDirection, bool backwards);
         void RestoreAirDashCharges();
@@ -126,6 +127,11 @@ namespace _App
         public void StopGliding()
         {
             _glide?.Stop();
+        }
+
+        public void SetDodgeContinuationSpeed(float speed)
+        {
+            _dodge?.SetContinuationSpeed(speed);
         }
 
         public bool TryDodge(Vector3 worldDirection, bool backwards)
