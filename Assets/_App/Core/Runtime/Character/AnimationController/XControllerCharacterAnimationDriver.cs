@@ -16,12 +16,9 @@ namespace _App
         IDisposable
     {
         private const float GaitDampSeconds = 0.33f;
-        private const float StopEntrySpeed = 2.0f;
-        private const float StopSettledSpeed = 0.35f;
-        private const float StartLaunchSpeed = 1.5f;
         private const float DirectionDampSeconds = 0.12f;
         private const float DirectionEpsilon = 0.0001f;
-        private const float DodgeCrossFadeSeconds = 0.12f;
+        private const float DodgeCrossFadeSeconds = 0.10f;
         private const float AttackCrossFadeSeconds = 0.12f;
         private const float WeaponCrossFadeSeconds = 0.15f;
         private const float DefenseCrossFadeSeconds = 0.10f;
@@ -39,12 +36,6 @@ namespace _App
             XControllerAnimationContract.MovementDirectionParameterName);
         private static readonly int MovementTypeHash = Animator.StringToHash(
             XControllerAnimationContract.MovementTypeParameterName);
-        private static readonly int StoppingHash = Animator.StringToHash(
-            XControllerAnimationContract.StoppingParameterName);
-        private static readonly int StartingHash = Animator.StringToHash(
-            XControllerAnimationContract.StartingParameterName);
-        private static readonly int TransitionGaitHash = Animator.StringToHash(
-            XControllerAnimationContract.TransitionGaitParameterName);
         private static readonly int FallingDurationHash = Animator.StringToHash(
             XControllerAnimationContract.FallingDurationParameterName);
         private static readonly int SpeedMultiplierHash = Animator.StringToHash(
@@ -90,8 +81,6 @@ namespace _App
         private int _releasedActionLayerIndex = -1;
         private int _releasedActionStateHash;
         private bool _wasGrounded = true;
-        private float _lastPlanarSpeed;
-        private bool _wasStationary = true;
         private bool _disposed;
 
         public XControllerCharacterAnimationDriver(Animator animator)
@@ -156,7 +145,6 @@ namespace _App
             // damping would delay the jump/fall sign change and soften impacts.
             _animator.SetFloat(FallingDurationHash, fallingVelocity);
             _animator.SetBool(OnGroundHash, frame.IsGrounded);
-            TryTriggerGaitChange(in frame, planarSpeed, movementType);
             _wasGrounded = frame.IsGrounded;
             _lookPose.SetGrounded(frame.IsGrounded);
         }
@@ -261,12 +249,7 @@ namespace _App
             _timePlaybackRate = 1.0f;
             ClearReleasedActionTracking();
             ApplyPlaybackRate();
-            _animator.ResetTrigger(StoppingHash);
-            _animator.ResetTrigger(StartingHash);
-            _animator.SetFloat(TransitionGaitHash, 0.0f);
             _lastAirborneVerticalSpeed = 0.0f;
-            _lastPlanarSpeed = 0.0f;
-            _wasStationary = true;
             _wasGrounded = true;
             _lookPose.Reset();
             ClearActionPresentationPolicy();
@@ -283,47 +266,6 @@ namespace _App
 
             Reset();
             _disposed = true;
-        }
-
-        private void TryTriggerGaitChange(
-            in CharacterLocomotionFrame frame,
-            float planarSpeed,
-            float movementType)
-        {
-            bool available = frame.IsGrounded &&
-                             _wasGrounded &&
-                             !frame.IsMovementLocked &&
-                             _actionLayerIndex < 0 &&
-                             _releasedActionLayerIndex < 0;
-
-            if (available &&
-                !_wasStationary &&
-                _lastPlanarSpeed >= StopEntrySpeed &&
-                planarSpeed < StopSettledSpeed)
-            {
-                _animator.SetFloat(
-                    TransitionGaitHash,
-                    _animator.GetFloat(MovementTypeHash));
-                _animator.SetTrigger(StoppingHash);
-            }
-            else if (available &&
-                     _wasStationary &&
-                     planarSpeed >= StartLaunchSpeed)
-            {
-                _animator.SetFloat(TransitionGaitHash, movementType);
-                _animator.SetTrigger(StartingHash);
-            }
-
-            if (planarSpeed < StopSettledSpeed)
-            {
-                _wasStationary = true;
-            }
-            else if (planarSpeed >= StartLaunchSpeed)
-            {
-                _wasStationary = false;
-            }
-
-            _lastPlanarSpeed = planarSpeed;
         }
 
         private static float ResolveMovementDirection(
