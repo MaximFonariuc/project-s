@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -163,12 +164,14 @@ namespace _App.Editor.Animation
                 AssetDatabase.StopAssetEditing();
             }
 
+            int stitched = ApplyStitches(report);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 
             report.Insert(
                 0,
-                $"[Curated Clips] created {created}, refreshed {refreshed}, failed {failed}\n");
+                $"[Curated Clips] created {created}, refreshed {refreshed}, " +
+                $"stitched {stitched}, failed {failed}\n");
             if (failed > 0)
             {
                 Debug.LogError(report.ToString());
@@ -237,6 +240,162 @@ namespace _App.Editor.Animation
             AnimationUtility.SetAnimationClipSettings(target, settings);
             EditorUtility.SetDirty(target);
             return existed;
+        }
+
+        private readonly struct PoseStitch
+        {
+            public string ClipPath { get; }
+            public bool AtTail { get; }
+            public float WindowSeconds { get; }
+
+            public PoseStitch(string clipPath, bool atTail, float windowSeconds)
+            {
+                ClipPath = clipPath;
+                AtTail = atTail;
+                WindowSeconds = windowSeconds;
+            }
+        }
+
+        private const string RestPosePath = Shared + "Locomotion/Loco_Idle.anim";
+
+        private static readonly PoseStitch[] Stitches =
+        {
+            new PoseStitch(Shared + "Jump/Jump_Rise_Idle.anim", false, 0.12f),
+            new PoseStitch(Shared + "Jump/Jump_Land_Idle.anim", true, 0.20f),
+            new PoseStitch(Shared + "Jump/Jump_Land_Soft.anim", true, 0.20f),
+            new PoseStitch(Shared + "Jump/Jump_Land_Medium.anim", true, 0.20f),
+            new PoseStitch(Shared + "Jump/Jump_Land_Hard.anim", true, 0.20f),
+            new PoseStitch(Shared + "Dodge/Dodge_Roll_F.anim", false, 0.12f),
+            new PoseStitch(Shared + "Dodge/Dodge_Roll_B.anim", false, 0.12f)
+        };
+
+        private static int ApplyStitches(StringBuilder report)
+        {
+            AnimationClip rest =
+                AssetDatabase.LoadAssetAtPath<AnimationClip>(RestPosePath);
+            if (rest == null)
+            {
+                report.AppendLine($"  FAIL stitch: rest pose missing ({RestPosePath})");
+                return 0;
+            }
+
+            var restPose = new Dictionary<string, float>(StringComparer.Ordinal);
+            foreach (EditorCurveBinding binding in
+                     AnimationUtility.GetCurveBindings(rest))
+            {
+                if (IsRootBinding(binding.propertyName))
+                {
+                    continue;
+                }
+
+                AnimationCurve curve = AnimationUtility.GetEditorCurve(rest, binding);
+                if (curve != null)
+                {
+                    restPose[binding.propertyName] = curve.Evaluate(0.0f);
+                }
+            }
+
+            int stitched = 0;
+            for (int i = 0; i < Stitches.Length; i++)
+            {
+                PoseStitch stitch = Stitches[i];
+                AnimationClip clip =
+                    AssetDatabase.LoadAssetAtPath<AnimationClip>(stitch.ClipPath);
+                if (clip == null)
+                {
+                    report.AppendLine($"  FAIL stitch: {stitch.ClipPath} missing");
+                    continue;
+                }
+
+                StitchToRestPose(clip, restPose, stitch);
+                EditorUtility.SetDirty(clip);
+                stitched++;
+            }
+
+            return stitched;
+        }
+
+        private static bool IsRootBinding(string propertyName)
+        {
+            return propertyName.StartsWith("Motion", StringComparison.Ordinal) ||
+                   propertyName.EndsWith("T.x", StringComparison.Ordinal) ||
+                   propertyName.EndsWith("T.y", StringComparison.Ordinal) ||
+                   propertyName.EndsWith("T.z", StringComparison.Ordinal);
+        }
+
+        private static void StitchToRestPose(
+            AnimationClip clip,
+            IReadOnlyDictionary<string, float> restPose,
+            PoseStitch stitch)
+        {
+            float length = clip.length;
+            float window = Mathf.Min(stitch.WindowSeconds, length * 0.5f);
+            if (window <= 0.0f)
+            {
+                return;
+            }
+
+            float boundary = stitch.AtTail ? length : 0.0f;
+            const float step = 1.0f / 30.0f;
+
+            foreach (EditorCurveBinding binding in
+                     AnimationUtility.GetCurveBindings(clip))
+            {
+                if (IsRootBinding(binding.propertyName) ||
+                    !restPose.TryGetValue(binding.propertyName, out float restValue))
+                {
+                    continue;
+                }
+
+                AnimationCurve curve = AnimationUtility.GetEditorCurve(clip, binding);
+                if (curve == null || curve.length == 0)
+                {
+                    continue;
+                }
+
+                float delta = restValue - curve.Evaluate(boundary);
+                if (Mathf.Abs(delta) < 0.0001f)
+                {
+                    continue;
+                }
+
+                float windowStart = stitch.AtTail ? length - window : 0.0f;
+                float windowEnd = stitch.AtTail ? length : window;
+
+                var keys = new List<Keyframe>();
+                Keyframe[] original = curve.keys;
+                for (int k = 0; k < original.Length; k++)
+                {
+                    if (original[k].time < windowStart - 0.0001f ||
+                        original[k].time > windowEnd + 0.0001f)
+                    {
+                        keys.Add(original[k]);
+                    }
+                }
+
+                for (float time = windowStart; time <= windowEnd + 0.0001f; time += step)
+                {
+                    float sample = Mathf.Clamp(time, 0.0f, length);
+                    float weight = 1.0f - Mathf.SmoothStep(
+                        0.0f,
+                        1.0f,
+                        Mathf.Abs(sample - boundary) / window);
+                    keys.Add(new Keyframe(sample, curve.Evaluate(sample) + delta * weight));
+                }
+
+                keys.Sort((left, right) => left.time.CompareTo(right.time));
+                var stitchedCurve = new AnimationCurve(keys.ToArray());
+                for (int k = 0; k < stitchedCurve.length; k++)
+                {
+                    float time = stitchedCurve[k].time;
+                    if (time >= windowStart - 0.0001f && time <= windowEnd + 0.0001f)
+                    {
+                        stitchedCurve.SmoothTangents(k, 0.0f);
+                    }
+                }
+
+                AnimationUtility.SetEditorCurve(clip, binding, stitchedCurve);
+            }
         }
 
         [MenuItem("Tools/Animation/Report Curated Clip Sources")]
