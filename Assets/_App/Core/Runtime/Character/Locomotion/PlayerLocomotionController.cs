@@ -331,6 +331,9 @@ namespace _App
                 case PlayerLocomotionStateId.Dodge:
                     _stateMachine.Start<PlayerDodgeState>();
                     break;
+                case PlayerLocomotionStateId.AirDash:
+                    _stateMachine.Start<PlayerAirDashState>();
+                    break;
                 case PlayerLocomotionStateId.Landing:
                     _stateMachine.Start<PlayerLandingState>();
                     break;
@@ -362,6 +365,9 @@ namespace _App
                     break;
                 case PlayerLocomotionStateId.Dodge:
                     _stateMachine.ChangeState<PlayerDodgeState>();
+                    break;
+                case PlayerLocomotionStateId.AirDash:
+                    _stateMachine.ChangeState<PlayerAirDashState>();
                     break;
                 case PlayerLocomotionStateId.Landing:
                     _stateMachine.ChangeState<PlayerLandingState>();
