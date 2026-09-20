@@ -156,6 +156,7 @@ namespace _App
         bool IsJumping { get; }
         bool IsDodging { get; }
         bool IsAirDashing { get; }
+        float GaitSpeed { get; }
         bool IsSwimming { get; }
         bool IsClimbing { get; }
         bool IsFlying { get; }
