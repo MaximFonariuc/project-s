@@ -6,7 +6,9 @@ namespace _App
     internal sealed class PlayerAirDashAction
     {
         private readonly Character _character;
+        private readonly ICharacterMotor _motor;
         private readonly IDamageImmunityTarget _damageImmunity;
+        private readonly AirDashSettings _settings;
         private readonly bool _canEverAirDash;
         private readonly bool _hasInvulnerability;
         private readonly float _impulse;
@@ -16,23 +18,25 @@ namespace _App
         private readonly int _chargesPerAirtime;
 
         private IDisposable _damageImmunityLease;
+        private Vector3 _dashDirection;
+        private float _continuationSpeed;
         private float _elapsed;
         private int _chargesLeft;
-        private bool _requestedBackwards;
         private bool _requestPending;
         private bool _exitPending;
         private bool _enabled;
 
         public bool CanRequest => _enabled && !_requestPending && CanEnterAirDash;
         public bool IsStarting => _requestPending;
-        public bool IsBackwards => _requestedBackwards;
 
         public PlayerAirDashAction(
             Character character,
+            ICharacterMotor motor,
             IDamageImmunityTarget damageImmunity,
             AirDashSettings settings)
         {
             _character = character ?? throw new ArgumentNullException(nameof(character));
+            _motor = motor ?? throw new ArgumentNullException(nameof(motor));
             _damageImmunity = damageImmunity ??
                 throw new ArgumentNullException(nameof(damageImmunity));
 
@@ -41,6 +45,7 @@ namespace _App
                 throw new ArgumentNullException(nameof(settings));
             }
 
+            _settings = settings;
             _canEverAirDash = settings.IsEnabled;
             _impulse = settings.Impulse;
             _duration = settings.Duration;
@@ -89,7 +94,11 @@ namespace _App
             }
 
             _elapsed = 0.0f;
-            _requestedBackwards = false;
+        }
+
+        public void SetContinuationSpeed(float speed)
+        {
+            _continuationSpeed = Mathf.Max(0.0f, speed);
         }
 
         public void RestoreCharges()
@@ -97,7 +106,7 @@ namespace _App
             _chargesLeft = _chargesPerAirtime;
         }
 
-        public bool TryRequest(Vector3 worldDirection, bool backwards)
+        public bool TryRequest(Vector3 worldDirection, PlayerDodgeDirection direction)
         {
             if (!CanRequest)
             {
@@ -106,7 +115,13 @@ namespace _App
 
             Vector3 clampedDirection = Vector3.ClampMagnitude(worldDirection, 1.0f);
             _character.SetMovementDirection(clampedDirection);
-            _requestedBackwards = backwards;
+
+            if (direction == PlayerDodgeDirection.Forward &&
+                !clampedDirection.IsZero())
+            {
+                _motor.SnapFacingDirection(clampedDirection);
+            }
+
             _requestPending = true;
             return true;
         }
@@ -157,11 +172,18 @@ namespace _App
                 dashDirection = _character.GetForwardVector();
             }
 
-            Vector3 planarDirection = Vector3.ProjectOnPlane(
+            _dashDirection = Vector3.ProjectOnPlane(
                 dashDirection,
                 _character.GetUpVector()).normalized;
-            _character.SetVelocity(planarDirection * _impulse);
+            _character.SetVelocity(_dashDirection * ResolveSpeed(0.0f));
             UpdateDamageImmunity();
+        }
+
+        private float ResolveSpeed(float normalizedTime)
+        {
+            return Mathf.Max(
+                _impulse * _settings.SampleNormalizedSpeed(normalizedTime),
+                _continuationSpeed);
         }
 
         private void OnCustomMovementModeUpdated(float deltaTime)
@@ -173,6 +195,7 @@ namespace _App
 
             _character.SetMovementDirection(Vector3.zero);
             _elapsed = Mathf.Min(_elapsed + deltaTime, _duration);
+            _character.SetVelocity(_dashDirection * ResolveSpeed(_elapsed / _duration));
             UpdateDamageImmunity();
 
             if (_elapsed >= _duration)
@@ -185,9 +208,13 @@ namespace _App
         {
             ReleaseDamageImmunity();
 
-            _character.SetVelocity(Vector3.zero);
+            Vector3 up = _character.GetUpVector();
+            Vector3 planarVelocity = Vector3.ProjectOnPlane(_character.GetVelocity(), up);
+            _character.SetVelocity(
+                Vector3.ClampMagnitude(planarVelocity, ResolveSpeed(1.0f)));
             _elapsed = 0.0f;
-            _requestedBackwards = false;
+            _dashDirection = Vector3.zero;
+            _continuationSpeed = 0.0f;
             _requestPending = false;
             _exitPending = false;
             _character.SetMovementMode(

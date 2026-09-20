@@ -14,6 +14,14 @@ namespace _App
         AirDash
     }
 
+    public enum PlayerDodgeDirection
+    {
+        Forward,
+        Backward,
+        Left,
+        Right
+    }
+
     public enum PlayerLandingType
     {
         None,
@@ -78,7 +86,7 @@ namespace _App
         public bool IsJumpStarting { get; }
         public bool IsDodgeStarting { get; }
         public bool IsCrouched { get; }
-        public bool DodgeBackwards { get; }
+        public PlayerDodgeDirection DodgeDirection { get; }
         public PlayerLanding Landing { get; }
         public bool IsLandingRecovering =>
             State == PlayerLocomotionStateId.Landing && Landing.BlocksActions;
@@ -98,7 +106,7 @@ namespace _App
             bool isJumpStarting,
             bool isDodgeStarting,
             bool isCrouched,
-            bool dodgeBackwards,
+            PlayerDodgeDirection dodgeDirection,
             PlayerLanding landing)
         {
             IsValid = true;
@@ -116,7 +124,7 @@ namespace _App
             IsJumpStarting = isJumpStarting;
             IsDodgeStarting = isDodgeStarting;
             IsCrouched = isCrouched;
-            DodgeBackwards = dodgeBackwards;
+            DodgeDirection = dodgeDirection;
             Landing = landing;
         }
     }

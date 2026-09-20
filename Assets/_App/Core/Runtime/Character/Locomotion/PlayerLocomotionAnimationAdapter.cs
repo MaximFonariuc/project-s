@@ -1,4 +1,5 @@
 using System;
+using ModularAnimation;
 
 namespace _App
 {
@@ -39,9 +40,7 @@ namespace _App
             {
                 _animation.CrossFade(
                     PlayerAnimationSource.Locomotion,
-                    snapshot.DodgeBackwards
-                        ? PlayerAnimationSlots.DodgeBackward
-                        : PlayerAnimationSlots.DodgeForward,
+                    ResolveDodgeSlot(snapshot.DodgeDirection),
                     _dodgeDuration);
             }
             else if (!isDodging && _wasDodging)
@@ -56,9 +55,7 @@ namespace _App
             {
                 _animation.CrossFade(
                     PlayerAnimationSource.Locomotion,
-                    snapshot.DodgeBackwards
-                        ? PlayerAnimationSlots.AirDashBackward
-                        : PlayerAnimationSlots.AirDashForward,
+                    ResolveAirDashSlot(snapshot.DodgeDirection),
                     _airDashDuration);
             }
             else if (!isAirDashing && _wasAirDashing)
@@ -67,6 +64,24 @@ namespace _App
             }
 
             _wasAirDashing = isAirDashing;
+        }
+
+        private static AnimationSlotId ResolveDodgeSlot(PlayerDodgeDirection direction)
+        {
+            return direction == PlayerDodgeDirection.Backward
+                ? PlayerAnimationSlots.DodgeBackward
+                : PlayerAnimationSlots.DodgeForward;
+        }
+
+        private static AnimationSlotId ResolveAirDashSlot(PlayerDodgeDirection direction)
+        {
+            return direction switch
+            {
+                PlayerDodgeDirection.Backward => PlayerAnimationSlots.AirDashBackward,
+                PlayerDodgeDirection.Left => PlayerAnimationSlots.AirDashLeft,
+                PlayerDodgeDirection.Right => PlayerAnimationSlots.AirDashRight,
+                _ => PlayerAnimationSlots.AirDashForward
+            };
         }
 
         public void Reset()

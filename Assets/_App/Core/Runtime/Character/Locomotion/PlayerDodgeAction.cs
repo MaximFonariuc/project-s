@@ -20,7 +20,6 @@ namespace _App
         private Vector3 _dodgeDirection;
         private float _continuationSpeed;
         private float _elapsed;
-        private bool _requestedBackwards;
         private bool _requestPending;
         private bool _exitPending;
         private bool _enabled;
@@ -91,7 +90,6 @@ namespace _App
             }
 
             _elapsed = 0.0f;
-            _requestedBackwards = false;
         }
 
         public void SetContinuationSpeed(float speed)
@@ -99,7 +97,7 @@ namespace _App
             _continuationSpeed = Mathf.Max(0.0f, speed);
         }
 
-        public bool TryRequest(Vector3 worldDirection, bool backwards)
+        public bool TryRequest(Vector3 worldDirection, PlayerDodgeDirection direction)
         {
             if (!CanRequest)
             {
@@ -109,12 +107,11 @@ namespace _App
             Vector3 clampedDirection = Vector3.ClampMagnitude(worldDirection, 1.0f);
             _motor.SetMovementDirection(clampedDirection);
 
-            if (!backwards)
+            if (direction != PlayerDodgeDirection.Backward)
             {
                 _motor.SnapFacingDirection(clampedDirection);
             }
 
-            _requestedBackwards = backwards;
             _requestPending = true;
             return true;
         }
@@ -207,7 +204,6 @@ namespace _App
             _elapsed = 0.0f;
             _dodgeDirection = Vector3.zero;
             _continuationSpeed = 0.0f;
-            _requestedBackwards = false;
             _requestPending = false;
             _exitPending = false;
             _character.SetMovementMode(

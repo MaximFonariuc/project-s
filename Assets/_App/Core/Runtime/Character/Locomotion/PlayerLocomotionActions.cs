@@ -16,8 +16,8 @@ namespace _App
         void StartGliding();
         void StopGliding();
         void SetDodgeContinuationSpeed(float speed);
-        bool TryDodge(Vector3 worldDirection, bool backwards);
-        bool TryAirDash(Vector3 worldDirection, bool backwards);
+        bool TryDodge(Vector3 worldDirection, PlayerDodgeDirection direction);
+        bool TryAirDash(Vector3 worldDirection, PlayerDodgeDirection direction);
         void RestoreAirDashCharges();
     }
 
@@ -74,6 +74,7 @@ namespace _App
             {
                 _airDash = new PlayerAirDashAction(
                     character,
+                    motor,
                     damageImmunity,
                     airDashSettings);
             }
@@ -132,16 +133,17 @@ namespace _App
         public void SetDodgeContinuationSpeed(float speed)
         {
             _dodge?.SetContinuationSpeed(speed);
+            _airDash?.SetContinuationSpeed(speed);
         }
 
-        public bool TryDodge(Vector3 worldDirection, bool backwards)
+        public bool TryDodge(Vector3 worldDirection, PlayerDodgeDirection direction)
         {
-            return _dodge?.TryRequest(worldDirection, backwards) == true;
+            return _dodge?.TryRequest(worldDirection, direction) == true;
         }
 
-        public bool TryAirDash(Vector3 worldDirection, bool backwards)
+        public bool TryAirDash(Vector3 worldDirection, PlayerDodgeDirection direction)
         {
-            return _airDash?.TryRequest(worldDirection, backwards) == true;
+            return _airDash?.TryRequest(worldDirection, direction) == true;
         }
 
         public void RestoreAirDashCharges()
