@@ -165,6 +165,7 @@ namespace _App.Editor.Animation
             }
 
             int repaired = ApplyRepairs(report);
+            int aligned = ApplyRecoveryAlignments(report);
             int stitched = ApplyStitches(report);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
@@ -172,7 +173,8 @@ namespace _App.Editor.Animation
             report.Insert(
                 0,
                 $"[Curated Clips] created {created}, refreshed {refreshed}, " +
-                $"repaired {repaired}, stitched {stitched}, failed {failed}\n");
+                $"repaired {repaired}, aligned {aligned}, stitched {stitched}, " +
+                $"failed {failed}\n");
             if (failed > 0)
             {
                 Debug.LogError(report.ToString());
@@ -276,6 +278,31 @@ namespace _App.Editor.Animation
                 0.5667f,
                 0.6333f)
         };
+
+        private readonly struct RecoveryAlignment
+        {
+            public string ClipPath { get; }
+            public string ReferencePath { get; }
+
+            public RecoveryAlignment(string clipPath, string referencePath)
+            {
+                ClipPath = clipPath;
+                ReferencePath = referencePath;
+            }
+        }
+
+        private static readonly RecoveryAlignment[] RecoveryAlignments =
+        {
+            new RecoveryAlignment(
+                Shared + "Dodge/Dodge_Roll_B.anim",
+                Shared + "Dodge/Dodge_Roll_F.anim")
+        };
+
+        private const string RootHeightProperty = "RootT.y";
+        private const float RecoveryLowLevel = 0.55f;
+        private const float RecoveryUprightLevel = 0.80f;
+        private const float RecoveryTolerance = 0.01f;
+        private const float ResampleStep = 1.0f / 60.0f;
 
         private readonly struct PoseStitch
         {
@@ -402,6 +429,149 @@ namespace _App.Editor.Animation
 
             error = "property not found";
             return false;
+        }
+
+        private static int ApplyRecoveryAlignments(StringBuilder report)
+        {
+            int aligned = 0;
+            for (int i = 0; i < RecoveryAlignments.Length; i++)
+            {
+                RecoveryAlignment alignment = RecoveryAlignments[i];
+                AnimationClip clip =
+                    AssetDatabase.LoadAssetAtPath<AnimationClip>(alignment.ClipPath);
+                AnimationClip reference =
+                    AssetDatabase.LoadAssetAtPath<AnimationClip>(alignment.ReferencePath);
+                if (clip == null || reference == null)
+                {
+                    report.AppendLine($"  FAIL align: missing {alignment.ClipPath}");
+                    continue;
+                }
+
+                if (!TryFindRecovery(clip, out float anchor, out float upright) ||
+                    !TryFindRecovery(reference, out _, out float referenceUpright))
+                {
+                    report.AppendLine(
+                        $"  FAIL align {alignment.ClipPath}: no {RootHeightProperty} profile");
+                    continue;
+                }
+
+                float target = referenceUpright / reference.length * clip.length;
+                if (Mathf.Abs(target - upright) < RecoveryTolerance ||
+                    target <= anchor + RecoveryTolerance ||
+                    target >= clip.length - RecoveryTolerance)
+                {
+                    continue;
+                }
+
+                var warp = new AnimationCurve();
+                warp.AddKey(new Keyframe(0.0f, 0.0f));
+                warp.AddKey(new Keyframe(anchor, anchor));
+                warp.AddKey(new Keyframe(target, upright));
+                warp.AddKey(new Keyframe(clip.length, clip.length));
+                for (int k = 0; k < warp.length; k++)
+                {
+                    warp.SmoothTangents(k, 0.0f);
+                }
+
+                Resample(clip, warp);
+                EditorUtility.SetDirty(clip);
+                aligned++;
+            }
+
+            return aligned;
+        }
+
+        private static bool TryFindRecovery(
+            AnimationClip clip,
+            out float lowExit,
+            out float upright)
+        {
+            lowExit = 0.0f;
+            upright = 0.0f;
+            AnimationCurve height = null;
+            foreach (EditorCurveBinding binding in
+                     AnimationUtility.GetCurveBindings(clip))
+            {
+                if (string.Equals(
+                        binding.propertyName,
+                        RootHeightProperty,
+                        StringComparison.Ordinal))
+                {
+                    height = AnimationUtility.GetEditorCurve(clip, binding);
+                }
+            }
+
+            if (height == null || height.length == 0)
+            {
+                return false;
+            }
+
+            const int samples = 480;
+            float lowest = float.MaxValue;
+            float lowestTime = 0.0f;
+            for (int i = 0; i <= samples; i++)
+            {
+                float time = clip.length * i / samples;
+                float value = height.Evaluate(time);
+                if (value < lowest)
+                {
+                    lowest = value;
+                    lowestTime = time;
+                }
+            }
+
+            for (int i = 0; i <= samples; i++)
+            {
+                float time = clip.length * i / samples;
+                if (time < lowestTime)
+                {
+                    continue;
+                }
+
+                float value = height.Evaluate(time);
+                if (lowExit <= 0.0f && value >= RecoveryLowLevel)
+                {
+                    lowExit = time;
+                }
+
+                if (lowExit > 0.0f && value >= RecoveryUprightLevel)
+                {
+                    upright = time;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static void Resample(AnimationClip clip, AnimationCurve warp)
+        {
+            foreach (EditorCurveBinding binding in
+                     AnimationUtility.GetCurveBindings(clip))
+            {
+                AnimationCurve source = AnimationUtility.GetEditorCurve(clip, binding);
+                if (source == null || source.length == 0)
+                {
+                    continue;
+                }
+
+                var resampled = new AnimationCurve();
+                for (float time = 0.0f;
+                     time <= clip.length + 0.0001f;
+                     time += ResampleStep)
+                {
+                    float sample = Mathf.Min(time, clip.length);
+                    resampled.AddKey(
+                        new Keyframe(sample, source.Evaluate(warp.Evaluate(sample))));
+                }
+
+                for (int k = 0; k < resampled.length; k++)
+                {
+                    resampled.SmoothTangents(k, 0.0f);
+                }
+
+                AnimationUtility.SetEditorCurve(clip, binding, resampled);
+            }
         }
 
         private static int ApplyStitches(StringBuilder report)
