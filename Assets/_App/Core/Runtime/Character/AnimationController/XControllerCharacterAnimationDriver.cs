@@ -52,10 +52,6 @@ namespace _App
             XControllerAnimationContract.AirDashForwardStatePath);
         private static readonly int AirDashBackwardStateHash = Animator.StringToHash(
             XControllerAnimationContract.AirDashBackwardStatePath);
-        private static readonly int AirDashLeftStateHash = Animator.StringToHash(
-            XControllerAnimationContract.AirDashLeftStatePath);
-        private static readonly int AirDashRightStateHash = Animator.StringToHash(
-            XControllerAnimationContract.AirDashRightStatePath);
         private static readonly int[] ReactionStateHashes = CreateStateHashes(
             XControllerAnimationContract.ReactionStatePaths);
 
@@ -648,22 +644,14 @@ namespace _App
                 crossFadeSeconds = ResolveDodgeCrossFade();
             }
             else if (request.Action == PlayerAnimatorActions.AirDash &&
-                     request.Variant is >= 0 and <= 3)
+                     request.Variant is 0 or 1)
             {
-                statePath = request.Variant switch
-                {
-                    1 => XControllerAnimationContract.AirDashBackwardStatePath,
-                    2 => XControllerAnimationContract.AirDashLeftStatePath,
-                    3 => XControllerAnimationContract.AirDashRightStatePath,
-                    _ => XControllerAnimationContract.AirDashForwardStatePath
-                };
-                stateHash = request.Variant switch
-                {
-                    1 => AirDashBackwardStateHash,
-                    2 => AirDashLeftStateHash,
-                    3 => AirDashRightStateHash,
-                    _ => AirDashForwardStateHash
-                };
+                statePath = request.Variant == 1
+                    ? XControllerAnimationContract.AirDashBackwardStatePath
+                    : XControllerAnimationContract.AirDashForwardStatePath;
+                stateHash = request.Variant == 1
+                    ? AirDashBackwardStateHash
+                    : AirDashForwardStateHash;
                 crossFadeSeconds = DodgeCrossFadeSeconds;
             }
             else if (request.Action == PlayerAnimatorActions.WeaponTransition &&

@@ -21,6 +21,7 @@ namespace _App
         }
 
         private const float MoveThresholdSqr = 0.0001f;
+        private const float BackwardDodgeDot = -0.5f;
         private const float AscendingThreshold = 0.05f;
         private const float JumpStartupSeconds = 0.12f;
         private const float JumpTakeoffTimeoutSeconds = 0.10f;
@@ -728,19 +729,9 @@ namespace _App
                 return PlayerDodgeDirection.Forward;
             }
 
-            move.Normalize();
-            float forwardDot = Vector3.Dot(move, forward);
-            float rightDot = Vector3.Dot(move, Vector3.Cross(up, forward));
-            if (Mathf.Abs(forwardDot) >= Mathf.Abs(rightDot))
-            {
-                return forwardDot >= 0.0f
-                    ? PlayerDodgeDirection.Forward
-                    : PlayerDodgeDirection.Backward;
-            }
-
-            return rightDot >= 0.0f
-                ? PlayerDodgeDirection.Right
-                : PlayerDodgeDirection.Left;
+            return Vector3.Dot(move.normalized, forward) < BackwardDodgeDot
+                ? PlayerDodgeDirection.Backward
+                : PlayerDodgeDirection.Forward;
         }
 
         private bool CanConsumeJumpRequest(in PlayerMovementIntent movementIntent)

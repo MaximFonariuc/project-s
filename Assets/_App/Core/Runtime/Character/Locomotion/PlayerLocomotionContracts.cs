@@ -17,9 +17,7 @@ namespace _App
     public enum PlayerDodgeDirection
     {
         Forward,
-        Backward,
-        Left,
-        Right
+        Backward
     }
 
     public enum PlayerLandingType
