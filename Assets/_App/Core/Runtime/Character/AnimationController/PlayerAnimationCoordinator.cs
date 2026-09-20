@@ -71,8 +71,6 @@ namespace _App
             Register(table, PlayerAnimationSlots.DodgeBackward);
             Register(table, PlayerAnimationSlots.AirDashForward);
             Register(table, PlayerAnimationSlots.AirDashBackward);
-            Register(table, PlayerAnimationSlots.AirDashLeft);
-            Register(table, PlayerAnimationSlots.AirDashRight);
             Register(table, PlayerAnimationSlots.HeavyDeath);
             for (int i = 0; i < LadderSlots.Length; i++)
             {
@@ -146,18 +144,6 @@ namespace _App
             if (slot == PlayerAnimationSlots.AirDashBackward)
             {
                 request = new AnimationActionRequest(AirDash, 1, CallerSuppliedDuration);
-                return true;
-            }
-
-            if (slot == PlayerAnimationSlots.AirDashLeft)
-            {
-                request = new AnimationActionRequest(AirDash, 2, CallerSuppliedDuration);
-                return true;
-            }
-
-            if (slot == PlayerAnimationSlots.AirDashRight)
-            {
-                request = new AnimationActionRequest(AirDash, 3, CallerSuppliedDuration);
                 return true;
             }
 

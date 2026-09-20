@@ -75,13 +75,9 @@ namespace _App
 
         private static AnimationSlotId ResolveAirDashSlot(PlayerDodgeDirection direction)
         {
-            return direction switch
-            {
-                PlayerDodgeDirection.Backward => PlayerAnimationSlots.AirDashBackward,
-                PlayerDodgeDirection.Left => PlayerAnimationSlots.AirDashLeft,
-                PlayerDodgeDirection.Right => PlayerAnimationSlots.AirDashRight,
-                _ => PlayerAnimationSlots.AirDashForward
-            };
+            return direction == PlayerDodgeDirection.Backward
+                ? PlayerAnimationSlots.AirDashBackward
+                : PlayerAnimationSlots.AirDashForward;
         }
 
         public void Reset()

@@ -15,8 +15,6 @@ namespace _App.Editor.Animation
         private const string Legacy = "Assets/_Game/Animations/Character/2. Basic/";
         private const string Attack =
             "Assets/_Game/Animations/Clazy/Animations/P4_CLazyAttack/";
-        private const string Escape =
-            "Assets/_Game/Animations/Clazy/Animations/P2_CLazyEscape/";
         private const string Weapons =
             "Assets/_Game/Animations/Character/Weapons/";
 
@@ -116,16 +114,6 @@ namespace _App.Editor.Animation
                 Legacy + "Jump/AirDash/AirDashBack.FBX",
                 "AirDashBack",
                 Shared + "Jump/Jump_AirDash_B.anim",
-                false),
-            new CuratedClip(
-                Escape + "Esc_8way_BoostDash_Air/CLazy@Esc_BoostDash_Air_Left.FBX",
-                "Esc_BoostDash_Air_Left",
-                Shared + "Jump/Jump_AirDash_L.anim",
-                false),
-            new CuratedClip(
-                Escape + "Esc_8way_BoostDash_Air/CLazy@Esc_BoostDash_Air_Right.FBX",
-                "Esc_BoostDash_Air_Right",
-                Shared + "Jump/Jump_AirDash_R.anim",
                 false),
             new CuratedClip(
                 Attack + "Attack_Punch_Run/CLazy@Attack_Hand_PwR.FBX",
