@@ -8,9 +8,11 @@ namespace _App
         private readonly Character _character;
         private readonly ICharacterMotor _motor;
         private readonly IDamageImmunityTarget _damageImmunity;
+        private readonly DodgeSettings _settings;
         private readonly bool _canEverDodge;
         private readonly bool _hasInvulnerability;
         private readonly float _impulse;
+        private Vector3 _dodgeDirection;
         private readonly float _duration;
         private readonly float _invulnerabilityStart;
         private readonly float _invulnerabilityEnd;
@@ -41,6 +43,7 @@ namespace _App
                 throw new ArgumentNullException(nameof(settings));
             }
 
+            _settings = settings;
             _canEverDodge = settings.IsEnabled;
             _impulse = settings.Impulse;
             _duration = settings.Duration;
@@ -153,10 +156,11 @@ namespace _App
                 dodgeDirection = _character.GetForwardVector();
             }
 
-            Vector3 planarDirection = Vector3.ProjectOnPlane(
+            _dodgeDirection = Vector3.ProjectOnPlane(
                 dodgeDirection,
                 _character.GetUpVector()).normalized;
-            _character.SetVelocity(planarDirection * _impulse);
+            _character.SetVelocity(
+                _dodgeDirection * (_impulse * _settings.SampleNormalizedSpeed(0.0f)));
             UpdateDamageImmunity();
         }
 
@@ -169,6 +173,9 @@ namespace _App
 
             _character.SetMovementDirection(Vector3.zero);
             _elapsed = Mathf.Min(_elapsed + deltaTime, _duration);
+            _character.SetVelocity(
+                _dodgeDirection *
+                (_impulse * _settings.SampleNormalizedSpeed(_elapsed / _duration)));
             UpdateDamageImmunity();
 
             if (_elapsed >= _duration)
@@ -184,6 +191,7 @@ namespace _App
             Vector3 verticalVelocity = Vector3.Project(_character.GetVelocity(), up);
             _character.SetVelocity(verticalVelocity);
             _elapsed = 0.0f;
+            _dodgeDirection = Vector3.zero;
             _requestedBackwards = false;
             _requestPending = false;
             _exitPending = false;

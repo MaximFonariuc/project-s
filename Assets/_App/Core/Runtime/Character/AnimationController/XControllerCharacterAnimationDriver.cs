@@ -19,6 +19,8 @@ namespace _App
         private const float DirectionDampSeconds = 0.12f;
         private const float DirectionEpsilon = 0.0001f;
         private const float DodgeCrossFadeSeconds = 0.10f;
+        private const float DodgeMovingCrossFadeSeconds = 0.20f;
+        private const float DodgeCrossFadeSpeed = 4.0f;
         private const float AttackCrossFadeSeconds = 0.12f;
         private const float WeaponCrossFadeSeconds = 0.15f;
         private const float DefenseCrossFadeSeconds = 0.10f;
@@ -81,6 +83,7 @@ namespace _App
         private int _releasedActionLayerIndex = -1;
         private int _releasedActionStateHash;
         private bool _wasGrounded = true;
+        private float _lastPlanarSpeed;
         private bool _disposed;
 
         public XControllerCharacterAnimationDriver(Animator animator)
@@ -145,6 +148,7 @@ namespace _App
             // damping would delay the jump/fall sign change and soften impacts.
             _animator.SetFloat(FallingDurationHash, fallingVelocity);
             _animator.SetBool(OnGroundHash, frame.IsGrounded);
+            _lastPlanarSpeed = planarSpeed;
             _wasGrounded = frame.IsGrounded;
             _lookPose.SetGrounded(frame.IsGrounded);
         }
@@ -250,6 +254,7 @@ namespace _App
             ClearReleasedActionTracking();
             ApplyPlaybackRate();
             _lastAirborneVerticalSpeed = 0.0f;
+            _lastPlanarSpeed = 0.0f;
             _wasGrounded = true;
             _lookPose.Reset();
             ClearActionPresentationPolicy();
@@ -266,6 +271,15 @@ namespace _App
 
             Reset();
             _disposed = true;
+        }
+
+        private float ResolveDodgeCrossFade()
+        {
+            float blend = Mathf.Clamp01(_lastPlanarSpeed / DodgeCrossFadeSpeed);
+            return Mathf.Lerp(
+                DodgeCrossFadeSeconds,
+                DodgeMovingCrossFadeSeconds,
+                blend);
         }
 
         private static float ResolveMovementDirection(
@@ -627,7 +641,7 @@ namespace _App
                 stateHash = request.Variant == 1
                     ? RollBackwardStateHash
                     : RollForwardStateHash;
-                crossFadeSeconds = DodgeCrossFadeSeconds;
+                crossFadeSeconds = ResolveDodgeCrossFade();
             }
             else if (request.Action == PlayerAnimatorActions.AirDash &&
                      request.Variant is 0 or 1)
