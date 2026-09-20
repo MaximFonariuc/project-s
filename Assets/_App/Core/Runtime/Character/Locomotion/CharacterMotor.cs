@@ -34,6 +34,12 @@ namespace _App
         public bool IsCrouched => _character.IsCrouched();
         public ERotationMode RotationMode => _character.RotationMode;
         public float MaxSpeed => _character.GetMaxSpeed();
+        public float GaitSpeed => _speedMode switch
+        {
+            PlayerSpeedMode.Walk => _walkSpeed,
+            PlayerSpeedMode.Sprint => _sprintSpeed,
+            _ => _runSpeed
+        };
         public Vector3 Up => _character.GetUpVector();
         public Vector3 Forward => _character.GetForwardVector();
         public Vector3 Position => _character.GetPosition();

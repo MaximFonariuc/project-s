@@ -279,7 +279,7 @@ namespace _App
         {
             bool steering = !BlocksActions &&
                             _runtime.RawMoveDirection.sqrMagnitude > MoveThresholdSqr;
-            _actions.SetDodgeContinuationSpeed(steering ? _motor.MaxSpeed : 0.0f);
+            _actions.SetDodgeContinuationSpeed(steering ? _motor.GaitSpeed : 0.0f);
         }
 
         private PlayerLocomotionStateId ResolveState()
