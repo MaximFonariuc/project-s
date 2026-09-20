@@ -251,18 +251,24 @@ the feet under-run the ground: walk travels `3.0` m/s against a `1.823` m/s
 cycle, run `5.0` against `2.963`, and sprint `10.0` against the same `2.963`
 because `Loco_Sprint_F/B` are copies of the run clips.
 
-Releasing input at speed no longer snaps the cycle back to idle. The driver
-watches its own planar speed and fires the `Stopping` trigger when it collapses
-from at least `2.0` m/s to under `0.35` while grounded and outside any action,
-which routes `Move` into `Locomotion.Stop`. Entry picks `StopRun` above
-`MovementType` `1.5` and `StopWalk` otherwise, and the state returns to `Move` at
-normalized `0.45` over `0.20s`, or immediately if the character leaves the ground.
+Movement no longer begins and ends mid-cycle. The driver watches its own planar
+speed and fires two triggers while grounded and outside any action: `Stopping`
+when speed collapses from at least `2.0` m/s to under `0.35`, and `Starting`
+when it rises from a stationary latch past `1.5`. They route `Move` into
+`Locomotion.Stop` and `Locomotion.Start`, which return to `Move` at normalized
+`0.45` and `0.80`, or immediately if the character leaves the ground.
 
-The stop deliberately has no cancel condition on `MovementType`. That parameter
-is damped over `0.33s`, so at the moment the stop begins it still reads the gait
-the character just left — the same value the entry needs to choose the variant.
-Using it for both selection and cancellation made the state exit on the frame it
-was entered.
+Both sub-machines pick their variant from `TransitionGait`, a float the driver
+latches at the moment it fires the trigger — the damped `MovementType` for a stop
+and the raw gait for a start. `MovementType` cannot serve this purpose: it is
+damped over `0.33s`, so at the start of a stop it still reads the gait being left,
+which is exactly what entry selection needs and exactly what an exit condition
+must not see. Using one parameter for both made the stop exit on the frame it was
+entered.
+
+The stationary latch matters for starts. Comparing against the previous frame's
+speed alone misses the event, because acceleration can cross the whole band
+between two frames.
 
 Scaling playback to close that gap was tried and reverted. Driving the blend by
 metres per second instead of gait index made the walk clip unreachable, since
