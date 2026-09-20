@@ -73,6 +73,7 @@ namespace _App
         public float LateralSpeed { get; }
         public float VerticalSpeed { get; }
         public float NormalizedSpeed { get; }
+        public float RequestedSpeed { get; }
         public bool IsGrounded { get; }
         public bool IsJumpStarting { get; }
         public bool IsDodgeStarting { get; }
@@ -92,6 +93,7 @@ namespace _App
             float lateralSpeed,
             float verticalSpeed,
             float normalizedSpeed,
+            float requestedSpeed,
             bool isGrounded,
             bool isJumpStarting,
             bool isDodgeStarting,
@@ -109,6 +111,7 @@ namespace _App
             LateralSpeed = lateralSpeed;
             VerticalSpeed = verticalSpeed;
             NormalizedSpeed = Mathf.Clamp01(normalizedSpeed);
+            RequestedSpeed = Mathf.Max(0.0f, requestedSpeed);
             IsGrounded = isGrounded;
             IsJumpStarting = isJumpStarting;
             IsDodgeStarting = isDodgeStarting;
