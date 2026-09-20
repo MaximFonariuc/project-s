@@ -57,7 +57,6 @@ Assets/_Game/Animations/Character/
 | `FallShort` / `FallLarge` | `Jump_Fall_Short` / `Jump_Fall_Long` |
 | `LandSoft` / `LandMedium` / `LandHard` | `Jump_Land_Soft` / `Jump_Land_Medium` / `Jump_Land_Hard` |
 | `AirDashFront` / `AirDashBack` | `Jump_AirDash_F` / `Jump_AirDash_B` |
-| `Esc_BoostDash_Air_Left` / `Esc_BoostDash_Air_Right` | `Jump_AirDash_L` / `Jump_AirDash_R` |
 | `RollFront` / `RollBack` | `Dodge_Roll_F` / `Dodge_Roll_B` |
 | `LightHit` | `React_Hit_F` и далее по направлениям |
 | `Revive` | `React_GetUp` |
