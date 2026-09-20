@@ -19,7 +19,7 @@ namespace _App.Editor.Animation
         private const string OutputPath = "Docs/Animation/AnimationSeams.csv";
         private const string MenuPath = "Tools/Animation/Report Animation Seams";
         private const float ActionCrossFadeSeconds = 0.12f;
-        private const float DodgeCrossFadeSeconds = 0.12f;
+        private const float DodgeCrossFadeSeconds = 0.08f;
         private const float ChainExitTime = 0.84f;
 
         private readonly struct Seam

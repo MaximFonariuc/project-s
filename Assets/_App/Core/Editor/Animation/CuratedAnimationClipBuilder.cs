@@ -12,8 +12,6 @@ namespace _App.Editor.Animation
         private const string MenuPath = "Tools/Animation/Rebuild Curated Clips";
         private const string Shared = "Assets/_Game/Animations/Character/Shared/";
         private const string Legacy = "Assets/_Game/Animations/Character/2. Basic/";
-        private const string Movement =
-            "Assets/_Game/Animations/Clazy/Animations/P1_CLazyMovement/";
         private const string Attack =
             "Assets/_Game/Animations/Clazy/Animations/P4_CLazyAttack/";
         private const string Weapons =
@@ -125,26 +123,6 @@ namespace _App.Editor.Animation
                 Attack + "Attack_Punch_Run/CLazy@Attack_Hand_Ready.FBX",
                 "Attack_Hand_Ready",
                 Weapons + "Unarmed/Defense/Unarmed_Guard.anim",
-                false),
-            new CuratedClip(
-                Movement + "Mvm_8way_WalkStop/CLazy@Mvm_WalkStop.FBX",
-                "Mvm_WalkStop",
-                Shared + "Locomotion/Loco_Stop_Walk.anim",
-                false),
-            new CuratedClip(
-                Movement + "Mvm_8way_JogStop/CLazy@Mvm_JogStop.FBX",
-                "Mvm_JogStop",
-                Shared + "Locomotion/Loco_Stop_Run.anim",
-                false),
-            new CuratedClip(
-                Movement + "Mvm_Start_Walk/CLazy@Mvm_Walk_Start_Fwd.FBX",
-                "Mvm_Walk_Start_Fwd",
-                Shared + "Locomotion/Loco_Start_Walk.anim",
-                false),
-            new CuratedClip(
-                Movement + "Mvm_Start_Jog/CLazy@Mvm_Jog_Start_Fwd.FBX",
-                "Mvm_Jog_Start_Fwd",
-                Shared + "Locomotion/Loco_Start_Run.anim",
                 false)
         };
 

@@ -251,25 +251,6 @@ the feet under-run the ground: walk travels `3.0` m/s against a `1.823` m/s
 cycle, run `5.0` against `2.963`, and sprint `10.0` against the same `2.963`
 because `Loco_Sprint_F/B` are copies of the run clips.
 
-Movement no longer begins and ends mid-cycle. The driver watches its own planar
-speed and fires two triggers while grounded and outside any action: `Stopping`
-when speed collapses from at least `2.0` m/s to under `0.35`, and `Starting`
-when it rises from a stationary latch past `1.5`. They route `Move` into
-`Locomotion.Stop` and `Locomotion.Start`, which return to `Move` at normalized
-`0.45` and `0.80`, or immediately if the character leaves the ground.
-
-Both sub-machines pick their variant from `TransitionGait`, a float the driver
-latches at the moment it fires the trigger — the damped `MovementType` for a stop
-and the raw gait for a start. `MovementType` cannot serve this purpose: it is
-damped over `0.33s`, so at the start of a stop it still reads the gait being left,
-which is exactly what entry selection needs and exactly what an exit condition
-must not see. Using one parameter for both made the stop exit on the frame it was
-entered.
-
-The stationary latch matters for starts. Comparing against the previous frame's
-speed alone misses the event, because acceleration can cross the whole band
-between two frames.
-
 Scaling playback to close that gap was tried and reverted. Driving the blend by
 metres per second instead of gait index made the walk clip unreachable, since
 the gameplay walk speed of `3.0` m/s sits above the run clip's authored `2.963`,
