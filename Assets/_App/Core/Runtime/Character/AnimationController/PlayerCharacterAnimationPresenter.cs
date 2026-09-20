@@ -14,9 +14,14 @@ namespace _App
 
         public void Present(in PlayerLocomotionSnapshot snapshot, float deltaTime)
         {
+            bool actionOwnsVelocity = ActionOwnsVelocity(snapshot.State);
+            float forwardSpeed = actionOwnsVelocity
+                ? snapshot.RequestedSpeed
+                : snapshot.ForwardSpeed;
+            float lateralSpeed = actionOwnsVelocity ? 0.0f : snapshot.LateralSpeed;
             var frame = new CharacterLocomotionFrame(
-                snapshot.ForwardSpeed,
-                snapshot.LateralSpeed,
+                forwardSpeed,
+                lateralSpeed,
                 snapshot.VerticalSpeed,
                 snapshot.NormalizedSpeed,
                 snapshot.IsGrounded,
@@ -26,6 +31,12 @@ namespace _App
                 snapshot.IsLandingRecovering);
 
             _driver.ApplyLocomotion(frame, deltaTime);
+        }
+
+        private static bool ActionOwnsVelocity(PlayerLocomotionStateId state)
+        {
+            return state == PlayerLocomotionStateId.Dodge ||
+                   state == PlayerLocomotionStateId.AirDash;
         }
 
         private static CharacterGait ResolveGait(PlayerSpeedMode speedMode)
