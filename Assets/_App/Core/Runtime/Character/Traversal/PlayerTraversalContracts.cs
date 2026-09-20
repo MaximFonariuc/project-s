@@ -11,6 +11,12 @@ namespace _App
         bool HasInteractable();
     }
 
+    public interface IPlayerLadderGrip
+    {
+        bool IsGripActive { get; }
+        Ladder ActiveLadder { get; }
+    }
+
     internal interface IPlayerSimulationPause
     {
         bool IsPauseRequested { get; }

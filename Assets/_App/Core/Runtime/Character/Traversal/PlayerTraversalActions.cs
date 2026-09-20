@@ -13,12 +13,14 @@ namespace _App
         bool TryBeginClimb();
     }
 
-    internal sealed class PlayerTraversalActions : IPlayerTraversalActions
+    internal sealed class PlayerTraversalActions : IPlayerTraversalActions, IPlayerLadderGrip
     {
         private readonly LadderTraversalAction _ladder;
         private bool _enabled;
 
         public bool IsClimbAvailable => _ladder != null;
+        public bool IsGripActive => _ladder?.IsGripActive == true;
+        public Ladder ActiveLadder => _ladder?.ActiveLadder;
 
         public PlayerTraversalActions(
             Character character,

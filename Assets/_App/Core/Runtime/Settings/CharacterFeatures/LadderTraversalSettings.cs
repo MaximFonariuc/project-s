@@ -9,6 +9,12 @@ namespace _App
     {
         [SerializeField] private LayerMask _ladderMask = 1;
 
+        [Header("Climb Geometry")]
+        [SerializeField, Min(0.01f)] private float _ascendCycleRise = 0.52f;
+        [SerializeField, Min(0.1f)] private float _approachSpeed = 2.5f;
+        [SerializeField, Min(0.01f)] private float _minApproachSeconds = 0.12f;
+        [SerializeField, Min(0.01f)] private float _maxApproachSeconds = 0.6f;
+
         [Header("Clip Lengths (seconds)")]
         [SerializeField, Min(0.01f)] private float _enterTopFrontSeconds = 1.8333334f;
         [SerializeField, Min(0.01f)] private float _enterTopBackSeconds = 1.8333334f;
@@ -20,6 +26,11 @@ namespace _App
         [SerializeField, Min(0.01f)] private float _exitBottomSeconds = 0.6666667f;
 
         public LayerMask LadderMask => _ladderMask;
+
+        public float AscendCycleRise => _ascendCycleRise;
+        public float ApproachSpeed => _approachSpeed;
+        public float MinApproachSeconds => _minApproachSeconds;
+        public float MaxApproachSeconds => Mathf.Max(_maxApproachSeconds, _minApproachSeconds);
 
         public float EnterTopFrontSeconds => _enterTopFrontSeconds;
         public float EnterTopBackSeconds => _enterTopBackSeconds;
