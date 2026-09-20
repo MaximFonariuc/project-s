@@ -165,6 +165,8 @@ namespace _App.Editor.Animation
             }
 
             int repaired = ApplyRepairs(report);
+            int smoothed = ApplySplices(report);
+            int limited = ApplyTwistLimits(report);
             int aligned = ApplyRecoveryAlignments(report);
             int stitched = ApplyStitches(report);
             AssetDatabase.SaveAssets();
@@ -173,8 +175,8 @@ namespace _App.Editor.Animation
             report.Insert(
                 0,
                 $"[Curated Clips] created {created}, refreshed {refreshed}, " +
-                $"repaired {repaired}, aligned {aligned}, stitched {stitched}, " +
-                $"failed {failed}\n");
+                $"repaired {repaired}, smoothed {smoothed}, twist-limited {limited}, " +
+                $"aligned {aligned}, stitched {stitched}, failed {failed}\n");
             if (failed > 0)
             {
                 Debug.LogError(report.ToString());
@@ -278,6 +280,56 @@ namespace _App.Editor.Animation
                 0.5667f,
                 0.6333f)
         };
+
+        private readonly struct SpliceSmoothing
+        {
+            public string ClipPath { get; }
+            public float StartSeconds { get; }
+            public float EndSeconds { get; }
+            public float StepThreshold { get; }
+
+            public SpliceSmoothing(
+                string clipPath,
+                float startSeconds,
+                float endSeconds,
+                float stepThreshold)
+            {
+                ClipPath = clipPath;
+                StartSeconds = startSeconds;
+                EndSeconds = endSeconds;
+                StepThreshold = stepThreshold;
+            }
+        }
+
+        private static readonly SpliceSmoothing[] Splices =
+        {
+            new SpliceSmoothing(
+                Shared + "Jump/Jump_AirDash_F.anim",
+                0.167f,
+                0.300f,
+                0.6f)
+        };
+
+        private readonly struct TwistLimit
+        {
+            public string ClipPath { get; }
+            public float PeakDegrees { get; }
+
+            public TwistLimit(string clipPath, float peakDegrees)
+            {
+                ClipPath = clipPath;
+                PeakDegrees = peakDegrees;
+            }
+        }
+
+        private static readonly TwistLimit[] TwistLimits =
+        {
+            new TwistLimit(Shared + "Jump/Jump_AirDash_F.anim", 20.0f),
+            new TwistLimit(Shared + "Jump/Jump_AirDash_B.anim", 20.0f)
+        };
+
+        private const string RootRotationPrefix = "RootQ.";
+        private const float TwistTolerance = 1.0f;
 
         private readonly struct RecoveryAlignment
         {
@@ -383,43 +435,10 @@ namespace _App.Editor.Animation
                     return false;
                 }
 
-                int first = -1;
-                int last = -1;
-                for (int k = 0; k < curve.length; k++)
-                {
-                    float time = curve[k].time;
-                    if (time <= repair.StartSeconds + KeyTimeTolerance)
-                    {
-                        first = k;
-                    }
-
-                    if (last < 0 && time >= repair.EndSeconds - KeyTimeTolerance)
-                    {
-                        last = k;
-                    }
-                }
-
-                if (first < 0 || last <= first + 1)
+                if (!TryLinearizeSpan(curve, repair.StartSeconds, repair.EndSeconds))
                 {
                     error = "span does not bracket any key";
                     return false;
-                }
-
-                float startValue = curve[first].value;
-                float endValue = curve[last].value;
-                float startTime = curve[first].time;
-                float endTime = curve[last].time;
-                for (int k = first + 1; k < last; k++)
-                {
-                    Keyframe key = curve[k];
-                    float weight = (key.time - startTime) / (endTime - startTime);
-                    key.value = Mathf.Lerp(startValue, endValue, weight);
-                    curve.MoveKey(k, key);
-                }
-
-                for (int k = first; k <= last; k++)
-                {
-                    curve.SmoothTangents(k, 0.0f);
                 }
 
                 AnimationUtility.SetEditorCurve(clip, binding, curve);
@@ -429,6 +448,263 @@ namespace _App.Editor.Animation
 
             error = "property not found";
             return false;
+        }
+
+        private static bool TryLinearizeSpan(
+            AnimationCurve curve,
+            float startSeconds,
+            float endSeconds)
+        {
+            int first = -1;
+            int last = -1;
+            for (int k = 0; k < curve.length; k++)
+            {
+                float time = curve[k].time;
+                if (time <= startSeconds + KeyTimeTolerance)
+                {
+                    first = k;
+                }
+
+                if (last < 0 && time >= endSeconds - KeyTimeTolerance)
+                {
+                    last = k;
+                }
+            }
+
+            if (first < 0 || last <= first + 1)
+            {
+                return false;
+            }
+
+            float startValue = curve[first].value;
+            float endValue = curve[last].value;
+            float startTime = curve[first].time;
+            float endTime = curve[last].time;
+            for (int k = first + 1; k < last; k++)
+            {
+                Keyframe key = curve[k];
+                float weight = (key.time - startTime) / (endTime - startTime);
+                key.value = Mathf.Lerp(startValue, endValue, weight);
+                curve.MoveKey(k, key);
+            }
+
+            for (int k = first; k <= last; k++)
+            {
+                curve.SmoothTangents(k, 0.0f);
+            }
+
+            return true;
+        }
+
+        private static int ApplySplices(StringBuilder report)
+        {
+            int smoothed = 0;
+            for (int i = 0; i < Splices.Length; i++)
+            {
+                SpliceSmoothing splice = Splices[i];
+                AnimationClip clip =
+                    AssetDatabase.LoadAssetAtPath<AnimationClip>(splice.ClipPath);
+                if (clip == null)
+                {
+                    report.AppendLine($"  FAIL splice: missing {splice.ClipPath}");
+                    continue;
+                }
+
+                int curves = 0;
+                foreach (EditorCurveBinding binding in
+                         AnimationUtility.GetCurveBindings(clip))
+                {
+                    if (IsRootBinding(binding.propertyName))
+                    {
+                        continue;
+                    }
+
+                    AnimationCurve curve =
+                        AnimationUtility.GetEditorCurve(clip, binding);
+                    if (curve == null ||
+                        !HasStep(curve, splice) ||
+                        !TryLinearizeSpan(
+                            curve,
+                            splice.StartSeconds,
+                            splice.EndSeconds))
+                    {
+                        continue;
+                    }
+
+                    AnimationUtility.SetEditorCurve(clip, binding, curve);
+                    curves++;
+                }
+
+                if (curves == 0)
+                {
+                    continue;
+                }
+
+                EditorUtility.SetDirty(clip);
+                smoothed++;
+            }
+
+            return smoothed;
+        }
+
+        private static bool HasStep(AnimationCurve curve, SpliceSmoothing splice)
+        {
+            for (int k = 1; k < curve.length; k++)
+            {
+                float time = curve[k].time;
+                if (time < splice.StartSeconds || time > splice.EndSeconds)
+                {
+                    continue;
+                }
+
+                if (Mathf.Abs(curve[k].value - curve[k - 1].value) >
+                    splice.StepThreshold)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static int ApplyTwistLimits(StringBuilder report)
+        {
+            int limited = 0;
+            for (int i = 0; i < TwistLimits.Length; i++)
+            {
+                TwistLimit limit = TwistLimits[i];
+                AnimationClip clip =
+                    AssetDatabase.LoadAssetAtPath<AnimationClip>(limit.ClipPath);
+                if (clip == null)
+                {
+                    report.AppendLine($"  FAIL twist: missing {limit.ClipPath}");
+                    continue;
+                }
+
+                if (!TryLimitRootTwist(clip, limit.PeakDegrees, out string error))
+                {
+                    report.AppendLine($"  FAIL twist {limit.ClipPath}: {error}");
+                    continue;
+                }
+
+                EditorUtility.SetDirty(clip);
+                limited++;
+            }
+
+            return limited;
+        }
+
+        private static bool TryLimitRootTwist(
+            AnimationClip clip,
+            float peakDegrees,
+            out string error)
+        {
+            var bindings = new EditorCurveBinding[4];
+            var curves = new AnimationCurve[4];
+            foreach (EditorCurveBinding binding in
+                     AnimationUtility.GetCurveBindings(clip))
+            {
+                if (!binding.propertyName.StartsWith(
+                        RootRotationPrefix,
+                        StringComparison.Ordinal))
+                {
+                    continue;
+                }
+
+                int index = "xyzw".IndexOf(binding.propertyName[^1]);
+                if (index < 0)
+                {
+                    continue;
+                }
+
+                bindings[index] = binding;
+                curves[index] = AnimationUtility.GetEditorCurve(clip, binding);
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (curves[i] == null || curves[i].length == 0)
+                {
+                    error = "root rotation curves are missing";
+                    return false;
+                }
+            }
+
+            int count = Mathf.CeilToInt(clip.length / ResampleStep) + 1;
+            var times = new float[count];
+            var twists = new Quaternion[count];
+            var swings = new Quaternion[count];
+            Quaternion reference = Quaternion.identity;
+            float peak = 0.0f;
+            for (int k = 0; k < count; k++)
+            {
+                times[k] = Mathf.Min(k * ResampleStep, clip.length);
+                var rotation = new Quaternion(
+                    curves[0].Evaluate(times[k]),
+                    curves[1].Evaluate(times[k]),
+                    curves[2].Evaluate(times[k]),
+                    curves[3].Evaluate(times[k]));
+                rotation.Normalize();
+                if (k == 0)
+                {
+                    reference = rotation;
+                }
+
+                Quaternion delta = rotation * Quaternion.Inverse(reference);
+                var twist = new Quaternion(0.0f, delta.y, 0.0f, delta.w);
+                twist.Normalize();
+                twists[k] = twist;
+                swings[k] = delta * Quaternion.Inverse(twist);
+                peak = Mathf.Max(peak, Quaternion.Angle(Quaternion.identity, twist));
+            }
+
+            if (peak <= peakDegrees + TwistTolerance)
+            {
+                error = null;
+                return true;
+            }
+
+            float scale = peakDegrees / peak;
+            var damped = new AnimationCurve[4];
+            for (int i = 0; i < 4; i++)
+            {
+                damped[i] = new AnimationCurve();
+            }
+
+            Quaternion previous = reference;
+            for (int k = 0; k < count; k++)
+            {
+                Quaternion limited = swings[k] *
+                    Quaternion.Slerp(Quaternion.identity, twists[k], scale);
+                Quaternion rotation = limited * reference;
+                if (Quaternion.Dot(previous, rotation) < 0.0f)
+                {
+                    rotation = new Quaternion(
+                        -rotation.x,
+                        -rotation.y,
+                        -rotation.z,
+                        -rotation.w);
+                }
+
+                previous = rotation;
+                damped[0].AddKey(new Keyframe(times[k], rotation.x));
+                damped[1].AddKey(new Keyframe(times[k], rotation.y));
+                damped[2].AddKey(new Keyframe(times[k], rotation.z));
+                damped[3].AddKey(new Keyframe(times[k], rotation.w));
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int k = 0; k < damped[i].length; k++)
+                {
+                    damped[i].SmoothTangents(k, 0.0f);
+                }
+
+                AnimationUtility.SetEditorCurve(clip, bindings[i], damped[i]);
+            }
+
+            error = null;
+            return true;
         }
 
         private static int ApplyRecoveryAlignments(StringBuilder report)

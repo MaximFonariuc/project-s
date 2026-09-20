@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: AirDashSettings
   m_EditorClassIdentifier: 
   _canEverAirDash: 1
-  _impulse: 12
-  _duration: 0.32
+  _impulse: 8.6
+  _duration: 0.45
   _chargesPerAirtime: 1
   _speedProfile:
     serializedVersion: 2
