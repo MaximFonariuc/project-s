@@ -159,6 +159,7 @@ classDiagram
     class PlayerJumpState
     class PlayerFallState
     class PlayerDodgeState
+    class PlayerAirDashState
     class PlayerLandingState
     class IPlayerLocomotionPresentation {
         <<presentation port>>
@@ -219,6 +220,7 @@ classDiagram
     PlayerLocomotionState <|-- PlayerJumpState
     PlayerLocomotionState <|-- PlayerFallState
     PlayerLocomotionState <|-- PlayerDodgeState
+    PlayerLocomotionState <|-- PlayerAirDashState
     PlayerLocomotionState <|-- PlayerLandingState
     PlayerLocomotionComposition ..> PlayerLocomotionController : constructs
     PlayerLocomotionComposition ..> CharacterMotor : constructs
@@ -250,6 +252,15 @@ stateDiagram-v2
     Dodge --> Run: completed with input
     Dodge --> Jump: left ground with upward velocity
     Dodge --> Fall: left ground
+    Jump --> AirDash: accepted air dash
+    Fall --> AirDash: accepted air dash
+    Dodge --> AirDash: dodge ended airborne
+    AirDash --> Fall: charge spent in the air
+    AirDash --> Idle: charge spent on the ground, no input
+    AirDash --> Run: charge spent on the ground, input held
+    AirDash --> Landing: medium / hard impact
+    AirDash --> Dodge: accepted dodge after landing
+    AirDash --> Jump: additional jump
 ```
 
 `Jump` начинается не по нажатию кнопки, а после подтверждения motor: `Character` должен перейти в `Falling` и получить восходящую скорость. По той же причине `Dodge` становится активным только после перехода `Character` в custom movement mode. State machine не дублирует физическое состояние заранее.
@@ -302,7 +313,9 @@ gameplay time и удерживает lease неуязвимости тольк�
 
 Скорость уворота ведётся кривой `DodgeSettings.SpeedProfile`, а не держится константой. Кривая нормируется по среднему, поэтому её форма меняет только характер рывка, а дальность по-прежнему принадлежит полю `Impulse`. Без неё custom movement mode не трогает скорость вообще — `CustomMovementMode` вызывает пустой хук, — и уворот выглядел как равномерный проезд с мгновенной остановкой в конце.
 
-Нижней границей скорости служит `SetDodgeContinuationSpeed`: контроллер каждый тик сообщает `ICharacterMotor.GaitSpeed` — скорость походки, которую игрок запрашивает прямо сейчас, — или ноль, если ввода нет. Читать здесь `GetMaxSpeed()` нельзя: во время уворота режим движения `Custom`, а для него метод возвращает `1.0`. Опрос каждый тик означает, что переключение на спринт по ходу переката учитывается, и выход будет на скорости спринта. Уворот не опускается ниже неё и не гасит её на выходе. Поэтому перекат с места заканчивается стоя, а перекат на бегу возвращает в бег, а не в разгон с нуля. Это разные дистанции, и так и должно быть: перекат на бегу проходит дальше.
+Нижней границей скорости служит `SetDodgeContinuationSpeed`: контроллер каждый тик считает `PlayerLocomotionRuntime.RequestedSpeed` — `ICharacterMotor.GaitSpeed`, если ввод есть, и ноль, если его нет, — и отдаёт это значение действию. Читать здесь `GetMaxSpeed()` нельзя: во время уворота режим движения `Custom`, а для него метод возвращает `1.0`. Опрос каждый тик означает, что переключение на спринт по ходу переката учитывается, и выход будет на скорости спринта. Уворот не опускается ниже неё и не гасит её на выходе. Поэтому перекат с места заканчивается стоя, а перекат на бегу возвращает в бег, а не в разгон с нуля. Это разные дистанции, и так и должно быть: перекат на бегу проходит дальше.
+
+`RequestedSpeed` попадает и в snapshot: это единственное место, где записано, какое движение игрок просит, пока скоростью владеет действие. Презентация берёт значение оттуда, поэтому смысл «запрошенная походка» не расходится между физикой уворота и анимацией.
 
 `IDamageImmunityTarget` выдаёт `IDisposable` lease вместо записи общего boolean.
 Поэтому пересекающиеся окна dodge и combat action независимы: завершение одного
@@ -337,7 +350,7 @@ owner не снимает иммунитет второго. `Disable`, внеш
 
 ## Locomotion snapshot
 
-`PlayerLocomotionController` один раз за frame собирает immutable `PlayerLocomotionSnapshot` после подтверждения motor state и выполнения state-machine tick. Snapshot содержит фактическую velocity, локальные forward/lateral/vertical компоненты, normalized speed, gait, locomotion mode, подтверждённое состояние `Idle / Run / Jump / Fall / Dodge / Landing` и semantic landing result.
+`PlayerLocomotionController` один раз за frame собирает immutable `PlayerLocomotionSnapshot` после подтверждения motor state и выполнения state-machine tick. Snapshot содержит фактическую velocity, локальные forward/lateral/vertical компоненты, normalized speed, gait, locomotion mode, подтверждённое состояние `Idle / Run / Jump / Fall / Dodge / AirDash / Landing` и semantic landing result.
 
 До первого tick и после `Disable` snapshot имеет `IsValid == false`; consumers не должны трактовать default enum values как подтверждённое состояние.
 

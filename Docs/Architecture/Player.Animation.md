@@ -100,7 +100,7 @@ classDiagram
 
 ## Ownership and update flow
 
-- `PlayerLocomotionController` owns `Idle / Run / Jump / Fall / Dodge` gameplay
+- `PlayerLocomotionController` owns `Idle / Run / Jump / Fall / Dodge / AirDash / Landing` gameplay
   state and publishes an immutable snapshot.
 - `PlayerCharacterAnimationPresenter` converts that snapshot to a rig-neutral
   locomotion frame.
@@ -250,6 +250,16 @@ for. The cost is that the clips were authored slower than the motor moves, so
 the feet under-run the ground: walk travels `3.0` m/s against a `1.823` m/s
 cycle, run `5.0` against `2.963`, and sprint `10.0` against the same `2.963`
 because `Loco_Sprint_F/B` are copies of the run clips.
+
+While a dodge or an air dash owns the velocity, the locomotion frame carries the
+requested gait speed instead of the measured planar speed. The action moves the
+character far faster than any gait, so feeding the measured speed parked
+`MovementType` at run for the whole roll: a standing dodge then exited through a
+run pose and needed half a second to decay back to idle, which read as a roll
+authored for a running exit. The same value also chooses the dodge cross-fade
+length, so a standing dodge now gets the short fade instead of always taking the
+moving one. Holding a direction keeps the requested speed at the gait, so a roll
+out of a run still exits into the run clip.
 
 Scaling playback to close that gap was tried and reverted. Driving the blend by
 metres per second instead of gait index made the walk clip unreachable, since
