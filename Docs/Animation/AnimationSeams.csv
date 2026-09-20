@@ -16,7 +16,6 @@ enter;Move;AirDashFront;Loco_Idle;Jump_AirDash_F;CLazy;CLazy;0.12;94.67;LeftUppe
 exit;LandSprint;Move;Jump_Land_Sprint;Loco_Sprint_B;CLazy;CLazy;0.12;94.15;LeftUpperLeg;29.13;784.59;no
 enter;Move;Launcher;Loco_Idle;Unarmed_Launcher;CLazy;CLazy;0.12;94.05;LeftFoot;45.76;783.73;no
 exit;Launcher;Move;Unarmed_Launcher;Loco_Idle;CLazy;CLazy;0.12;94.04;LeftFoot;45.76;783.69;no
-enter;Move;JumpIdle;Loco_Idle;Jump_Rise_Idle;CLazy;CLazy;0.25;92.31;RightUpperArm;24.11;369.26;no
 enter;Move;AirAttack3;Loco_Sprint_F;Unarmed_Air_3;CLazy;CLazy;0.12;91.45;Hips;38.71;762.06;no
 exit;Block;Move;Unarmed_Block;Loco_Run_F;rig180;CLazy;0.12;89.15;RightHand;41.24;742.91;yes
 enter;Move;Block;Loco_Run_F;Unarmed_Block;CLazy;rig180;0.12;89.15;RightHand;41.23;742.91;yes
@@ -36,8 +35,6 @@ exit;JumpIdle;Move;Jump_Rise_Idle;Loco_Idle;CLazy;CLazy;0.12;70.63;LeftLowerLeg;
 enter;Move;LandSprint;Loco_Sprint_F;Jump_Land_Sprint;CLazy;CLazy;0.12;70.30;RightUpperLeg;28.38;585.86;no
 enter;Move;LandWalk;Loco_Walk_B;Jump_Land_Walk;CLazy;CLazy;0.12;70.23;LeftUpperLeg;23.62;585.26;no
 enter;Move;LandSoft;Loco_Idle;Jump_Land_Soft;CLazy;CLazy;0.12;70.16;LeftLowerArm;24.97;584.68;no
-enter;Move;RollFront;Loco_Walk_B;Dodge_Roll_F;CLazy;CLazy;0.08;68.45;RightUpperArm;31.79;855.59;no
-enter;Move;RollBack;Loco_Walk_B;Dodge_Roll_B;CLazy;CLazy;0.08;68.45;RightUpperArm;31.79;855.59;no
 enter;Move;Airborne;Loco_Sprint_F;Fall;CLazy;Knight;0.12;67.04;RightLowerArm;31.72;558.68;yes
 exit;Airborne;Move;Fall;Loco_Sprint_F;Knight;CLazy;0.12;67.04;RightLowerArm;31.72;558.67;yes
 enter;Move;LandMedium;Loco_Idle;Jump_Land_Medium;CLazy;CLazy;0.12;65.09;RightUpperArm;23.80;542.44;no
@@ -62,10 +59,6 @@ enter;Move;Dead_1;Loco_Sprint_F;Dam_StandDie;CLazy;CLazy;0.12;42.45;LeftLowerArm
 enter;Move;Dead_2;Loco_Sprint_F;Dam_TurnDie;CLazy;CLazy;0.12;42.45;LeftLowerArm;16.18;353.78;no
 enter;Move;Guard;Loco_Sprint_F;Unarmed_Guard;CLazy;CLazy;0.12;42.45;LeftLowerArm;16.02;353.78;no
 enter;Move;Skill;Loco_Run_B;Unarmed_Special;CLazy;CLazy;0.12;40.42;RightLowerArm;20.20;336.82;no
-exit;LandSoft;Move;Jump_Land_Soft;Loco_Idle;CLazy;CLazy;0.12;39.63;Head;13.06;330.23;no
-exit;LandDefault;Move;Jump_Land_Idle;Loco_Idle;CLazy;CLazy;0.12;39.59;Head;14.94;329.93;no
-exit;LandMedium;Move;Jump_Land_Medium;Loco_Idle;CLazy;CLazy;0.12;39.59;Head;13.10;329.93;no
-exit;LandHard;Move;Jump_Land_Hard;Loco_Idle;CLazy;CLazy;0.12;39.58;Head;13.10;329.85;no
 enter;Move;BaseAttack2;Loco_Idle;Unarmed_Combo_2;CLazy;CLazy;0.12;38.08;Head;13.06;317.37;no
 enter;Move;BaseAttack3;Loco_Idle;Unarmed_Combo_3;CLazy;CLazy;0.12;38.08;Head;13.06;317.37;no
 enter;Move;BaseAttack4;Loco_Walk_B;Unarmed_Combo_4;CLazy;CLazy;0.12;33.26;RightLowerArm;16.26;277.16;no
@@ -77,5 +70,12 @@ exit;BaseAttack1;Move;Unarmed_Combo_1;Loco_Idle;CLazy;CLazy;0.12;0.00;none;0.00;
 exit;BaseAttack2;Move;Unarmed_Combo_2;Loco_Idle;CLazy;CLazy;0.12;0.00;none;0.00;0.00;no
 exit;BaseAttack3;Move;Unarmed_Combo_3;Loco_Idle;CLazy;CLazy;0.12;0.00;none;0.00;0.00;no
 exit;BaseAttack4;Move;Unarmed_Combo_4;Loco_Idle;CLazy;CLazy;0.12;0.00;none;0.00;0.00;no
+enter;Move;JumpIdle;Loco_Idle;Jump_Rise_Idle;CLazy;CLazy;0.25;0.00;none;0.00;0.00;no
+exit;LandDefault;Move;Jump_Land_Idle;Loco_Idle;CLazy;CLazy;0.12;0.00;none;0.00;0.00;no
+exit;LandHard;Move;Jump_Land_Hard;Loco_Idle;CLazy;CLazy;0.12;0.00;none;0.00;0.00;no
+exit;LandMedium;Move;Jump_Land_Medium;Loco_Idle;CLazy;CLazy;0.12;0.00;none;0.00;0.00;no
+exit;LandSoft;Move;Jump_Land_Soft;Loco_Idle;CLazy;CLazy;0.12;0.00;none;0.00;0.00;no
+enter;Move;RollBack;Loco_Idle;Dodge_Roll_B;CLazy;CLazy;0.08;0.00;none;0.00;0.00;no
 exit;RollBack;Move;Dodge_Roll_B;Loco_Idle;CLazy;CLazy;0.08;0.00;none;0.00;0.00;no
+enter;Move;RollFront;Loco_Idle;Dodge_Roll_F;CLazy;CLazy;0.08;0.00;none;0.00;0.00;no
 exit;RollFront;Move;Dodge_Roll_F;Loco_Idle;CLazy;CLazy;0.08;0.00;none;0.00;0.00;no
