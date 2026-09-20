@@ -164,6 +164,7 @@ namespace _App.Editor.Animation
                 AssetDatabase.StopAssetEditing();
             }
 
+            int repaired = ApplyRepairs(report);
             int stitched = ApplyStitches(report);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
@@ -171,7 +172,7 @@ namespace _App.Editor.Animation
             report.Insert(
                 0,
                 $"[Curated Clips] created {created}, refreshed {refreshed}, " +
-                $"stitched {stitched}, failed {failed}\n");
+                $"repaired {repaired}, stitched {stitched}, failed {failed}\n");
             if (failed > 0)
             {
                 Debug.LogError(report.ToString());
@@ -242,6 +243,40 @@ namespace _App.Editor.Animation
             return existed;
         }
 
+        private readonly struct CurveRepair
+        {
+            public string ClipPath { get; }
+            public string PropertyName { get; }
+            public float StartSeconds { get; }
+            public float EndSeconds { get; }
+
+            public CurveRepair(
+                string clipPath,
+                string propertyName,
+                float startSeconds,
+                float endSeconds)
+            {
+                ClipPath = clipPath;
+                PropertyName = propertyName;
+                StartSeconds = startSeconds;
+                EndSeconds = endSeconds;
+            }
+        }
+
+        private static readonly CurveRepair[] Repairs =
+        {
+            new CurveRepair(
+                Shared + "Dodge/Dodge_Roll_B.anim",
+                "Right Upper Leg Twist In-Out",
+                0.5667f,
+                0.6333f),
+            new CurveRepair(
+                Shared + "Dodge/Dodge_Roll_B.anim",
+                "Right Lower Leg Twist In-Out",
+                0.5667f,
+                0.6333f)
+        };
+
         private readonly struct PoseStitch
         {
             public string ClipPath { get; }
@@ -257,6 +292,7 @@ namespace _App.Editor.Animation
         }
 
         private const string RestPosePath = Shared + "Locomotion/Loco_Idle.anim";
+        private const float KeyTimeTolerance = 0.0005f;
 
         private static readonly PoseStitch[] Stitches =
         {
@@ -268,6 +304,105 @@ namespace _App.Editor.Animation
             new PoseStitch(Shared + "Dodge/Dodge_Roll_F.anim", false, 0.12f),
             new PoseStitch(Shared + "Dodge/Dodge_Roll_B.anim", false, 0.12f)
         };
+
+        private static int ApplyRepairs(StringBuilder report)
+        {
+            int repaired = 0;
+            for (int i = 0; i < Repairs.Length; i++)
+            {
+                CurveRepair repair = Repairs[i];
+                AnimationClip clip =
+                    AssetDatabase.LoadAssetAtPath<AnimationClip>(repair.ClipPath);
+                if (clip == null)
+                {
+                    report.AppendLine($"  FAIL repair: missing {repair.ClipPath}");
+                    continue;
+                }
+
+                if (!TryRepairCurveSpan(clip, repair, out string error))
+                {
+                    report.AppendLine(
+                        $"  FAIL repair {repair.PropertyName}: {error}");
+                    continue;
+                }
+
+                EditorUtility.SetDirty(clip);
+                repaired++;
+            }
+
+            return repaired;
+        }
+
+        private static bool TryRepairCurveSpan(
+            AnimationClip clip,
+            CurveRepair repair,
+            out string error)
+        {
+            foreach (EditorCurveBinding binding in
+                     AnimationUtility.GetCurveBindings(clip))
+            {
+                if (!string.Equals(
+                        binding.propertyName,
+                        repair.PropertyName,
+                        StringComparison.Ordinal))
+                {
+                    continue;
+                }
+
+                AnimationCurve curve = AnimationUtility.GetEditorCurve(clip, binding);
+                if (curve == null || curve.length < 3)
+                {
+                    error = "curve is empty";
+                    return false;
+                }
+
+                int first = -1;
+                int last = -1;
+                for (int k = 0; k < curve.length; k++)
+                {
+                    float time = curve[k].time;
+                    if (time <= repair.StartSeconds + KeyTimeTolerance)
+                    {
+                        first = k;
+                    }
+
+                    if (last < 0 && time >= repair.EndSeconds - KeyTimeTolerance)
+                    {
+                        last = k;
+                    }
+                }
+
+                if (first < 0 || last <= first + 1)
+                {
+                    error = "span does not bracket any key";
+                    return false;
+                }
+
+                float startValue = curve[first].value;
+                float endValue = curve[last].value;
+                float startTime = curve[first].time;
+                float endTime = curve[last].time;
+                for (int k = first + 1; k < last; k++)
+                {
+                    Keyframe key = curve[k];
+                    float weight = (key.time - startTime) / (endTime - startTime);
+                    key.value = Mathf.Lerp(startValue, endValue, weight);
+                    curve.MoveKey(k, key);
+                }
+
+                for (int k = first; k <= last; k++)
+                {
+                    curve.SmoothTangents(k, 0.0f);
+                }
+
+                AnimationUtility.SetEditorCurve(clip, binding, curve);
+                error = null;
+                return true;
+            }
+
+            error = "property not found";
+            return false;
+        }
 
         private static int ApplyStitches(StringBuilder report)
         {
