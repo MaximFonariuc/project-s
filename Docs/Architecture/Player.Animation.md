@@ -210,8 +210,6 @@ The current action contract is:
 | Dodge | 1 | 1 | `Locomotion/Roll/RollBack` |
 | Air dash | 14 | 0 | `Locomotion/Jump/AirDash/AirDashFront` |
 | Air dash | 14 | 1 | `Locomotion/Jump/AirDash/AirDashBack` |
-| Air dash | 14 | 2 | `Locomotion/Jump/AirDash/AirDashLeft` |
-| Air dash | 14 | 3 | `Locomotion/Jump/AirDash/AirDashRight` |
 | Light attack | 2 | 0...3 | `Attack/BaseAttack1...4` |
 | Air light attack | 5 | 0...2 | `Attack/AirAttack1...3` |
 | Grounded named special | 6 | 0 | `Attack/Skill` |
@@ -401,7 +399,6 @@ in `XControllerAnimationContract.TryGetClipSlot`:
 | `Attack/Launcher` | `Unarmed_Launcher` |
 | `Attack/Skill` | `Unarmed_Special` |
 | `Locomotion/Jump/AirDash/AirDashFront` / `AirDashBack` | `Jump_AirDash_F` / `Jump_AirDash_B` |
-| `Locomotion/Jump/AirDash/AirDashLeft` / `AirDashRight` | `Jump_AirDash_L` / `Jump_AirDash_R` |
 | `Locomotion/Jump/Jump/JumpRunning` | `Jump_Rise_Run` |
 | `Locomotion/Roll/RollFront` / `RollBack` | `Dodge_Roll_F` / `Dodge_Roll_B` |
 
