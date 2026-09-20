@@ -373,6 +373,7 @@ MonoBehaviour:
   _pathOffset: {x: 0, y: -0.25, z: -0.55}
   _topPoint: {fileID: 4200833250166405390}
   _bottomPoint: {fileID: 3974919876077672051}
+  _rungSpacing: 0.65
 --- !u!1 &3664490703195534778
 GameObject:
   m_ObjectHideFlags: 0

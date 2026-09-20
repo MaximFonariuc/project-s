@@ -48,6 +48,10 @@ namespace _App
 
             builder.RegisterComponent(character);
             builder.RegisterComponent(health);
+            if (player.PlayerAnimator.TryGetComponent(out LadderGripIkAdapter ladderGripIk))
+            {
+                builder.RegisterComponent(ladderGripIk);
+            }
             builder.RegisterInstance(movesets);
             builder.RegisterInstance(feedbackSettings);
             builder.RegisterInstance(styleSettings);

@@ -15,19 +15,26 @@ namespace _App
 		private readonly LayerMask _ladderMask;
 		private readonly float[] _slotDurations;
 
+		private readonly float _ascendCycleRise;
+		private readonly float _approachSpeed;
+		private readonly float _minApproachSeconds;
+		private readonly float _maxApproachSeconds;
+
 		private Ladder _activeLadder;
 		private EClimbingState _climbingState;
 		private ERotationMode _previousRotationMode;
+		private float _stepHeight;
 
 		private CancellationTokenSource _stepCts;
 		private CancellationTokenSource _lifecycleCts;
 		private bool _enabled;
 		private bool _reportedMissingPresentation;
 
-		private const float STEP_HEIGHT = 0.52f;
-		private const float EXIT_CLIMB_FRAMES = 35f;
-		private const float EXIT_MOVE_FRAMES = 15f;
-		private const float EXIT_TOTAL_FRAMES = 55f;
+		private const float EXIT_CLIMB_SHARE = 35f / 55f;
+		private const float EXIT_MOVE_SHARE = 15f / 55f;
+		private const float ENTER_TOP_MOVE_SHARE = 15f / 50f;
+		private const float ENTER_TOP_CLIMB_SHARE = 35f / 50f;
+		private const float ANCHOR_EPSILON = 0.05f;
 
 		private static readonly AnimationSlotId[] RequiredPresentationSlots =
 		{
@@ -44,6 +51,11 @@ namespace _App
 		private float SpeedFactor =>
 			_locomotionState.SpeedMode == PlayerSpeedMode.Sprint ? 1.5f : 1.0f;
 
+		public bool IsGripActive =>
+			_activeLadder != null && _climbingState == EClimbingState.Grabbed;
+
+		public Ladder ActiveLadder => _activeLadder;
+
 		public LadderTraversalAction(
 			Character character,
 			PlayerAnimationCoordinator animation,
@@ -59,6 +71,10 @@ namespace _App
 			}
 
 			_ladderMask = settings.LadderMask;
+			_ascendCycleRise = settings.AscendCycleRise;
+			_approachSpeed = settings.ApproachSpeed;
+			_minApproachSeconds = settings.MinApproachSeconds;
+			_maxApproachSeconds = settings.MaxApproachSeconds;
 			_slotDurations = new[]
 			{
 				settings.EnterTopFrontSeconds,
@@ -121,30 +137,18 @@ namespace _App
 				bool enterFromTop = distToTop < distToBottom;
 
 				_climbingState = EClimbingState.Grabbing;
+				_stepHeight = _activeLadder.ResolveStepHeight(_ascendCycleRise);
 
 				Transform snapPos = _activeLadder.ClosestPointOnPath(_character.GetPosition(), out _);
 
 				if (enterFromTop)
 				{
-					Vector3 charForward = _character.transform.forward;
-					Vector3 snapForward = snapPos.forward;
-
-					float angle = Vector3.Angle(charForward, snapForward);
-
-					if (angle <= 90f)
-					{
-						await SmoothAlignToLadder(snapPos, 0.25f, false, token);
-						await PerformEnterTop(PlayerAnimationSlots.LadderEnterTopFront, 40f, 18f, true, token);
-					}
-					else
-					{
-						await SmoothAlignToLadder(snapPos, 0.25f, true, token);
-						await PerformEnterTop(PlayerAnimationSlots.LadderEnterTopBack, 15f, 35f, false, token);
-					}
+					await ApproachLadder(snapPos.position, _activeLadder.ClimbRotation, token);
+					await PerformEnterTop(token);
 				}
 				else
 				{
-					await SmoothAlignToLadder(snapPos, 0.25f, false, token);
+					await ApproachLadder(snapPos.position, _activeLadder.ClimbRotation, token);
 					AnimationPlayback playback = Play(PlayerAnimationSlots.LadderEnterBottom);
 					await WaitForClimbEnter(playback.Duration, token);
 				}
@@ -158,76 +162,49 @@ namespace _App
 			}
 		}
 
-		private async UniTask PerformEnterTop(AnimationSlotId slot, float moveFrames, float climbFrames, bool invertRot = false, CancellationToken token = default)
+		private async UniTask PerformEnterTop(CancellationToken token)
 		{
-			float clipLen = Play(slot).Duration;
-
-			float totalFrames = moveFrames + climbFrames;
-			float moveDur = clipLen * (moveFrames / totalFrames);
-			float climbDur = clipLen * (climbFrames / totalFrames);
+			float clipLen = Play(PlayerAnimationSlots.LadderEnterTopBack).Duration;
+			float moveDur = clipLen * ENTER_TOP_MOVE_SHARE;
+			float climbDur = clipLen * ENTER_TOP_CLIMB_SHARE;
 
 			Vector3 start = _character.GetPosition();
-			Vector3 moveTarget = start - _activeLadder.transform.forward * STEP_HEIGHT;
-
-			Quaternion startRot = _character.transform.rotation;
-			Quaternion targetRot = invertRot ? startRot * Quaternion.Euler(0f, 180f, 0f) : startRot;
-
-			if (invertRot)
-			{
-				await LerpMovementAndRotation(start, moveTarget, startRot, targetRot, moveDur, token);
-			}
-			else
-			{
-				await LerpMovement(start, moveTarget, moveDur, token);
-			}
+			Vector3 moveTarget = start - _activeLadder.transform.forward * _stepHeight;
+			await LerpMovement(start, moveTarget, moveDur, token);
 
 			start = _character.GetPosition();
-			Vector3 climbTarget = start - _activeLadder.transform.up * (STEP_HEIGHT * 1.5f);
-
+			Vector3 climbTarget = start - _activeLadder.ClimbAxis * (_stepHeight * 1.5f);
 			await LerpMovement(start, climbTarget, climbDur, token);
 			_character.TeleportPosition(climbTarget);
 
 			await WaitForClimbEnter(token: token);
 		}
 
-		private async UniTask SmoothAlignToLadder(
-			Transform snapPos,
-			float duration,
-			bool invertRotation,
+		private async UniTask ApproachLadder(
+			Vector3 targetPos,
+			Quaternion targetRot,
 			CancellationToken token)
 		{
 			Vector3 startPos = _character.GetPosition();
 			Quaternion startRot = _character.transform.rotation;
+			float duration = Mathf.Clamp(
+				Vector3.Distance(startPos, targetPos) / _approachSpeed,
+				_minApproachSeconds,
+				_maxApproachSeconds);
 
-			Vector3 targetPos = snapPos.position;
-			Quaternion targetRot = invertRotation ? snapPos.rotation * Quaternion.Euler(0f, 180f, 0f) : snapPos.rotation;
-
-			float t = 0f;
-			while (t < 1f)
+			float elapsed = 0f;
+			while (elapsed < duration)
 			{
 				token.ThrowIfCancellationRequested();
-				t += Time.deltaTime / duration;
-				_character.TeleportPosition(Vector3.Lerp(startPos, targetPos, t), false, true);
-				_character.SetRotation(Quaternion.Slerp(startRot, targetRot, t));
+				elapsed += Time.deltaTime;
+				float lerp = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / duration));
+				_character.TeleportPosition(Vector3.Lerp(startPos, targetPos, lerp), false, true);
+				_character.SetRotation(Quaternion.Slerp(startRot, targetRot, lerp));
 				await UniTask.Yield(token);
 			}
 
 			_character.TeleportPosition(targetPos, false, true);
 			_character.SetRotation(targetRot);
-		}
-
-		private async UniTask LerpMovementAndRotation(Vector3 fromPos, Vector3 toPos, Quaternion fromRot, Quaternion toRot, float duration, CancellationToken token)
-		{
-			float t = 0f;
-			while (t < 1f)
-			{
-				t += Time.deltaTime / duration;
-				_character.TeleportPosition(Vector3.Lerp(fromPos, toPos, t));
-				_character.SetRotation(Quaternion.Slerp(fromRot, toRot, t));
-				await UniTask.Yield(token);
-			}
-			_character.TeleportPosition(toPos);
-			_character.SetRotation(toRot);
 		}
 
 		private async UniTask WaitForClimbEnter(
@@ -258,22 +235,22 @@ namespace _App
 
 			if (input.y > 0.5f)
 			{
-				if (charY < topY - STEP_HEIGHT * 0.5f)
+				if (charY < topY - _stepHeight * 0.5f)
 				{
 					Step(+1).Forget();
 				}
-				else if (Mathf.Abs(charY - topY) <= 0.05f)
+				else if (Mathf.Abs(charY - topY) <= ANCHOR_EPSILON)
 				{
 					BeginExit(true);
 				}
 			}
 			else if (input.y < -0.5f)
 			{
-				if (charY > botY + STEP_HEIGHT * 0.5f)
+				if (charY > botY + _stepHeight * 0.5f)
 				{
 					Step(-1).Forget();
 				}
-				else if (Mathf.Abs(charY - botY) <= 0.05f)
+				else if (Mathf.Abs(charY - botY) <= ANCHOR_EPSILON)
 				{
 					BeginExit(false);
 				}
@@ -327,7 +304,7 @@ namespace _App
 				float clipLen = Play(slot).Duration / speedFactor;
 
 				Vector3 start = _character.GetPosition();
-				Vector3 target = start + _activeLadder.transform.up * (STEP_HEIGHT * direction);
+				Vector3 target = start + _activeLadder.ClimbAxis * (_stepHeight * direction);
 
 				float topY = _activeLadder.TopAnchorPoint.y;
 				float botY = _activeLadder.BottomAnchorPoint.y;
@@ -337,10 +314,10 @@ namespace _App
 
 				switch (direction)
 				{
-					case > 0 when Mathf.Abs(target.y - topY) < 0.05f:
+					case > 0 when Mathf.Abs(target.y - topY) < ANCHOR_EPSILON:
 						await PlayExitAndRelease(true, token);
 						break;
-					case < 0 when Mathf.Abs(target.y - botY) < 0.05f:
+					case < 0 when Mathf.Abs(target.y - botY) < ANCHOR_EPSILON:
 						await PlayExitAndRelease(false, token);
 						break;
 				}
@@ -373,14 +350,14 @@ namespace _App
 
 			if (exitTop)
 			{
-				float climbDur = clipLen * (EXIT_CLIMB_FRAMES / EXIT_TOTAL_FRAMES);
-				float moveDur = clipLen * (EXIT_MOVE_FRAMES / EXIT_TOTAL_FRAMES);
+				float climbDur = clipLen * EXIT_CLIMB_SHARE;
+				float moveDur = clipLen * EXIT_MOVE_SHARE;
 
-				Vector3 climbTarget = start + _activeLadder.transform.up * (STEP_HEIGHT * 1.5f);
+				Vector3 climbTarget = start + _activeLadder.ClimbAxis * (_stepHeight * 1.5f);
 
 				await LerpMovement(start, climbTarget, climbDur, token);
 
-				Vector3 moveTarget = climbTarget + _activeLadder.transform.forward * STEP_HEIGHT;
+				Vector3 moveTarget = climbTarget + _activeLadder.transform.forward * _stepHeight;
 				await LerpMovement(climbTarget, moveTarget, moveDur, token);
 				_character.TeleportPosition(moveTarget, false, true);
 			}
