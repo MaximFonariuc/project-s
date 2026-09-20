@@ -9,6 +9,11 @@ namespace _App
         [SerializeField] private float _impulse = 12.0f;
         [SerializeField, Min(0.01f)] private float _duration = 0.32f;
         [SerializeField, Min(1)] private int _chargesPerAirtime = 1;
+        [SerializeField] private AnimationCurve _speedProfile = new AnimationCurve(
+            new Keyframe(0.0f, 1.8f),
+            new Keyframe(0.4f, 1.25f),
+            new Keyframe(0.8f, 0.45f),
+            new Keyframe(1.0f, 0.2f));
 
         [Header("Invulnerability Window")]
         [SerializeField] private bool _useInvulnerability;
@@ -19,6 +24,27 @@ namespace _App
         public float Impulse => _impulse;
         public float Duration => Mathf.Max(0.01f, _duration);
         public int ChargesPerAirtime => Mathf.Max(1, _chargesPerAirtime);
+
+        public float SampleNormalizedSpeed(float normalizedTime)
+        {
+            if (_speedProfile == null || _speedProfile.length == 0)
+            {
+                return 1.0f;
+            }
+
+            float mean = 0.0f;
+            const int samples = 32;
+            for (int i = 0; i < samples; i++)
+            {
+                mean += _speedProfile.Evaluate((i + 0.5f) / samples);
+            }
+
+            mean /= samples;
+            return mean > 0.0001f
+                ? _speedProfile.Evaluate(Mathf.Clamp01(normalizedTime)) / mean
+                : 1.0f;
+        }
+
         public bool HasInvulnerability =>
             _useInvulnerability && InvulnerabilityEnd > InvulnerabilityStart;
         public float InvulnerabilityStart => Mathf.Clamp01(_invulnerabilityStart);

@@ -226,7 +226,7 @@ namespace _App
             CancelJumpStartup();
             _motor.ReleaseJump();
             _motor.SetMovementDirection(Vector3.zero);
-            _runtime.DodgeBackwards = false;
+            _runtime.DodgeDirection = PlayerDodgeDirection.Forward;
             _actions.Interrupt();
         }
 
@@ -257,7 +257,7 @@ namespace _App
                 _motor.ReleaseJump();
                 _actions.StopGliding();
                 _runtime.EffectiveMoveDirection = Vector3.zero;
-                _runtime.DodgeBackwards = false;
+                _runtime.DodgeDirection = PlayerDodgeDirection.Forward;
                 _motor.StopPlanarMovement();
             }
 
@@ -452,7 +452,7 @@ namespace _App
                 _runtime.JumpStarting,
                 _actions.IsDodgeStarting,
                 _motor.IsCrouched,
-                stateId == PlayerLocomotionStateId.Dodge && _runtime.DodgeBackwards,
+                _runtime.DodgeDirection,
                 _landing);
         }
 
@@ -693,20 +693,54 @@ namespace _App
             }
 
             RefreshMovementDirections();
-            bool backwards = _input.Move.y < -0.5f &&
-                             _motor.RotationMode == ERotationMode.OrientToViewAndMovement;
+            PlayerDodgeDirection direction = ResolveDodgeDirection();
 
             bool accepted = airborne
-                ? _actions.TryAirDash(_runtime.RawMoveDirection, backwards)
-                : _actions.TryDodge(_runtime.RawMoveDirection, backwards);
+                ? _actions.TryAirDash(_runtime.RawMoveDirection, direction)
+                : _actions.TryDodge(_runtime.RawMoveDirection, direction);
             if (!accepted)
             {
                 return false;
             }
 
-            _runtime.DodgeBackwards = backwards;
+            _runtime.DodgeDirection = direction;
             SafeEvent.Publish(DodgeAccepted, null);
             return true;
+        }
+
+        private PlayerDodgeDirection ResolveDodgeDirection()
+        {
+            if (_motor.RotationMode != ERotationMode.OrientToViewAndMovement)
+            {
+                return PlayerDodgeDirection.Forward;
+            }
+
+            Vector3 up = _motor.Up.normalized;
+            Vector3 move = Vector3.ProjectOnPlane(_runtime.RawMoveDirection, up);
+            if (move.sqrMagnitude <= MoveThresholdSqr)
+            {
+                return PlayerDodgeDirection.Forward;
+            }
+
+            Vector3 forward = Vector3.ProjectOnPlane(_motor.Forward, up).normalized;
+            if (forward.sqrMagnitude <= MoveThresholdSqr)
+            {
+                return PlayerDodgeDirection.Forward;
+            }
+
+            move.Normalize();
+            float forwardDot = Vector3.Dot(move, forward);
+            float rightDot = Vector3.Dot(move, Vector3.Cross(up, forward));
+            if (Mathf.Abs(forwardDot) >= Mathf.Abs(rightDot))
+            {
+                return forwardDot >= 0.0f
+                    ? PlayerDodgeDirection.Forward
+                    : PlayerDodgeDirection.Backward;
+            }
+
+            return rightDot >= 0.0f
+                ? PlayerDodgeDirection.Right
+                : PlayerDodgeDirection.Left;
         }
 
         private bool CanConsumeJumpRequest(in PlayerMovementIntent movementIntent)
