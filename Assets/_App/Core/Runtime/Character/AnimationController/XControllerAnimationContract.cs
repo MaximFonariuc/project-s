@@ -38,6 +38,8 @@ namespace _App
         public const string MovementDirectionParameterName = "MovementDirection";
         public const string MovementTypeParameterName = "MovementType";
         public const string StoppingParameterName = "Stopping";
+        public const string StartingParameterName = "Starting";
+        public const string TransitionGaitParameterName = "TransitionGait";
         public const string FallingDurationParameterName = "FallingDuration";
         public const string SpeedMultiplierParameterName = "SpeedMultiplier";
         public const string BodyLookXParameterName = "BodyLookX";
@@ -125,6 +127,12 @@ namespace _App
                     new XControllerParameterRequirement(
                         StoppingParameterName,
                         AnimatorControllerParameterType.Trigger),
+                    new XControllerParameterRequirement(
+                        StartingParameterName,
+                        AnimatorControllerParameterType.Trigger),
+                    new XControllerParameterRequirement(
+                        TransitionGaitParameterName,
+                        AnimatorControllerParameterType.Float),
                     new XControllerParameterRequirement(
                         FallingDurationParameterName,
                         AnimatorControllerParameterType.Float),
