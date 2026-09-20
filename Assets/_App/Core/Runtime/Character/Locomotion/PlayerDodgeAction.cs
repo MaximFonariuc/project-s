@@ -12,12 +12,13 @@ namespace _App
         private readonly bool _canEverDodge;
         private readonly bool _hasInvulnerability;
         private readonly float _impulse;
-        private Vector3 _dodgeDirection;
         private readonly float _duration;
         private readonly float _invulnerabilityStart;
         private readonly float _invulnerabilityEnd;
 
         private IDisposable _damageImmunityLease;
+        private Vector3 _dodgeDirection;
+        private float _continuationSpeed;
         private float _elapsed;
         private bool _requestedBackwards;
         private bool _requestPending;
@@ -93,6 +94,11 @@ namespace _App
             _requestedBackwards = false;
         }
 
+        public void SetContinuationSpeed(float speed)
+        {
+            _continuationSpeed = Mathf.Max(0.0f, speed);
+        }
+
         public bool TryRequest(Vector3 worldDirection, bool backwards)
         {
             if (!CanRequest)
@@ -159,9 +165,15 @@ namespace _App
             _dodgeDirection = Vector3.ProjectOnPlane(
                 dodgeDirection,
                 _character.GetUpVector()).normalized;
-            _character.SetVelocity(
-                _dodgeDirection * (_impulse * _settings.SampleNormalizedSpeed(0.0f)));
+            _character.SetVelocity(_dodgeDirection * ResolveSpeed(0.0f));
             UpdateDamageImmunity();
+        }
+
+        private float ResolveSpeed(float normalizedTime)
+        {
+            return Mathf.Max(
+                _impulse * _settings.SampleNormalizedSpeed(normalizedTime),
+                _continuationSpeed);
         }
 
         private void OnCustomMovementModeUpdated(float deltaTime)
@@ -173,9 +185,7 @@ namespace _App
 
             _character.SetMovementDirection(Vector3.zero);
             _elapsed = Mathf.Min(_elapsed + deltaTime, _duration);
-            _character.SetVelocity(
-                _dodgeDirection *
-                (_impulse * _settings.SampleNormalizedSpeed(_elapsed / _duration)));
+            _character.SetVelocity(_dodgeDirection * ResolveSpeed(_elapsed / _duration));
             UpdateDamageImmunity();
 
             if (_elapsed >= _duration)
@@ -188,10 +198,15 @@ namespace _App
         {
             ReleaseDamageImmunity();
             Vector3 up = _character.GetUpVector();
-            Vector3 verticalVelocity = Vector3.Project(_character.GetVelocity(), up);
-            _character.SetVelocity(verticalVelocity);
+            Vector3 velocity = _character.GetVelocity();
+            Vector3 verticalVelocity = Vector3.Project(velocity, up);
+            Vector3 planarVelocity = Vector3.ProjectOnPlane(velocity, up);
+            _character.SetVelocity(
+                verticalVelocity +
+                Vector3.ClampMagnitude(planarVelocity, _continuationSpeed));
             _elapsed = 0.0f;
             _dodgeDirection = Vector3.zero;
+            _continuationSpeed = 0.0f;
             _requestedBackwards = false;
             _requestPending = false;
             _exitPending = false;

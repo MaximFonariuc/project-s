@@ -179,6 +179,7 @@ namespace _App
             UpdateJumpStartup(scaledDeltaTime);
             UpdateLandingRecovery(scaledDeltaTime);
             RefreshMovementDirections();
+            RefreshDodgeContinuation();
             PlayerLocomotionStateId stateId = ResolveState();
             if (_stateMachine.IsRunning)
             {
@@ -272,6 +273,13 @@ namespace _App
             _runtime.EffectiveMoveDirection = traversalOwnsMovement || BlocksActions
                 ? Vector3.zero
                 : _runtime.RawMoveDirection * _movementIntent.TranslationScale;
+        }
+
+        private void RefreshDodgeContinuation()
+        {
+            bool steering = !BlocksActions &&
+                            _runtime.RawMoveDirection.sqrMagnitude > MoveThresholdSqr;
+            _actions.SetDodgeContinuationSpeed(steering ? _motor.MaxSpeed : 0.0f);
         }
 
         private PlayerLocomotionStateId ResolveState()
