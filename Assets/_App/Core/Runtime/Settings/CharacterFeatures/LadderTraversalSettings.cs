@@ -17,6 +17,10 @@ namespace _App
         [SerializeField, Min(1.0f)] private float _approachTurnSpeed = 540.0f;
         [SerializeField, Min(0.01f)] private float _climbRateBlendSeconds = 0.12f;
 
+        [Header("Exit Top Root Motion")]
+        [SerializeField] private AnimationCurve _exitTopRiseProfile = AnimationCurve.Linear(0.0f, 0.0f, 1.0f, 1.0f);
+        [SerializeField] private AnimationCurve _exitTopForwardProfile = AnimationCurve.Linear(0.0f, 0.0f, 1.0f, 1.0f);
+
         [Header("Clip Lengths (seconds)")]
         [SerializeField, Min(0.01f)] private float _enterTopFrontSeconds = 1.8333334f;
         [SerializeField, Min(0.01f)] private float _enterTopBackSeconds = 1.8333334f;
@@ -35,6 +39,8 @@ namespace _App
         public float MaxApproachSeconds => Mathf.Max(_maxApproachSeconds, _minApproachSeconds);
         public float ApproachTurnSpeed => _approachTurnSpeed;
         public float ClimbRateBlendSeconds => _climbRateBlendSeconds;
+        public AnimationCurve ExitTopRiseProfile => _exitTopRiseProfile;
+        public AnimationCurve ExitTopForwardProfile => _exitTopForwardProfile;
 
         public float EnterTopFrontSeconds => _enterTopFrontSeconds;
         public float EnterTopBackSeconds => _enterTopBackSeconds;
