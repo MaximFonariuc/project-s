@@ -49,6 +49,10 @@ classDiagram
 ```
 
 - The coordinator owns finite-action priority, action source and playback speed.
+- Playback speed reaches the XController as the `SpeedMultiplier` parameter only.
+  `Animator.speed` stays reserved for the per-action rate that fits an attack or a
+  dodge to its authored duration, so a source that slows itself down does not stop
+  every other layer. Only the two ladder loop states read `SpeedMultiplier`.
 - `CharacterAnimationHost` is the single Animator-driver owner for scene-owned
   characters without a VContainer scope. Adapters share its coordinator instead
   of constructing competing drivers for the same Animator. The Player keeps the
