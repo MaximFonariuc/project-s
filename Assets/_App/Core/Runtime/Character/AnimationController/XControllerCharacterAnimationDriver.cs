@@ -24,6 +24,7 @@ namespace _App
         private const float AttackCrossFadeSeconds = 0.12f;
         private const float WeaponCrossFadeSeconds = 0.15f;
         private const float DefenseCrossFadeSeconds = 0.10f;
+        private const float LadderCrossFadeSeconds = 0.18f;
         private const float ActionCancelCrossFadeSeconds = 0.12f;
         private const float AttackBodyLookWeight = 0.15f;
         private const float AttackHeadLookWeight = 0.35f;
@@ -77,7 +78,6 @@ namespace _App
         private float _lastAirborneVerticalSpeed;
         private RuntimeAnimatorController _cachedClipController;
         private float _actionPlaybackRate = 1.0f;
-        private float _timePlaybackRate = 1.0f;
         private int _actionLayerIndex = -1;
         private int _actionStateHash;
         private int _releasedActionLayerIndex = -1;
@@ -232,9 +232,7 @@ namespace _App
         {
             ThrowIfDisposed();
 
-            _timePlaybackRate = Mathf.Max(0.0f, speed);
-            _animator.SetFloat(SpeedMultiplierHash, _timePlaybackRate);
-            ApplyPlaybackRate();
+            _animator.SetFloat(SpeedMultiplierHash, Mathf.Max(0.0f, speed));
         }
 
         public void Reset()
@@ -250,7 +248,6 @@ namespace _App
             _animator.SetFloat(SpeedMultiplierHash, 1.0f);
             _animator.SetBool(OnGroundHash, true);
             _actionPlaybackRate = 1.0f;
-            _timePlaybackRate = 1.0f;
             ClearReleasedActionTracking();
             ApplyPlaybackRate();
             _lastAirborneVerticalSpeed = 0.0f;
@@ -498,7 +495,7 @@ namespace _App
 
         private void ApplyPlaybackRate()
         {
-            _animator.speed = _actionPlaybackRate * _timePlaybackRate;
+            _animator.speed = _actionPlaybackRate;
         }
 
         private float ResolveActionPlaybackRate(
@@ -673,7 +670,7 @@ namespace _App
                 statePath = XControllerAnimationContract.TraversalStatePaths[
                     request.Variant];
                 stateHash = TraversalStateHashes[request.Variant];
-                crossFadeSeconds = DodgeCrossFadeSeconds;
+                crossFadeSeconds = LadderCrossFadeSeconds;
             }
             else if (request.Action == PlayerAnimatorActions.Reaction &&
                      request.Variant >= 0 &&

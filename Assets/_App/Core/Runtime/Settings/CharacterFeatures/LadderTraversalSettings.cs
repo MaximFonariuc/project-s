@@ -14,6 +14,8 @@ namespace _App
         [SerializeField, Min(0.1f)] private float _approachSpeed = 2.5f;
         [SerializeField, Min(0.01f)] private float _minApproachSeconds = 0.12f;
         [SerializeField, Min(0.01f)] private float _maxApproachSeconds = 0.6f;
+        [SerializeField, Min(1.0f)] private float _approachTurnSpeed = 540.0f;
+        [SerializeField, Min(0.01f)] private float _climbRateBlendSeconds = 0.12f;
 
         [Header("Clip Lengths (seconds)")]
         [SerializeField, Min(0.01f)] private float _enterTopFrontSeconds = 1.8333334f;
@@ -31,6 +33,8 @@ namespace _App
         public float ApproachSpeed => _approachSpeed;
         public float MinApproachSeconds => _minApproachSeconds;
         public float MaxApproachSeconds => Mathf.Max(_maxApproachSeconds, _minApproachSeconds);
+        public float ApproachTurnSpeed => _approachTurnSpeed;
+        public float ClimbRateBlendSeconds => _climbRateBlendSeconds;
 
         public float EnterTopFrontSeconds => _enterTopFrontSeconds;
         public float EnterTopBackSeconds => _enterTopBackSeconds;
