@@ -13,9 +13,9 @@ namespace _App
         [SerializeField] private Transform _bottomPoint;
 
         [Header("Rungs")]
+        [SerializeField] private Vector3 _firstRungOffset = new Vector3(0.0f, 0.3075f, 0.0125f);
         [SerializeField, Min(0.001f)] private float _rungSpacing = 0.65f;
-        [SerializeField] private float _firstRungOffset = 0.53f;
-        [SerializeField, Min(0.0f)] private float _rungHalfWidth = 0.18f;
+        [SerializeField, Min(0.0f)] private float _rungHalfWidth = 0.45f;
 
         public Vector3 BottomAnchorPoint => transform.position + transform.TransformVector(_pathOffset);
         public Vector3 TopAnchorPoint => BottomAnchorPoint + transform.up * _pathLength;
@@ -25,6 +25,7 @@ namespace _App
 
         public Vector3 ClimbAxis => transform.up;
         public Quaternion ClimbRotation => transform.rotation;
+        public float PathLength => _pathLength;
         public float RungSpacing => _rungSpacing * Mathf.Abs(transform.lossyScale.y);
 
         public float ResolveStepHeight(float authoredCycleRise)
@@ -39,16 +40,32 @@ namespace _App
             return rungs * spacing;
         }
 
+        public float ResolvePathLength(float stepHeight)
+        {
+            if (stepHeight <= 0.0001f)
+            {
+                return _pathLength;
+            }
+
+            int steps = Mathf.Max(1, Mathf.RoundToInt(_pathLength / stepHeight));
+            return steps * stepHeight;
+        }
+
         public float HeightAlongPath(Vector3 position)
         {
             return Vector3.Dot(position - BottomAnchorPoint, ClimbAxis.normalized);
         }
 
+        public Vector3 PointAtHeight(float height)
+        {
+            return BottomAnchorPoint + ClimbAxis.normalized * height;
+        }
+
         public Vector3 NearestRungPoint(Vector3 worldPosition)
         {
-            float spacing = RungSpacing;
             Vector3 axis = ClimbAxis.normalized;
-            Vector3 origin = BottomAnchorPoint + axis * (_firstRungOffset * Mathf.Abs(transform.lossyScale.y));
+            Vector3 origin = transform.TransformPoint(_firstRungOffset);
+            float spacing = RungSpacing;
             float height = Vector3.Dot(worldPosition - origin, axis);
             if (spacing > 0.0001f)
             {
@@ -61,12 +78,12 @@ namespace _App
             float halfWidth = _rungHalfWidth * Mathf.Abs(transform.lossyScale.x);
             return onAxis + lateral * Mathf.Clamp(side, -halfWidth, halfWidth);
         }
-        
+
         public Transform ClosestPointOnPath(Vector3 position, out float pathPosition)
         {
             Vector3 path = TopAnchorPoint - BottomAnchorPoint;
             Vector3 pathToPoint = position - BottomAnchorPoint;
-            
+
             float height = Vector3.Dot(pathToPoint, path.normalized);
 
             if (height > 0.0f)
@@ -74,19 +91,32 @@ namespace _App
                 pathPosition = height - path.magnitude;
                 return TopPoint;
             }
-            
+
             pathPosition = height;
             return BottomPoint;
         }
-        
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(BottomAnchorPoint, TopAnchorPoint);
 
+            Gizmos.color = Color.cyan;
+            Vector3 origin = transform.TransformPoint(_firstRungOffset);
+            Vector3 axis = ClimbAxis.normalized;
+            Vector3 lateral = transform.right.normalized * (_rungHalfWidth * Mathf.Abs(transform.lossyScale.x));
+            float spacing = RungSpacing;
+            int rungs = spacing > 0.0001f ? Mathf.CeilToInt(_pathLength / spacing) : 0;
+            for (int i = 0; i <= rungs; i++)
+            {
+                Vector3 center = origin + axis * (i * spacing);
+                Gizmos.DrawLine(center - lateral, center + lateral);
+            }
+
             if (_bottomPoint == null || _topPoint == null)
                 return;
 
+            Gizmos.color = Color.yellow;
             Gizmos.DrawWireCube(_bottomPoint.position, Vector3.one * 0.25f);
             Gizmos.DrawWireCube(_topPoint.position, Vector3.one * 0.25f);
         }
