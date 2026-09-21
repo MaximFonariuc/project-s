@@ -10,6 +10,7 @@ namespace _App
         {
             public Vector3 PreviousPosition;
             public Vector3 Target;
+            public Vector3 Correction;
             public float Weight;
             public bool HasPrevious;
             public bool HasTarget;
@@ -29,6 +30,7 @@ namespace _App
         [SerializeField, Range(0.0f, 1.0f)] private float _footWeight = 0.75f;
         [SerializeField, Min(0.01f)] private float _maxCorrection = 0.14f;
         [SerializeField, Min(0.01f)] private float _plantSpeed = 0.8f;
+        [SerializeField, Min(0.01f)] private float _latchDistance = 0.16f;
         [SerializeField, Min(0.01f)] private float _blendSeconds = 0.12f;
 
         private readonly LimbGrip[] _limbs = new LimbGrip[Goals.Length];
@@ -84,20 +86,37 @@ namespace _App
                 float speed = limb.HasPrevious
                     ? (animated - limb.PreviousPosition).magnitude / deltaTime
                     : 0.0f;
-                planted = speed <= _plantSpeed;
-                if (planted && !limb.HasTarget)
+                bool resting = speed <= _plantSpeed;
+                if (limb.HasTarget)
                 {
-                    limb.Target = ladder.NearestRungPoint(animated);
-                    limb.HasTarget = true;
+                    planted = resting;
+                    limb.HasTarget = resting;
                 }
-                else if (!planted)
+                else if (resting && limb.Weight <= 0.0f)
                 {
-                    limb.HasTarget = false;
+                    Vector3 rung = ladder.NearestRungPoint(animated);
+                    if ((rung - animated).sqrMagnitude <= _latchDistance * _latchDistance)
+                    {
+                        limb.Target = rung;
+                        limb.HasTarget = true;
+                        planted = true;
+                    }
                 }
             }
             else
             {
                 limb.HasTarget = false;
+            }
+
+            if (planted)
+            {
+                Vector3 correction = limb.Target - animated;
+                if (correction.sqrMagnitude > _maxCorrection * _maxCorrection)
+                {
+                    correction = correction.normalized * _maxCorrection;
+                }
+
+                limb.Correction = correction;
             }
 
             limb.PreviousPosition = animated;
@@ -107,18 +126,10 @@ namespace _App
 
             float limbWeight = index < HandGoalCount ? _handWeight : _footWeight;
             _animator.SetIKPositionWeight(goal, limb.Weight * limbWeight);
-            if (limb.Weight <= 0.0f)
+            if (limb.Weight > 0.0f)
             {
-                return;
+                _animator.SetIKPosition(goal, animated + limb.Correction);
             }
-
-            Vector3 correction = limb.Target - animated;
-            if (correction.sqrMagnitude > _maxCorrection * _maxCorrection)
-            {
-                correction = correction.normalized * _maxCorrection;
-            }
-
-            _animator.SetIKPosition(goal, animated + correction);
         }
     }
 }

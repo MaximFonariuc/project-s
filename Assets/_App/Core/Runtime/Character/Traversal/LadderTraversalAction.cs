@@ -28,6 +28,8 @@ namespace _App
         private readonly float _maxApproachSeconds;
         private readonly float _approachTurnSpeed;
         private readonly float _climbRateBlendSeconds;
+        private readonly AnimationCurve _exitTopRiseProfile;
+        private readonly AnimationCurve _exitTopForwardProfile;
 
         private Ladder _activeLadder;
         private EClimbingState _climbingState;
@@ -43,8 +45,6 @@ namespace _App
         private bool _enabled;
         private bool _reportedMissingPresentation;
 
-        private const float EXIT_CLIMB_SHARE = 35f / 55f;
-        private const float EXIT_MOVE_SHARE = 15f / 55f;
         private const float EXIT_BOTTOM_SHARE = 25f / 40f;
         private const float ENTER_TOP_MOVE_SHARE = 15f / 50f;
         private const float ENTER_TOP_CLIMB_SHARE = 35f / 50f;
@@ -68,7 +68,9 @@ namespace _App
             _locomotionState.SpeedMode == PlayerSpeedMode.Sprint ? SPRINT_CLIMB_RATE : 1.0f;
 
         public bool IsGripActive =>
-            _activeLadder != null && _climbingState == EClimbingState.Grabbed;
+            _activeLadder != null &&
+            (_climbingState == EClimbingState.Grabbed ||
+             _climbingState == EClimbingState.Releasing);
 
         public Ladder ActiveLadder => _activeLadder;
 
@@ -94,6 +96,8 @@ namespace _App
             _maxApproachSeconds = settings.MaxApproachSeconds;
             _approachTurnSpeed = settings.ApproachTurnSpeed;
             _climbRateBlendSeconds = settings.ClimbRateBlendSeconds;
+            _exitTopRiseProfile = settings.ExitTopRiseProfile;
+            _exitTopForwardProfile = settings.ExitTopForwardProfile;
             _slotDurations = new[]
             {
                 settings.EnterTopFrontSeconds,
@@ -435,10 +439,7 @@ namespace _App
 
             if (exitTop)
             {
-                Vector3 axis = _activeLadder.ClimbAxis.normalized;
-                Vector3 lifted = start + axis * Vector3.Dot(target - start, axis);
-                await LerpMovement(start, lifted, playback.Duration * EXIT_CLIMB_SHARE, token);
-                await LerpMovement(lifted, target, playback.Duration * EXIT_MOVE_SHARE, token);
+                await FollowExitTopProfile(start, target, playback.Duration, token);
             }
             else
             {
@@ -449,6 +450,42 @@ namespace _App
             _climbingState = EClimbingState.None;
             _character.SetMovementMode(EMovementMode.Walking);
             _character.SetRotationMode(_previousRotationMode);
+        }
+
+        private async UniTask FollowExitTopProfile(
+            Vector3 from,
+            Vector3 to,
+            float duration,
+            CancellationToken token)
+        {
+            Vector3 axis = _activeLadder.ClimbAxis.normalized;
+            Vector3 travel = to - from;
+            float rise = Vector3.Dot(travel, axis);
+            Vector3 forward = travel - axis * rise;
+
+            float elapsed = 0.0f;
+            while (elapsed < duration)
+            {
+                token.ThrowIfCancellationRequested();
+                elapsed += Time.deltaTime;
+                float normalizedTime = Mathf.Clamp01(elapsed / duration);
+                _character.TeleportPosition(
+                    from +
+                    axis * (rise * SampleProfile(_exitTopRiseProfile, normalizedTime)) +
+                    forward * SampleProfile(_exitTopForwardProfile, normalizedTime),
+                    false,
+                    false);
+                await UniTask.Yield(token);
+            }
+
+            _character.TeleportPosition(to, false, true);
+        }
+
+        private static float SampleProfile(AnimationCurve profile, float normalizedTime)
+        {
+            return profile == null || profile.length == 0
+                ? normalizedTime
+                : Mathf.Clamp01(profile.Evaluate(normalizedTime));
         }
 
         private async UniTask LerpMovement(

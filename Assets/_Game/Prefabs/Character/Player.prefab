@@ -2971,6 +2971,7 @@ MonoBehaviour:
   _footWeight: 0.75
   _maxCorrection: 0.14
   _plantSpeed: 0.8
+  _latchDistance: 0.16
   _blendSeconds: 0.12
 --- !u!4 &7171206776541794956 stripped
 Transform:
