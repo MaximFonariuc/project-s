@@ -19,6 +19,7 @@ namespace _App
                     resolver.Resolve<Character>(),
                     resolver.Resolve<PlayerAnimationCoordinator>(),
                     resolver.Resolve<IPlayerLocomotionState>(),
+                    resolver.Resolve<IPlayerLadderClimbAnimation>(),
                     features),
                 Lifetime.Scoped)
                 .As<IPlayerTraversalActions>()

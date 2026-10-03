@@ -17,6 +17,11 @@ namespace _App
         Ladder ActiveLadder { get; }
     }
 
+    internal interface IPlayerLadderClimbAnimation
+    {
+        void SetClimbPhases(float ascendPhase, float descendPhase);
+    }
+
     internal interface IPlayerSimulationPause
     {
         bool IsPauseRequested { get; }

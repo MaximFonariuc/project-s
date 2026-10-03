@@ -13,6 +13,7 @@ namespace _App
     internal sealed class XControllerCharacterAnimationDriver :
         ICharacterAnimationDriver,
         ICharacterLookAnimationDriver,
+        IPlayerLadderClimbAnimation,
         IDisposable
     {
         private const float GaitDampSeconds = 0.33f;
@@ -43,6 +44,10 @@ namespace _App
             XControllerAnimationContract.FallingDurationParameterName);
         private static readonly int SpeedMultiplierHash = Animator.StringToHash(
             XControllerAnimationContract.SpeedMultiplierParameterName);
+        private static readonly int LadderAscendPhaseHash = Animator.StringToHash(
+            XControllerAnimationContract.LadderAscendPhaseParameterName);
+        private static readonly int LadderDescendPhaseHash = Animator.StringToHash(
+            XControllerAnimationContract.LadderDescendPhaseParameterName);
         private static readonly int MoveStateHash = Animator.StringToHash(
             XControllerAnimationContract.MoveStatePath);
         private static readonly int RollForwardStateHash = Animator.StringToHash(
@@ -235,6 +240,14 @@ namespace _App
             _animator.SetFloat(SpeedMultiplierHash, Mathf.Max(0.0f, speed));
         }
 
+        public void SetClimbPhases(float ascendPhase, float descendPhase)
+        {
+            ThrowIfDisposed();
+
+            _animator.SetFloat(LadderAscendPhaseHash, ascendPhase);
+            _animator.SetFloat(LadderDescendPhaseHash, descendPhase);
+        }
+
         public void Reset()
         {
             if (_disposed || _animator == null)
@@ -246,6 +259,8 @@ namespace _App
             _animator.SetFloat(MovementDirectionHash, 0.0f);
             _animator.SetFloat(FallingDurationHash, 0.0f);
             _animator.SetFloat(SpeedMultiplierHash, 1.0f);
+            _animator.SetFloat(LadderAscendPhaseHash, 0.0f);
+            _animator.SetFloat(LadderDescendPhaseHash, 0.0f);
             _animator.SetBool(OnGroundHash, true);
             _actionPlaybackRate = 1.0f;
             ClearReleasedActionTracking();

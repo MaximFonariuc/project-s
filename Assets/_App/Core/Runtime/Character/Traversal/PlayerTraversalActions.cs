@@ -26,6 +26,7 @@ namespace _App
             Character character,
             PlayerAnimationCoordinator animation,
             IPlayerLocomotionState locomotionState,
+            IPlayerLadderClimbAnimation climbAnimation,
             CharacterFeatureSet features)
         {
             if (character == null)
@@ -43,6 +44,11 @@ namespace _App
                 throw new ArgumentNullException(nameof(locomotionState));
             }
 
+            if (climbAnimation == null)
+            {
+                throw new ArgumentNullException(nameof(climbAnimation));
+            }
+
             if (features == null)
             {
                 throw new ArgumentNullException(nameof(features));
@@ -55,6 +61,7 @@ namespace _App
                     character,
                     animation,
                     locomotionState,
+                    climbAnimation,
                     settings);
             }
         }
