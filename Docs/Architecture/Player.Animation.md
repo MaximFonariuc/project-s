@@ -232,8 +232,11 @@ The current action contract is:
 The controller consumes its historical `MovementType`, `MovementDirection`,
 `FallingDuration`, `OnGround` and `SpeedMultiplier` parameters. `BodyLookX/Y`
 and `HeadLookX/Y` drive the additive `BodyLook` and `HeadLook` layers from the
-camera/targeting presentation path. Jump anticipation remains gameplay-owned
-regardless of the current animation graph.
+camera/targeting presentation path. `LadderAscendPhase` and `LadderDescendPhase`
+are the Motion Time of `Ladder_Ascend` and `Ladder_Descend`; traversal writes
+them through `IPlayerLadderClimbAnimation`. Since the ladder loops moved to
+Motion Time, no state reads `SpeedMultiplier`. Jump anticipation remains
+gameplay-owned regardless of the current animation graph.
 
 ## Locomotion selection
 
@@ -467,7 +470,8 @@ It also fixes the locomotion blend contract to a continuous
 subtrees at `-0.5 / 0.5`. Runtime damping therefore cannot be invalidated by an
 accidental Blend Tree type or threshold change.
 Controller defaults are part of the same neutral-pose contract:
-`OnGround=true`, all movement/look channels at zero and `SpeedMultiplier=1`.
+`OnGround=true`, all movement/look/ladder phase channels at zero and
+`SpeedMultiplier=1`.
 This keeps Editor preview and the first frame before composition consistent with
 the runtime driver reset.
 The validator also builds the active player combat profile and verifies that
