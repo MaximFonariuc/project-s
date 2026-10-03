@@ -16,6 +16,7 @@ namespace _App
         [SerializeField] private Vector3 _firstRungOffset = new Vector3(0.0f, 0.3075f, 0.0125f);
         [SerializeField, Min(0.001f)] private float _rungSpacing = 0.65f;
         [SerializeField, Min(0.0f)] private float _rungHalfWidth = 0.45f;
+        [SerializeField, Min(1)] private int _rungCount = 19;
 
         public Vector3 BottomAnchorPoint => transform.position + transform.TransformVector(_pathOffset);
         public Vector3 TopAnchorPoint => BottomAnchorPoint + transform.up * _pathLength;
@@ -69,7 +70,8 @@ namespace _App
             float height = Vector3.Dot(worldPosition - origin, axis);
             if (spacing > 0.0001f)
             {
-                height = Mathf.Round(height / spacing) * spacing;
+                int rung = Mathf.Clamp(Mathf.RoundToInt(height / spacing), 0, _rungCount - 1);
+                height = rung * spacing;
             }
 
             Vector3 onAxis = origin + axis * height;
@@ -106,8 +108,7 @@ namespace _App
             Vector3 axis = ClimbAxis.normalized;
             Vector3 lateral = transform.right.normalized * (_rungHalfWidth * Mathf.Abs(transform.lossyScale.x));
             float spacing = RungSpacing;
-            int rungs = spacing > 0.0001f ? Mathf.CeilToInt(_pathLength / spacing) : 0;
-            for (int i = 0; i <= rungs; i++)
+            for (int i = 0; i < _rungCount; i++)
             {
                 Vector3 center = origin + axis * (i * spacing);
                 Gizmos.DrawLine(center - lateral, center + lateral);
