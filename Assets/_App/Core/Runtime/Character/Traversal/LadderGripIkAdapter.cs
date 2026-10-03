@@ -43,6 +43,7 @@ namespace _App
         [SerializeField, Min(0.0f)] private float _baseStepEndCycles = 0.22f;
         [SerializeField, Min(0.0f)] private float _bodyStandoff = 0.05f;
         [SerializeField, Min(0.01f)] private float _standoffBlendSeconds = 0.25f;
+        [SerializeField, Range(0.0f, 30.0f)] private float _restLeanDegrees = 12.0f;
 
         private readonly LimbGrip[] _limbs = new LimbGrip[Goals.Length];
         private readonly Vector3[] _animated = new Vector3[Goals.Length];
@@ -52,11 +53,13 @@ namespace _App
         private Vector3 _baseFootSpot;
         private Vector3 _baseFootShift;
         private Vector3 _standoffDirection;
+        private Vector3 _standoffAxis;
         private float _baseFootBlend;
         private float _baseFootAnchor;
         private float _baseFootWeight;
         private float _standoffWeight;
         private float _standoffHold;
+        private float _fullHold;
 
         [Inject]
         public void Construct(IPlayerLadderGrip grip)
@@ -81,6 +84,7 @@ namespace _App
             _baseFootWeight = 0.0f;
             _standoffWeight = 0.0f;
             _standoffHold = 0.0f;
+            _fullHold = 0.0f;
         }
 
         private void OnAnimatorIK(int layerIndex)
@@ -101,10 +105,14 @@ namespace _App
 
             UpdateBaseFoot(weightStep);
             UpdateStandoff(deltaTime);
+            bool allHeld = ladder != null;
             for (int i = 0; i < Goals.Length; i++)
             {
                 ApplyGoal(i, ladder, deltaTime, weightStep);
+                allHeld &= _limbs[i].HasTarget;
             }
+
+            _fullHold = Mathf.MoveTowards(_fullHold, allHeld ? 1.0f : 0.0f, weightStep);
         }
 
         private void UpdateStandoff(float deltaTime)
@@ -112,7 +120,9 @@ namespace _App
             bool hanging = _bodyStandoff > 0.0f && _grip != null && _grip.IsHanging;
             if (hanging)
             {
-                _standoffDirection = _grip.ActiveLadder.ClimbRotation * Vector3.forward;
+                Quaternion rotation = _grip.ActiveLadder.ClimbRotation;
+                _standoffDirection = rotation * Vector3.forward;
+                _standoffAxis = rotation * Vector3.right;
             }
 
             _standoffWeight = Mathf.MoveTowards(
@@ -120,9 +130,17 @@ namespace _App
                 hanging ? 1.0f : 0.0f,
                 deltaTime / Mathf.Max(0.01f, _standoffBlendSeconds));
             _standoffHold = Mathf.SmoothStep(0.0f, 1.0f, _standoffWeight);
-            if (_standoffHold > 0.0f)
+            if (_standoffHold <= 0.0f)
             {
-                _animator.bodyPosition -= _standoffDirection * (_bodyStandoff * _standoffHold);
+                return;
+            }
+
+            _animator.bodyPosition -= _standoffDirection * (_bodyStandoff * _standoffHold);
+            float lean = _restLeanDegrees * _standoffHold * Mathf.SmoothStep(0.0f, 1.0f, _fullHold);
+            if (lean > 0.0f)
+            {
+                _animator.bodyRotation =
+                    Quaternion.AngleAxis(lean, _standoffAxis) * _animator.bodyRotation;
             }
         }
 
@@ -225,7 +243,11 @@ namespace _App
             limb.Weight = Mathf.MoveTowards(limb.Weight, planted ? 1.0f : 0.0f, weightStep);
             _limbs[index] = limb;
 
-            float gripWeight = limb.Weight * (index < HandGoalCount ? _handWeight : _footWeight);
+            float limbWeight = Mathf.Lerp(
+                index < HandGoalCount ? _handWeight : _footWeight,
+                1.0f,
+                _fullHold);
+            float gripWeight = limb.Weight * limbWeight;
             Vector3 gripped = animated + limb.Correction;
             Vector3 held = animated + limb.Correction * gripWeight;
             float hold = _standoffHold;

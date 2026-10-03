@@ -18,7 +18,7 @@ namespace _App
         [SerializeField, Min(1.0f)] private float _approachTurnSpeed = 540.0f;
         [SerializeField, Min(0.01f)] private float _climbRateBlendSeconds = 0.12f;
         [SerializeField, Min(0.0f)] private float _hangBlendLeadSeconds = 0.18f;
-        [SerializeField] private float[] _restPhases = { 0.22f, 0.74f };
+        [SerializeField] private float[] _restPhases = { 0.3f };
 
         [Header("Exit Top Root Motion")]
         [SerializeField] private AnimationCurve _exitTopRiseProfile = AnimationCurve.Linear(0.0f, 0.0f, 1.0f, 1.0f);
