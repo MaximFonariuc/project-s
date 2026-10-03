@@ -279,23 +279,21 @@ namespace _App
             float stopping = _climbVelocity * Mathf.Abs(_climbVelocity) /
                 (2.0f * acceleration * ResolveCycleSeconds(_climbVelocity));
             float reach = _climbCycles + stopping;
-            float rest;
             if (_climbVelocity > 0.0f)
             {
-                rest = FindRestCycles(reach, 1);
-            }
-            else if (_climbVelocity < 0.0f)
-            {
-                rest = FindRestCycles(reach, -1);
-            }
-            else
-            {
-                float above = FindRestCycles(reach, 1);
-                float below = FindRestCycles(reach, -1);
-                rest = above - reach <= reach - below ? above : below;
+                float ahead = FindRestCycles(reach, 1);
+                return ahead > highest ? TopCycles : ahead;
             }
 
-            return Mathf.Clamp(rest, lowest, highest);
+            if (_climbVelocity < 0.0f)
+            {
+                float behind = FindRestCycles(reach, -1);
+                return behind < lowest ? 0.0f : behind;
+            }
+
+            float above = FindRestCycles(reach, 1);
+            float below = FindRestCycles(reach, -1);
+            return Mathf.Clamp(above - reach <= reach - below ? above : below, lowest, highest);
         }
 
         private float FindRestCycles(float cycles, int direction)
@@ -355,8 +353,9 @@ namespace _App
                 return;
             }
 
+            float velocity = _climbVelocity;
             float cycles = Mathf.Clamp(
-                _climbCycles + _climbVelocity * Time.deltaTime / cycleSeconds,
+                _climbCycles + velocity * Time.deltaTime / cycleSeconds,
                 0.0f,
                 TopCycles);
             if (_hasRestTarget && (cycles - _restCycles) * (_climbCycles - _restCycles) <= 0.0f)
@@ -371,11 +370,11 @@ namespace _App
                 false,
                 false);
 
-            if (_climbVelocity > 0.0f && _climbCycles >= TopCycles - AnchorEpsilonCycles)
+            if (velocity > 0.0f && _climbCycles >= TopCycles - AnchorEpsilonCycles)
             {
                 BeginExit(true);
             }
-            else if (_climbVelocity < 0.0f && _climbCycles <= AnchorEpsilonCycles)
+            else if (velocity < 0.0f && _climbCycles <= AnchorEpsilonCycles)
             {
                 BeginExit(false);
             }

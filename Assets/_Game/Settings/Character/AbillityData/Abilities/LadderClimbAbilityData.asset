@@ -23,8 +23,7 @@ MonoBehaviour:
   _climbRateBlendSeconds: 0.12
   _hangBlendLeadSeconds: 0.18
   _restPhases:
-  - 0.22
-  - 0.74
+  - 0.3
   _exitTopRiseProfile:
     serializedVersion: 2
     m_Curve:

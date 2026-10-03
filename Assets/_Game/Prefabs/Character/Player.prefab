@@ -2984,6 +2984,7 @@ MonoBehaviour:
   _baseStepEndCycles: 0.22
   _bodyStandoff: 0.05
   _standoffBlendSeconds: 0.25
+  _restLeanDegrees: 12
 --- !u!4 &7171206776541794956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: b67206ccb16ad77489a9eb0b6a3d6c68, type: 3}
