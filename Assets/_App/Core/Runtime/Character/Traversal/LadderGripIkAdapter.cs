@@ -36,11 +36,21 @@ namespace _App
         [SerializeField] private float _handDepthFromRung = 0.008f;
         [SerializeField] private float _footHeightAboveRung = 0.127f;
         [SerializeField] private float _footDepthFromRung = -0.041f;
+        [SerializeField] private AvatarIKGoal _baseFootGoal = AvatarIKGoal.LeftFoot;
+        [SerializeField] private Vector3 _baseFootEntryOffset = new Vector3(-0.123f, 0.071f, 0.04f);
+        [SerializeField] private Vector3 _baseFootClimbOffset = new Vector3(-0.059f, 0.085f, 0.171f);
+        [SerializeField, Min(0.0f)] private float _baseStepStartCycles = 0.1f;
+        [SerializeField, Min(0.0f)] private float _baseStepEndCycles = 0.34f;
 
         private readonly LimbGrip[] _limbs = new LimbGrip[Goals.Length];
 
         private Animator _animator;
         private IPlayerLadderGrip _grip;
+        private Vector3 _baseFootSpot;
+        private Vector3 _baseFootShift;
+        private float _baseFootBlend;
+        private float _baseFootAnchor;
+        private float _baseFootWeight;
 
         [Inject]
         public void Construct(IPlayerLadderGrip grip)
@@ -59,6 +69,10 @@ namespace _App
             {
                 _limbs[i] = default;
             }
+
+            _baseFootBlend = 0.0f;
+            _baseFootAnchor = 0.0f;
+            _baseFootWeight = 0.0f;
         }
 
         private void OnAnimatorIK(int layerIndex)
@@ -72,10 +86,52 @@ namespace _App
             Ladder ladder = active ? _grip.ActiveLadder : null;
             float deltaTime = Mathf.Max(Time.deltaTime, 0.0001f);
             float weightStep = deltaTime / Mathf.Max(0.01f, _blendSeconds);
+            UpdateBaseFoot(weightStep);
             for (int i = 0; i < Goals.Length; i++)
             {
                 ApplyGoal(i, ladder, deltaTime, weightStep);
             }
+        }
+
+        private void UpdateBaseFoot(float weightStep)
+        {
+            Ladder ladder = _grip?.ActiveLadder;
+            bool transition = ladder != null && _grip.IsBaseTransition;
+            float blend = ladder != null ? ResolveBaseFootBlend(transition) : 0.0f;
+            if (blend > 0.0f)
+            {
+                Quaternion rotation = ladder.ClimbRotation;
+                _baseFootSpot = ladder.BottomAnchorPoint + rotation * _baseFootEntryOffset;
+                _baseFootShift = rotation * (_baseFootEntryOffset - _baseFootClimbOffset);
+                _baseFootBlend = blend;
+                _baseFootAnchor = transition
+                    ? 1.0f
+                    : Mathf.MoveTowards(_baseFootAnchor, 0.0f, weightStep);
+            }
+
+            _baseFootWeight = Mathf.MoveTowards(
+                _baseFootWeight,
+                blend > 0.0f ? 1.0f : 0.0f,
+                weightStep);
+        }
+
+        private float ResolveBaseFootBlend(bool transition)
+        {
+            if (transition)
+            {
+                return 1.0f;
+            }
+
+            if (!_grip.IsGripActive)
+            {
+                return 0.0f;
+            }
+
+            float step = Mathf.InverseLerp(
+                _baseStepStartCycles,
+                _baseStepEndCycles,
+                _grip.ClimbCycles);
+            return 1.0f - Mathf.SmoothStep(0.0f, 1.0f, step);
         }
 
         private void ApplyGoal(int index, Ladder ladder, float deltaTime, float weightStep)
@@ -130,6 +186,20 @@ namespace _App
             _limbs[index] = limb;
 
             float limbWeight = index < HandGoalCount ? _handWeight : _footWeight;
+            if (goal == _baseFootGoal && _baseFootWeight > 0.0f)
+            {
+                Vector3 gripped = limb.Weight > 0.0f ? animated + limb.Correction : animated;
+                Vector3 based = Vector3.Lerp(
+                    animated + _baseFootShift * _baseFootBlend,
+                    _baseFootSpot,
+                    _baseFootAnchor);
+                _animator.SetIKPositionWeight(
+                    goal,
+                    Mathf.Lerp(limb.Weight * limbWeight, 1.0f, _baseFootWeight));
+                _animator.SetIKPosition(goal, Vector3.Lerp(gripped, based, _baseFootWeight));
+                return;
+            }
+
             _animator.SetIKPositionWeight(goal, limb.Weight * limbWeight);
             if (limb.Weight > 0.0f)
             {
