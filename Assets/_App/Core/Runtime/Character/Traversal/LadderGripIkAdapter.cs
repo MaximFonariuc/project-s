@@ -41,16 +41,22 @@ namespace _App
         [SerializeField] private Vector3 _baseFootClimbOffset = new Vector3(-0.059f, 0.085f, 0.171f);
         [SerializeField, Min(0.0f)] private float _baseStepStartCycles = 0.1f;
         [SerializeField, Min(0.0f)] private float _baseStepEndCycles = 0.34f;
+        [SerializeField, Min(0.0f)] private float _bodyStandoff = 0.05f;
+        [SerializeField, Min(0.01f)] private float _standoffBlendSeconds = 0.25f;
 
         private readonly LimbGrip[] _limbs = new LimbGrip[Goals.Length];
+        private readonly Vector3[] _animated = new Vector3[Goals.Length];
 
         private Animator _animator;
         private IPlayerLadderGrip _grip;
         private Vector3 _baseFootSpot;
         private Vector3 _baseFootShift;
+        private Vector3 _standoffDirection;
         private float _baseFootBlend;
         private float _baseFootAnchor;
         private float _baseFootWeight;
+        private float _standoffWeight;
+        private float _standoffHold;
 
         [Inject]
         public void Construct(IPlayerLadderGrip grip)
@@ -73,6 +79,8 @@ namespace _App
             _baseFootBlend = 0.0f;
             _baseFootAnchor = 0.0f;
             _baseFootWeight = 0.0f;
+            _standoffWeight = 0.0f;
+            _standoffHold = 0.0f;
         }
 
         private void OnAnimatorIK(int layerIndex)
@@ -86,10 +94,35 @@ namespace _App
             Ladder ladder = active ? _grip.ActiveLadder : null;
             float deltaTime = Mathf.Max(Time.deltaTime, 0.0001f);
             float weightStep = deltaTime / Mathf.Max(0.01f, _blendSeconds);
+            for (int i = 0; i < Goals.Length; i++)
+            {
+                _animated[i] = _animator.GetIKPosition(Goals[i]);
+            }
+
             UpdateBaseFoot(weightStep);
+            UpdateStandoff(deltaTime);
             for (int i = 0; i < Goals.Length; i++)
             {
                 ApplyGoal(i, ladder, deltaTime, weightStep);
+            }
+        }
+
+        private void UpdateStandoff(float deltaTime)
+        {
+            bool hanging = _bodyStandoff > 0.0f && _grip != null && _grip.IsHanging;
+            if (hanging)
+            {
+                _standoffDirection = _grip.ActiveLadder.ClimbRotation * Vector3.forward;
+            }
+
+            _standoffWeight = Mathf.MoveTowards(
+                _standoffWeight,
+                hanging ? 1.0f : 0.0f,
+                deltaTime / Mathf.Max(0.01f, _standoffBlendSeconds));
+            _standoffHold = Mathf.SmoothStep(0.0f, 1.0f, _standoffWeight);
+            if (_standoffHold > 0.0f)
+            {
+                _animator.bodyPosition -= _standoffDirection * (_bodyStandoff * _standoffHold);
             }
         }
 
@@ -137,7 +170,7 @@ namespace _App
         private void ApplyGoal(int index, Ladder ladder, float deltaTime, float weightStep)
         {
             AvatarIKGoal goal = Goals[index];
-            Vector3 animated = _animator.GetIKPosition(goal);
+            Vector3 animated = _animated[index];
             LimbGrip limb = _limbs[index];
             bool planted = false;
 
@@ -179,32 +212,46 @@ namespace _App
 
                 limb.Correction = correction;
             }
+            else if (limb.Weight <= 0.0f)
+            {
+                limb.Correction = Vector3.MoveTowards(
+                    limb.Correction,
+                    Vector3.zero,
+                    _maxCorrection * weightStep);
+            }
 
             limb.PreviousPosition = animated;
             limb.HasPrevious = ladder != null;
             limb.Weight = Mathf.MoveTowards(limb.Weight, planted ? 1.0f : 0.0f, weightStep);
             _limbs[index] = limb;
 
-            float limbWeight = index < HandGoalCount ? _handWeight : _footWeight;
+            float gripWeight = limb.Weight * (index < HandGoalCount ? _handWeight : _footWeight);
+            Vector3 gripped = animated + limb.Correction;
+            Vector3 held = animated + limb.Correction * gripWeight;
+            float hold = _standoffHold;
             if (goal == _baseFootGoal && _baseFootWeight > 0.0f)
             {
-                Vector3 gripped = limb.Weight > 0.0f ? animated + limb.Correction : animated;
                 Vector3 based = Vector3.Lerp(
                     animated + _baseFootShift * _baseFootBlend,
                     _baseFootSpot,
                     _baseFootAnchor);
-                _animator.SetIKPositionWeight(
-                    goal,
-                    Mathf.Lerp(limb.Weight * limbWeight, 1.0f, _baseFootWeight));
-                _animator.SetIKPosition(goal, Vector3.Lerp(gripped, based, _baseFootWeight));
+                held = Vector3.Lerp(held, based, _baseFootWeight);
+                hold = Mathf.Max(hold, _baseFootWeight);
+            }
+
+            if (hold <= 0.0f)
+            {
+                _animator.SetIKPositionWeight(goal, gripWeight);
+                if (limb.Weight > 0.0f)
+                {
+                    _animator.SetIKPosition(goal, gripped);
+                }
+
                 return;
             }
 
-            _animator.SetIKPositionWeight(goal, limb.Weight * limbWeight);
-            if (limb.Weight > 0.0f)
-            {
-                _animator.SetIKPosition(goal, animated + limb.Correction);
-            }
+            _animator.SetIKPositionWeight(goal, Mathf.Lerp(gripWeight, 1.0f, hold));
+            _animator.SetIKPosition(goal, Vector3.Lerp(gripped, held, hold));
         }
 
         private Vector3 ResolveRungOffset(Ladder ladder, int index)
