@@ -19,6 +19,7 @@ namespace _App
         private readonly Character _character;
         private readonly PlayerAnimationCoordinator _animation;
         private readonly IPlayerLocomotionState _locomotionState;
+        private readonly IPlayerLadderClimbAnimation _climbAnimation;
         private readonly LayerMask _ladderMask;
         private readonly float[] _slotDurations;
 
@@ -39,9 +40,8 @@ namespace _App
         private ClimbMotion _motion;
         private float _stepHeight;
         private float _pathLength;
-        private float _climbRate;
-        private float _entryHeight;
-        private float _entryCycles;
+        private float _climbCycles;
+        private float _climbVelocity;
 
         private CancellationTokenSource _lifecycleCts;
         private bool _enabled;
@@ -67,6 +67,12 @@ namespace _App
         private float SpeedFactor =>
             _locomotionState.SpeedMode == PlayerSpeedMode.Sprint ? SPRINT_CLIMB_RATE : 1.0f;
 
+        private float TopCycles =>
+            _stepHeight > 0.0f ? _pathLength / _stepHeight : 0.0f;
+
+        private float AnchorEpsilonCycles =>
+            _stepHeight > 0.0f ? ANCHOR_EPSILON / _stepHeight : 0.0f;
+
         public bool IsGripActive =>
             _activeLadder != null &&
             (_climbingState == EClimbingState.Grabbed ||
@@ -78,12 +84,15 @@ namespace _App
             Character character,
             PlayerAnimationCoordinator animation,
             IPlayerLocomotionState locomotionState,
+            IPlayerLadderClimbAnimation climbAnimation,
             LadderTraversalSettings settings)
         {
             _character = character ?? throw new ArgumentNullException(nameof(character));
             _animation = animation ?? throw new ArgumentNullException(nameof(animation));
             _locomotionState = locomotionState ??
                 throw new ArgumentNullException(nameof(locomotionState));
+            _climbAnimation = climbAnimation ??
+                throw new ArgumentNullException(nameof(climbAnimation));
             if (settings == null)
             {
                 throw new ArgumentNullException(nameof(settings));
@@ -169,25 +178,28 @@ namespace _App
                 return;
             }
 
-            float height = _activeLadder.HeightAlongPath(_character.GetPosition());
-            if (TryExitAtAnchor(input.y, height))
+            if (TryExitAtAnchor(input.y))
             {
                 return;
             }
 
-            UpdateClimbRate(ResolveClimbDirection(input.y));
+            UpdateClimbVelocity(ResolveClimbDirection(input.y));
             AdvanceClimb();
+            if (_climbingState == EClimbingState.Grabbed)
+            {
+                PresentClimb();
+            }
         }
 
-        private bool TryExitAtAnchor(float axis, float height)
+        private bool TryExitAtAnchor(float axis)
         {
-            if (axis > CLIMB_INPUT_THRESHOLD && height >= _pathLength - ANCHOR_EPSILON)
+            if (axis > CLIMB_INPUT_THRESHOLD && _climbCycles >= TopCycles - AnchorEpsilonCycles)
             {
                 BeginExit(true);
                 return true;
             }
 
-            if (axis < -CLIMB_INPUT_THRESHOLD && height <= ANCHOR_EPSILON)
+            if (axis < -CLIMB_INPUT_THRESHOLD && _climbCycles <= AnchorEpsilonCycles)
             {
                 BeginExit(false);
                 return true;
@@ -206,44 +218,23 @@ namespace _App
             return axis < -CLIMB_INPUT_THRESHOLD ? -1 : 0;
         }
 
-        private void UpdateClimbRate(int direction)
+        private void UpdateClimbVelocity(int direction)
         {
             float peakRate = SpeedFactor;
-            if (direction != 0)
-            {
-                ClimbMotion motion = direction > 0 ? ClimbMotion.Ascend : ClimbMotion.Descend;
-                if (motion != _motion)
-                {
-                    EnterClimbMotion(motion);
-                }
-            }
-
-            _climbRate = Mathf.MoveTowards(
-                _climbRate,
-                direction != 0 ? peakRate : 0.0f,
+            _climbVelocity = Mathf.MoveTowards(
+                _climbVelocity,
+                direction * peakRate,
                 Time.deltaTime * peakRate / Mathf.Max(0.01f, _climbRateBlendSeconds));
-            _animation.SetPlaybackSpeed(PlayerAnimationSource.Traversal, _climbRate);
-        }
-
-        private void EnterClimbMotion(ClimbMotion motion)
-        {
-            _motion = motion;
-            _entryHeight = _activeLadder.HeightAlongPath(_character.GetPosition());
-            _entryCycles = 0.0f;
-            Play(motion == ClimbMotion.Ascend
-                ? PlayerAnimationSlots.LadderAscend
-                : PlayerAnimationSlots.LadderDescend);
         }
 
         private void AdvanceClimb()
         {
-            if (_motion == ClimbMotion.None || _climbRate <= 0.0f)
+            if (_climbVelocity == 0.0f)
             {
                 return;
             }
 
-            bool ascending = _motion == ClimbMotion.Ascend;
-            float cycleSeconds = ResolveSlotDuration(ascending
+            float cycleSeconds = ResolveSlotDuration(_climbVelocity > 0.0f
                 ? PlayerAnimationSlots.LadderAscend
                 : PlayerAnimationSlots.LadderDescend);
             if (cycleSeconds <= 0.0f)
@@ -251,22 +242,55 @@ namespace _App
                 return;
             }
 
-            _entryCycles += _climbRate * Time.deltaTime / cycleSeconds;
-            float travelled = _stepHeight * _entryCycles;
-            float height = Mathf.Clamp(
-                ascending ? _entryHeight + travelled : _entryHeight - travelled,
+            _climbCycles = Mathf.Clamp(
+                _climbCycles + _climbVelocity * Time.deltaTime / cycleSeconds,
                 0.0f,
-                _pathLength);
-            _character.TeleportPosition(_activeLadder.PointAtHeight(height), false, false);
+                TopCycles);
+            _character.TeleportPosition(
+                _activeLadder.PointAtHeight(_climbCycles * _stepHeight),
+                false,
+                false);
 
-            if (ascending && height >= _pathLength - ANCHOR_EPSILON)
+            if (_climbVelocity > 0.0f && _climbCycles >= TopCycles - AnchorEpsilonCycles)
             {
                 BeginExit(true);
             }
-            else if (!ascending && height <= ANCHOR_EPSILON)
+            else if (_climbVelocity < 0.0f && _climbCycles <= AnchorEpsilonCycles)
             {
                 BeginExit(false);
             }
+        }
+
+        private void PresentClimb()
+        {
+            ApplyClimbPhases();
+            ClimbMotion motion = ResolveClimbMotion();
+            if (motion == _motion)
+            {
+                return;
+            }
+
+            _motion = motion;
+            Play(motion == ClimbMotion.Ascend
+                ? PlayerAnimationSlots.LadderAscend
+                : PlayerAnimationSlots.LadderDescend);
+        }
+
+        private void ApplyClimbPhases()
+        {
+            _climbAnimation.SetClimbPhases(
+                Mathf.Repeat(_climbCycles, 1.0f),
+                Mathf.Repeat(-_climbCycles, 1.0f));
+        }
+
+        private ClimbMotion ResolveClimbMotion()
+        {
+            if (_climbVelocity > 0.0f)
+            {
+                return ClimbMotion.Ascend;
+            }
+
+            return _climbVelocity < 0.0f ? ClimbMotion.Descend : _motion;
         }
 
         private bool CanClimb()
@@ -350,11 +374,10 @@ namespace _App
 
         private void Grab(float height)
         {
+            _climbCycles = _stepHeight > 0.0f ? height / _stepHeight : 0.0f;
+            _climbVelocity = 0.0f;
             _motion = ClimbMotion.Ascend;
-            _entryHeight = height;
-            _entryCycles = 0.0f;
-            _climbRate = 0.0f;
-            _animation.SetPlaybackSpeed(PlayerAnimationSource.Traversal, 0.0f);
+            ApplyClimbPhases();
             Play(PlayerAnimationSlots.LadderAscend);
             _character.SetRotation(_activeLadder.ClimbRotation);
             _character.TeleportPosition(_activeLadder.PointAtHeight(height), false, false);
@@ -420,8 +443,7 @@ namespace _App
         {
             _climbingState = EClimbingState.Releasing;
             _motion = ClimbMotion.None;
-            _climbRate = 0.0f;
-            _animation.SetPlaybackSpeed(PlayerAnimationSource.Traversal, 1.0f);
+            _climbVelocity = 0.0f;
 
             AnimationPlayback playback = Play(exitTop
                 ? PlayerAnimationSlots.LadderExitTop
@@ -608,9 +630,8 @@ namespace _App
             _activeLadder = null;
             _climbingState = EClimbingState.None;
             _motion = ClimbMotion.None;
-            _climbRate = 0.0f;
-            _entryCycles = 0.0f;
-            _animation.SetPlaybackSpeed(PlayerAnimationSource.Traversal, 1.0f);
+            _climbVelocity = 0.0f;
+            _climbCycles = 0.0f;
             _animation.ReleaseAll(PlayerAnimationSource.Traversal);
         }
     }

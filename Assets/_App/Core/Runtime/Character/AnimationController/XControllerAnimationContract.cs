@@ -43,6 +43,8 @@ namespace _App
         public const string BodyLookYParameterName = "BodyLookY";
         public const string HeadLookXParameterName = "HeadLookX";
         public const string HeadLookYParameterName = "HeadLookY";
+        public const string LadderAscendPhaseParameterName = "LadderAscendPhase";
+        public const string LadderDescendPhaseParameterName = "LadderDescendPhase";
 
         public const string MoveStatePath = "Base Layer.Locomotion.Move";
         public const string RollForwardStatePath =
@@ -138,6 +140,12 @@ namespace _App
                         AnimatorControllerParameterType.Float),
                     new XControllerParameterRequirement(
                         HeadLookYParameterName,
+                        AnimatorControllerParameterType.Float),
+                    new XControllerParameterRequirement(
+                        LadderAscendPhaseParameterName,
+                        AnimatorControllerParameterType.Float),
+                    new XControllerParameterRequirement(
+                        LadderDescendPhaseParameterName,
                         AnimatorControllerParameterType.Float)
                 });
 

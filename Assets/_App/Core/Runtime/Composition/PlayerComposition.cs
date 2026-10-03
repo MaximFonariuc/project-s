@@ -68,7 +68,8 @@ namespace _App
                     Lifetime.Scoped)
                 .AsSelf()
                 .As<ModularAnimation.ICharacterAnimationDriver>()
-                .As<ICharacterLookAnimationDriver>();
+                .As<ICharacterLookAnimationDriver>()
+                .As<IPlayerLadderClimbAnimation>();
             builder.Register(
                 _ => new PlayerAnimatorLoadout(
                     player.PlayerAnimator,
