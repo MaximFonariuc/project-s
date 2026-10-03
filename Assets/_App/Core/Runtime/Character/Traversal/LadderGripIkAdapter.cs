@@ -28,10 +28,14 @@ namespace _App
 
         [SerializeField, Range(0.0f, 1.0f)] private float _handWeight = 0.9f;
         [SerializeField, Range(0.0f, 1.0f)] private float _footWeight = 0.75f;
-        [SerializeField, Min(0.01f)] private float _maxCorrection = 0.14f;
+        [SerializeField, Min(0.01f)] private float _maxCorrection = 0.06f;
         [SerializeField, Min(0.01f)] private float _plantSpeed = 0.8f;
-        [SerializeField, Min(0.01f)] private float _latchDistance = 0.16f;
+        [SerializeField, Min(0.01f)] private float _latchDistance = 0.08f;
         [SerializeField, Min(0.01f)] private float _blendSeconds = 0.12f;
+        [SerializeField] private float _handHeightAboveRung = 0.028f;
+        [SerializeField] private float _handDepthFromRung = 0.008f;
+        [SerializeField] private float _footHeightAboveRung = 0.127f;
+        [SerializeField] private float _footDepthFromRung = -0.041f;
 
         private readonly LimbGrip[] _limbs = new LimbGrip[Goals.Length];
 
@@ -94,7 +98,8 @@ namespace _App
                 }
                 else if (resting && limb.Weight <= 0.0f)
                 {
-                    Vector3 rung = ladder.NearestRungPoint(animated);
+                    Vector3 grip = ResolveRungOffset(ladder, index);
+                    Vector3 rung = ladder.NearestRungPoint(animated - grip) + grip;
                     if ((rung - animated).sqrMagnitude <= _latchDistance * _latchDistance)
                     {
                         limb.Target = rung;
@@ -130,6 +135,15 @@ namespace _App
             {
                 _animator.SetIKPosition(goal, animated + limb.Correction);
             }
+        }
+
+        private Vector3 ResolveRungOffset(Ladder ladder, int index)
+        {
+            bool hand = index < HandGoalCount;
+            Vector3 up = ladder.ClimbAxis.normalized;
+            Vector3 forward = ladder.ClimbRotation * Vector3.forward;
+            return up * (hand ? _handHeightAboveRung : _footHeightAboveRung) +
+                forward * (hand ? _handDepthFromRung : _footDepthFromRung);
         }
     }
 }
