@@ -30,6 +30,8 @@ namespace _App
         private readonly float _climbRateBlendSeconds;
         private readonly AnimationCurve _exitTopRiseProfile;
         private readonly AnimationCurve _exitTopForwardProfile;
+        private readonly AnimationCurve _enterTopDescentProfile;
+        private readonly AnimationCurve _enterTopBackwardProfile;
 
         private Ladder _activeLadder;
         private EClimbingState _climbingState;
@@ -46,8 +48,6 @@ namespace _App
         private bool _reportedMissingPresentation;
 
         private const float EXIT_BOTTOM_SHARE = 25f / 40f;
-        private const float ENTER_TOP_MOVE_SHARE = 15f / 50f;
-        private const float ENTER_TOP_CLIMB_SHARE = 35f / 50f;
         private const float ANCHOR_EPSILON = 0.02f;
         private const float CLIMB_INPUT_THRESHOLD = 0.5f;
         private const float SPRINT_CLIMB_RATE = 1.5f;
@@ -98,6 +98,8 @@ namespace _App
             _climbRateBlendSeconds = settings.ClimbRateBlendSeconds;
             _exitTopRiseProfile = settings.ExitTopRiseProfile;
             _exitTopForwardProfile = settings.ExitTopForwardProfile;
+            _enterTopDescentProfile = settings.EnterTopDescentProfile;
+            _enterTopBackwardProfile = settings.EnterTopBackwardProfile;
             _slotDurations = new[]
             {
                 settings.EnterTopFrontSeconds,
@@ -336,20 +338,12 @@ namespace _App
         private async UniTask PerformEnterTop(CancellationToken token)
         {
             AnimationPlayback playback = Play(PlayerAnimationSlots.LadderEnterTopBack);
-            Vector3 start = _character.GetPosition();
-            Vector3 anchor = _activeLadder.PointAtHeight(_pathLength);
-            Vector3 axis = _activeLadder.ClimbAxis.normalized;
-            Vector3 aboveAnchor = anchor + axis * Vector3.Dot(start - anchor, axis);
-
-            await LerpMovement(
-                start,
-                aboveAnchor,
-                playback.Duration * ENTER_TOP_MOVE_SHARE,
-                token);
-            await LerpMovement(
-                aboveAnchor,
-                anchor,
-                playback.Duration * ENTER_TOP_CLIMB_SHARE,
+            await FollowRootProfile(
+                _character.GetPosition(),
+                _activeLadder.PointAtHeight(_pathLength),
+                playback.Duration,
+                _enterTopDescentProfile,
+                _enterTopBackwardProfile,
                 token);
             Grab(_pathLength);
         }
@@ -439,7 +433,13 @@ namespace _App
 
             if (exitTop)
             {
-                await FollowExitTopProfile(start, target, playback.Duration, token);
+                await FollowRootProfile(
+                    start,
+                    target,
+                    playback.Duration,
+                    _exitTopRiseProfile,
+                    _exitTopForwardProfile,
+                    token);
             }
             else
             {
@@ -452,16 +452,18 @@ namespace _App
             _character.SetRotationMode(_previousRotationMode);
         }
 
-        private async UniTask FollowExitTopProfile(
+        private async UniTask FollowRootProfile(
             Vector3 from,
             Vector3 to,
             float duration,
+            AnimationCurve axisProfile,
+            AnimationCurve planarProfile,
             CancellationToken token)
         {
             Vector3 axis = _activeLadder.ClimbAxis.normalized;
             Vector3 travel = to - from;
-            float rise = Vector3.Dot(travel, axis);
-            Vector3 forward = travel - axis * rise;
+            float axial = Vector3.Dot(travel, axis);
+            Vector3 planar = travel - axis * axial;
 
             float elapsed = 0.0f;
             while (elapsed < duration)
@@ -471,8 +473,8 @@ namespace _App
                 float normalizedTime = Mathf.Clamp01(elapsed / duration);
                 _character.TeleportPosition(
                     from +
-                    axis * (rise * SampleProfile(_exitTopRiseProfile, normalizedTime)) +
-                    forward * SampleProfile(_exitTopForwardProfile, normalizedTime),
+                    axis * (axial * SampleProfile(axisProfile, normalizedTime)) +
+                    planar * SampleProfile(planarProfile, normalizedTime),
                     false,
                     false);
                 await UniTask.Yield(token);
@@ -485,7 +487,7 @@ namespace _App
         {
             return profile == null || profile.length == 0
                 ? normalizedTime
-                : Mathf.Clamp01(profile.Evaluate(normalizedTime));
+                : profile.Evaluate(normalizedTime);
         }
 
         private async UniTask LerpMovement(
