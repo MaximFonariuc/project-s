@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using ModularAnimation;
@@ -30,6 +31,7 @@ namespace _App
         private readonly float _approachTurnSpeed;
         private readonly float _climbRateBlendSeconds;
         private readonly float _hangBlendLeadSeconds;
+        private readonly float[] _restPhases;
         private readonly AnimationCurve _exitTopRiseProfile;
         private readonly AnimationCurve _exitTopForwardProfile;
         private readonly AnimationCurve _enterTopDescentProfile;
@@ -43,6 +45,8 @@ namespace _App
         private float _pathLength;
         private float _climbCycles;
         private float _climbVelocity;
+        private float _restCycles;
+        private bool _hasRestTarget;
         private bool _baseTransition;
 
         private CancellationTokenSource _lifecycleCts;
@@ -115,6 +119,7 @@ namespace _App
             _approachTurnSpeed = settings.ApproachTurnSpeed;
             _climbRateBlendSeconds = settings.ClimbRateBlendSeconds;
             _hangBlendLeadSeconds = settings.HangBlendLeadSeconds;
+            _restPhases = ResolveRestPhases(settings.RestPhases);
             _exitTopRiseProfile = settings.ExitTopRiseProfile;
             _exitTopForwardProfile = settings.ExitTopForwardProfile;
             _enterTopDescentProfile = settings.EnterTopDescentProfile;
@@ -231,10 +236,110 @@ namespace _App
         private void UpdateClimbVelocity(int direction)
         {
             float peakRate = SpeedFactor;
+            float acceleration = peakRate / Mathf.Max(0.01f, _climbRateBlendSeconds);
+            float targetVelocity = direction * peakRate;
+            if (direction != 0)
+            {
+                _hasRestTarget = false;
+            }
+            else if (_restPhases.Length > 0)
+            {
+                targetVelocity = ResolveSettleVelocity(peakRate, acceleration);
+            }
+
             _climbVelocity = Mathf.MoveTowards(
                 _climbVelocity,
-                direction * peakRate,
-                Time.deltaTime * peakRate / Mathf.Max(0.01f, _climbRateBlendSeconds));
+                targetVelocity,
+                Time.deltaTime * acceleration);
+        }
+
+        private float ResolveSettleVelocity(float peakRate, float acceleration)
+        {
+            if (!_hasRestTarget)
+            {
+                _restCycles = ResolveRestCycles(acceleration);
+                _hasRestTarget = true;
+            }
+
+            float remaining = _restCycles - _climbCycles;
+            float speed = Mathf.Sqrt(
+                2.0f * acceleration * ResolveCycleSeconds(remaining) * Mathf.Abs(remaining));
+            return Mathf.Sign(remaining) * Mathf.Min(peakRate, speed);
+        }
+
+        private float ResolveRestCycles(float acceleration)
+        {
+            float lowest = FindRestCycles(0.0f, 1);
+            float highest = FindRestCycles(TopCycles, -1);
+            if (lowest > highest)
+            {
+                return _climbCycles;
+            }
+
+            float stopping = _climbVelocity * Mathf.Abs(_climbVelocity) /
+                (2.0f * acceleration * ResolveCycleSeconds(_climbVelocity));
+            float reach = _climbCycles + stopping;
+            float rest;
+            if (_climbVelocity > 0.0f)
+            {
+                rest = FindRestCycles(reach, 1);
+            }
+            else if (_climbVelocity < 0.0f)
+            {
+                rest = FindRestCycles(reach, -1);
+            }
+            else
+            {
+                float above = FindRestCycles(reach, 1);
+                float below = FindRestCycles(reach, -1);
+                rest = above - reach <= reach - below ? above : below;
+            }
+
+            return Mathf.Clamp(rest, lowest, highest);
+        }
+
+        private float FindRestCycles(float cycles, int direction)
+        {
+            float cycle = Mathf.Floor(cycles);
+            for (int step = 0; step < 3; step++)
+            {
+                float baseCycle = cycle + step * direction;
+                for (int i = 0; i < _restPhases.Length; i++)
+                {
+                    float phase = _restPhases[direction > 0 ? i : _restPhases.Length - 1 - i];
+                    float candidate = baseCycle + phase;
+                    if (direction > 0 ? candidate >= cycles : candidate <= cycles)
+                    {
+                        return candidate;
+                    }
+                }
+            }
+
+            return cycles;
+        }
+
+        private float ResolveCycleSeconds(float direction)
+        {
+            return ResolveSlotDuration(direction >= 0.0f
+                ? PlayerAnimationSlots.LadderAscend
+                : PlayerAnimationSlots.LadderDescend);
+        }
+
+        private static float[] ResolveRestPhases(IReadOnlyList<float> phases)
+        {
+            if (phases == null || phases.Count == 0)
+            {
+                return Array.Empty<float>();
+            }
+
+            float[] resolved = new float[phases.Count];
+            for (int i = 0; i < resolved.Length; i++)
+            {
+                resolved[i] = Mathf.Repeat(phases[i], 1.0f);
+            }
+
+            Array.Sort(resolved);
+            return resolved;
         }
 
         private void AdvanceClimb()
@@ -244,18 +349,23 @@ namespace _App
                 return;
             }
 
-            float cycleSeconds = ResolveSlotDuration(_climbVelocity > 0.0f
-                ? PlayerAnimationSlots.LadderAscend
-                : PlayerAnimationSlots.LadderDescend);
+            float cycleSeconds = ResolveCycleSeconds(_climbVelocity);
             if (cycleSeconds <= 0.0f)
             {
                 return;
             }
 
-            _climbCycles = Mathf.Clamp(
+            float cycles = Mathf.Clamp(
                 _climbCycles + _climbVelocity * Time.deltaTime / cycleSeconds,
                 0.0f,
                 TopCycles);
+            if (_hasRestTarget && (cycles - _restCycles) * (_climbCycles - _restCycles) <= 0.0f)
+            {
+                cycles = _restCycles;
+                _climbVelocity = 0.0f;
+            }
+
+            _climbCycles = cycles;
             _character.TeleportPosition(
                 _activeLadder.PointAtHeight(_climbCycles * _stepHeight),
                 false,
@@ -393,6 +503,7 @@ namespace _App
             await UniTask.WaitForSeconds(entryDuration - lead, cancellationToken: token);
             _climbCycles = _stepHeight > 0.0f ? height / _stepHeight : 0.0f;
             _climbVelocity = 0.0f;
+            _hasRestTarget = false;
             _motion = ClimbMotion.Ascend;
             ApplyClimbPhases();
             Play(PlayerAnimationSlots.LadderAscend);
@@ -467,6 +578,7 @@ namespace _App
             _baseTransition = !exitTop;
             _motion = ClimbMotion.None;
             _climbVelocity = 0.0f;
+            _hasRestTarget = false;
 
             AnimationPlayback playback = Play(exitTop
                 ? PlayerAnimationSlots.LadderExitTop
@@ -656,6 +768,7 @@ namespace _App
             _motion = ClimbMotion.None;
             _climbVelocity = 0.0f;
             _climbCycles = 0.0f;
+            _hasRestTarget = false;
             _baseTransition = false;
             _animation.ReleaseAll(PlayerAnimationSource.Traversal);
         }
