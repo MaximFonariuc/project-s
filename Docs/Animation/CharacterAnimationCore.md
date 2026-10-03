@@ -100,9 +100,10 @@ assembly не ссылается на editor assembly.
 | `MovementDirection` | Float | signed forward/backward presentation |
 | `MovementType` | Float | idle/walk/run/sprint gait |
 | `FallingDuration` | Float | signed vertical velocity для airborne graph |
-| `SpeedMultiplier` | Float | общий presentation playback speed |
+| `SpeedMultiplier` | Float | общий presentation playback speed, сейчас без читателей |
 | `BodyLookX`, `BodyLookY` | Float | additive body pose |
 | `HeadLookX`, `HeadLookY` | Float | additive head pose |
+| `LadderAscendPhase`, `LadderDescendPhase` | Float | Motion Time циклов лестницы |
 
 Параметры `MoveX`, `MoveY`, `Action`, `ActionId`, `ActionVariant` и
 `CancelAction` относятся к универсальному optional Mecanim backend, но не входят
