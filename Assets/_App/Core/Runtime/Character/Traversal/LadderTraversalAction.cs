@@ -29,6 +29,7 @@ namespace _App
         private readonly float _maxApproachSeconds;
         private readonly float _approachTurnSpeed;
         private readonly float _climbRateBlendSeconds;
+        private readonly float _hangBlendLeadSeconds;
         private readonly AnimationCurve _exitTopRiseProfile;
         private readonly AnimationCurve _exitTopForwardProfile;
         private readonly AnimationCurve _enterTopDescentProfile;
@@ -105,6 +106,7 @@ namespace _App
             _maxApproachSeconds = settings.MaxApproachSeconds;
             _approachTurnSpeed = settings.ApproachTurnSpeed;
             _climbRateBlendSeconds = settings.ClimbRateBlendSeconds;
+            _hangBlendLeadSeconds = settings.HangBlendLeadSeconds;
             _exitTopRiseProfile = settings.ExitTopRiseProfile;
             _exitTopForwardProfile = settings.ExitTopForwardProfile;
             _enterTopDescentProfile = settings.EnterTopDescentProfile;
@@ -346,8 +348,10 @@ namespace _App
                 {
                     await ApproachLadder(_activeLadder.PointAtHeight(0.0f), token);
                     AnimationPlayback playback = Play(PlayerAnimationSlots.LadderEnterBottom);
-                    await UniTask.WaitForSeconds(playback.Duration, cancellationToken: token);
-                    Grab(0.0f);
+                    await UniTask.WhenAll(
+                        UniTask.WaitForSeconds(playback.Duration, cancellationToken: token),
+                        BlendIntoHang(0.0f, playback.Duration, token));
+                    CompleteGrab(0.0f);
                 }
             }
             catch (OperationCanceledException)
@@ -362,23 +366,31 @@ namespace _App
         private async UniTask PerformEnterTop(CancellationToken token)
         {
             AnimationPlayback playback = Play(PlayerAnimationSlots.LadderEnterTopBack);
-            await FollowRootProfile(
-                _character.GetPosition(),
-                _activeLadder.PointAtHeight(_pathLength),
-                playback.Duration,
-                _enterTopDescentProfile,
-                _enterTopBackwardProfile,
-                token);
-            Grab(_pathLength);
+            await UniTask.WhenAll(
+                FollowRootProfile(
+                    _character.GetPosition(),
+                    _activeLadder.PointAtHeight(_pathLength),
+                    playback.Duration,
+                    _enterTopDescentProfile,
+                    _enterTopBackwardProfile,
+                    token),
+                BlendIntoHang(_pathLength, playback.Duration, token));
+            CompleteGrab(_pathLength);
         }
 
-        private void Grab(float height)
+        private async UniTask BlendIntoHang(float height, float entryDuration, CancellationToken token)
         {
+            float lead = Mathf.Clamp(_hangBlendLeadSeconds, 0.0f, entryDuration);
+            await UniTask.WaitForSeconds(entryDuration - lead, cancellationToken: token);
             _climbCycles = _stepHeight > 0.0f ? height / _stepHeight : 0.0f;
             _climbVelocity = 0.0f;
             _motion = ClimbMotion.Ascend;
             ApplyClimbPhases();
             Play(PlayerAnimationSlots.LadderAscend);
+        }
+
+        private void CompleteGrab(float height)
+        {
             _character.SetRotation(_activeLadder.ClimbRotation);
             _character.TeleportPosition(_activeLadder.PointAtHeight(height), false, false);
             _climbingState = EClimbingState.Grabbed;
