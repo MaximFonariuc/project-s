@@ -2977,6 +2977,13 @@ MonoBehaviour:
   _handDepthFromRung: 0.008
   _footHeightAboveRung: 0.127
   _footDepthFromRung: -0.041
+  _baseFootGoal: 0
+  _baseFootEntryOffset: {x: -0.123, y: 0.071, z: 0.04}
+  _baseFootClimbOffset: {x: -0.059, y: 0.085, z: 0.171}
+  _baseStepStartCycles: 0.1
+  _baseStepEndCycles: 0.22
+  _bodyStandoff: 0.05
+  _standoffBlendSeconds: 0.25
 --- !u!4 &7171206776541794956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: b67206ccb16ad77489a9eb0b6a3d6c68, type: 3}

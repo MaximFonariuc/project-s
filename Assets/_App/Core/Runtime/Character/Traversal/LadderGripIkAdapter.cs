@@ -40,7 +40,7 @@ namespace _App
         [SerializeField] private Vector3 _baseFootEntryOffset = new Vector3(-0.123f, 0.071f, 0.04f);
         [SerializeField] private Vector3 _baseFootClimbOffset = new Vector3(-0.059f, 0.085f, 0.171f);
         [SerializeField, Min(0.0f)] private float _baseStepStartCycles = 0.1f;
-        [SerializeField, Min(0.0f)] private float _baseStepEndCycles = 0.34f;
+        [SerializeField, Min(0.0f)] private float _baseStepEndCycles = 0.22f;
         [SerializeField, Min(0.0f)] private float _bodyStandoff = 0.05f;
         [SerializeField, Min(0.01f)] private float _standoffBlendSeconds = 0.25f;
 
@@ -232,7 +232,7 @@ namespace _App
             if (goal == _baseFootGoal && _baseFootWeight > 0.0f)
             {
                 Vector3 based = Vector3.Lerp(
-                    animated + _baseFootShift * _baseFootBlend,
+                    held + _baseFootShift * _baseFootBlend,
                     _baseFootSpot,
                     _baseFootAnchor);
                 held = Vector3.Lerp(held, based, _baseFootWeight);
