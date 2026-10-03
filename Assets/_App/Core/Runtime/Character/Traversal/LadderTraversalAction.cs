@@ -43,6 +43,7 @@ namespace _App
         private float _pathLength;
         private float _climbCycles;
         private float _climbVelocity;
+        private bool _baseTransition;
 
         private CancellationTokenSource _lifecycleCts;
         private bool _enabled;
@@ -78,6 +79,10 @@ namespace _App
             _activeLadder != null &&
             (_climbingState == EClimbingState.Grabbed ||
              _climbingState == EClimbingState.Releasing);
+
+        public bool IsBaseTransition => _activeLadder != null && _baseTransition;
+
+        public float ClimbCycles => _climbCycles;
 
         public Ladder ActiveLadder => _activeLadder;
 
@@ -347,6 +352,7 @@ namespace _App
                 else
                 {
                     await ApproachLadder(_activeLadder.PointAtHeight(0.0f), token);
+                    _baseTransition = true;
                     AnimationPlayback playback = Play(PlayerAnimationSlots.LadderEnterBottom);
                     await UniTask.WhenAll(
                         UniTask.WaitForSeconds(playback.Duration, cancellationToken: token),
@@ -394,6 +400,7 @@ namespace _App
             _character.SetRotation(_activeLadder.ClimbRotation);
             _character.TeleportPosition(_activeLadder.PointAtHeight(height), false, false);
             _climbingState = EClimbingState.Grabbed;
+            _baseTransition = false;
         }
 
         private async UniTask ApproachLadder(Vector3 targetPosition, CancellationToken token)
@@ -454,6 +461,7 @@ namespace _App
         private async UniTask PlayExitAndRelease(bool exitTop, CancellationToken token)
         {
             _climbingState = EClimbingState.Releasing;
+            _baseTransition = !exitTop;
             _motion = ClimbMotion.None;
             _climbVelocity = 0.0f;
 
@@ -482,6 +490,7 @@ namespace _App
 
             _character.SetRotation(_activeLadder.ClimbRotation);
             _climbingState = EClimbingState.None;
+            _baseTransition = false;
             _character.SetMovementMode(EMovementMode.Walking);
             _character.SetRotationMode(_previousRotationMode);
         }
@@ -644,6 +653,7 @@ namespace _App
             _motion = ClimbMotion.None;
             _climbVelocity = 0.0f;
             _climbCycles = 0.0f;
+            _baseTransition = false;
             _animation.ReleaseAll(PlayerAnimationSource.Traversal);
         }
     }

@@ -20,6 +20,8 @@ namespace _App
 
         public bool IsClimbAvailable => _ladder != null;
         public bool IsGripActive => _ladder?.IsGripActive == true;
+        public bool IsBaseTransition => _ladder?.IsBaseTransition == true;
+        public float ClimbCycles => _ladder?.ClimbCycles ?? 0.0f;
         public Ladder ActiveLadder => _ladder?.ActiveLadder;
 
         public PlayerTraversalActions(

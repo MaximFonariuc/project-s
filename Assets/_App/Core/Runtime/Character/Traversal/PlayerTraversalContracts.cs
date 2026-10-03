@@ -14,6 +14,8 @@ namespace _App
     public interface IPlayerLadderGrip
     {
         bool IsGripActive { get; }
+        bool IsBaseTransition { get; }
+        float ClimbCycles { get; }
         Ladder ActiveLadder { get; }
     }
 
