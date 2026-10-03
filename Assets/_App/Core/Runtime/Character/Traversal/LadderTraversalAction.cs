@@ -80,6 +80,9 @@ namespace _App
             (_climbingState == EClimbingState.Grabbed ||
              _climbingState == EClimbingState.Releasing);
 
+        public bool IsHanging =>
+            _activeLadder != null && _climbingState == EClimbingState.Grabbed;
+
         public bool IsBaseTransition => _activeLadder != null && _baseTransition;
 
         public float ClimbCycles => _climbCycles;
