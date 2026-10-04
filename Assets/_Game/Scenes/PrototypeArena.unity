@@ -4556,14 +4556,6 @@ PrefabInstance:
       propertyPath: _pathLength
       value: 4.15
       objectReference: {fileID: 0}
-    - target: {fileID: 6339236459270191922, guid: ed82a86fb33768f49aaa452fd6a64586, type: 3}
-      propertyPath: _pathOffset.y
-      value: -0.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 6339236459270191922, guid: ed82a86fb33768f49aaa452fd6a64586, type: 3}
-      propertyPath: _pathOffset.z
-      value: -0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6362756193456340507, guid: ed82a86fb33768f49aaa452fd6a64586, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0

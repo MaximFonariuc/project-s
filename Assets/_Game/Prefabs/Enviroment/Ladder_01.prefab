@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pathLength: 4.18
-  _pathOffset: {x: 0, y: -0.25, z: -0.55}
+  _pathOffset: {x: 0, y: -0.22, z: -0.6}
   _topPoint: {fileID: 4200833250166405390}
   _bottomPoint: {fileID: 3974919876077672051}
   _firstRungOffset: {x: 0, y: 0.3075, z: 0.0125}
