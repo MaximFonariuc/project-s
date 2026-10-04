@@ -28,14 +28,14 @@ namespace _App
 
         [SerializeField, Range(0.0f, 1.0f)] private float _handWeight = 0.9f;
         [SerializeField, Range(0.0f, 1.0f)] private float _footWeight = 0.75f;
-        [SerializeField, Min(0.01f)] private float _maxCorrection = 0.06f;
+        [SerializeField, Min(0.01f)] private float _maxCorrection = 0.09f;
         [SerializeField, Min(0.01f)] private float _plantSpeed = 0.8f;
-        [SerializeField, Min(0.01f)] private float _latchDistance = 0.08f;
+        [SerializeField, Min(0.01f)] private float _latchDistance = 0.1f;
         [SerializeField, Min(0.01f)] private float _blendSeconds = 0.12f;
-        [SerializeField] private float _handHeightAboveRung = 0.028f;
-        [SerializeField] private float _handDepthFromRung = 0.008f;
-        [SerializeField] private float _footHeightAboveRung = 0.127f;
-        [SerializeField] private float _footDepthFromRung = -0.041f;
+        [SerializeField] private float _handHeightAboveRung = 0.045f;
+        [SerializeField] private float _handDepthFromRung = -0.05f;
+        [SerializeField] private float _footHeightAboveRung = 0.088f;
+        [SerializeField] private float _footDepthFromRung = -0.094f;
         [SerializeField] private AvatarIKGoal _baseFootGoal = AvatarIKGoal.LeftFoot;
         [SerializeField] private Vector3 _baseFootEntryOffset = new Vector3(-0.123f, 0.071f, 0.04f);
         [SerializeField] private Vector3 _baseFootClimbOffset = new Vector3(-0.059f, 0.085f, 0.171f);
@@ -43,7 +43,6 @@ namespace _App
         [SerializeField, Min(0.0f)] private float _baseStepEndCycles = 0.22f;
         [SerializeField, Min(0.0f)] private float _bodyStandoff = 0.05f;
         [SerializeField, Min(0.01f)] private float _standoffBlendSeconds = 0.25f;
-        [SerializeField, Range(0.0f, 30.0f)] private float _restLeanDegrees = 12.0f;
 
         private readonly LimbGrip[] _limbs = new LimbGrip[Goals.Length];
         private readonly Vector3[] _animated = new Vector3[Goals.Length];
@@ -53,7 +52,6 @@ namespace _App
         private Vector3 _baseFootSpot;
         private Vector3 _baseFootShift;
         private Vector3 _standoffDirection;
-        private Vector3 _standoffAxis;
         private float _baseFootBlend;
         private float _baseFootAnchor;
         private float _baseFootWeight;
@@ -120,9 +118,7 @@ namespace _App
             bool hanging = _bodyStandoff > 0.0f && _grip != null && _grip.IsHanging;
             if (hanging)
             {
-                Quaternion rotation = _grip.ActiveLadder.ClimbRotation;
-                _standoffDirection = rotation * Vector3.forward;
-                _standoffAxis = rotation * Vector3.right;
+                _standoffDirection = _grip.ActiveLadder.ClimbRotation * Vector3.forward;
             }
 
             _standoffWeight = Mathf.MoveTowards(
@@ -130,17 +126,9 @@ namespace _App
                 hanging ? 1.0f : 0.0f,
                 deltaTime / Mathf.Max(0.01f, _standoffBlendSeconds));
             _standoffHold = Mathf.SmoothStep(0.0f, 1.0f, _standoffWeight);
-            if (_standoffHold <= 0.0f)
+            if (_standoffHold > 0.0f)
             {
-                return;
-            }
-
-            _animator.bodyPosition -= _standoffDirection * (_bodyStandoff * _standoffHold);
-            float lean = _restLeanDegrees * _standoffHold * Mathf.SmoothStep(0.0f, 1.0f, _fullHold);
-            if (lean > 0.0f)
-            {
-                _animator.bodyRotation =
-                    Quaternion.AngleAxis(lean, _standoffAxis) * _animator.bodyRotation;
+                _animator.bodyPosition -= _standoffDirection * (_bodyStandoff * _standoffHold);
             }
         }
 
