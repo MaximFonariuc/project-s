@@ -2973,8 +2973,8 @@ MonoBehaviour:
   _plantSpeed: 0.8
   _latchDistance: 0.1
   _blendSeconds: 0.12
-  _leftHandHeightAboveRung: 0.04
-  _rightHandHeightAboveRung: 0.03
+  _leftHandHeightAboveRung: 0.03
+  _rightHandHeightAboveRung: 0.01
   _handDepthFromRung: -0.05
   _footHeightAboveRung: 0.06
   _footDepthFromRung: -0.094
