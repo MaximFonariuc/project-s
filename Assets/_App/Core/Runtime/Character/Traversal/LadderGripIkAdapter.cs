@@ -32,7 +32,8 @@ namespace _App
         [SerializeField, Min(0.01f)] private float _plantSpeed = 0.8f;
         [SerializeField, Min(0.01f)] private float _latchDistance = 0.1f;
         [SerializeField, Min(0.01f)] private float _blendSeconds = 0.12f;
-        [SerializeField] private float _handHeightAboveRung = 0.04f;
+        [SerializeField] private float _leftHandHeightAboveRung = 0.04f;
+        [SerializeField] private float _rightHandHeightAboveRung = 0.03f;
         [SerializeField] private float _handDepthFromRung = -0.05f;
         [SerializeField] private float _footHeightAboveRung = 0.06f;
         [SerializeField] private float _footDepthFromRung = -0.094f;
@@ -282,8 +283,18 @@ namespace _App
             bool hand = index < HandGoalCount;
             Vector3 up = ladder.ClimbAxis.normalized;
             Vector3 forward = ladder.ClimbRotation * Vector3.forward;
-            return up * (hand ? _handHeightAboveRung : _footHeightAboveRung) +
-                forward * (hand ? _handDepthFromRung : _footDepthFromRung);
+            return up * ResolveRungHeight(Goals[index])
+                + forward * (hand ? _handDepthFromRung : _footDepthFromRung);
+        }
+
+        private float ResolveRungHeight(AvatarIKGoal goal)
+        {
+            return goal switch
+            {
+                AvatarIKGoal.LeftHand => _leftHandHeightAboveRung,
+                AvatarIKGoal.RightHand => _rightHandHeightAboveRung,
+                _ => _footHeightAboveRung
+            };
         }
     }
 }
