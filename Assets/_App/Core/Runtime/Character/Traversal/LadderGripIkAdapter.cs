@@ -32,9 +32,9 @@ namespace _App
         [SerializeField, Min(0.01f)] private float _plantSpeed = 0.8f;
         [SerializeField, Min(0.01f)] private float _latchDistance = 0.1f;
         [SerializeField, Min(0.01f)] private float _blendSeconds = 0.12f;
-        [SerializeField] private float _handHeightAboveRung = 0.045f;
+        [SerializeField] private float _handHeightAboveRung = 0.04f;
         [SerializeField] private float _handDepthFromRung = -0.05f;
-        [SerializeField] private float _footHeightAboveRung = 0.088f;
+        [SerializeField] private float _footHeightAboveRung = 0.06f;
         [SerializeField] private float _footDepthFromRung = -0.094f;
         [SerializeField] private AvatarIKGoal _baseFootGoal = AvatarIKGoal.LeftFoot;
         [SerializeField] private Vector3 _baseFootEntryOffset = new Vector3(-0.123f, 0.071f, 0.04f);
@@ -42,6 +42,7 @@ namespace _App
         [SerializeField, Min(0.0f)] private float _baseStepStartCycles = 0.1f;
         [SerializeField, Min(0.0f)] private float _baseStepEndCycles = 0.22f;
         [SerializeField, Min(0.0f)] private float _bodyStandoff = 0.05f;
+        [SerializeField, Min(0.0f)] private float _bodyDrop = 0.03f;
         [SerializeField, Min(0.01f)] private float _standoffBlendSeconds = 0.25f;
 
         private readonly LimbGrip[] _limbs = new LimbGrip[Goals.Length];
@@ -52,6 +53,7 @@ namespace _App
         private Vector3 _baseFootSpot;
         private Vector3 _baseFootShift;
         private Vector3 _standoffDirection;
+        private Vector3 _dropDirection;
         private float _baseFootBlend;
         private float _baseFootAnchor;
         private float _baseFootWeight;
@@ -102,7 +104,7 @@ namespace _App
             }
 
             UpdateBaseFoot(weightStep);
-            UpdateStandoff(deltaTime);
+            UpdateBodyOffset(deltaTime);
             bool allHeld = ladder != null;
             for (int i = 0; i < Goals.Length; i++)
             {
@@ -113,12 +115,15 @@ namespace _App
             _fullHold = Mathf.MoveTowards(_fullHold, allHeld ? 1.0f : 0.0f, weightStep);
         }
 
-        private void UpdateStandoff(float deltaTime)
+        private void UpdateBodyOffset(float deltaTime)
         {
-            bool hanging = _bodyStandoff > 0.0f && _grip != null && _grip.IsHanging;
+            bool offset = _bodyStandoff > 0.0f || _bodyDrop > 0.0f;
+            bool hanging = offset && _grip != null && _grip.IsHanging;
             if (hanging)
             {
-                _standoffDirection = _grip.ActiveLadder.ClimbRotation * Vector3.forward;
+                Ladder ladder = _grip.ActiveLadder;
+                _standoffDirection = ladder.ClimbRotation * Vector3.forward;
+                _dropDirection = ladder.ClimbAxis.normalized;
             }
 
             _standoffWeight = Mathf.MoveTowards(
@@ -126,9 +131,17 @@ namespace _App
                 hanging ? 1.0f : 0.0f,
                 deltaTime / Mathf.Max(0.01f, _standoffBlendSeconds));
             _standoffHold = Mathf.SmoothStep(0.0f, 1.0f, _standoffWeight);
-            if (_standoffHold > 0.0f)
+            if (_standoffHold <= 0.0f)
             {
-                _animator.bodyPosition -= _standoffDirection * (_bodyStandoff * _standoffHold);
+                return;
+            }
+
+            Vector3 drop = _dropDirection * (_bodyDrop * _standoffHold);
+            _animator.bodyPosition -= _standoffDirection * (_bodyStandoff * _standoffHold) + drop;
+            for (int i = 0; i < Goals.Length; i++)
+            {
+                float share = Goals[i] == _baseFootGoal ? 1.0f - _baseFootWeight : 1.0f;
+                _animated[i] -= drop * share;
             }
         }
 
