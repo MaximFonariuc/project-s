@@ -32,8 +32,8 @@ namespace _App
         [SerializeField, Min(0.01f)] private float _plantSpeed = 0.8f;
         [SerializeField, Min(0.01f)] private float _latchDistance = 0.1f;
         [SerializeField, Min(0.01f)] private float _blendSeconds = 0.12f;
-        [SerializeField] private float _leftHandHeightAboveRung = 0.04f;
-        [SerializeField] private float _rightHandHeightAboveRung = 0.03f;
+        [SerializeField] private float _leftHandHeightAboveRung = 0.03f;
+        [SerializeField] private float _rightHandHeightAboveRung = 0.01f;
         [SerializeField] private float _handDepthFromRung = -0.05f;
         [SerializeField] private float _footHeightAboveRung = 0.06f;
         [SerializeField] private float _footDepthFromRung = -0.094f;
