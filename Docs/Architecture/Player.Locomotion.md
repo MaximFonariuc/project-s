@@ -65,6 +65,7 @@ classDiagram
         +IsDodging bool
         +IsFlying bool
         +MaxSpeed float
+        +GaitSpeed float
         +Velocity Vector3
         +SetMovementDirection(direction)
         +StopPlanarMovement()
@@ -158,6 +159,7 @@ classDiagram
     class PlayerJumpState
     class PlayerFallState
     class PlayerDodgeState
+    class PlayerAirDashState
     class PlayerLandingState
     class IPlayerLocomotionPresentation {
         <<presentation port>>
@@ -218,6 +220,7 @@ classDiagram
     PlayerLocomotionState <|-- PlayerJumpState
     PlayerLocomotionState <|-- PlayerFallState
     PlayerLocomotionState <|-- PlayerDodgeState
+    PlayerLocomotionState <|-- PlayerAirDashState
     PlayerLocomotionState <|-- PlayerLandingState
     PlayerLocomotionComposition ..> PlayerLocomotionController : constructs
     PlayerLocomotionComposition ..> CharacterMotor : constructs
@@ -249,6 +252,15 @@ stateDiagram-v2
     Dodge --> Run: completed with input
     Dodge --> Jump: left ground with upward velocity
     Dodge --> Fall: left ground
+    Jump --> AirDash: accepted air dash
+    Fall --> AirDash: accepted air dash
+    Dodge --> AirDash: dodge ended airborne
+    AirDash --> Fall: charge spent in the air
+    AirDash --> Idle: charge spent on the ground, no input
+    AirDash --> Run: charge spent on the ground, input held
+    AirDash --> Landing: medium / hard impact
+    AirDash --> Dodge: accepted dodge after landing
+    AirDash --> Jump: additional jump
 ```
 
 `Jump` начинается не по нажатию кнопки, а после подтверждения motor: `Character` должен перейти в `Falling` и получить восходящую скорость. По той же причине `Dodge` становится активным только после перехода `Character` в custom movement mode. State machine не дублирует физическое состояние заранее.
@@ -299,14 +311,79 @@ gameplay time и удерживает lease неуязвимости тольк�
 длительности `0.78s` это примерно `0.06...0.45s`. Startup и recovery остаются
 уязвимыми, а изменение длины animation clip не меняет gameplay timing.
 
+Направление на эти числа не влияет: `DodgeSettings` один на оба перекатa, и
+`PlayerDodgeAction` тоже один. Длительность, окно неуязвимости, импульс и профиль
+скорости у переднего и заднего переката — буквально одни и те же поля, отдельной
+настройки по направлению нет. Направление выбирает только клип, поэтому
+разбалансировать эти два действия можно лишь содержимым анимации: если один клип
+встаёт позже другого, игрок дольше открыт после закрытия окна при равных числах.
+Отсюда требование к контенту — одинаковое время возврата в стойку; как оно
+обеспечивается, описано в `Docs/Animation/AnimationNaming.md`.
+
+Скорость уворота ведётся кривой `DodgeSettings.SpeedProfile`, а не держится константой. Кривая нормируется по среднему, поэтому её форма меняет только характер рывка, а дальность по-прежнему принадлежит полю `Impulse`. Без неё custom movement mode не трогает скорость вообще — `CustomMovementMode` вызывает пустой хук, — и уворот выглядел как равномерный проезд с мгновенной остановкой в конце.
+
+Нижней границей скорости служит `SetDodgeContinuationSpeed`: контроллер каждый тик считает `PlayerLocomotionRuntime.RequestedSpeed` — `ICharacterMotor.GaitSpeed`, если ввод есть, и ноль, если его нет, — и отдаёт это значение действию. Читать здесь `GetMaxSpeed()` нельзя: во время уворота режим движения `Custom`, а для него метод возвращает `1.0`. Опрос каждый тик означает, что переключение на спринт по ходу переката учитывается, и выход будет на скорости спринта. Уворот не опускается ниже неё и не гасит её на выходе. Поэтому перекат с места заканчивается стоя, а перекат на бегу возвращает в бег, а не в разгон с нуля. Это разные дистанции, и так и должно быть: перекат на бегу проходит дальше.
+
+`RequestedSpeed` попадает и в snapshot: это единственное место, где записано, какое движение игрок просит, пока скоростью владеет действие. Презентация берёт значение оттуда, поэтому смысл «запрошенная походка» не расходится между физикой уворота и анимацией.
+
 `IDamageImmunityTarget` выдаёт `IDisposable` lease вместо записи общего boolean.
 Поэтому пересекающиеся окна dodge и combat action независимы: завершение одного
 owner не снимает иммунитет второго. `Disable`, внешний выход из dodge и обычное
 завершение движения освобождают lease идемпотентно.
 
+## Air dash
+
+Воздушный рывок — не вариант dodge, а собственное действие `PlayerAirDashAction`
+в своём custom movement mode `AirDashing`. Разделение вынужденное:
+`PlayerDodgeAction` входит только из `IsWalking()`, а `CanConsumeDodgeRequest`
+явно отказывает при `IsFalling`. Свести их в одно состояние значило бы сломать
+оба условия.
+
+Ввод при этом общий. Та же команда dodge в воздухе маршрутизируется в
+`TryAirDash`, поэтому буфер ввода, окно запроса и правила блокировки действий
+переиспользуются как есть, а отдельной кнопки не появляется.
+
+Рывок задаётся `AirDashSettings`: импульс, длительность, профиль скорости,
+окно неуязвимости и число зарядов на один полёт. Заряды восстанавливает
+`OnMotorLanded`, то есть одно касание земли всегда возвращает полный запас
+независимо от того, чем полёт закончился.
+
+Длительность выбрана под длину клипа, а не наоборот. Драйвер растягивает клип до
+длительности действия, поэтому при `0.32s` клип в `0.5s` шёл со скоростью
+`1.56x` и читался как дёрганый. При `0.45s` остаётся `1.11x`. Импульс снижен с
+`12` до `8.6`, чтобы дальность сохранилась: `8.6 × 0.45 ≈ 3.87` м против прежних
+`3.84`. Пик скорости при этом упал с `20.9` до `15.1` м/с — профиль тот же, но
+масштабируется меньшим импульсом.
+
+Рывок строго горизонтален: вертикальная составляющая обнуляется на входе, иначе
+рывок на подъёме уносил бы персонажа выше, чем показывает клип, а на падении
+съедал бы почти всю дистанцию. Скорость внутри рывка ведётся
+`AirDashSettings.SpeedProfile` по тем же правилам, что и у наземного уворота:
+кривая нормируется по среднему, дальность остаётся за полем `Impulse`. Раньше
+скорость задавалась один раз, а на выходе обнулялась — персонаж вставал колом в
+воздухе. Теперь нижней границей выхода служит `ResolveSpeed(1.0f)`: это хвост
+профиля либо запрошенная походка, если игрок держит направление.
+
+Направление — `PlayerDodgeDirection` с двумя значениями, как и вся модель
+перемещения: дерево локомоции тоже знает только `Forward`/`Backward`. Значение
+живёт в snapshot и считается в контроллере проекцией запрошенного направления на
+forward персонажа; порог `-0.5` означает, что `Backward` берётся только за
+явным отклонением назад, а не по любому заходу за 90°. Считается это лишь в
+`OrientToViewAndMovement`, то есть под lock-on: в свободной камере персонаж
+разворачивается в сторону движения, поэтому направление всегда `Forward`, а
+фейсинг снапится на вектор рывка. Боковые клипы в паке есть
+(`Esc_8way_BoostDash_Air`), но под текущую модель перемещения они не нужны.
+
+Презентация идёт слотами `Locomotion.AirDash.Forward/Backward` в состояния
+`Locomotion.Jump.AirDash.*`. Драйвер растягивает клип до `AirDashSettings`
+длительности тем же механизмом, что и dodge, поэтому длина исходного клипа не
+становится gameplay-таймингом. Выход из состояний рывка ведёт прямо в `Fall`, а
+не через exit родительской машины: раньше он проходил через `Move`, и персонаж
+на ~0.2 с принимал наземную позу idle прямо в воздухе.
+
 ## Locomotion snapshot
 
-`PlayerLocomotionController` один раз за frame собирает immutable `PlayerLocomotionSnapshot` после подтверждения motor state и выполнения state-machine tick. Snapshot содержит фактическую velocity, локальные forward/lateral/vertical компоненты, normalized speed, gait, locomotion mode, подтверждённое состояние `Idle / Run / Jump / Fall / Dodge / Landing` и semantic landing result.
+`PlayerLocomotionController` один раз за frame собирает immutable `PlayerLocomotionSnapshot` после подтверждения motor state и выполнения state-machine tick. Snapshot содержит фактическую velocity, локальные forward/lateral/vertical компоненты, normalized speed, gait, locomotion mode, подтверждённое состояние `Idle / Run / Jump / Fall / Dodge / AirDash / Landing` и semantic landing result.
 
 До первого tick и после `Disable` snapshot имеет `IsValid == false`; consumers не должны трактовать default enum values как подтверждённое состояние.
 

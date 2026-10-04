@@ -14,6 +14,8 @@ namespace _App.Editor.Animation
     {
         private const string ControllerPath =
             "Assets/_Game/Animations/Character/1. Controllers/XController.controller";
+        private const string PlayerPrefabPath =
+            "Assets/_Game/Prefabs/Character/Player.prefab";
         private const string OutputPath = "Docs/Animation/AnimationSeams.csv";
         private const string MenuPath = "Tools/Animation/Report Animation Seams";
         private const float ActionCrossFadeSeconds = 0.12f;
@@ -30,8 +32,9 @@ namespace _App.Editor.Animation
             public string FromSource { get; }
             public string ToSource { get; }
             public float TransitionSeconds { get; }
-            public float PoseRms { get; }
-            public float VelocityRms { get; }
+            public float PeakDegrees { get; }
+            public string PeakBone { get; }
+            public float MeanDegrees { get; }
 
             public Seam(
                 string kind,
@@ -40,8 +43,9 @@ namespace _App.Editor.Animation
                 AnimationClip fromClip,
                 AnimationClip toClip,
                 float transitionSeconds,
-                float poseRms,
-                float velocityRms)
+                float peakDegrees,
+                string peakBone,
+                float meanDegrees)
             {
                 Kind = kind;
                 From = from;
@@ -51,8 +55,105 @@ namespace _App.Editor.Animation
                 FromSource = DescribeSource(fromClip);
                 ToSource = DescribeSource(toClip);
                 TransitionSeconds = transitionSeconds;
-                PoseRms = poseRms;
-                VelocityRms = velocityRms;
+                PeakDegrees = peakDegrees;
+                PeakBone = peakBone;
+                MeanDegrees = meanDegrees;
+            }
+        }
+
+        private sealed class PoseSampler : IDisposable
+        {
+            private readonly GameObject _instance;
+            private readonly Animator _animator;
+            private readonly List<KeyValuePair<HumanBodyBones, Transform>> _bones =
+                new List<KeyValuePair<HumanBodyBones, Transform>>();
+
+            public bool IsValid => _animator != null && _bones.Count > 0;
+
+            public PoseSampler()
+            {
+                GameObject prefab =
+                    AssetDatabase.LoadAssetAtPath<GameObject>(PlayerPrefabPath);
+                if (prefab == null)
+                {
+                    return;
+                }
+
+                _instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+                _instance.name = "__AnimationSeamProbe";
+                _instance.hideFlags = HideFlags.HideAndDontSave;
+                _animator = _instance.GetComponentInChildren<Animator>(true);
+                if (_animator == null || _animator.avatar == null ||
+                    !_animator.avatar.isHuman)
+                {
+                    return;
+                }
+
+                for (var bone = HumanBodyBones.Hips;
+                     bone < HumanBodyBones.LastBone;
+                     bone++)
+                {
+                    if (IsFingerBone(bone))
+                    {
+                        continue;
+                    }
+
+                    Transform transform = _animator.GetBoneTransform(bone);
+                    if (transform != null)
+                    {
+                        _bones.Add(
+                            new KeyValuePair<HumanBodyBones, Transform>(
+                                bone,
+                                transform));
+                    }
+                }
+            }
+
+            public bool TrySample(
+                AnimationClip clip,
+                float normalizedTime,
+                Quaternion[] pose)
+            {
+                if (clip == null || !IsValid)
+                {
+                    return false;
+                }
+
+                clip.SampleAnimation(
+                    _animator.gameObject,
+                    clip.length * Mathf.Clamp01(normalizedTime));
+                for (int i = 0; i < _bones.Count; i++)
+                {
+                    pose[i] = _bones[i].Value.localRotation;
+                }
+
+                return true;
+            }
+
+            public Quaternion[] CreatePose()
+            {
+                return new Quaternion[_bones.Count];
+            }
+
+            public string BoneName(int index)
+            {
+                return _bones[index].Key.ToString();
+            }
+
+            public int BoneCount => _bones.Count;
+
+            public void Dispose()
+            {
+                if (_instance != null)
+                {
+                    UnityEngine.Object.DestroyImmediate(_instance);
+                }
+            }
+
+            private static bool IsFingerBone(HumanBodyBones bone)
+            {
+                return bone >= HumanBodyBones.LeftThumbProximal &&
+                       bone <= HumanBodyBones.RightLittleDistal;
             }
         }
 
@@ -67,12 +168,24 @@ namespace _App.Editor.Animation
                 return;
             }
 
-            List<Seam> seams = CollectSeams(controller);
-            WriteReport(seams);
-            LogSummary(seams);
+            using (var sampler = new PoseSampler())
+            {
+                if (!sampler.IsValid)
+                {
+                    Debug.LogError(
+                        $"Seam report requires a humanoid Animator on {PlayerPrefabPath}.");
+                    return;
+                }
+
+                List<Seam> seams = CollectSeams(controller, sampler);
+                WriteReport(seams);
+                LogSummary(seams);
+            }
         }
 
-        private static List<Seam> CollectSeams(AnimatorController controller)
+        private static List<Seam> CollectSeams(
+            AnimatorController controller,
+            PoseSampler sampler)
         {
             Dictionary<string, AnimatorState> states = IndexStates(controller);
             var seams = new List<Seam>();
@@ -86,8 +199,22 @@ namespace _App.Editor.Animation
             {
                 AnimatorState action = states[actionPath];
                 float fade = FadeSeconds(actionPath);
-                AddSeam(seams, "enter", move, action, fade, 1.0f);
-                AddSeam(seams, "exit", action, move, fade, 1.0f);
+                AddSeam(
+                    seams,
+                    sampler,
+                    "enter",
+                    move,
+                    action,
+                    AuthoredFadeSeconds(move, action, fade),
+                    1.0f);
+                AddSeam(
+                    seams,
+                    sampler,
+                    "exit",
+                    action,
+                    move,
+                    AuthoredFadeSeconds(action, move, fade),
+                    1.0f);
             }
 
             foreach (KeyValuePair<string, string> chain in ChainPairs())
@@ -95,7 +222,7 @@ namespace _App.Editor.Animation
                 if (states.TryGetValue(chain.Key, out AnimatorState from) &&
                     states.TryGetValue(chain.Value, out AnimatorState to))
                 {
-                    AddSeam(seams, "chain", from, to, ActionCrossFadeSeconds, ChainExitTime);
+                    AddSeam(seams, sampler, "chain", from, to, ActionCrossFadeSeconds, ChainExitTime);
                 }
             }
 
@@ -184,6 +311,58 @@ namespace _App.Editor.Animation
             }
         }
 
+        private static float AuthoredFadeSeconds(
+            AnimatorState from,
+            AnimatorState to,
+            float driverFade)
+        {
+            foreach (AnimatorStateTransition transition in from.transitions)
+            {
+                bool reachesTarget = transition.destinationState == to ||
+                    (transition.destinationStateMachine != null &&
+                     ContainsState(transition.destinationStateMachine, to));
+                if (!reachesTarget)
+                {
+                    continue;
+                }
+
+                return transition.hasFixedDuration
+                    ? transition.duration
+                    : transition.duration * Mathf.Max(0.01f, LengthOf(from.motion));
+            }
+
+            return driverFade;
+        }
+
+        private static bool ContainsState(
+            AnimatorStateMachine stateMachine,
+            AnimatorState state)
+        {
+            foreach (ChildAnimatorState child in stateMachine.states)
+            {
+                if (child.state == state)
+                {
+                    return true;
+                }
+            }
+
+            foreach (ChildAnimatorStateMachine child in stateMachine.stateMachines)
+            {
+                if (ContainsState(child.stateMachine, state))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static float LengthOf(Motion motion)
+        {
+            List<AnimationClip> clips = ResolveClips(motion);
+            return clips.Count > 0 ? clips[0].length : 1.0f;
+        }
+
         private static float FadeSeconds(string targetPath)
         {
             return targetPath.StartsWith("Base Layer.Locomotion.Roll.", StringComparison.Ordinal)
@@ -193,120 +372,184 @@ namespace _App.Editor.Animation
 
         private static void AddSeam(
             List<Seam> seams,
+            PoseSampler sampler,
             string kind,
             AnimatorState from,
             AnimatorState to,
             float transitionSeconds,
             float exitTime)
         {
-            AnimationClip fromClip = ResolveClip(from.motion);
-            AnimationClip toClip = ResolveClip(to.motion);
-            ComparePoses(
-                fromClip,
-                toClip,
-                exitTime,
-                out float poseRms,
-                out float velocityRms);
+            List<AnimationClip> fromClips = ResolveClips(from.motion);
+            List<AnimationClip> toClips = ResolveClips(to.motion);
+            if (fromClips.Count == 0 || toClips.Count == 0)
+            {
+                return;
+            }
+
+            string gait = PreferredGait(from.name) ?? PreferredGait(to.name);
+            if (gait != null)
+            {
+                FilterByGait(fromClips, gait);
+                FilterByGait(toClips, gait);
+            }
+
+            AnimationClip bestFrom = fromClips[0];
+            AnimationClip bestTo = toClips[0];
+            float bestPeak = float.MaxValue;
+            string bestBone = "none";
+            float bestMean = 0.0f;
+
+            foreach (AnimationClip fromCandidate in fromClips)
+            {
+                foreach (AnimationClip toCandidate in toClips)
+                {
+                    ComparePoses(
+                        sampler,
+                        fromCandidate,
+                        toCandidate,
+                        exitTime,
+                        out float peak,
+                        out string bone,
+                        out float mean);
+                    if (peak >= bestPeak)
+                    {
+                        continue;
+                    }
+
+                    bestPeak = peak;
+                    bestBone = bone;
+                    bestMean = mean;
+                    bestFrom = fromCandidate;
+                    bestTo = toCandidate;
+                }
+            }
 
             seams.Add(new Seam(
                 kind,
                 from.name,
                 to.name,
-                fromClip,
-                toClip,
+                bestFrom,
+                bestTo,
                 transitionSeconds,
-                poseRms,
-                velocityRms));
+                bestPeak,
+                bestBone,
+                bestMean));
         }
 
         private static AnimationClip ResolveClip(Motion motion)
         {
+            List<AnimationClip> clips = ResolveClips(motion);
+            return clips.Count > 0 ? clips[0] : null;
+        }
+
+        private static string PreferredGait(string stateName)
+        {
+            if (stateName.EndsWith("Sprint", StringComparison.Ordinal) ||
+                stateName.EndsWith("Sprinting", StringComparison.Ordinal))
+            {
+                return "Loco_Sprint";
+            }
+
+            if (stateName.EndsWith("Run", StringComparison.Ordinal) ||
+                stateName.EndsWith("Running", StringComparison.Ordinal))
+            {
+                return "Loco_Run";
+            }
+
+            if (stateName.EndsWith("Walk", StringComparison.Ordinal) ||
+                stateName.EndsWith("Walking", StringComparison.Ordinal))
+            {
+                return "Loco_Walk";
+            }
+
+            if (stateName.EndsWith("Idle", StringComparison.Ordinal) ||
+                stateName.EndsWith("Default", StringComparison.Ordinal) ||
+                stateName.EndsWith("Soft", StringComparison.Ordinal) ||
+                stateName.EndsWith("Medium", StringComparison.Ordinal) ||
+                stateName.EndsWith("Hard", StringComparison.Ordinal))
+            {
+                return "Loco_Idle";
+            }
+
+            return null;
+        }
+
+        private static void FilterByGait(List<AnimationClip> clips, string gait)
+        {
+            var matches = clips
+                .Where(clip => clip.name.StartsWith(gait, StringComparison.Ordinal))
+                .ToList();
+            if (matches.Count == 0)
+            {
+                return;
+            }
+
+            clips.Clear();
+            clips.AddRange(matches);
+        }
+
+        private static List<AnimationClip> ResolveClips(Motion motion)
+        {
+            var clips = new List<AnimationClip>();
+            Collect(motion, clips);
+            return clips;
+        }
+
+        private static void Collect(Motion motion, List<AnimationClip> clips)
+        {
             switch (motion)
             {
                 case AnimationClip clip:
-                    return clip;
-                case BlendTree tree:
-                {
-                    foreach (ChildMotion child in tree.children)
+                    if (!clips.Contains(clip))
                     {
-                        AnimationClip resolved = ResolveClip(child.motion);
-                        if (resolved != null)
-                        {
-                            return resolved;
-                        }
+                        clips.Add(clip);
                     }
 
-                    return null;
-                }
-                default:
-                    return null;
+                    return;
+                case BlendTree tree:
+                    foreach (ChildMotion child in tree.children)
+                    {
+                        Collect(child.motion, clips);
+                    }
+
+                    return;
             }
         }
 
         private static void ComparePoses(
+            PoseSampler sampler,
             AnimationClip from,
             AnimationClip to,
             float exitTime,
-            out float poseRms,
-            out float velocityRms)
+            out float peakDegrees,
+            out string peakBone,
+            out float meanDegrees)
         {
-            poseRms = 0.0f;
-            velocityRms = 0.0f;
-            if (from == null || to == null)
+            peakDegrees = 0.0f;
+            peakBone = "none";
+            meanDegrees = 0.0f;
+
+            Quaternion[] fromPose = sampler.CreatePose();
+            Quaternion[] toPose = sampler.CreatePose();
+            if (!sampler.TrySample(from, exitTime, fromPose) ||
+                !sampler.TrySample(to, 0.0f, toPose))
             {
                 return;
             }
 
-            Dictionary<string, AnimationCurve> fromCurves = SampleCurves(from);
-            Dictionary<string, AnimationCurve> toCurves = SampleCurves(to);
-            float fromTime = Mathf.Clamp01(exitTime) * from.length;
-            const float step = 1.0f / 30.0f;
-
-            double poseSum = 0.0;
-            double velocitySum = 0.0;
-            int count = 0;
-            foreach (KeyValuePair<string, AnimationCurve> pair in fromCurves)
+            double total = 0.0;
+            for (int i = 0; i < sampler.BoneCount; i++)
             {
-                if (!toCurves.TryGetValue(pair.Key, out AnimationCurve toCurve))
+                float angle = Quaternion.Angle(fromPose[i], toPose[i]);
+                total += angle;
+                if (angle > peakDegrees)
                 {
-                    continue;
-                }
-
-                float delta = pair.Value.Evaluate(fromTime) - toCurve.Evaluate(0.0f);
-                poseSum += delta * delta;
-
-                float fromRate =
-                    (pair.Value.Evaluate(fromTime) -
-                     pair.Value.Evaluate(Mathf.Max(0.0f, fromTime - step))) / step;
-                float toRate =
-                    (toCurve.Evaluate(Mathf.Min(to.length, step)) - toCurve.Evaluate(0.0f)) / step;
-                float rateDelta = fromRate - toRate;
-                velocitySum += rateDelta * rateDelta;
-                count++;
-            }
-
-            if (count == 0)
-            {
-                return;
-            }
-
-            poseRms = Mathf.Sqrt((float)(poseSum / count));
-            velocityRms = Mathf.Sqrt((float)(velocitySum / count));
-        }
-
-        private static Dictionary<string, AnimationCurve> SampleCurves(AnimationClip clip)
-        {
-            var curves = new Dictionary<string, AnimationCurve>(StringComparer.Ordinal);
-            foreach (EditorCurveBinding binding in AnimationUtility.GetCurveBindings(clip))
-            {
-                AnimationCurve curve = AnimationUtility.GetEditorCurve(clip, binding);
-                if (curve != null)
-                {
-                    curves[binding.path + "/" + binding.propertyName] = curve;
+                    peakDegrees = angle;
+                    peakBone = sampler.BoneName(i);
                 }
             }
 
-            return curves;
+            meanDegrees = (float)(total / sampler.BoneCount);
         }
 
         private static string DescribeSource(AnimationClip clip)
@@ -320,6 +563,7 @@ namespace _App.Editor.Animation
             switch (bindingCount)
             {
                 case 130:
+                case 193:
                     return "CLazy";
                 case 137:
                     return "Knight";
@@ -335,9 +579,13 @@ namespace _App.Editor.Animation
         {
             var builder = new StringBuilder();
             builder.AppendLine(
-                "kind;from;to;fromClip;toClip;fromSource;toSource;fadeSeconds;poseRms;velocityRms;crossSource");
-            foreach (Seam seam in seams.OrderByDescending(s => s.PoseRms))
+                "kind;from;to;fromClip;toClip;fromSource;toSource;fadeSeconds;" +
+                "peakDegrees;peakBone;meanDegrees;degreesPerSecond;crossSource");
+            foreach (Seam seam in seams.OrderByDescending(s => s.PeakDegrees))
             {
+                float rate = seam.TransitionSeconds > 0.0f
+                    ? seam.PeakDegrees / seam.TransitionSeconds
+                    : 0.0f;
                 builder.AppendLine(string.Join(";", new[]
                 {
                     seam.Kind,
@@ -348,8 +596,10 @@ namespace _App.Editor.Animation
                     seam.FromSource,
                     seam.ToSource,
                     Format(seam.TransitionSeconds),
-                    Format(seam.PoseRms),
-                    Format(seam.VelocityRms),
+                    Format(seam.PeakDegrees),
+                    seam.PeakBone,
+                    Format(seam.MeanDegrees),
+                    Format(rate),
                     seam.FromSource != seam.ToSource ? "yes" : "no"
                 }));
             }
@@ -367,16 +617,16 @@ namespace _App.Editor.Animation
         private static void LogSummary(List<Seam> seams)
         {
             int crossSource = seams.Count(s => s.FromSource != s.ToSource);
-            double mean = seams.Count > 0 ? seams.Average(s => (double)s.PoseRms) : 0.0;
+            double mean = seams.Count > 0 ? seams.Average(s => (double)s.PeakDegrees) : 0.0;
             var builder = new StringBuilder();
             builder.AppendLine(
                 $"[Animation Seams] {seams.Count} seam(s), {crossSource} cross-source, " +
-                $"mean pose rms {mean:F4}. Report: {OutputPath}");
-            foreach (Seam seam in seams.OrderByDescending(s => s.PoseRms).Take(15))
+                $"mean peak {mean:F1} deg. Report: {OutputPath}");
+            foreach (Seam seam in seams.OrderByDescending(s => s.PeakDegrees).Take(15))
             {
                 builder.AppendLine(
-                    $"  rms {Format(seam.PoseRms)}  {seam.Kind,-5} {seam.From} -> {seam.To}" +
-                    $"  [{seam.FromSource} -> {seam.ToSource}]");
+                    $"  {seam.PeakDegrees,5:F0} deg {seam.PeakBone,-16} over " +
+                    $"{seam.TransitionSeconds:F2}s  {seam.Kind,-5} {seam.From} -> {seam.To}");
             }
 
             Debug.Log(builder.ToString());
@@ -384,7 +634,7 @@ namespace _App.Editor.Animation
 
         private static string Format(float value)
         {
-            return value.ToString("F4", CultureInfo.InvariantCulture);
+            return value.ToString("F2", CultureInfo.InvariantCulture);
         }
     }
-}
+}

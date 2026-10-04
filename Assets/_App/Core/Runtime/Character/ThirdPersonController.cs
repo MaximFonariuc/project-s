@@ -31,7 +31,7 @@ namespace _App
         [SerializeField] private CharacterFeatureSet _characterFeatures;
 
         [Header("CombatController")]
-        [SerializeField] private EWeaponType _startingWeapon = EWeaponType.DualHand;
+        [SerializeField] private EWeaponType _startingWeapon = EWeaponType.Unarmed;
         [SerializeField] private PlayerCombatLoadoutProfile _combatLoadoutProfile;
 
         [Header("Combat Reactions")]

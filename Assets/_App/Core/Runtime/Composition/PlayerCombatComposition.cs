@@ -24,6 +24,11 @@ namespace _App
             builder.RegisterInstance(inputBufferSettings);
             builder.RegisterInstance(attackRecoilSettings);
             builder.Register<CombatInputBuffer>(Lifetime.Scoped);
+            builder.Register(
+                resolver => new CombatChargeTracker(
+                    resolver.Resolve<ICombatClock>(),
+                    inputBufferSettings.ChargeHoldSeconds),
+                Lifetime.Scoped);
             builder.Register<CombatMotionController>(Lifetime.Scoped);
             builder.Register<CombatActionExecutor>(Lifetime.Scoped);
             builder.Register<CombatActionSession>(Lifetime.Scoped);
@@ -113,6 +118,7 @@ namespace _App
                         resolver.Resolve<PlayerWeaponTransitionSession>(),
                         resolver.Resolve<PlayerCombatOperationLifetime>(),
                         resolver.Resolve<ModularStateMachine.IStateMachine<PlayerCombatPhase>>(),
+                        resolver.Resolve<CombatChargeTracker>(),
                         player.CharacterType,
                         player.StartingWeapon),
                     Lifetime.Scoped)

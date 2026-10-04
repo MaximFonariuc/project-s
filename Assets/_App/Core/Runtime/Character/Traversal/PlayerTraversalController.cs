@@ -6,8 +6,6 @@ namespace _App
 {
     public sealed class PlayerTraversalController : IPlayerTraversalCommands, IDisposable
     {
-        private const float ClimbInputThreshold = 0.01f;
-
         private readonly IPlayerInput _input;
         private readonly IPlayerTraversalActor _actor;
         private readonly IPlayerSimulationLock _simulationLock;
@@ -91,7 +89,7 @@ namespace _App
 
         public void Tick()
         {
-            if (!_enabled || !_actor.IsClimbing || _input.Move.sqrMagnitude <= ClimbInputThreshold)
+            if (!_enabled || !_actor.IsClimbing)
             {
                 return;
             }

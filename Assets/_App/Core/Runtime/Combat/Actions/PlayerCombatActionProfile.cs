@@ -37,6 +37,7 @@ namespace _App
         internal PlayerCombatActionGraph CreateActionGraph()
         {
             var actions = new List<PlayerCombatAction>();
+            var unavailable = new List<PlayerCombatActionId>();
             if (_actions != null)
             {
                 for (int i = 0; i < _actions.Count; i++)
@@ -49,6 +50,10 @@ namespace _App
                     }
 
                     actions.Add(entry.Build());
+                    if (!entry.IsAvailable)
+                    {
+                        unavailable.Add(entry.Id);
+                    }
                 }
             }
 
@@ -84,6 +89,20 @@ namespace _App
                 }
             }
 
+            // The authored structure is validated in full, unavailable steps
+            // included, so a typo stays an error instead of silently collapsing.
+            var authored = new PlayerCombatActionGraph(actions, entries, transitions);
+            if (unavailable.Count == 0)
+            {
+                return authored;
+            }
+
+            PlayerCombatGraphCollapse.Apply(
+                unavailable,
+                actions,
+                entries,
+                transitions,
+                name);
             return new PlayerCombatActionGraph(actions, entries, transitions);
         }
 
@@ -109,6 +128,11 @@ namespace _App
                 {
                     throw new InvalidOperationException(
                         $"{name} has a null combat action at index {i}.");
+                }
+
+                if (!authoring.IsAvailable)
+                {
+                    continue;
                 }
 
                 requirements.Add(
@@ -138,6 +162,10 @@ namespace _App
     public sealed class PlayerCombatActionAuthoring
     {
         [SerializeField] private string _id = "combo.0";
+        [Tooltip(
+            "Clear this when the weapon has no animation for the shared step. " +
+            "The step and everything it alone leads to drop out of the graph.")]
+        [SerializeField] private bool _available = true;
         [SerializeField] private PlayerCombatEnvironment _environment =
             PlayerCombatEnvironment.Grounded;
         [SerializeField] private PlayerCombatPresentationKind _presentation =
@@ -147,6 +175,9 @@ namespace _App
         [SerializeField] private string _animationId = string.Empty;
         [SerializeField] private CombatActionAuthoring _action =
             CombatActionAuthoring.CreateDefaultAttack();
+
+        internal PlayerCombatActionId Id => new PlayerCombatActionId(_id);
+        internal bool IsAvailable => _available;
 
         internal PlayerCombatAction Build()
         {

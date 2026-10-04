@@ -43,12 +43,18 @@ namespace _App
         public const string BodyLookYParameterName = "BodyLookY";
         public const string HeadLookXParameterName = "HeadLookX";
         public const string HeadLookYParameterName = "HeadLookY";
+        public const string LadderAscendPhaseParameterName = "LadderAscendPhase";
+        public const string LadderDescendPhaseParameterName = "LadderDescendPhase";
 
         public const string MoveStatePath = "Base Layer.Locomotion.Move";
         public const string RollForwardStatePath =
             "Base Layer.Locomotion.Roll.RollFront";
         public const string RollBackwardStatePath =
             "Base Layer.Locomotion.Roll.RollBack";
+        public const string AirDashForwardStatePath =
+            "Base Layer.Locomotion.Jump.AirDash.AirDashFront";
+        public const string AirDashBackwardStatePath =
+            "Base Layer.Locomotion.Jump.AirDash.AirDashBack";
         public const string Attack1StatePath = "Base Layer.Attack.BaseAttack1";
         public const string Attack2StatePath = "Base Layer.Attack.BaseAttack2";
         public const string Attack3StatePath = "Base Layer.Attack.BaseAttack3";
@@ -134,9 +140,33 @@ namespace _App
                         AnimatorControllerParameterType.Float),
                     new XControllerParameterRequirement(
                         HeadLookYParameterName,
+                        AnimatorControllerParameterType.Float),
+                    new XControllerParameterRequirement(
+                        LadderAscendPhaseParameterName,
+                        AnimatorControllerParameterType.Float),
+                    new XControllerParameterRequirement(
+                        LadderDescendPhaseParameterName,
                         AnimatorControllerParameterType.Float)
                 });
 
+        private static readonly IReadOnlyDictionary<string, string> ClipSlots =
+            new Dictionary<string, string>(StringComparer.Ordinal)
+            {
+                { Attack1StatePath, "Unarmed_Combo_1" },
+                { Attack2StatePath, "Unarmed_Combo_2" },
+                { Attack3StatePath, "Unarmed_Combo_3" },
+                { Attack4StatePath, "Unarmed_Combo_4" },
+                { AirAttack1StatePath, "Unarmed_Air_1" },
+                { AirAttack2StatePath, "Unarmed_Air_2" },
+                { AirAttack3StatePath, "Unarmed_Air_3" },
+                { LauncherStatePath, "Unarmed_Launcher" },
+                { SpecialAttackStatePath, "Unarmed_Special" },
+                { AirChaseStatePath, "Jump_Rise_Run" },
+                { RollForwardStatePath, "Dodge_Roll_F" },
+                { RollBackwardStatePath, "Dodge_Roll_B" },
+                { AirDashForwardStatePath, "Jump_AirDash_F" },
+                { AirDashBackwardStatePath, "Jump_AirDash_B" },
+            };
         private static readonly IReadOnlyList<string> BaseLayerStates =
             Array.AsReadOnly(
                 new[]
@@ -144,6 +174,8 @@ namespace _App
                     MoveStatePath,
                     RollForwardStatePath,
                     RollBackwardStatePath,
+                    AirDashForwardStatePath,
+                    AirDashBackwardStatePath,
                     Attack1StatePath,
                     Attack2StatePath,
                     Attack3StatePath,
@@ -268,6 +300,17 @@ namespace _App
 
         public static IReadOnlyList<string> RequiredDefenseLayerStatePaths =>
             DefenseLayerStates;
+
+        public static bool TryGetClipSlot(string statePath, out string clipSlot)
+        {
+            if (statePath != null && ClipSlots.TryGetValue(statePath, out clipSlot))
+            {
+                return true;
+            }
+
+            clipSlot = null;
+            return false;
+        }
 
         public static bool TryGetCombatStatePath(
             PlayerCombatPresentationKind presentationKind,

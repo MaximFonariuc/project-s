@@ -14,13 +14,16 @@ namespace _App
                 throw new ArgumentNullException(nameof(features));
             }
 
-            builder.Register<IPlayerTraversalActions>(
+            builder.Register(
                 resolver => new PlayerTraversalActions(
                     resolver.Resolve<Character>(),
                     resolver.Resolve<PlayerAnimationCoordinator>(),
                     resolver.Resolve<IPlayerLocomotionState>(),
+                    resolver.Resolve<IPlayerLadderClimbAnimation>(),
                     features),
-                Lifetime.Scoped);
+                Lifetime.Scoped)
+                .As<IPlayerTraversalActions>()
+                .As<IPlayerLadderGrip>();
             builder.Register<IPlayerInteractionProbe, CharacterInteractionProbe>(Lifetime.Scoped);
             builder.Register<PlayerSimulationGate>(Lifetime.Scoped)
                 .As<IPlayerSimulationPause>()

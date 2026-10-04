@@ -13,17 +13,23 @@ namespace _App
         bool TryBeginClimb();
     }
 
-    internal sealed class PlayerTraversalActions : IPlayerTraversalActions
+    internal sealed class PlayerTraversalActions : IPlayerTraversalActions, IPlayerLadderGrip
     {
         private readonly LadderTraversalAction _ladder;
         private bool _enabled;
 
         public bool IsClimbAvailable => _ladder != null;
+        public bool IsGripActive => _ladder?.IsGripActive == true;
+        public bool IsHanging => _ladder?.IsHanging == true;
+        public bool IsBaseTransition => _ladder?.IsBaseTransition == true;
+        public float ClimbCycles => _ladder?.ClimbCycles ?? 0.0f;
+        public Ladder ActiveLadder => _ladder?.ActiveLadder;
 
         public PlayerTraversalActions(
             Character character,
             PlayerAnimationCoordinator animation,
             IPlayerLocomotionState locomotionState,
+            IPlayerLadderClimbAnimation climbAnimation,
             CharacterFeatureSet features)
         {
             if (character == null)
@@ -41,6 +47,11 @@ namespace _App
                 throw new ArgumentNullException(nameof(locomotionState));
             }
 
+            if (climbAnimation == null)
+            {
+                throw new ArgumentNullException(nameof(climbAnimation));
+            }
+
             if (features == null)
             {
                 throw new ArgumentNullException(nameof(features));
@@ -53,6 +64,7 @@ namespace _App
                     character,
                     animation,
                     locomotionState,
+                    climbAnimation,
                     settings);
             }
         }

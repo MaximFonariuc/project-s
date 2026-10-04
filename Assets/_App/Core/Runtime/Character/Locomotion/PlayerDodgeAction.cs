@@ -8,6 +8,7 @@ namespace _App
         private readonly Character _character;
         private readonly ICharacterMotor _motor;
         private readonly IDamageImmunityTarget _damageImmunity;
+        private readonly DodgeSettings _settings;
         private readonly bool _canEverDodge;
         private readonly bool _hasInvulnerability;
         private readonly float _impulse;
@@ -16,8 +17,9 @@ namespace _App
         private readonly float _invulnerabilityEnd;
 
         private IDisposable _damageImmunityLease;
+        private Vector3 _dodgeDirection;
+        private float _continuationSpeed;
         private float _elapsed;
-        private bool _requestedBackwards;
         private bool _requestPending;
         private bool _exitPending;
         private bool _enabled;
@@ -41,6 +43,7 @@ namespace _App
                 throw new ArgumentNullException(nameof(settings));
             }
 
+            _settings = settings;
             _canEverDodge = settings.IsEnabled;
             _impulse = settings.Impulse;
             _duration = settings.Duration;
@@ -87,10 +90,14 @@ namespace _App
             }
 
             _elapsed = 0.0f;
-            _requestedBackwards = false;
         }
 
-        public bool TryRequest(Vector3 worldDirection, bool backwards)
+        public void SetContinuationSpeed(float speed)
+        {
+            _continuationSpeed = Mathf.Max(0.0f, speed);
+        }
+
+        public bool TryRequest(Vector3 worldDirection, PlayerDodgeDirection direction)
         {
             if (!CanRequest)
             {
@@ -100,12 +107,11 @@ namespace _App
             Vector3 clampedDirection = Vector3.ClampMagnitude(worldDirection, 1.0f);
             _motor.SetMovementDirection(clampedDirection);
 
-            if (!backwards)
+            if (direction != PlayerDodgeDirection.Backward)
             {
                 _motor.SnapFacingDirection(clampedDirection);
             }
 
-            _requestedBackwards = backwards;
             _requestPending = true;
             return true;
         }
@@ -153,11 +159,18 @@ namespace _App
                 dodgeDirection = _character.GetForwardVector();
             }
 
-            Vector3 planarDirection = Vector3.ProjectOnPlane(
+            _dodgeDirection = Vector3.ProjectOnPlane(
                 dodgeDirection,
                 _character.GetUpVector()).normalized;
-            _character.SetVelocity(planarDirection * _impulse);
+            _character.SetVelocity(_dodgeDirection * ResolveSpeed(0.0f));
             UpdateDamageImmunity();
+        }
+
+        private float ResolveSpeed(float normalizedTime)
+        {
+            return Mathf.Max(
+                _impulse * _settings.SampleNormalizedSpeed(normalizedTime),
+                _continuationSpeed);
         }
 
         private void OnCustomMovementModeUpdated(float deltaTime)
@@ -169,6 +182,7 @@ namespace _App
 
             _character.SetMovementDirection(Vector3.zero);
             _elapsed = Mathf.Min(_elapsed + deltaTime, _duration);
+            _character.SetVelocity(_dodgeDirection * ResolveSpeed(_elapsed / _duration));
             UpdateDamageImmunity();
 
             if (_elapsed >= _duration)
@@ -181,10 +195,15 @@ namespace _App
         {
             ReleaseDamageImmunity();
             Vector3 up = _character.GetUpVector();
-            Vector3 verticalVelocity = Vector3.Project(_character.GetVelocity(), up);
-            _character.SetVelocity(verticalVelocity);
+            Vector3 velocity = _character.GetVelocity();
+            Vector3 verticalVelocity = Vector3.Project(velocity, up);
+            Vector3 planarVelocity = Vector3.ProjectOnPlane(velocity, up);
+            _character.SetVelocity(
+                verticalVelocity +
+                Vector3.ClampMagnitude(planarVelocity, _continuationSpeed));
             _elapsed = 0.0f;
-            _requestedBackwards = false;
+            _dodgeDirection = Vector3.zero;
+            _continuationSpeed = 0.0f;
             _requestPending = false;
             _exitPending = false;
             _character.SetMovementMode(

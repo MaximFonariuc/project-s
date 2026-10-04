@@ -8,6 +8,10 @@ namespace _App
             new AnimationSlotId("Locomotion.Dodge.Forward");
         public static readonly AnimationSlotId DodgeBackward =
             new AnimationSlotId("Locomotion.Dodge.Backward");
+        public static readonly AnimationSlotId AirDashForward =
+            new AnimationSlotId("Locomotion.AirDash.Forward");
+        public static readonly AnimationSlotId AirDashBackward =
+            new AnimationSlotId("Locomotion.AirDash.Backward");
         public static readonly AnimationSlotId Grounded =
             new AnimationSlotId("Locomotion.Grounded");
         public static readonly AnimationSlotId JumpWalk =
