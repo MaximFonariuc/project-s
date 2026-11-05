@@ -29,7 +29,6 @@ namespace _App.Editor.Animation
         private const string MenuPath =
             "Tools/Animation/Validate XController Contract";
         private const float TransitionTimingTolerance = 0.005f;
-        private const float DodgeDurationToleranceSeconds = 0.05f;
         private const float CombatClipDurationToleranceSeconds = 0.02f;
         private const float ReactionClipDurationToleranceSeconds = 0.02f;
         private const float ActionStateSpeedTolerance = 0.001f;
@@ -491,6 +490,13 @@ namespace _App.Editor.Animation
                 result.Error(
                     "Locomotion gait tree must use Simple1D with " +
                     $"'{XControllerAnimationContract.MovementTypeParameterName}'.");
+            }
+
+            if (moveState.speedParameterActive)
+            {
+                result.Error(
+                    "Locomotion Move state must not scale playback with a " +
+                    "parameter; every gait clip plays at its authored rate.");
             }
 
             ChildMotion[] gaits = gaitTree.children;
@@ -1857,7 +1863,17 @@ namespace _App.Editor.Animation
             }
 
             AnimationClip clip = clips.First();
-            string clipSlot = statePath.Substring(statePath.LastIndexOf('.') + 1);
+            if (!XControllerAnimationContract.TryGetClipSlot(
+                    statePath,
+                    out string clipSlot))
+            {
+                result.Error(
+                    $"Base state '{statePath}' for {usage} has no clip slot in " +
+                    "XControllerAnimationContract; runtime synchronization cannot " +
+                    "resolve its active override.");
+                return;
+            }
+
             if (!string.Equals(clip.name, clipSlot, StringComparison.Ordinal))
             {
                 result.Error(
@@ -1924,20 +1940,61 @@ namespace _App.Editor.Animation
                 animationOverride.overridesCount);
             animationOverride.GetOverrides(overrides);
 
-            ValidateDodgeClipDuration(
+            ValidateDodgeSlot(
                 animationOverride,
                 overrides,
                 baseController,
-                "RollFront",
                 XControllerAnimationContract.RollForwardStatePath,
                 gameplayDuration,
                 result);
+            ValidateDodgeSlot(
+                animationOverride,
+                overrides,
+                baseController,
+                XControllerAnimationContract.RollBackwardStatePath,
+                gameplayDuration,
+                result);
+        }
+
+        private static void ValidateDodgeSlot(
+            AnimatorOverrideController animationOverride,
+            IReadOnlyList<KeyValuePair<AnimationClip, AnimationClip>> overrides,
+            AnimatorController baseController,
+            string statePath,
+            float gameplayDuration,
+            ValidationResult result)
+        {
+            if (!XControllerAnimationContract.TryGetClipSlot(
+                    statePath,
+                    out string clipSlot))
+            {
+                result.Error(
+                    $"Dodge state '{statePath}' has no clip slot in " +
+                    "XControllerAnimationContract.");
+                return;
+            }
+
+            for (int i = 0; i < overrides.Count; i++)
+            {
+                KeyValuePair<AnimationClip, AnimationClip> pair = overrides[i];
+                if (pair.Key != null &&
+                    pair.Key.name == clipSlot &&
+                    pair.Value != null)
+                {
+                    result.Error(
+                        $"Override '{animationOverride.name}' replaces dodge slot " +
+                        $"'{clipSlot}' with '{pair.Value.name}'. Dodges are shared " +
+                        "across weapons and must stay on the base clip.");
+                    return;
+                }
+            }
+
             ValidateDodgeClipDuration(
                 animationOverride,
                 overrides,
                 baseController,
-                "RollBack",
-                XControllerAnimationContract.RollBackwardStatePath,
+                clipSlot,
+                statePath,
                 gameplayDuration,
                 result);
         }
@@ -1985,14 +2042,26 @@ namespace _App.Editor.Animation
                 return;
             }
 
-            float visualDuration = clip.length / state.speed;
-            if (Mathf.Abs(visualDuration - gameplayDuration) >
-                DodgeDurationToleranceSeconds)
+            if (Mathf.Abs(state.speed - 1.0f) > ActionStateSpeedTolerance)
+            {
+                result.Error(
+                    $"Dodge state '{statePath}' must keep speed 1.0; " +
+                    "XControllerCharacterAnimationDriver stretches the clip to the " +
+                    "gameplay duration at runtime.");
+                return;
+            }
+
+            float playbackRate = clip.length / gameplayDuration;
+            if (playbackRate < MinimumSynchronizedPlaybackRate ||
+                playbackRate > MaximumSynchronizedPlaybackRate)
             {
                 result.Error(
                     $"Override '{animationOverride.name}' dodge slot " +
-                    $"'{sourceClipName}' lasts {visualDuration:F3}s, but gameplay " +
-                    $"DodgeSettings lasts {gameplayDuration:F3}s.");
+                    $"'{sourceClipName}' lasts {clip.length:F3}s against a " +
+                    $"{gameplayDuration:F3}s gameplay dodge, requiring playback rate " +
+                    $"{playbackRate:F3}; supported range is " +
+                    $"{MinimumSynchronizedPlaybackRate:F1}-" +
+                    $"{MaximumSynchronizedPlaybackRate:F1}.");
             }
         }
 

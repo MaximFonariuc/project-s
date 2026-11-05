@@ -13,15 +13,19 @@ namespace _App
     internal sealed class XControllerCharacterAnimationDriver :
         ICharacterAnimationDriver,
         ICharacterLookAnimationDriver,
+        IPlayerLadderClimbAnimation,
         IDisposable
     {
         private const float GaitDampSeconds = 0.33f;
         private const float DirectionDampSeconds = 0.12f;
         private const float DirectionEpsilon = 0.0001f;
         private const float DodgeCrossFadeSeconds = 0.10f;
+        private const float DodgeMovingCrossFadeSeconds = 0.20f;
+        private const float DodgeCrossFadeSpeed = 4.0f;
         private const float AttackCrossFadeSeconds = 0.12f;
         private const float WeaponCrossFadeSeconds = 0.15f;
         private const float DefenseCrossFadeSeconds = 0.10f;
+        private const float LadderCrossFadeSeconds = 0.18f;
         private const float ActionCancelCrossFadeSeconds = 0.12f;
         private const float AttackBodyLookWeight = 0.15f;
         private const float AttackHeadLookWeight = 0.35f;
@@ -40,12 +44,20 @@ namespace _App
             XControllerAnimationContract.FallingDurationParameterName);
         private static readonly int SpeedMultiplierHash = Animator.StringToHash(
             XControllerAnimationContract.SpeedMultiplierParameterName);
+        private static readonly int LadderAscendPhaseHash = Animator.StringToHash(
+            XControllerAnimationContract.LadderAscendPhaseParameterName);
+        private static readonly int LadderDescendPhaseHash = Animator.StringToHash(
+            XControllerAnimationContract.LadderDescendPhaseParameterName);
         private static readonly int MoveStateHash = Animator.StringToHash(
             XControllerAnimationContract.MoveStatePath);
         private static readonly int RollForwardStateHash = Animator.StringToHash(
             XControllerAnimationContract.RollForwardStatePath);
         private static readonly int RollBackwardStateHash = Animator.StringToHash(
             XControllerAnimationContract.RollBackwardStatePath);
+        private static readonly int AirDashForwardStateHash = Animator.StringToHash(
+            XControllerAnimationContract.AirDashForwardStatePath);
+        private static readonly int AirDashBackwardStateHash = Animator.StringToHash(
+            XControllerAnimationContract.AirDashBackwardStatePath);
         private static readonly int[] ReactionStateHashes = CreateStateHashes(
             XControllerAnimationContract.ReactionStatePaths);
 
@@ -71,12 +83,12 @@ namespace _App
         private float _lastAirborneVerticalSpeed;
         private RuntimeAnimatorController _cachedClipController;
         private float _actionPlaybackRate = 1.0f;
-        private float _timePlaybackRate = 1.0f;
         private int _actionLayerIndex = -1;
         private int _actionStateHash;
         private int _releasedActionLayerIndex = -1;
         private int _releasedActionStateHash;
         private bool _wasGrounded = true;
+        private float _lastPlanarSpeed;
         private bool _disposed;
 
         public XControllerCharacterAnimationDriver(Animator animator)
@@ -141,6 +153,7 @@ namespace _App
             // damping would delay the jump/fall sign change and soften impacts.
             _animator.SetFloat(FallingDurationHash, fallingVelocity);
             _animator.SetBool(OnGroundHash, frame.IsGrounded);
+            _lastPlanarSpeed = planarSpeed;
             _wasGrounded = frame.IsGrounded;
             _lookPose.SetGrounded(frame.IsGrounded);
         }
@@ -224,9 +237,15 @@ namespace _App
         {
             ThrowIfDisposed();
 
-            _timePlaybackRate = Mathf.Max(0.0f, speed);
-            _animator.SetFloat(SpeedMultiplierHash, _timePlaybackRate);
-            ApplyPlaybackRate();
+            _animator.SetFloat(SpeedMultiplierHash, Mathf.Max(0.0f, speed));
+        }
+
+        public void SetClimbPhases(float ascendPhase, float descendPhase)
+        {
+            ThrowIfDisposed();
+
+            _animator.SetFloat(LadderAscendPhaseHash, ascendPhase);
+            _animator.SetFloat(LadderDescendPhaseHash, descendPhase);
         }
 
         public void Reset()
@@ -240,12 +259,14 @@ namespace _App
             _animator.SetFloat(MovementDirectionHash, 0.0f);
             _animator.SetFloat(FallingDurationHash, 0.0f);
             _animator.SetFloat(SpeedMultiplierHash, 1.0f);
+            _animator.SetFloat(LadderAscendPhaseHash, 0.0f);
+            _animator.SetFloat(LadderDescendPhaseHash, 0.0f);
             _animator.SetBool(OnGroundHash, true);
             _actionPlaybackRate = 1.0f;
-            _timePlaybackRate = 1.0f;
             ClearReleasedActionTracking();
             ApplyPlaybackRate();
             _lastAirborneVerticalSpeed = 0.0f;
+            _lastPlanarSpeed = 0.0f;
             _wasGrounded = true;
             _lookPose.Reset();
             ClearActionPresentationPolicy();
@@ -262,6 +283,15 @@ namespace _App
 
             Reset();
             _disposed = true;
+        }
+
+        private float ResolveDodgeCrossFade()
+        {
+            float blend = Mathf.Clamp01(_lastPlanarSpeed / DodgeCrossFadeSpeed);
+            return Mathf.Lerp(
+                DodgeCrossFadeSeconds,
+                DodgeMovingCrossFadeSeconds,
+                blend);
         }
 
         private static float ResolveMovementDirection(
@@ -480,7 +510,7 @@ namespace _App
 
         private void ApplyPlaybackRate()
         {
-            _animator.speed = _actionPlaybackRate * _timePlaybackRate;
+            _animator.speed = _actionPlaybackRate;
         }
 
         private float ResolveActionPlaybackRate(
@@ -488,14 +518,21 @@ namespace _App
             string statePath)
         {
             if ((!IsAttackAction(request.Action) &&
-                 request.Action != PlayerAnimatorActions.Dodge) ||
+                 request.Action != PlayerAnimatorActions.Dodge &&
+                 request.Action != PlayerAnimatorActions.AirDash) ||
                 request.ExpectedDuration <= 0.0f ||
                 string.IsNullOrEmpty(statePath))
             {
                 return 1.0f;
             }
 
-            string clipSlot = statePath.Substring(statePath.LastIndexOf('.') + 1);
+            if (!XControllerAnimationContract.TryGetClipSlot(
+                    statePath,
+                    out string clipSlot))
+            {
+                return 1.0f;
+            }
+
             RefreshActiveClipSlots();
             if (!_activeClipsBySlot.TryGetValue(clipSlot, out AnimationClip clip) ||
                 clip == null ||
@@ -616,6 +653,17 @@ namespace _App
                 stateHash = request.Variant == 1
                     ? RollBackwardStateHash
                     : RollForwardStateHash;
+                crossFadeSeconds = ResolveDodgeCrossFade();
+            }
+            else if (request.Action == PlayerAnimatorActions.AirDash &&
+                     request.Variant is 0 or 1)
+            {
+                statePath = request.Variant == 1
+                    ? XControllerAnimationContract.AirDashBackwardStatePath
+                    : XControllerAnimationContract.AirDashForwardStatePath;
+                stateHash = request.Variant == 1
+                    ? AirDashBackwardStateHash
+                    : AirDashForwardStateHash;
                 crossFadeSeconds = DodgeCrossFadeSeconds;
             }
             else if (request.Action == PlayerAnimatorActions.WeaponTransition &&
@@ -637,7 +685,7 @@ namespace _App
                 statePath = XControllerAnimationContract.TraversalStatePaths[
                     request.Variant];
                 stateHash = TraversalStateHashes[request.Variant];
-                crossFadeSeconds = DodgeCrossFadeSeconds;
+                crossFadeSeconds = LadderCrossFadeSeconds;
             }
             else if (request.Action == PlayerAnimatorActions.Reaction &&
                      request.Variant >= 0 &&

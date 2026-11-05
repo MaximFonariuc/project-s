@@ -87,6 +87,18 @@ namespace _App
         }
     }
 
+    internal sealed class PlayerAirDashState : PlayerLocomotionState
+    {
+        protected override bool AppliesMovement => false;
+
+        public PlayerAirDashState(
+            ICharacterMotor motor,
+            PlayerLocomotionRuntime runtime)
+            : base(motor, runtime)
+        {
+        }
+    }
+
     internal sealed class PlayerLandingState : PlayerLocomotionState
     {
         protected override bool AppliesMovement => false;

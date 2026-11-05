@@ -21,6 +21,7 @@ namespace _App
         }
 
         private const float MoveThresholdSqr = 0.0001f;
+        private const float BackwardDodgeDot = -0.5f;
         private const float AscendingThreshold = 0.05f;
         private const float JumpStartupSeconds = 0.12f;
         private const float JumpTakeoffTimeoutSeconds = 0.10f;
@@ -179,6 +180,7 @@ namespace _App
             UpdateJumpStartup(scaledDeltaTime);
             UpdateLandingRecovery(scaledDeltaTime);
             RefreshMovementDirections();
+            RefreshRequestedSpeed();
             PlayerLocomotionStateId stateId = ResolveState();
             if (_stateMachine.IsRunning)
             {
@@ -225,7 +227,7 @@ namespace _App
             CancelJumpStartup();
             _motor.ReleaseJump();
             _motor.SetMovementDirection(Vector3.zero);
-            _runtime.DodgeBackwards = false;
+            _runtime.DodgeDirection = PlayerDodgeDirection.Forward;
             _actions.Interrupt();
         }
 
@@ -249,13 +251,14 @@ namespace _App
             PlayerLanding landing = _settings.ResolveLanding(impactSpeed);
             _landing = landing;
             _landingRecoveryRemaining = landing.RecoveryDuration;
+            _actions.RestoreAirDashCharges();
             if (landing.BlocksActions)
             {
                 CancelJumpStartup();
                 _motor.ReleaseJump();
                 _actions.StopGliding();
                 _runtime.EffectiveMoveDirection = Vector3.zero;
-                _runtime.DodgeBackwards = false;
+                _runtime.DodgeDirection = PlayerDodgeDirection.Forward;
                 _motor.StopPlanarMovement();
             }
 
@@ -273,6 +276,14 @@ namespace _App
                 : _runtime.RawMoveDirection * _movementIntent.TranslationScale;
         }
 
+        private void RefreshRequestedSpeed()
+        {
+            bool steering = !BlocksActions &&
+                            _runtime.RawMoveDirection.sqrMagnitude > MoveThresholdSqr;
+            _runtime.RequestedSpeed = steering ? _motor.GaitSpeed : 0.0f;
+            _actions.SetDodgeContinuationSpeed(_runtime.RequestedSpeed);
+        }
+
         private PlayerLocomotionStateId ResolveState()
         {
             if (BlocksActions)
@@ -283,6 +294,11 @@ namespace _App
             if (_motor.IsDodging)
             {
                 return PlayerLocomotionStateId.Dodge;
+            }
+
+            if (_motor.IsAirDashing)
+            {
+                return PlayerLocomotionStateId.AirDash;
             }
 
             if (_motor.IsFalling)
@@ -317,6 +333,9 @@ namespace _App
                 case PlayerLocomotionStateId.Dodge:
                     _stateMachine.Start<PlayerDodgeState>();
                     break;
+                case PlayerLocomotionStateId.AirDash:
+                    _stateMachine.Start<PlayerAirDashState>();
+                    break;
                 case PlayerLocomotionStateId.Landing:
                     _stateMachine.Start<PlayerLandingState>();
                     break;
@@ -348,6 +367,9 @@ namespace _App
                     break;
                 case PlayerLocomotionStateId.Dodge:
                     _stateMachine.ChangeState<PlayerDodgeState>();
+                    break;
+                case PlayerLocomotionStateId.AirDash:
+                    _stateMachine.ChangeState<PlayerAirDashState>();
                     break;
                 case PlayerLocomotionStateId.Landing:
                     _stateMachine.ChangeState<PlayerLandingState>();
@@ -426,11 +448,12 @@ namespace _App
                 Vector3.Dot(planarVelocity, right),
                 Vector3.Dot(velocity, up),
                 planarVelocity.magnitude / maxSpeed,
+                _runtime.RequestedSpeed,
                 _motor.IsGrounded,
                 _runtime.JumpStarting,
                 _actions.IsDodgeStarting,
                 _motor.IsCrouched,
-                stateId == PlayerLocomotionStateId.Dodge && _runtime.DodgeBackwards,
+                _runtime.DodgeDirection,
                 _landing);
         }
 
@@ -664,23 +687,51 @@ namespace _App
 
         private bool TryConsumeDodgeRequest()
         {
-            if (!CanConsumeDodgeRequest(in _movementIntent))
+            bool airborne = CanConsumeAirDashRequest(in _movementIntent);
+            if (!airborne && !CanConsumeDodgeRequest(in _movementIntent))
             {
                 return false;
             }
 
             RefreshMovementDirections();
-            bool backwards = _input.Move.y < -0.5f &&
-                             _motor.RotationMode == ERotationMode.OrientToViewAndMovement;
+            PlayerDodgeDirection direction = ResolveDodgeDirection();
 
-            if (!_actions.TryDodge(_runtime.RawMoveDirection, backwards))
+            bool accepted = airborne
+                ? _actions.TryAirDash(_runtime.RawMoveDirection, direction)
+                : _actions.TryDodge(_runtime.RawMoveDirection, direction);
+            if (!accepted)
             {
                 return false;
             }
 
-            _runtime.DodgeBackwards = backwards;
+            _runtime.DodgeDirection = direction;
             SafeEvent.Publish(DodgeAccepted, null);
             return true;
+        }
+
+        private PlayerDodgeDirection ResolveDodgeDirection()
+        {
+            if (_motor.RotationMode != ERotationMode.OrientToViewAndMovement)
+            {
+                return PlayerDodgeDirection.Forward;
+            }
+
+            Vector3 up = _motor.Up.normalized;
+            Vector3 move = Vector3.ProjectOnPlane(_runtime.RawMoveDirection, up);
+            if (move.sqrMagnitude <= MoveThresholdSqr)
+            {
+                return PlayerDodgeDirection.Forward;
+            }
+
+            Vector3 forward = Vector3.ProjectOnPlane(_motor.Forward, up).normalized;
+            if (forward.sqrMagnitude <= MoveThresholdSqr)
+            {
+                return PlayerDodgeDirection.Forward;
+            }
+
+            return Vector3.Dot(move.normalized, forward) < BackwardDodgeDot
+                ? PlayerDodgeDirection.Backward
+                : PlayerDodgeDirection.Forward;
         }
 
         private bool CanConsumeJumpRequest(in PlayerMovementIntent movementIntent)
@@ -696,6 +747,13 @@ namespace _App
             return !BlocksActions && movementIntent.AllowDodge && !_motor.IsFalling &&
                    !_motor.IsSwimming && !_motor.IsDodging &&
                    _actions.CanDodge;
+        }
+
+        private bool CanConsumeAirDashRequest(in PlayerMovementIntent movementIntent)
+        {
+            return !BlocksActions && movementIntent.AllowDodge && _motor.IsFalling &&
+                   !_motor.IsSwimming && !_motor.IsDodging &&
+                   _actions.CanAirDash;
         }
 
         private void UpdateLandingRecovery(float deltaTime)

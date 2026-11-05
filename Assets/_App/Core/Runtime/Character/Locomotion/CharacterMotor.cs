@@ -27,12 +27,19 @@ namespace _App
         public bool IsFalling => _character.IsFalling();
         public bool IsJumping => _character.IsJumping();
         public bool IsDodging => _character.IsDodging();
+        public bool IsAirDashing => _character.IsAirDashing();
         public bool IsSwimming => _character.IsSwimming();
         public bool IsClimbing => _character.IsClimbing();
         public bool IsFlying => _character.IsFlying();
         public bool IsCrouched => _character.IsCrouched();
         public ERotationMode RotationMode => _character.RotationMode;
         public float MaxSpeed => _character.GetMaxSpeed();
+        public float GaitSpeed => _speedMode switch
+        {
+            PlayerSpeedMode.Walk => _walkSpeed,
+            PlayerSpeedMode.Sprint => _sprintSpeed,
+            _ => _runSpeed
+        };
         public Vector3 Up => _character.GetUpVector();
         public Vector3 Forward => _character.GetForwardVector();
         public Vector3 Position => _character.GetPosition();

@@ -29,6 +29,10 @@ classDiagram
     }
     class ICharacterAnimationDriver
     class ICharacterLookAnimationDriver
+    class IPlayerLadderClimbAnimation {
+        +SetClimbPhases(ascendPhase, descendPhase)
+    }
+    class XControllerCharacterAnimationDriver
     class CharacterLookFrame
     class PlayerLocomotionAnimationAdapter
     class PlayerCombatAnimationAdapter
@@ -46,9 +50,21 @@ classDiagram
     PlayerAnimationCoordinator --> PlayerAnimatorActions
     PlayerAnimationCoordinator --> ICharacterAnimationDriver
     ICharacterLookAnimationDriver --> CharacterLookFrame
+    ICharacterAnimationDriver <|.. XControllerCharacterAnimationDriver
+    ICharacterLookAnimationDriver <|.. XControllerCharacterAnimationDriver
+    IPlayerLadderClimbAnimation <|.. XControllerCharacterAnimationDriver
 ```
 
 - The coordinator owns finite-action priority, action source and playback speed.
+- Playback speed reaches the XController as the `SpeedMultiplier` parameter only.
+  `Animator.speed` stays reserved for the per-action rate that fits an attack or a
+  dodge to its authored duration, so a source that slows itself down does not stop
+  every other layer. No XController state reads `SpeedMultiplier` at the moment.
+- The ladder loops take their phase from gameplay instead of a playback rate.
+  `IPlayerLadderClimbAnimation.SetClimbPhases` writes `LadderAscendPhase` and
+  `LadderDescendPhase`, which drive `Ladder_Ascend` and `Ladder_Descend` through
+  Motion Time. The clip phase therefore cannot drift from the climb position, and
+  a reversal plays the same pose backwards instead of restarting a cycle.
 - `CharacterAnimationHost` is the single Animator-driver owner for scene-owned
   characters without a VContainer scope. Adapters share its coordinator instead
   of constructing competing drivers for the same Animator. The Player keeps the

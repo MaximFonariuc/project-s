@@ -7,7 +7,8 @@ namespace _App
         internal Vector3 RawMoveDirection { get; set; }
         internal Vector3 EffectiveMoveDirection { get; set; }
         internal PlayerSpeedMode SpeedMode { get; set; } = PlayerSpeedMode.Run;
-        internal bool DodgeBackwards { get; set; }
+        internal float RequestedSpeed { get; set; }
+        internal PlayerDodgeDirection DodgeDirection { get; set; }
         internal bool JumpStarting { get; set; }
         internal float JumpStartupTimeRemaining { get; set; }
     }

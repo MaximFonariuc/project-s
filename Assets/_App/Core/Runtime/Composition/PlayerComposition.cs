@@ -48,6 +48,10 @@ namespace _App
 
             builder.RegisterComponent(character);
             builder.RegisterComponent(health);
+            if (player.PlayerAnimator.TryGetComponent(out LadderGripIkAdapter ladderGripIk))
+            {
+                builder.RegisterComponent(ladderGripIk);
+            }
             builder.RegisterInstance(movesets);
             builder.RegisterInstance(feedbackSettings);
             builder.RegisterInstance(styleSettings);
@@ -64,7 +68,8 @@ namespace _App
                     Lifetime.Scoped)
                 .AsSelf()
                 .As<ModularAnimation.ICharacterAnimationDriver>()
-                .As<ICharacterLookAnimationDriver>();
+                .As<ICharacterLookAnimationDriver>()
+                .As<IPlayerLadderClimbAnimation>();
             builder.Register(
                 _ => new PlayerAnimatorLoadout(
                     player.PlayerAnimator,

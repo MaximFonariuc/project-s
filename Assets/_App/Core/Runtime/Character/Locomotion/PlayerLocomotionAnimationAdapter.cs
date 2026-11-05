@@ -1,4 +1,5 @@
 using System;
+using ModularAnimation;
 
 namespace _App
 {
@@ -7,8 +8,10 @@ namespace _App
         private readonly PlayerAnimationCoordinator _animation;
         private readonly PlayerCharacterAnimationPresenter _presenter;
         private readonly float _dodgeDuration;
+        private readonly float _airDashDuration;
 
         private bool _wasDodging;
+        private bool _wasAirDashing;
 
         public PlayerLocomotionAnimationAdapter(
             PlayerAnimationCoordinator animation,
@@ -19,6 +22,7 @@ namespace _App
             _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
             _dodgeDuration = settings?.DodgeDuration ??
                 throw new ArgumentNullException(nameof(settings));
+            _airDashDuration = settings.AirDashDuration;
         }
 
         public void Present(in PlayerLocomotionSnapshot snapshot, float deltaTime)
@@ -36,9 +40,7 @@ namespace _App
             {
                 _animation.CrossFade(
                     PlayerAnimationSource.Locomotion,
-                    snapshot.DodgeBackwards
-                        ? PlayerAnimationSlots.DodgeBackward
-                        : PlayerAnimationSlots.DodgeForward,
+                    ResolveDodgeSlot(snapshot.DodgeDirection),
                     _dodgeDuration);
             }
             else if (!isDodging && _wasDodging)
@@ -47,6 +49,35 @@ namespace _App
             }
 
             _wasDodging = isDodging;
+
+            bool isAirDashing = snapshot.State == PlayerLocomotionStateId.AirDash;
+            if (isAirDashing && !_wasAirDashing && _airDashDuration > 0.0f)
+            {
+                _animation.CrossFade(
+                    PlayerAnimationSource.Locomotion,
+                    ResolveAirDashSlot(snapshot.DodgeDirection),
+                    _airDashDuration);
+            }
+            else if (!isAirDashing && _wasAirDashing)
+            {
+                _animation.ReleaseAll(PlayerAnimationSource.Locomotion);
+            }
+
+            _wasAirDashing = isAirDashing;
+        }
+
+        private static AnimationSlotId ResolveDodgeSlot(PlayerDodgeDirection direction)
+        {
+            return direction == PlayerDodgeDirection.Backward
+                ? PlayerAnimationSlots.DodgeBackward
+                : PlayerAnimationSlots.DodgeForward;
+        }
+
+        private static AnimationSlotId ResolveAirDashSlot(PlayerDodgeDirection direction)
+        {
+            return direction == PlayerDodgeDirection.Backward
+                ? PlayerAnimationSlots.AirDashBackward
+                : PlayerAnimationSlots.AirDashForward;
         }
 
         public void Reset()
@@ -54,6 +85,7 @@ namespace _App
             _animation.Cancel(PlayerAnimationSource.Locomotion);
             _animation.ReleaseAll(PlayerAnimationSource.Locomotion);
             _wasDodging = false;
+            _wasAirDashing = false;
         }
     }
 }

@@ -97,6 +97,11 @@ namespace _App
             return _movementMode == EMovementMode.Custom && _customMovementMode == (int)ECustomMovementMode.Dodging;
         }
 
+        public virtual bool IsAirDashing()
+        {
+            return _movementMode == EMovementMode.Custom && _customMovementMode == (int)ECustomMovementMode.AirDashing;
+        }
+
         public virtual bool IsClimbing()
         {
             return _movementMode == EMovementMode.Custom && _customMovementMode == (int)ECustomMovementMode.Climbing;

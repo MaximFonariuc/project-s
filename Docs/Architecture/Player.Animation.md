@@ -100,7 +100,7 @@ classDiagram
 
 ## Ownership and update flow
 
-- `PlayerLocomotionController` owns `Idle / Run / Jump / Fall / Dodge` gameplay
+- `PlayerLocomotionController` owns `Idle / Run / Jump / Fall / Dodge / AirDash / Landing` gameplay
   state and publishes an immutable snapshot.
 - `PlayerCharacterAnimationPresenter` converts that snapshot to a rig-neutral
   locomotion frame.
@@ -160,13 +160,14 @@ classDiagram
 - Root motion is disabled for every clip in the working set, attacks included.
   Dodge and attack movement go through `CharacterMotor`, including normal
   collision sweeps and grounding.
-- Action travel is authored in `CombatMotionDefinition` and derived from the
-  source clip's own root curve, so a move covers the distance its animator
-  intended while the motor keeps authority. Baked root motion is rejected for
-  three reasons: it cannot honour target assist, it would give the same logical
-  attack a different reach per weapon because override clips carry different
-  baked displacement, and it couples reach to the playback rate the driver
-  already stretches between 0.5x and 2.0x.
+- Action travel is authored in `CombatMotionDefinition` and owns its own numbers.
+  The source clip's root curve is reference material, not the target: reach is a
+  balance value tuned against how the move should play, so a deliberate gap
+  between the two is expected rather than drift to be corrected. Baked root
+  motion is rejected for three reasons: it cannot honour target assist, it would
+  give the same logical attack a different reach per weapon because override
+  clips carry different baked displacement, and it couples reach to the playback
+  rate the driver already stretches between 0.5x and 2.0x.
 - Clips that ship both a travelling and an in-place variant are wired through the
   in-place one. A discarded root curve still animates a lunge the character never
   makes, which reads as a snap back to origin.
@@ -207,6 +208,8 @@ The current action contract is:
 | --- | ---: | ---: | --- |
 | Dodge | 1 | 0 | `Locomotion/Roll/RollFront` |
 | Dodge | 1 | 1 | `Locomotion/Roll/RollBack` |
+| Air dash | 14 | 0 | `Locomotion/Jump/AirDash/AirDashFront` |
+| Air dash | 14 | 1 | `Locomotion/Jump/AirDash/AirDashBack` |
 | Light attack | 2 | 0...3 | `Attack/BaseAttack1...4` |
 | Air light attack | 5 | 0...2 | `Attack/AirAttack1...3` |
 | Grounded named special | 6 | 0 | `Attack/Skill` |
@@ -229,8 +232,44 @@ The current action contract is:
 The controller consumes its historical `MovementType`, `MovementDirection`,
 `FallingDuration`, `OnGround` and `SpeedMultiplier` parameters. `BodyLookX/Y`
 and `HeadLookX/Y` drive the additive `BodyLook` and `HeadLook` layers from the
-camera/targeting presentation path. Jump anticipation remains gameplay-owned
-regardless of the current animation graph.
+camera/targeting presentation path. `LadderAscendPhase` and `LadderDescendPhase`
+are the Motion Time of `Ladder_Ascend` and `Ladder_Descend`; traversal writes
+them through `IPlayerLadderClimbAnimation`. Since the ladder loops moved to
+Motion Time, no state reads `SpeedMultiplier`. Jump anticipation remains
+gameplay-owned regardless of the current animation graph.
+
+## Locomotion selection
+
+The locomotion tree blends on `MovementType`, the gait index, with thresholds
+`0` idle, `1` walk, `2` run and `3` sprint. Each gait owns a nested
+`MovementDirection` tree that picks the backward or forward clip at `-0.5` and
+`0.5`. The `Move` state carries no speed parameter: every clip plays at its
+authored rate.
+
+Gait selection and clip cadence are deliberately separate concerns here, and
+only selection is solved. Because the gait index — not the motor speed — chooses
+the tier, the clip the player sees always matches the movement mode they asked
+for. The cost is that the clips were authored slower than the motor moves, so
+the feet under-run the ground: walk travels `3.0` m/s against a `1.823` m/s
+cycle, run `5.0` against `2.963`, and sprint `10.0` against the same `2.963`
+because `Loco_Sprint_F/B` are copies of the run clips.
+
+While a dodge or an air dash owns the velocity, the locomotion frame carries the
+requested gait speed instead of the measured planar speed. The action moves the
+character far faster than any gait, so feeding the measured speed parked
+`MovementType` at run for the whole roll: a standing dodge then exited through a
+run pose and needed half a second to decay back to idle, which read as a roll
+authored for a running exit. The same value also chooses the dodge cross-fade
+length, so a standing dodge now gets the short fade instead of always taking the
+moving one. Holding a direction keeps the requested speed at the gait, so a roll
+out of a run still exits into the run clip.
+
+Scaling playback to close that gap was tried and reverted. Driving the blend by
+metres per second instead of gait index made the walk clip unreachable, since
+the gameplay walk speed of `3.0` m/s sits above the run clip's authored `2.963`,
+and stretching the run clip to sprint speed needed a rate the eye reads as
+comical. Any future attempt needs faster source cycles first; retiming the
+existing ones is not enough.
 
 The body receives a smaller share of the requested angle and follows it more
 slowly; the head receives the remaining angle and reacts faster. Losing a
@@ -346,17 +385,44 @@ through a `0.10 s` fixed-duration blend. The combat executor is advanced once
 by `PlayerActorController`'s gameplay tick; async weapon/action workflows await
 completion but never advance time themselves.
 
-The source motions assigned to `RollFront`, `RollBack`, `BaseAttack1...3`,
-`BaseAttack4`, `Launcher`, `AirAttack1...3` and `Skill`
-are unique override slots. Do not reuse one source clip for two semantically
-different states because a single override would then replace both usages.
-Replacement clip names follow the same slot names for readability, although
-Unity technically keys the override by the source clip asset.
+The source motions assigned to the dodge, ground combo, heavy, launcher, air
+combo and special states are unique override slots. Do not reuse one source clip
+for two semantically different states because a single override would then
+replace both usages.
+
+Animator state names and clip slot names are deliberately independent: states
+keep the historical XController names, while clips follow
+`Docs/Animation/AnimationNaming.md`. The mapping between them is declared once,
+in `XControllerAnimationContract.TryGetClipSlot`:
+
+| State | Clip slot |
+| --- | --- |
+| `Attack/BaseAttack1...4` | `Unarmed_Combo_1...4` |
+| `Attack/AirAttack1...3` | `Unarmed_Air_1...3` |
+| `Attack/Launcher` | `Unarmed_Launcher` |
+| `Attack/Skill` | `Unarmed_Special` |
+| `Locomotion/Jump/AirDash/AirDashFront` / `AirDashBack` | `Jump_AirDash_F` / `Jump_AirDash_B` |
+| `Locomotion/Jump/Jump/JumpRunning` | `Jump_Rise_Run` |
+| `Locomotion/Roll/RollFront` / `RollBack` | `Dodge_Roll_F` / `Dodge_Roll_B` |
+
+That table is load-bearing, not documentation. `ResolveActionPlaybackRate`
+resolves the currently active override through it to learn the real clip length
+before stretching an action to its gameplay duration; without it the driver
+would silently fall back to rate `1.0` and every action would drift from its
+authored timing. The validator asserts each listed state actually carries its
+declared slot clip.
+
+Dodges are shared across weapons, so an override that replaces `Dodge_Roll_F` or
+`Dodge_Roll_B` fails validation. The base clip is stretched to the gameplay
+`DodgeSettings` duration at runtime, which is why the dodge states keep speed
+`1.0` and the validator only checks that the implied rate stays inside
+`[0.5, 2.0]`.
 
 ## Current content
 
-The Player prefab references `XController.controller` as its base, starts with
-`DualHand`, and binds that weapon type to `DualSwords.overrideController`.
+The Player prefab references `XController.controller` as its base and starts
+with `Unarmed`, which runs on that base controller directly. `DualHand` is bound
+to `DualSwords.overrideController` and is reached by switching weapons.
 Unsupported weapon types are rejected before entering gameplay state. Additional
 weapon styles extend the serialized binding list without changing gameplay or
 Animator state names after a compatible override asset exists.
@@ -404,7 +470,8 @@ It also fixes the locomotion blend contract to a continuous
 subtrees at `-0.5 / 0.5`. Runtime damping therefore cannot be invalidated by an
 accidental Blend Tree type or threshold change.
 Controller defaults are part of the same neutral-pose contract:
-`OnGround=true`, all movement/look channels at zero and `SpeedMultiplier=1`.
+`OnGround=true`, all movement/look/ladder phase channels at zero and
+`SpeedMultiplier=1`.
 This keeps Editor preview and the first frame before composition consistent with
 the runtime driver reset.
 The validator also builds the active player combat profile and verifies that

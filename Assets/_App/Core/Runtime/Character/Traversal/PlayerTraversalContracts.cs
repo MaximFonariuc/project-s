@@ -11,6 +11,20 @@ namespace _App
         bool HasInteractable();
     }
 
+    public interface IPlayerLadderGrip
+    {
+        bool IsGripActive { get; }
+        bool IsHanging { get; }
+        bool IsBaseTransition { get; }
+        float ClimbCycles { get; }
+        Ladder ActiveLadder { get; }
+    }
+
+    internal interface IPlayerLadderClimbAnimation
+    {
+        void SetClimbPhases(float ascendPhase, float descendPhase);
+    }
+
     internal interface IPlayerSimulationPause
     {
         bool IsPauseRequested { get; }

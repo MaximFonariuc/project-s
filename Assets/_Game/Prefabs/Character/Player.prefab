@@ -638,7 +638,7 @@ MonoBehaviour:
   _minPitch: -80
   _maxPitch: 80
   _characterFeatures: {fileID: 11400000, guid: dc1465bfc5833d04981462926cb47f2e, type: 2}
-  _startingWeapon: 5
+  _startingWeapon: 1
   _combatLoadoutProfile: {fileID: 11400000, guid: b1e3238a37b750940aa0aad995e11121, type: 2}
   _reactionProfile: {fileID: 11400000, guid: c842a637289f9e843bc9cd45c2ee569d, type: 2}
   _defenseProfile: {fileID: 11400000, guid: 9af7d4acfe6a9834e940a04ed63b009c, type: 2}
@@ -718,8 +718,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f69b1ad50afd74498b769d896e3fea2, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _unarmedHitboxes:
   - {fileID: 6465409639916462472}
   - {fileID: 7252946858662463397}
@@ -2073,8 +2073,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 727f9f31ea8e412a94ae698ff0c0bc35, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _hitbox: {fileID: 2622462728040635144}
   _targetLayers:
     serializedVersion: 2
@@ -2092,8 +2092,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a2292e7653b24747a8f963a716b4eb6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _bladeCollider: {fileID: 2622462728040635144}
   _lifetime: 0.14
   _maxSamples: 24
@@ -2658,8 +2658,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 727f9f31ea8e412a94ae698ff0c0bc35, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _hitbox: {fileID: 7181005981218156373}
   _targetLayers:
     serializedVersion: 2
@@ -2677,8 +2677,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a2292e7653b24747a8f963a716b4eb6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   _bladeCollider: {fileID: 7181005981218156373}
   _lifetime: 0.14
   _maxSamples: 24
@@ -2940,13 +2940,52 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 400020, guid: b67206ccb16ad77489a9eb0b6a3d6c68, type: 3}
       insertIndex: -1
       addedObject: {fileID: 412966512871872891}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100016, guid: b67206ccb16ad77489a9eb0b6a3d6c68, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3017697996881842009}
   m_SourcePrefab: {fileID: 100100000, guid: b67206ccb16ad77489a9eb0b6a3d6c68, type: 3}
 --- !u!95 &7171206776534285674 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: b67206ccb16ad77489a9eb0b6a3d6c68, type: 3}
   m_PrefabInstance: {fileID: 7171206776541661194}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7171206776541564602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100016, guid: b67206ccb16ad77489a9eb0b6a3d6c68, type: 3}
+  m_PrefabInstance: {fileID: 7171206776541661194}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3017697996881842009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171206776541564602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f83c40f33e2c8d468e1d68d6b36d6e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handWeight: 0.9
+  _footWeight: 0.75
+  _maxCorrection: 0.09
+  _plantSpeed: 0.8
+  _latchDistance: 0.1
+  _blendSeconds: 0.12
+  _leftHandHeightAboveRung: 0.03
+  _rightHandHeightAboveRung: 0.01
+  _handDepthFromRung: -0.05
+  _footHeightAboveRung: 0.06
+  _footDepthFromRung: -0.094
+  _baseFootGoal: 0
+  _baseFootEntryOffset: {x: -0.123, y: 0.071, z: 0.04}
+  _baseFootClimbOffset: {x: -0.059, y: 0.085, z: 0.171}
+  _baseStepStartCycles: 0.1
+  _baseStepEndCycles: 0.22
+  _bodyStandoff: 0.05
+  _bodyDrop: 0.03
+  _standoffBlendSeconds: 0.25
 --- !u!4 &7171206776541794956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: b67206ccb16ad77489a9eb0b6a3d6c68, type: 3}
